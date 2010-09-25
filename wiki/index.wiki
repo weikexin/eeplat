@@ -1,3 +1,4 @@
+#labels Featured
 # Getting Started
 # Join a project
 # Project Hosting FAQ
