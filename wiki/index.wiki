@@ -1,5 +1,5 @@
 #labels Featured
-# Getting Started
+# Getting Started[index]
 # Join a project
 # Project Hosting FAQ
 # Making hosting better 
