@@ -1,7 +1,6 @@
-* [getstared  入门文档]
+* [getstarted  入门文档]
 
 * [devdoc  开发文档]
 
-* Project Hosting FAQ
-
-* Making hosting better 
+* [faqdoc  FAQ文档]
+ 
