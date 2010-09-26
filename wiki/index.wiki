@@ -33,5 +33,5 @@
           *  [JavaAPI     JAVA API]
           *  [GlobalParas     全局配置参数]
           *  [ExtendDev     平台扩展开发]
-  * [FAQ  FAQ文档]
+  * [FAQ  常见问题解答]
  
