@@ -26,9 +26,9 @@
           *  [ConfigWorkflow     工作流配置]
           *  [CodeGenerator     编码生成器]
           *  [OrgParter     组织权限简介]
-          *  [HowToUseExcelReport     如何何使用图表]使用EXCEL报表]
-          *  [HowTOUserGraphics     如
-          *  [ImportExportBusinessObject     业务对象导入导出简介    ]
+          *  [HowToUseExcelReport     使用EXCEL报表]
+          *  [HowTOUserGraphics       如何何使用图表]
+          *  [ImportExportBusinessObject     业务对象导入导出简介]
           *  [JavaScriptAPI     JAVASCRIPT API]    
           *  [JavaAPI     JAVA API]
           *  [GlobalParas     全局配置参数]
