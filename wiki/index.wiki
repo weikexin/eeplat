@@ -1,5 +1,5 @@
 * 入门文档
-  * [Setup安装]
+  * [Setup 安装]
   * [Login 登录]
   * [FirstProjcet 第一个工程]
   * [Translating 界面翻译]
