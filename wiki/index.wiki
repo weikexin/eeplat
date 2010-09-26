@@ -4,8 +4,6 @@
     * [FirstProjcet 第一个工程]
     * [Translating 界面翻译]
     * [AboutSQL  附录创建表的SQL]
-
   * [DeveloperGuide  开发文档]
-
   * [FAQ  FAQ文档]
  
