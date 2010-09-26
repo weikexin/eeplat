@@ -1,6 +1,6 @@
 * 入门文档
   ** 安装
-    *** [WarSetUp *WAR包安装*]
+    *** [WarSetUp 使用WAR包]
     *** [SourceSetUp 使用源代码]
   ** [Login 登录]
   ** [FirstProjcet 第一个工程]
