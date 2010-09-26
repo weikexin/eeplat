@@ -1,9 +1,9 @@
   * 入门文档
-    *[Setup 安装]
-    *[Login 登录]
-    *[FirstProjcet 第一个工程]
-    *[Translating 界面翻译]
-    *[AboutSQL  附录创建表的SQL]
+    * [Setup 安装]
+    * [Login 登录]
+    * [FirstProjcet 第一个工程]
+    * [Translating 界面翻译]
+    * [AboutSQL  附录创建表的SQL]
 
   * [DeveloperGuide  开发文档]
 
