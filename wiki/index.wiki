@@ -1,8 +1,11 @@
-* [GettingStarted  入门文档]
+* 入门文档
   ** 安装
-    *** war包安装
-    *** 使用源代码
-  ** 登录
+    *** [WarSetUp war包安装]
+    *** [SourceSetUp 使用源代码]
+  ** [Login 登录]
+  ** [FirstProjcet 第一个工程]
+  ** [Translating 界面翻译]
+  ** [AboutSQL  附录创建表的SQL]
 
 * [DeveloperGuide  开发文档]
 
