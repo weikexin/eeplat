@@ -1,6 +1,6 @@
 * [GettingStarted  入门文档]
 
-* [devdoc  开发文档]
+* [Documentation  开发文档]
 
-* [faqdoc  FAQ文档]
+* [FAQ  FAQ文档]
  
