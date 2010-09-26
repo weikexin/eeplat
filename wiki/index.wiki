@@ -1,8 +1,8 @@
 * [GettingStarted  入门文档]
-  # 安装
+  * 安装
     * war包安装
     * 使用源代码
-  # 登录
+  * 登录
 
 * [DeveloperGuide  开发文档]
 
