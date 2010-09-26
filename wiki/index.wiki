@@ -1,6 +1,5 @@
 * 入门文档
   ** 安装
-
      *** [WarSetUp 使用WAR包]
      *** [SourceSetUp 使用源代码]
   ** [Login 登录]
