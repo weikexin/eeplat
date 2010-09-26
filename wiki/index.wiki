@@ -1,4 +1,4 @@
-* [getstarted  入门文档]
+* [GettingStarted  入门文档]
 
 * [devdoc  开发文档]
 
