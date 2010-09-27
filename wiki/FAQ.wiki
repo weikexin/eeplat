@@ -1,6 +1,6 @@
 == 对GAE的支持有什么限制？ ==
 
-GAE的存储采用的是BIGTABLE,并不是关系型数据库,BIGTABLE本身也有一些限制(http://code.google.com/intl/zh-CN/appengine/docs/java/datastore/queriesandindexes.html)。EEPlat 采用jiql(http://www.jiql.org/) 来进行数据操作。和关系数据库相比，使用GAE:
+GAE的存储采用的是BIGTABLE,并不是关系型数据库。BIGTABLE本身也有一些限制(http://code.google.com/intl/zh-CN/appengine/docs/java/datastore/queriesandindexes.html)。EEPlat 采用jiql(http://www.jiql.org/) 来进行数据操作。和关系数据库相比，使用GAE:
 #不能采用模糊查询
 #不能查询大批量数据
 #对联合查询支持的不好
