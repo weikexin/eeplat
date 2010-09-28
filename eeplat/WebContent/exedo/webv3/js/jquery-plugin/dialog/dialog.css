@@ -1,0 +1,83 @@
+div.whiteOverlay { background: white; }
+div.jqDrag {cursor: move;}
+	
+.jqHandle {
+   background: white;
+   height:5px;
+   width: 5px;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   cursor: se-resize;
+}
+
+/* jqmModal dialog CSS courtesy of;
+  Brice Burgess <bhb@iceburg.net> */
+
+div.jqmDialog {
+  display: none;
+  background: white;
+  position: fixed;
+  top: 17%;
+  left: 50%;
+  margin-left: -325px;
+  width: 650px;
+  height: 380px;
+  overflow: hidden;
+  font-family:verdana,tahoma,helvetica;
+  border:2px solid #528c00; 
+  *zoom  1
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html div.jqmDialog {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+
+/* [[[ Title / Top Classes ]]] */
+div.jqmdTC { 
+  background: #d5ff84 url(sprite.gif) repeat-x 0px -82px; 
+  color: #528c00;
+  padding: 7px 22px 5px 5px;
+  font-weight: bold;
+  cursor: move;
+  * zoom: 1;
+}
+div.jqmdTL { background:  url(sprite.gif) no-repeat 0px -41px; padding-left: 3px; margin-top:-2px;}
+div.jqmdTR { background: url(sprite.gif) no-repeat right 0px; padding-right: 3px; margin-top:-2px; * zoom: 1;}
+
+
+/* [[[ Body / Message Classes ]]] */
+div.jqmdBC {
+  background: url(bc.gif) repeat-x center bottom;
+  padding: 7px 7px 7px;
+  height:200px;
+  overflow: auto;
+  * zoom: 1 
+}
+div.jqmdBL { background: url(bl.gif) no-repeat left bottom; padding-left: 7px; * zoom: 1  }
+div.jqmdBR { background: url(br.gif) no-repeat right bottom; padding-right: 7px; * zoom: 1 }
+
+div.jqmdMSG { color: #317895; }
+
+div.jqmContent{overflow:auto; padding-left:10px; background: white;  border-top:1px solid #528c00; position: relative;height:93%;width:98%}
+
+
+/* [[[ Button classes ]]] */
+input.jqmdX {
+  position: absolute;
+  right: 7px;
+  top: 4px;
+  padding: 0 0 0 19px;
+  height: 19px;
+  width: 0px;
+  background: url(close.gif) no-repeat top left;
+  overflow: hidden;
+}
+input.jqmdXFocus {background-position: bottom left; outline: none;}
+
+

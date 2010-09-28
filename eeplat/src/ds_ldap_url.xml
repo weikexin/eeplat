@@ -1,0 +1,5 @@
+<config>
+        <property name="connection.driver_class">ldap.jndi</property>
+        <property name="connection.url">ldap://192.168.0.3/</property>
+        <property name="connection.username">,ou=people,o=zephyr.com.cn,o=domains,o=zephyr.com.cn</property>
+</config>

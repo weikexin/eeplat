@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="workflow">
+	<!--=======================================================================================================================-->
+	<!--此处是前期准备-->
+	<!--背景-->
+	<rect id="BKBackDrop" x="-10%" y="-10%" width="110%" height="110%" fill="none" pointer-events="all"/>
+	<defs>
+		<!--渐变背景样式-->
+		<linearGradient id="BKjianbian" gradientTransform="rotate(90)">
+			<stop offset="0%" stop-color="#6699FF"/>
+			<stop offset="50%" stop-color="#6699cc"/>
+			<stop offset="100%" stop-color="#003366"/>
+		</linearGradient>
+	</defs>
+	<defs>
+		<!--箭头-->
+		<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="black" stroke="black"/>
+		</marker>
+		<marker id="sanjiao" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="10" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="yellow" stroke="black"/>
+		</marker>
+	</defs>
+	<g id="BKBackground" fill="#FFFFFF" stroke="lightgrey" stroke-width="1" shape-rendering="optimizeSpeed">
+		<!--ToolBar 区域-->
+		<rect x="10" y="10" width="800" height="40" id="toolbar"/>
+		<!--工具箱区域-->
+		<rect x="10" y="50" width="100" height="530" id="BKToolRect"/>
+		<!--工作区域-->
+		<rect x="110" y="50" width="700" height="530" stroke="black" id="BKBackgroundR" fill="#FFFFFF" onclick="rangeUnvisible();lineUnvisible()"/>
+	</g>
+	<!--toolbar的具体定义-->
+	<!--onmouseover="funcOn(evt)" onmouseout="funcOut(evt)"-->
+	<g id="UIadd">
+		<image id="save" x="150" y="20" width="56" height="20" onmouseover="showTip('保存');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/save.gif" canmove="false" type="bk"/>
+		<image id="zoomin" x="250" y="20" width="56" height="20" onmouseover="showTip('缩小');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/zoomin.gif" canmove="false" type="bk"/>
+		<image id="zoomout" x="330" y="20" width="56" height="20" onmouseover="showTip('放大');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/zoomout.gif" canmove="false" type="bk"/>
+		<image id="delete" x="410" y="20" width="56" height="20" onmouseover="showTip('删除所选节点');" onmouseout="unshowTip();" onclick="deleteObject()" xlink:href="images/delete.gif" canmove="false" type="bk"/>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--============================工具箱=============================-->
+	<!--====人工节点===-->
+	<image id="motherCP1" x="40" y="60" width="35" height="35" xlink:href="images/task.png" canmove="false" type="bk"/>
+	<image id="motherCPm1" x="40" y="60" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/task.png" oldX="40" oldY="60" canmove="true" nodeType="activity" type="mother" property="人工节点" property2="none" property3="0"/>
+	<text id="motherCPt1" x="58" y="107" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		人工节点
+	</text>
+	<!--====自动节点===-->
+	<image id="autoNode" x="40" y="120" width="35" height="35" xlink:href="images/auto.gif" canmove="false" type="bk"/>
+	<image id="autoNode1" x="40" y="120" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/auto.gif" oldX="40" oldY="120" canmove="true" nodeType="auto" type="mother" property="自动节点" property2="none" property3="0"/>
+	<text id="txtAutoNode" x="58" y="165" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		自动节点
+	</text>
+	<!--====分支节点===-->
+	<image id="andDecision" x="40" y="180" width="35" height="35" xlink:href="images/fork.png" canmove="false" type="bk"/>
+	<image id="andDecision1" x="40" y="180" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/fork.png" oldX="40" oldY="180" canmove="true" nodeType="andDecision" type="mother" property="无条件分支" property2="none" property3="0"/>
+	<text id="txtAndDecision" x="55" y="225" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		无条件分支
+	</text>
+	<!--====条件分支===-->
+	<image id="xorDecision" x="40" y="240" width="35" height="35" xlink:href="images/iffork.gif" canmove="false" type="bk"/>
+	<image id="xorDecision1" x="40" y="240" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/iffork.gif" oldX="40" oldY="240" canmove="true" nodeType="xorDecision" type="mother" property="条件分支" property2="none" property3="0"/>
+	<text id="txtXorDecision" x="58" y="286" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		条件分支
+	</text>
+	<!--====合并节点===-->
+	<image id="andConjuction" x="40" y="300" width="35" height="35" xlink:href="images/join.png" canmove="false" type="bk"/>
+	<image id="andConjuction1" x="40" y="300" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/join.png" oldX="40" oldY="300" canmove="true" nodeType="andConjuction" type="mother" property="合并节点" property2="none" property3="0"/>
+	<text id="txtAndConjuction" x="58" y="346" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		合并节点
+	</text>
+	<!--====路由节点===-->
+	<image id="orConjuction" x="40" y="360" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="orConjuction1" x="40" y="360" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/route.gif" oldX="40" oldY="360" canmove="true" nodeType="orConjuction" type="mother" property="路由节点" property2="none" property3="0"/>
+	<text id="txtOrConjuction" x="58" y="402" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		路由节点
+	</text>
+	<!--流程连接-->
+	<image id="drawLine" x="40" y="420" width="35" height="35" onmouseover="showTip('流程连接');toolrangeV(evt)" onmouseout="unshowTip();toolrangeUV()" onclick="beginDrawLine()" xlink:href="images/transition.png" canmove="false" type="bk"/>
+	<!--====开始节点===-->
+	<image id="startNode" x="40" y="465" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="startNode1" x="40" y="465" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/start.png" oldX="40" oldY="465" canmove="true" nodeType="start" type="mother" property="开始节点" property2="none" property3="0"/>
+	<!--====结束节点===-->
+	<image id="endNode" x="40" y="510" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="endNode1" x="40" y="510" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/end.gif" oldX="40" oldY="510" canmove="true" nodeType="end" type="mother" property="结束节点" property2="none" property3="0"/>
+	<!--=======================================================================================================================-->
+	<!--提示窗口-->
+	<g id="tooltip" visibility="hidden">
+		<rect id="tipRect" x="0" y="0" width="100" height="15" fill-opacity="30" fill="#ffffcc" stroke="rgb(9,0,130)" stroke-width="1" shape-rendering="optimizeSpeed"/>
+		<text id="tipText" x="0" y="0">TipText</text>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--work边框-->
+	<rect id="range" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--tool边框-->
+	<rect id="toolrange" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--功能边框-->
+	<rect id="funcrange" x="0" y="0" width="56" height="20" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--=======================================================================================================================-->
+	<!--UI区-->
+	<g id="success" visibility="hidden">
+		<circle cx="122" cy="497" r="7" style="fill: #FF0">
+			<animate id="a1" attributeName="fill" attributeType="CSS" begin="mouseover" repeatCount="1" dur="2s" from="#FF0" to="#F00" fill="freeze" end="indefinite"/>
+			<animate id="a2" attributeName="fill" attributeType="CSS" begin="mouseout" end="indefinite" repeatCount="1" restart="always" dur="2s" from="#F00" to="#FF0" fill="freeze"/>
+		</circle>
+		<text id="okTip" x="200" y="502" stroke="black" style="fill:white;text-anchor: middle" stroke-width="0.3" onmouseover="sucUnShow()">
+			流程生成成功，请保存！
+		</text>
+	</g>
+
+</svg>
