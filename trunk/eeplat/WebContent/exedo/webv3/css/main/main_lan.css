@@ -1,0 +1,253 @@
+html{
+	height:100%;
+	overflow:hidden
+}
+body{
+	 height:100%;
+	 SCROLLBAR-FACE-COLOR:#fcfcfc;
+	 SCROLLBAR-HIGHLIGHT-COLOR: #999999;
+	 SCROLLBAR-SHADOW-COLOR: #fcfcfc;
+	 SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	 SCROLLBAR-ARROW-COLOR: #999999;
+	 SCROLLBAR-TRACK-COLOR: #fcfcfc;
+	 SCROLLBAR-DARKSHADOW-COLOR: #999999;
+	 SCROLLBAR-BASE-COLOR: #999999
+}
+
+
+html,body,td,p,select,input,div,table,h1,h2,h3,span,button{font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"ËÎÌו"}
+body,div,span,h1,h2,h3,h4,img,p,b,textarea,input,select,form,a,table,tr,td,th,button
+{margin:0;padding:0;font-family:verdana,Arial, Helvetica, sans-serif,;list-style-type:none;font-size:inherit;color:inherit;z-index:inherit}
+img,.gTab table,.gMain,#dvTab table{border:0;border-collapse:collapse}
+body.gPage,.gTab table td.tLe,.gTab table td.tRi,.gTab table a.TabCls,.sysWin h2 .fLe,.sysWin h2 .fRi,.sysWin div.bdy,.sysWin .icoSw,.JQsysWin h2 .fLe
+,.JQsysWin h2 .fRi,.JQsysWin .icoSw,.condDiv h2 .fLe,.condDiv h2 .fRi,.condDiv div.bdy,.condDiv .icoSw
+,.gTabTab table td.tLe,.gTabTab table td.tRi,.gTabTab table a.TabCls,.sysWinTab h2 .fLe,.sysWinTab h2 .fRi,.sysWinTab div.bdy,.sysWinTab  .icoSw
+	 {background-image:url(../../images/main/lan/f1.gif); background-repeat:no-repeat}
+.gTopTab,.gTabTab table td,.gTabTab table.on,.sysWinTab h2,.gTop,.gTab table td,.gTab table.on,.sysWin h2,.btnFnt,.btnFntOn,.gTlBar,.JQsysWin h2,.condDiv h2
+{ background-image:url(../../images/main/lan/f2.gif);background-repeat:repeat-x}
+a.btnCls,.bLe,.bRi,.gTlBar .on{ background-image:url(../../images/main/lan/f3.gif)}
+
+.gTlBar .bIco{ background-image:url(../../images/main/lan/ico.gif); background-repeat:no-repeat}
+
+a.btnCls{ float:right; margin-top:7px;width:18px;height:18px; background-position:-156px -98px}
+body.gPage{
+	min-width:680px;background-position:-1139px 0;background-repeat:repeat-y!important;overflow:hidden
+}
+
+
+.gMain{width:100%;heigth:100%;table-layout:fixed; }
+.gMain tr{vertical-align:top;}
+.gLe{width:161px;padding-bottom:15px}
+.gFpage{width:160px;overflow-x:hidden;overflow-y:auto;float:left}
+.gFd{ margin-top:0px;margin-bottom:0px}
+.lrschidren{float:left;width:100%;height:100%;}
+
+.mTitle a,NOBR{
+	color:#3C74A6;
+}
+
+
+.mRight{
+	margin-left:1px;
+	margin-top:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+	width:100%;
+	height:100%;
+}
+.mTitle{
+	height:30px;
+	width:100%;
+	line-height:30px;
+	vertical-align:middle;
+	background-image:url(../../images/main/lan/menu_tit_s.jpg);
+	cursor:pointer
+}
+.mTitle a{
+	padding-left:30px;
+	font-weight:bold;
+}
+.mTitle-hover{
+	color:#fff;
+	background-image:url(../../images/main/lan/menu_tit_x.jpg)
+}
+
+.gTop{ height:70px;background-position:0 9px;position:relative; background-color:#FFF}
+.gTab{height:28px;padding-left:160px; position:absolute; top:41px; overflow:hidden}
+*:lang(zh) .gTab{ overflow-x:visible; width:100%}
+.gTab table{height:26px; float:left;table-layout:fixed; cursor:pointer}
+.gTab table tr{ vertical-align:middle}
+.gTab table td{background-position:0 -142px}
+.gTab table td.bdy{padding:0 5px;overflow:hidden;text-overflow:ellipsis;font-weight:bold; padding-top:3px; text-align:center}
+.gTab table td.btn{width:15px; padding-top:3px}
+.gTab table td.tLe{width:6px; font-size:0;background-position:-456px -19px}
+.gTab table td.tRi{width:6px; font-size:0;background-position:-472px -19px}
+.gTab table a.TabCls{width:15px;height:15px; background-position:-520px -28px}
+
+.gTab table.on{background-position:0 -184px; margin:0 0 0 0}
+.gTab table.on td{background-position:0 -184px}
+.gTab table.on td.tLe{background-position:-457px -61px}
+.gTab table.on td.tRi{background-position:-470px -61px}
+.gTab table.on td.bdy NOBR{ color:#FFFFFF}
+.gTab table.on a.TabCls{width:15px;height:15px; background-position:-520px -71px}
+
+
+.mMenu{
+	padding-left:28px;
+	margin-left:10px;
+	height:23px;
+	width:100%;
+	margin-top:5px;
+	line-height:23px;
+	background-image:url(../../images/main/menu_out.gif);
+	cursor:pointer
+}
+.mMenu-hover{
+	background-image:url(../../images/main/menu_hover.gif)
+}
+.mMenu-hover2{
+	background-image:url(../../images/main/menu_hover.gif)
+}
+.mMenu a{
+}
+
+/********************************************************border-right:1px solid #84B8D5;************************************/
+.tree{margin:0px;overflow-x:auto;overflow-y:auto;width:100%;}
+
+
+/********************************************* filterTable *************************************/
+table.tablesorter {
+	font-size:12px;
+	background-color: #CDCDCD;
+	margin:0px 5px 5px 5px;
+	font-size: 12px;
+	width: 98%;
+	text-align: left;
+}
+table.tablesorter tr{
+	height:20px;
+}
+table.tablesorter thead tr th,table.tablesorter tr td.title{
+		background-color:#e6EEEE;
+		border: 1px solid #FFF;
+		font-size: 12px;
+		padding: 1px;
+		vertical-align: middle; 
+}
+table.tablesorter tfoot tr th {
+ 		background-color:#e6EEEE;
+		border: 1px solid #FFF;
+		font-size: 12px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	vertical-align: middle; 
+}
+table.tablesorter td {
+	color: #3D3D3D;
+	padding: 1px;
+	padding-left:2px;
+	background-color: #FFF;
+	text-align: left;
+	vertical-align: middle; 
+}
+.firstPage,.prevPage,.pagedisplay,.nextPage,.lastPage{
+	margin-bottom:-4px;
+	cursor:pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #8dbdd8;
+}
+table.tablesorter tbody tr.selected td{
+    background-color:yellow;
+}
+table.tablesorter tbody tr.mover td{
+	background-color: #a6c2e7;
+}
+
+table.tablesorter tfoot tr td {
+		background-color:#e6EEEE;
+		border: 1px solid #FFF;
+		font-size: 12px;
+}
+
+table.tablesorter tbody tr.zebra td{
+	background-color: #ECF5FF;
+}
+
+table.tablesorter tbody tr.selected:hover td{
+	background-color:#ff9;
+}
+
+
+.table_checkbox{width:12px; height:12px}
+
+/****************************************input************************************************/
+input,button { height:20px;vertical-align:middle; }
+
+input.ctlBtn,button {
+
+	text-align:center;
+  
+    font-family:Verdana;*font-family:Georgia;_font-family:Tahoma;
+
+    padding:0 10px 1px;*padding:3px 3px 1px;_padding:0 4px 1px;
+
+    line-height:18px;*line-height:14px;_line-height:16px;
+
+    height:25px;
+
+}
+
+object{
+	vertical-align: bottom;
+}
+
+#dmLayer{
+	position: absolute;
+	border: 1px solid blue;
+	background:white;
+	width: 163px;
+	height: 200px; 
+	z-index: 9998;
+	display: none;
+	overflow-x:auto;
+	overflow-y:auto;
+}
+
+
+.dmLayerMouseOverCss{
+	background-color:yellow;
+}
+.dmLayerPageCss{
+	
+	background-color:#e6EEEE;
+	border: 1px solid #FFF;
+	font-weight:bold;
+}
+.dmLayerEven{
+  background:#e6EEEE;
+}
+
+.lineTd{
+	border: 1px solid #84B8D5;
+	width:1px;
+}
+
+.resizeTd{ 
+	width:2px;
+	background-color:#84B8D5;
+	margin:0px; 
+	cursor:e-resize; 
+} 
+

@@ -1,0 +1,116 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="workflow" >
+		
+		<style type="text/css">
+      <![CDATA[
+              @font-face {
+							  font-family:Verdana, Arial, Helvetica,宋体
+                font-weight: normal;
+                font-size:12px;
+              }
+              text {
+							  font-family:Verdana, Arial, Helvetica,宋体
+                font-weight: normal;          
+                font-size:12px;
+              }
+
+            ]]>
+      </style>
+	<!--=======================================================================================================================-->
+	<!--此处是前期准备-->
+	<!--背景-->
+	<rect id="BKBackDrop" x="-10%" y="-10%" width="110%" height="110%" fill="none" pointer-events="all"/>
+	<defs>
+		<!--渐变背景样式-->
+		<linearGradient id="BKjianbian" gradientTransform="rotate(90)">
+			<stop offset="0%" stop-color="#6699FF"/>
+			<stop offset="50%" stop-color="#6699cc"/>
+			<stop offset="100%" stop-color="#003366"/>
+		</linearGradient>
+	</defs>
+	<defs>
+		<!--箭头-->
+		<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="black" stroke="black"/>
+		</marker>
+		<marker id="sanjiao" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="10" markerHeight="10" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="black" stroke="black"/>
+		</marker>
+	</defs>
+	<g id="BKBackground" fill="#FFFFFF" stroke="lightgrey" stroke-width="1" shape-rendering="optimizeSpeed">
+		<!--ToolBar 区域-->
+		<rect x="10" y="10" width="800" height="40" id="toolbar"/>
+		<!--工具箱区域-->
+		<rect x="10" y="50" width="100" height="1030" id="BKToolRect"/>
+		<!--工作区域-->
+		<rect x="110" y="50" width="700" height="1030" stroke="black" id="BKBackgroundR" fill="#FFFFFF" />
+	</g>
+	<!--toolbar的具体定义-->
+	<!--onmouseover="funcOn(evt)" onmouseout="funcOut(evt)"-->
+	<g id="UIadd">
+		<image id="save"  x="150" y="20" width="56" height="20" xlink:href="images/save.gif" canmove="false" type="bk"/>
+
+		<image id="property" x="330" y="20" width="56" height="20"  xlink:href="images/property.gif" canmove="false" type="bk"/>
+		<image id="delete" x="410" y="20" width="56" height="20"  xlink:href="images/delete.gif" canmove="false" type="bk"/>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--============================工具箱=============================-->
+	<!--====人工节点===-->
+	<image id="activity" x="40" y="60" width="35" height="35" xlink:href="images/task.png"  nodetype="activity" type="mother" property="人工节点" />
+	<text id="txtActivity" x="58" y="107" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		人工节点
+	</text>
+	<!--====自动节点===-->
+	<image id="autoNode" x="40" y="120" width="35" height="35" xlink:href="images/auto.gif"  nodetype="auto" type="mother" property="自动节点" />
+	<text id="txtAutoNode" x="58" y="165" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		自动节点
+	</text>
+
+
+	<!--====分支节点===-->
+	<image id="andDecision" x="40" y="180" width="35" height="35" xlink:href="images/fork.png"  nodetype="andDecision" type="mother" property="分支节点" />
+	<text id="txtAndDecision" x="55" y="225" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		分支节点
+	</text>
+
+
+	<!--====条件节点===-->
+	<image id="xorDecision" x="40" y="240" width="35" height="35" xlink:href="images/iffork.gif"  nodetype="xorDecision" type="mother" property="条件节点" />
+	<text id="txtXorDecision" x="55" y="286" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		条件节点
+	</text>
+	
+	<!--====汇合节点===-->
+	<image id="andConjuction" x="40" y="300" width="35" height="35" xlink:href="images/route.gif"  nodetype="andConjuction" type="mother" property="汇合节点" />
+	<text id="txtAndConjuction" x="58" y="346" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		汇合节点
+	</text>
+	
+	<!--====合并节点===-->
+	<image id="subFlow" x="40" y="360" width="35" height="35"  xlink:href="images/models.png"  nodetype="subFlow" type="mother" property="子流程" />
+	<text id="txtSubFlow" x="58" y="406" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		子流程
+	</text>
+	
+	<!--流程连接-->
+	<image id="drawLine" x="40" y="420" width="35" height="35" xlink:href="images/transition.png"  type="mother-flow"  />
+	<!--====开始节点===-->
+	<image id="startNode" x="40" y="465" width="35" height="35" xlink:href="images/start.png" nodetype="start" type="mother" property="开始节点" />
+	<!--====结束节点===-->
+	<image id="endNode" x="40" y="510" width="35" height="35" xlink:href="images/end.gif"  nodetype="end" type="mother" property="结束节点" />
+	<!--=======================================================================================================================-->
+	<!--提示窗口-->
+	<g id="tooltip" visibility="hidden">
+		<rect id="tipRect" x="0" y="0" width="100" height="15" fill-opacity="30" fill="#ffffcc" stroke="rgb(9,0,130)" stroke-width="1" shape-rendering="optimizeSpeed"/>
+		<text id="tipText" x="0" y="0">TipText</text>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--work边框-->
+	<rect id="range" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--tool边框-->
+	<rect id="toolrange" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--功能边框-->
+	<rect id="funcrange" x="0" y="0" width="56" height="20" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--=======================================================================================================================-->
+
+
+</svg>

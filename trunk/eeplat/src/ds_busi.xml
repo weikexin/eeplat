@@ -1,0 +1,6 @@
+<config>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://yourdomain:3306/conf_init?useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">1</property>            
+</config>
