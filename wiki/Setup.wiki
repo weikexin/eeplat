@@ -1,1 +1,1 @@
-EEPlat是云计算开发平台，可能比SSH(Spring,Struts,Hibernate)更适合云计算开发！
+EEPlat是云计算开发平台，可能比SSH(Spring,Struts,Hibernate)更适合云计算开发！ 这个提法不是特别好，隐含的假设，在非云计算的场景下不如SSH?
