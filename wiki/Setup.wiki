@@ -1,0 +1,1 @@
+EEPlat是云计算开发平台，可能比SSH(Spring,Struts,Hibernate)更适合云计算开发！
