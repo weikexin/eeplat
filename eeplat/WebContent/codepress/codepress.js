@@ -34,19 +34,21 @@ CodePress = function(obj) {
 		self.style.visibility = 'visible';
 		self.style.display = 'inline';
 
-			if(self.attachEvent) self.contentWindow.document.documentElement.attachEvent('onkeypress',self.changeValue);
-			else self.contentDocument.addEventListener('keypress',self.changeValue,false);
+			if(self.attachEvent) self.contentWindow.document.documentElement.attachEvent('onkeyup',self.changeValue);
+			else self.contentDocument.addEventListener('keyup',self.changeValue,false);
 
-			if(self.attachEvent) self.textarea.attachEvent('onkeypress',self.changeValueTxtArea);
-			else self.textarea.addEventListener('keypress',self.changeValueTxtArea,false);
+			if(self.attachEvent) self.textarea.attachEvent('onkeyup',self.changeValueTxtArea);
+			else self.textarea.addEventListener('keyup',self.changeValueTxtArea,false);
 
 	}
 	
-	self.changeValue =function(){
+	self.changeValue =function(e){
+		
+	
 		document.getElementById(self.textarea.id+"hd").value = self.editor.getCode();
 	}
 	
-	self.changeValueTxtArea =function(){
+	self.changeValueTxtArea =function(e){
 		document.getElementById(self.textarea.id+"hd").value = self.textarea.value;
 	}
 	

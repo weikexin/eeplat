@@ -27,7 +27,7 @@
 <body class="login">
 <div id="login">
 
-<h1><a  title="易元平台"><img border=0 height=110px width=330px src="images/logo.png"/></a></h1>
+<h1><a  title="易元平台"><img border=0 height=125px width=303px src="images/logo.png"/></a></h1>
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
