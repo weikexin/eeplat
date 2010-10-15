@@ -11,8 +11,9 @@ public class DOValueHtmlXss implements DOIView {
 
 		DOFormModel fm = (DOFormModel) aModel;
 		if (fm.getValue() != null && !fm.getValue().trim().equals("")) {
-			
-			return StringUtil.unFilterXss(fm.getValue());
+			StringBuffer sb=new StringBuffer();
+			sb.append("<div style=").append("\"WIDTH:100%; HEIGHT: 631px; BACKGROUND-COLOR: #FFFFFF; overflow-y:scroll; SCROLLBAR-FACE-COLOR: #c2d3fc; SCROLLBAR-HIGHLIGHT-COLOR: #c2d3fc; SCROLLBAR-SHADOW-COLOR: BLACK; SCROLLBAR-3DLIGHT-COLOR: #c2d3fc; SCROLLBAR-ARROW-COLOR:#000000; SCROLLBAR-TRACK-COLOR: FFFFFF; SCROLLBAR-DARKSHADOW-COLOR: EAECEC\"").append(">").append(StringUtil.unFilterXss(fm.getValue())).append("</div>");
+			return sb.toString();
 		} else {
 			return "&nbsp;";
 		}
