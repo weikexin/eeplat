@@ -25,7 +25,7 @@
 	    
 	    <property name="webservice.login.service">do_org_user_findbynameandpwd</property>
 
-	    <property name="webservice.auth.service"></property>
+	    <property name="webservice.auth.service">exists_rest</property>
 	    
 	    <!-- 自定义查询的class 
    	    <property name="plat.search.class">com.exedosoft.plat.search.customize.SearchTransCode</property>
