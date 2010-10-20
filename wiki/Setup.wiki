@@ -1,4 +1,4 @@
-请从Downloads[http://code.google.com/p/eeplat/downloads/list]域下载最新版本的
+请从[Downloads http://code.google.com/p/eeplat/downloads/list]域下载最新版本的
 下载完成后，解压为文件yiyi.war，拷贝到tomcat目录下webapps目录下面。拷贝完成后，启动tomcat。（tomcat和java环境请大家自行安装配置）
 注意：tomcat安装目录绝对路径建议不要有空格，否则会出错。
 	启动完成后，即可进入系统进行初始化配置。
