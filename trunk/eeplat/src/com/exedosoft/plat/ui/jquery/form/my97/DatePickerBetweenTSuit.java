@@ -8,18 +8,25 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.jquery.form.DOBaseForm;
 import com.exedosoft.plat.util.StringUtil;
 
-public class DatePickerBetween extends DOBaseForm {
+public class DatePickerBetweenTSuit extends DOBaseForm {
 
 	@Override
 	public String getHtmlCode(DOIModel aModel) {
 		DOFormModel property = (DOFormModel) aModel;
 		
+		List list = property.getLinkForms();
+		
+		DOFormModel fm1 = (DOFormModel)list.get(0);
+		fm1.setData(property.getData());
+		DOFormModel fm2 = (DOFormModel)list.get(1);
+		fm2.setData(property.getData());
+
 		StringBuffer buffer = new StringBuffer();
 
-		getAInputTimeStr(property, buffer, "");
+		getAInputTimeStr(fm1, buffer, "");
 		buffer.append("&nbsp;жа &nbsp;");
-		getAInputTimeStr(property, buffer, "2");
-
+		getAInputTimeStr(fm2, buffer, "");
+		
 		return buffer.toString();
 	}
 	
@@ -31,8 +38,8 @@ public class DatePickerBetween extends DOBaseForm {
 	private void getAInputTimeStr(DOFormModel fm, StringBuffer buffer,
 			String aNext) {
 
-		buffer.append("<input type='text' name='").append(fm.getFullColName()).append(aNext)
-				.append("' id='").append(fm.getFullColName()).append(aNext).append("'");
+		buffer.append("<input type='text' name='").append(fm.getFullColName())
+				.append("' id='").append(fm.getFullColName()).append("'");
 
 		buffer.append(getDecoration(fm));
 
@@ -42,8 +49,16 @@ public class DatePickerBetween extends DOBaseForm {
 		
 
 		String theValue = fm.getValue();
+		
 
 		DOPaneModel cPaneModel = null;
+		
+		System.out.println("================");
+		System.out.println("readonly========" + isReadOnly(fm));
+		System.out.println("readonly========" + isReadOnly(fm));
+		System.out.println("================");
+		
+		
 		if (fm.getGridModel() != null) {
 			cPaneModel = fm.getGridModel().getContainerPane();
 		}
@@ -53,14 +68,21 @@ public class DatePickerBetween extends DOBaseForm {
 			buffer.append(" value='").append(theValue).append("'");
 		}
 
-		buffer.append(" onClick=\"WdatePicker(");
 		
-		if(fm.getInputConstraint()!=null){
-			buffer.append(fm.getInputConstraint());
-		}
-		buffer.append(")\" ");
 		
 		buffer.append(this.appendValidateConfig(fm));
+		
+		if (isReadOnly(fm)) {
+			buffer.append(" readonly='readonly' ");
+
+		} else {
+			buffer.append(" onClick=\"WdatePicker(");
+			
+			if(fm.getInputConstraint()!=null){
+				buffer.append(fm.getInputConstraint());
+			}
+			buffer.append(")\" ");
+		}
 
 		buffer.append(" size=\"").append(getInputSize(fm)).append("\"/>");
 
