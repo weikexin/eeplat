@@ -2,6 +2,7 @@ package com.exedosoft.plat.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 
 /**
@@ -47,7 +48,10 @@ public class ChineseToDate {
 
 	public static void main(String[] args) throws ParseException {
 		// TODO 自动生成方法存根
-		System.out.println(ChineseToDate.getChineseToSqlDate("28-七月-2008"));
+		//System.out.println(ChineseToDate.getChineseToSqlDate("28-七月-2008"));
+		
+		HashMap t = new HashMap();
+		t.put("a", null);
 
 	}
 
