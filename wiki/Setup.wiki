@@ -1,19 +1,17 @@
 ===安装要求：===
   # JDK 1.5版本或以上。（参考其它的安装要求）
-  # WEB容器，如TOMCAT,RESION,WEBLOGIC,WEBSPHERE等，需要相应版本支持JDK1.5或以上,WEB容器的安装路径不要有空格。
+  # WEB容器，如TOMCAT,RESION,WEBLOGIC,WEBSPHERE等，需要相应版本支持JDK1.5或以上,WEB容器的安装路径不要含有中文或空格。
   
 
-===安装：===  
+===安装详细步骤：===  
+ *下面安装以TOMCAT5.5为例安装EEPLAT。*
 
-请从[http://code.google.com/p/eeplat/downloads/list Downloads]域下载最新版本的平台war包，下载完成后，解压为文件yiyi.war。
+  #请从[http://code.google.com/p/eeplat/downloads/list Downloads]下载适合自己的版本，一般下载最新版本即可。
+  #把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
 
-
-下面安装以TOMCAT5.5为例安装EEPLAT。
-
-拷贝yiyi.war到tomcat目录下webapps目录下面。拷贝完成后，启动tomcat。
-注意：tomcat安装目录绝对路径不要有空格，否则会出错。
+拷贝完成后，启动tomcat。
 启动完成后，即可进入系统进行初始化配置。
-	系统地址http://127.0.0.1:8082/yiyi/exedo/webv3/，浏览器建议采用FireFox最新版本，系统开发使用在FireFox上效率最高速度最快。
+	系统地址http://127.0.0.1:8080/yiyi/exedo/webv3/，浏览器建议采用FireFox最新版本，系统开发使用在FireFox上效率最高速度最快。
 	系统登录页面如下所示：
 	 
 	后台登录默认用户名密码为：a/1
