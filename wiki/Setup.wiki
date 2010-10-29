@@ -10,7 +10,7 @@
   # 请从[http://code.google.com/p/eeplat/downloads/list Downloads]下载适合自己的版本，一般下载最新版本即可。
   # 把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
      http://eeplat.googlecode.com/files/yiyi_setup.png
-  # 拷贝完成后，启动tomcat。启动完成后，即可进入系统进行初始化配置。系统地址[http://127.0.0.1:8080/yiyi/exedo/webv3/],需要根据TOMCAT安装端口的不同调整端口，系统登录页面如下所示：
+  # 拷贝完成后，启动tomcat。启动完成后，即可进入系统进行初始化配置。系统地址[http://127.0.0.1:8080/yiyi/exedo/webv3/]，需要根据TOMCAT安装端口的不同调整端口，系统登录页面如下所示：
 
 	 
 	后台登录默认用户名密码为：a/1
