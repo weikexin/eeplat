@@ -1,13 +1,14 @@
 ===安装要求：===
   # JDK 1.5版本或以上。（参考其它的安装要求）
   # WEB容器，如TOMCAT,RESION,WEBLOGIC,WEBSPHERE等，需要相应版本支持JDK1.5或以上,WEB容器的安装路径不要含有中文或空格。
+  # 建议安装FireFox。系统开发使用在FireFox上效率最高速度最快。
   
 
 ===安装详细步骤：===  
  *下面安装以TOMCAT5.5为例安装EEPLAT。*
 
-  #请从[http://code.google.com/p/eeplat/downloads/list Downloads]下载适合自己的版本，一般下载最新版本即可。
-  #把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
+  # 请从[http://code.google.com/p/eeplat/downloads/list Downloads]下载适合自己的版本，一般下载最新版本即可。
+  # 把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
 
 拷贝完成后，启动tomcat。
 启动完成后，即可进入系统进行初始化配置。
