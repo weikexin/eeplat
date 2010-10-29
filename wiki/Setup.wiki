@@ -9,6 +9,7 @@
 
   # 请从[http://code.google.com/p/eeplat/downloads/list Downloads]下载适合自己的版本，一般下载最新版本即可。
   # 把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
+  http://eeplat.googlecode.com/files/yiyi_setup.png
 
 拷贝完成后，启动tomcat。
 启动完成后，即可进入系统进行初始化配置。
