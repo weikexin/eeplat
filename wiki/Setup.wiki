@@ -11,10 +11,8 @@
   # 把下载文件yiyi.war拷贝到tomcat目录下webapps目录下面。
   http://eeplat.googlecode.com/files/yiyi_setup.png
 
-拷贝完成后，启动tomcat。
-启动完成后，即可进入系统进行初始化配置。
-	系统地址http://127.0.0.1:8080/yiyi/exedo/webv3/，浏览器建议采用FireFox最新版本，系统开发使用在FireFox上效率最高速度最快。
-	系统登录页面如下所示：
+  #拷贝完成后，启动tomcat。启动完成后，即可进入系统进行初始化配置。系统地址http://127.0.0.1:8080/yiyi/exedo/webv3/,需要根据TOMCAT安装端口的不同调整端口，	系统登录页面如下所示：
+
 	 
 	后台登录默认用户名密码为：a/1
 	登录后进入系统，如下所示：
