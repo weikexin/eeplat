@@ -4,7 +4,7 @@ EEPlat可以开发的应用包括MIS（管理信息系统）、OA（办公自动
   # 面向集群环境的EEPlat.Cluster产品，针对健壮性和稳定性要求高的关键应用、中大规模应用。
   # 面向云计算的EEPlat.Cloud产品，作为云计算中的PaaS平台，方便创建SaaS应用，可运行在各种私有云和公共云上面。
 
- <img height="320" width="200" src="http://eeplat.googlecode.com/files/yiyi_products.png"/>
+ <img height="300" width="500" src="http://eeplat.googlecode.com/files/yiyi_products.png"/>
 
 
 EEPlat系列产品还没有大规模推广，只有一些公司在使用，但已经显现出其卓越的开发效率。现在使用EEPlat产品作为基础开发平台的公司有：
