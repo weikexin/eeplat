@@ -17,7 +17,7 @@ EEPlat可以开发的应用包括MIS（管理信息系统）、OA（办公自动
 	* 通过服务配置，灵活变动程序逻辑和程序流；
 	* 通过页面配置，灵活变动页面外观；
 	* 通过业务对象配置，灵活增减业务实体属性；
-
+<img height="320" width="600" src="http://eeplat.googlecode.com/files/yiyi_products.png"/>
 
 
 EEPlat系列产品还没有大规模推广，只有一些公司在使用，但已经显现出其卓越的开发效率。现在使用EEPlat产品作为基础开发平台的公司有：
