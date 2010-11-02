@@ -7,3 +7,5 @@
 ==数据总线的构成方式==
 
 数据总线有下面几部分构成，每个组成部分我们称之为节点：
+
+   <img height="400" width="500" src="http://eeplat.googlecode.com/files/yiyi_bus_node.png"/>
