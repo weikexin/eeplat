@@ -21,6 +21,10 @@
 
 
 ===服务层技术架构===
-  EEPlat的服务层和UI层是松耦合的。一般情况下，UI层通过服务层提供的Restfull WebService进行交互。服务层实现的核心是 [BasicTheory 声明式业务对象]，声明式业务对象可以通过[BusinessObjectBus 业务对象总线] 进行互操作。声明式业务对象的粒度可大可小，可以是一个实体表，也可以是一个较大的业务模块。
+  EEPlat的服务层和UI层是松耦合的。一般情况下，UI层通过服务层提供的Restfull WebService进行交互。服务层实现的核心是 [BasicTheory 声明式业务对象]。
+   # 声明式业务对象的服务可以通过[BusinessObjectBus 业务对象总线] 进行互操作。
+   # 声明式业务对象的粒度可大可小，可以是一个实体表，也可以是一个较大的业务模块。
+   # 服务可以调用多个规则，规则本身可以根据上下文环境判断是否可以执行，从而完成复杂的业务逻辑而无需编码。
+   # 服务可以调用脚本或Java Class完成平台不能配置或不易配置的业务逻辑。
 
   <img height="300" width="600" src="http://eeplat.googlecode.com/files/yiyi_bo_archive.png"/>
