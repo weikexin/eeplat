@@ -9,7 +9,7 @@
 
   <img height="300" width="450" src="http://eeplat.googlecode.com/files/yiyi_ui_hmvc.png"/>。
 
- HMVC模式即Hierarchical-Model-View-Controller模式，也可以叫做Layered MVC．HMVC模式把客户端应用程序分解为有层次的父子关系的MVC。反复应用这个模式，形成结构化的客户端架构。 　它的优点主要有：
+ HMVC模式即Hierarchical-Model-View-Controller模式，也可以叫做Layered MVC。HMVC模式把客户端应用程序分解为有层次的父子关系的MVC。反复应用这个模式，形成结构化的客户端架构。 　它的优点主要有：
   # 把界面分成了多个部分，降低了依赖性。 
   # 支持鼓励重用代码，组件或者模块。
   # 在今后的维护中，提高了可扩展性。
