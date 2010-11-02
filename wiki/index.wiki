@@ -5,7 +5,7 @@
     * [AboutSQL  附录示例表的SQL]
   * 开发文档
           *  [BasicConcept 平台简介]
-          *  [TeckArchive 技术架构]
+          *  [TechArchive 技术架构]
           *  [BasicTheory 声明式编程及元模型]
           *  [BusinessObjectBus 业务对象总线]
           *  [ConfigTools 配置工具简介]
