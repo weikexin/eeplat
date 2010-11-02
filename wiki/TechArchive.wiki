@@ -5,6 +5,8 @@
    <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_archive.png"/>
 
 ===UI技术架构===
+  <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_ui_archive.png"/>
 
 
 ===服务层技术架构===
+  <img height="300" width="600" src="http://eeplat.googlecode.com/files/yiyi_bo_archive.png"/>
