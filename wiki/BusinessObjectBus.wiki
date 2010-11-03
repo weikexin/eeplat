@@ -126,13 +126,22 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 ==CURRENT节点==
 
+  * 代码方式
+    获取当前业务对象被选择的数据：
+      SessionContext.getInstance().get("业务对象ID或业务对象") 
+    把数据设置为当前选择:
+      SessionContext.getInstance().put("业务对象ID或业务对象",BOInstance) 
+
+  * WEBService方式
   见下述“总线操作”。
 
 
 
 
 =总线操作=
-   假设webmodule名称为：wd，总线的操作一般不单独进行，为了减少网络调用，一般和面板操作和服务操作放在一起进行。总线操作中 URL：/wd/mvccontroller 和 /wd/servicecontroller操作是等效的，下面以/wd/servicecontroller为例,假设操作的业务对象UID分别为class0001,class0002,class0003…名称分别为classanole1, classanole2, classanole...业务对象的数据的UID为instance1, instance2, instance3…。
+
+假设webmodule名称为：wd，总线的操作一般不单独进行，为了减少网络调用，一般和面板操作和服务操作放在一起进行。总线操作中 URL：/wd/mvccontroller 和 /wd/servicecontroller操作是等效的，下面以/wd/servicecontroller为例,假设操作的业务对象UID分别为class0001,class0002,class0003…名称分别为classanole1, classanole2, classanole...业务对象的数据的UID为instance1, instance2, instance3…。
+
 总线操作一般是指对总线的CURRENT节点进行的操作。
 
 ==传统方式的总线写操作==
