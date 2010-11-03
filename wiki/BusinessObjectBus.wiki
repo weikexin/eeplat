@@ -142,7 +142,6 @@ initOnly表示只操作总线不做其它动作。
  * 平台级操作：
     获取总线上业务对象对应的实例的UID
 /wd/servicecontroller?dataBus=getContext&contextKey=classanole1
-
     获取总线上业务对象对应的实例的完整信息(JSON格式)
 /wd/servicecontroller?dataBus=getFullContext&contextKey=classanole1
 
