@@ -114,6 +114,7 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
   SessionContext.getInstance().getThreadContext().setInstances(paras)
 
 获取:
+
   * WEBService方式
 
 　/wd/servicecontroller?dataBus= getContextColl
