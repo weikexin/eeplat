@@ -1,6 +1,40 @@
 ==MYSQL版本==
+{{{
+CREATE TABLE KH_CustomInfor 
+(
+	CustomUID varchar (50) ,
+	CustomID varchar (50)  ,
+	MainSalerUID varchar (50)  ,
+	CustomName varchar (200)  ,
+	MainLinkManUID varchar (50)  ,
+	TelePhone varchar (50)  ,
+	CustomState varchar (20)  ,
+	AeraCode varchar (50)  ,
+	CityCode varchar (50)  ,
+	Address varchar (500)  ,
+	ZipCode varchar (10)  ,
+	CustomDesc text  ,
+	CustNotes text  
+) ;
 
+CREATE TABLE PM_ProjectInfor 
+(
+	ProjectUID varchar (50) ,
+	ProjectID varchar (50)  ,
+	ProjectName varchar (100)  ,
+	 CustUID varchar (50) ,
+	AcceptDeptUID varchar (50)  ,
+	ProjectManagerUID varchar (50)  ,
+	ProjectState int NULL ,
+	PlanBeginTime datetime NULL ,
+	PlanFinishTime datetime NULL ,
+	ActBeginTime datetime NULL ,
+	ActFinishTime datetime NULL ,
+	ProjectDesc text  ,
+	ProjectNotes text  
+) ;
 
+}}}
 
 ==ORACLE版本==
 
@@ -8,6 +42,7 @@
 
 ==MS SQLSERVER版本==
 
+{{{
 CREATE  procedure MulitiPageSP
 @sqlstr text,--(16)--varchar(8000), --查询字符串
 @currentpage int, --第N页
@@ -65,3 +100,4 @@ CREATE TABLE [dbo].[PM_ProjectInfor] (
 	[ProjectNotes] [text] COLLATE Chinese_PRC_CI_AS NULL 
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+}}}
