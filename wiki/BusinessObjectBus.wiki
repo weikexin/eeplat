@@ -139,14 +139,14 @@ initOnly表示只操作总线不做其它动作。
 在这里，contextCustKey可以不是业务对象的主键, contextCustValue必须是json格式的字符串。
 
 ===总线读操作===
- # 平台级操作：
+ * 平台级操作：
     获取总线上业务对象对应的实例的UID
 /wd/servicecontroller?dataBus=getContext&contextKey=classanole1
 
     获取总线上业务对象对应的实例的完整信息(JSON格式)
 /wd/servicecontroller?dataBus=getFullContext&contextKey=classanole1
 
- # 用户级操作：
+ * 用户级操作：
 /wd/servicecontroller?dataBus=getFullContext&contextCustKey=classanole1
 /wd/servicecontroller?dataBus=getContext&contextCustKey=classanole1
 这两种写法等效，都是获取用户自定义数据的完整信息(JSON格式)
