@@ -1,0 +1,9 @@
+==MYSQL版本==
+
+
+
+==ORACLE版本==
+
+
+
+==MS SQLSERVER版本==
