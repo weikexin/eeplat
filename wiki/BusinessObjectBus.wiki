@@ -126,8 +126,8 @@ initOnly表示只操作总线不做其它动作。
 
  # 总线操作按读写分为：总线读操作，总线写操作
  # 按操作内容的不同分为：
-   # 平台级操作：操作的内容是业务对象、业务对象实例。
-   # 用户级操作：操作的内容是自定义的JSON格式对象。
+   ## 平台级操作：操作的内容是业务对象、业务对象实例。
+   ## 用户级操作：操作的内容是自定义的JSON格式对象。
 
 ===总线写操作===
  # 平台级操作：支持批量写操作，可以同时更新多个业务对象的总线上的值。如：
@@ -170,14 +170,12 @@ initOnly表示只操作总线不做其它动作。
 
 ==基本URL及传递参数==
  # 基本URL为：/wd/servicecontroller
-
  # 传递参数采用标准URL的方式,如
 /wd/servicecontroller? contextServiceName=test &userName=anole&password=anolesoft
 
 ==如何调用服务==
  # 以ID的方式调用(ID为0000001)
 /wd/servicecontroller? contextServiceUid=0000001
-
  # 以Name 的方式调用（服务名称为test）：
 /wd/servicecontroller? contextServiceName=test
 
