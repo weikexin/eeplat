@@ -1,3 +1,4 @@
+{{{
 customid=客户编码
 mainsaleruid=负责销售
 customname=客户名称
@@ -22,5 +23,6 @@ actbegintime=实际开始
 actfinishtime=实际结束
 projectdesc=项目描述
 projectnotes=备注
+}}}
 	
 	
