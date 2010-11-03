@@ -40,21 +40,7 @@
 	打开数据库可以看到，系统自动创建了相关表。如下：
  
 	对于SQLSERVER需要建立存储过程，SQL脚本如下，请拷贝执行：
-CREATE  procedure MulitiPageSP
-@sqlstr text,--(16)--varchar(8000), --查询字符串
-@currentpage int, --第N页
-@pagesize int --每页行数
-as
-set nocount on
-declare @P1 int, --P1是游标的id
- @rowcount int
-exec sp_cursoropen @P1 output,@sqlstr,@scrollopt=1,@ccopt=1,@rowcount=@rowcount output
-select ceiling(1.0*@rowcount/@pagesize) as 总页数--,@rowcount as 总行数,@currentpage as 当前页 
-set @currentpage=(@currentpage-1)*@pagesize+1
-exec sp_cursorfetch @P1,16,@currentpage,@pagesize 
-exec sp_cursorclose @P1
-set nocount off
-GO
+
 	至此，系统初始化工作基本完成。
 
 在此，简单以两个表示例一下业务对象得创建。示例为两个表，一个为项目表，一个为客户表，其中，项目表有客户表的引用。
