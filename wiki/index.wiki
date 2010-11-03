@@ -1,5 +1,6 @@
   * 入门文档
     * [Setup 安装]
+    * [SvnSetup SVN安装]
     * [FirstProjcet 第一个工程]
     * [Translating 界面本地化]
     * [AboutSQL  附录示例表的SQL]
