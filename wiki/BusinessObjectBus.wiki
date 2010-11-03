@@ -30,7 +30,7 @@ String parameterValue = form.getValue(属性的全名)。
 属性的全名的构成：属性所在业务对象的名称+”_”+属性的名称。
 
 如果parameterValue得到的是null，参数还会按照“没有配置属性”取值。
- *如果没有配置属性
+ * 如果没有配置属性
 String parameterValue = form.getValue(参数的名称)。
 
 如果parameterValue得到的是null，参数会查看是否配置了默认值，如果配置了默认值则取默认值，否则直接返回null。
