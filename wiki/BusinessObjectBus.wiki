@@ -25,12 +25,12 @@ DOService的参数是怎样获取FORM的值的？
 
 首先，参数的类型是FORM,确定是从总线的FORM中取值。
 其次，查看参数是否配置了属性？
-#如果配置了属性
+ * 如果配置了属性
 String parameterValue = form.getValue(属性的全名)。
 属性的全名的构成：属性所在业务对象的名称+”_”+属性的名称。
 
 如果parameterValue得到的是null，参数还会按照“没有配置属性”取值。
-#如果没有配置属性
+ *如果没有配置属性
 String parameterValue = form.getValue(参数的名称)。
 
 如果parameterValue得到的是null，参数会查看是否配置了默认值，如果配置了默认值则取默认值，否则直接返回null。
@@ -54,15 +54,18 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 			user.putValue("stationuid", user.getValue("fdgangweiid"));
 ///为用户添加他所在的部门：
 			user.putValue("deptuid", "tt");
-=
 			us.setUser(user);
 	
 		}
-USER的更改
+===USER的更改===
+ * WEBService 方式
 如：
 /wd/servicecontroller?dataBus=setUserContext&contextKey=username&contextValue=admin& contextKey=skin&contextValue=red
-
 把当前总线上的User节点的用户名改为admin,皮肤改为red
+ * 代码方式
+   SessionContext.getInstance().getUser().putValue("username", "admin");
+   SessionContext.getInstance().getUser().putValue("skin", "red");
+
 
 ===USER的获取===
 参数关于对USER获取有5中类型分别是:
