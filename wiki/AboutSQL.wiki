@@ -7,3 +7,45 @@
 
 
 ==MS SQLSERVER版本==
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[KH_CustomInfor]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[KH_CustomInfor]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[PM_ProjectInfor]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[PM_ProjectInfor]
+GO
+
+CREATE TABLE [dbo].[KH_CustomInfor] (
+	[CustomUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[CustomID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[MainSalerUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[CustomName] [varchar] (200) COLLATE Chinese_PRC_CI_AS NULL ,
+	[MainLinkManUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[TelePhone] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[CustomState] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[AeraCode] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[CityCode] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[Address] [varchar] (500) COLLATE Chinese_PRC_CI_AS NULL ,
+	[ZipCode] [varchar] (10) COLLATE Chinese_PRC_CI_AS NULL ,
+	[CustomDesc] [text] COLLATE Chinese_PRC_CI_AS NULL ,
+	[CustNotes] [text] COLLATE Chinese_PRC_CI_AS NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[PM_ProjectInfor] (
+	[ProjectUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[ProjectID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[ProjectName] [varchar] (100) COLLATE Chinese_PRC_CI_AS NULL ,
+	 [CustUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL,
+	[AcceptDeptUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[ProjectManagerUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[ProjectState] [int] NULL ,
+	[PlanBeginTime] [datetime] NULL ,
+	[PlanFinishTime] [datetime] NULL ,
+	[ActBeginTime] [datetime] NULL ,
+	[ActFinishTime] [datetime] NULL ,
+	[ProjectDesc] [text] COLLATE Chinese_PRC_CI_AS NULL ,
+	[ProjectNotes] [text] COLLATE Chinese_PRC_CI_AS NULL 
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
