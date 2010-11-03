@@ -39,7 +39,7 @@ String parameterValue = form.getValue(参数的名称)。
 
 ===USER的构建===
 USER的类型是BOInstance。 FORM指对登陆用户封装，USER是在登陆自定义动作里面创建的。
-
+{{{
 //service 是指根据用户名、密码查询登陆用户的服务
 		users = service.invokeSelect();
 		if (users != null && users.size() > 0) {
@@ -57,13 +57,16 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 			us.setUser(user);
 	
 		}
+}}}
 ===USER的更改===
  例: 把当前用户名改为admin,界面皮肤改为red
  * WEBService 方式
    /wd/servicecontroller?dataBus=setUserContext&contextKey=username&contextValue=admin& contextKey=skin&contextValue=red
  * 代码方式
+{{{
    SessionContext.getInstance().getUser().putValue("username", "admin");
    SessionContext.getInstance().getUser().putValue("skin", "red");
+}}}
 
 
 ===USER的获取===
@@ -100,7 +103,7 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
   * WEBService 方式
    /wd/servicecontroller?dataBus=getContext
   * 代码方式
-　SessionContext.getInstance().getThreadContext().setEchoValue
+　 SessionContext.getInstance().getThreadContext().setEchoValue
 
 ==SEARCH_LIST节点==
 
