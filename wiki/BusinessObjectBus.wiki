@@ -169,38 +169,38 @@ initOnly表示只操作总线不做其它动作。
 服务操作的数据类型全部是json格式的字符串。假设webmodule名称为：wd：
 
 ==基本URL及传递参数==
-# 基本URL为：/wd/servicecontroller
+ # 基本URL为：/wd/servicecontroller
 
-# 传递参数采用标准URL的方式,如
+ # 传递参数采用标准URL的方式,如
 /wd/servicecontroller? contextServiceName=test &userName=anole&password=anolesoft
 
 ==如何调用服务==
-# 以ID的方式调用(ID为0000001)
+ # 以ID的方式调用(ID为0000001)
 /wd/servicecontroller? contextServiceUid=0000001
 
-# 以Name 的方式调用（服务名称为test）：
+ # 以Name 的方式调用（服务名称为test）：
 /wd/servicecontroller? contextServiceName=test
 
 ==查询操作类型==
-# 查询返回的结果是以数组组织的数据
+ # 查询返回的结果是以数组组织的数据
 [{‘id’:’china’,’location’:’beijing’},{},{}]
 /wd/servicecontroller? contextServiceName=test &callType=sa
-# 查询返回的结果是like map方式的结构的数据
+ # 查询返回的结果是like map方式的结构的数据
 {‘china’:{‘id’:’china’,’location’:’beijing’},{},{}}
 /wd/servicecontroller? contextServiceName=test &callType=sm
-# 查询返回的结果是全部以数组方式组织的数据，不过是返回业务对象的id和name两个值
+ # 查询返回的结果是全部以数组方式组织的数据，不过是返回业务对象的id和name两个值
 /wd/servicecontroller? contextServiceName=test &callType=ss
-# 只返回一个值
+ # 只返回一个值
 /wd/servicecontroller? contextServiceName=test &callType=so
-# 查询分页
+ # 查询分页
 /wd/servicecontroller?contextServiceName=test&callType=sa&sc_page_no=10&sc_page_size=50
 
 上述url表示获取第10页的数据，每页含有50条数据。
 
 ==修改操作类型==
-# 只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
+ # 只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
 /wd/servicecontroller? contextServiceName=test&callType=us
-# 执行当前的服务包括规则：
+ # 执行当前的服务包括规则：
 /wd/servicecontroller? contextServiceName=test callType=uf
 
 返回的结果是一个json 字符串：格式为
