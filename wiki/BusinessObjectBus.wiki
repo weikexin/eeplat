@@ -116,18 +116,18 @@ initOnly表示只操作总线不做其它动作。
 ==最新的总线操作方式==
 
 ===新的参数===
-# dataBus 
+ # dataBus 
    对总线的操作类型
-# contextKey
+ # contextKey
    总线上键的名称，一般指的是业务对象的名称，注意contextClassUid是业务对象的uid.
-# contextValue
+ # contextValue
    总线上对应于键的值，和contextInstanceUid概念基本一致。
 ===总线操作的分类===
 
-# 总线操作按读写分为：总线读操作，总线写操作
-# 按操作内容的不同分为：
-  # 平台级操作：操作的内容是业务对象、业务对象实例。
-  # 用户级操作：操作的内容是自定义的JSON格式对象。
+ # 总线操作按读写分为：总线读操作，总线写操作
+ # 按操作内容的不同分为：
+   # 平台级操作：操作的内容是业务对象、业务对象实例。
+   # 用户级操作：操作的内容是自定义的JSON格式对象。
 
 ===总线写操作===
  # 平台级操作：支持批量写操作，可以同时更新多个业务对象的总线上的值。如：
@@ -139,14 +139,14 @@ initOnly表示只操作总线不做其它动作。
 在这里，contextCustKey可以不是业务对象的主键, contextCustValue必须是json格式的字符串。
 
 ===总线读操作===
-# 平台级操作：
+ # 平台级操作：
     获取总线上业务对象对应的实例的UID
 /wd/servicecontroller?dataBus=getContext&contextKey=classanole1
 
     获取总线上业务对象对应的实例的完整信息(JSON格式)
 /wd/servicecontroller?dataBus=getFullContext&contextKey=classanole1
 
-# 用户级操作：
+ # 用户级操作：
 /wd/servicecontroller?dataBus=getFullContext&contextCustKey=classanole1
 /wd/servicecontroller?dataBus=getContext&contextCustKey=classanole1
 这两种写法等效，都是获取用户自定义数据的完整信息(JSON格式)
