@@ -58,10 +58,9 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 	
 		}
 ===USER的更改===
+ 例: 把当前用户名改为admin,界面皮肤改为red
  * WEBService 方式
-如：
 /wd/servicecontroller?dataBus=setUserContext&contextKey=username&contextValue=admin& contextKey=skin&contextValue=red
-把当前总线上的User节点的用户名改为admin,皮肤改为red
  * 代码方式
    SessionContext.getInstance().getUser().putValue("username", "admin");
    SessionContext.getInstance().getUser().putValue("skin", "red");
@@ -85,7 +84,11 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 创建：
 服务的返回类型为刷新CURRENT总线和全局总线时。
 获取:
+ * WEBService 方式
 /wd/servicecontroller?dataBus=getContext
+ * 代码方式
+SessionContext.getInstance().getThreadContext().getInstance()
+
 	
 ==ECHO_STR节点==
 创建：
