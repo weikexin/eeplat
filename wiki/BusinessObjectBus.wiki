@@ -19,23 +19,25 @@ form.putValue(“a”,”1”);
 form.putValue(“b”,”2”);
 form.putValue(“c”,”3”);
 
+===FORM的获取===
+
 DOService的参数是怎样获取FORM的值的？
 
-FORM的获取
 首先，参数的类型是FORM,确定是从总线的FORM中取值。
 其次，查看参数是否配置了属性？
-a)	如果配置了属性
+#如果配置了属性
 String parameterValue = form.getValue(属性的全名)。
 属性的全名的构成：属性所在业务对象的名称+”_”+属性的名称。
 
 如果parameterValue得到的是null，参数还会按照“没有配置属性”取值。
-b)	如果没有配置属性
+#如果没有配置属性
 String parameterValue = form.getValue(参数的名称)。
 
 如果parameterValue得到的是null，参数会查看是否配置了默认值，如果配置了默认值则取默认值，否则直接返回null。
 
-1.2.2	USER节点
-USER的构建
+==USER节点==
+
+===USER的构建===
 USER的类型是BOInstance。 FORM指对登陆用户封装，USER是在登陆自定义动作里面创建的。
 
 //service 是指根据用户名、密码查询登陆用户的服务
@@ -62,41 +64,42 @@ USER的更改
 
 把当前总线上的User节点的用户名改为admin,皮肤改为red
 
-USER的获取
+===USER的获取===
 参数关于对USER获取有5中类型分别是:
 
-	TYPE_LOGIN_ID:
-获取登陆用户的UID，如果为空则返回’666666’。
-	TYPE_LOGIN_NAME:
-获取登陆用户的名称，如果为空则返回null。
-	TYPE_LOGIN_MAIN_DEPT:
-获取用户所在的部门uid。USER在构建过程中必须添加deptuid的值才可以获取到,否则返回null。
-	TYPE_LOGIN_MAIN_STATION:
-获取用户的岗位uid。USER在构建过程中必须添加stationuid的值才可以获取到,否则返回null。
-	TYPE_LOGIN_KEY:
-根据缺省值里面的配置返回USER在构建过程中对应的值，可以得到USER里面的所有的值。可以用这种类型得到前四种类型的值，前四种类型其实是这种类型的特例,如TYPE_LOGIN_MAIN_STATION 这个类型可以用TYPE_LOGIN_KEY 代替，只要在缺省值里面配置字符串’stationuid’;并且还要更灵活，如果表达岗位不用stationuid, 我们只要在缺省值里面配置相应的字符串。
+  # TYPE_LOGIN_ID:
+      获取登陆用户的UID，如果为空则返回’666666’。
+  # TYPE_LOGIN_NAME:
+      获取登陆用户的名称，如果为空则返回null。
+  # TYPE_LOGIN_MAIN_DEPT:
+      获取用户所在的部门uid。USER在构建过程中必须添加deptuid的值才可以获取到,否则返回null。
+  # TYPE_LOGIN_MAIN_STATION:
+      获取用户的岗位uid。USER在构建过程中必须添加stationuid的值才可以获取到,否则返回null。
+  # TYPE_LOGIN_KEY:
+      根据缺省值里面的配置返回USER在构建过程中对应的值，可以得到USER里面的所有的值。可以用这种类型得到前四种类型的值，前四种类型其实是这种类型的特例,如TYPE_LOGIN_MAIN_STATION 这个类型可以用TYPE_LOGIN_KEY 代替，只要在缺省值里面配置字符串’stationuid’;并且还要更灵活，如果表达岗位不用stationuid, 我们只要在缺省值里面配置相应的字符串。
 				
-1.2.3	GLOBAL_UID节点
+==GLOBAL_UID节点==
 创建：
 服务的返回类型为刷新CURRENT总线和全局总线时。
 获取:
 /wd/servicecontroller?dataBus=getContext
 	
-1.2.4	ECHO_STR节点
+==ECHO_STR节点==
 创建：
 SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 获取:
 /wd/servicecontroller?dataBus=getContext
-1.2.5	SEARCH_LIST节点
+==SEARCH_LIST节点==
 创建：
 /wd/servicecontroller?dataBus=setContextColl&contextKey=?contextValue=?&contexValue=?
 获取:
 /wd/servicecontroller?dataBus= getContextColl
 
-1.2.6	CURRENT节点
+==CURRENT节点==
 见下述“总线操作”。
-2	总线操作
-假设webmodule名称为：wd，总线的操作一般不单独进行，为了减少网络调用，一般和面板操作和服务操作放在一起进行。总线操作中 URL：/wd/mvccontroller 和 /wd/servicecontroller操作是等效的，下面以/wd/servicecontroller为例,假设操作的业务对象UID分别为class0001,class0002,class0003…名称分别为classanole1, classanole2, classanole...业务对象的数据的UID为instance1, instance2, instance3…。
+
+=总线操作=
+   假设webmodule名称为：wd，总线的操作一般不单独进行，为了减少网络调用，一般和面板操作和服务操作放在一起进行。总线操作中 URL：/wd/mvccontroller 和 /wd/servicecontroller操作是等效的，下面以/wd/servicecontroller为例,假设操作的业务对象UID分别为class0001,class0002,class0003…名称分别为classanole1, classanole2, classanole...业务对象的数据的UID为instance1, instance2, instance3…。
 总线操作一般是指对总线的CURRENT节点进行的操作。
 
 2.1	传统方式的总线写操作
