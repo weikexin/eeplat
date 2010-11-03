@@ -163,6 +163,7 @@ initOnly表示只操作总线不做其它动作。
 ===总线操作的分类===
 
  * 总线操作按读写分为：总线读操作，总线写操作
+
  * 按操作内容的不同分为：
    ** 平台级操作：操作的内容是业务对象、业务对象实例。
    ** 用户级操作：操作的内容是自定义的JSON格式对象。
@@ -177,8 +178,10 @@ initOnly表示只操作总线不做其它动作。
 在这里，contextCustKey可以不是业务对象的主键, contextCustValue必须是json格式的字符串。
 
 ===总线读操作===
+
  * 平台级操作：
     获取总线上业务对象对应的实例的UID
+
 /wd/servicecontroller?dataBus=getContext&contextKey=classanole1
     获取总线上业务对象对应的实例的完整信息(JSON格式)
 /wd/servicecontroller?dataBus=getFullContext&contextKey=classanole1
@@ -246,24 +249,24 @@ initOnly表示只操作总线不做其它动作。
 
 
 ==调用JAVA Class==
-假设需要调用的类全名为:com.anolesoft.Hello，Hello必须实现com.exedosoft.plat.action.Action接口。
+假设需要调用的类全名为:com.exedosoft.Hello，Hello必须实现com.exedosoft.plat.action.Action接口。
 下面介绍有返回值的情况，如果不需要返回记录，下面的三种调用类型任选其一就可以。
 
 ===返回的结果是一条记录===
-/wd/servicecontroller? userDefineClass=com.anolesoft.Hello&callType=as
+/wd/servicecontroller? userDefineClass=com.exedosoft.Hello&callType=as
 
 返回的结果被存放在总线的 GLOBAL_UID节点中。
-所以com.anolesoft.Hello 需要调用
+所以com.exedosoft.Hello 需要调用
 	SessionContext.getInstance().getThreadContext().setInstance(bi);对总线赋值。
 
 ===返回的结果是以数组组织的多条记录===
-/wd/servicecontroller? userDefineClass=com.anolesoft.Hello&callType=aa
+/wd/servicecontroller? userDefineClass=com.exedosoft.Hello&callType=aa
 
 返回的结果被存放在总线的 SEARCH_LIST节点中。
-所以com.anolesoft.Hello 需要调用
+所以com.exedosoft.Hello 需要调用
 	SessionContext.getInstance().getThreadContext().setInstances(list);对总线赋值。
 ===只返回一个值===
-/wd/servicecontroller? userDefineClass=com.anolesoft.Hello&callType=ao
+/wd/servicecontroller? userDefineClass=com.exedosoft.Hello&callType=ao
 
 	SessionContext.getInstance().getThreadContext().setEchoStr(list)
 
