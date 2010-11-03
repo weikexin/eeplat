@@ -106,12 +106,16 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 创建：
 　* WEBService方式
+
 　/wd/servicecontroller?dataBus=setContextColl&contextKey=?contextValue=?&contexValue=?
+
   * 代码方式
   SessionContext.getInstance().getThreadContext().setInstances(paras)
 获取:
   * WEBService方式
+
 　/wd/servicecontroller?dataBus= getContextColl
+
   * 代码方式
   SessionContext.getInstance().getThreadContext().getInstances()
 
