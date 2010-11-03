@@ -60,7 +60,7 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 ===USER的更改===
  例: 把当前用户名改为admin,界面皮肤改为red
  * WEBService 方式
-/wd/servicecontroller?dataBus=setUserContext&contextKey=username&contextValue=admin& contextKey=skin&contextValue=red
+   /wd/servicecontroller?dataBus=setUserContext&contextKey=username&contextValue=admin& contextKey=skin&contextValue=red
  * 代码方式
    SessionContext.getInstance().getUser().putValue("username", "admin");
    SessionContext.getInstance().getUser().putValue("skin", "red");
@@ -85,22 +85,30 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 服务的返回类型为刷新CURRENT总线和全局总线时。
 获取:
  * WEBService 方式
-/wd/servicecontroller?dataBus=getContext
+　/wd/servicecontroller?dataBus=getContext
  * 代码方式
-SessionContext.getInstance().getThreadContext().getInstance()
+　 SessionContext.getInstance().getThreadContext().getInstance()
 
 	
 ==ECHO_STR节点==
 创建：
 SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 获取:
-/wd/servicecontroller?dataBus=getContext
+ * WEBService 方式
+   /wd/servicecontroller?dataBus=getContext
+ *　代码方式
+　SessionContext.getInstance().getThreadContext().setEchoValue
 ==SEARCH_LIST节点==
 创建：
-/wd/servicecontroller?dataBus=setContextColl&contextKey=?contextValue=?&contexValue=?
+　* WEBService方式
+　/wd/servicecontroller?dataBus=setContextColl&contextKey=?contextValue=?&contexValue=?
+  * 代码方式
+  SessionContext.getInstance().getThreadContext().setInstances(paras)
 获取:
-/wd/servicecontroller?dataBus= getContextColl
-
+  * WEBService方式
+　/wd/servicecontroller?dataBus= getContextColl
+  * 代码方式
+  SessionContext.getInstance().getThreadContext().getInstances()
 ==CURRENT节点==
 见下述“总线操作”。
 
