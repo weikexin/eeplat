@@ -82,7 +82,7 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 				
 ==GLOBAL_UID节点==
 
-创建：
+创建:
   服务的返回类型为刷新CURRENT总线和全局总线时。
 获取:
  * WEBService 方式
@@ -93,7 +93,7 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
 	
 ==ECHO_STR节点==
 
-创建：
+创建:
 SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 获取:
@@ -104,13 +104,15 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 ==SEARCH_LIST节点==
 
-创建：
+创建:
+
 　* WEBService方式
 
 　/wd/servicecontroller?dataBus=setContextColl&contextKey=?contextValue=?&contexValue=?
 
   * 代码方式
   SessionContext.getInstance().getThreadContext().setInstances(paras)
+
 获取:
   * WEBService方式
 
@@ -121,8 +123,8 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 
 ==CURRENT节点==
-见下述“总线操作”。
 
+  见下述“总线操作”。
 
 
 
