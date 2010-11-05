@@ -26,18 +26,20 @@
 ==修改数据源==
 
 点击首页>>基础设施管理>>数据源管理，进入下面的界面：
+  <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_list.png"/>
 
-
-系统默认建立四个示例数据源数据，可以直接修改或复制。
+系统默认建立五个示例数据源，可以直接修改或复制。
 
 选择工程使用的数据库类型，并进行相应的配置。
 
 在这里我们以MySql数据库为例子进行介绍，本地MySql数据库名称为project_test。
 
 选择MySql，点击修改，修改配置信息，如下图：
+  <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_modify.png"/>
  
-点击保存，进行保存。
-由于数据库需要自动创建相应的数据库连接池，所以到此需要重新启动tomcat，并重新登陆后台。然后回到数据源管理界面。
+修改相应的信息，如MySql数据库的地址、用户名、密码等，进行保存。
+
+由于TOMCAT启动时会初始化数据库连接池，所以修改后需要重新启动tomcat，并重新登陆系统。
 
 ==初始化组织权限==
 
