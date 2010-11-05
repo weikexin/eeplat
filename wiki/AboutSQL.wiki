@@ -48,6 +48,22 @@ CREATE TABLE PM_CustomInfor
         CustNotes clob  
 ) ;
 
+CREATE TABLE PM_ProjectInfor 
+(
+        ProjectUID varchar2 (50) ,
+        ProjectID varchar2 (50)  ,
+        ProjectName varchar2 (100)  ,
+        CustUID varchar2 (50) ,
+        ProjectState int NULL ,
+        PlanBeginTime date NULL ,
+        PlanFinishTime date NULL ,
+        ActBeginTime date NULL ,
+        ActFinishTime date NULL ,
+        ProjectDesc clob  ,
+        ProjectNotes clob  
+) ;
+
+
 }}}
 
 
