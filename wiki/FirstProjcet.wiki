@@ -5,10 +5,15 @@
 ==建立工程==   
   首先建立一个工程，点击“所有工程”下“新建”菜单或右边工作区域里面基础设施管理的“新建工程”，进入新建工程页面：
 
+   <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_new.png"/>
+
 	填写名称，如firstprj，注意名称必须为英文数字，为小写，不支持中文！
-	填写中文名，如测试工程
+	填写中文名，如我的第一个工程
 	填写WEB应用名称，如firstprj
 	其他可以暂时不填写，然后点击保存。显示如下界面：
+
+   <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_enter.png"/>
+
  
 ===初始化工程===
 点击工程页面的“初始化工程”按钮。
