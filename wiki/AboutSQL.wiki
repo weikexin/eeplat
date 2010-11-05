@@ -1,15 +1,12 @@
 ==MYSQL版本==
 {{{
-CREATE TABLE KH_CustomInfor 
+CREATE TABLE PM_CustomInfor 
 (
 	CustomUID varchar (50) ,
 	CustomID varchar (50)  ,
-	MainSalerUID varchar (50)  ,
 	CustomName varchar (200)  ,
-	MainLinkManUID varchar (50)  ,
 	TelePhone varchar (50)  ,
 	CustomState varchar (20)  ,
-	AeraCode varchar (50)  ,
 	CityCode varchar (50)  ,
 	Address varchar (500)  ,
 	ZipCode varchar (10)  ,
@@ -22,9 +19,7 @@ CREATE TABLE PM_ProjectInfor
 	ProjectUID varchar (50) ,
 	ProjectID varchar (50)  ,
 	ProjectName varchar (100)  ,
-	 CustUID varchar (50) ,
-	AcceptDeptUID varchar (50)  ,
-	ProjectManagerUID varchar (50)  ,
+        CustUID varchar (50) ,
 	ProjectState int NULL ,
 	PlanBeginTime datetime NULL ,
 	PlanFinishTime datetime NULL ,
@@ -70,12 +65,9 @@ GO
 CREATE TABLE [dbo].[KH_CustomInfor] (
 	[CustomUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	[CustomID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
-	[MainSalerUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[CustomName] [varchar] (200) COLLATE Chinese_PRC_CI_AS NULL ,
-	[MainLinkManUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[TelePhone] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[CustomState] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
-	[AeraCode] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[CityCode] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[Address] [varchar] (500) COLLATE Chinese_PRC_CI_AS NULL ,
 	[ZipCode] [varchar] (10) COLLATE Chinese_PRC_CI_AS NULL ,
@@ -88,9 +80,7 @@ CREATE TABLE [dbo].[PM_ProjectInfor] (
 	[ProjectUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	[ProjectID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[ProjectName] [varchar] (100) COLLATE Chinese_PRC_CI_AS NULL ,
-	 [CustUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL,
-	[AcceptDeptUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
-	[ProjectManagerUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+        [CustUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL,
 	[ProjectState] [int] NULL ,
 	[PlanBeginTime] [datetime] NULL ,
 	[PlanFinishTime] [datetime] NULL ,
