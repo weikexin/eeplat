@@ -59,9 +59,8 @@
 	至此，系统初始化工作基本完成。
 
 ==初始化自己的业务表==
-   我们根据[相关SQL AbountSql]中的SQL语句来创建项目表和人员表。
 
-执行，在数据库中创建表PM_ProjectInfor和PM_CustomInfor。
+   根据[AboutSQL  附录示例表的SQL]中的SQL语句来创建项目表和人员表。在数据库中创建表PM_ProjectInfor和PM_CustomInfor。
 	进入配置界面，数据源管理，选择sqlserver数据源，点击“初始化数据表”，进入如下界面：
  
 	选择主键列（关键字），特征值列（名称列），然后选择业务包（可以创建一个新的），点击“初始化业务表”
