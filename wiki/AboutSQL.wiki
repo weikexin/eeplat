@@ -32,7 +32,23 @@ CREATE TABLE PM_ProjectInfor
 }}}
 
 ==ORACLE版本==
+{{{
 
+CREATE TABLE PM_CustomInfor 
+(
+        CustomUID varchar2 (50) ,
+        CustomID varchar2 (50)  ,
+        CustomName varchar2 (200)  ,
+        TelePhone varchar2 (50)  ,
+        CustomState varchar2 (20)  ,
+        CityCode varchar2 (50)  ,
+        Address varchar2 (500)  ,
+        ZipCode varchar2 (10)  ,
+        CustomDesc clob  ,
+        CustNotes clob  
+) ;
+
+}}}
 
 
 ==MS SQLSERVER版本==
@@ -54,15 +70,8 @@ exec sp_cursorclose @P1
 set nocount off
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[KH_CustomInfor]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
-drop table [dbo].[KH_CustomInfor]
-GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[PM_ProjectInfor]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
-drop table [dbo].[PM_ProjectInfor]
-GO
-
-CREATE TABLE [dbo].[KH_CustomInfor] (
+CREATE TABLE [dbo].[PM_CustomInfor] (
 	[CustomUID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	[CustomID] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[CustomName] [varchar] (200) COLLATE Chinese_PRC_CI_AS NULL ,
