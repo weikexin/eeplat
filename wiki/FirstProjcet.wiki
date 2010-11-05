@@ -19,9 +19,9 @@
 ===初始化工程===
 点击工程页面的“初始化工程”按钮。
 
-  <img height="240" width="600" src="http://eeplat.googlecode.com/files/iyi_addproject_init.png"/>
+  <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_init.png"/>
  
-初始化工程完成。
+当弹出“初始化成功”对话框时， 初始化工程完成。
 
 ==修改数据源==
 
