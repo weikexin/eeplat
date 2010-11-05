@@ -32,7 +32,7 @@
 
 选择工程使用的数据库类型，并进行相应的配置。
 
-在这里我们以MySql数据库为例子进行介绍，本地MySql数据库名称为project_test。
+在这里我们以MySql数据库为例子进行介绍，本地MySql数据库名称为test。
 
 选择MySql，点击修改，修改配置信息，如下图：
   <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_modify.png"/>
