@@ -1,8 +1,8 @@
   * 入门文档
     * [Setup 安装]
     * [FirstProjcet 第一个工程]
-    * [Translating 界面本地化]
-    * [AboutSQL  附录示例表的SQL]
+    * [Translating 附本地化代码]
+    * [AboutSQL  附示例SQL]
   * 开发文档
           *  [Introduce 平台简介]
           *  [BasicConcept 基本概念]
