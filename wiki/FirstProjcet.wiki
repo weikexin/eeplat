@@ -83,7 +83,8 @@
  
 ==界面翻译==
 
- 进入配置界面，首页-->常用工具-->导入字典翻译，把如[Translating 附本地化代码]中的代码拷贝到文本域：如下图：
+ 进入配置界面，首页-->常用工具-->导入字典翻译，把[Translating 附本地化代码]中的代码拷贝到文本域，如下图：
+   <img height="120" width="600" src="http://eeplat.googlecode.com/files/yiyi_translate.png"/>
 
 
 	然后点击界面右上方的刷新缓存。
