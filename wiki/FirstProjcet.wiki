@@ -91,7 +91,7 @@
 
 ==系统测试==
 
-然后点击界面右上方的刷新<img height="85" width="20" src="http://eeplat.googlecode.com/files/yiyi_refresh.png"/>缓存。
+然后点击界面右上方的刷新<img height="20" width="85" src="http://eeplat.googlecode.com/files/yiyi_refresh.png"/>缓存。
 
  
 	下面可以进行简单测试，先输入两个客户，然后输入项目。可以看出项目相关客户的表格元素自动进行了处理.
