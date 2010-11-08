@@ -99,6 +99,7 @@
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_bs_open.png"/>
  
   打开的界面为：
+
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_bs_simple.png"/>
 
   现在我们可以对项目信息和人员信息进行简单的管理，并且可以为项目指定负责人了，至此第一个简单项目开发完成。_ 我们看到菜单还没有翻译，菜单的内容请查看下面的“菜单配置” _
