@@ -64,7 +64,7 @@
         select * from demo /*condition*/ --orderby-- defaultcols desc@#
 }}}
        # 自动条件修改 修改的一种特殊形式，update语句必须按照类似系统生成的严格格式编写，执行时系统会自动重新组装sql语句，用户录入的才修改，没有录入的不是置为null，而是不作修改。
-       # 自动条件自由查询  和自动条件查询的功能类似。可以适用更复杂的情况，一个例子：
+       # 自由查询    和自动条件查询的功能类似。可以适用更复杂的情况，一个例子：
 {{{
 	select *  from v_tbclass where objuid  
 	in (select objuid from v_tbclass minus 	(select fdclassid from V_STU_ALRDY_KAOQING WHERE 1=1  	FDCLASSNUM[AND  V_STU_ALRDY_KAOQING.FDCLASSNUM='?'])) 
@@ -76,6 +76,7 @@
 			fdclasstemplateid[AND  fdclasstemplateid='?'],fdstarttime[AND  fdstarttime='?']
 
 }}}
+       # 自由保存
        # 脚本  定义一个javascript 脚本，最后一行返回sql。
        # 自定义动作查询  定义一个自定义动作，自定义动作返回一个结果集。自定义动作属于基本服务。
     
