@@ -40,6 +40,7 @@
 
   * 基本概念
 
+    服务描述业务对象的行为。这个服务既可以是底层数据层面的操作，也可以是粗粒度的业务行为。当一个数据表被初始化为业务对象后，会形成6个基本的服务，命名规则是业务对象 + `_` + 后缀，后缀分别为browse、list、insert、update、delete、auto_condition。
 
     服务按照复杂程度可以分为两类:
        # 基本服务，只定义的一个sql语句。
@@ -61,12 +62,12 @@
        # 自定义动作查询 定义一个自定义动作，自定义动作返回一个结果集。自定义动作属于基本服务。
     
 
-    服务描述业务对象的行为。这个服务既可以是底层数据层面的操作，也可以是粗粒度的业务行为。当一个数据表被初始化为业务对象后，会形成6个基本的服务，命名规则是业务对象 + `_` + 后缀，后缀分别为browse、list、insert、update、delete、auto_condition。
+
     
 
 
   * 对应JAVA 数据类型
-    com.exedosoft.plat.bo.BusiPackage
+    com.exedosoft.plat.bo.DOService
 
   * 对应界面
 
