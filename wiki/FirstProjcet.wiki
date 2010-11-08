@@ -77,7 +77,7 @@
 
 	在此需要设置表间关联，选择业务对象pm_projectinfor，点击右侧“处理表关联”，填写相应对应信息，在这里通过pm_projectinfor表中的custuid字段关联项目负责人，进入如下界面：
  
-   <img height="240" width="600" src="http://eeplat.googlecode.com/files/yiyi_bo_link.png"/>
+   <img height="120" width="600" src="http://eeplat.googlecode.com/files/yiyi_bo_link.png"/>
 
 	点击“初始化”，完成表关联处理。
  
