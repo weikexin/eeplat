@@ -93,10 +93,15 @@
 
   点击界面右上方的刷新按钮<img height="20" width="85" src="http://eeplat.googlecode.com/files/yiyi_refresh.png"/>（左数第4个图标），刷新缓存。、
 
-  *注意，每次更改配置，如果需要系统测试，都需要刷新缓存。*
+  ===注意，每次更改配置，如果需要系统测试，都需要刷新缓存。===
 
    下面可以进行简单测试，点击“我的第一个工程”，在右侧界面上点击“直接打开工程”或者“打开工程登录”，如下图：
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_bs_open.png"/>
+ 
+  打开的界面为：
+
+ 
+ 
 
  
 
