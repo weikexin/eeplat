@@ -1,4 +1,4 @@
-*中文：*
+*中文简体：*
 {{{
 customid=人员编码
 customname=客户名称
