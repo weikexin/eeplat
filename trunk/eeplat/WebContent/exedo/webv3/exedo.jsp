@@ -138,16 +138,7 @@ $(function(){
 </head>
 
 <body  lang=zh>
-<form id="zephyrOcx" name="zephyrOcx">
-		<object id="DOcxtest1" name="DOcxtest1" on
-				classid="clsid:4E1C94DD-78DE-4DCB-B0B6-3745C728EFA8"
-				width=0
-				height=0
-				align=middle
-				hspace=0
-				vspace=0 viewastext>
-    	</object>
-	</form>
+
 <div id='dmLayer'></div>
 <input  type="hidden" id="mainStyle" value="<%=mainStyle %>"/> 
 <%=paneModelContent%>

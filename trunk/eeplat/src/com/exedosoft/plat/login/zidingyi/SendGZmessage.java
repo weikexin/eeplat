@@ -286,13 +286,13 @@ public class SendGZmessage extends DOAbstractAction {
 	}
 
 	// ∑¢ÀÕ” º˛
-	private void sendEmail(String from, String password, String to,
+	public static void sendEmail(String from, String password, String to,
 			String title, String text) throws AddressException,
 			MessagingException {
 
 		// **************************************************8
 		// ≤‚ ‘”√
-		to = "yuanxx@zephyr.com.cn";
+		//to = "yuanxx@zephyr.com.cn";
 		// *****************************************************8
 
 		String smtpHost = "smtp." + from.substring(from.lastIndexOf("@") + 1);

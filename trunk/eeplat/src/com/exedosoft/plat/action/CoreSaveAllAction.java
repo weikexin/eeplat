@@ -3,9 +3,9 @@ package com.exedosoft.plat.action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Arrays;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,33 +19,11 @@ import com.exedosoft.plat.bo.DOParameter;
 import com.exedosoft.plat.bo.DOParameterService;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
-import com.exedosoft.plat.ui.DOGridModel;
-import com.exedosoft.plat.ui.DOPaneModel;
-import com.exedosoft.plat.util.DOGlobals;
 
 /**
- * <p>
- * Title:
- * </p>
- * <p>
- * Description:
  * 
- * 只一块要修改=======checkinstance objuid 数据问题挺多。
- * 
- * 前台是不所有信息全部传过来了。 保存的时候又根据checkinstance进行了区分。
- * 
- * 这样就造成了不一致。 怎样才能一致： 1,修改前台＝＝＝＝＝＝＝＝＝＝＝难度比较大 2,修改后台 3,前后台结合修改
- * 
- * 根据DOService 改。。。。。。。。。。。
- * </p>
- * <p>
- * Copyright: Copyright (c) 2004
- * </p>
- * <p>
- * Company: </
- * 
- * @author not attributable
- * @version 1.0
+ * 如果是checkinstance 被选择数据的参数，只能用current类型参数；但是可以用checkinstance_hidden (form 类型) 代替
+ * 其他情况下，必须用form 
  */
 
 public class CoreSaveAllAction extends DOAbstractAction {
@@ -65,7 +43,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 	public String excute() {
 
-		System.out.println("进入批量修改Action::::::::::::::::::::::::::");
+		log.info("进入批量修改Action::::::::::::::::::::::::::");
 
 		if (this.service.getTempSql() == null) {
 			System.out.println("未配置SQL 语句");
@@ -83,6 +61,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 		}
 
 		List listKeys = Arrays.asList(keys);
+		log.info("选择的数据::" + listKeys);
 		// checkinstance_hidden
 		String[] key_hiddens = this.actionForm
 				.getValueArray("checkinstance_hidden");
@@ -154,14 +133,9 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 						String[] valueArray = this.actionForm.getValueArray(dop
 								.getName());
-
-						if (valueArray == null || valueArray.length <= len) {
-							value = this.actionForm.getValue(dop.getName());
-						} else {
-							value = valueArray[len];
-							if ("".equals(value)) {
-								value = null;
-							}
+						value = valueArray[len];
+						if ("".equals(value)) {
+							value = null;
 						}
 					} else {
 						value = dop.getValue();

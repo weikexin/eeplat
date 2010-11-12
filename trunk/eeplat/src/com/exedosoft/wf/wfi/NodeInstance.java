@@ -862,11 +862,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 * @return
 	 */
 	public static NodeInstance getNodeInstanceByPTNodeID(String aWfiUid,
-			String aPTNodeUid) {
+			String aPTNodeUid,String exeStatus) {
 
-		String hql = "select ni.* from do_wfi_nodeinstance ni where ni.PI_UID = ? and  ni.NODE_UID = ?";
+		String hql = "select ni.* from do_wfi_nodeinstance ni where ni.PI_UID = ? and  ni.NODE_UID = ?  and  ni.exeStatus = ?";
 		return DAOUtil.BUSI().getBySql(NodeInstance.class, hql, aWfiUid,
-				aPTNodeUid);
+				aPTNodeUid,exeStatus);
 
 		//
 		// WFDAO dao = new WFDAO();
@@ -1029,17 +1029,21 @@ public class NodeInstance extends BaseObject implements Serializable {
 			SessionContext us = DOGlobals.getInstance().getSessoinContext();
 			BOInstance formI = us.getFormInstance();
 			String rTxt = "";
+			System.out.println("formI=====" + formI);
 			PTNode node = this.getNode();
-			if (node.getRejectTxt() != null
-					&& !"".equals(node.getRejectTxt().trim())) {
-				rTxt = formI.getValue(node.getRejectTxt());
-			} else if (formI.getValue("reject_txt") != null) {
-				rTxt = formI.getValue("reject_txt");
-			} else if (formI.getValue("rejecttxt") != null) {
-				rTxt = formI.getValue("rejecttxt");
-			}
+			System.out.println("node=====" + node);
+			if(formI != null && node != null) {
+				if (node.getRejectTxt() != null
+						&& !"".equals(node.getRejectTxt().trim())) {
+					rTxt = formI.getValue(node.getRejectTxt());
+				} else if (formI.getValue("reject_txt") != null) {
+					rTxt = formI.getValue("reject_txt");
+				} else if (formI.getValue("rejecttxt") != null) {
+					rTxt = formI.getValue("rejecttxt");
+				}
 
-			state = state + "（" + rTxt + "）";
+				state = state + "（" + rTxt + "）";				
+			}
 		}
 		dealProcessState(state);
 
@@ -1096,7 +1100,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			newInstance = buildNewRelation(aNode, scheduleOUUid, forwardType);
 			setExeStatus(new Integer(STATUS_FINISH));
 			storePropertyValues();
-			DAOUtil.BUSI().store(this);
+			//DAOUtil.BUSI().store(this);
 
 		} catch (Exception e) {
 			throw new WFException("自由转向时出错:" + this, e);
@@ -1191,11 +1195,20 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// dao.setAutoClose(false);
 		SessionContext us = DOGlobals.getInstance().getSessoinContext();
 
-		this.setPerformer(us.getUser().getUid());
+		if(us.getUser()!=null){
+			setPerformer(us.getUser().getUid());
+	     }
 
-		this.setNodeDate(new java.sql.Timestamp(System.currentTimeMillis()));
+		setNodeDate(new java.sql.Timestamp(System.currentTimeMillis()));
 
 		BOInstance formI = us.getFormInstance();
+		
+		System.out.println("formI==-===" + formI);
+		System.out.println("formI==-===" + formI);
+		System.out.println("formI==-===" + formI);
+		System.out.println("formI==-===" + formI);
+		System.out.println("formI==-===" + formI);
+		
 		// //////////////从界面获取用户的录入，更新变量对应的值
 		try {
 			if (formI != null) {

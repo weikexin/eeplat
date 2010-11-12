@@ -218,6 +218,29 @@ public class ProcessInstance extends BaseObject{
 		
 		
 	}
+	
+	
+	/**
+	 * 无条件杀死一个工作流实例。
+	 * 
+	 * @throws WFException
+	 */
+	public static ProcessInstance getProcessInstanceByBusiUId(String aInstanceUid) {
+//
+//		WFDAO dao = new WFDAO();
+		String hql = "select pi.* from do_wfi_processinstance pi where pi.INSTANCE_UID = ?";
+		try {
+			List list = DAOUtil.BUSI().select(ProcessInstance.class, hql, aInstanceUid);
+			if (list != null && list.size() > 0) {
+				return (ProcessInstance)list.get(0);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 	/**
 	 * 无条件杀死一个工作流实例。

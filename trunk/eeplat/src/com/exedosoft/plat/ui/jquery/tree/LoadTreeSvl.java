@@ -425,13 +425,15 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			buffer.append(instance.getName());
 			this.appendIconXML(treeModel, buffer);
 
-			List listChilds = childModel.getService().invokeSelect(
-					instance.getUid());
-			if (listChilds != null && listChilds.size() > 0) {
+			///这个地方可以放开，但是放开后，如果数据量大了，效率会急剧降低
+			
+//			List listChilds = childModel.getService().invokeSelect(
+//					instance.getUid());
+//			if (listChilds != null && listChilds.size() > 0) {
 
 				appendSrc(childModel.getObjUid(), treeModel, instance.getUid(),
 						buffer);
-			}
+//			}
 
 			appendAction(treeModel, buffer, instance, instanceUid);
 			buffer.append("\"/>\n"); // / xml 关闭符号

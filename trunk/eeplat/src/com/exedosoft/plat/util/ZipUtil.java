@@ -209,6 +209,10 @@ public class ZipUtil {
 	}
 
 	public static void main(String[] args) throws IOException {
+		
+		
+		File aFile = new File(DOGlobals.UPLOAD_TEMP +  StringUtil.getCurrentDayStr());
+		aFile.mkdir();
 
 		// File aFile = new File("c:\\2008-1.ZIP");//06657563.xml
 		// aFile.createNewFile();
@@ -222,10 +226,10 @@ public class ZipUtil {
 		// ze.clone();
 		//
 		// zos.close();
-
-		ZipFile aZipFile = new ZipFile("F:\\2008-1.ZIP");
-
-		System.out.println(aZipFile.getEntry("07657038.xml"));
+//
+//		ZipFile aZipFile = new ZipFile("F:\\2008-1.ZIP");
+//
+//		System.out.println(aZipFile.getEntry("07657038.xml"));
 		// System.out.println(aZipFile.getEntry("06657563.xml").getName());
 
 		// 内蒙古自治区东胜煤田塔然_07010257.xml

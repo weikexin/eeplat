@@ -551,7 +551,7 @@ function  sortDown(o,boName,serviceName){
 
 
 ////////////////////////////////无刷新 flash上传
-function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload){
+function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
 	
 if(fileDesc==null || $.trim(fileDesc)==""){
 	fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
@@ -563,11 +563,11 @@ if(autoUpload==null){
 	autoUpload = true;
 }
 	
-
 var o = $("#" + uploadifyID).prev();
 $("#" + uploadifyID).uploadify({
 'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
-'script'         : 'exedo/webv3/upload_action_comm.jsp',
+'scriptData'     :{'jsessionid':sessionid},
+'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
 'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 'queueID'        : uploadifyQueueID,
 'auto'           : autoUpload,
