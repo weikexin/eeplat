@@ -5,5 +5,5 @@
   
   <div>
   <script>
-   	uploadify("uf${model.objUid}","fq${model.objUid}","${model.inputConfig?if_exists}","${model.inputConstraint?if_exists}");
+   	uploadify("uf${model.objUid}","fq${model.objUid}","${model.inputConfig?if_exists}","${model.inputConstraint?if_exists}",true,"${sessionid}");
   </script>  

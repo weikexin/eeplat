@@ -118,25 +118,24 @@ body.gPage{
 /********************************************* filterTable *************************************/
 table.tablesorter {
 	font-size:12px;
-	background-color: #CDCDCD;
 	margin:0px 5px 5px 5px;
 	font-size: 12px;
 	width: 98%;
 	text-align: left;
+	border-collapse:collapse; 
 }
+
 table.tablesorter tr{
 	height:20px;
 }
 table.tablesorter thead tr th,table.tablesorter tr td.title{
 		background-color:#e6EEEE;
-		border: 1px solid #FFF;
 		font-size: 12px;
 		padding: 1px;
 		vertical-align: middle; 
 }
 table.tablesorter tfoot tr th {
  		background-color:#e6EEEE;
-		border: 1px solid #FFF;
 		font-size: 12px;
 }
 table.tablesorter thead tr .header {
@@ -147,17 +146,13 @@ table.tablesorter thead tr .header {
 	vertical-align: middle; 
 }
 table.tablesorter td {
-	color: #3D3D3D;
+
 	padding: 1px;
 	padding-left:2px;
-	background-color: #FFF;
 	text-align: left;
 	vertical-align: middle; 
 }
-.firstPage,.prevPage,.pagedisplay,.nextPage,.lastPage{
-	margin-bottom:-4px;
-	cursor:pointer;
-}
+
 
 table.tablesorter thead tr .headerSortUp {
 	background-image: url(asc.gif);
@@ -189,6 +184,7 @@ table.tablesorter tbody tr.selected:hover td{
 	background-color:#ff9;
 }
 
+table.tablesorter td,table.tablesorter th{ border:#ccc solid 1px; }
 
 .table_checkbox{width:12px; height:12px}
 
@@ -250,4 +246,7 @@ object{
 	margin:0px; 
 	cursor:e-resize; 
 } 
-
+.firstPage,.prevPage,.pagedisplay,.nextPage,.lastPage{
+	margin-bottom:-4px;
+	cursor:pointer;
+}
