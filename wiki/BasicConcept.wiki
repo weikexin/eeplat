@@ -79,7 +79,58 @@
        # 自由保存
        # 脚本  定义一个javascript 脚本，最后一行返回sql。
        # 自定义动作查询  定义一个自定义动作，自定义动作返回一个结果集。 自定义动作查询属于基本服务。 _ 注意在这个自定义动作里面不能直接使用该服务的invokeSelect()方法，否则要引起死循环。 _
-    
+
+	 可见性,包括公开,保护,私有.和面向对象理论可见性一致.
+	
+        public static final int VISIBILITY_PUBLIC = 1;
+
+	public static final int VISIBILITY_PROTECTED = 2;
+
+	public static final int VISIBILITY_PRIVATE = 3;
+
+
+        参数检查
+	public static final int PARA_CHECK_DETAIL = 2;
+
+	public static final int PARA_CHECK_SIMPLE = 1;
+
+	public static final int PARA_CHECK_FALSE = 0;
+
+
+        事务
+        public static final int TRANSACTION_NO = 0;
+
+	public static final int TRANSACTION_YES = 1;
+
+
+        日志
+	public static final int LOG_NO = 0;
+
+	public static final int LOG_YES = 1;
+
+        记录过滤
+
+	public static final int FILTER_NO = 0;
+
+	public static final int FILTER_YES = 1;
+
+	public static final int FILTER_MULT = 2;
+
+        总线刷新类型
+
+
+	public static final int REFRESH_NO = 0;// 不刷新数据总线
+
+	public static final int REFESH_CURRENT = 1;// /刷新数据总线，但是只刷新总线键值对
+
+	public static final int REFESH_SEARCH_LIST = 2;// /刷新数据总线，但是总线的数据集
+
+	public static final int REFESH_ALL = 3;// /都刷新
+
+	public static final int REFESH_MAP_DATA_GLOBAL_UID = 10;// /刷新数据总线,和全局值
+
+
+   
 
   * 对应JAVA 数据类型
     com.exedosoft.plat.bo.DOService
@@ -90,6 +141,118 @@
 
   * 基本概念
      参数的作用主要是从业务对象总线上获取对应的值。服务可以不定义参数，也可以定义一个或多个参数。服务中sql语句中的？的数量要和参数的数量相同，并且按顺序对应（带通配符的服务，如自动条件查询，执行中，平台会自动根据参数补全sql）。这样服务就通过参数获取总线上的值。
+	/**
+	 * 当前数据，来自于sessioncontext.allInstances 在service执行序列中，后一个service
+	 * 可能需要前一个service 的值，这些值来自sessioncontext.allInstances
+	 * 
+	 */
+	public static final int TYPE_CURRENT = 1;
+
+	/**
+	 * 批量参数类型 一种特殊的CURRENT 它来自界面批量数据
+	 * ///////////其实寻找界面列表对应的业务对象即可，不需要配置那么多参数,batchType 是多于的配置，为了兼容性，保留
+	 * 
+	 */
+	// public static final int TYPE_CURRENT_BATCH = 111;
+
+	/**
+	 * 一般用于权限设置，当当期需要设置的cur instance ,只有这个业务对象设为isFilter == true ，这个业务对象
+	 * 才有可能的主键才有可能成为TYPE_AUTH_GLOBAL_CUR
+	 */
+	public static final int TYPE_GLOBAL_CUR = 2;
+
+	/**
+	 * 登陆类型，和登陆用户相关，user,user所在的dept等。
+	 * 
+	 */
+	public static final int TYPE_LOGIN_ID = 3;
+
+	public static final int TYPE_LOGIN_NAME = 31;
+
+	public static final int TYPE_LOGIN_MAIN_STATION = 32;
+
+	public static final int TYPE_LOGIN_MAIN_DEPT = 33;
+
+	public static final int TYPE_LOGIN_KEY = 35;
+
+	/**
+	 * 当前时间
+	 */
+	public static final int TYPE_DATE = 4;
+
+	/**
+	 * 当前时间
+	 */
+	public static final int TYPE_TIMESTAMP = 40;
+
+	/**
+	 * 来自Form
+	 */
+	public static final int TYPE_FORM = 5;
+
+	/**
+	 * 来自Form值的一些运算
+	 */
+	public static final int TYPE_FORM_CAL = 51;
+
+	/**
+	 * 参数为NULL 值，当进行值参替换时，替换为null.
+	 */
+	public static final int TYPE_NULL = 10;
+
+	/**
+	 * 递归情况下 父亲的值
+	 */
+	public static final int TYPE_RECURSION_PARENT = 11;
+
+	/**
+	 * 主键
+	 */
+	public static final int TYPE_KEY = 15;
+
+	/**
+	 * 使用代码生成器
+	 */
+	public static final int TYPE_CODE = 151;
+
+	/**
+	 * SCRIPT 支持
+	 */
+	public static final int TYPE_SCRIPT = 100;
+
+	/**
+	 * 可以调用Action
+	 */
+	public static final int TYPE_ACTION = 101;
+
+	/**
+	 * 不可逆的MD5 加密
+	 */
+
+	public static final int TYPE_SECURITY_MD5 = 200;
+
+	/**
+	 * 可逆的加密算法
+	 */
+
+	public static final int TYPE_SECURITY_REVERS = 201;
+
+	/**
+	 * 可逆的加密算法
+	 */
+
+	/**
+	 * 全文检索——查询
+	 */
+	public static final int TYPE_LUCENE_SEARCH = 300;
+
+	/**
+	 * 全文检索——创建索引
+	 */
+	public static final int TYPE_LUCENE_CREATE = 301;
+
+
+
 
   * 对应JAVA 数据类型
     com.exedosoft.plat.bo.DOParameter
