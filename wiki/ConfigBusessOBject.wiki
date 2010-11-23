@@ -4,4 +4,4 @@
 == 对应JAVA 数据类型 ==
     com.exedosoft.plat.bo.BusiPackage
 
-== 对应界面 ==
+== 配置界面 ==
