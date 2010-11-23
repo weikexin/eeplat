@@ -10,7 +10,7 @@
           *  [BusinessObjectBus 业务对象总线]
           *  [ConfigTools 配置工具简介]
           *  [ConfigApplication 工程]
-          *  [ConfigBusessOBject 业务包]
+          *  [ConfigBusessPackageOBject 业务包]
           *  [ConfigBusessOBject 业务对象]
           *  [ConfigProperty 业务对象属性]
           *  [ConfigParameter 参数]
