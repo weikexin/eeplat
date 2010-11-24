@@ -56,6 +56,8 @@ CheckOut完成之后，还需要配置Build Path，如下：
   http://eeplat.googlecode.com/files/appconfig.png
 
   http://eeplat.googlecode.com/files/appconfig2.png
+ 
+  配置完后，如下图：
 
   http://eeplat.googlecode.com/files/appconfig3.png
 
