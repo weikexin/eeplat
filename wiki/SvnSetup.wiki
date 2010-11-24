@@ -6,3 +6,14 @@
   # Eclipse 3.5或以上版本。
   # 安装有SVN插件（如http://subclipse.tigris.org/update_1.6.x）
   # 建议安装FireFox。系统开发使用在FireFox上效率最高、速度最快。
+
+
+=安装详细步骤：=
+  
+ ==在Eclipse中配置Tomcat==
+如果你已经配置完成，请略过此步。下面是配置截图：
+  http://eeplat.googlecode.com/files/newserver.png
+
+  http://eeplat.googlecode.com/files/newserver2.png
+
+  http://eeplat.googlecode.com/files/newserver3.png
