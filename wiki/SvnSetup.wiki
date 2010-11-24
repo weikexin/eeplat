@@ -2,7 +2,7 @@
 
 =安装要求=
   # JDK 1.5或以上版本。
-  # Tomcat 5.5或以上版本
+  # Tomcat 5.5或以上版本,Tomcat安装路径不要有空格
   # Eclipse 3.5或以上版本。
   # 安装有SVN插件（如http://subclipse.tigris.org/update_1.6.x）
   # 建议安装FireFox。系统开发使用在FireFox上效率最高、速度最快。
