@@ -9,7 +9,7 @@
           *  [TechArchive 技术架构]
           *  [BasicTheory 声明式编程及元模型]
           *  [BusinessObjectBus 业务对象总线]
-          *  [ConfigTools 配置工具简介]
+          *  [ConfigTools 配置工具界面结构]
           *  [ConfigApplication 工程]
           *  [ConfigBusessPackageOBject 业务包]
           *  [ConfigBusessOBject 业务对象]
