@@ -49,6 +49,9 @@ CheckOut完成之后，还需要配置Build Path，如下：
   ===配置EEPlat工程所依赖的类库，所在路径为 WebContent\WEB-INF\lib===
   http://eeplat.googlecode.com/files/svncheck8.png
 
+  ===注意工程的编译水平应该是Java 1.5===
+  http://eeplat.googlecode.com/files/appconfig5.png
+
 ==发布工程==
 
   把EEPlat发布于Tomcat，如下图：
