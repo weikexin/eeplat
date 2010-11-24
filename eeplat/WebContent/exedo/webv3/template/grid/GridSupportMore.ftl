@@ -99,7 +99,7 @@
 				</#if> 	
 				
 				<#if (item.nameColspan?exists && item.nameColspan == 0) >
-				    <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#if (item.newLine || (item_index+1)==model.moreGridFormLinks?size || model.moreGridFormLinks[item_index+1].newLine )> colspan="${(colNum-i-1)*2+2}"</#if>><#if '${dataBind(data,item)}' ==''> ${item.htmlValue} </#if></td>
+				    <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#if ((i == (colNum-1)) || item.newLine || (item_index+1)==model.moreGridFormLinks?size || model.moreGridFormLinks[item_index+1].newLine )> colspan="${(colNum-i-1)*2+2}" <#else>  colspan="${(colNum-i-1)*2}"  </#if>><#if '${dataBind(data,item)}' ==''> ${item.htmlValue} </#if></td>
 				<#else>
 				    <td <#if item.noWrapLabel>nowrap='nowrap'</#if>> ${item.l10n}</td>
 				    <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#if (item.newLine || (item_index+1)==model.moreGridFormLinks?size || model.moreGridFormLinks[item_index+1].newLine )> colspan="${(colNum-i-1)*2+1}"</#if>><#if '${dataBind(data,item)}' ==''> ${item.htmlValue} </#if></td>
