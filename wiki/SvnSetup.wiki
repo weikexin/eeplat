@@ -22,3 +22,25 @@
 
 
 ==利用SVN创建工程==
+请从[http://code.google.com/p/eeplat/source/checkout SOURCE]处查看CheckOut地址，如果你想成为该项目的代码贡献者，请联系作者。
+下面是配置截图：  
+
+  http://eeplat.googlecode.com/files/svncheck.png
+
+  http://eeplat.googlecode.com/files/svncheck2.png
+
+  http://eeplat.googlecode.com/files/svncheck3.png
+
+  http://eeplat.googlecode.com/files/svncheck4.png
+
+  http://eeplat.googlecode.com/files/svncheck5.png
+
+
+==配置Build Path==
+刚下来的工程，还需要配置Build Path，如下：
+
+  http://eeplat.googlecode.com/files/svncheck6.png
+
+  http://eeplat.googlecode.com/files/svncheck7.png
+
+  http://eeplat.googlecode.com/files/svncheck8.png
