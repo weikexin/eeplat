@@ -37,10 +37,13 @@
 
 
 ==配置Build Path==
-刚下来的工程，还需要配置Build Path，如下：
+整个CheckOut过程根据网络环境的不同可能需要几分钟到几十分钟不等。CheckOut完成之后，还需要配置Build Path，如下：
 
+  *配置Tomcat Server Library*
   http://eeplat.googlecode.com/files/svncheck6.png
 
+  *配置JRE System Library*
   http://eeplat.googlecode.com/files/svncheck7.png
 
+  *配置EEPlat工程所依赖的类库，所在路径为 WebContent\WEB-INF\lib*
   http://eeplat.googlecode.com/files/svncheck8.png
