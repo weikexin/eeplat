@@ -1,6 +1,6 @@
   * 入门文档
-    * [Setup 安装]
-    * [SvnSetup SVN安装]
+    * [Setup WAR包安装]
+    * [SvnSetup 源代码SVN安装]
     * [FirstProjcet 第一个工程]
     * [Translating 附本地化代码]
     * [AboutSQL  附示例SQL]
