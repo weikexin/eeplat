@@ -26,5 +26,11 @@
  点击“生成关联”即可，生成的过程可能持续10几秒时间。
 
  http://eeplat.googlecode.com/files/bo_link.png
+
+  <b> 关联流程 </b>
+ 把业务对象关联到某个流程下面，使该流程流转的是该业务对象的数据。
+ 点击“生成关联”即可，生成的过程可能持续10几秒时间。
+
+ http://eeplat.googlecode.com/files/bo_link_wf.png
  
   
