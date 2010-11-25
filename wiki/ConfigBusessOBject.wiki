@@ -12,3 +12,6 @@
  http://eeplat.googlecode.com/files/bo_edit.png
 
   <b> 注意：</b>
+  主键类型包含：UUID,HI/LOW,NAITIVE(数据库原生类型如自增),KEY_TYPE_ASSIGN_STRING(程序手动指定STING类型),KEY_TYPE_ASSIGN_LONG（程序手动指定整形）；现在平台默认支持UUID,其它类型需要对生成的配置数据进行修改。
+  特征值列：可以不用指定，一般指实体的名称，例如学生表里面的姓名。
+  数据源：如果业务对象的类型为基本表，必须指定。
