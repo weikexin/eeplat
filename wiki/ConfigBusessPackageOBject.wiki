@@ -7,7 +7,7 @@
 == 配置界面 ==
   http://eeplat.googlecode.com/files/bp_edit.png
 
-  * 注意：*
+  <b> 注意：</b>
 
   名称不可含有中文或全角字符。
   排序标示是指 业务包在树上的位置。
