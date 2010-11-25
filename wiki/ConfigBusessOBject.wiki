@@ -8,3 +8,7 @@
     com.exedosoft.plat.bo.DOBO
 
 == 对应界面 ==
+
+ http://eeplat.googlecode.com/files/bo_edit.png
+
+  <b> 注意：</b>
