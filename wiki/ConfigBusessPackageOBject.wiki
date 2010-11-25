@@ -5,3 +5,4 @@
     com.exedosoft.plat.bo.BusiPackage
 
 == 配置界面 ==
+  http://eeplat.googlecode.com/files/bp_edit.png
