@@ -3,29 +3,27 @@
 
     参数类型：
 
-    <b>CURRENT（业务对象当前值）</b>: 产生来源
+    <b>CURREN：业务对象当前值</b>: 产生来源
        * 用户当前的点击选中
        * 服务（刷新类型不是REFRESH_NO）执行后对业务对象新增一条记录或修改一条记录，那么这条记录作为CURRENT。
        * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-    <b>GLOBAL_CUR（全局当前值）</b>: 产生来源
+    <b>GLOBAL_CUR：全局当前值</b>: 产生来源
      
         服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-       <b>登录相关：LOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY <b>
+       <bLOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY:>登录相关 </b>
 
-         参加 [http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线USER的获取] 
+        参见[http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线USER的获取] 
 
 
-	/**
-	 * 当前时间
-	 */
-	public static final int TYPE_DATE = 4;
+	<b>DATE:当前时间，java.sql.Date 类型 </b>
 
-	/**
-	 * 当前时间
-	 */
-	public static final int TYPE_TIMESTAMP = 40;
+	<b>TIMESTAMP:当前时间，java.sql.Timestamp 类型 </b>
+
+	<b>FORM:来自界面 </b>
+
+          参见[http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线FORM的获取] 
 
 	/**
 	 * 来自Form
