@@ -40,7 +40,7 @@
        # 脚本  定义一个javascript 脚本，最后一行返回sql。
        # 自定义动作查询  定义一个自定义动作，自定义动作返回一个结果集。 自定义动作查询属于基本服务。 _ 注意在这个自定义动作里面不能直接使用该服务的invokeSelect()方法，否则要引起死循环。 _
 
-     <b> restful webservice 调用及可见性</b>
+=== restful webservice 调用及可见性 ===
      
      可见性,包括公开(public),保护(protected),私有(private)
      平台的服务可以通过restful web service 的方式供外部访问。
@@ -53,11 +53,12 @@
      protected类型的服务："调用方"除了取得平台提供的用户名密码即可访问，还要单独授权。
      
      3，对"调用方"的验证方式是可以自定义的：
-     在globals.xml中：{{{
+     在globals.xml中：
+    {{{
          <property name="webservice.login.service">do_org_user_findbynameandpwd</property>
      }}}
      这个是验证"调用方"的用户名和密码，可以和普通用户登录的服务一样，这样"调用方"的用户名密码也存放在用户表中，从安全性角度讲，最好分开。
-     {{{
+     {{{ 
          <property name="webservice.auth.service">exists_rest</property>
      }}}
      这个验证proteced的服务是否获得单独授权。
