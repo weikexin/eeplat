@@ -10,9 +10,11 @@
 
     <b>GLOBAL_CUR（全局当前值）</b>: 产生来源
      
-       * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
+        服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-    <b>登录相关：LOGIN_ID， LOGIN_NAME  LOGIN_MAIN_STATION  LOGIN_MAIN_DEPT  LOGIN_KEY
+       <b>登录相关：LOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY <b>
+
+         参加 [http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线USER的获取] 
 
 
 	/**
