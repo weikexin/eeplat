@@ -66,10 +66,11 @@
 
 ===总线刷新类型===
     
-    总线刷新类型包括REFRESH_NO、REFESH_CURRENT、REFESH_SEARCH_LIST、REFESH_ALL、REFESH_MAP_DATA_GLOBAL_UID。
+    总线刷新类型包括REFRESH_NO（不刷新）、REFESH_CURRENT（刷新业务对象当前值）、REFESH_SEARCH_LIST（刷新总线SEARCH_LIST节点）、REFESH_ALL（全部刷新包括SEARCH_LIST，GLOBAL_UID节点及业务对象总线当前值）、REFESH_MAP_DATA_GLOBAL_UID（刷新业务对象当前值及总线GLOBAL_UID节点）。
     
-    总线刷新后会影响到参数的获取。参见
-    
+    总线刷新后会影响到参数的获取。参见[ConfigParameter 参数]。
+    如果服务没有设定总线刷新类型，新增和修改类型的服务的缺省类型是REFESH_CURRENT，其它类型服务缺省是REFRESH_NO。
+   
 
 
 
