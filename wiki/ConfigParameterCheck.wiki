@@ -1,0 +1,22 @@
+== 基本概念 ==
+
+   参数检查是指当服务执行操作前先检查服务对应的参数是否合法，如果不合法则不执行。
+   
+   参数检查定义在参数上面，可以被多个服务所复用。
+
+   服务必须指定参数检查类型，如果不指定则不作检查。
+
+
+== 对应JAVA 数据类型 ==
+    com.exedosoft.plat.bo.DOParameterCheck
+
+== 配置界面 ==
+
+ http://eeplat.googlecode.com/files/boproperty.png
+
+  <b> 注意：</b>
+
+
+　
+
+ 
