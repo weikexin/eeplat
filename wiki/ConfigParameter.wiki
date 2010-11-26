@@ -5,33 +5,15 @@
 
     <b>CURRENT（业务对象当前值）</b>: 产生来源
        * 用户当前的点击选中
-       * 服务（刷新类型不是REFRESH_NO）执行后对业务对象新增一条记录或修改一条记录，那么这条记录作为当前。
-       * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL = 3
+       * 服务（刷新类型不是REFRESH_NO）执行后对业务对象新增一条记录或修改一条记录，那么这条记录作为CURRENT。
+       * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
     <b>GLOBAL_CUR（全局当前值）</b>: 产生来源
      
-       * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL = 3
+       * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-	
-	/**
-	 * 一般用于权限设置，当当期需要设置的cur instance ,只有这个业务对象设为isFilter == true ，这个业务对象
-	 * 才有可能的主键才有可能成为TYPE_AUTH_GLOBAL_CUR
-	 */
-	public static final int TYPE_GLOBAL_CUR = 2;
+    <b>登录相关：LOGIN_ID， LOGIN_NAME  LOGIN_MAIN_STATION  LOGIN_MAIN_DEPT  LOGIN_KEY
 
-	/**
-	 * 登陆类型，和登陆用户相关，user,user所在的dept等。
-	 * 
-	 */
-	public static final int TYPE_LOGIN_ID = 3;
-
-	public static final int TYPE_LOGIN_NAME = 31;
-
-	public static final int TYPE_LOGIN_MAIN_STATION = 32;
-
-	public static final int TYPE_LOGIN_MAIN_DEPT = 33;
-
-	public static final int TYPE_LOGIN_KEY = 35;
 
 	/**
 	 * 当前时间
