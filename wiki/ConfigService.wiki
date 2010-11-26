@@ -80,9 +80,9 @@
   参数检查的详细说明参见[ConfigParameterCheck 参数检查]。
   
   这里的参数检查选项是指定服务是否进行“参数检查”。
-  #　PARA_CHECK_FALSE　　不进行参数检查默认选项
-　#  PARA_CHECK_SIMPLE   只要参数不合法就返回
-  #  PARA_CHECK_DETAIL   检查完所有的参数，把不合法的信息进行组合后返回
+  # PARA_CHECK_FALSE　　不进行参数检查默认选项
+　# PARA_CHECK_SIMPLE   只要参数不合法就返回
+  # PARA_CHECK_DETAIL   检查完所有的参数，把不合法的信息进行组合后返回
 
 ===事务===
 
