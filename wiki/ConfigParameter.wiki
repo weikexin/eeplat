@@ -12,84 +12,41 @@
      
         服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-    <b>LOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY:登录相关 </b>
+    <b>LOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY：登录相关 </b>
 
         参见[http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线USER的获取] 
 
 
-	<b>DATE:当前时间，java.sql.Date 类型 </b>
+	<b>DATE：当前时间，java.sql.Date 类型 </b>
 
-	<b>TIMESTAMP:当前时间，java.sql.Timestamp 类型 </b>
+	<b>TIMESTAMP：当前时间，java.sql.Timestamp 类型 </b>
 
-	<b>FORM:来自界面 </b>
+	<b>FORM：来自界面 </b>
 
-          参见[http://code.google.com/p/eeplat/wiki/BusinessObjectBus#USER%E7%9A%84%E8%8E%B7%E5%8F%96 业务对象总线FORM的获取] 
+          参见[http://code.google.com/p/eeplat/wiki/BusinessObjectBus#FORM%E8%8A%82%E7%82%B9 业务对象总线FORM节点] 
 
-	/**
-	 * 来自Form
-	 */
-	public static final int TYPE_FORM = 5;
 
-	/**
-	 * 来自Form值的一些运算
-	 */
-	public static final int TYPE_FORM_CAL = 51;
+        <b>FORM_CAL：来自界面的值可以经过一定的计算，计算表达式填放到备注字段 </b>
 
-	/**
-	 * 参数为NULL 值，当进行值参替换时，替换为null.
-	 */
-	public static final int TYPE_NULL = 10;
+	<b>NULL：NULL值 </b>
 
-	/**
-	 * 递归情况下 父亲的值
-	 */
-	public static final int TYPE_RECURSION_PARENT = 11;
+	<b>RECURSION_PARENT：递归情况下父亲的值 </b>
 
-	/**
-	 * 主键
-	 */
-	public static final int TYPE_KEY = 15;
+	<b>KEY：主键 </b>
 
-	/**
-	 * 使用代码生成器
-	 */
-	public static final int TYPE_CODE = 151;
+	<b>CODE：使用代码生成器，需要定义某个代码生成器 </b>
 
-	/**
-	 * SCRIPT 支持
-	 */
-	public static final int TYPE_SCRIPT = 100;
+	<b>SCRIPT：参数的值来自于脚本，脚本填写在备注中 </b>
 
-	/**
-	 * 可以调用Action
-	 */
-	public static final int TYPE_ACTION = 101;
+	<b>ACTION：参数的值来自于自定义动作，需要指定自定义动作 </b>
 
-	/**
-	 * 不可逆的MD5 加密
-	 */
+	<b>MD5：FORM类型的子类型，对响应值做MD5运算 </b>
 
-	public static final int TYPE_SECURITY_MD5 = 200;
+	<b>SECURITY_REVERS：FORM类型的子类型，对响应值做可逆的加密算法 </b>
 
-	/**
-	 * 可逆的加密算法
-	 */
+	<b>LUCENE_SEARCH：FORM类型的子类型，使用LUCENE查询时，自动把LUCENE和数据库管理 </b>
 
-	public static final int TYPE_SECURITY_REVERS = 201;
-
-	/**
-	 * 可逆的加密算法
-	 */
-
-	/**
-	 * 全文检索——查询
-	 */
-	public static final int TYPE_LUCENE_SEARCH = 300;
-
-	/**
-	 * 全文检索——创建索引
-	 */
-	public static final int TYPE_LUCENE_CREATE = 301;
+	<b>LUCENE_CREATE：FORM类型的子类型，当数据保存时，自动创建LUCENE索引 </b>
 
 
 
