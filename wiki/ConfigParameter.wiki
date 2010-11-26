@@ -3,13 +3,14 @@
 
     参数类型：
 
-    <b>CURREN：业务对象当前值</b>: 产生来源
+    <b>CURREN：业务对象当前值</b>
+    产生来源：
        * 用户当前的点击选中
        * 服务（刷新类型不是REFRESH_NO）执行后对业务对象新增一条记录或修改一条记录，那么这条记录作为CURRENT。
        * 服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
-    <b>GLOBAL_CUR：全局当前值</b>: 产生来源
-     
+    <b>GLOBAL_CUR：全局当前值</b>
+      产生来源：
         服务执行查询后，如果刷新类型为REFESH_CURRENT，REFESH_ALL，如果查询返回多条记录，则把第一条作为CURRENT,如果查询结果集为空，则不刷新。
 
     <b>LOGIN_ID，LOGIN_NAME，LOGIN_MAIN_STATION，LOGIN_MAIN_DEPT，LOGIN_KEY：登录相关 </b>
