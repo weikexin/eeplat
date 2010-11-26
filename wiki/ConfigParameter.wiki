@@ -3,7 +3,7 @@
 
     参数类型：
 
-    <b>CURREN：业务对象当前值</b>
+    <b>CURRENT：业务对象当前值</b>
 
      产生来源：
        * 用户当前的点击选中
@@ -33,7 +33,7 @@
 
 	<b>NULL：NULL值 </b>
 
-	<b>RECURSION_PARENT：递归情况下父亲的值 </b>
+	<b>RECURSION_PARENT：CURRENT子类型，递归情况下父亲的值 </b>
 
 	<b>KEY：主键 </b>
 
