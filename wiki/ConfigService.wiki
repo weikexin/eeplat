@@ -75,25 +75,23 @@
     如果服务没有设定总线刷新类型，新增和修改类型的服务的缺省类型是REFESH_CURRENT，其它类型服务缺省是REFRESH_NO。
    
 
+===参数检查===
 
-
-
-
-        参数检查
 	public static final int PARA_CHECK_DETAIL = 2;
 
-	public static final int PARA_CHECK_SIMPLE = 1;
+	public static final int PARA_CHECK_SIMPLE = 1
 
 	public static final int PARA_CHECK_FALSE = 0;
 
 
-        事务
+===事务===
+
         public static final int TRANSACTION_NO = 0;
 
 	public static final int TRANSACTION_YES = 1;
 
 
-        日志
+===日志===
 	public static final int LOG_NO = 0;
 
 	public static final int LOG_YES = 1;
