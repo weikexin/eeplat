@@ -42,7 +42,8 @@
 
 === restful webservice 调用及可见性 ===
      
-     可见性,包括公开(public),保护(protected),私有(private)
+     可见性,包括公开(public),保护(protected),私有(private)。
+
      平台的服务可以通过restful web service 的方式供外部访问。
      restful web service 是一种轻量级的web service 的实现方式，简单而且高效。
      
@@ -63,15 +64,15 @@
      }}}
      这个验证proteced的服务是否获得单独授权。
 
+===总线刷新类型===
+    
+    总线刷新类型包括REFRESH_NO、REFESH_CURRENT、REFESH_SEARCH_LIST、REFESH_ALL、REFESH_MAP_DATA_GLOBAL_UID。
+    
+    总线刷新后会影响到参数的获取。参见
+    
 
 
 
-	
-        public static final int VISIBILITY_PUBLIC = 1;
-
-	public static final int VISIBILITY_PROTECTED = 2;
-
-	public static final int VISIBILITY_PRIVATE = 3;
 
 
         参数检查
@@ -103,16 +104,6 @@
 
         总线刷新类型
 
-
-	public static final int REFRESH_NO = 0;// 不刷新数据总线
-
-	public static final int REFESH_CURRENT = 1;// /刷新数据总线，但是只刷新总线键值对
-
-	public static final int REFESH_SEARCH_LIST = 2;// /刷新数据总线，但是总线的数据集
-
-	public static final int REFESH_ALL = 3;// /都刷新
-
-	public static final int REFESH_MAP_DATA_GLOBAL_UID = 10;// /刷新数据总线,和全局值
 
 
    
