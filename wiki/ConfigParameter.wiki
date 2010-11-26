@@ -43,9 +43,9 @@
 
 	<b>ACTION：参数的值来自于自定义动作，需要指定自定义动作 </b>
 
-	<b>MD5：FORM类型的子类型，对响应值做MD5运算 </b>
+	<b>MD5：FORM类型的子类型，对相应值做MD5运算 </b>
 
-	<b>SECURITY_REVERS：FORM类型的子类型，对响应值做可逆的加密算法 </b>
+	<b>SECURITY_REVERS：FORM类型的子类型，对相应值做可逆的加密算法 </b>
 
 	<b>LUCENE_SEARCH：FORM类型的子类型，使用LUCENE查询时，自动把LUCENE和数据库管理 </b>
 
