@@ -76,37 +76,42 @@
    
 
 ===参数检查===
-
-	public static final int PARA_CHECK_DETAIL = 2;
-
-	public static final int PARA_CHECK_SIMPLE = 1
-
-	public static final int PARA_CHECK_FALSE = 0;
-
+   
+  参数检查的详细说明参见[ConfigParameterCheck 参数检查]。
+  
+  这里的参数检查选项是指定服务是否进行“参数检查”。
+  *　PARA_CHECK_FALSE　　不进行参数检查默认选项
+　*  PARA_CHECK_SIMPLE   只要参数不合法就返回
+  *  PARA_CHECK_DETAIL   检查完所有的参数，把不合法的信息进行组合后返回
 
 ===事务===
 
-        public static final int TRANSACTION_NO = 0;
+  支持声明式事务。
 
-	public static final int TRANSACTION_YES = 1;
+  只有服务定义规则的时候定义事务才有意义，默认情况下没有定义事务。
+
+  当服务定义事务即“事务控制”选择“是”时，服务及服务所包含的规则在一个事务下执行；服务包含的规则中定义的服务即使“事务控制”选择“否”也不起作用。
+
 
 
 ===日志===
-	public static final int LOG_NO = 0;
 
-	public static final int LOG_YES = 1;
+  日志定义默认为否。当服务的日志设为“是”时， 服务的类型只有是新增、修改、删除才记录日志，默认日志记录被写入到do_log_data表中。可以设置“日志别称”，如果不设置日志名称将取自服务的类型（“删除”、“修改”、“新增”）。
 
-        记录过滤
-
-	public static final int FILTER_NO = 0;
-
-	public static final int FILTER_YES = 1;
-
-	public static final int FILTER_MULT = 2;
-
-        总线刷新类型
+  如果需要自定义记录日志的行为，请把自定义类全名定义到“过滤类”里面，改自定义类需要实现com.exedosoft.plat.action.DOAction接口。
 
 
+===记录过滤===
+
+  记录过滤指查询类型的服务返回的结果经过重新过滤，返回查询结果的子集。
+
+  不推荐使用记录过滤的方式处理条数非常大的结果集。
+
+  记录过滤必须制定“过滤类”，过滤类需要实现com.exedosoft.plat.DOAccess接口。
+
+  不能同时自定义记录日志的行为（见上）和实现过滤类。
+
+  记录过滤支持和工作流节点权限的混合过滤。
 
    
 
