@@ -16,6 +16,7 @@
           *  [ConfigProperty 业务对象属性]
           *  [ConfigParameter 参数]
           *  [ConfigService 服务]
+          *  [ConfigParameterCheck 参数检查]
           *  [ConfigRule 规则]
           *  [ConfigPane 面板]
           *  [ConifigTree     树]
