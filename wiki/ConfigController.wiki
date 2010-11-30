@@ -13,9 +13,9 @@
    # 实现com.exedosoft.plat.ui.DOIView接口，可以实现所有类型的控制器
    # 实现com.exedosoft.plat.ui.DOIViewTemplate接口或继承com.exedosoft.plat.ui.DOViewTemplate抽象类，结合FreeMarker模板文件可以实现所有类型的控制器
    # 
-     #实现com.exedosoft.plat.ui.jquery.form.DOBaseForm，实现表格元素类型的控制器
-     #实现com.exedosoft.plat.ui.jquery.menu.DOBaseMenu，实现菜单类型的控制器
-     #实现com.exedosoft.plat.ui.jquery.pane.TPaneTemplate,结合FreeMarker模板，实现面板类型的控制器
+     * 实现com.exedosoft.plat.ui.jquery.form.DOBaseForm，实现表格元素类型的控制器
+     * 实现com.exedosoft.plat.ui.jquery.menu.DOBaseMenu，实现菜单类型的控制器
+     * 实现com.exedosoft.plat.ui.jquery.pane.TPaneTemplate,结合FreeMarker模板，实现面板类型的控制器
 
 
    
