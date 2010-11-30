@@ -40,6 +40,23 @@
        # 脚本  定义一个javascript 脚本，最后一行返回sql。
        # 自定义动作查询  定义一个自定义动作，自定义动作返回一个结果集。 自定义动作查询属于基本服务。 _ 注意在这个自定义动作里面不能直接使用该服务的invokeSelect()方法，否则要引起死循环。 _
 
+===服务的执行===
+   
+  
+  # 简单执行　即只执行所定义的SQL语句，JAVA代码
+        {{{
+               DOService aService = DOService.getService("服务名称");
+               aService.invokeUpdate();//或者aService.inovkeSelect
+           }}}
+  # 完全执行  指定所定义的规则、自定动作等。 如果定义了自定义动作，则不执行所定义的SQL语句。JAVA代码
+        {{{
+               DOService aService = DOService.getService("服务名称");
+               aService.invokeAll();
+           }}}
+
+    调用服务的表格元素控制器，如果是完全执行， 一般以uf为后缀。
+
+
 === restful webservice 调用及可见性 ===
      
      可见性,包括公开(public),保护(protected),私有(private)。
