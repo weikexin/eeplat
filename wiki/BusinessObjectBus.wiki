@@ -147,14 +147,14 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 
 总线操作一般是指对总线的CURRENT节点进行的操作。
 
-==传统方式的总线写操作==
+==第一类Restful WebService总线写操作==
 /wd/servicecontroller? callType=initOnly&contextClassUid=class0001contextInstanceUid=instance1
 
 这个URL表示更新总线上的业务对象class0001的值为instance1。
 initOnly表示只操作总线不做其它动作。
 
 传统方式只有对总线的写操作，没有读操作。
-==最新的总线操作方式==
+==第二类Restful WebService总线写操作==
 
 ===新的参数===
  * dataBus 
