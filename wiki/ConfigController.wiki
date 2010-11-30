@@ -14,10 +14,4 @@
 
 
 == 对应JAVA 数据类型 ==
-    com.exedosoft.plat.bo.DORule
-
-== 配置界面 ==
-
- http://eeplat.googlecode.com/files/boproperty.png
-
-  <b> 注意：</b>
+    com.exedosoft.plat.ui.DOController
