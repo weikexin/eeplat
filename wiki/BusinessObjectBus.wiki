@@ -153,7 +153,7 @@ SessionContext.getInstance().getThreadContext().setEchoValue(echoValue)
 这个URL表示更新总线上的业务对象class0001的值为instance1。
 initOnly表示只操作总线不做其它动作。
 
-传统方式只有对总线的写操作，没有读操作。
+第一类Restful WebService总线写操作方式只有对总线的写操作，没有读操作。
 ==第二类Restful WebService总线写操作==
 
 ===新的参数===
@@ -194,9 +194,36 @@ initOnly表示只操作总线不做其它动作。
 /wd/servicecontroller?dataBus=getContext&contextCustKey=classanole1
 这两种写法等效，都是获取用户自定义数据的完整信息(JSON格式)
 
+==JAVA代码操作==
+
+===读操作===
+ {{{
+
+    DOBO theBO = DOBO.getByName("业务对象名称");//或者去业务对象
+
+    BOInstance bi = theBO.getCorrInstance();
+  或
+    BOInstance bi = DOGlobals.getInstance().getSessoinContext().get(theBO);
+  或
+    BOInstance bi = DOGlobals.getInstance().getSessoinContext().get(theBO.getObjUid());
+
+}}}
+
+===写操作===
+
+{{{
+
+    DOBO theBO = DOBO.getByName("业务对象名称");//或者去业务对象
+
+    theBO.refreshContext(boinstance);
+或
+    DOGlobals.getInstance().getSessoinContext().put(业务对象, boinstance)
+或
+    DOGlobals.getInstance().getSessoinContext().put(业务对象ID, boinstance)
 
 
-
+}}}
+     
 
 =面板操作=
 假设webmodule名称为：wd，面板的ID为：0000001；面板Name为：pane_anole
