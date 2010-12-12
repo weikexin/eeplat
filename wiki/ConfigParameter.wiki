@@ -59,4 +59,4 @@
 
 == 配置界面 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ http://eeplat.googlecode.com/files/para_config.png
