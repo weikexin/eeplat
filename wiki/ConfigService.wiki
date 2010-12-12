@@ -142,8 +142,17 @@
 
  http://eeplat.googlecode.com/files/doservice.png
 
-  <b> 注意：</b>
+ 通过配置，我们可以:
+  *　修改服务
 
- * 如果属性对应于数据表中的列，则不能为空
- * 数据库类型来自于java.sql.Types,并不是物理数据库的类型。
- * 平台内部基本处理类型包括STRING，INT，LONG，DOUBLE，DATE，TIMESTAM，CLOB，BLOB；一般不需要指定，会自动进行匹配。
+  *  复制服务
+
+  *  生成规则
+
+  *  新增
+
+  *  删除
+
+  *　导出
+
+  
