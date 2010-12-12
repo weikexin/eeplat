@@ -140,7 +140,7 @@
 
 == 配置界面 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ http://eeplat.googlecode.com/files/doservice.png
 
   <b> 注意：</b>
 
