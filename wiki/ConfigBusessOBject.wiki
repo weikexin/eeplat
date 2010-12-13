@@ -11,7 +11,10 @@
 
  http://eeplat.googlecode.com/files/bo_edit.png
 
+
   <b> 注意：</b>
+
+  可以通过业务对象的配置界面，创建业务对象，创建服务，创建面板，创建菜单，创建动态树，关联业务对象，关联工作流。
 
   主键类型包含：UUID,HI/LOW,NAITIVE(数据库原生类型如自增),KEY_TYPE_ASSIGN_STRING(程序手动指定STING类型),KEY_TYPE_ASSIGN_LONG（程序手动指定整形）；现在平台默认支持UUID,其它类型需要对生成的配置数据进行修改。
 
