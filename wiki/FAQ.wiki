@@ -7,7 +7,7 @@
      * 对联合查询支持的不好
 
 ==  如何手动执行组织权限SQL语句？ ==
-  组织权限的SQL语句存放在exedo\initsql，按数据库的不同分别为sqlserver2000.sql，oracle.sql,mysql.sql,gae.sql。如果系统没有正确初始化，可以根据相应的文件别名进行执行该文件。如果允许在其它未被直接支持的数据库上面，请选择语法相近的文件进行修改，如支持sqlserver2005,sqlserver2008,Sybase等的话，请用sqlserver2000.sql。
+  组织权限的SQL语句存放在exedo\initsql，按数据库的不同分别为sqlserver2000.sql，oracle.sql,mysql.sql,gae.sql,db2.sql。如果系统没有正确初始化，可以根据相应的文件别名进行执行该文件。如果允许在其它未被直接支持的数据库上面，请选择语法相近的文件进行修改，如支持Sybase等的话，请用sqlserver2000.sql进行修改。
 
 
 == 工作流节点中的自连接情况如何支持？ ==
