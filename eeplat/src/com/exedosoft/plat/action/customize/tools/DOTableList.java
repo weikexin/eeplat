@@ -105,7 +105,7 @@ public class DOTableList extends DOAbstractAction {
 		try {
 			con = DODataSource.getDefaultCon();
 
-			String judgeSql = "select * from do_bo where name = ? ";
+			String judgeSql = "select * from do_bo where lower(name) = lower(?) ";
 
 			PreparedStatement pstmt = con.prepareStatement(judgeSql);
 			pstmt.setString(1, aTable);

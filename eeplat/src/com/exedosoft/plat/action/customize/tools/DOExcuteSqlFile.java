@@ -55,8 +55,11 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			fileName = prefix + "/exedo/initsql/oracle.sql";
 		}else if ("gae".equalsIgnoreCase(dss.getDialect())){
 			fileName = prefix + "/exedo/initsql/gae.sql";
+		}
+		else if ("db2".equalsIgnoreCase(dss.getDialect())){
+			fileName = prefix + "/exedo/initsql/db2.sql";
 		}else{
-			this.setEchoValue("现在只支持mysql、oracle、sqlserver和gae默认初始化!");
+			this.setEchoValue("现在只支持mysql、oracle、sqlserver、db2和gae默认初始化!");
 			return NO_FORWARD;
 		}
 

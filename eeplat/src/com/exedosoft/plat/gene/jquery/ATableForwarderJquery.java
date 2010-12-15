@@ -759,7 +759,8 @@ public class ATableForwarderJquery {
 			try {
 				DODataSource dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
 						DODataSource.class, this.dataSourceUid);
-				if(dds.isOracle()){
+				if(dds.isOracle() || dds.isDB2()){
+
 					aTable = aTable.toUpperCase();
 				}
 
