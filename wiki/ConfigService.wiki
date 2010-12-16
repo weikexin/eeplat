@@ -138,7 +138,7 @@
 == 对应JAVA 数据类型 ==
     com.exedosoft.plat.bo.DOService
 
-== 配置界面 ==
+== 配置 ==
 
  ===基本信息配置===
 
