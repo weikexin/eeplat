@@ -187,6 +187,7 @@
   执行“删除”操作时，必须首先选择参数，可以选择1个或多个参数。
   
  “复制到”可以把选中的参数复制给其它的服务。
+
  http://eeplat.googlecode.com/files/do_service_para_copy.png
 
 
