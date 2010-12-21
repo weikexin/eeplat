@@ -17,9 +17,12 @@
 
 == 配置 ==
 
- 参数检查配置在参数上面，通过业务对象的“参数” TAB页，然后选中某个参数，进行参数检查配置，如下面：
+ 参数检查配置在参数上面，通过业务对象的“参数” TAB页，然后选中某个参数，进行参数检查配置，如下图：
+
  http://eeplat.googlecode.com/files/do_service_para_check.png
 
+  
+  参数检查配置，如下图， 参数检查的内容包括
 
 
  http://eeplat.googlecode.com/files/do_service_para_check_1.png
