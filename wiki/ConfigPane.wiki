@@ -51,6 +51,6 @@
 
  http://eeplat.googlecode.com/files/pane_links.png
 
- 新增子面板可以位于同一个业务对象下面，也可以位于不同的业务对象下面，排序标示是指子面板的位置，条件类型和条件是指子面板可以根据一定的条件显示，可以实现权限控制或逻辑控制，条件类型为1,javascript 2,java  可以通过脚本或者实现com.exedosoft.plat.DOAccess接口，控制器是否显示，如下图：
+ 新增子面板可以位于同一个业务对象下面，也可以位于不同的业务对象下面，排序标示是指子面板的位置，条件类型和条件是指子面板可以根据一定的条件显示，可以实现权限控制或逻辑控制，条件类型为1,javascript 2,java  可以通过脚本或者实现com.exedosoft.plat.DOAccess接口，判断其是否可以显示，如下图：
 
  http://eeplat.googlecode.com/files/pane_links_add.png
