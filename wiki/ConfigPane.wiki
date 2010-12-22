@@ -28,8 +28,16 @@
 == 对应JAVA 数据类型 ==
     com.exedosoft.plat.ui.DOPaneModel
 
-== 配置界面 ==
+== 配置 ==
 
+ ===配置主界面===
+ 
+ 在面板配置主界面上，我们可以
+ # 修改面板
+ # 创建新面板，默认在当前面板的业务对象下面
+ # 维护子面板列表
+ 如下图：
+ 
  http://eeplat.googlecode.com/files/pane_main.png
 
 
