@@ -50,7 +50,7 @@
 
 
   
-  参数检查配置，如下图：
+===配置页面===
 
  http://eeplat.googlecode.com/files/do_service_para_check_1.png
 
