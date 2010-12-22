@@ -27,4 +27,4 @@
  http://eeplat.googlecode.com/files/tree_create.png 
 
  ===管理树===
- http://eeplat.googlecode.com/files/tree_create.png 
+ http://eeplat.googlecode.com/files/tree_manager.png 
