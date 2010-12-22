@@ -1,15 +1,19 @@
 == 基本概念 ==
   
-   表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据分页显示。表格的具体内容由表格元素构成。
+   表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据列表显示。表格的具体内容由表格元素构成。
 
-
+   ===支持数字列===
 	public static final int NUM_NO = 0;
 
 	public static final int NUM_YES = 1;
 
+   ===支持CHECKBOX或RADIO==
+
 	public static final int CHECK_BOX = 1;
 
 	public static final int CHECK_RADIO = 2;
+
+   ===列表情况下，表头或者表格的值知否换行===
 
 	public static final int NOWRAP_NO = 1;
 
@@ -20,11 +24,16 @@
 	public static final int NOWRAP_YES_VALUE = 6;
 
 
+   ===表格事件订阅===
+
 	public static final int SUBSCRIBE_NO = 0;
 
 	public static final int SUBSCRIBE_ALL = 1;
 	
 	public static final int SUBSCRIBE_NODBLCLICK = 2;
+
+
+   ===过滤方式===
 
 	/**
 	 * 不做任何过滤
