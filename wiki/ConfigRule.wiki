@@ -16,6 +16,4 @@
 
 == 配置界面 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
-
-  <b> 注意：</b>
+   参加服务的“规则定义”及“生成规则”
