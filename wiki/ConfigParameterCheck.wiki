@@ -21,9 +21,36 @@
 
  http://eeplat.googlecode.com/files/do_service_para_check.png
 
-  
-  参数检查配置，如下图， 参数检查的内容包括
+ ===类型检查===
+   
+   参数的值必须符合满足某种类型的要求，这些类型包括：
 
+   # STRING  参数的值必须为STRING类型
+   # LONG    参数的值必须为长整型
+   # DOUBLE  参数的值必须为浮点型
+   # EMAIL   参数的值必须符合EMAIL格式
+   # DATE    参数的值必须为平台缺省支持的DATE类型，需满足正则表达式(\\d{4}-\\d{1,2}-\\d{1,2})|(\\d{4}[.]{1}\\d{1,2}[.]{1}\\d{1,2})|(\\d{4}[/]{1}\\d{1,2}[/]{1}\\d{1,2})
+   # PATTERM  参数的值需满足指定的正则表达式
+   # SCRIPT  参数需要通过脚本检查
+   # JAVA    参数需要通过扩展类检查
+
+ ===约束检查===
+
+   # 
+
+ ===比较检查===
+
+
+ ===检查后续处理===
+
+
+ 
+
+
+
+
+  
+  参数检查配置，如下图：
 
  http://eeplat.googlecode.com/files/do_service_para_check_1.png
 
