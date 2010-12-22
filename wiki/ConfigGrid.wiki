@@ -3,6 +3,46 @@
    表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据分页显示。表格的具体内容由表格元素构成。
 
 
+	public static final int NUM_NO = 0;
+
+	public static final int NUM_YES = 1;
+
+	public static final int CHECK_BOX = 1;
+
+	public static final int CHECK_RADIO = 2;
+
+	public static final int NOWRAP_NO = 1;
+
+	public static final int NOWRAP_YES = 2;
+
+	public static final int NOWRAP_YES_LABEL = 5;
+
+	public static final int NOWRAP_YES_VALUE = 6;
+
+
+	public static final int SUBSCRIBE_NO = 0;
+
+	public static final int SUBSCRIBE_ALL = 1;
+	
+	public static final int SUBSCRIBE_NODBLCLICK = 2;
+
+	/**
+	 * 不做任何过滤
+	 */
+	public static final int FILTER_TYPE_NULL = 0;
+
+	/**
+	 * 只对操作功能（如按钮，功能链接）过滤
+	 */
+	public static final int FILTER_TYPE_OPERATION = 1;
+
+	/**
+	 * 全部过滤
+	 */
+	public static final int FILTER_TYPE_ALL = 3;
+
+
+
    表格的显示由表格控制器控制。
   
 
