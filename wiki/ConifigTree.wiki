@@ -21,6 +21,10 @@
 == 对应JAVA 数据类型 ==
     com.exedosoft.plat.bo.ui.DOTreeModel
 
-== 配置界面 ==
+== 配置 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ ===创建树===
+ http://eeplat.googlecode.com/files/tree_create.png 
+
+ ===管理树===
+ http://eeplat.googlecode.com/files/tree_create.png 
