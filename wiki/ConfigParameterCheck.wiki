@@ -36,9 +36,17 @@
 
  ===约束检查===
 
-   # 
+   # CHECK_CONTRAINT_NOTNULL  不能为空
+   # CHECK_CONTRAINT_D_DIC  来自动态字段，动态字典为一个服务，即参数的值必须在服务列表中
+   # CHECK_CONTRAINT_S_DIC  来自静态字典，例如：a,b,c,d  即参数的值必须是 a b c d中的一个，分割符为半角的逗号
+   # CHECK_CONTRAINT_ONLY 不能重复
+
 
  ===比较检查===
+
+   比较检查是指参数的值与固定值或其它的参数进行比较，
+ 
+   
 
 
  ===检查后续处理===
