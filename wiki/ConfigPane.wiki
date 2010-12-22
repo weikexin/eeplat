@@ -30,6 +30,11 @@
 
 == 配置界面 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ http://eeplat.googlecode.com/files/pane_main.png
+
+
+ http://eeplat.googlecode.com/files/pane_links.png
+
+ http://eeplat.googlecode.com/files/pane_links_add.png
 
   <b> 注意：</b>
