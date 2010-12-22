@@ -47,9 +47,10 @@
 
  ===维护子面板列表===
 
+ 面板一旦定义了子面板，那么该面板即变为一个容器，本身连接的表格或树或菜单都不会被显示，只显示子面板的内容。可以新增、修改、删除子面板，如下图：
 
  http://eeplat.googlecode.com/files/pane_links.png
 
- http://eeplat.googlecode.com/files/pane_links_add.png
+ 新增子面板可以位于同一个业务对象下面，也可以位于不同的业务对象下面，如下图：
 
-  <b> 注意：</b>
+ http://eeplat.googlecode.com/files/pane_links_add.png
