@@ -16,13 +16,14 @@
 
 
   菜单的展示样式由菜单控制器控制。
-  
+
 
 == 对应JAVA 数据类型 ==
     com.exedosoft.plat.bo.ui.DOMenuModel
 
-== 配置界面 ==
+== 配置 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ http://eeplat.googlecode.com/files/menu_main.png
 
-  <b> 注意：</b>
+
+ http://eeplat.googlecode.com/files/menu_modify.png
