@@ -24,7 +24,9 @@
 == 配置 ==
 
  ===创建树===
+
  http://eeplat.googlecode.com/files/tree_create.png 
 
  ===管理树===
+
  http://eeplat.googlecode.com/files/tree_manager.png 
