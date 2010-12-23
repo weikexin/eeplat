@@ -1,10 +1,25 @@
 == 基本概念 ==
   
    表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据列表显示。 表格的显示结构由表格元素构成，显示数据由表格对应的服务填充。
+
+   表格的显示由表格控制器控制。
+  
+
+
+== 对应JAVA 数据类型 ==
+    com.exedosoft.plat.bo.ui.DOGridModel
+
+== 配置 ==
+
+ http://eeplat.googlecode.com/files/grid_main.png
    
    === 主题 ===
 
        表格的主题，如果不设置在不显示，下图为设置和不设置主题的对比：
+
+ http://eeplat.googlecode.com/files/grid_title_no.png
+
+ http://eeplat.googlecode.com/files/grid_title.png
 
 
 
@@ -48,19 +63,3 @@
    === 默认显示数据 ===
 
    === 连接的第二服务 ===
-
-
-
-
-   表格的显示由表格控制器控制。
-  
-
-
-== 对应JAVA 数据类型 ==
-    com.exedosoft.plat.bo.ui.DOGridModel
-
-== 配置界面 ==
-
- http://eeplat.googlecode.com/files/boproperty.png
-
-  <b> 注意：</b>
