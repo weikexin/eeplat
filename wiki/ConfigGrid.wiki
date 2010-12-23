@@ -10,6 +10,9 @@
     com.exedosoft.plat.bo.ui.DOGridModel
 
 == 配置 ==
+  
+  === 表格修改 ===
+ 
 
  http://eeplat.googlecode.com/files/grid_main.png
    
