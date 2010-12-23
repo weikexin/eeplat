@@ -27,7 +27,7 @@
    === 列表情况下，表头或者表格的值知否换行 ===
 
 	# NOWRAP_NO
-        # NOWRAP_YES
+	# NOWRAP_YES
 	# NOWRAP_YES_LABEL
 	# NOWRAP_YES_VALUE
 
