@@ -1,54 +1,37 @@
 == 基本概念 ==
   
-   表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据列表显示。表格的具体内容由表格元素构成。
+   表格是数据的重要展示方式，可以是单条数据显示，也可以是多数据列表显示。 表格的显示结构由表格元素构成，显示数据由表格对应的服务填充。
+   
+   # 表头
 
-   ===支持数字列===
+   # 分页
+
+   # 控制换行
+
+   # 数字列
       表格可以支持数字列显示，需要数字列要选择“是”，数字列显示在表格的第一列。
-   ===支持CHECKBOX==
+   # CHECKBOX
       表格可以支持CHECKBOX选择，
 
-   ===列表情况下，表头或者表格的值知否换行===
+   # 列表情况下，表头或者表格的值知否换行
+	* NOWRAP_NO
+        * NOWRAP_YES
+	* NOWRAP_YES_LABEL
+	* NOWRAP_YES_VALUE
 
-	public static final int NOWRAP_NO = 1;
+   # 表格事件订阅
+	* SUBSCRIBE_NO
+	* SUBSCRIBE_ALL
+	* SUBSCRIBE_NODBLCLICK
 
-	public static final int NOWRAP_YES = 2;
-
-	public static final int NOWRAP_YES_LABEL = 5;
-
-	public static final int NOWRAP_YES_VALUE = 6;
-
-
-   ===表格事件订阅===
-
-	public static final int SUBSCRIBE_NO = 0;
-
-	public static final int SUBSCRIBE_ALL = 1;
-	
-	public static final int SUBSCRIBE_NODBLCLICK = 2;
-
-
-   ===过滤方式===
-
-	/**
-	 * 不做任何过滤
-	 */
-	public static final int FILTER_TYPE_NULL = 0;
-
-	/**
-	 * 只对操作功能（如按钮，功能链接）过滤
-	 */
-	public static final int FILTER_TYPE_OPERATION = 1;
-
-	/**
-	 * 全部过滤
-	 */
-	public static final int FILTER_TYPE_ALL = 3;
-
+   # 过滤方式
+	* FILTER_TYPE_NULL
+	* FILTER_TYPE_OPERATION
+        * FILTER_TYPE_ALL
 
 
    表格的显示由表格控制器控制。
   
-
 
 
 == 对应JAVA 数据类型 ==
