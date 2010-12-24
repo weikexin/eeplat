@@ -17,7 +17,9 @@
  http://eeplat.googlecode.com/files/grid_main.png
 
   ===表格元素的配置界面===
- 重命名 	
+
+ 重命名 
+	
 连接的服务	     
 连接的面板
 目标面板      
