@@ -16,7 +16,7 @@
 
  http://eeplat.googlecode.com/files/grid_main.png
 
-  ===表格元素的===
+  ===表格元素的配置界面===
 
   
  http://eeplat.googlecode.com/files/form_modi1.png 
