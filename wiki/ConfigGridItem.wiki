@@ -17,6 +17,54 @@
  http://eeplat.googlecode.com/files/grid_main.png
 
   ===表格元素的配置界面===
+ 重命名 	
+连接的服务	     
+连接的面板
+目标面板      
+控制器 	  
+是否只读 
+允许为空
+是否新行
+相关配置 	
+相关约束 		
+表格外 	
+校验类型 		
+是否摘要 	
+点击执行的JS 
+确认JS 	
+更少信息
+条件类型 	
+条件 	
+连接的业务对象属性 	     
+是否过滤 	
+连接的第二服务 	     
+排序标示
+字体 	
+NAME COLSPAN 
+VALUE COLSPAN 	
+ROW SPAN 
+左右对齐 	
+值上下对齐
+上下对齐 	
+值左右对齐 
+图片 	
+缺省值 	
+宽度
+宽度单位类型 	
+格式化
+CSS风格 	
+表达式
+文字换行(nowrap) 	
+提示文字
+权限依赖对象 	
+键入时JS
+双击时JS 	
+获得焦点时JS
+失去焦点时JS 	
+有效性验证JS
+UI类型 	
+隐藏域 	
+
 
   
  http://eeplat.googlecode.com/files/form_modi1.png 
