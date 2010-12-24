@@ -26,7 +26,15 @@
 
   表格元素可能还要关联其它的表格元素（位于同一个表格下面），这样表格元素通过控制器可以表达更复杂的界面，如在配置平台中常用的选择器（如服务选择器），由业务包 + 业务对象 + 服务 三个下拉列表构成，是通过一个选择器表格元素关联三个下拉列表的表格元素实现的。
 
+ http://eeplat.googlecode.com/files/form_relation.png 
 
+ http://eeplat.googlecode.com/files/form_target.png  
+
+ http://eeplat.googlecode.com/files/form_copyto.png 
+
+ http://eeplat.googlecode.com/files/form_modi1.png 
+
+ http://eeplat.googlecode.com/files/form_modi2.png 
 
   
 
