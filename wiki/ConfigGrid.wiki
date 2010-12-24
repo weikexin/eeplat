@@ -21,9 +21,13 @@
 
        表格的主题，如果不设置在不显示，下图为设置和不设置主题的对比：
 
+ <br>设置主题</br> 
+ http://eeplat.googlecode.com/files/grid_title.png
+
+ <br>未设置主题</br>
  http://eeplat.googlecode.com/files/grid_title_no.png
 
- http://eeplat.googlecode.com/files/grid_title.png
+
 
 
 
