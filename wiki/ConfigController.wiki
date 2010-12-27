@@ -35,10 +35,12 @@
 
  ===复制控制器===
 
+ 注册控制器时，可以采用新增或复制的方式，推荐用复制的方式注册新的控制器，如下图
+ 
  http://eeplat.googlecode.com/files/controller_copy.png
 
  ===通过脚本在线编写===
+ 
+ 可以通过脚本在线编写新的控制器，分为两部分
 
  http://eeplat.googlecode.com/files/controller_write.png
-
-
