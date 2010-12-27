@@ -32,11 +32,11 @@
 
  是否新行：表格元素是否重启一行。
 
- 相关配置：不同的控制器下解释不一样，平台缺省提供的控制器中：DOInputText 要求输入一个数字表示最文本框的长度。DOTextArea要求输入以;分割的两个数字，前一个数字表示文本域的宽度，后一个数字表示文本域的高度。DOStaticList、DOValueStaticList和DOInputRadio要求录入  1,男;2,女  这种格式的键值对的字符串，用于存储和显示。
+ 相关配置：不同的控制器下解释不一样，平台缺省提供的控制器中：DOInputText 要求输入一个数字表示最文本框的长度。DOTextArea要求输入以;分割的两个数字，前一个数字表示文本域的宽度，后一个数字表示文本域的高度。DOStaticList、DOValueStaticList和DOInputRadio要求录入  “1,男;2,女”  这种格式的键值对的字符串，用于存储和显示。以TService开头的控制器，“closeTab” 表示执行后关闭Tab页，“loadParent”表示加载树。
 
+ 相关约束：不同的控制器下解释不一样，平台缺省提供的控制器中：以TService开头的控制器，“noCloseOpener ” 表示执行后并不关闭弹出窗口。DOStaticList，“@multi@” 表示 以List方式显示，并支持多选。以DatePicker为开头的控制器，表示对日期进行格式化，如{dateFmt:'yyyy-M-d'}。DOResultListPopup控制器，表示可以自定义的方法。
 
-相关约束 		
-表格外 	
+ 表格外 	
 校验类型 		
 是否摘要 	
 点击执行的JS 
