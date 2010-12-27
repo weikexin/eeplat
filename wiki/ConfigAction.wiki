@@ -16,6 +16,5 @@
 
 == 配置 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
+ 自定义动作管理入口位于 首页==>基础设施管理==>自定义动作管理。
 
-  <b> 注意：</b>
