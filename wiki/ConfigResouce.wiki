@@ -14,6 +14,14 @@
 
 == 配置界面 ==
 
- http://eeplat.googlecode.com/files/boproperty.png
-
-  <b> 注意：</b>
+ 
+ http://eeplat.googlecode.com/files/resouce_config.png
+codeitem.png 	            
+codemain.png              
+wf_config.png 	          
+datasource_moditable.png 	
+datasource_createtable.png
+datasource_config.png 	  
+       
+      
+controller_write.png      
