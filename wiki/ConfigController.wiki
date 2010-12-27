@@ -1,6 +1,6 @@
 == 基本概念 ==
 
-   控制器是UI显示的核心。EEPPlat采用HMVC的架构思想，所以控制器处于相对核心的位置。
+ 控制器是UI显示的核心。EEPPlat采用HMVC的架构思想，所以控制器处于相对核心的位置。
 
  HMVC模式即Hierarchical-Model-View-Controller模式，也可以叫做Layered MVC。HMVC模式把客户端应用程序分解为有层次的父子关系的MVC。反复应用这个模式，形成结构化的客户端架构。 　它的优点主要有：
   # 把界面分成了多个部分，降低了依赖性。 
@@ -16,8 +16,6 @@
      * 实现com.exedosoft.plat.ui.jquery.form.DOBaseForm，实现表格元素类型的控制器
      * 实现com.exedosoft.plat.ui.jquery.menu.DOBaseMenu，实现菜单类型的控制器
      * 实现com.exedosoft.plat.ui.jquery.pane.TPaneTemplate,结合FreeMarker模板，实现面板类型的控制器
-
-
    
 
 
