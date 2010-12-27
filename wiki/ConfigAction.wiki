@@ -18,12 +18,5 @@
 
  自定义动作管理入口位于 首页==>基础设施管理==>自定义动作管理。
 
-codeitem.png 	            
-codemain.png              
-wf_config.png 	          
-datasource_moditable.png 	
-datasource_createtable.png
-datasource_config.png 	  
-resouce_config.png        
-action_config.png 	      
-controller_write.png      
+ 
+ http://eeplat.googlecode.com/files/action_config.png 
