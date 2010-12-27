@@ -34,45 +34,76 @@
 
  相关配置：不同的控制器下解释不一样，平台缺省提供的控制器中：DOInputText 要求输入一个数字表示最文本框的长度。DOTextArea要求输入以;分割的两个数字，前一个数字表示文本域的宽度，后一个数字表示文本域的高度。DOStaticList、DOValueStaticList和DOInputRadio要求录入  “1,男;2,女”  这种格式的键值对的字符串，用于存储和显示。以TService开头的控制器，“closeTab” 表示执行后关闭Tab页，“loadParent”表示加载树。
 
- 相关约束：不同的控制器下解释不一样，平台缺省提供的控制器中：以TService开头的控制器，“noCloseOpener ” 表示执行后并不关闭弹出窗口。DOStaticList，“@multi@” 表示 以List方式显示，并支持多选。以DatePicker为开头的控制器，表示对日期进行格式化，如{dateFmt:'yyyy-M-d'}。DOResultListPopup控制器，表示可以自定义的方法。
+ 相关约束：不同的控制器下解释不一样，平台缺省提供的控制器中：以TService开头的控制器，“noCloseOpener ” 表示执行后并不关闭弹出窗口。DOStaticList，“@multi@” 表示 以List方式显示，并支持多选。以DatePicker为开头的控制器，表示对日期进行格式化，如{dateFmt:'yyyy-M-d'}。DOResultListPopup控制器，可以定义自己的方法。
 
- 表格外 	
-校验类型 		
-是否摘要 	
-点击执行的JS 
-确认JS 	
-更少信息
-条件类型 	
-条件 	
-连接的业务对象属性 	     
-是否过滤 	
-连接的第二服务 	     
-排序标示
-字体 	
-NAME COLSPAN 
-VALUE COLSPAN 	
-ROW SPAN 
-左右对齐 	
-值上下对齐
-上下对齐 	
-值左右对齐 
-图片 	
-缺省值 	
-宽度
-宽度单位类型 	
-格式化
-CSS风格 	
-表达式
-文字换行(nowrap) 	
-提示文字
-权限依赖对象 	
-键入时JS
-双击时JS 	
-获得焦点时JS
-失去焦点时JS 	
-有效性验证JS
-UI类型 	
-隐藏域 	
+ 表格外：指表格元素位于主体表格之外，有下面几类：
+
+        OUTGRID_INLINE：内联，表示嵌入在其它表格元素里面。
+
+	OUTGRID_BOTTOM：位于主体表格下面。
+
+	OUTGRID_TOP：位于主体表格上面。
+
+	OUTGRID_RIGHT：位于主体表格右面。
+
+	OUTGRID_LEFT：位于主题表格左面。
+	
+	OUTGRID_STATISTIC：统计列。
+	
+ 校验类型：格式为 类型;长度;扩展脚本  类型支持
+
+          # Email E-MAIL格式
+          # Url  Url地址格式
+          # Integer整数类型
+          # RealNumber 数字类型
+          # IDCard 身份证
+          # MoBile 手机格式
+          # Telphone 固定电话
+          # NoChin 不能含有汉字
+          # NoSBCDot 不能还有全角字符和
+      
+          如果不限制类型只限制长度，如;5  则表示长度不能超过5。
+  
+
+ 条件类型：java 和 javascript 两种。
+
+ 条件：根据条件类型，java的情况需要实现com.exedosoft.palt.IsAccess接口，javascript 最后一行需要返回true 或 false。
+
+ 是否过滤：是否进行权限过滤，和条件有些类型，但是条件片中业务逻辑的判定，是否过滤偏重权限过滤。
+
+ 连接的第二服务：某些控制器需要模型配置两个服务，如果需要大于2个服务的情况，请使用内联表格元素。
+
+ 排序标示：表格元素在界面上的排列顺序。
+
+ 字体：对字体进行格式化。
+
+ NAME COLSPAN：对表格元素的标题进行td合并。
+
+ VALUE COLSPAN ：对表格元素的值进行td合并。
+
+ 图片：表格元素需要图片支持。
+
+ 隐藏域：表格元素是否是隐藏域。
+
+ 格式化：对录入的值进行格式化。
+
+ CSS风格：表格元素的CSS风格。
+
+ 表达式：表格元素需要表达式的计算结果。
+
+ 点击执行的JS： 用户点击时触发的事件，常常完整自定义的事件响应。
+
+ 确认JS：用户点击后，需要和用户完成一次确认交互（confirm）。
+
+ 键入时JS：用户录入时，相应的JS。
+
+ 双击时JS：用户双击操作时，相应的JS。
+
+ 获得焦点时JS：表格元素获得焦点时，相应的JS。
+
+ 失去焦点时JS：表格元素失去焦点时，相应的JS。
+
+ 有效性验证JS：表格元素录入完后，或表单提交时，需要验证表格元素的有效性的JS。
 
 
   
