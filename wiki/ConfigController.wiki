@@ -33,11 +33,12 @@
 
  http://eeplat.googlecode.com/files/controller_manager.png
 
+ ===复制控制器===
+
  http://eeplat.googlecode.com/files/controller_copy.png
 
+ ===通过脚本在线编写===
 
  http://eeplat.googlecode.com/files/controller_write.png
-
-
 
 
