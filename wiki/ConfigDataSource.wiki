@@ -10,7 +10,7 @@
 
 
 == 对应JAVA 数据类型 ==
-    com.exedosoft.plat.bo.DORule
+    com.exedosoft.plat.bo.DODataSource
 
 == 配置界面 ==
 
