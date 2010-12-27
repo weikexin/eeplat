@@ -16,4 +16,4 @@
 
  数据源管理入口位于 首页==>基础设施管理==>数据源管理
 
- http://eeplat.googlecode.com/files/boproperty.png
+ http://eeplat.googlecode.com/files/datasource_config.png
