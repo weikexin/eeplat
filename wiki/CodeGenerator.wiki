@@ -10,7 +10,8 @@
 
 
 == 对应JAVA 数据类型 ==
-    com.exedosoft.plat.bo.DORule
+    com.exedosoft.plat.bo.code.DOCodeItem
+    com.exedosoft.plat.bo.code.DOCodeMain
 
 == 配置界面 ==
 
