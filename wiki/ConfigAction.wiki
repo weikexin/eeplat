@@ -5,9 +5,13 @@
    # 通过脚本在线编写
    # 实现com.exedosoft.plat.action.Action接口或继承com.exedosoft.plat.action.DOAbstractAction抽象类
 
+   自定义动作的应用场景：
+
+   # 服务使用自定义动作
 
 
-== 配置界面 ==
+
+== 配置 ==
 
  http://eeplat.googlecode.com/files/boproperty.png
 
