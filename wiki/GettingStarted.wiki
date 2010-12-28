@@ -152,3 +152,33 @@ CREATE TABLE PM_ProjectInfor
 	ProjectDesc text  ,
 	ProjectNotes text  
 ) ;
+
+
+=工作流模板=
+
+=工作流模板变量=
+
+
+
+=工作流模板节点=
+
+
+
+=工作流模板转移=
+
+
+
+=工作流实例=
+
+
+=工作流实例变量=
+
+
+=工作流实例节点=
+
+
+
+=工作流实例转移=
+
+
+=工作流历史=
