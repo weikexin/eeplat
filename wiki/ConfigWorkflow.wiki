@@ -2,7 +2,7 @@
 
  示例人员角色如下：
 
-<table>
+<table boder=1>
  <tr>
   <th>登录账号 </th>
   <th>登录密码 </th>
