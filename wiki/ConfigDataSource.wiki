@@ -32,6 +32,7 @@
  ===JNDI 特殊Context方式===
 
  以 weblogic 为例：
+
  http://eeplat.googlecode.com/files/jndi_spec.png
 
  ===直接JDBC连接===
