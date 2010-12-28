@@ -25,4 +25,19 @@
 
  http://eeplat.googlecode.com/files/datasource_config.png
 
- ===JNDI方式===
+ ===JNDI 缺省Context方式===
+
+ http://eeplat.googlecode.com/files/jndi_default.png
+
+ ===JNDI 特殊Context方式===
+
+ 以 weblogic 为例：
+ http://eeplat.googlecode.com/files/jndi_spec.png
+
+ ===直接JDBC连接===
+
+ http://eeplat.googlecode.com/files/ds_jdbc.png
+
+ ===平台提供的数据库连接池===
+
+ http://eeplat.googlecode.com/files/ds_jdbc_init.png
