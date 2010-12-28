@@ -1,15 +1,23 @@
 == 基本概念 ==
+  
+  平台提供了数据表结构维护的功能，包括：
+   
+   1，创建新表 
+   2，修改表结构
 
-   规则是为了完成复杂的业务逻辑而引入的概念。 规则的主体是定义一个有执行条件的服务。
-
-   规则的执行需要依附于服务。服务只有被安全执行时才执行服务所定义的规则。
-
-   规则有执行优先级，当多个规则执行时，优先级越高（即阿拉伯数字越大）执行的顺序越靠前。
+  
  
 
 == 配置界面 ==
 
+ ===创建新表===  
+ 
+  创建新表配置入口，首页==>基础设施管理==>数据源管理 ,点击弹出TAB页，选中数据源，点击创建新表
+
  http://eeplat.googlecode.com/files/datasource_createtable.png
 
+ ===修改表结构===  
 
- http://eeplat.googlecode.com/files/datasource_moditable.png
+  修改表结构入口， 选中业务对象，选择右侧的“表结构管理”
+
+  http://eeplat.googlecode.com/files/datasource_moditable.png
