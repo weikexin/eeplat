@@ -2,9 +2,16 @@
 
  工作流设计器从配置管理平台首页进入，如下图：
 
+  http://eeplat.googlecode.com/files/wf_index.png
+
  点击“工作流建模”，进入如下界面：
 
+   http://eeplat.googlecode.com/files/wf_list.png
+
  选择“简单报销流程测试”（示例工作流流程模板），点设计流程，进入如下设计界面：
+ 
+   http://eeplat.googlecode.com/files/wf_main.png
+
 
 
  示例人员角色如下：
