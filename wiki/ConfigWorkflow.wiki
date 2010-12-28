@@ -48,7 +48,7 @@
 
    http://eeplat.googlecode.com/files/wf_pt_modify.png
 
-  第三步：建立相应的查询和操作页面，如下：
+  第三步：建立相应的查询和操作面板，需要如下面板：
 
   提交者：
 
