@@ -58,7 +58,7 @@
 
    编码长度：编码项目的值的长度，如果长度不够则以“占位符”补充，占位符默认为“0”，如6位流水号以000001开始，如果占位符“F”，则以FFFFF1开始，默认补充方向为“左”，如果补充方向为“右”，则以1FFFFF开始。
 
-   格式化：printf 风格的格式字符串的解释程序。此类提供了对布局对齐和排列的支持，以及对数值、字符串和日期/时间数据的常规格式和特定于语言环境的输出的支持。支持诸如 byte、BigDecimal 和 Calendar 等常见 Java 类型。任意用户类型的受限格式化定制都是通过 Formattable 接口提供的。 详见：http://gceclub.sun.com.cn/Java_Docs/html/zh_CN/api/java/util/Formatter.html。例如 编码项目类型为当前时间（2010年12月28日），格式化为“%1$tY%1$tm”，结果为201012。
+   格式化：printf 风格的格式字符串的解释程序。此类提供了对布局对齐和排列的支持，以及对数值、字符串和日期/时间数据的常规格式和特定于语言环境的输出的支持。支持诸如 byte、BigDecimal 和 Calendar 等常见 Java 类型。任意用户类型的受限格式化定制都是通过 Formattable 接口提供的。 详见：http://gceclub.sun.com.cn/Java_Docs/html/zh_CN/api/java/util/Formatter.html。  例如 编码项目类型为当前时间（2010年12月28日），格式化为“%1$tY%1$tm”，结果为201012。
 
 
 
