@@ -1,20 +1,32 @@
 == 基本概念 ==
 
-  编码生成器
+    编码是唯一标识某些“业务对象”的代码，并用简单的代码表示丰富的含义，通常用几段区域构成。如学生编码的构成为 2位学院代码4位日期编码2为班级编码6位流水号构成。
+
+    编码在平台配置中有两个重要概念：
+
+    # 编码定义 DOCodeMain 一个编码定义包含一个或多个编码项目
+
+    # 编码项目 DOCodeItem 
+    
+
 
 
 == 对应JAVA 数据类型 ==
 
-    com.exedosoft.plat.bo.code.DOCodeItem
-
     com.exedosoft.plat.bo.code.DOCodeMain
 
-== 配置界面 ==
+    com.exedosoft.plat.bo.code.DOCodeItem
+
+
+== 配置界面 == 
 
  编码生成器管理入口位于 首页==>编码生成器
  
+
+ ===编码定义===
+
  http://eeplat.googlecode.com/files/codemain.png
 
-
+ ===编码项目===
 
  http://eeplat.googlecode.com/files/codeitem.png
