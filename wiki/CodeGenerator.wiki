@@ -5,7 +5,7 @@
     编码在平台配置中有两个重要概念：
 
     # 编码定义 DOCodeMain 一个编码定义包含一个或多个编码项目
-    # 编码项目 DOCodeItem  一个编码中具体每“一段”的详细定义
+    # 编码项目 DOCodeItem  编码中具体每“一段”的详细定义
     
 
 
@@ -17,7 +17,7 @@
     com.exedosoft.plat.bo.code.DOCodeItem
 
 
-== 配置界面 == 
+== 配置 == 
 
  编码生成器管理入口位于 首页==>编码生成器
  
@@ -31,5 +31,27 @@
  http://eeplat.googlecode.com/files/codemain.png
 
  ===编码项目===
+
+   编码项目类型：
+
+  # 纯流水序号
+  # 组织年流水序号
+  # 按年流水序号
+  # 按组织流水序号
+  # 用户自定义序号
+  # 当期时间
+  # 登录ID
+  # 登录名称
+  # 登录岗位
+  # 登录单位
+  # 固定值
+  # 参数
+  # 类扩展
+
+   截取或补充方向：
+
+  # 左
+  # 右
+
 
  http://eeplat.googlecode.com/files/codeitem.png
