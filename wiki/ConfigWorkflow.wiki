@@ -29,9 +29,8 @@
      # 节点实例 com.exedosoft.wf.wfi.NodeInstance，对应数据表：do_wfi_nodeinstance
      # 流程模板变量实例 com.exedosoft.wf.wfi.VarInstance 对应数据表：do_wfi_varinstance
 
-    流程完成后对应的是工作流历史
-   
-     流程执行完后对应的是工作流历史：
+    流程完成后对应的是工作流历史：
+  
      # 流程历史 com.exedosoft.wf.wfi.ProcessInstance，对应数据表：do_wfi_his_processinstance
      # 节点历史 com.exedosoft.wf.wfi.NodeInstance，对应数据表：do_wfi_his_nodeinstance
      # 流程变量历史 com.exedosoft.wf.wfi.VarInstance 对应数据表：do_wfi_his_varinstance
