@@ -2,32 +2,72 @@
 
   系统对组织结构进行了高层抽象，提出了Parter(参与者)的概念，每一个类型的组织结构（如部门、员工、集团公司、事业部等）都可以注册为Parter。组织结构可以增加、删除、替换，所以平台的组织结构不是死板的、一成不变的，是灵活的、可以扩展的。
 
-  下图是组织定义的界面：
+  组织定义入口为，首页==》基础设施管理==》组织定义，下图是组织定义的界面：
 
   http://eeplat.googlecode.com/files/parter_define.png 
 
-
-
-
 =SESSIONPARTER.CLASS=
 
+  系统提供了可扩展的权限验证方式，globals.xml文件可以定义可替换的sessionparter.clas类，sessionparter.class需要实现com.exedosoft.plat.bo.org.SessionParter 接口，默认实现为com.exedosoft.plat.SessionParterDefault。
+
+  sessionparter.class的核心方法说明：
+  
+ # getParterAuths()   并不是所有得到Parter都参与权限验证，这里可以定义参与验证的Parter
+
+ # getMenuAuthConfigByAccount()   根据登陆者账号获取所有有权限的菜单
+
+ # getMenuAuthConfigByRole()   根据登陆者角色获取所有有权限的菜单
+
+
+=权限=
+
+  权限存储有三个表：
+  #  do_authorization  系统的所有的授权信息基本都存在这个表中，提供了 who - where - what - how 的权限模型。
+    # who  给谁赋权，对应于组织定义的 parter
+    # where 在什么环境下，权限才生效，系统提供了两种情况，1）在某个业务对象下面； 2） 在某个业务对象的实例下面
+    # what 赋权对象，具体有：
+
+	#  WHAT_APPLICATION = 2  工程
+
+	# WHAT_BP = 5 业务包
+
+	# WHAT_UI_PANE = 11  面板
+
+	# <b> WHAT_UI_MENU = 16 </b> 菜单 - 常用 -
+
+	# WHAT_UI_FORM = 18 表格元素  - 优势
+	/**
+	 * 记录级别的可见性
+	 */
+	public final static int WHAT_BOINSTANCE = 20;
+
+	//	
+	// 工作流 工作台需要判定模板的可见性
+	 public final static int WHAT_WF_PT = 100;
+	//	
+	//	
+	 ///放入第一个节点了
+	// public final static int WHAT_WF_PT_SUMMITER = 106;
+
+	/**
+	 * 工作流节点的可见性,由于工作流节点拥有三个Pane,工作流节点的可见性和Pane的可见性绑定，失去了意义。 070627
+	 * 现在的思路是不用那三个Pane了。
+	 */
+	public final static int WHAT_WF_NODE = 110;
+
+	/**
+	 * 默认的可见性是基于Pane的。但是如果他的可见性是由上级决定的话，则是实例级别的，和下一步的委托的实现也是有关系的。
+	 * 由上一级决定下一步执行者的情况也是 这种情况。
+	 * 
+	 */
+
+	public final static int WHAT_WF_NODEINSTANCE = 111;
+
+  #  do_auth_suite  权限组合，一般以把多个被授权元素打包在一起，例如菜单和表格元素打包在一起，这样可以减少授权的复杂度。 - 很少使用 -
+  #  do_auth_owner  资源的所有者权限 - 很少使用 -
 
 
 
-=权限表=
-
-
-
-=角色=
-
-
-
-
-=用户=
-
-
-
-=组织=
 
 = 平台缺省提供的组织管理简介 =
  以u/1111登录，可以看到系统默认的组织权限管理，如下图：
