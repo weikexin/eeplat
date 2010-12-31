@@ -3,14 +3,13 @@
     工作流(Workflow)，是“业务过程的部分或整体在计算机应用环境下的自动化”，它主要解决的是“使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现”。
  
 
-    流程模板：用来描述业务流程的模板，流程模板定义了工作流的节点、转移、业务数据（一般是业务对象）等信息。
+    流程模板：用来描述业务流程的模板，流程模板定义了工作流的节点、转移、业务数据（一般是业务对象）等信息。对应JAVA类型：com.exedosoft.wf.pt.ProcessTemplate
    
-    流程模板变量：流程模板变量被流程模板内的节点和转移共享，可以在节点间传递数据或作为条件分支的判断表达式。
+    流程模板变量：流程模板变量被流程模板内的节点和转移共享，可以在节点间传递数据或作为条件分支的判断表达式。 对应JAVA类型：com.exedosoft.wf.pt.PTVar
 
-    业务数据：指与用户交互时产生的数据，这部分数据与具体的业务相关，例如一个销售单，业务数据在流程图上流转从而实现日常工作。业务数据与流程数据无关，没有流程数据业务数据可以独立存在。
- 
+    业务数据：指与用户交互时产生的数据，这部分数据与具体的业务相关，例如一个销售单，在平台中是销售单这个业务对象。 对应JAVA类型：com.exedosoft.plat.bo.DOBO ,ProcessTemplate 对 DOBO 有引用。
 
-    节点，又称为活动等。工作流模板是由一个个节点按照一定顺序组成的，平台中工作流节点的类型：
+    节点，又称为活动等。工作流模板是由一个个节点按照一定顺序组成的，平台中工作流节点的类型： 对应JAVA类型：com.exedosoft.wf.pt.PTNode
 
       # 开始节点  一个流程中只能含有一个开始节点
       # 结束节点  一个流程中可以含有多个开始节点
@@ -24,6 +23,18 @@
       # 子流程节点  启动子流程
 
     转移，也成为转移线等。转移连接节点和节点，条件分支节点连出的转移线需要转移条件，转移条件可以使用是一个表达式（符合javascript语法，例如 > 5，条件分支节点会定义判断表达式a，判断表达式和转移表达式共同成 a > 5的完成的判断表达式，如果同时两个条件 {{{ > 5 || #value# < 0 }}}，替换后{{{  a > 5 || a < 0 }}} ）或者实现com.exedosoft.plat.Access接口的类。
+
+     流程模板执行后对应的是实例：
+     # 模板实例（流程实例） com.exedosoft.wf.wfi.ProcessInstance，对应数据表：do_wfi_processinstance
+     # 节点实例 com.exedosoft.wf.wfi.NodeInstance，对应数据表：do_wfi_nodeinstance
+     # 流程模板变量实例 com.exedosoft.wf.wfi.VarInstance 对应数据表：do_wfi_varinstance
+
+    流程完成后对应的是工作流历史
+   
+     流程模板执行后对应的是实例：
+     # 流程历史 com.exedosoft.wf.wfi.ProcessInstance，对应数据表：do_wfi_his_processinstance
+     # 节点历史 com.exedosoft.wf.wfi.NodeInstance，对应数据表：do_wfi_his_nodeinstance
+     # 流程变量历史 com.exedosoft.wf.wfi.VarInstance 对应数据表：do_wfi_his_varinstance
 
 
 = 流程示例运行简介 = 
