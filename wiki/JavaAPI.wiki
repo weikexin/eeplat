@@ -1,6 +1,5 @@
 =  DOService =
-DOService是易元平台Java API最重要的一个类。Java端的DOService 和 快速开发 Javascript  API 中的DOService 名称相同，select 和 update 也是Java API DOService 要完成的核心职责，但是实例化，方法调用等方面相似但是有差异，注意区别，如Java API DOService 对应于select update的方法 是 invokeSelect invokeUpdate。
-DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
+DOService是易元平台Java API最重要的一个类。DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
 
 
 == 实例化DOService == 
