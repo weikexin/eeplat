@@ -1,6 +1,6 @@
    JavaScript API 依赖于Jquery js类库及platAjax.js文件。快速开发 JavaScript API 的方法都接受唯一的参数p，参数p及相关api说明如下。
 
- = JavaScript参数对象p =
+= JavaScript参数对象p =
 {{{
   p.btn              触发按钮的ID
   p.actionName       自定义动作类名称
@@ -107,6 +107,4 @@ this.actionForm  这个成员变量不可用。
 		);
 
 }}}
-
-
 
