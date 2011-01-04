@@ -1,30 +1,21 @@
-快速开发  Java  API的 分为四部分介绍：1，DOService；  2,其它重点类； 3，接口或抽象类说明；4，帮助类； 
-
-DOService 是快速开发 Java API的核心实现类，单独多为一部分说明，快速开发 Javascript API也仅仅是服务端DOService 的客户端（ＩＥ）简单实现。
-
-重点类主要提供了对服务、业务对象、面板、表格、表格元素等平台核心功能的操作能力。
-
-接口或抽象类主要为平台提供了扩展机制。
-
-帮助类提供了很多有用的方法，减少使用者的代码开发量。
-一，DOService
-DOService是易元平台Java API最重要的一个类。Java端的DOService 和 快速开发 Javascript  API 中的DOService 名称相同，select 和 update 也是Java API DOService 要完成的核心职责，但是实例化，方法调用等方面相似但是有差异，注意区别，如Java API DOService 对应于select update的方法 是 invokeSelect invokeUpdate。
+=  DOService =
+  DOService是易元平台Java API最重要的一个类。Java端的DOService 和 快速开发 Javascript  API 中的DOService 名称相同，select 和 update 也是Java API DOService 要完成的核心职责，但是实例化，方法调用等方面相似但是有差异，注意区别，如Java API DOService 对应于select update的方法 是 invokeSelect invokeUpdate。
 DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
 
 
-1，实例化DOService
-	通过服务的名称调用服务
+== 实例化DOService == 
+ === 通过服务的名称调用服务 ===
 如后台配置的学生查找服务名称为”student.list”,
 DOService aService = DOService.getService(“student.list”);
-	通过服务的ID调用服务
+ === 通过服务的ID调用服务 ===
 如后台配置的学生查找服务ID为”039d1f6aac41450ca2ac5895d5ffc93d”，
 DOService aService = DOService.getServiceByID(” 039d1f6aac41450ca2ac5895d5ffc93d”);
-	错误的实例化方法,不要通过new操作符
+ === 错误的实例化方法,不要通过new操作符 ===
 DOService aService = new DOService();
 aService.setName(“studeng.list”);
     
     
-2，CURRENT参数及其它参数说明
+== CURRENT参数及其它参数说明 ==
 	CURRENT参数来自于业务对象数据总线。
 	平台中一条记录的新增，修改，被选中都会被更新到业务对象数据总线，供下文利用。例如，有一个DOFilterTable控制下的列表，每条记录后面都有修改、查看操作，当点击修改或者查看是系统会自动把这条记录更新到业务对象数据总线。
 	CURRENT并不局限于objuid,它可以是业务对象的任何属性。
@@ -653,4 +644,3 @@ static java.lang.String	unFilterXss(java.lang.String txt)
 提供了使用DOM的简便方法。
 6，SimpleXMLUtil
 提供了方便读写XML文件的方法。
-
