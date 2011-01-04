@@ -12,17 +12,18 @@
   grid.OutGridExcel控制器是平台缺省提供的，也可以根据grid.OutGridExcel进行扩展以满足自己的需求。grid.OutGridExcel导出的是CSV(逗号分隔符)文件，默认可以用EXCEL或WPS表格打开。
 
    ==配置过程==
-   
+    
+   === 创建导出EXCEL表格的面板容器，一般可以使用复制，然后修改名称 ===
 
     http://eeplat.googlecode.com/files/excel_simple_pane.png
- 
+
+   === 创建导出EXCEL的表格，一般可以使用复制，然后修改名称，在这儿可以定义导出的字段，可以定义导出的服务等 ===
+
     http://eeplat.googlecode.com/files/excel_simple_grid.png
 
+   === 创建按钮，点击它下载导出文件，控制器为form.DODownLoadExcel ===
+
     http://eeplat.googlecode.com/files/excel_simple_button.png
-
-
-form.DODownLoadExcel
-
   
 
 
