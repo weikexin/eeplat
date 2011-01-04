@@ -1,0 +1,112 @@
+   JavaScript API 依赖于Jquery js类库及platAjax.js文件。快速开发 JavaScript API 的方法都接受唯一的参数p，参数p及相关api说明如下。
+
+ = JavaScript参数对象p =
+{{{
+  p.btn              触发按钮的ID
+  p.actionName       自定义动作类名称
+  p.actionConfigName 自定义动作的名陈
+  p.serviceUid       服务的ID
+  p.serviceName      服务名称
+  p.formName         表单名称
+  P.paras            需要传递的参数
+  P.pml               连接的面板
+  p.pmlHeight        连接的面板的高度(弹出面板) 
+  p.pmlWidth         连接的面板的宽带（弹出面板）
+  P.target           目标面板
+  p.echoJs	     执行服务之前的前台提示
+
+  p.callType         触发类别:  type='us',只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
+	        type='uf', 执行当前的服务包括规则，返回的结果是一个string 字符  传， 包含的一般是提示信息
+  	type='as' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，具体把数据进行setInstance(一条记录) 注入到内存，传入的参数应该有user_define_class 这个属性
+ 	        type='aa' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，具体把数据进行setInstances(多条记录) 注入到内存，传入的参数应该有user_define_class 这个属性
+	        type='ao' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，直接返回这个class 执行返回的string，传入的参数应该有user_define_class 这个属性
+
+  p.callback         执行完后要执行的回调函数
+}}}
+
+
+= 核心方法调用 =
+
+主要提供四个方法 callService，callAction，callPlatBus，loadPml。
+
+== callService(p) ==
+{{{
+用途：
+执行一个服务,这个服务可以为任意类型。
+注意事项：
+如果服务为更改数据的服务（如增加，修改，删除），并且连接规则或者配置了自定义动作，p.callType 必须设为uf。
+
+例子(和freemarker结合的例子)：
+        callService({'btn':this,
+		         'serviceUid':'${model.linkService.objUid}',
+		         'callback':fnCallback,
+		         'formName':'${model.targetForms}'
+		         <#if (model.linkPaneModel)?exists>
+		         ,'pml':'${model.linkPaneModel.fullCorrHref}'
+		         <#else>
+		         ,'target':'${model.gridModel.containerPane.name}'	
+		         ,'pml':'${model.gridModel.containerPane.fullCorrHref}'
+		         </#if>
+		         <#if (model.targetPaneModel)?exists>	         
+		         ,'target':'${model.targetPaneModel.name}'
+		         </#if>
+		         <#if (model.echoJs)?exists>	         
+		         ,'echoJs':'${model.echoJs}'
+		         </#if>
+		         });
+		         
+  }
+
+}}}
+
+== callAction(p) == 
+
+{{{
+用途：
+直接执行后台的一个类，该类需实现com.exedosoft.plat.Action 接口。
+注意事项：
+p.actionName 为类的全名。
+this.actionForm  这个成员变量不可用。
+如果要获取参数，必须从总线获取。SessionContext.getInstance().getForm()
+
+例子：
+       
+	   callAction({'btn':btn,
+	   			   'actionName':"com.exedosoft.plat.action.customize.archive.SaveArchiveAndDetails",
+	   			   'paras':paras});
+
+}}}
+
+== callPlatBus(p) ==
+{{{
+用途：
+调用总线， 总线的调用写法见《总线操作Web Service API.doc》
+注意事项：
+     该操作为同步操作。
+例子：
+        callPlatBus({'col1':'a','col2':'b'})
+}}}
+
+== loadPml(p) ==
+
+{{{
+用途：
+加载一个面板。
+注意事项：
+目标面板_opener 为层弹出。
+目标面板_opener_tab 为tab方式查看。
+
+例子(和freemarker相结合)：
+	    loadPml({
+		   		 'pml':'${model.linkPaneModel.name}',
+		   		 'title':'${model.linkPaneModel.title}',
+		   		 'formName':'a${model.gridModel.objUid}'
+		   		  <#if (item.targetPaneModel)?exists>	         
+				,'target':'${model.targetPaneModel.name}'
+				 </#if> }
+		);
+
+}}}
+
+
+
