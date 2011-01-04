@@ -8,7 +8,14 @@
   grid.OutGridExcel控制器是平台缺省提供的，也可以根据grid.OutGridExcel进行扩展以满足自己的需求。grid.OutGridExcel本质上导出的是CSV(逗号分隔符)文件，默认可以用EXCEL或WPS表格打开。
 
    ==配置过程==
+
+    http://eeplat.googlecode.com/files/excel_simple_pane.png
  
+    http://eeplat.googlecode.com/files/excel_simple_grid.png
+
+    http://eeplat.googlecode.com/files/excel_simple_button.png
+
+
 form.DODownLoadExcel
 
   
@@ -22,8 +29,10 @@ form.DODownLoadExcel
   
    下面举一个非常简单的使用JXLS的例子，导出t_expense表中的全部数据。
   
-   1，
+       http://eeplat.googlecode.com/files/excel_report_controller.png
 
+       http://eeplat.googlecode.com/files/excel_report_button.png
 
+       http://eeplat.googlecode.com/files/excel_report_button.png
 
   
