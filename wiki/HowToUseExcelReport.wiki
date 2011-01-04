@@ -13,7 +13,7 @@
 
    ==配置过程==
     
-   === 创建导出EXCEL表格的面板容器，一般可以使用复制，然后修改名称 ===
+   === 创建导出EXCEL表格的面板容器名称为 “PM_t_expense_ExportExcel” ，一般可以使用复制，然后修改名称 ===
 
     http://eeplat.googlecode.com/files/excel_simple_pane.png
 
@@ -21,7 +21,7 @@
 
     http://eeplat.googlecode.com/files/excel_simple_grid.png
 
-   === 创建按钮，点击它下载导出文件，控制器为form.DODownLoadExcel ===
+   === 创建按钮，点击它下载导出文件，控制器为form.DODownLoadExcel，连接的面板为 PM_t_expense_ExportExcel  ===
 
     http://eeplat.googlecode.com/files/excel_simple_button.png
   
