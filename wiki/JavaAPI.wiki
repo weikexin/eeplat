@@ -14,123 +14,32 @@ DOService aService = DOService.getServiceByID(” 039d1f6aac41450ca2ac5895d5ffc9
 DOService aService = new DOService();
 aService.setName(“studeng.list”);
     
-    
-== CURRENT参数及其它参数说明 ==
-	CURRENT参数来自于业务对象数据总线。
-	平台中一条记录的新增，修改，被选中都会被更新到业务对象数据总线，供下文利用。例如，有一个DOFilterTable控制下的列表，每条记录后面都有修改、查看操作，当点击修改或者查看是系统会自动把这条记录更新到业务对象数据总线。
-	CURRENT并不局限于objuid,它可以是业务对象的任何属性。
-	参数中另外一种重要的类型是FORM,它来自于界面表单或通过javascript  api 参数传递。
-	详细参数说明：
+  
 
-	public static final int TYPE_CURRENT = 1;
+== DOService参数传递说明 ==
 
-	/**
-	 * 一般用于权限设置，当当期需要设置的cur instance ,只有这个业务对象设为isFilter == true ，这个业务对象
-	 * 才有可能的主键才有可能成为TYPE_AUTH_GLOBAL_CUR
-	 */
-	public static final int TYPE_AUTH_GLOBAL_CUR = 2;
-
-	/**
-	 * 登陆类型，和登陆用户相关，user,user所在的dept等。
-	 * 
-	 */
-	public static final int TYPE_LOGIN_ID = 3;
-
-	public static final int TYPE_LOGIN_NAME = 31;
-
-	public static final int TYPE_LOGIN_MAIN_STATION = 32;
-
-	public static final int TYPE_LOGIN_MAIN_DEPT = 33;
-
-	public static final int TYPE_LOGIN_KEY = 35;
-
-	/**
-	 * 当前时间
-	 */
-	public static final int TYPE_DATE = 4;
-
-	/**
-	 * 当前时间
-	 */
-	public static final int TYPE_TIMESTAMP = 40;
-
-	/**
-	 * 来自Form
-	 */
-	public static final int TYPE_FORM = 5;
-
-	/**
-	 * 来自Form值的一些运算
-	 */
-	public static final int TYPE_FORM_CAL = 51;
-
-	/**
-	 * 参数为NULL 值，当进行值参替换时，替换为null.
-	 */
-	public static final int TYPE_NULL = 10;
-
-	/**
-	 * 递归情况下 父亲的值
-	 */
-	public static final int TYPE_RECURSION_PARENT = 11;
-
-	/**
-	 * 主键
-	 */
-	public static final int TYPE_KEY = 15;
-
-	/**
-	 * 使用代码生成器
-	 */
-	public static final int TYPE_CODE = 151;
-
-	/**
-	 * SCRIPT 支持
-	 */
-	public static final int TYPE_SCRIPT = 100;
-
-	/**
-	 * 可以调用Action
-	 */
-	public static final int TYPE_ACTION = 101;
-
-	/**
-	 * 不可逆的MD5 加密
-	 */
-
-	public static final int TYPE_SECURITY_MD5 = 200;
-
-	/**
-	 * 可逆的加密算法
-	 */
-
-	public static final int TYPE_SECURITY_REVERS = 201;
-
-
-	/**
-	 * 全文检索——查询
-	 */
-	public static final int TYPE_LUCENE_SEARCH = 300;
-
-	/**
-	 * 全文检索——创建索引
-	 */
-	public static final int TYPE_LUCENE_CREATE = 301;
-
-
-3，DOService参数传递说明
 DOService 的主要方法invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。都可以采用两种方式传递参数。
-	直接传递：通过直接调用方法传递，由于主要方法被多次重载，并且可以接受 List BOInstance 类型的参数，所以基本能满足绝大部分参数传递的要求，不需要使用间接参数传递。 
+  === 直接传递 ===
+   
+ 通过直接调用方法传递，由于主要方法被多次重载，并且可以接受 List BOInstance 类型的参数，所以基本能满足绝大部分参数传递的要求，不需要使用间接参数传递。 
+{{{
 	DOService findPI = DOService
 					.getService("do.wfi.processinstance.browse.findbyinstanceUid");
 	String curInstnaceUid = pt.getDoBO().getCorrInstance().getUid();
 	List list = findPI.invokeSelect(pt.getObjUid(), curInstnaceUid);
-注意事项：invokeSelect(paras:List) 和 invokeSelect(paras:Map) 可以传递的参数数量不限，但是paras:List 方式要和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用。Paras:Map方式在自动参数条件查询的情况，个数和顺序都可以不匹配，依赖于平台的自动条件组装。invokeUpdate 类似。
-invokeSelect(para:string …)方式传递参数和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用，上文中传递了两个参数，后台服务也配置了两个参数。 invokeUpdate类似。
+}}}
+   
+   注意事项：invokeSelect(paras:List) 和 invokeSelect(paras:Map) 可以传递的参数数量不限，但是paras:List 方式要和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用。Paras:Map方式在自动参数条件查询的情况，个数和顺序都可以不匹配，依赖于平台的自动条件组装。invokeUpdate 类似。
 
-	间接传递：先为DOService 传递参数，然后调用不带参数的方法。 有两种方式：
+    invokeSelect(para:string …)方式传递参数和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用，上文中传递了两个参数，后台服务也配置了两个参数。 invokeUpdate类似。
 
-1），通过List 间接传递
+  === 间接传递 ===
+  
+先为DOService 传递参数，然后调用不带参数的方法。 有两种方式：
+
+  通过List 间接传递
+
+  {{{
 DOService findPI = DOService
 		.getService("do.wfi.processinstance.browse.findbyinstanceUid");
 List paras = new ArrayList();
@@ -138,8 +47,14 @@ paras.add(ptobjuid);
 paras.add(curInstanceuid);
 
 findPI.addTempParaList(paras);
-	List list = findPI.invokeSelect();
-2），通过Map 间接传递
+List list = findPI.invokeSelect();
+
+  }}}
+
+
+  通过Map 间接传递
+
+  {{{
 DOService findPI = DOService
 		.getService("do.wfi.processinstance.browse.findbyinstanceUid");
 Map paras = new HashMap();
@@ -147,19 +62,27 @@ paras.put(“ptobjuidcolname”, ptobjuid)
 paras.add(“tbstudentuid”,curInstanceuid);
 
 findPI.addTempParaMap(paras);
-	List list = findPI.invokeSelect();
+List list = findPI.invokeSelect();
+ }}}
 
 以上三种写法都是等效的。
-3），注意事项
-	通过list 方式间接传递，传递参数和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用。
-采用间接传递，调用的服务方法一定是不带参数的。
-3，DOService函数返回说明
-DOService 的参数返回一般是BOInstance 或 List<BOInstance>。为了支持java 1.4 没有使用泛型，也就是说只要是返回的List，那么内容一定是BOInstance。BOInstance 的说明见下文（其它重点类说明:BOInstance）。 
-4，DOService调用注意事项
-1）	执行invokeSelect 或 invokeSelectXXXX相关的方法时，服务的类型必须是查询类型（包括一般查询、自动条件查询、自定义查询等），服务配置的sql语句是对数据库的检索。
-2） 		执行invokeUpdate 或 invokeUpdateXXXX相关的方法时，服务的类型必须是更改类型（包括增加、删除、修改、自动条件修改等），服务配置的sql语句是对数据库的更新。
 
-5，DOService调用说明
+
+ === 注意事项 ===
+	通过list 方式间接传递，传递参数和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用。采用间接传递，调用的服务方法一定是不带参数的。
+
+
+== DOService函数返回说明 ==
+
+  DOService 的参数返回一般是BOInstance 或 List<BOInstance>。为了支持java 1.4 没有使用泛型，也就是说只要是返回的List，那么内容一定是BOInstance。BOInstance 的说明见下文（其它重点类说明:BOInstance）。 
+
+ ===DOService调用注意事项===
+   执行invokeSelect 或 invokeSelectXXXX相关的方法时，服务的类型必须是查询类型（包括一般查询、自动条件查询、自定义查询等），服务配置的sql语句是对数据库的检索
+
+  执行invokeUpdate 或 invokeUpdateXXXX相关的方法时，服务的类型必须是更改类型（包括增加、删除、修改、自动条件修改等），服务配置的sql语句是对数据库的更新。
+
+== DOService调用说明 ==
+
 invokeSelect()
 public java.util.List invokeSelect()
 执行查询操作。
