@@ -17,7 +17,7 @@
 
     http://eeplat.googlecode.com/files/excel_simple_pane.png
 
-   === 创建导出EXCEL的表格，一般可以使用复制，然后修改名称，在这儿可以定义导出的字段，可以定义导出的服务等 ===
+   === 创建导出EXCEL的表格，一般可以使用复制，然后修改名称，在这儿可以定义导出的字段，可以定义导出的服务等，注意控制器器grid.OutGridExcel，另外一个控制器grid.OutGridExcelSelected可以导出选中的数据 ===
 
     http://eeplat.googlecode.com/files/excel_simple_grid.png
 
