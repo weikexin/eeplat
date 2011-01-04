@@ -30,9 +30,9 @@
 	   *  WHAT_APPLICATION = 2  工程
 	   *  WHAT_BP = 5 业务包
 	   *  WHAT_UI_PANE = 11  面板
-	   * <b> WHAT_UI_MENU = 16 </b> 菜单 - 常用 -
-	   *  WHAT_UI_FORM = 18 表格元素  - 有时使用 -
-	   *  WHAT_BOINSTANCE = 20  记录级别  - 有时使用 -
+	   * <b> WHAT_UI_MENU = 16 </b> 菜单 _ 常用 _
+	   *  WHAT_UI_FORM = 18 表格元素  _ 有时使用 _
+	   *  WHAT_BOINSTANCE = 20  记录级别  _ 有时使用 _
 	   *  WHAT_WF_PT = 100  工作流模板
 	   *  WHAT_WF_NODE = 110 工作流模板节点
 	   *  WHAT_WF_NODEINSTANCE = 111 工作流实例节点
