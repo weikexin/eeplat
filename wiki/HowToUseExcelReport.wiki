@@ -21,7 +21,7 @@
 
     http://eeplat.googlecode.com/files/excel_simple_grid.png
 
-   === 创建按钮，点击它下载导出文件，控制器为form.DODownLoadExcel，连接的面板为 PM_t_expense_ExportExcel  ===
+   === 创建按钮，点击它下载导出文件，控制器为form.DODownLoadExcel，连接的面板为上述配置的 PM_t_expense_ExportExcel  ===
 
     http://eeplat.googlecode.com/files/excel_simple_button.png
   
