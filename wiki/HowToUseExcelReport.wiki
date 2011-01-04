@@ -1,4 +1,4 @@
 = 报表 =
-   默认使用的是Excel ，即使用excel模板，例子在\WEB-INF\xls 下面。如果不使用excel的话，推荐使用快逸报表（全免费）。
+   默认使用的是Excel（也可以通过WPS表格打开），即使用excel模板，例子在\WEB-INF\xls 下面。如果不使用excel的话，推荐使用快逸报表（全免费）。
 
   
