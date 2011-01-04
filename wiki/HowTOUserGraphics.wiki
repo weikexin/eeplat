@@ -4,7 +4,7 @@
 = 在平台中使用FusionChartsFree =
 
 
- ===创建控制器，对应JAVA Class为空。这个控制器是包含两部分，一部分为数据准备部分（Gen Script），为模板准备数据；一部分为模板，用于界面的显示。也可以通过java类，或者结合freeemarker模板实现，具体见[控制器 http://code.google.com/p/eeplat/wiki/ConfigController] ===
+ ===创建控制器，对应JAVA Class为空。这个控制器是包含两部分，一部分为数据准备部分（Gen Script），为模板准备数据；一部分为模板，用于界面的显示。也可以通过java类，或者结合freeemarker模板实现，具体见[http://code.google.com/p/eeplat/wiki/ConfigController 控制器] ===
    
        http://eeplat.googlecode.com/files/char_controller.png
 
