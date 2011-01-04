@@ -36,7 +36,7 @@
  
        http://eeplat.googlecode.com/files/excel_report_template.png
 
- ===创建控制器，这个控制器是为报表模板准备数据 ===
+ ===创建控制器，对应JAVA Class为 com.exedosoft.plat.ui.jquery.form.DODownLoadExcelReport。这个控制器是为报表模板准备数据 ===
    
        http://eeplat.googlecode.com/files/excel_report_controller.png
 
