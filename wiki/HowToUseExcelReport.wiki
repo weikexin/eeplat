@@ -41,7 +41,7 @@
        http://eeplat.googlecode.com/files/excel_report_controller.png
 
 
- ===创建按钮，这个控制器是为报表模板准备数据 ===
+ ===创建按钮，连接的控制器是上述所创建的 ===
 
        http://eeplat.googlecode.com/files/excel_report_button.png
 
