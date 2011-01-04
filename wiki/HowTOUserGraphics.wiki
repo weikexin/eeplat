@@ -1,10 +1,7 @@
-  平台集成的图表显示组件为FusionChartsFree，可以支持常见图表的显示，具体的支持类型见 FusionChartsFree 文件夹下面。
+  平台集成的图表显示组件为FusionChartsFree，可以支持常见图表的显示，具体的支持类型见 FusionChartsFree 文件夹下面，也可以引入其他图表显示组件。
 
 
-= JXLS报表 =
-
-
-= 平台中如何使用JXLS =
+= 平台中如何使用FusionChartsFree =
  
  ===创建报表模板，这个报表比使用grid.OutGridExcel控制器导出的报表多了统计功能===
  
