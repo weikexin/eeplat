@@ -15,10 +15,15 @@
   P.target           目标面板
   p.echoJs	     执行服务之前的前台提示
 
-  p.callType         触发类别:  type='us',只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
+  p.callType         触发类别: 
+                type='us',只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
+
 	        type='uf', 执行当前的服务包括规则，返回的结果是一个string 字符  传， 包含的一般是提示信息
-  	type='as' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，具体把数据进行setInstance(一条记录) 注入到内存，传入的参数应该有user_define_class 这个属性
+
+  	        type='as' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，具体把数据进行setInstance(一条记录) 注入到内存，传入的参数应该有user_define_class 这个属性
+
  	        type='aa' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，具体把数据进行setInstances(多条记录) 注入到内存，传入的参数应该有user_define_class 这个属性
+
 	        type='ao' 根据定义的class 返回数据，这个class需要实现DOAction这个接口，直接返回这个class 执行返回的string，传入的参数应该有user_define_class 这个属性
 
   p.callback         执行完后要执行的回调函数
