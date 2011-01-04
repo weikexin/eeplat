@@ -1,4 +1,7 @@
 = 报表 =
-   默认使用的是Excel（也可以通过WPS表格打开），即使用excel模板，例子在\WEB-INF\xls 下面。如果不使用excel的话，推荐使用快逸报表（全免费）。
+   平台默认使用的JXLS报表。 JXLS是基于Jakarta POI API的Excel报表生成工具，可以生成精美的Excel格式报表。它采用标签的方式，类似JSP标签，写一个Excel模板，然后生成报表，非常灵活，简单。excel模板例子在\WEB-INF\xls 下面。
+
+
+
 
   
