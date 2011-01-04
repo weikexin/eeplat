@@ -33,6 +33,5 @@ form.DODownLoadExcel
 
        http://eeplat.googlecode.com/files/excel_report_button.png
 
-       http://eeplat.googlecode.com/files/excel_report_button.png
-
+       http://eeplat.googlecode.com/files/excel_report_template.png
   
