@@ -33,10 +33,9 @@
           *  [OrgParter     组织权限简介]
           *  [HowToUseExcelReport     使用EXCEL报表]
           *  [HowTOUserGraphics       如何何使用图表]
-          *  [ImportExportBusinessObject     业务对象导入导出简介]
+          *  [ImportExportBusinessObject     配置数据导入导出]
           *  [JavaScriptAPI     JAVASCRIPT API]    
           *  [JavaAPI     JAVA API]
           *  [GlobalParas     全局配置参数]
-          *  [ExtendDev     平台扩展开发]
   * [FAQ  常见问题解答]
  
