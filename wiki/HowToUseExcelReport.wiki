@@ -3,11 +3,16 @@
    # 通过为表格配置grid.OutGridExcel控制器，适合简单的把数据直接导出的情况
    # 通过JXLS，可以实现复杂的报表需求
 
+  下面举一个简单的的例子，导出t_expense表中的数据，用上述两种方法实现。用grid.OutGridExcel经过简单的配置就可以完成。
+    如果使用JXLS,需要写模板，并把模板文件放在web-inf/xls下面，模板文件名配置在导出按钮的“相关配置”（不配置默认使用的是simple.xls文件）。还需要写控制器为模板准备数据。
+
+
 = grid.OutGridExcel控制器  =
 
   grid.OutGridExcel控制器是平台缺省提供的，也可以根据grid.OutGridExcel进行扩展以满足自己的需求。grid.OutGridExcel导出的是CSV(逗号分隔符)文件，默认可以用EXCEL或WPS表格打开。
 
    ==配置过程==
+   
 
     http://eeplat.googlecode.com/files/excel_simple_pane.png
  
@@ -27,8 +32,7 @@ form.DODownLoadExcel
 
 = 平台中如何使用JXLS =
   
-   下面举一个非常简单的使用JXLS的例子，导出t_expense表中的全部数据。
-  
+   
        http://eeplat.googlecode.com/files/excel_report_controller.png
 
        http://eeplat.googlecode.com/files/excel_report_button.png
