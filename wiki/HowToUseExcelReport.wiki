@@ -7,8 +7,9 @@
 
   grid.OutGridExcel控制器是平台缺省提供的，也可以根据grid.OutGridExcel进行扩展以满足自己的需求。grid.OutGridExcel本质上导出的是CSV(逗号分隔符)文件，默认可以用EXCEL或WPS表格打开。
 
-==配置过程==
+   ==配置过程==
  
+
 
   
 
