@@ -11,9 +11,4 @@
  ===创建面板，连接的控制器是上述所创建的 ===
 
        http://eeplat.googlecode.com/files/chart_pane.png
-
- ===创建按钮，连接的控制器是上述所创建的 ===
-
-       http://eeplat.googlecode.com/files/chart_pane.png
-
   
