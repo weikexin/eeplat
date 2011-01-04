@@ -1,6 +1,11 @@
-# GLOBAL.XML #
+= GLOBAL.XML =
 
 
 
 
-# MAIN.JS # 
+= MAIN.JS =
+ main.js 位于 \exedo\webv3\js\main 下。配置参数：
+{{{
+  var globalURL = "/yiyi/";
+}}}
+  当webmodule的名称改变时，需要更改这个地方。
