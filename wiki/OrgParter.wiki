@@ -34,7 +34,8 @@
 	   *  WHAT_BOINSTANCE = 20  记录级别  - 有时使用 -
 	   *  WHAT_WF_PT = 100  工作流模板
 	   *  WHAT_WF_NODE = 110 工作流模板节点
-           *  WHAT_WF_NODEINSTANCE = 111 工作流实例节点
+          *  WHAT_WF_NODEINSTANCE = 111 工作流实例节点
+    #  how 正向授权或反向授权   默认情况下是正向授权，不推荐使用反向授权
 
    ==  do_auth_suite ==
       权限组合，一般以把多个被授权元素打包在一起，例如菜单和表格元素打包在一起，这样可以减少授权的复杂度。 - 很少使用 -
