@@ -28,9 +28,6 @@
 
 = JXLS报表 =
    平台默认使用的JXLS报表。 JXLS是基于Jakarta POI API的Excel报表生成工具，可以生成精美的Excel格式报表。它采用标签的方式，类似JSP标签，写一个Excel模板，然后生成报表，非常灵活，简单。excel模板例子在\WEB-INF\xls 下面。
-
-
-= 平台中如何使用JXLS =
  
  ===创建报表模板，这个报表比使用grid.OutGridExcel控制器导出的报表多了统计功能===
  
