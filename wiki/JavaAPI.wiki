@@ -128,16 +128,6 @@ public java.util.List invokeSelect(String... strings)
 }}}
 
 
-===invokeSelect(para0,para1,para2:String)===
-{{{
-public java.util.List invokeSelect(java.lang.String para0,
-                                   java.lang.String para1,
-                                   java.lang.String para2)
-查询返回列表 一般该服务定义的参数只有三个。
-
-参数： 见参数传递说明。
-返回： 见函数返回说明。
-}}}
 
 ===invokeSelect(paras:List)===
 {{{
@@ -233,7 +223,11 @@ public BOInstance invokeUpdate(java.util.Map aMap)
 抛出： 
 java.sql.SQLException 
 com.exedosoft.plat.ExedoException
-invokeUpdate(instance:BOInstance)
+}}}
+
+
+===invokeUpdate(instance:BOInstance)===
+{{{
 public BOInstance invokeUpdate(BOInstance instance)
                         throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作，采用instance 作为参数,接口更加友好 
