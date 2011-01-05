@@ -68,6 +68,7 @@ List list = findPI.invokeSelect();
 
 
  === 注意事项 ===
+
 	通过list 方式间接传递，传递参数和服务配置的参数个数、顺序严格匹配，如果不匹配则不起作用。采用间接传递，调用的服务方法一定是不带参数的。
 
 
@@ -115,20 +116,14 @@ public java.util.List invokeSelect(java.util.Map aMap)
 返回： 见函数返回说明。
 }}} 
 
-===invokeSelect(para:String)===
-{{{
-public java.util.List invokeSelect(java.lang.String para)
-查询返回列表 一般该服务定义的只有一个参数 。
-参数： 见参数传递说明。
-返回： 见函数返回说明。
-}}}
 
-===invokeSelect(para0,para1:String)===
-{{{
-public java.util.List invokeSelect(java.lang.String para0, ...)
-查询返回列表 String 类型的不定参数
 
-参数： 见参数传递说明。
+===invokeSelect(String... strings)===
+{{{
+public java.util.List invokeSelect(String... strings)
+查询返回列表
+
+参数： 见参数传递说明，不定长度
 返回： 见函数返回说明。
 }}}
 
@@ -163,9 +158,9 @@ public java.util.List invokeSelect(BOInstance instance)
 返回： 见函数返回说明。
 }}}
 
-===getInstance(para:String)===
+===getInstance(String... strings)===
 {{{
-public BOInstance getInstance(java.lang.String para ...)
+public BOInstance getInstance(String... strings)
 获取一个BOInstance 实例。
 
 参数： 见参数传递说明。
@@ -173,7 +168,8 @@ public BOInstance getInstance(java.lang.String para ...)
 }}}
 
 
-invokeSelectGetAValue()
+===invokeSelectGetAValue()===
+{{{
 public java.lang.String invokeSelectGetAValue()
 
 执行查询，返回一个值。 
@@ -186,9 +182,11 @@ Select sum(a) from tbstudeng where …..
 参数： 
 见参数传递说明。
 返回： 返回的是String类型的值。
-________________________________________
-invokeSelectGetAValue(para:String)
-public java.lang.String invokeSelectGetAValue(java.lang.String para)
+}}}
+
+===invokeSelectGetAValue(String... strings)===
+{{{
+public java.lang.String invokeSelectGetAValue(String... strings)
 执行查询，返回一个值。 
 一般执行的 sql语句本身只返回一个值，如：
 Select count(*) from tbstudent where ……
@@ -197,40 +195,13 @@ Select sum(a) from tbstudeng where …..
 如果sql语句返回多行值。那么这个函数返回的值是第一行。
 
 参数： 
-见参数传递说明。 
+见参数传递说明，为不定参数
 返回： 返回的是String类型的值。
-________________________________________
-invokeSelectGetAValue(para0,para1:String)
-public java.lang.String invokeSelectGetAValue(java.lang.String para0,
-                                              java.lang.String para1)
-执行查询，返回一个值。 
-一般执行的 sql语句本身只返回一个值，如：
-Select count(*) from tbstudent where ……
-Select sum(a) from tbstudeng where …..
-如果sql语句返回多列值。那么这个函数返回的值是第一列。
-如果sql语句返回多行值。那么这个函数返回的值是第一行。
-
-参数： 
-见参数传递说明。 
-返回： 返回的是String类型的值。
-________________________________________
-invokeSelectGetAValue(para0,para1,para2:String)
-public java.lang.String invokeSelectGetAValue(java.lang.String para0,
-                                              java.lang.String para1,
-                                              java.lang.String para2)
-执行查询，返回一个值。 
-一般执行的 sql语句本身只返回一个值，如：
-Select count(*) from tbstudent where ……
-Select sum(a) from tbstudeng where …..
-如果sql语句返回多列值。那么这个函数返回的值是第一列。
-如果sql语句返回多行值。那么这个函数返回的值是第一行。
-
-参数： 
-见参数传递说明。 
-返回： 返回的是String类型的值。
+}}}
 
 
-invokeUpdate()
+===invokeUpdate()===
+{{{
 public BOInstance invokeUpdate()
                         throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作。 
@@ -239,8 +210,10 @@ public BOInstance invokeUpdate()
  
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeUpdateForm()
+}}}
+
+===invokeUpdateForm()===
+{{{
 public BOInstance invokeUpdateForm()
                             throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作，修改的参数来自于ui界面
@@ -248,8 +221,10 @@ public BOInstance invokeUpdateForm()
  
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeUpdate(aMap:Map)
+}}}
+
+===invokeUpdate(aMap:Map)===
+{{{
 public BOInstance invokeUpdate(java.util.Map aMap)
                         throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作。 
@@ -267,8 +242,11 @@ public BOInstance invokeUpdate(BOInstance instance)
  
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeUpdate(para:String)
+}}}
+
+
+===invokeUpdate(para:String)===
+{{{
 public BOInstance invokeUpdate(java.lang.String para)
                         throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作。 一般只有一个参数。 
@@ -276,8 +254,11 @@ public BOInstance invokeUpdate(java.lang.String para)
 返回： 见函数返回说明。
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeUpdate(para0,para1:String)
+}}}
+
+
+===invokeUpdate(para0,para1:String)===
+{{{
 public BOInstance invokeUpdate(java.lang.String para0,
                                java.lang.String para1)
                         throws com.exedosoft.plat.ExedoException
@@ -287,8 +268,10 @@ public BOInstance invokeUpdate(java.lang.String para0,
 ： 
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeUpdate(paras:List)
+}}}
+
+===invokeUpdate(paras:List)===
+{{{
 public BOInstance invokeUpdate(java.util.List paras)
                         throws com.exedosoft.plat.ExedoException
 该服务可以执行新增、修改、删除等操作。 参数采用List 方式传入 
@@ -297,28 +280,33 @@ public BOInstance invokeUpdate(java.util.List paras)
 ： 
 抛出： 
 com.exedosoft.plat.ExedoException
-________________________________________
-invokeAll()
+}}}
+
+===invokeAll()===
+{{{
 public java.lang.String invokeAll()
 触发对应的服务，对应一个事务。
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-invokeAll(aBI:BOInstance)
+}}}
+
+===invokeAll(aBI:BOInstance)===
+{{{
 public java.lang.String invokeAll(BOInstance aBI)
 完整得执行这个Serivce,包括这个服务对应的规则，在事务控制下 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-invokeAllNoTransation(aBI:BOInstance)
+}}}
+
+===invokeAllNoTransation(aBI:BOInstance)===
+{{{
 public java.lang.String invokeAllNoTransation(BOInstance aBI)
 完整得执行这个Serivce,包括这个服务对应的规则，不在事务控制下 即使服务本身设置了事务控制也不执行事务控制。 如果需要事务控制，需要在方法的前后手动控制。
 参数： 见参数传递说明。
 返回： 见函数返回说明。
+}}}
 
-二，其它重点类说明
+=其它重点类说明=
 1，DOBO
  业务对象是平台最重要的概念，它是对业务实体的声明性抽象。业务对象有两种类型，一种是对数据库表的映射，一种是映射业务逻辑。
 
