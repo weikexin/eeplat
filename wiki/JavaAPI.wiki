@@ -433,8 +433,10 @@ getValue4Null(key：String, rep：String) 如果根据key返回的value为null�
 
 
 
-三，接口或抽象类说明 
-1，DOAccess
+=接口或抽象类说明 =
+
+==DOAccess==
+ {{{
 用途（一），多用于模型关联之间的显示控制，如一个表格元素是否在表格下面显示，具体：
 a)	控制表格元素是否显示。 配置于表格元素。
 b)	控制面板是否显示。配置于面板之间的关联。
@@ -445,42 +447,58 @@ c)	控制规则是否执行。配置于规则。
 a)	控制菜单是否显示。 配置于菜单。
 b)	控制面板是否显示。 配置于面板。
 c)	控制服务数据集的可见性。配置于服务。
+ }}}
 
 
-2，DOAction
+==DOAction==
+  {{{
 DOAction 在平台中称为自定义动作，是平台中的一个重要接口，应用于多处：
 a)	配置于DOService,作为服务扩展，这时服务的执行完全由自定义动作控制。
 b)	配置于DOParameter,作为参数扩展，这时参数的值为自定义动作的返回值。
 c)	由快速开发 JavaScript API调用，Javascript 端的返回值为自定义动作的返回值。
+  }}}
 
-
-3，DOAbstractAction
+==DOAbstractAction==
+  {{{
   DOAbstractAction是继承DOAction的抽象类，提供了几个帮助方法。
+  }}}
 
-5，DOIModel
+==DOIModel==
+
   平台所有UI模型的类都实现了DOIModel。DOIModel没有任何方法需要实现，是一个标示性接口。
-6，DOIView
-平台所有控制器都实现了DOIView。DOIView只有一个必须要实现的方法getHtmlCode(DOIModel doimodel)。 这个方法的目的是输出html片段。
-7，DOBaseForm
+
+==DOIView==
+
+  平台所有控制器都实现了DOIView。DOIView只有一个必须要实现的方法getHtmlCode(DOIModel doimodel)。 这个方法的目的是输出html片段。
+
+
+==DOBaseForm==
+
   DOBaseForm是继承DOIVew的抽象类，为实现表格元素的控制器提供了几个帮助方法。
 
+==DOBaseMenu==
 
-8，DOBaseMenu
   DOBasMenu 是继承DOIVew的抽象类，为实现菜单的控制器提供了几个帮助方法。
 
-9，DOBasePaneView
+==DOBasePaneView==
+
   DOBasePaneView是继承DOIVew的抽象类，为实现面板的控制器提供了几个帮助方法。
 
 
-10，SessionParter
+==SessionParter==
+  {{{
 SessionParter 主要指定系统要此采用的权限验证策略。在 globals.xml指定要使用的SessionParter实现。默认情况下为	com.exedosoft.plat.bo.org.DefaultSessionParter。
 可以更改其实现，如学而思系统采用的是com.exedosoft.plat.SessionParterXes。
-11，DOFormModelAOP
-对FormModel模型进行AOP控制。
-12，DOTemplate
-为面板提供FreeMaker模板支持。
-四，帮助类说明
-1，StringUtil
+  }}}
+
+==DOFormModelAOP==
+
+  对FormModel模型进行AOP控制。
+
+=帮助类说明=
+
+==StringUtil==
+ {{{
 主要是对String相关操作的类，还提供其它一些常见的帮助方法，是平台中使用最多的帮助类，具体方法列表：
 
 static void	copyDirectiory(java.lang.String file1, java.lang.String file2) 
@@ -563,14 +581,24 @@ static void	test_replace()
 static java.lang.String	transDot(java.lang.String beforStr) 
           把小数点形式转换为经纬度坐标
 static java.lang.String	unFilterXss(java.lang.String txt) 
+  }}}
            
-2，RunJs
-提供了服务器端执行javascript 的便捷方法。
-3，ZipUtil
-提供了对ZIP文件操作的方法。
-4，PinYin
-可以把汉字翻译成汉语拼音。
-5，DOMXmlUtil
-提供了使用DOM的简便方法。
-6，SimpleXMLUtil
-提供了方便读写XML文件的方法。
+==RunJs==
+
+  提供了服务器端执行javascript 的便捷方法。
+
+==ZipUtil==
+
+  提供了对ZIP文件操作的方法。
+
+==PinYin==
+
+  可以把汉字翻译成汉语拼音。
+
+==DOMXmlUtil==
+
+  提供了使用DOM的简便方法。
+
+==SimpleXMLUtil==
+
+  提供了方便读写XML文件的方法。  
