@@ -1,8 +1,0 @@
-#sidebar controller_index
-
-= Introduction =
-
-gdfgdfgfdg
-
-
-= Details =
