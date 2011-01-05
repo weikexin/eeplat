@@ -17,7 +17,7 @@
 
   UI及控制器的结构图：
 
-    <img  src="http://eeplat.googlecode.com/files/yiyi_ui_archive.png"/>
+    <img with="600px"  height="400px" src="http://eeplat.googlecode.com/files/yiyi_ui_archive.png"/>
 
     <img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
 
