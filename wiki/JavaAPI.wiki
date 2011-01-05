@@ -300,26 +300,42 @@ public java.lang.String invokeAllNoTransation(BOInstance aBI)
 }}}
 
 =其它重点类说明=
-1，DOBO
+
+==DOBO==
+
  业务对象是平台最重要的概念，它是对业务实体的声明性抽象。业务对象有两种类型，一种是对数据库表的映射，一种是映射业务逻辑。
 
-1，可以通过id或name获取业务对象：
-getDOBOByID(String)
-getDOBOByName(String)
-2，不要通过new 操作符获取业务对象。
-3，访问业务对象数据总线，可以通过下列方法获取总线存放的值。
+ ===可以通过id或name获取业务对象==
+ {{{
+  getDOBOByID(String)
+  getDOBOByName(String)
+
+  不要通过new 操作符获取业务对象。
+ }}}
+ 
+ === 访问业务对象数据总线，可以通过下列方法获取总线存放的值 ===
+  {{{
 	public BOInstance getCorrInstance() 
-4，可以通过下列方法 根据id获取数据库中的一条记录：
+  }}}
+
+ === 可以通过下列方法 根据id获取数据库中的一条记录 ==
+  {{{
 	public BOInstance getInstance(String uid) 
-5，可以通过下列方法 获取数据库中的全部记录
+  }}}
+
+ === 可以通过下列方法 获取数据库中的全部记录 ===
+  {{{
 	public List getResult() 
-6，可以通过下列方法执行业务对象下面定义的服务：
+   }}}
+ === 可以通过下列方法执行业务对象下面定义的服务 ===
+  {{{
 invokeListService(String)
 invokeListService(String, BOInstance)
 invokeListService(String, Map)
 invokeUpdateService(String)
 invokeUpdateService(String, BOInstance)
 invokeUpdateService(String, Map)
+  }}}
 
 	
 
