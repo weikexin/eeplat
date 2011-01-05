@@ -1,15 +1,15 @@
  * 面板控制器	
- 	* pane.LayOutLeft	
- 	* pane.LayOutHeader	
- 	* pane.LayOutSplitPane	
- 	* pane.MainPage
- 	* pane.Tab	
- 	* pane.LRSplitPane	
- 	* pane.LRSplitPaneChild	
- 	* pane.ToolbarScroll	
- 	* pane.Toolbar	
- 	* pane.ContentPaneScroll	
- 	* pane.ContentPane
+ 	* [pane_LayOutLeft pane.LayOutLeft]	
+ 	* [pane_LayOutHeader pane.LayOutHeader]
+ 	* [pane_LayOutSplitPane	 pane.LayOutSplitPane]
+ 	* [pane_MainPage pane_MainPage]
+ 	* [pane_Tab	pane.Tab]
+ 	* [pane_LRSplitPane pane.LRSplitPane]
+ 	* [pane_LRSplitPaneChild	pane.LRSplitPaneChild]
+ 	* [pane_ToolbarScroll	pane.ToolbarScroll]
+ 	* [pane_Toolbar	pane.Toolbar]
+ 	* [pane_ContentPaneScroll pane.ContentPaneScroll]		
+ 	* [pane_ContentPane pane.ContentPane]
  * 表格控制器	
  	* grid.GridSupportMore	
  	* grid.GridConditionAutotr	
