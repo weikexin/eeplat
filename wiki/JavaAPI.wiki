@@ -340,7 +340,8 @@ invokeUpdateService(String, Map)
 	
 
 
-2，BOInstance 
+==BOInstance==
+{{{
 一般对应于数据库里面的一条记录，在平台中是最基本的也是最常用的数据类型。
 
 1，	可以直接通过new 操作符实例化，如BOInstance anInstance = new BOInstance();
@@ -383,6 +384,8 @@ getValue4Null(key：String)  如果根据key返回的value为null，则返回”
 getValue4Null(key：String, rep：String) 如果根据key返回的value为null，则返回指定的rep。
 
 9，	支持深度克隆。
+}}}
+
 3，DOPaneModel 
 面板业务模型。面板是容器它可以包含面板、表格、功能树、插件等。	它可以通过name或id得到：
 
