@@ -82,7 +82,8 @@ List list = findPI.invokeSelect();
 
 == DOService调用说明 ==
 
-invokeSelect()
+===invokeSelect()===
+{{{
 public java.util.List invokeSelect()
 执行查询操作。
 1，	如果服务没有定义DOAction,那么查询操作执行的是该服务定义的sql语句，
@@ -91,8 +92,10 @@ public java.util.List invokeSelect()
 4，	如果两者都有定义，需要执行DOAciton，那么需要执行invokeAll方法,不是这个方法。
 参数： 见参数传递说明。
 返回： 见函数返回说明。
-________________________________________
-invokeSelect(paraNo:int,pageNum:int)
+}}}
+
+===invokeSelect(paraNo:int,pageNum:int)===
+{{{
 public java.util.List invokeSelect(int pageNo,
                                    int pageNum)
 分页形式查询返回一个List。
@@ -102,32 +105,37 @@ pageNo - 页码
 pageNum - 每页多少行 
 令见参数传递说明。
 返回： 见函数返回说明。
-________________________________________
+}}}
 
-invokeSelect(aMap:Map)
+===invokeSelect(aMap:Map)===
+{{{
 public java.util.List invokeSelect(java.util.Map aMap)
 执行查询操作。
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
- 
-________________________________________
-invokeSelect(para:String)
+}}} 
+
+===invokeSelect(para:String)===
+{{{
 public java.util.List invokeSelect(java.lang.String para)
 查询返回列表 一般该服务定义的只有一个参数 。
 参数： 见参数传递说明。
 返回： 见函数返回说明。
-________________________________________
-invokeSelect(para0,para1:String)
-public java.util.List invokeSelect(java.lang.String para0,                                   java.lang.String para1)
-查询返回列表 一般该服务定义的只有两个参数 。
+}}}
+
+===invokeSelect(para0,para1:String)===
+{{{
+public java.util.List invokeSelect(java.lang.String para0, ...)
+查询返回列表 String 类型的不定参数
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-invokeSelect(para0,para1,para2:String)
+}}}
+
+
+===invokeSelect(para0,para1,para2:String)===
+{{{
 public java.util.List invokeSelect(java.lang.String para0,
                                    java.lang.String para1,
                                    java.lang.String para2)
@@ -135,48 +143,37 @@ public java.util.List invokeSelect(java.lang.String para0,
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-invokeSelect(paras:List)
+}}}
+
+===invokeSelect(paras:List)===
+{{{
 public java.util.List invokeSelect(java.util.List paras)
 执行查询操作。
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-invokeSelect(instance:BOInstance)
+}}}
+
+
+===invokeSelect(instance:BOInstance)===
+{{{
 public java.util.List invokeSelect(BOInstance instance)
 查询返回列表 服务的参数由 BOInstnace 定义 
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
+}}}
 
-getInstance(para:String)
-public BOInstance getInstance(java.lang.String para)
+===getInstance(para:String)===
+{{{
+public BOInstance getInstance(java.lang.String para ...)
 获取一个BOInstance 实例。
 
 参数： 见参数传递说明。
 返回： 见函数返回说明。
- 
-________________________________________
-getInstance(para1,para2:String)
-public BOInstance getInstance(java.lang.String para1,
-                              java.lang.String para2)
-获取一个Instance 实例。
+}}}
 
-参数： 见参数传递说明。
-返回： 见函数返回说明。
- 
-________________________________________
-getInstance(para1,para2,para3:String)
-public BOInstance getInstance(java.lang.String para1,
-                              java.lang.String para2,
-                              java.lang.String paras3)
-获取一个Instance 实例。
 
-参数： 见参数传递说明。
-返回： 见函数返回说明。
 invokeSelectGetAValue()
 public java.lang.String invokeSelectGetAValue()
 
