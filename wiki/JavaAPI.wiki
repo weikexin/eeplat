@@ -386,8 +386,9 @@ getValue4Null(key：String, rep：String) 如果根据key返回的value为null�
 9，	支持深度克隆。
 }}}
 
-3，DOPaneModel 
-面板业务模型。面板是容器它可以包含面板、表格、功能树、插件等。	它可以通过name或id得到：
+==DOPaneModel ==
+ {{{ 
+ 面板业务模型。面板是容器它可以包含面板、表格、功能树、插件等。	它可以通过name或id得到：
 
 	public static DOPaneModel getPaneModelByID(String id) 
 
@@ -400,8 +401,10 @@ getValue4Null(key：String, rep：String) 如果根据key返回的value为null�
 2，public String getCorrHref(BOInstance contextInstance,
 			DOService contextService) 
    和上个方法职责相同，区别在于返回的URL不含有web module的前缀。
+  }}}
 
-4，DOGridModel
+==DOGridModel==
+  {{{
 表格业务模型。表格是数据显示的主要载体，是最常用搞得UI模型。它可以通过id或name得到:
 	public static DOGridModel getGridModelByID(String id) 
 
@@ -413,10 +416,19 @@ getValue4Null(key：String, rep：String) 如果根据key返回的value为null�
 4，	public List getRightOutGridFormLinks()获取表格包含的经过权限过滤的的右部位置的表格元素。
 5，	public List getTopOutGridFormLinks()获取表格包含的经过权限过滤的的上部位置的表格元素。
 6，	public Integer getRowSize() 获取在分页情况下每页显示的条数。当返回值==0时，则不分页。
+  }}}
 
+==DOFormModel==
+ {{{
+  表格元素业务模型，依附于表格存在，在平台中是粒度最小的UI单位。它可以通过id或者通过属性id得到：
 
-5，DOFormModel
-  表格元素业务模型，依附于表格存在，在平台中是粒度最小的UI单位。
+	public static DOFormModel getFormModelByProperty(String propertyUid) 
+	public static DOFormModel getFormModelByID(String formUid) 
+  常用方法：
+  1，public List getLinkForms() 获取连接的其它的表格元素
+  2，public String  getTargetForms()   获取可以处理的表格的范围
+ }}}
+
 
 
 
