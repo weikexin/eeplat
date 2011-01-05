@@ -1,3 +1,14 @@
+Java  API的 分为四部分介绍：1，DOService；  2,其它重点类； 3，接口或抽象类说明；4，帮助类。
+
+DOService 是快速开发 Java API的核心实现类，单独作说明；Javascript API也仅仅是服务端DOService 的客户端（BROWSE）简单实现。
+
+重点类主要提供了对服务、业务对象、面板、表格、表格元素等平台核心功能的操作能力。
+
+接口或抽象类主要为平台提供了扩展机制。
+
+帮助类提供了很多有用的方法，减少使用者的代码开发量。
+
+
 =  DOService =
 DOService是易元平台Java API最重要的一个类。DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
 
