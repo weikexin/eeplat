@@ -9,6 +9,16 @@
   UI及控制器的结构图：
     <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_ui_archive.png"/>
 
+   界面层模型主要包括：面板、表格、表格元素、功能树和菜单五类基本概念。
+ 
+ 相应的从概念分类分为：
+ #	面板控制器（pane）
+ #	表格控制器（grid）
+ #	表格元素控制器（form）
+ #	功能树控制器（tree）
+ #	菜单控制器（menu）
+
+
 
 === 从复用场景上分为通用控制器和项目控制器 ===
 
