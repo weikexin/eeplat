@@ -8,9 +8,9 @@
 
 控制器有以下几种实现方式：
       
-   # 通过脚本在线编写
-   # 实现com.exedosoft.plat.ui.DOIView接口，可以实现所有类型的控制器
-   # 实现com.exedosoft.plat.ui.DOIViewTemplate接口或继承com.exedosoft.plat.ui.DOViewTemplate抽象类，结合FreeMarker模板文件可以实现所有类型的控制器
+   # 通过脚本在线编写，采用在线的JavaScript脚本和freeMarker脚本开发控制器，此类控制器在线开发即时执行，无需编译，存储在系统模型数据库中，因而在在线开发方面具有很好的优越性；此类控制器从名称上最后一部分名字以TDB开始，如：pane.TDBPaneTemplate、grid.TDBGridTemplate等。
+   # 实现com.exedosoft.plat.ui.DOIView接口，可以实现所有类型的控制器，即控制器的实现为一个Java类，此类控制器的开发、扩展修改需要编译后才能被使用；
+   # 实现com.exedosoft.plat.ui.DOIViewTemplate接口或继承com.exedosoft.plat.ui.DOViewTemplate抽象类，结合FreeMarker模板文件可以实现所有类型的控制器，由于采用了模板，所以此类控制器的开发相对更加简洁
    # 
      * 实现com.exedosoft.plat.ui.jquery.form.DOBaseForm，实现表格元素类型的控制器
      * 实现com.exedosoft.plat.ui.jquery.menu.DOBaseMenu，实现菜单类型的控制器
