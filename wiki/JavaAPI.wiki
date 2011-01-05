@@ -76,7 +76,7 @@ List list = findPI.invokeSelect();
   DOService 的参数返回一般是BOInstance 或{{{ List<BOInstance> }}}。为了支持java 1.4 没有使用泛型，也就是说只要是返回的List，那么内容一定是BOInstance。BOInstance 的说明见下文（其它重点类说明:BOInstance）。 
 
  ===DOService调用注意事项===
-   执行invokeSelect 或 invokeSelectXXXX相关的方法时，服务的类型必须是查询类型（包括一般查询、自动条件查询、自定义查询等），服务配置的sql语句是对数据库的检索
+  执行invokeSelect 或 invokeSelectXXXX相关的方法时，服务的类型必须是查询类型（包括一般查询、自动条件查询、自定义查询等），服务配置的sql语句是对数据库的检索
 
   执行invokeUpdate 或 invokeUpdateXXXX相关的方法时，服务的类型必须是更改类型（包括增加、删除、修改、自动条件修改等），服务配置的sql语句是对数据库的更新。
 
