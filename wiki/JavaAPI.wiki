@@ -239,11 +239,11 @@ com.exedosoft.plat.ExedoException
 }}}
 
 
-===invokeUpdate(para:String)===
+===invokeUpdate(String... strings)===
 {{{
-public BOInstance invokeUpdate(java.lang.String para)
+public BOInstance invokeUpdate(String... strings)
                         throws com.exedosoft.plat.ExedoException
-该服务可以执行新增、修改、删除等操作。 一般只有一个参数。 
+该服务可以执行新增、修改、删除等操作。 String类型不定的参数。
 参数： 见参数传递说明。
 返回： 见函数返回说明。
 抛出： 
@@ -251,18 +251,6 @@ com.exedosoft.plat.ExedoException
 }}}
 
 
-===invokeUpdate(para0,para1:String)===
-{{{
-public BOInstance invokeUpdate(java.lang.String para0,
-                               java.lang.String para1)
-                        throws com.exedosoft.plat.ExedoException
-该服务可以执行新增、修改、删除等操作。 一般只有两个参数。 
-参数： 见参数传递说明。
-返回： 见函数返回说明。
-： 
-抛出： 
-com.exedosoft.plat.ExedoException
-}}}
 
 ===invokeUpdate(paras:List)===
 {{{
