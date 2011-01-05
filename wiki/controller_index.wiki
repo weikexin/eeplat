@@ -2,7 +2,7 @@
  	* [pane_LayOutLeft pane.LayOutLeft]	
  	* [pane_LayOutHeader pane.LayOutHeader]
  	* [pane_LayOutSplitPane	 pane.LayOutSplitPane]
- 	* [pane_MainPage pane_MainPage]
+ 	* [pane_MainPage pane.MainPage]
  	* [pane_Tab	pane.Tab]
  	* [pane_LRSplitPane pane.LRSplitPane]
  	* [pane_LRSplitPaneChild	pane.LRSplitPaneChild]
@@ -11,13 +11,13 @@
  	* [pane_ContentPaneScroll pane.ContentPaneScroll]		
  	* [pane_ContentPane pane.ContentPane]
  * 表格控制器	
- 	* grid.GridSupportMore	
- 	* grid.GridConditionAutotr	
- 	* grid.GridCondition	
- 	* grid.GridList	
- 	* grid.TreeGridList	
- 	* grid.OutGridExcelSelected	
- 	* grid.OutGridExcel	
+ 	* [grid_GridSupportMore	grid.GridSupportMore]
+ 	* [grid_GridConditionAutotr grid.GridConditionAutotr]
+ 	* [grid_GridCondition	grid.GridCondition]	
+ 	* [grid_GridList	grid.GridList]
+ 	* [grid_TreeGridList	grid.TreeGridList]	
+ 	* [grid_OutGridExcelSelected	grid.OutGridExcelSelected]	
+ 	* [grid_OutGridExcel	grid.OutGridExcel]
  * 表格元素控制器	
  	* 常用按钮
  	* 日期相关	
@@ -29,8 +29,8 @@
  	* 显示相关	
  	* 其他	
  * 菜单控制器	
- 	* menu.JqueryMenuXP
- 	* menu.DOWebFxTree 
+ 	* [menu_JqueryMenuXP menu.JqueryMenuXP]
+ 	* [menu_DOWebFxTree menu.DOWebFxTree ]
  * 树控制器
-        * tree.JquerySimpleTree
+        * [tree_JquerySimpleTree tree.JquerySimpleTree]
 		
