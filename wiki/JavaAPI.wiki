@@ -34,7 +34,7 @@ DOService 的主要方法invokeSelect，invokeSelectGetAValue，invokeUpdate，i
 
   === 间接传递 ===
   
-先为DOService 传递参数，然后调用不带参数的方法。 有两种方式：
+  先为DOService 传递参数，然后调用不带参数的方法。 有两种方式：
 
   通过List 间接传递
 
@@ -64,7 +64,7 @@ findPI.addTempParaMap(paras);
 List list = findPI.invokeSelect();
  }}}
 
-以上三种写法都是等效的。
+  以上三种写法都是等效的。
 
 
  === 注意事项 ===
