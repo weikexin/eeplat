@@ -44,14 +44,69 @@
 			* form.DOSelectInvokeWithSubmit            
 			* form.DODownLoadExcel                    
 			* form.DODownLoadCommon                    
- 	* 日期相关	
+ 	* 日期相关
+			* form.DOValueDate
+			* form.DOValueDateTime
+			* form.my97.DatePicker
+			* form.my97.DatePickerTomorrow
+			* form.my97.DatePickerBetween	
  	* 录入相关	
+			* form.DOInputTextBetween
+			* form.DOInputCheckBox
+			* form.DOInputFile
+			* form.DOInputHidden
+			* form.DOInputText
+			* form.DOTextArea
+			* form.InputMutiCheckBox
+			* pane.TDBEditArea
+			* form.DOInputRadio
+			* form.TUploadify
+			* form.DOFCKEditor
+			* form.DOInputPassword
+			* form.DOInputFileHDAndReset
+			* form.DOInputTextBetweenOnlyInteger
+			* form.DOInputTextOnlyInteger
+			* form.DOInputCheckBoxList
+			* form.DOInputFileHD
  	* 下拉列表相关	
- 	* 链接面板相关	
- 	* 服务相关
+			* form.DOValueResultListService
+			* form.DOStaticListNoEmpty
+			* form.DOStaticList
+			* form.DOValueDynaRList
+			* form.DOValueMultData
+			* form.DOValueResultList
+			* form.DOValueStaticList
+			* form.DOValueResultListPlain
+			* form.DODynStaticList
+			* form.DOValueStaticListHidden
+			* form.DOStaticListInputConfigFromValue
+			* form.DOResultListPopupReadOnly
+			* form.DOResultListPopupNoSplitPageNoDefault
+			* form.DOResultListPopup
+			* form.DOResultListPopupNoSplitPage
+			* form.DOSelectTree
+			* form.DOStaticListPopup
+			* form.DOResultList
  	* 组合	
+			* form.SuiteRight
+			* form.TSuite
  	* 显示相关	
- 	* 其他	
+			* form.DOValueFileMult
+			* form.DOValueHtmlXss
+			* form.DOValueImage
+			* form.DOValueLink
+			* form.DOValueSimple
+			* form.DOValueStaticText
+			* form.DOValueScriptPlain
+			* form.DOValueSimplePlain
+			* form.DOValueLong
+			* form.DOValueCatalog
+			* form.DOValueInputHidden
+			* form.DOValueSimpleNew
+			* form.DOValueInputFileHD
+			* form.DOValueTextArea
+			* form.DOLabel
+			* form.DOValueSimpleLoginMan
  * 菜单控制器	
  	* [menu_JqueryMenuXP menu.JqueryMenuXP]
  	* [menu_DOWebFxTree menu.DOWebFxTree ]
