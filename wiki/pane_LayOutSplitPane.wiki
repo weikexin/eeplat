@@ -2,11 +2,11 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayoutLeft
+com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
 
 ==适用场景==
 
-该控制器只用于界面左边索引面板
+该控制器只用于界面布局中下部主面板
 
 ==说明==
 
