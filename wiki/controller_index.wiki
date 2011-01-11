@@ -45,68 +45,68 @@
 			* [form_DODownLoadExcel              form_DODownLoadExcel             ]     
 			* [form_DODownLoadCommon             form_DODownLoadCommon            ]          
  	* 日期相关
-			* form.DOValueDate
-			* form.DOValueDateTime
-			* form.my97.DatePicker
-			* form.my97.DatePickerTomorrow
-			* form.my97.DatePickerBetween	
+			* [form_DOValueDate             form_DOValueDate             ]
+			* [form_DOValueDateTime         form_DOValueDateTime         ]
+			* [form_my97_DatePicker         form_my97_DatePicker         ]
+			* [form_my97_DatePickerTomorrow form_my97_DatePickerTomorrow ]
+			* [form_my97_DatePickerBetween	 form_my97_DatePickerBetween	] 
  	* 录入相关	
-			* form.DOInputTextBetween
-			* form.DOInputCheckBox
-			* form.DOInputFile
-			* form.DOInputHidden
-			* form.DOInputText
-			* form.DOTextArea
-			* form.InputMutiCheckBox
-			* pane.TDBEditArea
-			* form.DOInputRadio
-			* form.TUploadify
-			* form.DOFCKEditor
-			* form.DOInputPassword
-			* form.DOInputFileHDAndReset
-			* form.DOInputTextBetweenOnlyInteger
-			* form.DOInputTextOnlyInteger
-			* form.DOInputCheckBoxList
-			* form.DOInputFileHD
+			* [form_DOInputTextBetween           form_DOInputTextBetween           ]
+			* [form_DOInputCheckBox              form_DOInputCheckBox              ]
+			* [form_DOInputFile                  form_DOInputFile                  ]
+			* [form_DOInputHidden                form_DOInputHidden                ]
+			* [form_DOInputText                  form_DOInputText                  ]
+			* [form_DOTextArea                   form_DOTextArea                   ]
+			* [form_InputMutiCheckBox            form_InputMutiCheckBox            ]
+			* [pane_TDBEditArea                  pane_TDBEditArea                  ]
+			* [form_DOInputRadio                 form_DOInputRadio                 ]
+			* [form_TUploadify                   form_TUploadify                   ]
+			* [form_DOFCKEditor                  form_DOFCKEditor                  ]
+			* [form_DOInputPassword              form_DOInputPassword              ]
+			* [form_DOInputFileHDAndReset        form_DOInputFileHDAndReset        ]
+			* [form_DOInputTextBetweenOnlyInteger form_DOInputTextBetweenOnlyInteger]
+			* [form_DOInputTextOnlyInteger       form_DOInputTextOnlyInteger       ]
+			* [form_DOInputCheckBoxList          form_DOInputCheckBoxList          ]
+			* [form_DOInputFileHD                form_DOInputFileHD                ]
  	* 下拉列表相关	
-			* form.DOValueResultListService
-			* form.DOStaticListNoEmpty
-			* form.DOStaticList
-			* form.DOValueDynaRList
-			* form.DOValueMultData
-			* form.DOValueResultList
-			* form.DOValueStaticList
-			* form.DOValueResultListPlain
-			* form.DODynStaticList
-			* form.DOValueStaticListHidden
-			* form.DOStaticListInputConfigFromValue
-			* form.DOResultListPopupReadOnly
-			* form.DOResultListPopupNoSplitPageNoDefault
-			* form.DOResultListPopup
-			* form.DOResultListPopupNoSplitPage
-			* form.DOSelectTree
-			* form.DOStaticListPopup
-			* form.DOResultList
+			* [form_DOValueResultListService               form_DOValueResultListService             ]
+			* [form_DOStaticListNoEmpty                    form_DOStaticListNoEmpty                  ]
+			* [form_DOStaticList                           form_DOStaticList                         ]
+			* [form_DOValueDynaRList                       form_DOValueDynaRList                     ]
+			* [form_DOValueMultData                        form_DOValueMultData                      ]
+			* [form_DOValueResultList                      form_DOValueResultList                    ]
+			* [form_DOValueStaticList                      form_DOValueStaticList                    ]
+			* [form_DOValueResultListPlain                 form_DOValueResultListPlain               ]
+			* [form_DODynStaticList                        form_DODynStaticList                      ]
+			* [form_DOValueStaticListHidden                form_DOValueStaticListHidden              ]
+			* [form_DOStaticListInputConfigFromValue       form_DOStaticListInputConfigFromValue     ]
+			* [form_DOResultListPopupReadOnly              form_DOResultListPopupReadOnly            ]
+			* [form_DOResultListPopupNoSplitPageNoDefault  form_DOResultListPopupNoSplitPageNoDefault]
+			* [form_DOResultListPopup                      form_DOResultListPopup                    ]
+			* [form_DOResultListPopupNoSplitPage           form_DOResultListPopupNoSplitPage         ]
+			* [form_DOSelectTree                           form_DOSelectTree                         ]
+			* [form_DOStaticListPopup                      form_DOStaticListPopup                    ]
+			* [form_DOResultList                           form_DOResultList                         ]
  	* 组合	
-			* form.SuiteRight
-			* form.TSuite
+			* [form_SuiteRight form_SuiteRight 
+			* [form_TSuite     form_TSuite     
  	* 显示相关	
-			* form.DOValueFileMult
-			* form.DOValueHtmlXss
-			* form.DOValueImage
-			* form.DOValueLink
-			* form.DOValueSimple
-			* form.DOValueStaticText
-			* form.DOValueScriptPlain
-			* form.DOValueSimplePlain
-			* form.DOValueLong
-			* form.DOValueCatalog
-			* form.DOValueInputHidden
-			* form.DOValueSimpleNew
-			* form.DOValueInputFileHD
-			* form.DOValueTextArea
-			* form.DOLabel
-			* form.DOValueSimpleLoginMan
+			* [form_DOValueFileMult            form_DOValueFileMult       ]
+			* [form_DOValueHtmlXss             form_DOValueHtmlXss        ]
+			* [form_DOValueImage               form_DOValueImage          ]
+			* [form_DOValueLink                form_DOValueLink           ]
+			* [form_DOValueSimple              form_DOValueSimple         ]
+			* [form_DOValueStaticText          form_DOValueStaticText     ]
+			* [form_DOValueScriptPlain         form_DOValueScriptPlain    ]
+			* [form_DOValueSimplePlain         form_DOValueSimplePlain    ]
+			* [form_DOValueLong                form_DOValueLong           ]
+			* [form_DOValueCatalog             form_DOValueCatalog        ]
+			* [form_DOValueInputHidden         form_DOValueInputHidden    ]
+			* [form_DOValueSimpleNew           form_DOValueSimpleNew      ]
+			* [form_DOValueInputFileHD         form_DOValueInputFileHD    ]
+			* [form_DOValueTextArea            form_DOValueTextArea       ]
+			* [form_DOLabel                    form_DOLabel               ]
+			* [form_DOValueSimpleLoginMan      form_DOValueSimpleLoginMan ]
  * 菜单控制器	
  	* [menu_JqueryMenuXP menu.JqueryMenuXP]
  	* [menu_DOWebFxTree menu.DOWebFxTree ]
