@@ -4,13 +4,15 @@
 
 com.exedosoft.plat.ui.jquery.pane.LayoutLeft
 
-==说明==
-
-界面左索引面板。
-
-
 ==适用场景==
 
 该控制器只用于界面左边索引面板
 
+==说明==
+
+该控制器为特殊控制器，用于缺省的界面布局。
+
 ==运行示例==
+
+
+<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
