@@ -1,9 +1,8 @@
 #sidebar controller_index
 
-==名称==
-com.exedosoft.plat.ui.jquery.pane.LayoutLeft
+==英文名称==
 
-==中文名==
+com.exedosoft.plat.ui.jquery.pane.LayoutLeft
 
 ==说明==
 
@@ -15,4 +14,3 @@ com.exedosoft.plat.ui.jquery.pane.LayoutLeft
 该控制器只用于界面左边索引面板
 
 ==运行示例==
-
