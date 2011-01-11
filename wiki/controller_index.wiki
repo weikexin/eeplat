@@ -88,8 +88,8 @@
 			* [form_DOStaticListPopup                      form.DOStaticListPopup                    ]
 			* [form_DOResultList                           form.DOResultList                         ]
  	* 组合	
-			* [form_SuiteRight form_SuiteRight 
-			* [form_TSuite     form_TSuite     
+			* [form_SuiteRight form.SuiteRight] 
+			* [form_TSuite     form.TSuite   ]  
  	* 显示相关	
 			* [form_DOValueFileMult            form.DOValueFileMult       ]
 			* [form_DOValueHtmlXss             form.DOValueHtmlXss        ]
