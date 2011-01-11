@@ -1,0 +1,16 @@
+#sidebar controller_index
+
+==英文名称==
+
+com.exedosoft.plat.ui.jquery.pane.LayoutLeft
+
+==说明==
+
+界面左索引面板。
+
+
+==适用场景==
+
+该控制器只用于界面左边索引面板
+
+==运行示例==
