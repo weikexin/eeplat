@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+该控制器只用于界面布局下部左右分割主面板
 
 ==说明==
 
