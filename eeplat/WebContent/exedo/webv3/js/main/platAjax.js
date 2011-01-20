@@ -159,6 +159,8 @@ function callService(p){
 			p.btn.disabled = true;
 		}
 	}	
+	
+
     if(p.serviceUid==null && p.serviceName==null){
     	if(p.btn){
     		if(p.btn.nodeName=='A'){
@@ -169,6 +171,8 @@ function callService(p){
     	}	
     	return;
     }
+
+
 	//表单验证
 	if(!validate(p.formName)){
 		if(p.btn){
@@ -180,6 +184,9 @@ function callService(p){
 		}	
 		return;
 	}
+	
+
+
 
 	
 	///支持pml的两种形式 
@@ -200,10 +207,13 @@ function callService(p){
     	}
 		return;
 	}
+	
+
 
 	//初始化FckEditor值 
 	updateEditorFormValue();
 	//只要设置了formName，就从表单中获取
+	
 	
 	
 	var paras = "";
@@ -226,7 +236,7 @@ function callService(p){
 	}else{
 		callServStr = "contextServiceName="+ p.serviceName;
 	}
-	
+
 	paras = callServStr + "&callType=" + callType  + "&" + urlCodeDeal(paras);
 	
 	
@@ -447,9 +457,14 @@ function loadPml(p){
 						title = p.title;
 					}
 					if(p.target=='_opener_tab'){
-						createNewTab(pmlName,title,p.pml + "&" +  urlCodeDeal(paras));
+						var thisPml = p.pml;
+						if(urlCodeDeal(paras)!=""){
+							thisPml = p.pml + "&" +  urlCodeDeal(paras);
+						}
+						
+						createNewTab(pmlName,title,thisPml);
 					}else{
-						popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
+						popupDialog(pmlName,title,thisPml,p.pmlWidth,p.pmlHeight);
 					}	
 				}
 			}else{
@@ -490,9 +505,13 @@ function  getParasOfForms(targetForms){
 
 function updateEditorFormValue()
 {
+	 try {
                 for ( i = 0; i < parent.frames.length; ++i )
                         if ( parent.frames[i].FCK )
                                 parent.frames[i].FCK.UpdateLinkedField();
+	 }catch(e){
+		 
+	 }          
 }
 
 
