@@ -8,8 +8,8 @@
  	* [pane_LRSplitPaneChild	pane.LRSplitPaneChild]
  	* [pane_Toolbar	pane.Toolbar]
  	* [pane_ToolbarScroll	pane.ToolbarScroll]
- 	* [pane_ContentPaneScroll pane.ContentPaneScroll]		
  	* [pane_ContentPane pane.ContentPane]
+ 	* [pane_ContentPaneScroll pane.ContentPaneScroll]		
  * 表格控制器	
  	* [grid_GridSupportMore	grid.GridSupportMore]
  	* [grid_GridConditionAutotr grid.GridConditionAutotr]
