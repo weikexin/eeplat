@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.pane.Toolbar
 
 ==适用场景==
 
-该控制器适用于工具条情况。
+该控制器适用于工具条情况，整个页面没有滚动条。
 
 ==说明==
 
