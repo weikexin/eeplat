@@ -2,7 +2,7 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.Toolbar
+com.exedosoft.plat.ui.jquery.pane.ToolbarScroll
 
 ==适用场景==
 
