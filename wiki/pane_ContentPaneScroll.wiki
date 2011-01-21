@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.pane.ContentPaneScroll
 
 ==说明==
 
- 通用控制器。 
+ 通用控制器。 ContentPane控制器带滚动条的形式。
 
 ==运行示例==
 
