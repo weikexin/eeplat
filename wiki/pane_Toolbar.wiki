@@ -2,15 +2,19 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.pane.Toolbar
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+该控制器适用于工具条情况。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+工具条有两种方式：
+
+# 本控制器pane_Toolbar，定义面板的时候连接的内容是空，控制器选pane_Toolbar ，并且要 定义子面板，子面板的标题为工具条每个button显示的名称。这种方式的工具条只能连接面板，不能连接服务。
+# 菜单控制器
+
 
 ==运行示例==
 
