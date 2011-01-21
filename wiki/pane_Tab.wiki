@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.pane.Tab
 
 ==适用场景==
 
-以标签页的形式显示内容
+以标签页的形式显示内容。
 
 ==说明==
 
