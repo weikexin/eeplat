@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.pane.LRSplitPaneChild
 
 ==适用场景==
 
- 该控制器只用于LRSplitPane控制器的子面板。
+该控制器只用于LRSplitPane控制器的子面板。
 
 
 ==运行示例==
