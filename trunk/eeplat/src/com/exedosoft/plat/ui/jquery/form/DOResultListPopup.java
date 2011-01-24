@@ -24,8 +24,13 @@ public class DOResultListPopup extends DOBaseForm {
 		return getPopupForm(property);
 	}
 
+	protected int max_pagesize = 15;
+	
+	
+	protected boolean default_data = true;
+
 	/**
-	 * »ñÈ¡¶¯Ì¬ÁĞ±íĞÎÊ½µÄSelect Form
+	 * è·å–åŠ¨æ€åˆ—è¡¨å½¢å¼çš„Select Form
 	 * 
 	 * @param property
 	 *            TODO
@@ -34,24 +39,8 @@ public class DOResultListPopup extends DOBaseForm {
 	 */
 	String getPopupForm(DOFormModel fm) {
 
-		if (fm.getLinkService() == null) {
-			return "&nbsp;";
-		}
-		StringBuffer buffer = new StringBuffer();
-
-		String theValue = fm.getValue();
-
-		// / System.out.println("The Value:::" + theValue);
-
-		if (theValue == null && fm.getData() != null
-				&& fm.getRelationProperty() != null) {
-			theValue = fm.getData().getValue(
-					fm.getRelationProperty().getColName());
-
-		}
-
 		/**
-		 * ¿É±ä¶¯Ì¬ÏÂÀ­ÁĞ±í£¬ ¸ù¾İÁ¬½ÓµÄFORMMODEL£¬Ò»°ã¾²Ì¬staticlist È·¶¨Ê¹ÓÃµÄ·şÎñ
+		 * å¯å˜åŠ¨æ€ä¸‹æ‹‰åˆ—è¡¨ï¼Œ æ ¹æ®è¿æ¥çš„FORMMODELï¼Œä¸€èˆ¬é™æ€staticlist ç¡®å®šä½¿ç”¨çš„æœåŠ¡
 		 */
 		boolean isDyn = false;
 
@@ -60,7 +49,26 @@ public class DOResultListPopup extends DOBaseForm {
 			isDyn = true;
 		}
 
+		if (fm.getLinkService() == null && !isDyn) {
+			return "&nbsp;";
+		}
+
+		StringBuffer buffer = new StringBuffer();
+
+		String theValue = fm.getValue();
+
 		BOInstance data = null;
+
+		// if(fm.getL10n().equals("è¿æ¥å†…å®¹")){
+		//			
+		// System.out.println("isDyn:::::::::::" + isDyn );
+		// System.out.println("è¿æ¥å†…å®¹:::::::::::" + fm.getLinkForms() );
+		// System.out.println("fm.getInputConfig():::::::::::" +
+		// fm.getInputConfig() );
+		//	
+		//			
+		//			
+		// }
 
 		if (theValue != null && !"".equals(theValue.trim())) {
 
@@ -71,7 +79,7 @@ public class DOResultListPopup extends DOBaseForm {
 			}
 
 			/**
-			 * ¿É±ä¶¯Ì¬ÏÂÀ­ÁĞ±í£¬ ¸ù¾İÁ¬½ÓµÄFORMMODEL£¬Ò»°ã¾²Ì¬staticlist È·¶¨Ê¹ÓÃµÄ·şÎñ
+			 * å¯å˜åŠ¨æ€ä¸‹æ‹‰åˆ—è¡¨ï¼Œ æ ¹æ®è¿æ¥çš„FORMMODELï¼Œä¸€èˆ¬é™æ€staticlist ç¡®å®šä½¿ç”¨çš„æœåŠ¡
 			 */
 			if (isDyn) {
 				DOFormModel linkFm = (DOFormModel) fm.getLinkForms().get(0);
@@ -92,21 +100,29 @@ public class DOResultListPopup extends DOBaseForm {
 							if (theCorrService != null) {
 								corrBO = theCorrService.getBo();
 							}
+							break;
 						}
 					}
 				}
-
+				data = DOValueResultList.getAInstance(null, corrBO, theValue);
+			} else {
+				data = DOValueResultList.getAInstance(fm, corrBO, theValue);
 			}
 
-			data = DOValueResultList.getAInstance(fm, corrBO, theValue);
 		}
-
-		buffer.append("	<input class='resultlistpopup' type='hidden'   name='")
+		
+		if(default_data && data==null && fm.getLinkService()!=null){
+			data = fm.getLinkService().getBo().getCorrInstance();
+			if(data!=null){
+				theValue = data.getUid();
+			}
+		}
+		
+		
+		buffer.append("	<input type='hidden' class='resultlistpopup'  name='")
 				.append(fm.getColName()).append("' id='").append(
 						fm.getFullColID()).append("' serviceName='").append(
 						fm.getLinkService().getName()).append("' ");
-		appendHtmlJs(buffer, fm);
-
 		if (theValue != null) {
 
 			buffer.append(" value='").append(theValue).append("'");
@@ -116,10 +132,8 @@ public class DOResultListPopup extends DOBaseForm {
 		buffer.append("/>");
 
 		buffer
-				.append("<input  type='text' style='border:#B3B3B3 1px solid;margin-top:1px'  onchange=\"if(this.value==''){this.previousSibling.value=''};");
-
-		buffer
-				.append("\"")
+				.append(
+						"<input  type='text' size='25' style='border:#B3B3B3 1px solid;margin-top:1px'  onchange=\"if(this.value==''){this.previousSibling.value='';}\"'")
 				.append(
 						" onclick=\"this.style.borderColor='#406B9B'\" onmouseover=\"this.style.borderColor='#99E300'\" onmouseout=\"this.style.borderColor='#A1BCA3'\" name='")
 				.append(fm.getFullColID()).append("_show' id='").append(
@@ -130,6 +144,10 @@ public class DOResultListPopup extends DOBaseForm {
 		if (data != null) {
 			buffer.append(" value='").append(data.getName()).append("'");
 		}
+		// else{
+		// buffer.append(" value='").append(fm.getL10n())
+		// .append("'");
+		// }
 
 		if (data != null) {
 			buffer.append(" title='").append(data.getName()).append("'");
@@ -142,34 +160,31 @@ public class DOResultListPopup extends DOBaseForm {
 
 		}
 
-		buffer.append(" size=\"").append(getInputSize(fm));
-		
+		buffer.append(" size='").append(getInputSize(fm)).append("' ");
+
 		/**
-		 * ¿É±ä¶¯Ì¬ÏÂÀ­ÁĞ±í£¬ ¸ù¾İÁ¬½ÓµÄFORMMODEL£¬Ò»°ã¾²Ì¬staticlist È·¶¨Ê¹ÓÃµÄ·şÎñ
+		 * å¯å˜åŠ¨æ€ä¸‹æ‹‰åˆ—è¡¨ï¼Œ æ ¹æ®è¿æ¥çš„FORMMODELï¼Œä¸€èˆ¬é™æ€staticlist ç¡®å®šä½¿ç”¨çš„æœåŠ¡
 		 */
 		if (isDyn) {
 
 			DOFormModel linkFm = (DOFormModel) fm.getLinkForms().get(0);
-			buffer.append("linkformid=").append(linkFm.getFullColID()).append(
-					" inputconfig='").append(fm.getInputConfig()).append("' ");
+			buffer.append("linkformid='").append(linkFm.getFullColID()).append(
+					"' inputconfig='").append(fm.getInputConfig()).append("' ");
 		}
-		
-		buffer.append("\"/>");
 
-
+		buffer.append("/>");
 		buffer
 				.append(
 						"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-21px;' onclick=\"invokePopup(this")
 				.append(",'").append(fm.getTargetForms()).append("','");
-		buffer.append(fm.getLinkService().getBo().getValueCol()).append(
-				"',1,15");
+		buffer.append(fm.getLinkService().getBo().getValueCol()).append("',1,")
+				.append(max_pagesize);
 
 		if (fm.getInputConstraint() != null) {
 			buffer.append(",'").append(fm.getInputConstraint()).append("'");
 		}
 		buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER).append(
 				"images/darraw.gif' align=absMiddle ");
-
 
 		buffer.append("/>");
 
@@ -193,6 +208,7 @@ public class DOResultListPopup extends DOBaseForm {
 
 		}
 		return buffer.toString();
+
 	}
 
 }

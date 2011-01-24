@@ -7,7 +7,7 @@ import com.exedosoft.plat.agent.CommandServlet;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 import com.exedosoft.plat.agent.message.MessageIn;
 /**
- * CommandServlet“IãÈ??B
+ * CommandServletæ‘éŠ¥å¾£??ä¸…
  * 
  * @author Administrator
  * 
@@ -20,19 +20,19 @@ public class SimpleCommandServlet implements CommandServlet {
 
 	public SimpleCommandServlet() {
 		
-		System.out.println("ãÈCommandServlet³İ??......");
-		Init();// ‰n‰»
-		Listen();// ?™ß
+		System.out.println("éŠ¥å¾£CommandServletæƒ“åµ¼??......");
+		Init();// å¼¶å·’å£”
+		Listen();// ?æ¬‰
 	}
 
 	public void Init() {
 		try {
 			
 			ss = new ServerSocket(HumletGlobals.getPort(), HumletGlobals.getCmdSvrBlockMax());
-			System.out.println("ãÈCommandServlet‰n‰»Š®¬......");
+			System.out.println("éŠ¥å¾£CommandServletå¼¶å·’å£”å§°æƒ‰......");
 
 		} catch (IOException ie) {
-			System.out.println("Ù–@İ’[ŒûF"+ HumletGlobals.getPort() + "@?™ß");
+			System.out.println("æ¾·æœ„åµ¼æŠ‚å²¥ä¸—"+ HumletGlobals.getPort() + "ä¸‚?æ¬‰");
 			ie.printStackTrace();
 		}
 	}
@@ -41,7 +41,7 @@ public class SimpleCommandServlet implements CommandServlet {
 		try {
 			
 			while (listening){
-				System.out.println("ãÈCommandServlet³İ?™ß......");
+				System.out.println("éŠ¥å¾£CommandServletæƒ“åµ¼?æ¬‰......");
 				new Thread(new MessageIn(ss.accept())).start();
 			}
 		} catch (IOException ie) {

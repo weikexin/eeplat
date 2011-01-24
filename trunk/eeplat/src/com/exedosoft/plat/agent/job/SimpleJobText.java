@@ -23,7 +23,7 @@ public class SimpleJobText implements Job {
 
 	public SimpleJobText(Socket ss) {
 		
-		System.out.println("Úó?‹@C³??ˆê˜¢JOB!");
+		System.out.println("æ„™åº´?åª®å²ªä¸†æƒ“??å ¦æ§©JOB!");
 		s = ss;
 		b = new byte[1024];
 		try {
@@ -36,7 +36,7 @@ public class SimpleJobText implements Job {
 
 	public void run() {
 		
-		System.out.println("Job³İ?—”˜........................");
+		System.out.println("Jobæƒ“åµ¼?æ£Ÿæ‚¢æ‚©........................");
 
 		String temp;
 		try {
@@ -44,16 +44,16 @@ public class SimpleJobText implements Job {
 				if ((len = in.read(b)) != -1) {
 					temp = new String(b, 0, len);
 					rev += temp;
-					System.out.println("JOB“¾““I”˜:" + rev);
+					System.out.println("JOBæ‘¼æ‘“æ‘æ‚¢æ‚©:" + rev);
 					temp = null;
 					Thread.sleep(1000);
 				}
 			}
 			in.close();
 			s.close();
-			System.out.println("‰ï?socket›ß’f?I");
+			System.out.println("å¤›?socketæ¶æŠ?ä¸¡");
 		} catch (SocketException se) {
-			System.out.println("‹q?’[›ß’f?I");
+			System.out.println("åª?æŠ‚æ¶æŠ?ä¸¡");
 			System.exit(0);
 		} catch (IOException io) {
 			io.printStackTrace();

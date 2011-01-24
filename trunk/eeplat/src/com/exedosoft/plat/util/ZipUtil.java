@@ -31,7 +31,7 @@ import com.exedosoft.plat.ui.DODownLoadFile;
 import com.exedosoft.plat.util.id.UUIDHex;
 
 /**
- * Èç¹ûÒªÓÃstatic ¹Ø¼ü×ÖÒ»¶¨Òª¿¼ÂÇºÃÏßÍ¬²½ÎÊÌâ
+ * å¦‚æœè¦ç”¨static å…³é”®å­—ä¸€å®šè¦è€ƒè™‘å¥½çº¿åŒæ­¥é—®é¢˜
  * 
  * @author anolesoft
  * 
@@ -54,7 +54,7 @@ public class ZipUtil {
 	// }
 
 	/**
-	 * ÊÇ²»ÊÇÍ¬Ê±¶ÁÈ¡Ò»¸öÎÄ¼şµÄÊ±ºò³ö´íÄØ ·½·¨ÄÚµÄ±äÁ¿Ó¦¸Ã¶¼ÊÇÏß³Ì°²È«µÄ Ã¿¸öÏß³ÌµÄÖ´ĞĞ¶¼ÓĞ×Ô¼º¶ÀÁ¢µÄ¶ÑÕ»
+	 * æ˜¯ä¸æ˜¯åŒæ—¶è¯»å–ä¸€ä¸ªæ–‡ä»¶çš„æ—¶å€™å‡ºé”™å‘¢ æ–¹æ³•å†…çš„å˜é‡åº”è¯¥éƒ½æ˜¯çº¿ç¨‹å®‰å…¨çš„ æ¯ä¸ªçº¿ç¨‹çš„æ‰§è¡Œéƒ½æœ‰è‡ªå·±ç‹¬ç«‹çš„å †æ ˆ
 	 */
 	// public synchronized static InputStream getIsFromzipFile(ZipFile aZipFile,
 	// String fileName) throws IOException {
@@ -66,7 +66,7 @@ public class ZipUtil {
 	// }
 	// }
 	//		
-	// log.error("Î´ÔÚZIPÑ¹Ëõ°üÖĞÕÒµ½¶ÔÓ¦µÄµÄÎÄ¼ş£º£º" + fileName);
+	// log.error("æœªåœ¨ZIPå‹ç¼©åŒ…ä¸­æ‰¾åˆ°å¯¹åº”çš„çš„æ–‡ä»¶ï¼šï¼š" + fileName);
 	// return null;
 	// }
 
@@ -115,7 +115,7 @@ public class ZipUtil {
 	}
 
 	/**
-	 * Ğ´Ñ¹ËõÎÄ¼ş
+	 * å†™å‹ç¼©æ–‡ä»¶
 	 */
 	public static String writeZip(String paneModelUid, DOBO bo,
 			DOService aService, String allSelects) throws IOException {
@@ -171,7 +171,7 @@ public class ZipUtil {
 
 	public static void testProduce() {
 
-		DODataSource ds = DODataSource.getDataSourceByL10n("¼ÆÁ¿ÔºÏµÍ³Êı¾İ¿â");
+		DODataSource ds = DODataSource.getDataSourceByL10n("è®¡é‡é™¢ç³»ç»Ÿæ•°æ®åº“");
 		System.out.println(ds);
 		Connection con = null;
 		CallableStatement pstmt = null;
@@ -218,10 +218,10 @@ public class ZipUtil {
 		// aFile.createNewFile();
 		// OutputStream os = new FileOutputStream(aFile);
 		// ZipOutputStream zos = new ZipOutputStream(os);
-		// ZipEntry ze = new ZipEntry("ÄÚÃÉ¹Å×ÔÖÎÇø¶«Ê¤ÃºÌïËşÈ»_07010257.xml");
+		// ZipEntry ze = new ZipEntry("å†…è’™å¤è‡ªæ²»åŒºä¸œèƒœç…¤ç”°å¡”ç„¶_07010257.xml");
 		//
 		// zos.putNextEntry(ze);
-		// zos.write("ÄÚÃÉ¹Å×ÔÖÎÇø¶«Ê¤ÃºÌïËşÈ»".getBytes());
+		// zos.write("å†…è’™å¤è‡ªæ²»åŒºä¸œèƒœç…¤ç”°å¡”ç„¶".getBytes());
 		//
 		// ze.clone();
 		//
@@ -232,7 +232,7 @@ public class ZipUtil {
 //		System.out.println(aZipFile.getEntry("07657038.xml"));
 		// System.out.println(aZipFile.getEntry("06657563.xml").getName());
 
-		// ÄÚÃÉ¹Å×ÔÖÎÇø¶«Ê¤ÃºÌïËşÈ»_07010257.xml
+		// å†…è’™å¤è‡ªæ²»åŒºä¸œèƒœç…¤ç”°å¡”ç„¶_07010257.xml
 
 		// DOBO aBO = DOBO.getDOBOByName("t.project.new");
 		// BOInstance aInstance =

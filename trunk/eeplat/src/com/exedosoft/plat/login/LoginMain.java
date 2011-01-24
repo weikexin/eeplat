@@ -31,9 +31,9 @@ public class LoginMain {
 	
 	
 	
-	// ////////////Ë¢ĞÂµ±Ç°µÇÂ¼µ¥Î»
+	// ////////////åˆ·æ–°å½“å‰ç™»å½•å•ä½
 	
-	/////////xes×¨ÓÃ£¬Ë¢ĞÂ¶ÔÓ¦µÄ½ÇÉ«
+	/////////xesä¸“ç”¨ï¼Œåˆ·æ–°å¯¹åº”çš„è§’è‰²
 	
 //	private static DOService findRoleService = DOService.getService("do_bx_role_findbyuserid_xes");
 	
@@ -53,8 +53,8 @@ public class LoginMain {
 
 		user.putValue("deptuid_login", user.getValue(DEPTUID));
 		
-		// /×¢²áÈ«¾Ösession ÓÃ»§
-		// /Ö»ÄÜÓĞÒ»¸öÓÃ»§µÇÂ½ÏµÍ³¡£
+		// /æ³¨å†Œå…¨å±€session ç”¨æˆ·
+		// /åªèƒ½æœ‰ä¸€ä¸ªç”¨æˆ·ç™»é™†ç³»ç»Ÿã€‚
 		HttpSession session = globalSessions.get(user.getUid());
 		if (session != null && !session.equals(request.getSession())) {
 			session.invalidate();

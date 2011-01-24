@@ -3,8 +3,8 @@ package com.exedosoft.plat.agent;
 import java.util.Collection;
 
 /**
- * ?˜¢‹q?’[?—p?sˆê˜¢Command.
- * CommandŒüAgent?‘—Á‘§B
+ * ?æ§©åª?æŠ‚?æ¢¡?å³´å ¦æ§©Command.
+ * Commandå²¦Agent?æ†²å¾šæ‡…ä¸…
  * 
  * @author Administrator
  *

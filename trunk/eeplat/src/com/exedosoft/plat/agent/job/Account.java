@@ -9,20 +9,20 @@ import com.exedosoft.plat.ui.DOPaneModel;
 public class  Account{
 
 	/**
-	 * ÕË»§ºÅ
+	 * è´¦æˆ·å·
 	 */
 	private String accountNo;
 	/**
-	 * ¿ª»§µ¥Î»/ÈË
+	 * å¼€æˆ·å•ä½/äºº
 	 */
 	private String accountName;
 	/**
-	 * ¿ª»§ÈÕÆÚ
+	 * å¼€æˆ·æ—¥æœŸ
 	 */
 	private Date  buildDate;
 
 	/**
-	 * ÕË»§½ğ¶î£¨ÈËÃñ±ÒÕË»§£©
+	 * è´¦æˆ·é‡‘é¢ï¼ˆäººæ°‘å¸è´¦æˆ·ï¼‰
 	 */
 	private float  accountMoney;
 	public Account(String accountNo,String accountName,Date buildDate,float accountMoney){
@@ -35,12 +35,12 @@ public class  Account{
 //		
 //		Map account = new HashMap();
 //		account.put("accountNo","1234567890123456");
-//		account.put("accountName","×Ï·ã¿Æ¼¼");
+//		account.put("accountName","ç´«æ«ç§‘æŠ€");
 //		account.put("buildDate", new Date());
 //		account.put("accountMoney", "1000000000000");
 //		
 //		
-//		Account a = new Account("1234567890123456","×Ï·ã¿Æ¼¼",new Date(),1000000000000f);
+//		Account a = new Account("1234567890123456","ç´«æ«ç§‘æŠ€",new Date(),1000000000000f);
 //
 		
 		DOPaneModel pm = DOPaneModel.getPaneModelByID("0220575e5565477a9f9f4ead5af20212");

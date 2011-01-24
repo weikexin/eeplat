@@ -41,7 +41,7 @@ public class DOValueResultListService extends DOBaseForm {
 				// + bi);
 				BOInstance data = property.getData();
 				if (bi != null) {
-					// ///////////////////////////////////采用弹出方式
+					// ///////////////////////////////////閲囩敤寮瑰嚭鏂瑰紡
 					DOPaneModel theModel = property.getLinkPaneModel();
 					if (theModel != null
 							&& theModel.getLinkType() != null

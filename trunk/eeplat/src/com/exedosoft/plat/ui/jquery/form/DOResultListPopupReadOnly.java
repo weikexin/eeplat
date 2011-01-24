@@ -20,7 +20,7 @@ public class DOResultListPopupReadOnly extends DOBaseForm {
 	}
 
 	/**
-	 * 获取动态列表形式的Select Form
+	 * 鑾峰彇鍔ㄦ�佸垪琛ㄥ舰寮忕殑Select Form
 	 * 
 	 * @param property
 	 *            TODO

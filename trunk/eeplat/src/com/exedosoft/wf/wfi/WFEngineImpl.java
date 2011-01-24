@@ -21,9 +21,9 @@ import com.exedosoft.wf.pt.PTVar;
 import com.exedosoft.wf.pt.ProcessTemplate;
 
 /**
- * @todo Ö§³Ö»ØÍË
- * @todo ÎªÃ¿¸öActionInstance ¶ÔÓ¦Ò»¸ö±äÁ¿.¶ø²»ÊÇ¼òµ¥µÄÓ³Éä
- * @todo ÏûÏ¢»úÖÆ.Ö§³ÖÖ÷¶¯Í¨Öª ¹¤×÷Á÷ÊµÀıÊµÏÖ
+ * @todo æ”¯æŒå›é€€
+ * @todo ä¸ºæ¯ä¸ªActionInstance å¯¹åº”ä¸€ä¸ªå˜é‡.è€Œä¸æ˜¯ç®€å•çš„æ˜ å°„
+ * @todo æ¶ˆæ¯æœºåˆ¶.æ”¯æŒä¸»åŠ¨é€šçŸ¥ å·¥ä½œæµå®ä¾‹å®ç°
  *       <p>
  *       Title:
  *       </p>
@@ -49,9 +49,9 @@ public class WFEngineImpl implements WFEngine {
 		NodeInstance niStart = this.startProcessNoSubmitHelper(pt, true);
 
 		
-		////Èç¹ûÁ÷³Ì°üº¬Æô¶¯½Úµã
+		////å¦‚æœæµç¨‹åŒ…å«å¯åŠ¨èŠ‚ç‚¹
 		
-		// ////Æô¶¯Á÷³ÌºÍ¿ªÊ¼½Úµã¼°¿ªÊ¼½ÚµçºóĞø»î¶¯½ÚµãµÄÖ´ĞĞ¿´³ÉÁËÒ»¸öÔ­×Ó²Ù×÷£¬Æô¶¯ºó¿ªÊ¼½ÚµãºóĞø»î¶¯½Úµã
+		// ////å¯åŠ¨æµç¨‹å’Œå¼€å§‹èŠ‚ç‚¹åŠå¼€å§‹èŠ‚ç”µåç»­æ´»åŠ¨èŠ‚ç‚¹çš„æ‰§è¡Œçœ‹æˆäº†ä¸€ä¸ªåŸå­æ“ä½œï¼Œå¯åŠ¨åå¼€å§‹èŠ‚ç‚¹åç»­æ´»åŠ¨èŠ‚ç‚¹
 		if (pt.getIsModify() != null && pt.getIsModify().booleanValue()) {
 			for (Iterator it = niStart.getPostNodes().iterator(); it.hasNext();) {
 				NodeInstance ni = (NodeInstance) it.next();
@@ -78,7 +78,7 @@ public class WFEngineImpl implements WFEngine {
 	private NodeInstance startProcessNoSubmitHelper(ProcessTemplate pt,
 			boolean isRun) throws WFException {
 
-		System.out.println("ÕıÔÚÆô¶¯¹¤×÷Á÷=====================");
+		System.out.println("æ­£åœ¨å¯åŠ¨å·¥ä½œæµ=====================");
 		// WFDAO dao = new WFDAO();
 		// dao.setAutoClose(false);
 		// dao.setIsTransaction(true);
@@ -88,7 +88,7 @@ public class WFEngineImpl implements WFEngine {
 		Transaction t = new Transaction(wfBO.getDataBase());
 
 		ProcessInstance pi = new ProcessInstance();
-		NodeInstance niStart = null; // ///¿ªÊ¼½Úµã
+		NodeInstance niStart = null; // ///å¼€å§‹èŠ‚ç‚¹
 		t.begin();
 		try {
 
@@ -101,7 +101,7 @@ public class WFEngineImpl implements WFEngine {
 			BOInstance bi = pt.getDoBO().getCorrInstance();
 			if (bi == null) {
 				t.rollback();
-				throw new WFException("Æô¶¯¹¤×÷Á÷Ê§°Ü:Ã»ÓĞÓëÒµÎñ±í¹ØÁª£¡");
+				throw new WFException("å¯åŠ¨å·¥ä½œæµå¤±è´¥:æ²¡æœ‰ä¸ä¸šåŠ¡è¡¨å…³è”ï¼");
 			}
 			pi.setInstanceUid(bi.getUid());
 			if (bi.getName() != null && !bi.getName().equals("N/A")) {
@@ -135,29 +135,29 @@ public class WFEngineImpl implements WFEngine {
 				pi.setExeStatus(new Integer(ProcessInstance.STATUS_RUN));
 			}
 
-			DAOUtil.BUSI().store(pi); // /////±£´æ¹¤×÷Á÷ÊµÀı
+			DAOUtil.BUSI().store(pi); // /////ä¿å­˜å·¥ä½œæµå®ä¾‹
 
 			PTNode startNode = pt.getStartNode();
 			niStart = NodeInstance.initNodeInstance(pi, startNode,
 					NodeInstance.STATUS_FREE);
 			DAOUtil.BUSI().store(niStart);
 
-			// // /////////Èç¹ûÄ£°å´æÔÚ½Úµã
+			// // /////////å¦‚æœæ¨¡æ¿å­˜åœ¨èŠ‚ç‚¹
 			// if (pt.getNodes() != null && pt.getNodes().size() > 0) {
 			//
-			// // ///´æ´¢Node ºÍ NodeInstance µÄ¶ÔÓ¦¹ØÏµ
-			// // /////Ô­ÒòÊÇÒªÕÒµ½¿ªÊ¼Node²ÅÄÜ½¨Á¢¹ØÁª,ÒªÁ½´Î±éÀú
-			// // //·ñÔòÃ»±ØÒªÓÃMap ±£³ÖËûÃÇµÄÁªÏµ
-			// PTNode start = null; // ////¶¨Òå¿ªÊ¼½Úµã
+			// // ///å­˜å‚¨Node å’Œ NodeInstance çš„å¯¹åº”å…³ç³»
+			// // /////åŸå› æ˜¯è¦æ‰¾åˆ°å¼€å§‹Nodeæ‰èƒ½å»ºç«‹å…³è”,è¦ä¸¤æ¬¡éå†
+			// // //å¦åˆ™æ²¡å¿…è¦ç”¨Map ä¿æŒä»–ä»¬çš„è”ç³»
+			// PTNode start = null; // ////å®šä¹‰å¼€å§‹èŠ‚ç‚¹
 			// HashMap mapNode = new HashMap();
-			// // ///////////// ±£´æ½ÚµãÊµÀı¼°ÏÂÃæµÄActions£¬²¢·µ»Ø¿ªÊ¼½Úµã
+			// // ///////////// ä¿å­˜èŠ‚ç‚¹å®ä¾‹åŠä¸‹é¢çš„Actionsï¼Œå¹¶è¿”å›å¼€å§‹èŠ‚ç‚¹
 			// start = copyToNodeInstances(dao, pi, mapNode);
-			// // ////////////½¨Á¢¸ÃÄ£°åÏÂµÄ½ÚµãÊµÀıÖ®¼äµÄ¹ØÏµ¡£
+			// // ////////////å»ºç«‹è¯¥æ¨¡æ¿ä¸‹çš„èŠ‚ç‚¹å®ä¾‹ä¹‹é—´çš„å…³ç³»ã€‚
 			// buildInstanceRelation(pt, mapNode, dao);
 			//							
 			// niStart = (NodeInstance) mapNode.get(start);
 			// } else {
-			// throw new WFException("Æô¶¯¹¤×÷Á÷Ê§°Ü:Ã»ÓĞÎª¹¤×÷Á÷Ä£°å¶¨Òå½Úµã");
+			// throw new WFException("å¯åŠ¨å·¥ä½œæµå¤±è´¥:æ²¡æœ‰ä¸ºå·¥ä½œæµæ¨¡æ¿å®šä¹‰èŠ‚ç‚¹");
 			// }
 			// /////end copy nodes
 
@@ -167,19 +167,19 @@ public class WFEngineImpl implements WFEngine {
 			}
 			// ///////////end copy vars
 
-			// ////////////°Ñ¿ØÖÆÈ¨½»¸ø Start NodeInstance.
+			// ////////////æŠŠæ§åˆ¶æƒäº¤ç»™ Start NodeInstance.
 			niStart.setExeStatus(new Integer(NodeInstance.STATUS_INIT));
 
 			// niStart.perform();
 		} catch (Exception ex) {
 			t.rollback();
-			throw new WFException("Æô¶¯¹¤×÷Á÷Ê§°Ü", ex);
+			throw new WFException("å¯åŠ¨å·¥ä½œæµå¤±è´¥", ex);
 		} finally {
 			t.end();
 		}
 
 		System.out.println("Start::" + niStart);
-		// ///niStart ÊÇ¿ªÊ¼½Úµã£¬Ê×ÏÈÖ´ĞĞ¿ªÊ¼½Úµã
+		// ///niStart æ˜¯å¼€å§‹èŠ‚ç‚¹ï¼Œé¦–å…ˆæ‰§è¡Œå¼€å§‹èŠ‚ç‚¹
 		niStart.execute();
 		return niStart;
 
@@ -192,7 +192,7 @@ public class WFEngineImpl implements WFEngine {
 	 * @return
 	 */
 	/**
-	 * ´æ´¢½ÚµãÊµÀı£¬²¢·µ»Ø¿ªÊ¼½Úµã¡£
+	 * å­˜å‚¨èŠ‚ç‚¹å®ä¾‹ï¼Œå¹¶è¿”å›å¼€å§‹èŠ‚ç‚¹ã€‚
 	 * 
 	 * @param pt
 	 * @param dao
@@ -211,7 +211,7 @@ public class WFEngineImpl implements WFEngine {
 			PTNode node = (PTNode) it.next();
 			NodeInstance ni = NodeInstance.initNodeInstance(pi, node,
 					NodeInstance.STATUS_FREE);
-			// //////ÕÒµ½¿ªÊ¼½Úµã
+			// //////æ‰¾åˆ°å¼€å§‹èŠ‚ç‚¹
 			if (node.getNodeType() != null
 					&& node.getNodeType().intValue() == PTNode.TYPE_START) {
 				start = node;
@@ -224,7 +224,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * ½¨Á¢ÊµÀıÖ±½ÓµÄ¹ØÁª¹ØÏµ¡£
+	 * å»ºç«‹å®ä¾‹ç›´æ¥çš„å…³è”å…³ç³»ã€‚
 	 * 
 	 * @param start
 	 * @param map
@@ -236,11 +236,11 @@ public class WFEngineImpl implements WFEngine {
 		for (Iterator it = pt.getNodeDependency().iterator(); it.hasNext();) {
 
 			NodeDenpendency nd = (NodeDenpendency) it.next();
-			// ////////Ç°ÖÃ½Úµã
+			// ////////å‰ç½®èŠ‚ç‚¹
 			NodeInstance pre = (NodeInstance) map.get(nd.getPreNode());
-			// ///ºóÖÃ½Úµã
+			// ///åç½®èŠ‚ç‚¹
 			NodeInstance post = (NodeInstance) map.get(nd.getPostNode());
-			NIDependency nid = new NIDependency(); // ///ÊµÀıµÄ¹ØÁªÀà
+			NIDependency nid = new NIDependency(); // ///å®ä¾‹çš„å…³è”ç±»
 			nid.setPreNodeInstance(pre);
 			nid.setPostNodeInstance(post);
 			nid.setCondition(nd.getCondition());
@@ -278,7 +278,7 @@ public class WFEngineImpl implements WFEngine {
 		// piBO.refreshContext(pt.getObjUid());
 		//
 		// } catch (DAOException ex) {
-		// throw new WFException("ÎŞ·¨¼ÓÔØ¹ı³ÌÄ£°å", ex);
+		// throw new WFException("æ— æ³•åŠ è½½è¿‡ç¨‹æ¨¡æ¿", ex);
 		// }
 		// return pt;
 	}
@@ -294,7 +294,7 @@ public class WFEngineImpl implements WFEngine {
 		// DOBO piBO = DOBO.getDOBOByName("do.wfi.processinstance");
 		// piBO.refreshContext(pi.getObjUid());
 		// } catch (DAOException ex) {
-		// throw new WFException("ÎŞ·¨¼ÓÔØ¹¤×÷Á÷ÊµÀı", ex);
+		// throw new WFException("æ— æ³•åŠ è½½å·¥ä½œæµå®ä¾‹", ex);
 		// }
 		// return pi;
 	}
@@ -325,24 +325,24 @@ public class WFEngineImpl implements WFEngine {
 			if (preNodes != null && preNodes.size() > 0) {
 				if (preNodes.size() == 1) {
 					NodeInstance niPre = (NodeInstance) preNodes.get(0);
-					// ///Èç¹ûËüµÄÇ°ÖÃ½ÚµãÊÇ¿ÕÏĞ×´Ì¬
+					// ///å¦‚æœå®ƒçš„å‰ç½®èŠ‚ç‚¹æ˜¯ç©ºé—²çŠ¶æ€
 					if (niPre.getExeStatus().intValue() == NodeInstance.STATUS_FREE
 							|| niPre.getExeStatus().intValue() == NodeInstance.STATUS_RUN) {
-						ni.setExeStatus(new Integer(NodeInstance.STATUS_FREE)); // //ÉèÖÃÎª¿ÕÏĞ×´Ì¬
+						ni.setExeStatus(new Integer(NodeInstance.STATUS_FREE)); // //è®¾ç½®ä¸ºç©ºé—²çŠ¶æ€
 						DAOUtil.BUSI().store(ni);
 						return ni;
 					}
 				} else {
-					throw new WFException("ÎŞ·¨»Ö¸´conjunctionÀàĞÍµÄ½Úµã:" + ni);
+					throw new WFException("æ— æ³•æ¢å¤conjunctionç±»å‹çš„èŠ‚ç‚¹:" + ni);
 				}
 			}
 		} catch (Exception ex) {
-			throw new WFException("ÎŞ·¨»ñµÃ½ÚµãÊµÀı", ex);
+			throw new WFException("æ— æ³•è·å¾—èŠ‚ç‚¹å®ä¾‹", ex);
 		}
 		// finally {
 		// dao.closeSession();
 		// }
-		ni.setExeStatus(new Integer(NodeInstance.STATUS_INIT)); // //ÉèÖÃÎª³õÊ¼»¯×´Ì¬
+		ni.setExeStatus(new Integer(NodeInstance.STATUS_INIT)); // //è®¾ç½®ä¸ºåˆå§‹åŒ–çŠ¶æ€
 		ni.execute();
 		return ni;
 	}
@@ -357,13 +357,13 @@ public class WFEngineImpl implements WFEngine {
 			if (ni.getNodeType() != null
 					&& (ni.getNodeType().intValue() == PTNode.TYPE_AND_CONJUNCTION || ni
 							.getNodeType().intValue() == PTNode.TYPE_OR_CONJUNCTION)) {
-				throw new WFException("ConjunctionÀàĞÍµÄ½ÚµãÎŞ·¨¹ÒÆğ");
+				throw new WFException("Conjunctionç±»å‹çš„èŠ‚ç‚¹æ— æ³•æŒ‚èµ·");
 			}
 			ni.setExeStatus(new Integer(NodeInstance.STATUS_HANGUP));
 			DAOUtil.BUSI().store(ni);
 			return ni;
 		} catch (Exception ex) {
-			throw new WFException("½Úµã¹ÒÆğÊ±³ö´í" + ni, ex);
+			throw new WFException("èŠ‚ç‚¹æŒ‚èµ·æ—¶å‡ºé”™" + ni, ex);
 		}
 		// finally {
 		// dao.closeSession();
@@ -372,7 +372,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * ÔÚ¸ø¶¨½ÚµãÊµÀıniÇ°Ãæ²åÈëÒ»¸öNodeInstance
+	 * åœ¨ç»™å®šèŠ‚ç‚¹å®ä¾‹niå‰é¢æ’å…¥ä¸€ä¸ªNodeInstance
 	 * 
 	 * @throws WFException
 	 */
@@ -383,7 +383,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * ÔÚ¸ø¶¨½ÚµãÊµÀıniºóÃæ²åÈëÒ»¸öNodeInstance
+	 * åœ¨ç»™å®šèŠ‚ç‚¹å®ä¾‹niåé¢æ’å…¥ä¸€ä¸ªNodeInstance
 	 * 
 	 * @throws WFException
 	 */
@@ -393,7 +393,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * É¾³ı¸ø¶¨µÄ¶¯×÷ÊµÀı
+	 * åˆ é™¤ç»™å®šçš„åŠ¨ä½œå®ä¾‹
 	 * 
 	 * @throws WFException
 	 */
@@ -402,7 +402,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * ¿ÉÒÔÆô¶¯Á÷³ÌÄ£°å¼¯ºÏ
+	 * å¯ä»¥å¯åŠ¨æµç¨‹æ¨¡æ¿é›†åˆ
 	 * 
 	 * @param us
 	 * @return
@@ -434,7 +434,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * »ñÈ¡»î¶¯ÊµÀı
+	 * è·å–æ´»åŠ¨å®ä¾‹
 	 * 
 	 * @param us
 	 * @return
@@ -472,7 +472,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * »ñÈ¡»î¶¯ÊµÀı
+	 * è·å–æ´»åŠ¨å®ä¾‹
 	 * 
 	 * @param us
 	 * @return
@@ -537,7 +537,7 @@ public class WFEngineImpl implements WFEngine {
 	}
 
 	/**
-	 * ±¾ÈË´¦Àí¹ıµÄ´ı¹éµµ(Á÷³ÌÒÑ¾­×ßÍê)µÄ·¢ÎÄ
+	 * æœ¬äººå¤„ç†è¿‡çš„å¾…å½’æ¡£(æµç¨‹å·²ç»èµ°å®Œ)çš„å‘æ–‡
 	 * 
 	 * @param us
 	 * @return

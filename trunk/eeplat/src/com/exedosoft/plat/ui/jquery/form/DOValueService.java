@@ -72,13 +72,13 @@ public class DOValueService extends DOViewTemplate {
 			}
 		}
 
-		// /////////////¸ù¾İÉè¶¨£¬½Ø¶Ï³¤¶È
+		// /////////////æ ¹æ®è®¾å®šï¼Œæˆªæ–­é•¿åº¦
 		if (label != null && DOGlobals.LIST_SHOWVALUE_MAX > 0
 				&& label.length() > DOGlobals.LIST_SHOWVALUE_MAX) {
 			label = label.substring(0, DOGlobals.LIST_SHOWVALUE_MAX) + "...";
 		}
 
-		// /////////////End ¸ù¾İÉè¶¨£¬½Ø¶Ï³¤¶È
+		// /////////////End æ ¹æ®è®¾å®šï¼Œæˆªæ–­é•¿åº¦
 
 		if (fm.getLinkPaneModel() != null
 				&& fm.getLinkPaneModel().getLinkType() != null
@@ -96,14 +96,14 @@ public class DOValueService extends DOViewTemplate {
 			targetPaneId = fm.getLinkPaneModel().getTargetPane().getName();
 		} else {
 			// targetPaneId = fm.getContainerPaneName();// //dojoButton
-			// ²ÉÓÃ½çÃæÔªËØËùÔÚµÄÃæ°å
-			targetPaneId = "_opener";// //////valueService ²ÉÓÃµ¯³öµÄ·½Ê½
+			// é‡‡ç”¨ç•Œé¢å…ƒç´ æ‰€åœ¨çš„é¢æ¿
+			targetPaneId = "_opener";// //////valueService é‡‡ç”¨å¼¹å‡ºçš„æ–¹å¼
 		}
 
 		/**
-		 * µ±Õâ¸öbutton ¶ÔÓ¦µÄÒ»¸öpaneModelµÄÊ±ºò£¬¿ÉÄÜÒª¶Ôµ±Ç°µÄformÖµÍ¬²½µ½·şÎñÆ÷¶Ë£¬
-		 * Á¬½ÓµÄÕâ¸öpangeModel¿ÉÄÜ»áÓÃµ½Õâ¸öpaneModel Cancel by weikx at 0705 ÀûÓÃgetData
-		 * ·½Ê½ÓĞĞ§±ÜÃâÁ½´ÎÏòºóÌ¨Ìá½»Êı¾İ
+		 * å½“è¿™ä¸ªbutton å¯¹åº”çš„ä¸€ä¸ªpaneModelçš„æ—¶å€™ï¼Œå¯èƒ½è¦å¯¹å½“å‰çš„formå€¼åŒæ­¥åˆ°æœåŠ¡å™¨ç«¯ï¼Œ
+		 * è¿æ¥çš„è¿™ä¸ªpangeModelå¯èƒ½ä¼šç”¨åˆ°è¿™ä¸ªpaneModel Cancel by weikx at 0705 åˆ©ç”¨getData
+		 * æ–¹å¼æœ‰æ•ˆé¿å…ä¸¤æ¬¡å‘åå°æäº¤æ•°æ®
 		 */
 
 		appendJSPaneLink(fm, buffer);
@@ -218,7 +218,7 @@ public class DOValueService extends DOViewTemplate {
 
 		aPath = aPath.trim().replaceAll(" ", "%20");
 		StringBuffer buffer = new StringBuffer();
-		// //////////¶ÔpictureÀàĞÍµÄÌØÊâ´¦Àí
+		// //////////å¯¹pictureç±»å‹çš„ç‰¹æ®Šå¤„ç†
 
 		buffer.append("<img src=").append(aPath).append(" border='0'").append(
 				" alt='").append(tooltip).append("' />");

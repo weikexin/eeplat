@@ -153,7 +153,7 @@ public class UserDefineIDSequence implements SequenceBuilder {
 		
 		
 		/**
-		 * Ì½¿óÈ¨ºÅÂë»ØÊÕ
+		 * æ¢çŸ¿æƒå·ç å›æ”¶
 		 */
 		DOService aService = DOService.getService("reuse_feihao_tankuangquan");
 		List  list = aService.invokeSelect();

@@ -65,7 +65,7 @@ public class DOGeneParentChild extends DOAbstractAction {
 		if (boUid == null) {
 			return "";
 		}
-		// ////////////////Çå³þ»º´æ
+		// ////////////////æ¸…æ¥šç¼“å­˜
 //		HbmDAO dao = new HbmDAO();
 //		dao.setAutoClose(false);
 //		dao.setIsTransaction(true);
@@ -86,7 +86,7 @@ public class DOGeneParentChild extends DOAbstractAction {
 			aService.setBo(curBO);
 			aService.setMainSql(aServiceSql.toString());
 			aService.setName(parentBO.getName() + "have" + curBO.getName());
-			aService.setL10n(parentBO.getL10n() + "ÓµÓÐµÄ" + curBO.getL10n());
+			aService.setL10n(parentBO.getL10n() + "æ‹¥æœ‰çš„" + curBO.getL10n());
 			DAOUtil.INSTANCE().store(aService);
 
 			DOParameterService dps = new DOParameterService();
@@ -216,7 +216,7 @@ public class DOGeneParentChild extends DOAbstractAction {
 			DOController deletecontroller = DOController.getControllerByName("deletecontroller");
 
 			DOFormModel deleteAll = new DOFormModel();
-			deleteAll.setL10n("É¾³ýÑ¡ÖÐ");
+			deleteAll.setL10n("åˆ é™¤é€‰ä¸­");
 			deleteAll.setLinkService(sDelete);
 			deleteAll.setIsOutGridAction(Integer.valueOf(DOFormModel.OUTGRID_BOTTOM));
 			deleteAll.setController(deletecontroller);

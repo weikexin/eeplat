@@ -13,13 +13,13 @@ public class CoreExportExcelAction extends DOAbstractAction {
 
 	public String excute() {
 		
-		System.out.println("进入Export Excel Action::::::::::::::::::::::::::");
+		System.out.println("杩涘叆Export Excel Action::::::::::::::::::::::::::");
 
 		try {
 			
 			String[] checks =  this.actionForm.getValueArray("checkinstance");
 			if (checks == null || checks.length == 0) {
-				setEchoValue("您没有选择数据");
+				setEchoValue("鎮ㄦ病鏈夐�夋嫨鏁版嵁");
 				return NO_FORWARD;
 			}
 		///	this.initTransConnection();

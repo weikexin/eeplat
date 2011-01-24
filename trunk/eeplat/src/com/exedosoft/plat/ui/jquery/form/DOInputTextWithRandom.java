@@ -72,7 +72,7 @@ public class DOInputTextWithRandom extends DOBaseForm {
 		//{
 			buffer.append("<a href=\"javascript:show(document.getElementById('random'),'exedo/web/checkcode/random.jsp')\"><img ")
 			.append(" style=\"width:45px;height:15px;margin-top:3px;\" ")
-			.append(" src='").append("exedo/web/checkcode/random.jsp'").append(" alt=\"¿´²»Çå\" name=\"random\" border=\"1px\" ")
+			.append(" src='").append("exedo/web/checkcode/random.jsp'").append(" alt=\"çœ‹ä¸æ¸…\" name=\"random\" border=\"1px\" ")
 			.append(" align=\"absmiddle\" id=\"random\" valign=\"absmiddle\" ></a>");
 		//}
 		

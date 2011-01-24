@@ -28,15 +28,15 @@ public class SessionParterAbp implements SessionParter {
 
 	public List getParterAuths(String accountUid) {
 
-		// //这根据用户和角色两种parter 权限过滤
+		// //杩欐牴鎹敤鎴峰拰瑙掕壊涓ょparter 鏉冮檺杩囨护
 
 		List allAuths = new ArrayList();
-		// //加入用户
+		// //鍔犲叆鐢ㄦ埛
 		OrgParter userPater = OrgParter.getDefaultEmployee();
 		OrgParterValue pv = new OrgParterValue(userPater, accountUid);
 		allAuths.add(pv);
 
-		// ////////加入角色
+		// ////////鍔犲叆瑙掕壊
 		OrgParter roleParter = OrgParter.getDefaultRole();
 		appendRoles(allAuths, accountUid, roleParter);
 
@@ -69,7 +69,7 @@ public class SessionParterAbp implements SessionParter {
 
 	public List getMenuAuthConfigByAccount(String accountUid) {
 
-		// //////////先获取角色菜单的权限
+		// //////////鍏堣幏鍙栬鑹茶彍鍗曠殑鏉冮檺
 
 		List pureMenuUids = new ArrayList();
 		DOService rfService = DOService
@@ -85,7 +85,7 @@ public class SessionParterAbp implements SessionParter {
 		
 		
 
-		// ////////////////用户反向授权需要移除的权限
+		// ////////////////鐢ㄦ埛鍙嶅悜鎺堟潈闇�瑕佺Щ闄ょ殑鏉冮檺
 //		DOService fxService = DOService
 //				.getService("auth.menu.user.access.0.xes");
 //		List fxList = fxService.invokeSelect(accountUid);
@@ -93,7 +93,7 @@ public class SessionParterAbp implements SessionParter {
 //			BOInstance bi = (BOInstance) it.next();
 //			pureMenuUids.remove(bi.getValue("whatuid"));
 //		}
-		// //////////////再加上用户正向授权的权限
+		// //////////////鍐嶅姞涓婄敤鎴锋鍚戞巿鏉冪殑鏉冮檺
 //		DOService aService = DOService
 //				.getService("auth.menu.user.access.1.xes");
 //		List list = aService.invokeSelect(accountUid);

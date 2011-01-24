@@ -8,7 +8,7 @@ import com.exedosoft.plat.agent.Message;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 
 /**
- * ????•¶–{“ICommand
+ * ????æš¥æ®æ‘Command
  * 
  * @author Administrator
  * 
@@ -30,9 +30,9 @@ public class TextCommand extends TCPCommand {
 
 			b = new byte[1024];
 			OutputStream out =  getSocket().getOutputStream();
-			sen = "Hello worldI  H“V^“Iœk”üD";
+			sen = "Hello worldä¸¡  å»æ¤æ€æ‘æ¸’æ—¤å²²";
 			b = sen.getBytes();
-			System.out.println("‹q?’[??C›ó???“Iš•„‹øI");
+			System.out.println("åª?æŠ‚??ä¸†æ¶¹???æ‘å¸¤æ™å­ä¸¡");
 			out.write(b);
 			out.flush();
 			out.close();

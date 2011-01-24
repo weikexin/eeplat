@@ -28,21 +28,21 @@ public class TransFormModelL10n extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
 //		String fileName = this.actionForm.getValue("fileName");
 //
 //		if (fileName == null) {
-//			this.setEchoValue("Äã»¹Ã»ÓĞÑ¡ÔñÎÄ¼ş£¡");
+//			this.setEchoValue("ä½ è¿˜æ²¡æœ‰é€‰æ‹©æ–‡ä»¶ï¼");
 //			return NO_FORWARD;
 //		}
 
 //		fileName = DOGlobals.UPLOAD_TEMP.trim() + StringUtil.getCurrentDayStr()
 //				+ "/" + fileName.trim();
-//		log.info("µÃµ½ÎÄ¼şµÄ¾ø¶ÔÂ·¾¶:::" + fileName);
+//		log.info("å¾—åˆ°æ–‡ä»¶çš„ç»å¯¹è·¯å¾„:::" + fileName);
 		try {
 //			File file = new File(fileName);
 //
@@ -72,7 +72,7 @@ public class TransFormModelL10n extends DOAbstractAction {
 				if(aLine==null){
 					break;
 				}
-				log.info("·­ÒëµÄ×Ö¶Î::" + aLine);
+				log.info("ç¿»è¯‘çš„å­—æ®µ::" + aLine);
 				String[] paras = aLine.split("=");
 				if (paras != null && paras.length > 1) {
 					Map map = new HashMap();
@@ -85,7 +85,7 @@ public class TransFormModelL10n extends DOAbstractAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.setEchoValue("·­ÒëÍê³É!");
+		this.setEchoValue("ç¿»è¯‘å®Œæˆ!");
 		return DEFAULT_FORWARD;
 	}
 

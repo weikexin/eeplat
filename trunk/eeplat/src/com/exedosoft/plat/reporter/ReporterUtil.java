@@ -13,19 +13,19 @@ public class ReporterUtil {
 	
 	
 	/**
-	 * »ñÈ¡Ç°Ò»ÌìµÄÈÕÆÚ
+	 * è·å–å‰ä¸€å¤©çš„æ—¥æœŸ
 	 */
 	
 	public static String getBeforADay(){
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("MÔÂdÈÕ");
+		SimpleDateFormat sdf = new SimpleDateFormat("Mæœˆdæ—¥");
 		Calendar cc = Calendar.getInstance();
 		cc.add(Calendar.DAY_OF_MONTH, -1);
 		return sdf.format(cc.getTime());
 	}
 	
 	/**
-	 * ×îºóµÄÍ³¼ÆĞĞÊä³ö
+	 * æœ€åçš„ç»Ÿè®¡è¡Œè¾“å‡º
 	 * @param daysofmonth
 	 * @param sumCols
 	 * @return
@@ -37,7 +37,7 @@ public class ReporterUtil {
 
 		out.append("<tr>");
 		out.append("<td  nowrap='nowrap'  align='center' sort='asc'  >");
-		out.append("ºÏ¼Æ");
+		out.append("åˆè®¡");
 		out.append("</td>");
 		long lrowTotal = 0;
 		for (int i = 1; i <= sumCols.length; i++) {
@@ -64,7 +64,7 @@ public class ReporterUtil {
 		return out.toString();
 	}
 	/**
-	 * ×îºóµÄÍ³¼ÆÊı×ÖÊä³ö
+	 * æœ€åçš„ç»Ÿè®¡æ•°å­—è¾“å‡º
 	 * @param sumCols
 	 * @return
 	 */

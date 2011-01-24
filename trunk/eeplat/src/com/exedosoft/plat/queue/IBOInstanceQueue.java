@@ -9,31 +9,31 @@ import com.exedosoft.plat.bo.BOInstance;
 public interface IBOInstanceQueue {
 
 	/**
-	 * «Á‘§“Y‰Á“Ÿ?—ñ’†C”@‰Ê–v—L‰Â—p‹ó?C«ˆê’¼“™‘ÒB
+	 * å½¨å¾šæ‡…æ§å£›æ‘“å´¯?æ¥æ‹ä¸†æ“›å£¥æ¤æ¡³å£œæ¢¡å¬»?ä¸†å½¨å ¦æˆæ‘æ‡¸ä¸…
 	 * 
 	 * @param aMessage
-	 *            Á‘§
+	 *            å¾šæ‡…
 	 */
 	public abstract void putMessage(BOInstance aMessage);
 
 	/**
-	 * ?õ›óˆÚœŸ?—ñ“I‘æˆê˜¢Á‘§C”@‰ÊŸ?—ñ•s‘¶İ”C‰½Á‘§C?ˆê’¼“™‘Ò
+	 * ?å¶•æ¶¹å å½å´¯?æ¥æ‘æˆå ¦æ§©å¾šæ‡…ä¸†æ“›å£¥å´¯?æ¥æ™„æ‡šåµ¼æ“Ÿå£—å¾šæ‡…ä¸†?å ¦æˆæ‘æ‡¸
 	 * 
-	 * @return ?—ñ“I‘æˆê˜¢Á‘§
+	 * @return ?æ¥æ‘æˆå ¦æ§©å¾šæ‡…
 	 */
 	public abstract BOInstance takeMessage();
 
 	/**
-	 * ”@‰Ê‰Â”\“I?C«Á‘§‡“üŸ?—ñ’†B
+	 * æ“›å£¥å£œæ“»æ‘?ä¸†å½¨å¾šæ‡…æ½æ“–å´¯?æ¥æ‹ä¸…
 	 * 
 	 * @param aMessage
-	 *            Á‘§
-	 * @return ¬Œ÷•Ô‰ñ trueC‘´‘¼î™v?•Ô‰ñ false
+	 *            å¾šæ‡…
+	 * @return æƒ‰å²Ÿæ›‰å¤ trueä¸†æ‡˜æ‡ å¿£æª?æ›‰å¤ false
 	 */
 	public abstract boolean offerMessage(BOInstance aMessage);
 
 	/**
-	 * «w’è“IÁ‘§‡“üŸ?—ñ’†C”@‰Ê–v—L‰Â—p‹ó?C«“™‘Òw’è“I“™‘Ò??i”@‰Ê—L•K—vjB
+	 * å½¨å·œæ•æ‘å¾šæ‡…æ½æ“–å´¯?æ¥æ‹ä¸†æ“›å£¥æ¤æ¡³å£œæ¢¡å¬»?ä¸†å½¨æ‘æ‡¸å·œæ•æ‘æ‘æ‡¸??ä¹®æ“›å£¥æ¡³æ˜æ¢«ä¹¯ä¸…
 	 * 
 	 * @param timeout
 	 * @param unit
@@ -42,17 +42,17 @@ public interface IBOInstanceQueue {
 	public abstract BOInstance offerMessage(long timeout, TimeUnit unit);
 
 	/**
-	 * ˜¸?—ñ’†ˆÚœˆê˜¢Á‘§B
+	 * æ¨ƒ?æ¥æ‹å å½å ¦æ§©å¾šæ‡…ä¸…
 	 * 
 	 * @param aMessage
-	 *            ‘ÒˆÚœ“IÁ‘§
+	 *            æ‡¸å å½æ‘å¾šæ‡…
 	 */
 	public abstract void removeMessage(BOInstance aMessage);
 
 	/**
-	 * ”»’f?—ñ¥”Û?‹óB
+	 * æ•¾æŠ?æ¥æƒ€æ–²?å¬»ä¸…
 	 * 
-	 * @return ?‹ó•Ô‰ñtrue,”Û?•Ô‰ñfalse.
+	 * @return ?å¬»æ›‰å¤true,æ–²?æ›‰å¤false.
 	 */
 	public abstract boolean isEmpty();
 

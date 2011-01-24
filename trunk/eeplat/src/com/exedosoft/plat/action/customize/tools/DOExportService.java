@@ -29,11 +29,11 @@ public class DOExportService extends DOExport {
 		if (biService != null) {
 			DOService pm = DOService.getService(biService.getUid());
 
-			// ÒµÎñ¶ÔÏóÏÂÃæµÄ·şÎñ
+			// ä¸šåŠ¡å¯¹è±¡ä¸‹é¢çš„æœåŠ¡
 			sb.append("\n<service><li>").append(StringUtil.filter(biService.toJSONString())).append(
 					"</li></service>");
 
-			// ·şÎñÏÂÃæµÄ²ÎÊı
+			// æœåŠ¡ä¸‹é¢çš„å‚æ•°
 			DOService servParaService = DOService
 					.getService("DO_Parameter_Service_findbyserviceUid");
 			sb.append("\n<parameter_service>");
@@ -53,7 +53,7 @@ public class DOExportService extends DOExport {
 			sb.append("</parameter>");
 			
 
-			// ·şÎñÏÂÃæµÄ¹æÔò
+			// æœåŠ¡ä¸‹é¢çš„è§„åˆ™
 			DOService servRuleService = DOService
 					.getService("DO_Service_Rule_findbyserviceuid");
 			sb.append("\n<rule_service>");

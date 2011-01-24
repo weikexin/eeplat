@@ -19,7 +19,7 @@ public class ExtensionFileFilter implements FileFilter {
 	 * @todo Implement this java.io.FileFilter method
 	 */
 	public boolean accept(File file) {
-		// ֻѡ��·��
+		// 只选择路径
 		// if (file.isDirectory()) {
 		// return true;
 		// } else {

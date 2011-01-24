@@ -43,12 +43,12 @@ public class DODynStaticList extends DOStaticList {
 					.append(linkFm.getFullColID())
 					.append("')\"");
 		}
-		// ////Ôö¼Ó×°ÊÎ
+		// ////å¢žåŠ è£…é¥°
 		buffer.append(getDecoration(fm));
 
-		// ///////end Ôö¼Ó×°ÊÎ
+		// ///////end å¢žåŠ è£…é¥°
 		buffer.append(" title='").append(fm.getL10n()).append("'");
-		// ///////end Ôö¼Ó×°ÊÎ
+		// ///////end å¢žåŠ è£…é¥°
 
 		buffer.append(" >\n");
 		buffer.append("<option/>\n");
@@ -58,11 +58,11 @@ public class DODynStaticList extends DOStaticList {
 				buffer.append("<option value=\"").append(half[0]);
 				buffer.append("\"");
 
-				if (value != null) { // ////////ÐÞ¸ÄµÄÇé¿ö
+				if (value != null) { // ////////ä¿®æ”¹çš„æƒ…å†µ
 					if (value.equals(half[0])) {
 						buffer.append(" selected=\"selected\"  ");
 					}
-				} else { // //////Ìí¼ÓµÄÇé¿ö
+				} else { // //////æ·»åŠ çš„æƒ…å†µ
 					String defaultValue = getDefaultListValue(fm);
 					if (defaultValue != null && defaultValue.equals(half[0])) {
 						buffer.append(" selected=\"selected\"  ");

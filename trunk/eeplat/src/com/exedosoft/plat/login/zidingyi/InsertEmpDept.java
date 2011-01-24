@@ -34,7 +34,7 @@ public class InsertEmpDept extends DOAbstractAction {
 		System.out.println(useruid);
 		System.out.println(userName);
 		System.out.println("==================1==================");
-		// Àú±éËùÓĞµÄÊı¾İ£»
+		// å†éæ‰€æœ‰çš„æ•°æ®ï¼›
 		if (users != null && users.size() > 0) {
 
 			
@@ -50,7 +50,7 @@ public class InsertEmpDept extends DOAbstractAction {
 				System.out.println(sarray);
 				System.out.println("==================2==================");
 				
-				// ¶ÔÃ¿ÌõÊı¾İ½øĞĞ´¦Àí£¬È¡µÃÓĞĞ§ÊôĞÔ£»
+				// å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±æ€§ï¼›
 				for (int i = 0; i < sarray.length; i++) {
 					String temp = sarray[i];
 					String[] nv = temp.split("=");

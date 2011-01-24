@@ -15,7 +15,7 @@ public class DOStartWf extends DOAbstractAction {
 
 
 		if (service.getProcessTemplate() == null) {
-			this.setEchoValue("服务未定义工作流模板");
+			this.setEchoValue("鏈嶅姟鏈畾涔夊伐浣滄祦妯℃澘");
 			return NO_FORWARD;
 		}
 		Transaction t = new Transaction(service.getBo().getDataBase());

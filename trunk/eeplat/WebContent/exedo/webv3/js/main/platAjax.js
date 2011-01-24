@@ -144,7 +144,6 @@ function callAction(p){
 
 function callService(p){
 	
-
 	if(p==null){
 		return;
 	}
@@ -159,7 +158,8 @@ function callService(p){
 			p.btn.disabled = true;
 		}
 	}	
-	
+
+
 
     if(p.serviceUid==null && p.serviceName==null){
     	if(p.btn){
@@ -173,6 +173,7 @@ function callService(p){
     }
 
 
+
 	//表单验证
 	if(!validate(p.formName)){
 		if(p.btn){
@@ -184,7 +185,7 @@ function callService(p){
 		}	
 		return;
 	}
-	
+
 
 
 
@@ -208,6 +209,8 @@ function callService(p){
 		return;
 	}
 	
+
+
 
 
 	//初始化FckEditor值 
@@ -396,6 +399,7 @@ function loadPml(p){
 	}
 
 
+
 /**
  * 是否为简化配置 
  * 如果直接把pml配置为面板的名称即为简化配置 
@@ -404,7 +408,6 @@ function loadPml(p){
 	if(p.pml!=null &&  p.pml.indexOf('mvccontroller')==-1 
 			&& p.pml.indexOf('.pml')==-1 
 			&& p.pml.indexOf('.jsp')==-1
-			&& p.pml.indexOf('.html')==-1
 			&& p.pml.indexOf('.htm')==-1){
 		pmlName = p.pml;
 		simpleConfig = true;
@@ -415,7 +418,7 @@ function loadPml(p){
 	if(p.pml!=null && p.pml.indexOf("?")==-1){
 		p.pml = p.pml + "?1=1";		
 	}
-	
+
 
 	var paras = "";
 	if(p.paras){
@@ -425,6 +428,7 @@ function loadPml(p){
 	}
 
 	try{
+
 		
 	   if(p.target=='_opener_window'){
    				  	window.open(p.pml + "&" +  urlCodeDeal(paras),p.title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
@@ -432,11 +436,13 @@ function loadPml(p){
 				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
 	   } 
 	   else	if(p.target && $.trim(p.target)!="" && p.target!='_opener_tab'){
+
 			if(p.target=='_opener'){
 				var title = "";
 				if(p.title){
 					title = p.title;
 				}
+
 				popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
 			}else{
 				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras));

@@ -38,15 +38,15 @@ public class DealAParaMult extends DOAbstractAction {
 	public String excute()  {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			System.out.println("鏈厤缃甋QL 璇彞");
+			this.setEchoValue("鏈厤缃甋QL 璇彞");
 		}
 
 
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
-			System.out.println("没有数据");
-			this.setEchoValue("没有数据");
+			System.out.println("娌℃湁鏁版嵁");
+			this.setEchoValue("娌℃湁鏁版嵁");
 			return NO_FORWARD;
 		}
 		

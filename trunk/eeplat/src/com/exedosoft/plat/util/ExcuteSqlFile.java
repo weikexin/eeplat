@@ -26,7 +26,7 @@ public class ExcuteSqlFile {
 		// TODO Auto-generated constructor stub
 	}
 
-	// ´ÓÎÄ¼ş¶Á·ÅÄÚÈİµ½°´·ÖºÅ·Åµ½sqlFileList
+	// ä»æ–‡ä»¶è¯»æ”¾å†…å®¹åˆ°æŒ‰åˆ†å·æ”¾åˆ°sqlFileList
 	public static List<String> readSqlFile(String fileName) {
 
 		List<String> sqlList = new ArrayList<String>();
@@ -75,7 +75,7 @@ public class ExcuteSqlFile {
 		
 
 		//
-		// È»ºóÒ»¾ä¾äµÄÖ´ĞĞ
+		// ç„¶åä¸€å¥å¥çš„æ‰§è¡Œ
 		// for (String sql : sqlList) {
 		// pstmt = con.prepareStatement(sql,
 		// ResultSet.TYPE_SCROLL_INSENSITIVE,

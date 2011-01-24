@@ -56,7 +56,7 @@ public class MessageJob implements Job {
 				aMsg = aTask.perform(this.message);
 				OutPool.getPool().addMessage(message.getCommandID(), aMsg);
 			} catch (Exception e) {
-				System.out.println("?¶??C³İ‰ñ?BBBBBBB");
+				System.out.println("?æƒ—??ä¸†æƒ“åµ¼å¤?ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
 				for (Iterator<Task> itFail = excuteOverList.iterator(); itFail
 						.hasNext();) {
 					Task aFailTask = itFail.next();

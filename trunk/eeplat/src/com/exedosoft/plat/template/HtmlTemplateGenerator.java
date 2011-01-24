@@ -37,7 +37,7 @@ public class HtmlTemplateGenerator {
 			cfg = new Configuration();
 			// cfg.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);
 			// cfg.setSharedVariable("dataBind", new BindData2FormModel());
-			// /»º´æµÄÉèÖÃ£¬·¢²¼ºóÓ¦¸Ã¼Ó´ó£¬¿ª·¢Ê±¿ÉÒÔÊÇÊµÊ±
+			// /ç¼“å­˜çš„è®¾ç½®ï¼Œå‘å¸ƒååº”è¯¥åŠ å¤§ï¼Œå¼€å‘æ—¶å¯ä»¥æ˜¯å®æ—¶
 			cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(20, 250));
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
@@ -55,8 +55,8 @@ public class HtmlTemplateGenerator {
 			cfg.setTemplateLoader(loaderFile);
 			cfg.setObjectWrapper(new DefaultObjectWrapper());
 
-			// ///////////////////////////////////////////ÒÔÉÏÎªfile
-			// configurationµÄÅäÖÃ
+			// ///////////////////////////////////////////ä»¥ä¸Šä¸ºfile
+			// configurationçš„é…ç½®
 			cfgDB = new Configuration();
 			cfgDB.setDefaultEncoding("UTF-8");
 			DBTemplateLoader loaderDB = new DBTemplateLoader();
@@ -75,16 +75,16 @@ public class HtmlTemplateGenerator {
 	}
 
 	/**
-	 * Éú³É¾²Ì¬ÎÄ¼ş
+	 * ç”Ÿæˆé™æ€æ–‡ä»¶
 	 * 
 	 * @param ftlTemplate
-	 *            ftlÄ£°æÎÄ¼ş
+	 *            ftlæ¨¡ç‰ˆæ–‡ä»¶
 	 * @param contents
-	 *            ftlÒªÓÃµ½µÄ¶¯Ì¬ÄÚÈİ
+	 *            ftlè¦ç”¨åˆ°çš„åŠ¨æ€å†…å®¹
 	 * @param savePath
-	 *            ÎÄ¼ş±£´æÂ·¾¶
+	 *            æ–‡ä»¶ä¿å­˜è·¯å¾„
 	 * @param saveFilename
-	 *            ±£´æÎÄ¼şÃû
+	 *            ä¿å­˜æ–‡ä»¶å
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
@@ -108,7 +108,7 @@ public class HtmlTemplateGenerator {
 	}
 
 	/**
-	 * ¸ù¾İÄ£°å¼ÓÔØÄÚÈİ£¬Ä£°å´æ´¢ÓÚÎÄ¼şÏµÍ³
+	 * æ ¹æ®æ¨¡æ¿åŠ è½½å†…å®¹ï¼Œæ¨¡æ¿å­˜å‚¨äºæ–‡ä»¶ç³»ç»Ÿ
 	 * 
 	 * @param ftlTemplate
 	 * @param contents
@@ -129,7 +129,7 @@ public class HtmlTemplateGenerator {
 	}
 
 	/**
-	 * ¸ù¾İÄ£°å¼ÓÔØÄÚÈİ,Ä£°å´æ´¢ÓÚÊı¾İ¿â
+	 * æ ¹æ®æ¨¡æ¿åŠ è½½å†…å®¹,æ¨¡æ¿å­˜å‚¨äºæ•°æ®åº“
 	 * 
 	 * @param tempUId
 	 * @param contents
@@ -149,7 +149,7 @@ public class HtmlTemplateGenerator {
 		return sw.toString();
 	}
 
-	// Õâ¸öÔİÊ±²»Òª ÆÁ±Îµô
+	// è¿™ä¸ªæš‚æ—¶ä¸è¦ å±è”½æ‰
 	// public static String getContentFromTemplate(String ftlTemplate, DOIModel
 	// iModel)
 	// throws IOException, TemplateException {
@@ -164,7 +164,7 @@ public class HtmlTemplateGenerator {
 		// DOFormModel fm =
 		// DOFormModel.getFormModelByID("00456907f2ac44088d186fba5ec08909");
 		// // Map fm = new HashMap();
-		// fm.put("l10n", "ÖĞ¹Ê¹¬");
+		// fm.put("l10n", "ä¸­æ•…å®«");
 		// try {
 		// String s =
 		// HtmlTemplateGenerator.getContentFromTemplate("form/Field.ftl", fm);

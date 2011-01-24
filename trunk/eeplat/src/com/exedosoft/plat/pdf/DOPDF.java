@@ -53,8 +53,8 @@ public class DOPDF {
 		PdfWriter writer = PdfWriter.getInstance(document,
 				new FileOutputStream("C:\\ITextTest.pdf"));
 
-		/////////////////为了处理Column
-		   //中间边距
+		/////////////////涓轰簡澶勭悊Column
+		   //涓棿杈硅窛
         float gutter = 20;
         int numColumns = 2;
         
@@ -68,12 +68,12 @@ public class DOPDF {
             allColumns[k] = document.left() + (columnWidth + gutter) * k;
         }
 
-		/////////////////为了处理Column
+		/////////////////涓轰簡澶勭悊Column
         
-        ////////打开文档
+        ////////鎵撳紑鏂囨。
 		document.open();
 
-		////////////获取内容
+		////////////鑾峰彇鍐呭
         PdfContentByte cb = writer.getDirectContent();
         
 //        ColumnText ct = new ColumnText(cb);
@@ -93,22 +93,22 @@ public class DOPDF {
 
 
 
-		// ///建立标题
+		// ///寤虹珛鏍囬
 		Paragraph title1 = new Paragraph("Chapter 1", FontFactory.getFont(
 				FontFactory.HELVETICA, 18, Font.BOLDITALIC,
 				new Color(0, 0, 255)));
 		
 
-		// ////////标题作为第一章节的的Title
+		// ////////鏍囬浣滀负绗竴绔犺妭鐨勭殑Title
 		Chapter chapter1 = new Chapter(title1, 1);
 		chapter1.setNumberDepth(0);
 
 	//	document.add(chapter1);
 
-		// //段落1
+		// //娈佃惤1
 		document.add(new Paragraph("First page of the document."));
 
-		// //段落2
+		// //娈佃惤2
 		document
 				.add(new Paragraph(
 						"Some more text on the first page with different color and font type.",

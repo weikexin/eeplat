@@ -95,7 +95,7 @@ public static String OPTS = "+-*/%><][!|&=#";
     }
     catch(Exception e)
     {
-      throw new ExpressionException("±í´ïÊ½" + expression + "¸ñÊ½·Ç·¨!");
+      throw new ExpressionException("è¡¨è¾¾å¼" + expression + "æ ¼å¼éžæ³•!");
     }
   }
 
@@ -151,7 +151,7 @@ public static String OPTS = "+-*/%><][!|&=#";
     else if (opt.equals(")")) {
       return -1000;
     }
-    throw new ExpressionException("ÔËËã·û" + opt + "·Ç·¨!");
+    throw new ExpressionException("è¿ç®—ç¬¦" + opt + "éžæ³•!");
   }
 
   protected int getOptPriorityIn(String opt)  throws ExpressionException{
@@ -205,7 +205,7 @@ public static String OPTS = "+-*/%><][!|&=#";
     else if (opt.equals("#")) {
       return 0;
     }
-    throw new ExpressionException("ÔËËã·û" + opt + "·Ç·¨£¡");
+    throw new ExpressionException("è¿ç®—ç¬¦" + opt + "éžæ³•ï¼");
   }
 
   /**
@@ -297,9 +297,9 @@ protected String getOPTS()
       }
     }catch(Exception e)
     {
-      throw new ExpressionException("Öµ" + value1 + "»ò" + value2 + "ÔÚ½øÐÐ" +  opt + "ÔËËãÊ±·Ç·¨£¡");
+      throw new ExpressionException("å€¼" + value1 + "æˆ–" + value2 + "åœ¨è¿›è¡Œ" +  opt + "è¿ç®—æ—¶éžæ³•ï¼");
     }
-    throw new ExpressionException("ÔËËã·û" + opt + "·Ç·¨£¡");
+    throw new ExpressionException("è¿ç®—ç¬¦" + opt + "éžæ³•ï¼");
   }
 
   protected String getValue(String oldValue)  throws ExpressionException{
@@ -356,10 +356,10 @@ protected String getOPTS()
       }
     }catch(Exception e)
     {
-      throw new ExpressionException("º¯Êý" + function + "Öµ" + value + "·Ç·¨!");
+      throw new ExpressionException("å‡½æ•°" + function + "å€¼" + value + "éžæ³•!");
     }
 
-    throw new ExpressionException("º¯Êý" + function + "²»Ö§³Ö£¡");
+    throw new ExpressionException("å‡½æ•°" + function + "ä¸æ”¯æŒï¼");
   }
    public static void main(String[] args)
    {

@@ -85,14 +85,14 @@ public class DOSelectTree extends DOBaseForm {
 			buffer.append(">");
 
 			for (int i = 1; i < layer; i++) {
-				buffer.append("&nbsp;&nbsp;©¦");
+				buffer.append("&nbsp;&nbsp;â”‚");
 			}
 
 			buffer.append("&nbsp;&nbsp;");
 			if (itSub.hasNext()) {
-				buffer.append("©À");
+				buffer.append("â”œ");
 			} else {
-				buffer.append("©¸");
+				buffer.append("â””");
 			}
 			buffer.append("&nbsp;");
 			buffer.append(biSub.getName()).append("</option>");

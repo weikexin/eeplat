@@ -29,7 +29,7 @@ public class DOInputCheckBox extends DOStaticList {
 		buffer.append(getDecoration(property));
 
 		
-		// /////////////判断是否缺省选中
+		// /////////////鍒ゆ柇鏄惁缂虹渷閫変腑
 		boolean isDefaultChecked = false;
 		if (property.getInputConfig() != null
 				&& property.getInputConfig().indexOf("@") != -1) {

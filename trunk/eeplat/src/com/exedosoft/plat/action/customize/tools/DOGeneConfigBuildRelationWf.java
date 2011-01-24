@@ -38,15 +38,15 @@ public class DOGeneConfigBuildRelationWf extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if (instance == null) {
-			this.setEchoValue("Ã»ÓĞÊı¾İ!");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®!");
 			return NO_FORWARD;
 		}
 
 		String ptUid = this.actionForm.getValue("pt_uid");
 
-		System.out.println("Ä£°åID::" + ptUid);
+		System.out.println("æ¨¡æ¿ID::" + ptUid);
 		if (ptUid == null && ptUid == null) {
-			this.setEchoValue("Á÷³ÌÄ£°åÃ»ÓĞ¶¨Òå!");
+			this.setEchoValue("æµç¨‹æ¨¡æ¿æ²¡æœ‰å®šä¹‰!");
 			return NO_FORWARD;
 		}
 
@@ -54,7 +54,7 @@ public class DOGeneConfigBuildRelationWf extends DOAbstractAction {
 				+ "_insert");
 		if (insertService != null) {
 
-			// //////////////////×öinsert ·şÎñµÄcopy
+			// //////////////////åšinsert æœåŠ¡çš„copy
 			DOActionConfig ac = DOActionConfig
 					.getActionConfig(com.exedosoft.plat.action.wf.DOStartWf.class
 							.getCanonicalName());
@@ -73,21 +73,21 @@ public class DOGeneConfigBuildRelationWf extends DOAbstractAction {
 					.getUid());
 
 			newService.setName(instance.getName() + "_subflow");
-			newService.setL10n(thisBO.getL10n() + "Ìá½»Á÷³Ì");
+			newService.setL10n(thisBO.getL10n() + "æäº¤æµç¨‹");
 			newService.setActionConfig(ac);
 
 			DAOUtil.INSTANCE().store(newService);
-			// //////////////////×öinsert ·şÎñµÄcopy
+			// //////////////////åšinsert æœåŠ¡çš„copy
 
-			// //´´½¨Ãæ°å
+			// //åˆ›å»ºé¢æ¿
 			DOService aBrowseService = DOService.getService(instance.getName()
 					+ "_browse");
 
 			DOGridModel gridM = GeneUICompByTableJquery.genePaneAndGrid(
 					aBrowseService, gridSupportMore, thisBO.getName()
-							+ "_subflowAndinsert", "Ìá½»¹¤×÷Á÷");
+							+ "_subflowAndinsert", "æäº¤å·¥ä½œæµ");
 			DOFormModel formM = new DOFormModel();
-			formM.setL10n("Ìá½»Á÷³Ì");
+			formM.setL10n("æäº¤æµç¨‹");
 
 			formM.setLinkService(newService);
 			formM.setIsNewLine(1);

@@ -22,11 +22,11 @@ public class ResetPasswordXes4User extends DOAbstractAction {
 		String new_password2 = this.actionForm.getValue("new_password2");
 		
 		if(userid==null || "".equals(userid.trim())){
-			this.setEchoValue("ÓÃ»§Ãû²»ÄÜÎª¿Õ");
+			this.setEchoValue("ç”¨æˆ·åä¸èƒ½ä¸ºç©º");
 			return NO_FORWARD;
 		}
 		if(!new_password1.equals(new_password2)){
-		   this.setEchoValue("Á½´ÎÊäÈëµÄĞÂÃÜÂë²»Ò»ÖÂ");
+		   this.setEchoValue("ä¸¤æ¬¡è¾“å…¥çš„æ–°å¯†ç ä¸ä¸€è‡´");
 		   return NO_FORWARD;
 		}
 		DOService updatePassword = DOService.getService("tbemployee.change.password.by.fdloginid");

@@ -22,7 +22,7 @@ public class MySqlOperationII {
 		try {
 //			Class.forName(driverName);
 //			conn = DriverManager.getConnection(url, user, password);
-			DODataSource dss = DODataSource.getDataSourceByL10n("×Ï·ã±¨ÏúÊı¾İ¿âI");
+			DODataSource dss = DODataSource.getDataSourceByL10n("ç´«æ«æŠ¥é”€æ•°æ®åº“I");
 			 conn = dss.getConnection();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -116,7 +116,7 @@ public class MySqlOperationII {
 	public static void main(String[] args) {
 		Connection conn = MySqlOperationII.getConnection();
 		// try {
-		// MySqlOperation.findByName(conn, "Ğì¾°»Ô");
+		// MySqlOperation.findByName(conn, "å¾æ™¯è¾‰");
 		// } catch (SQLException e) {
 		// // TODO Auto-generated catch block
 		// e.printStackTrace();

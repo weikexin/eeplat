@@ -114,7 +114,7 @@ public class DODownLoadExcelReport extends DOViewTemplate {
 	// fm.getLinkService().getName());
 	// }
 	//
-	// strLink.append("\">обть</a>");
+	// strLink.append("\">Д╦▀Х╫╫</a>");
 	//
 	// return strLink.toString();
 	//

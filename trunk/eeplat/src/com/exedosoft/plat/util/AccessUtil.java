@@ -27,7 +27,7 @@ public class AccessUtil {
 	private static Log log = LogFactory.getLog(AccessUtil.class);
 
 	/**
-	 * ÔİÊ±ÓÃÕâÖÖ·½·¨,ÏÂÒ»²½ÔÙ¿¼ÂÇscript.
+	 * æš‚æ—¶ç”¨è¿™ç§æ–¹æ³•,ä¸‹ä¸€æ­¥å†è€ƒè™‘script.
 	 * 
 	 * @param conditionType
 	 *            TODO
@@ -38,7 +38,7 @@ public class AccessUtil {
 			int conditionType) {
 
 		/**
-		 * ÔİÊ±µÄ×ö·¨£¬Èç¹ûaBIÎªnull Ö±½Ó·µ»Øtrue. ²»Ö´ĞĞÏÂÃæµÄclass»òÕß½Å±¾ÑéÖ¤
+		 * æš‚æ—¶çš„åšæ³•ï¼Œå¦‚æœaBIä¸ºnull ç›´æ¥è¿”å›true. ä¸æ‰§è¡Œä¸‹é¢çš„classæˆ–è€…è„šæœ¬éªŒè¯
 		 */
 		
 		/**
@@ -86,7 +86,7 @@ public class AccessUtil {
 
 			} catch (ClassNotFoundException ex) {
 				ex.printStackTrace();
-				// /////////////////Ó¦¸ÃÊÇreturn false;
+				// /////////////////åº”è¯¥æ˜¯return false;
 				return false;
 			} catch (Exception ex1) {
 				ex1.printStackTrace();

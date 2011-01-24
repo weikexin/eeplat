@@ -37,8 +37,8 @@ import com.exedosoft.wf.pt.NodeDenpendency;
 import com.exedosoft.wf.pt.PTNode;
 
 /**
- * Ã¿¸öÄ£°åµÄPTVarsÖĞÖÁÉÙÓĞÒ»¸öptvar ÊÇ TYPE_BOÕâÖÖÀàĞÍµÄ¡£ Node Instance³õÊ¼»¯Ê±£¬
- * DOGlobals.getSessionContext.refresthUid() ÔÚ**ĞŞ¸Ä¹ıµÄµØ·½Õâ¸öÒ»Ö±Ã»¸üĞÂ
+ * æ¯ä¸ªæ¨¡æ¿çš„PTVarsä¸­è‡³å°‘æœ‰ä¸€ä¸ªptvar æ˜¯ TYPE_BOè¿™ç§ç±»å‹çš„ã€‚ Node Instanceåˆå§‹åŒ–æ—¶ï¼Œ
+ * DOGlobals.getSessionContext.refresthUid() åœ¨**ä¿®æ”¹è¿‡çš„åœ°æ–¹è¿™ä¸ªä¸€ç›´æ²¡æ›´æ–°
  */
 
 public class NodeInstance extends BaseObject implements Serializable {
@@ -63,21 +63,21 @@ public class NodeInstance extends BaseObject implements Serializable {
 	public final static int STATUS_RESUMING = 5;
 
 	/**
-	 * »ØÍË£¬²µ»Ø Ò»°ãÊÇÖ»±»ÉÏ²ã²µ»Ø
+	 * å›é€€ï¼Œé©³å› ä¸€èˆ¬æ˜¯åªè¢«ä¸Šå±‚é©³å›
 	 */
 	public final static int BACK_RETURN = 1;
 	/**
-	 * È¡»Ø£¬×Ô¼ºÖ÷¶¯È¡»Ø
+	 * å–å›ï¼Œè‡ªå·±ä¸»åŠ¨å–å›
 	 */
 	public final static int BACK_WITHDRAW = 2;
 
 	/**
-	 * È«¾ÖÉèÖÃÊôĞÔ ºÍÉÏÃæ¶¨ÒåµÄBACK_ ²»ÊÇÒ»¸ö¸ĞÄî È±Ê¡ÉèÖÃ ¡£ ¼ÌĞøÒ»²½²½ÏòÉÏÌá½»
+	 * å…¨å±€è®¾ç½®å±æ€§ å’Œä¸Šé¢å®šä¹‰çš„BACK_ ä¸æ˜¯ä¸€ä¸ªæ„Ÿå¿µ ç¼ºçœè®¾ç½® ã€‚ ç»§ç»­ä¸€æ­¥æ­¥å‘ä¸Šæäº¤
 	 */
 	public final static int BACK_FOWARD_DIRECT = 1;
 
 	/**
-	 * Ìá½»µ½²µ»ØµÄ½Úµã£¬¶ø²»ÊÇ¼ÌĞøÒ»²½²½ÍùÏÂ×ß Õâ¸öÊÇÈ«¾ÖµÄÉèÖÃ ºÍ¾ßÌåµÄ½ÚµãÉèÖÃÎŞ
+	 * æäº¤åˆ°é©³å›çš„èŠ‚ç‚¹ï¼Œè€Œä¸æ˜¯ç»§ç»­ä¸€æ­¥æ­¥å¾€ä¸‹èµ° è¿™ä¸ªæ˜¯å…¨å±€çš„è®¾ç½® å’Œå…·ä½“çš„èŠ‚ç‚¹è®¾ç½®æ— 
 	 */
 	public final static int BACK_FOWARD_HISTORY = 2;
 
@@ -90,13 +90,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 	// 1.Activity;
 	// 2.Start;
 	// 3.End;
-	// 4.And Decision AndÅĞ¶Ï,node0---->node1£¬node2......;Á½¸ö·ÖÖ§¶¼ÒªÖ´ĞĞ¡£ ²»ÄÜ»ØÍË¡£
-	// 5.XOR Decision ÅĞ¶Ï£¬Ö»ÓĞÒ»¸ö·ÖÖ§¡£node0---->node1£¬node2.......
-	// Ö»ÓĞÒ»¸önode1,node2¿ÉÄÜ±»Ñ¡Ôñ ¿ÉÒÔ»ØÍË
-	// 6.And Conjunction »áÇ©£»node1£¬node2.......-----> node0
-	// node1,node2¶¼Ö´ĞĞÍê²Å¿ÉÒÔÖ´ĞĞnode0 ²»ÄÜ»ØÍË
-	// 7.Or Conjunction node1£¬node2.......-----> node0
-	// node1,node2Ö»ÒªÓĞÒ»¸öÖ´ĞĞÍê¾Í¿ÉÒÔÖ´ĞĞnode0 ²»ÄÜ»ØÍË
+	// 4.And Decision Andåˆ¤æ–­,node0---->node1ï¼Œnode2......;ä¸¤ä¸ªåˆ†æ”¯éƒ½è¦æ‰§è¡Œã€‚ ä¸èƒ½å›é€€ã€‚
+	// 5.XOR Decision åˆ¤æ–­ï¼Œåªæœ‰ä¸€ä¸ªåˆ†æ”¯ã€‚node0---->node1ï¼Œnode2.......
+	// åªæœ‰ä¸€ä¸ªnode1,node2å¯èƒ½è¢«é€‰æ‹© å¯ä»¥å›é€€
+	// 6.And Conjunction ä¼šç­¾ï¼›node1ï¼Œnode2.......-----> node0
+	// node1,node2éƒ½æ‰§è¡Œå®Œæ‰å¯ä»¥æ‰§è¡Œnode0 ä¸èƒ½å›é€€
+	// 7.Or Conjunction node1ï¼Œnode2.......-----> node0
+	// node1,node2åªè¦æœ‰ä¸€ä¸ªæ‰§è¡Œå®Œå°±å¯ä»¥æ‰§è¡Œnode0 ä¸èƒ½å›é€€
 	// 8.Subprocess
 
 	/**
@@ -163,7 +163,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 */
 
 	/**
-	 * ÊÇ·ñ±»ÍË»ØµÄ²Ù×÷ÀàĞÍ£¬°üÀ¨1£¬»ØÍË(²µ»Ø);2,È¡»Ø.
+	 * æ˜¯å¦è¢«é€€å›çš„æ“ä½œç±»å‹ï¼ŒåŒ…æ‹¬1ï¼Œå›é€€(é©³å›);2,å–å›.
 	 * 
 	 * @uml.property name="backType"
 	 */
@@ -401,7 +401,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ÉÏÒ»¼¶±ğµÄÖ´ĞĞÕß£¬Òª¿¼ÂÇ½ÚµãµÄÀàĞÍ£¬ÔİÊ±²»¿¼ÂÇ¡£
+	 * ä¸Šä¸€çº§åˆ«çš„æ‰§è¡Œè€…ï¼Œè¦è€ƒè™‘èŠ‚ç‚¹çš„ç±»å‹ï¼Œæš‚æ—¶ä¸è€ƒè™‘ã€‚
 	 * 
 	 * @return
 	 */
@@ -424,7 +424,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ÉÏÒ»¼¶±ğµÄÖ´ĞĞÕß£¬Òª¿¼ÂÇ½ÚµãµÄÀàĞÍ£¬ÔİÊ±²»¿¼ÂÇ¡£
+	 * ä¸Šä¸€çº§åˆ«çš„æ‰§è¡Œè€…ï¼Œè¦è€ƒè™‘èŠ‚ç‚¹çš„ç±»å‹ï¼Œæš‚æ—¶ä¸è€ƒè™‘ã€‚
 	 * 
 	 * @return
 	 */
@@ -486,7 +486,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ĞéÄâ×éÖ¯×Ô¶¯Â·ÓÉµÄÒ»¸ö±È½ÏÖØÒªµÄ·½·¨£¬¿ÉÒÔÔİÊ±²»¿¼ÂÇ¡£»¹ÊÇ²ÉÓÃ´«Í³µÄ·½·¨°É¡£
+	 * è™šæ‹Ÿç»„ç»‡è‡ªåŠ¨è·¯ç”±çš„ä¸€ä¸ªæ¯”è¾ƒé‡è¦çš„æ–¹æ³•ï¼Œå¯ä»¥æš‚æ—¶ä¸è€ƒè™‘ã€‚è¿˜æ˜¯é‡‡ç”¨ä¼ ç»Ÿçš„æ–¹æ³•å§ã€‚
 	 * 
 	 * @return
 	 */
@@ -508,7 +508,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		DOService service = DOService.getService("zj.unit.link.findByChildUid");
 		List parentDeptLinks = service.invokeSelect(deptUid);
 		/**
-		 * ÓÃnodeExt5´úÌædecisionExpression.
+		 * ç”¨nodeExt5ä»£æ›¿decisionExpression.
 		 */
 		String aRule = this.getNode().getRetNodeUID();
 		if (parentDeptLinks != null) {
@@ -633,7 +633,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ñµÃÇ°Ğø½Úµã
+	 * è·å¾—å‰ç»­èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -655,7 +655,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»¸öÇ°ÖÃµÄÈË¹¤½Úµã
+	 * è·å–ä¸€ä¸ªå‰ç½®çš„äººå·¥èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -686,7 +686,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ñµÃºóĞø½Úµã
+	 * è·å¾—åç»­èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -707,7 +707,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ñµÃºóĞø½ÚµãÒÀÀµ¹ØÏµ
+	 * è·å¾—åç»­èŠ‚ç‚¹ä¾èµ–å…³ç³»
 	 * 
 	 * @return
 	 */
@@ -732,7 +732,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		PTNode tNode = this.getNode();
 
 		/**
-		 * Èç¹ûÊÇ×ÔÁ¬½Ó,ÏÈ´¦Àí×ÔÁ¬½Ó.
+		 * å¦‚æœæ˜¯è‡ªè¿æ¥,å…ˆå¤„ç†è‡ªè¿æ¥.
 		 */
 		if (this.getNodeType() != null
 				&& this.getNodeType().intValue() == PTNode.TYPE_SELF) {
@@ -768,7 +768,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 			}
 		}
-		// ////////////Èç¹û×ÓÁ¬½ÓÖ´ĞĞÍê²ÅÖ´ĞĞÏÂÃæµÄ.
+		// ////////////å¦‚æœå­è¿æ¥æ‰§è¡Œå®Œæ‰æ‰§è¡Œä¸‹é¢çš„.
 
 		List list = new ArrayList();
 		// WFDAO dao = new WFDAO();
@@ -782,7 +782,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 						.getProcessInstance(), nd.getPostNode(),
 						NodeInstance.STATUS_FREE);
 				DAOUtil.BUSI().store(niPost);
-				NIDependency nid = new NIDependency(); // ///ÊµÀıµÄ¹ØÁªÀà
+				NIDependency nid = new NIDependency(); // ///å®ä¾‹çš„å…³è”ç±»
 				nid.setPreNodeInstance(this);
 				nid.setPostNodeInstance(niPost);
 				nid.setCondition(nd.getCondition());
@@ -802,7 +802,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ¸ù¾İID »ñÈ¡NodeInstance ÁĞ±í
+	 * æ ¹æ®ID è·å–NodeInstance åˆ—è¡¨
 	 * 
 	 * @param aUid
 	 * @return
@@ -827,7 +827,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ¸ù¾İID »ñÈ¡NodeInstance
+	 * æ ¹æ®ID è·å–NodeInstance
 	 * 
 	 * @param aUid
 	 * @return
@@ -842,7 +842,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// List list = dao.list(hql, aUid);
 		// if (list != null && list.size() > 0) {
 		// NodeInstance aNI = (NodeInstance) list.get(0);
-		// ///remove by weikx at 20080401 ¿ÉÄÜ¶Ô¹¤×÷Á÷ÊµÀıÉÏÏÂÎÄ Ôì³É»ìÂÒ
+		// ///remove by weikx at 20080401 å¯èƒ½å¯¹å·¥ä½œæµå®ä¾‹ä¸Šä¸‹æ–‡ é€ æˆæ··ä¹±
 		// // DOBO niBO = DOBO.getDOBOByName("do.wfi.nodeinstance");
 		// // niBO.refreshContext(aNI.getObjUid());
 		// return aNI;
@@ -856,7 +856,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ¸ù¾İID »ñÈ¡NodeInstance
+	 * æ ¹æ®ID è·å–NodeInstance
 	 * 
 	 * @param aUid
 	 * @return
@@ -887,7 +887,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * È¡»Ø²Ù×÷ÊÇ¶ÔÒÑ×÷¹ıµ«Á÷³ÌÎ´×ßÍêµÄÈÎÎñÀ´ËµµÄ£¬¶ø»ØÍËÊÇ¶Ôµ±Ç°ÈÎÎñÀ´ËµµÄ¡£
+	 * å–å›æ“ä½œæ˜¯å¯¹å·²ä½œè¿‡ä½†æµç¨‹æœªèµ°å®Œçš„ä»»åŠ¡æ¥è¯´çš„ï¼Œè€Œå›é€€æ˜¯å¯¹å½“å‰ä»»åŠ¡æ¥è¯´çš„ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -898,7 +898,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		NodeInstance postNode = (NodeInstance) postNodes.get(0);
 		if (postNode.getProcessInstance().getExeStatus() != null
 				&& (postNode.getProcessInstance().getExeStatus().intValue() != ProcessInstance.STATUS_RUN)) {
-			throw new WFException("Á÷³ÌÒÑ²»ÔÚÔËĞĞÖĞ£¬ÎŞ·¨³·»Ø£¡");
+			throw new WFException("æµç¨‹å·²ä¸åœ¨è¿è¡Œä¸­ï¼Œæ— æ³•æ’¤å›ï¼");
 		}
 		if (postNode.getNodeType() != null
 				&& postNode.getNodeType().intValue() != PTNode.TYPE_ACTIVITY) {
@@ -908,7 +908,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			NodeInstance aNi = (NodeInstance) it.next();
 			if (aNi.getExeStatus() != null
 					&& aNi.getExeStatus().intValue() == NodeInstance.STATUS_FINISH) {
-				throw new WFException("ºóĞøÁ÷³ÌÒÑ¾­Ö´ĞĞ£¬ÎŞ·¨³·»Ø£¡");
+				throw new WFException("åç»­æµç¨‹å·²ç»æ‰§è¡Œï¼Œæ— æ³•æ’¤å›ï¼");
 			}
 		}
 
@@ -925,7 +925,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 			DAOUtil.BUSI().store(this);
 		} catch (Exception e) {
-			throw new WFException("´¦Àí»ØÍËÊ±³ö´í:" + this, e);
+			throw new WFException("å¤„ç†å›é€€æ—¶å‡ºé”™:" + this, e);
 		}
 		// finally {
 		// dao.closeSession();
@@ -934,10 +934,10 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ØÍË²Ù×÷¡£ Ó¦¸Ã¿¼ÂÇÔÚÈÎºÎÇé¿öÏÂ£¬¶¼Ö§³Ö»ØÍË¡£ ²»ÄÜ»ØÍËµÄÇé¿ö£¬ÓÉ½çÃæ·ñÔò¿ØÖÆ¡£
+	 * å›é€€æ“ä½œã€‚ åº”è¯¥è€ƒè™‘åœ¨ä»»ä½•æƒ…å†µä¸‹ï¼Œéƒ½æ”¯æŒå›é€€ã€‚ ä¸èƒ½å›é€€çš„æƒ…å†µï¼Œç”±ç•Œé¢å¦åˆ™æ§åˆ¶ã€‚
 	 * 
 	 * 
-	 * »ØÍË£¬ÆäÊµ»¹ÊÇºÜ¸´ÔÓµÄ£¬Ó¦¸Ã³õÊ¼»¯µÄÊÇ»ØÍËµ½Ä³µã£¨²»ÊÇ´ÓÄ³µã»ØÍËµÄÄÇµã£©µÄpostNodes.
+	 * å›é€€ï¼Œå…¶å®è¿˜æ˜¯å¾ˆå¤æ‚çš„ï¼Œåº”è¯¥åˆå§‹åŒ–çš„æ˜¯å›é€€åˆ°æŸç‚¹ï¼ˆä¸æ˜¯ä»æŸç‚¹å›é€€çš„é‚£ç‚¹ï¼‰çš„postNodes.
 	 * 
 	 */
 
@@ -953,9 +953,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 
 		// if (preNodes == null || preNodes.size() != 1) {
-		// throw new WFException("²»·ûºÏ»ØÍËÌõ¼ş£¡");
+		// throw new WFException("ä¸ç¬¦åˆå›é€€æ¡ä»¶ï¼");
 		// }
-		// /ÆÕÍ¨ÈË¹¤»î¶¯½ÚµãµÄÇ°ºó£¬Ö»ÓĞÓĞÒ»¸ö½Úµã¡£decitionºóÃæ¿ÉÒÔÓĞ¶à¸ö£¬conjunctionÇ°Ãæ¿ÉÒÔÓĞ¶à¸ö¡£
+		// /æ™®é€šäººå·¥æ´»åŠ¨èŠ‚ç‚¹çš„å‰åï¼Œåªæœ‰æœ‰ä¸€ä¸ªèŠ‚ç‚¹ã€‚decitionåé¢å¯ä»¥æœ‰å¤šä¸ªï¼Œconjunctionå‰é¢å¯ä»¥æœ‰å¤šä¸ªã€‚
 		
 		List prePTNodes = this.getNode().getPreNodes();
 		
@@ -963,9 +963,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 		NodeInstance theNewBackNI = null;
 		if (preNode.getNodeType() != null
 				&& preNode.getNodeType().intValue() == PTNode.TYPE_START) {
-			throw new WFException("Ç°ÃæÒÑ¾­Ã»ÓĞ½Úµã,ÎŞ·¨»ØÍË!");
+			throw new WFException("å‰é¢å·²ç»æ²¡æœ‰èŠ‚ç‚¹,æ— æ³•å›é€€!");
 		}
-		// PTNode.TYPE_SELF////////////ÕâÖÖÇé¿öµ¥¶À¿¼ÂÇ.
+		// PTNode.TYPE_SELF////////////è¿™ç§æƒ…å†µå•ç‹¬è€ƒè™‘.
 
 		if (preNode.getNodeType() != null
 				&& preNode.getNodeType().intValue() != PTNode.TYPE_ACTIVITY) {
@@ -979,26 +979,26 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 			for (Iterator it = prePTNodes.iterator(); it.hasNext();) {
 				PTNode aPre = (PTNode) it.next();
-				// ///////////´¦Àí»ØÍË
+				// ///////////å¤„ç†å›é€€
 				theNewBackNI = buildNewRelation(aPre, null, type);
-				// ////////////////´¦Àí»ØÍË
+				// ////////////////å¤„ç†å›é€€
 			}
 			backStr = this.getNode().getNodeStateShowBack();
 			if (backStr == null || "".equals(backStr.trim())) {
-				backStr = "»ØÍË";
+				backStr = "å›é€€";
 			}
 			this.setExeStatus(NodeInstance.STATUS_FINISH);
 			storePropertyValues();
 			DAOUtil.BUSI().store(this);
 		} catch (Exception e) {
-			throw new WFException("´¦Àí»ØÍËÊ±³ö´í:" + this, e);
+			throw new WFException("å¤„ç†å›é€€æ—¶å‡ºé”™:" + this, e);
 		}
 		return theNewBackNI;
 
 	}
 
 	/**
-	 * ´¦Àíµ±Ç°½ÚµãºÍ»ØÍË½ÚµãµÄ¹ØÏµ,²¢Éú³ÉĞÂµÄ½Úµã
+	 * å¤„ç†å½“å‰èŠ‚ç‚¹å’Œå›é€€èŠ‚ç‚¹çš„å…³ç³»,å¹¶ç”Ÿæˆæ–°çš„èŠ‚ç‚¹
 	 * 
 	 * @param dao
 	 * @param forwardNodeInstance
@@ -1015,9 +1015,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 		NodeInstance theRet = initNodeInstance(this.getProcessInstance(),
 				forwardNode, NodeInstance.STATUS_RUN);
 
-		// //ÓÃ´¦ÓÚ»î¶¯×´Ì¬µÄ½ÚµãÃû³Æ Ìæ»»Î´Á÷³ÌµÄ×´Ì¬
+		// //ç”¨å¤„äºæ´»åŠ¨çŠ¶æ€çš„èŠ‚ç‚¹åç§° æ›¿æ¢æœªæµç¨‹çš„çŠ¶æ€
 
-		String state = "»ØÍË";
+		String state = "å›é€€";
 		if (backType == -1) {
 			state = theRet.getNodeStateShow();
 		} else if (theRet.getNodeStateShowBack() != null
@@ -1042,7 +1042,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 					rTxt = formI.getValue("rejecttxt");
 				}
 
-				state = state + "£¨" + rTxt + "£©";				
+				state = state + "ï¼ˆ" + rTxt + "ï¼‰";				
 			}
 		}
 		dealProcessState(state);
@@ -1062,7 +1062,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		try {
 			DAOUtil.BUSI().store(theRet);
 
-			NIDependency nid = new NIDependency(); // ///ÊµÀıµÄ¹ØÁªÀà
+			NIDependency nid = new NIDependency(); // ///å®ä¾‹çš„å…³è”ç±»
 			nid.setPreNodeInstance(this);
 			nid.setPostNodeInstance(theRet);
 			DAOUtil.BUSI().store(nid);
@@ -1070,13 +1070,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// //´´½¨ºóÃæµÄ¹ØÏµ
+		// //åˆ›å»ºåé¢çš„å…³ç³»
 		// returnInitPostNodes(dao, theRet);
 		return theRet;
 	}
 
 	/**
-	 * ×ÔÓÉ×ªÏò£¬×ÔÓÉ×ªÏòµ½Ö¸¶¨µÄ½Úµã¡£
+	 * è‡ªç”±è½¬å‘ï¼Œè‡ªç”±è½¬å‘åˆ°æŒ‡å®šçš„èŠ‚ç‚¹ã€‚
 	 */
 
 	public NodeInstance forward(String nodeUid, String forwardReason)
@@ -1103,7 +1103,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			//DAOUtil.BUSI().store(this);
 
 		} catch (Exception e) {
-			throw new WFException("×ÔÓÉ×ªÏòÊ±³ö´í:" + this, e);
+			throw new WFException("è‡ªç”±è½¬å‘æ—¶å‡ºé”™:" + this, e);
 		}
 		return newInstance;
 
@@ -1123,7 +1123,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * »ØÍË²Ù×÷
+	 * å›é€€æ“ä½œ
 	 * 
 	 */
 	public void backToStart() throws WFException {
@@ -1144,7 +1144,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 							type);
 					// fan.setExeStatus(new Integer(NodeInstance.STATUS_RUN));
 					// fan.setBackType(new Integer(NodeInstance.BACK_RETURN));
-					// /////////////////Ê¹ÓÃÀ©Õ¹5×Ö¶Î
+					// /////////////////ä½¿ç”¨æ‰©å±•5å­—æ®µ
 				}
 			}
 			// for (Iterator it =
@@ -1160,13 +1160,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 			// }
 			// }
 
-			// ////²µ»ØÇé¿ö×Ô¼ºµÄÔËĞĞ×´Ì¬ÉèÎªÍê³É.
+			// ////é©³å›æƒ…å†µè‡ªå·±çš„è¿è¡ŒçŠ¶æ€è®¾ä¸ºå®Œæˆ.
 			this.setExeStatus(new Integer(NodeInstance.STATUS_FINISH));
 			DAOUtil.BUSI().store(this);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new WFException("»ØÍËµ½·¢ÆğÈËÊ±³ö´í:" + this, e);
+			throw new WFException("å›é€€åˆ°å‘èµ·äººæ—¶å‡ºé”™:" + this, e);
 		}
 		// finally {
 		// dao.closeSession();
@@ -1175,7 +1175,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ÈË¹¤Ö´ĞĞµÄ½Úµã
+	 * äººå·¥æ‰§è¡Œçš„èŠ‚ç‚¹
 	 */
 
 	public void perform() throws WFException {
@@ -1185,7 +1185,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ´æ´¢½çÃæµÄÒ»Ğ©Êı¾İ
+	 * å­˜å‚¨ç•Œé¢çš„ä¸€äº›æ•°æ®
 	 * 
 	 * @throws WFException
 	 */
@@ -1209,7 +1209,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		System.out.println("formI==-===" + formI);
 		System.out.println("formI==-===" + formI);
 		
-		// //////////////´Ó½çÃæ»ñÈ¡ÓÃ»§µÄÂ¼Èë£¬¸üĞÂ±äÁ¿¶ÔÓ¦µÄÖµ
+		// //////////////ä»ç•Œé¢è·å–ç”¨æˆ·çš„å½•å…¥ï¼Œæ›´æ–°å˜é‡å¯¹åº”çš„å€¼
 		try {
 			if (formI != null) {
 				for (Iterator it = this.getProcessInstance()
@@ -1224,7 +1224,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			DAOUtil.BUSI().store(this);
 
 		} catch (Exception ex) {
-			throw new WFException("ÈË¹¤Ö´ĞĞ½ÚµãÊ±³ö´í:" + this, ex);
+			throw new WFException("äººå·¥æ‰§è¡ŒèŠ‚ç‚¹æ—¶å‡ºé”™:" + this, ex);
 		}
 		// finally {
 		// dao.closeSession();
@@ -1232,7 +1232,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 	}
 
-	// /////////////////////ÉÏÒ»¸ö½Úµã¾ö¶¨ÏÂÒ»¸ö½ÚµãµÄÖ´ĞĞ£¬°Ñ¾ö¶¨¶ÔÏóµÄÈ¨ÏŞĞ´ÈëÈ¨ÏŞ±í
+	// /////////////////////ä¸Šä¸€ä¸ªèŠ‚ç‚¹å†³å®šä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æ‰§è¡Œï¼ŒæŠŠå†³å®šå¯¹è±¡çš„æƒé™å†™å…¥æƒé™è¡¨
 	private void storeNextNodeAuthorization(NodeInstance nextNodeInstance) {
 
 		SessionContext us = DOGlobals.getInstance().getSessoinContext();
@@ -1244,10 +1244,10 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// nextPerformerUid = formI.getValue("doNextPerformerUid3");
 		// }
 
-		// /////////³ıÁË´¦Àíschedue_user µÄÇé¿ö£¬»¹Òª´¦Àí
-		// schedule_deptµÈµÄÇé¿ö£¬ÓÖ¸ú×éÖ¯½á¹¹±í°óËÀÁË£¬¿ÉÒÔ¿¼ÂÇÁíÍâµÄ·½Ê½
+		// /////////é™¤äº†å¤„ç†schedue_user çš„æƒ…å†µï¼Œè¿˜è¦å¤„ç†
+		// schedule_deptç­‰çš„æƒ…å†µï¼Œåˆè·Ÿç»„ç»‡ç»“æ„è¡¨ç»‘æ­»äº†ï¼Œå¯ä»¥è€ƒè™‘å¦å¤–çš„æ–¹å¼
 
-		// //////////////ºÜ¼òµ¥ ÓĞptNode ¾ö¶¨ ºÍÄÄ¼¶×éÖ¯½á¹¹°ó¶¨£¬ptnode ÔÙÔö¼ÓÒ»¸ö×Ö¶Î£¬±íÊ¾ĞèÒª°ó¶¨µÄ×éÖ¯»ú¹¹
+		// //////////////å¾ˆç®€å• æœ‰ptNode å†³å®š å’Œå“ªçº§ç»„ç»‡ç»“æ„ç»‘å®šï¼Œptnode å†å¢åŠ ä¸€ä¸ªå­—æ®µï¼Œè¡¨ç¤ºéœ€è¦ç»‘å®šçš„ç»„ç»‡æœºæ„
 
 		if (nextNodeInstance.getAuthType() != null
 				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_USER || nextNodeInstance
@@ -1317,22 +1317,22 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * NodeÊµÀıÔËĞĞÊ±´¦Àí
+	 * Nodeå®ä¾‹è¿è¡Œæ—¶å¤„ç†
 	 */
 	public void execute() throws WFException {
 
 		/**
-		 * ¿ÕÏĞ×´Ì¬²»ÄÜÖ´ĞĞ¶¯×÷
+		 * ç©ºé—²çŠ¶æ€ä¸èƒ½æ‰§è¡ŒåŠ¨ä½œ
 		 */
 		if (getExeStatus() != null && getExeStatus().intValue() == STATUS_FREE) {
 			return;
 		}
 
-		// ////////Èç¹û¹¤×÷Á÷²»ÔÚÔËĞĞ×´Ì¬
+		// ////////å¦‚æœå·¥ä½œæµä¸åœ¨è¿è¡ŒçŠ¶æ€
 		if (!isProcessInstanceRun()) {
 			return;
 		}
-		// ///////Ö´ĞĞ×´Ì¬Èç¹ûÊÇ¹ÒÆğ.Ö±½Ó·µ»Ø
+		// ///////æ‰§è¡ŒçŠ¶æ€å¦‚æœæ˜¯æŒ‚èµ·.ç›´æ¥è¿”å›
 
 		if (getExeStatus() != null
 				&& getExeStatus().intValue() == STATUS_HANGUP) {
@@ -1342,7 +1342,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		this.setExeStatus(new Integer(STATUS_RUN));
 
 		/***********************************************************************
-		 * ´¦ÀíÁ÷³Ì×´Ì¬ ÓÃ±¾½ÚµãµÄ×´Ì¬¸Ä±äÁ÷³ÌµÄ×´Ì¬
+		 * å¤„ç†æµç¨‹çŠ¶æ€ ç”¨æœ¬èŠ‚ç‚¹çš„çŠ¶æ€æ”¹å˜æµç¨‹çš„çŠ¶æ€
 		 */
 		dealProcessState(this.nodeStateShow);
 		
@@ -1355,11 +1355,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 		try {
 			DAOUtil.BUSI().store(this);
 		} catch (Exception ex) {
-			throw new WFException("½Úµã¿ªÊ¼Ö´ĞĞ,³Ö¾Ã»¯×´Ì¬Ê±³ö´í:" + this, ex);
+			throw new WFException("èŠ‚ç‚¹å¼€å§‹æ‰§è¡Œ,æŒä¹…åŒ–çŠ¶æ€æ—¶å‡ºé”™:" + this, ex);
 		}
 
 		/**
-		 * ÈË¹¤½ÚµãÈË¹¤Ö´ĞĞ
+		 * äººå·¥èŠ‚ç‚¹äººå·¥æ‰§è¡Œ
 		 */
 		if (getNodeType() != null
 				&& (getNodeType().intValue() == PTNode.TYPE_ACTIVITY || getNodeType()
@@ -1368,11 +1368,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 		}
 
 		/**
-		 * ×Ô¶¯Service Ö´ĞĞ½Úµã
+		 * è‡ªåŠ¨Service æ‰§è¡ŒèŠ‚ç‚¹
 		 */
 
 		/**
-		 * ÈË¹¤½ÚµãÈË¹¤Ö´ĞĞ
+		 * äººå·¥èŠ‚ç‚¹äººå·¥æ‰§è¡Œ
 		 */
 		if (getNodeType() != null
 				&& (getNodeType().intValue() == PTNode.TYPE_SERVICE_AUTO)) {
@@ -1391,13 +1391,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ±¾½ÚµãÖ´ĞĞ½áÊø,Æô¶¯ºóĞø½Úµã
+	 * æœ¬èŠ‚ç‚¹æ‰§è¡Œç»“æŸ,å¯åŠ¨åç»­èŠ‚ç‚¹
 	 * 
 	 * @throws WFException
 	 */
 	public void finishNode() throws WFException {
 
-		// ///////////ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÖ´ĞĞºóĞø½Úµã
+		// ///////////åˆ¤æ–­æ˜¯å¦å¯ä»¥æ‰§è¡Œåç»­èŠ‚ç‚¹
 		if (!isExeNextNodes()) {
 			return;
 		}
@@ -1407,9 +1407,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// dao.setAutoClose(false);
 		try {
 			DAOUtil.BUSI().store(this);
-			log.info("½ÚµãÖ´ĞĞÍê³É£º£º£º£º£º£º£º£º£º£º£º£º£º£º£º" + this);
+			log.info("èŠ‚ç‚¹æ‰§è¡Œå®Œæˆï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼šï¼š" + this);
 		} catch (Exception ex) {
-			throw new WFException("½ÚµãÖ´ĞĞÍê³É,³Ö¾Ã»¯×´Ì¬Ê±³ö´í:" + this, ex);
+			throw new WFException("èŠ‚ç‚¹æ‰§è¡Œå®Œæˆ,æŒä¹…åŒ–çŠ¶æ€æ—¶å‡ºé”™:" + this, ex);
 		}
 		// finally {
 		// dao.closeSession();
@@ -1418,7 +1418,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ³·»Ø²»¸Ä±ä×´Ì¬ Ö»ÓĞ»ØÍË ºÍ Õı³£ÉóÅú²Å¸Ä±ä×´Ì¬
+	 * æ’¤å›ä¸æ”¹å˜çŠ¶æ€ åªæœ‰å›é€€ å’Œ æ­£å¸¸å®¡æ‰¹æ‰æ”¹å˜çŠ¶æ€
 	 * 
 	 * @param state
 	 * @param dao
@@ -1430,7 +1430,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	private void dealProcessState(String state) {
 		//
 		// WFDAO dao = new WFDAO();
-		// /¿ÉÒÔ±»À¹½Ø
+		// /å¯ä»¥è¢«æ‹¦æˆª
 		processInstance = this.getProcessInstance();
 		if (state != null && !"".equals(state.trim())) {
 			processInstance.setCurState(state);
@@ -1444,7 +1444,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		processInstance.setCurStateTime(this.getNodeDate());
 		processInstance.setCurStateUser(this.getPerformer());
 		// }
-		// else {// /////////µÚÒ»¸öÈË¹¤½ÚµãÆô¶¯ ²ÅËãÊÇÕæÕıµÄÆô¶¯
+		// else {// /////////ç¬¬ä¸€ä¸ªäººå·¥èŠ‚ç‚¹å¯åŠ¨ æ‰ç®—æ˜¯çœŸæ­£çš„å¯åŠ¨
 		// processInstance.setExeStatus(ProcessInstance.STATUS_RUN);
 		// }
 
@@ -1461,13 +1461,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * Ö´ĞĞÏÂÒ»Ğ©(¸ö)½Úµã
+	 * æ‰§è¡Œä¸‹ä¸€äº›(ä¸ª)èŠ‚ç‚¹
 	 */
 	public void exeNextNodes() throws WFException {
 
-		// ////////////ÏÈ´¦Àí·µ»ØµÄÇé¿ö
+		// ////////////å…ˆå¤„ç†è¿”å›çš„æƒ…å†µ
 
-		// ////////Õâ¸öÇé¿öÏÂĞèÒªÌá½»µ½²µ»ØµÄ½Úµã£¬¶ø²»ÊÇ¼ÌĞøÒ»²½²½ÍùÏÂ×ß
+		// ////////è¿™ä¸ªæƒ…å†µä¸‹éœ€è¦æäº¤åˆ°é©³å›çš„èŠ‚ç‚¹ï¼Œè€Œä¸æ˜¯ç»§ç»­ä¸€æ­¥æ­¥å¾€ä¸‹èµ°
 		if (DOGlobals.WF_BACK_FORWORD == NodeInstance.BACK_FOWARD_HISTORY) {
 
 			if (this.getBackType() != null && this.getRetNodeUID() != null) {
@@ -1475,13 +1475,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 				NodeInstance postNI = NodeInstance.getNodeInstanceByID(this
 						.getRetNodeUID());
 				if (postNI != null) {
-					// ///////////Ó¦¸ÃÊµÏÖÊµÀı¹ØÁª
-					NIDependency nid = new NIDependency(); // ///ÊµÀıµÄ¹ØÁªÀà
+					// ///////////åº”è¯¥å®ç°å®ä¾‹å…³è”
+					NIDependency nid = new NIDependency(); // ///å®ä¾‹çš„å…³è”ç±»
 					// WFDAO dao = new WFDAO();
 					// dao.setAutoClose(false);
 					NodeInstance newInstance = null;
 					try {
-						// /ÖØĞÂÌá½»
+						// /é‡æ–°æäº¤
 						newInstance = buildNewRelation(postNI.getNode(), null,
 								-1);
 						nid.setPreNodeInstance(this);
@@ -1498,24 +1498,24 @@ public class NodeInstance extends BaseObject implements Serializable {
 					newInstance.execute();
 
 				} else {
-					log.warn("»ØÍË·µ»ØÇé¿öÏÂÕÒ²»µ½½Úµã");
+					log.warn("å›é€€è¿”å›æƒ…å†µä¸‹æ‰¾ä¸åˆ°èŠ‚ç‚¹");
 				}
 				return;
 			}
 		}
 
-		// ////////////»ñÈ¡ºóĞø½ÚµãÒÀÀµ
+		// ////////////è·å–åç»­èŠ‚ç‚¹ä¾èµ–
 		List postNodeDepes = initPostNodeDepes();
 
 		if (postNodeDepes != null && postNodeDepes.size() > 0) {
 			boolean isHaveOneExe = false;
 			for (Iterator it = postNodeDepes.iterator(); it.hasNext();) {
 				NIDependency nid = (NIDependency) it.next();
-				// /////////////////Èç¹ûNode ÀàĞÍÊÇXOR DECISIONÊ±
+				// /////////////////å¦‚æœNode ç±»å‹æ˜¯XOR DECISIONæ—¶
 				if (this.getNodeType() != null
 						&& this.getNodeType().intValue() == PTNode.TYPE_XOR_DECISION) {
 
-					// /////////·µ»Ø½á¹ûÅĞ¶Ï½á¹û
+					// /////////è¿”å›ç»“æœåˆ¤æ–­ç»“æœ
 					
 					String decision = getNodeDecision();
 					String condition = nid.getCondition();
@@ -1532,7 +1532,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 				}
 				isHaveOneExe = true;
 				if (nid.getPostNodeInstance() != null) {
-					// ///////////ÏÈ°ÑNodeµÄ×´Ì¬ÖÃÎª³õÊ¼»¯
+					// ///////////å…ˆæŠŠNodeçš„çŠ¶æ€ç½®ä¸ºåˆå§‹åŒ–
 					if (nid.getPostNodeInstance().getExeStatus() != null
 							&& (nid.getPostNodeInstance().getExeStatus()
 									.intValue() == NodeInstance.STATUS_FREE || nid
@@ -1542,26 +1542,26 @@ public class NodeInstance extends BaseObject implements Serializable {
 								new Integer(STATUS_INIT));
 					}
 
-					// ///////////////////ÏÂÒ»¸ö½ÚµãµÄÈ¨ÏŞÉè¶¨//
+					// ///////////////////ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æƒé™è®¾å®š//
 					storeNextNodeAuthorization(nid.getPostNodeInstance());
 					nid.getPostNodeInstance().execute();
 				}
 			}
 			if (!isHaveOneExe) {
-				dealFailure("Î´ÕÒµ½ºóÖÃ½ÚµãÖ´ĞĞ:");
+				dealFailure("æœªæ‰¾åˆ°åç½®èŠ‚ç‚¹æ‰§è¡Œ:");
 			}
-		} else { // ////Èç¹ûÃ»ÓĞºóĞø½Úµã²¢ÇÒ¸Ã½ÚµãÊ±½áÊø½Úµã,±¾Á÷³Ì½áÊø
+		} else { // ////å¦‚æœæ²¡æœ‰åç»­èŠ‚ç‚¹å¹¶ä¸”è¯¥èŠ‚ç‚¹æ—¶ç»“æŸèŠ‚ç‚¹,æœ¬æµç¨‹ç»“æŸ
 			/**
-			 * @todo Èç¹ûÊÇ×ÓÁ÷³Ì,Òª°Ñ±äÁ¿·µ»Ø¸øÖ÷Á÷³Ì
+			 * @todo å¦‚æœæ˜¯å­æµç¨‹,è¦æŠŠå˜é‡è¿”å›ç»™ä¸»æµç¨‹
 			 */
 
-			// Èç¹ûÊÇ½áÊø½Úµã ²¢ÇÒÁ÷³ÌÖĞÃ»ÓĞÆäËü»î¶¯½ÚµãµÄ»° Á÷³Ì¿ÉÒÔ½áÊø £¬²¢ÇÒ×ªÒÆµ½ÀúÊ·±íÖĞ
+			// å¦‚æœæ˜¯ç»“æŸèŠ‚ç‚¹ å¹¶ä¸”æµç¨‹ä¸­æ²¡æœ‰å…¶å®ƒæ´»åŠ¨èŠ‚ç‚¹çš„è¯ æµç¨‹å¯ä»¥ç»“æŸ ï¼Œå¹¶ä¸”è½¬ç§»åˆ°å†å²è¡¨ä¸­
 			if (this.getNodeType() != null
 					&& this.getNodeType().intValue() == PTNode.TYPE_END
 					&& processInstance.getRunNodes().size() == 0) {
 				// WFDAO dao = new WFDAO();
 
-				// //Èç¹û»¹ÓĞÎ´Íê³ÉµÄ½ÚµãÔòÁ÷³Ì²»ÄÜ½áÊø
+				// //å¦‚æœè¿˜æœ‰æœªå®Œæˆçš„èŠ‚ç‚¹åˆ™æµç¨‹ä¸èƒ½ç»“æŸ
 				List<NodeInstance> list = processInstance
 						.retrieveNodeInstances();
 				// for(Iterator<NodeInstance> it = list.iterator();
@@ -1584,7 +1584,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 				try {
 					DAOUtil.BUSI().store(processInstance);
 
-					// /Êı¾İ±í×ªÒÆµ½ÀúÊ·±íÖĞ
+					// /æ•°æ®è¡¨è½¬ç§»åˆ°å†å²è¡¨ä¸­
 					DOService dosPi = DOService
 							.getService("do_wfi_his_processinstance_insert");
 					DOService dosNi = DOService
@@ -1615,7 +1615,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 						VarInstance vi = it.next();
 						DAOUtil.BUSI().store(vi, dosVi);
 					}
-					// ////É¾³ıÔËĞĞÊ±±í
+					// ////åˆ é™¤è¿è¡Œæ—¶è¡¨
 					DOService deletePI = DOService
 							.getService("do_wfi_processinstance_delete");
 					deletePI.invokeUpdate(processInstance.getObjUid());
@@ -1635,12 +1635,12 @@ public class NodeInstance extends BaseObject implements Serializable {
 				} catch (Exception ex1) {
 					ts.rollback();
 					ex1.printStackTrace();
-					throw new WFException("Á÷³Ì½áÊø,±£´æ½áÊø×´Ì¬³ö´í::" + ex1.toString(),
+					throw new WFException("æµç¨‹ç»“æŸ,ä¿å­˜ç»“æŸçŠ¶æ€å‡ºé”™::" + ex1.toString(),
 							ex1);
 				}
 				ts.end();
 			} else {
-				dealFailure("¸Ã½ÚµãÎ´ÕÒµ½ºóÖÃ½ÚµãÖ´ĞĞ:");
+				dealFailure("è¯¥èŠ‚ç‚¹æœªæ‰¾åˆ°åç½®èŠ‚ç‚¹æ‰§è¡Œ:");
 			}
 		}
 
@@ -1682,7 +1682,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ²»ÊÇ½áÊø½Úµã,ÕÒ²»µ½ºóĞø½ÚµãµÄ´¦Àí
+	 * ä¸æ˜¯ç»“æŸèŠ‚ç‚¹,æ‰¾ä¸åˆ°åç»­èŠ‚ç‚¹çš„å¤„ç†
 	 * 
 	 * @throws WFException
 	 */
@@ -1693,28 +1693,28 @@ public class NodeInstance extends BaseObject implements Serializable {
 		try {
 			DAOUtil.BUSI().store(getProcessInstance());
 		} catch (Exception ex1) {
-			throw new WFException("±£´æ¹¤×÷Á÷ÊµÀıÊ§°Ü×´Ì¬³ö´í", ex1);
+			throw new WFException("ä¿å­˜å·¥ä½œæµå®ä¾‹å¤±è´¥çŠ¶æ€å‡ºé”™", ex1);
 		}
 		throw new WFException(error + this);
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÖ´ĞĞÏÂÒ»¸ö(Ğ©)½Úµã.
+	 * åˆ¤æ–­æ˜¯å¦å¯ä»¥æ‰§è¡Œä¸‹ä¸€ä¸ª(äº›)èŠ‚ç‚¹.
 	 * 
 	 * @return
 	 * @throws WFException
 	 */
 	private boolean isExeNextNodes() throws WFException {
-		// ////////Èç¹û¹¤×÷Á÷²»ÔÚÔËĞĞ×´Ì¬
+		// ////////å¦‚æœå·¥ä½œæµä¸åœ¨è¿è¡ŒçŠ¶æ€
 		if (!isProcessInstanceRun()) {
 			return false;
 		}
-		// ///////////////´¦ÀíConjunctionµÄÇé¿ö
+		// ///////////////å¤„ç†Conjunctionçš„æƒ…å†µ
 		// ///////AND CONJUNCTION
-		// ////»ØÍËÊ±¿Ï¶¨Òª´¦Àí
+		// ////å›é€€æ—¶è‚¯å®šè¦å¤„ç†
 		if (this.getNodeType() != null
 				&& this.getNodeType().intValue() == PTNode.TYPE_AND_CONJUNCTION) {
-			// //////////////»ñµÃÄ£°åÇ°Ğø½ÚµãÁĞ±í
+			// //////////////è·å¾—æ¨¡æ¿å‰ç»­èŠ‚ç‚¹åˆ—è¡¨
 			List tPreNodes = this.getNode().getPreNodes();
 
 			List runIs = this.getNode().getCorrRunNodeInstances(
@@ -1722,7 +1722,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			if (tPreNodes.size() != (runIs.size())) {
 				return false;
 			}
-			// ////////////////////ÕâÒ»¿éµÈÈ«ÃæÖ§³Ö»ØÍËºó£¬»¹ÒªĞŞ¸Ä¡£
+			// ////////////////////è¿™ä¸€å—ç­‰å…¨é¢æ”¯æŒå›é€€åï¼Œè¿˜è¦ä¿®æ”¹ã€‚
 			// if(tPreNodes.size() != preNodes.size()){
 			// return false;
 			// }
@@ -1752,7 +1752,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 						try {
 							DAOUtil.BUSI().store(this.getProcessInstance());
 						} catch (Exception ex) {
-							throw new WFException("OR Conjunction Â·ÓÉ³ö´í", ex);
+							throw new WFException("OR Conjunction è·¯ç”±å‡ºé”™", ex);
 						}
 						return false;
 					}
@@ -1790,34 +1790,34 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * srcExpÅĞ¶Ï±í´ïÊ½
+	 * srcExpåˆ¤æ–­è¡¨è¾¾å¼
 	 */
 	public String calculate(String srcExp) {
 
 		// ////////////test
-		log.info("±í´ïÊ½::::::::::::::::::::;");
+		log.info("è¡¨è¾¾å¼::::::::::::::::::::;");
 		log.info(srcExp);
 		String expression = srcExp.trim().toLowerCase();
 		PTNode tNode = this.getNode();
 
-		// //////////////////////////Ïà¶ÔÓ¦ÒµÎñ¶ÔÏó
+		// //////////////////////////ç›¸å¯¹åº”ä¸šåŠ¡å¯¹è±¡
 		BOInstance bi = tNode.getProcessTemplate().getDoBO().getInstance(
 				this.getProcessInstance().getInstanceUid());
-		// //////////À´×Ô½çÃæÊäÈë
+		// //////////æ¥è‡ªç•Œé¢è¾“å…¥
 		BOInstance formBI = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance();
 		if (bi == null && formBI == null) {
-			log.info("ÅĞ¶Ï±í´ïÊ½£¬ÎŞ·¨µÃµ½Ö´ĞĞÅĞ¶Ï²Î¿¼Öµ.");
+			log.info("åˆ¤æ–­è¡¨è¾¾å¼ï¼Œæ— æ³•å¾—åˆ°æ‰§è¡Œåˆ¤æ–­å‚è€ƒå€¼.");
 			return srcExp;
 		}
 
 		Collection boProperties = tNode.getProcessTemplate().getDoBO()
 				.retrieveProperties();
-		// //this.getNodeDecision ¿ÉÄÜÊÇÒ»¸ö¸´ÔÓµÄ±í´ïÊ½£¬²»½ö½öÊÇÒ»¸ö×Ö¶Î ¿ÉÄÜÊÇ¶à¸ö×Ö¶ÎµÄ¼Ó¼õ³Ë³ıÔËËã
+		// //this.getNodeDecision å¯èƒ½æ˜¯ä¸€ä¸ªå¤æ‚çš„è¡¨è¾¾å¼ï¼Œä¸ä»…ä»…æ˜¯ä¸€ä¸ªå­—æ®µ å¯èƒ½æ˜¯å¤šä¸ªå­—æ®µçš„åŠ å‡ä¹˜é™¤è¿ç®—
 		//
 		expression = StringUtil.getCalException(expression, bi, boProperties,
 				"0");
-		// /////////////////////Á÷³Ì¶¨ÒåµÄ±íµ¥µÄÖµÌæ»»
+		// /////////////////////æµç¨‹å®šä¹‰çš„è¡¨å•çš„å€¼æ›¿æ¢
 		for (Iterator itVar = this.getProcessInstance().retrieveVarInstances()
 				.iterator(); itVar.hasNext();) {
 			VarInstance vi = (VarInstance) itVar.next();
@@ -1833,11 +1833,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 			expression = expression.replaceAll(vi.getVarName(), value);
 		}
 
-		log.info("´¦ÀíºóµÄ±í´ïÊ½");
+		log.info("å¤„ç†åçš„è¡¨è¾¾å¼");
 		log.info(expression);
 
 		String retValue = RunJs.evaluate(expression, bi);
-		log.info("±í´ïÊ½Ö´ĞĞºóµÄÖµ:" + retValue);
+		log.info("è¡¨è¾¾å¼æ‰§è¡Œåçš„å€¼:" + retValue);
 		return retValue;
 
 		// ExpressionUtil exp = new ExpressionUtil();
@@ -1937,7 +1937,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * µ±½ÚµãÖ´ĞĞºó£¬³õÊ¼»¯ÏÂÒ»¸ö½Úµã
+	 * å½“èŠ‚ç‚¹æ‰§è¡Œåï¼Œåˆå§‹åŒ–ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 	 * 
 	 * @param pi
 	 * @param node
@@ -1951,7 +1951,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		NodeInstance ni = new NodeInstance();
 		ni.setNodeUid(node.getObjUid());
 		ni.setNodeDesc(node.getNodeName() + "_" + new Date().toLocaleString());
-		// ////ÃüÃû¹æÔò
+		// ////å‘½åè§„åˆ™
 		ni.setNodeName(pi.getWfiName() + "_" + node.getNodeName());
 		ni.setExeStatus(new Integer(niExeStatus));
 		ni.setNodeType(node.getNodeType());
@@ -1986,7 +1986,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// }
 		//			
 		// /**
-		// * Ò»°ãÊÇµÚÒ»¸öÈË¹¤½Úµã
+		// * ä¸€èˆ¬æ˜¯ç¬¬ä¸€ä¸ªäººå·¥èŠ‚ç‚¹
 		// */
 		// if(node.getSpecName()!=null && "creator".equals(node.getSpecName())){
 		// ouuid = DOGlobals.getInstance().getSessoinContext()
@@ -2004,7 +2004,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * ÅĞ¶Ï¸Ã½ÚµãÊÇ·ñÊÇµÚÒ»¸öÈË¹¤½Úµã
+	 * åˆ¤æ–­è¯¥èŠ‚ç‚¹æ˜¯å¦æ˜¯ç¬¬ä¸€ä¸ªäººå·¥èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -2016,8 +2016,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * µ±È¨ÏŞµÄÉè¶¨ÊÇÊµÀı¼¶±ğÊ±£¬ÉÏÒ»¸ö½ÚµãÍùÍùÒª¾ö¶¨ÏÂÒ»¸ö½ÚµãµÄÖ´ĞĞÕß¡£ Õâ¸öÖ´ĞĞÕßÒ»°ã¾ßÌåµ½¸öÈË¡£ <br>
-	 * Õâ¸öÊ±ºò°Ñ¾ö¶¨µÄÈ¨ÏŞ±£´æµ½ÏàÓ¦µÄÈ¨ÏŞÅäÖÃ±íÖĞ¡£
+	 * å½“æƒé™çš„è®¾å®šæ˜¯å®ä¾‹çº§åˆ«æ—¶ï¼Œä¸Šä¸€ä¸ªèŠ‚ç‚¹å¾€å¾€è¦å†³å®šä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„æ‰§è¡Œè€…ã€‚ è¿™ä¸ªæ‰§è¡Œè€…ä¸€èˆ¬å…·ä½“åˆ°ä¸ªäººã€‚ <br>
+	 * è¿™ä¸ªæ—¶å€™æŠŠå†³å®šçš„æƒé™ä¿å­˜åˆ°ç›¸åº”çš„æƒé™é…ç½®è¡¨ä¸­ã€‚
 	 * 
 	 * @param personUid
 	 */
@@ -2045,17 +2045,17 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 	/**
 	 * 
-	 * Ò»°ãÇé¿öÏÂ²»Òª²ÉÓÃ ³ÌĞòÅĞ¶Ï¡£ ×îºÃÍ¨¹ısql Óï¾äÖ±½Ó²éÑ¯³öµÇÂ½ÓÃ»§¶ÔÏóµÄ´ú°ì½Úµã¡£
+	 * ä¸€èˆ¬æƒ…å†µä¸‹ä¸è¦é‡‡ç”¨ ç¨‹åºåˆ¤æ–­ã€‚ æœ€å¥½é€šè¿‡sql è¯­å¥ç›´æ¥æŸ¥è¯¢å‡ºç™»é™†ç”¨æˆ·å¯¹è±¡çš„ä»£åŠèŠ‚ç‚¹ã€‚
 	 * 
-	 * NodeInstance µÄ¿É¼ûĞÔ¡£ ¸´ÔÓ¶È½Ï¸ß¡£ Ê×ÏÈÅĞ¶ÏÈ¨ÏŞÀàĞÍÊÇ·ñÊÇÊµÀı¼¶±ğµÄ£¬Èç¹ûÊÇÊµÀı¼¶±ğµÄÔòÖ±½Ó¶ÁÊµÀıµÄÏà¹ØÅäÖÃ±í¡£
-	 * ÔÙÅĞ¶ÏÊÇ·ñÊÇJava ½Ó¿Ú¼¶±ğµÄÈ¨ÏŞÅäÖÃ£¬Èç¹ûÊÇÔòÖ±½Óµ÷ÓÃ¸ÃÀà¶ÔÍê³É¶Ô¸ÃÈ¨ÏŞµÄÅĞ¶Ï¡£ ÔÙ´Î ÅĞ¶Ïµ±Ç°µÇÂ¼ÓÃ»§ÊÇ·ñºÍ±íµ¥Ïà¹ØÏµ¡£
-	 * ×îºóÅĞ¶Ï¶ÔÓ¦Ä£°å±íµÄÈ¨ÏŞÉèÖÃ¡£
+	 * NodeInstance çš„å¯è§æ€§ã€‚ å¤æ‚åº¦è¾ƒé«˜ã€‚ é¦–å…ˆåˆ¤æ–­æƒé™ç±»å‹æ˜¯å¦æ˜¯å®ä¾‹çº§åˆ«çš„ï¼Œå¦‚æœæ˜¯å®ä¾‹çº§åˆ«çš„åˆ™ç›´æ¥è¯»å®ä¾‹çš„ç›¸å…³é…ç½®è¡¨ã€‚
+	 * å†åˆ¤æ–­æ˜¯å¦æ˜¯Java æ¥å£çº§åˆ«çš„æƒé™é…ç½®ï¼Œå¦‚æœæ˜¯åˆ™ç›´æ¥è°ƒç”¨è¯¥ç±»å¯¹å®Œæˆå¯¹è¯¥æƒé™çš„åˆ¤æ–­ã€‚ å†æ¬¡ åˆ¤æ–­å½“å‰ç™»å½•ç”¨æˆ·æ˜¯å¦å’Œè¡¨å•ç›¸å…³ç³»ã€‚
+	 * æœ€ååˆ¤æ–­å¯¹åº”æ¨¡æ¿è¡¨çš„æƒé™è®¾ç½®ã€‚
 	 * 
 	 * @return
 	 */
 	public boolean isAccess() {
 
-		// /////////////PTNode.AUTH_TYPE_AUTHTABLE_INSTANCEµÄÇé¿ö ÊµÀı¼¶±ğ
+		// /////////////PTNode.AUTH_TYPE_AUTHTABLE_INSTANCEçš„æƒ…å†µ å®ä¾‹çº§åˆ«
 		if (this.getAuthType() != null
 				&& this.getAuthType().intValue() == PTNode.AUTH_TYPE_AUTHTABLE_INSTANCE) {
 			return DOAuthorization.isAccess(new Integer(
@@ -2066,7 +2066,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		PTNode tNode = this.getNode();
 		String accessClass = tNode.getAccessClass();
 
-		// ///////////// PTNode.AUTH_TYPE_JAVAµÄÇé¿ö
+		// ///////////// PTNode.AUTH_TYPE_JAVAçš„æƒ…å†µ
 		if (this.getAuthType() != null
 				&& this.getAuthType().intValue() == PTNode.AUTH_TYPE_JAVA) {
 			if (accessClass != null && !"".equals(accessClass.trim())) {
@@ -2088,7 +2088,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			}
 		}
 
-		// //////////////////PTNode.AUTH_TYPE_SCHEDULE_USER/ROLEµÄÇé¿ö
+		// //////////////////PTNode.AUTH_TYPE_SCHEDULE_USER/ROLEçš„æƒ…å†µ
 		if (this.getAuthType() != null
 				&& (this.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_USER || this
 						.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_ROLE)) {
@@ -2120,10 +2120,10 @@ public class NodeInstance extends BaseObject implements Serializable {
 			}
 		}
 
-		// ////////////////PTNode.AUTH_TYPE_AUTHTABLEµÄÇé¿ö ºÍÆäËûSpecName Ô¼¶¨
+		// ////////////////PTNode.AUTH_TYPE_AUTHTABLEçš„æƒ…å†µ å’Œå…¶ä»–SpecName çº¦å®š
 		if (tNode != null) {
 
-			// ////////Í¨¹ıspecName È·¶¨È¨ÏŞ£¬±ÈÈç±íµ¥µÄÓµÓĞÕßµÈ¡£¿ÉÒÔÍ¨¹ı±íµ¥×Ö¶ÎÈ·¶¨±íµ¥µÄÓµÓĞÕß
+			// ////////é€šè¿‡specName ç¡®å®šæƒé™ï¼Œæ¯”å¦‚è¡¨å•çš„æ‹¥æœ‰è€…ç­‰ã€‚å¯ä»¥é€šè¿‡è¡¨å•å­—æ®µç¡®å®šè¡¨å•çš„æ‹¥æœ‰è€…
 			if (this.getAuthType() != null
 					&& this.getAuthType().intValue() == PTNode.AUTH_TYPE_DATA_OWNER
 					&& tNode.getSpecName() != null) {
@@ -2136,7 +2136,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 				}
 				String accessUser = null;
 
-				if (tNode.getSpecName().equals("creator")) {// /Á÷³Ì´´½¨Õß
+				if (tNode.getSpecName().equals("creator")) {// /æµç¨‹åˆ›å»ºè€…
 					accessUser = this.getProcessInstance().getCreator();
 				} else {
 					BOInstance bi = tNode.getProcessTemplate().getDoBO()

@@ -9,7 +9,7 @@ public class DOTypes {
 	public final static int TYPE_SELF = 11;
 
 	/**
-	 * ×Ô¶¯µÄ»áÇ©Ö§³Ö£¬ÒÀ¾İDOAuthorizationµÄgetAuthConfigUsers Ã¿¸ö»áÇ©½á¹û±£´æÎªxmlÎÄ¼ş¡£
+	 * è‡ªåŠ¨çš„ä¼šç­¾æ”¯æŒï¼Œä¾æ®DOAuthorizationçš„getAuthConfigUsers æ¯ä¸ªä¼šç­¾ç»“æœä¿å­˜ä¸ºxmlæ–‡ä»¶ã€‚
 	 * 
 	 */
 
@@ -24,7 +24,7 @@ public class DOTypes {
 	public final static int TYPE_XOR_DECISION = 5;
 
 	/**
-	 * ÓĞ·Ö¾ÍÒªÓĞºÏ£¬ÓĞdecision¾ÍÒªÓĞconjunction,ËùÒÔ»¹²»ÄÜÈ¥µô×¨ÃÅµÄ»áÇ©¶¨Òå¡£
+	 * æœ‰åˆ†å°±è¦æœ‰åˆï¼Œæœ‰decisionå°±è¦æœ‰conjunction,æ‰€ä»¥è¿˜ä¸èƒ½å»æ‰ä¸“é—¨çš„ä¼šç­¾å®šä¹‰ã€‚
 	 */
 
 	public final static int TYPE_AND_CONJUNCTION = 6;
@@ -45,7 +45,7 @@ public class DOTypes {
 	
 	
 	/**
-	 * ½ÚµãÖ´ĞĞ×´Ì¬
+	 * èŠ‚ç‚¹æ‰§è¡ŒçŠ¶æ€
 	 */
 
 	public final static int STATUS_FREE = 0;
@@ -63,12 +63,12 @@ public class DOTypes {
 	public final static int STATUS_RESUMING = 5;
 
 	/**
-	 * »ØÍË
+	 * å›é€€
 	 */
 	public final static int BACK_RETURN = 1;
 
 	/**
-	 * È¡»Ø
+	 * å–å›
 	 */
 	public final static int BACK_WITHDRAW = 2;
 	

@@ -44,7 +44,7 @@ public class SearchTransCode extends SearchImp {
 
 		BOInstance instance = new BOInstance();
 
-		// //////查询基本没有耗费cpu时间
+		// //////鏌ヨ鍩烘湰娌℃湁鑰楄垂cpu鏃堕棿
 		// System.out.println("Search Befor getMetaData Time:::::" +
 		// System.currentTimeMillis());
 
@@ -71,7 +71,7 @@ public class SearchTransCode extends SearchImp {
 				continue;
 			}
 			
-			// /DOBOProperty 获取定义的DOBOProperty
+			// /DOBOProperty 鑾峰彇瀹氫箟鐨凞OBOProperty
 
 			Object oValue = rs.getObject(col);
 

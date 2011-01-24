@@ -23,21 +23,21 @@ public class CopyFormsToGrid extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
 
 		String gridModelUid = this.actionForm.getValue("gridModelUid");
 		if (gridModelUid == null) {
-			this.setEchoValue("Ã»ÓĞÑ¡Ôñ±í¸ñ£¡");
+			this.setEchoValue("æ²¡æœ‰é€‰æ‹©è¡¨æ ¼ï¼");
 			return NO_FORWARD;
 		}
 
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
-			this.setEchoValue("Ã»ÓĞÊı¾İ£¡");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®ï¼");
 			return NO_FORWARD;
 		}
 		Transaction t = this.service.currentTransaction();
@@ -53,7 +53,7 @@ public class CopyFormsToGrid extends DOAbstractAction {
 				biForm.putValue("objuid", null);
 				biForm.putValue("gridModelUid", gridModelUid);
 				BOInstance newBiForm = this.service.invokeUpdate(biForm);
-				// //±£´æFormModel
+				// //ä¿å­˜FormModel
 				for(Iterator<DOFormTarget> itTargetGrid = aFm.getTargetGridModels().iterator();itTargetGrid.hasNext(); ){
 					DOFormTarget aFt = itTargetGrid.next();
 					BOInstance biFt = boFormTarget.getInstance(aFt.getObjUid());

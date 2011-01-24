@@ -62,9 +62,9 @@ public class DOPDF2 {
             // step 2: we create a writer that listens to the document
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\ITextTest2.pdf"));
             
-            //中间边距
+            //涓棿杈硅窛
             float gutter = 20;
-            //////列数
+            //////鍒楁暟
             int numColumns = 2;
              
             float fullWidth = document.right() - document.left();

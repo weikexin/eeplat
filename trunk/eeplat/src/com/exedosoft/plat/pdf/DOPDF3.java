@@ -60,9 +60,9 @@ public class DOPDF3 {
 		PdfWriter writer = PdfWriter.getInstance(document,
 				new FileOutputStream("C:\\ITextTest3.pdf"));
 		writer.setStrictImageSequence(true);
-		// ///////////////ÎªÁË´¦ÀíColumn
+		// ///////////////ä¸ºäº†å¤„ç†Column
 
-		// //////´ò¿ªÎÄµµ
+		// //////æ‰“å¼€æ–‡æ¡£
 		document.open();
 
 		MultiColumnText mct = new MultiColumnText();
@@ -70,7 +70,7 @@ public class DOPDF3 {
 		// set up 3 even columns with 10pt space between
 		mct.addRegularColumns(document.left(), document.right(), 10f, 2);
 		
-///////¼ÓÈëÍ·²¿·Ö
+///////åŠ å…¥å¤´éƒ¨åˆ†
 		Image jpg = Image.getInstance("c:\\lh.jpg");
 		jpg.setAlignment(Image.LEFT);
 		mct.addElement(jpg);
@@ -78,27 +78,27 @@ public class DOPDF3 {
 	
 		
 		Font theFont = createChineseFont(13,Font.NORMAL,true);
-		Paragraph p1 = new Paragraph("µÚÁùÆÚ", theFont);
+		Paragraph p1 = new Paragraph("ç¬¬å…­æœŸ", theFont);
 		p1.setAlignment(Element.ALIGN_CENTER);
 		mct.addElement(p1);
 		
-		/////////Êä³ö¿ÕĞĞ
+		/////////è¾“å‡ºç©ºè¡Œ
 		Paragraph pt = new Paragraph("\n", theFont);
 		pt.setAlignment(Element.ALIGN_CENTER);
 		mct.addElement(pt);
 
-		Paragraph p2 = new Paragraph("ÖĞÓÍÁÉºÓÓÍÌï¹«Ë¾¿±²é´¦                    ¶şÁãÁã°ËÄê¶şÔÂ¶şÊ®¶şÈÕ", theFont);
+		Paragraph p2 = new Paragraph("ä¸­æ²¹è¾½æ²³æ²¹ç”°å…¬å¸å‹˜æŸ¥å¤„                    äºŒé›¶é›¶å…«å¹´äºŒæœˆäºŒåäºŒæ—¥", theFont);
 		p2.setAlignment(Element.ALIGN_LEFT);
 		mct.addElement(p2);
 		
-		//////////ÔÙÊä³ö¿ÕĞĞ
+		//////////å†è¾“å‡ºç©ºè¡Œ
 		mct.addElement(pt);
 		
         PdfContentByte cb = writer.getDirectContent();
         
-        ///////////»®Ïß
+        ///////////åˆ’çº¿
 	    cb.setLineWidth(1);
-	    ////Ìî³ä»®ÏßÑÕÉ«
+	    ////å¡«å……åˆ’çº¿é¢œè‰²
 	    cb.setColorStroke(Color.RED);
 	      
 
@@ -126,7 +126,7 @@ public class DOPDF3 {
 	
 
 		
-		////////////¸ÇÕÂ
+		////////////ç›–ç« 
 		
 		mct.addElement(Chunk.NEWLINE);
 		mct.addElement(Chunk.NEWLINE);
@@ -134,7 +134,7 @@ public class DOPDF3 {
 		mct.addElement(Chunk.NEWLINE);
 
 		
-//////	/¼ÓÈëÍ·²¿·Ö
+//////	/åŠ å…¥å¤´éƒ¨åˆ†
 	
 
 		Image zhang = Image.getInstance("c:\\zhang.jpg");
@@ -144,7 +144,7 @@ public class DOPDF3 {
 	    mct.addElement(cc);
 	    
 	    		
-		Phrase qianzhang = new Phrase("¶şÁãÁã°ËÄê¶şÔÂ¶şÊ®¶şÈÕ", theFont);
+		Phrase qianzhang = new Phrase("äºŒé›¶é›¶å…«å¹´äºŒæœˆäºŒåäºŒæ—¥", theFont);
 //		qianzhang.add(cc);
 		
 		mct.addElement(qianzhang);
@@ -156,9 +156,9 @@ public class DOPDF3 {
 		
 		
 
-		///////////Á½ÁĞÊä³öÍê±Ï
+		///////////ä¸¤åˆ—è¾“å‡ºå®Œæ¯•
 		
-		////////±äÎªÆÕÍ¨Çé¿öÊä³ö
+		////////å˜ä¸ºæ™®é€šæƒ…å†µè¾“å‡º
 		
 		document.add(Chunk.NEWLINE);
 	
@@ -175,14 +175,14 @@ public class DOPDF3 {
 		
 		Font theFontSign = createChineseFont(10,Font.NORMAL,false);
 
-		Phrase ps1 = new Phrase("\n\t                                               ±àÍ¼",theFontSign);
+		Phrase ps1 = new Phrase("\n\t                                               ç¼–å›¾",theFontSign);
 //	
 		Image ss1 = Image.getInstance("c:\\ss1.jpg");
 		ss1.setAlignment(Image.ALIGN_CENTER);
 	    Chunk ck = new Chunk(ss1, 0, -5);
 	    ps1.add(ck);
 	    
-	    ps1.add("        ÖÆ±í£º");
+	    ps1.add("        åˆ¶è¡¨ï¼š");
 	    ps1.add(ck);
 	    
 		document.add(ps1);

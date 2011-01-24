@@ -5,10 +5,10 @@ import java.io.Serializable;
 import com.exedosoft.plat.bo.BaseObject;
 
 /**
- * �ڵ�ʵ����Ȩ�޲��ڱ�����DO_Authorization �����档
- * ������Ȩ�ޱ���
- * Ȩ�޵��ж�����ֻͨ��sql��䡣
- * ���꽨ģ�����һ��
+ * 节点实例的权限不在保存在DO_Authorization 表里面。
+ * 单独的权限表。
+ * 权限的判读尽量只通过sql语句。
+ * 做完建模后搞这一块
  * @author IBM
  *
  */

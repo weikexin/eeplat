@@ -3,7 +3,7 @@ package com.exedosoft.plat.util.sequence;
 import com.exedosoft.plat.bo.code.DOCodeItem;
 
 /**
- * ĞòÁĞ´´½¨Æ÷»ñÈ¡¹¤³§
+ * åºåˆ—åˆ›å»ºå™¨è·å–å·¥å‚
  * @author anolesoft
  *
  */

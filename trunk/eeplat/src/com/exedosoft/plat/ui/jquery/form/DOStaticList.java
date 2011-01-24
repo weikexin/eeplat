@@ -9,7 +9,7 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.StringUtil;
 
 /**
- * ¾²Ì¬ÁĞ±íÓ¦¸Ãµ¥¶À×÷ÎªÒ»¸ö±í
+ * é™æ€åˆ—è¡¨åº”è¯¥å•ç‹¬ä½œä¸ºä¸€ä¸ªè¡¨
  * @author IBM
  *
  */
@@ -107,10 +107,10 @@ public class DOStaticList extends DOBaseForm {
 					isFirst = false;
 				}
 
-				if (value != null) { // ////////ĞŞ¸ÄµÄÇé¿ö
+				if (value != null) { // ////////ä¿®æ”¹çš„æƒ…å†µ
 
 					// ////////////////////add by weikx at 20070806
-					// Ö»ÒªĞŞ¸ÄµÄÇé¿öÊä³ö±êÇ©¾Í¿ÉÒÔÁË
+					// åªè¦ä¿®æ”¹çš„æƒ…å†µè¾“å‡ºæ ‡ç­¾å°±å¯ä»¥äº†
 					DOPaneModel cPaneModel = null;
 					if (property.getGridModel() != null) {
 						cPaneModel = property.getGridModel().getContainerPane();
@@ -118,7 +118,7 @@ public class DOStaticList extends DOBaseForm {
 
 					if (cPaneModel != null
 							&& cPaneModel.getIsCache() != null
-							&& cPaneModel.getIsCache().intValue() == DOPaneModel.CACHE_DYN) {// ///µ±Ãæ°å²ÉÓÃ¶¯Ì¬»º´æ
+							&& cPaneModel.getIsCache().intValue() == DOPaneModel.CACHE_DYN) {// ///å½“é¢æ¿é‡‡ç”¨åŠ¨æ€ç¼“å­˜
 
 						String instanceName = "ins_"
 								+ StringUtil.get_Name(property.getGridModel()
@@ -133,14 +133,14 @@ public class DOStaticList extends DOBaseForm {
 
 						buffer.append("%>");
 
-					} else {// //////////²»ÓÃÊä³öÄ£°åµÄÇé¿ö
+					} else {// //////////ä¸ç”¨è¾“å‡ºæ¨¡æ¿çš„æƒ…å†µ
 						if (isChecked(half[0], value)) {
 							buffer.append(" selected=\"selected\"  ");
 						}
 					}
 					// ////////////end add by weikx at 20070806
 
-				} else { // //////Ìí¼ÓµÄÇé¿ö
+				} else { // //////æ·»åŠ çš„æƒ…å†µ
 
 					if (defaultValue != null && defaultValue.equals(half[0])) {
 						buffer.append(" selected=\"selected\"  ");
@@ -161,7 +161,7 @@ public class DOStaticList extends DOBaseForm {
 	}
 
 	/**
-	 * ¾²Ì¬ÏÂÀ­ÁĞ±íÖĞ,È±Ê¡µÄÖµ
+	 * é™æ€ä¸‹æ‹‰åˆ—è¡¨ä¸­,ç¼ºçœçš„å€¼
 	 * 
 	 * @param property
 	 *            TODO
@@ -179,11 +179,11 @@ public class DOStaticList extends DOBaseForm {
 	}
 
 	/**
-	 * ¾²Ì¬ÏÂÀ­ÁĞ±íÇé¿ö,·µ»ØÏàÓ¦µÄÖµ ·­ÒëµÄ×÷ÓÃ£»¸ù¾İÊı¾İ¿â´æ´¢µÄÖµ£¬·­ÒëÎª½çÃæÏÔÊ¾µÄÖµ¡£
+	 * é™æ€ä¸‹æ‹‰åˆ—è¡¨æƒ…å†µ,è¿”å›ç›¸åº”çš„å€¼ ç¿»è¯‘çš„ä½œç”¨ï¼›æ ¹æ®æ•°æ®åº“å­˜å‚¨çš„å€¼ï¼Œç¿»è¯‘ä¸ºç•Œé¢æ˜¾ç¤ºçš„å€¼ã€‚
 	 * 
 	 * @param property
 	 *            TODO
-	 * @return ½çÃæÏÔÊ¾µÄÖµ
+	 * @return ç•Œé¢æ˜¾ç¤ºçš„å€¼
 	 */
 	protected String getStaticListValue(DOFormModel property) {
 
@@ -206,7 +206,7 @@ public class DOStaticList extends DOBaseForm {
 	}
 
 	/**
-	 * ÅĞ¶ÏÖµÊÇ·ñ±»Ñ¡ÖĞ
+	 * åˆ¤æ–­å€¼æ˜¯å¦è¢«é€‰ä¸­
 	 * 
 	 * @param aValue
 	 * @param values

@@ -64,8 +64,8 @@ public class DOMAXIDTrash {
 		return builder;
 	}
 
-	// //////////codeitemid ̽��Ȩ 4028803613728794011372a5f4670005
-	// //////////codeitemid �ɿ�Ȩ 2028803613728794011372a5f4670005
+	// //////////codeitemid 探矿权 4028803613728794011372a5f4670005
+	// //////////codeitemid 采矿权 2028803613728794011372a5f4670005
 
 	public void trashID(String codeItemID, String aDeptCode, int aTrashID) {
 
@@ -135,7 +135,7 @@ public class DOMAXIDTrash {
 
 		Connection con = null;
 		PreparedStatement stmt = null;
-		int retId = -1;// //////////���ص�ֵ
+		int retId = -1;// //////////返回的值
 		DOBO bo = DOBO.getDOBOByName("DO_CODE_MAXSEQUENCE");
 		DODataSource dss =  bo.getDataBase();
 		try {

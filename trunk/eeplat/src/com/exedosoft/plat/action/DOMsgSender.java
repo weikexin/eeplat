@@ -10,7 +10,7 @@ import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
- * ÏûÏ¢·¢ËÍÕß
+ * æ¶ˆæ¯å‘é€è€…
  * 
  * @author IBM
  * 
@@ -42,10 +42,10 @@ public class DOMsgSender extends DOAbstractAction {
 
 		String recieveids = "";
 
-		// /////////½çÃæÉÏµÄ×´Ì¬
+		// /////////ç•Œé¢ä¸Šçš„çŠ¶æ€
 		if ("2".equals(msgstatus) || "3".equals(msgstatus)) {
 
-			// ////////ÏÈ×öÉ¾³ı
+			// ////////å…ˆåšåˆ é™¤
 			msgReadDelete.invokeUpdate();
 			msgDelete.invokeUpdate();
 			recieveids = DOGlobals.getInstance().getSessoinContext()
@@ -55,14 +55,14 @@ public class DOMsgSender extends DOAbstractAction {
 					.getFormInstance().getValue("recieveids");
 		}
 
-		System.out.println("ËùÓĞ½ÓÊÕÈË::::::::::" + recieveids);
+		System.out.println("æ‰€æœ‰æ¥æ”¶äºº::::::::::" + recieveids);
 
 		if (recieveids == null || recieveids.equals("")) {
-			this.setEchoValue("ÄúÃ»ÓĞÑ¡ÔñÊÕ¼şÈË");
+			this.setEchoValue("æ‚¨æ²¡æœ‰é€‰æ‹©æ”¶ä»¶äºº");
 			return null;
 		}
 
-		// //////////×ª»»ÎªÊı¾İ¿âµÄ×´Ì¬,»Ø¸´Ò²ÊÇĞÂÔö
+		// //////////è½¬æ¢ä¸ºæ•°æ®åº“çš„çŠ¶æ€,å›å¤ä¹Ÿæ˜¯æ–°å¢
 		if ("2".equals(msgstatus) || "5".equals(msgstatus)) {
 			DOGlobals.getInstance().getSessoinContext().getFormInstance()
 					.putValue("msgstatus", "1");

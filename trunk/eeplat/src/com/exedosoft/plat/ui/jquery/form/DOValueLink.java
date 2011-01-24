@@ -10,7 +10,7 @@ public class DOValueLink implements DOIView {
 
 		DOFormModel property = (DOFormModel) aModel;
 		StringBuffer buffer = new StringBuffer();
-		// //////////¶ÔpictureÀàĞÍµÄÌØÊâ´¦Àí
+		// //////////å¯¹pictureç±»å‹çš„ç‰¹æ®Šå¤„ç†
 
 		String[] oneLink = property.getValue().split(",");
 		for (int i = 0; i < oneLink.length; i++) {

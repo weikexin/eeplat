@@ -33,7 +33,7 @@ public class DOValueImage implements DOIView {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("<a  class='exedo_link' href=");
 			buffer.append(aPath).append(">");
-			// //////////¶ÔpictureÀàĞÍµÄÌØÊâ´¦Àí
+			// //////////å¯¹pictureç±»å‹çš„ç‰¹æ®Šå¤„ç†
 
 			if (isPic(property.getValue())
 					&& (property.getValue().indexOf(",") == -1)) {
@@ -56,7 +56,7 @@ public class DOValueImage implements DOIView {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÎªÍ¼Æ¬
+	 * åˆ¤æ–­æ˜¯å¦ä¸ºå›¾ç‰‡
 	 */
 
 	public static boolean isPic(String fileName) {

@@ -26,8 +26,8 @@ public class DOPTRead extends DOAbstractAction {
 		BOInstance curPt = bo.getCorrInstance();
 		BOInstance echo = new BOInstance();
 		if (curPt == null) {
-			System.out.println("Ã»ÓĞÑ¡Ôñ¹¤×÷Á÷Ä£°å!");
-			this.setEchoValue("Ã»ÓĞÑ¡Ôñ¹¤×÷Á÷Ä£°å!");
+			System.out.println("æ²¡æœ‰é€‰æ‹©å·¥ä½œæµæ¨¡æ¿!");
+			this.setEchoValue("æ²¡æœ‰é€‰æ‹©å·¥ä½œæµæ¨¡æ¿!");
 			return NO_FORWARD;
 		}
 		ProcessTemplate pt = ProcessTemplate.getPTByID(curPt.getUid());
@@ -38,7 +38,7 @@ public class DOPTRead extends DOAbstractAction {
 		StringBuilder strNodeList = new StringBuilder("<nodes>");
 		StringBuilder strFlowList = new StringBuilder("<transitions>");
 
-		////æœ‰æ—¶é—´æŠŠ+æ”¹æ‰
+		////éˆå¤‹æ¤‚é—‚å­˜å¦¸+é€è§„å¸€
 		for (Iterator<PTNode> it = pt.retrieveNodes().iterator(); it.hasNext();) {
 			PTNode aNode = it.next();
 			String autoServiceName = "";
@@ -85,7 +85,7 @@ public class DOPTRead extends DOAbstractAction {
 				for (Iterator<NodeDenpendency> itd = postNodes.iterator(); itd
 						.hasNext();) {
 					NodeDenpendency nd = itd.next();
-					//ÕâÆäÊµÓĞÎÊÌâ
+					//è¿™å…¶å®æœ‰é—®é¢˜
 					
 					
 					if(nd.getPostNode()==null){

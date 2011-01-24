@@ -32,7 +32,7 @@ public class DOExportPane extends DOExport {
 		BOInstance biPane = bo.getCorrInstance();
 		if (biPane != null) {
 			DOPaneModel pm = DOPaneModel.getPaneModelByID(biPane.getUid());
-			// Ãæ°å
+			// é¢æ¿
 			sb.append("<pane><li>").append(StringUtil.filter(biPane.toJSONString())).append("</li></pane>");
 
 			DOService servPaneLinks = DOService
@@ -42,17 +42,17 @@ public class DOExportPane extends DOExport {
 			appendLi(sb, list);
 			sb.append("</pane_links>");
 
-			// /Ãæ°åÏÂÃæµÄ±í¸ñ
+			// /é¢æ¿ä¸‹é¢çš„è¡¨æ ¼
 			DOGridModel gm = pm.getGridModel();
 			if (gm != null) {
 				BOInstance biGrid = boGrid.getInstance(gm.getObjUid());
 				sb.append("<grid>").append(biGrid.toJSONString()).append(
 						"</grid>");
 
-				// /±í¸ñÏÂÃæµÄ±í¸ñÔªËØ
+				// /è¡¨æ ¼ä¸‹é¢çš„è¡¨æ ¼å…ƒç´ 
 				DOService servForms = DOService
 						.getService("DO_UI_FormModel_findbyGridModelUid");
-				// /±í¸ñÔªËØÁ¬½ÓµÄ±í¸ñÔªËØ
+				// /è¡¨æ ¼å…ƒç´ è¿æ¥çš„è¡¨æ ¼å…ƒç´ 
 				DOService servFormRelations = DOService
 						.getService("DO_UI_FormLinks_findbyformuid");
 

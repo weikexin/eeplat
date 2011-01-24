@@ -15,44 +15,44 @@ import com.exedosoft.plat.DAOUtil;
 
 /**
  * 
- * Òª¿¼ÂÇµ½ÁìÈ¡µÄ¹ı³Ì£¬Èç¹ûÈÎÎñºÄÊ±±È½Ï³¤ÄÇÃ´Ó¦¸ÃÓĞÒ»¸öÁìÈ¡ÈÎÎñµÄ¶¯×÷
- * ÁìÈ¡ºó½øÈëÔÚ°ì
+ * è¦è€ƒè™‘åˆ°é¢†å–çš„è¿‡ç¨‹ï¼Œå¦‚æœä»»åŠ¡è€—æ—¶æ¯”è¾ƒé•¿é‚£ä¹ˆåº”è¯¥æœ‰ä¸€ä¸ªé¢†å–ä»»åŠ¡çš„åŠ¨ä½œ
+ * é¢†å–åè¿›å…¥åœ¨åŠ
  * 
- * Äâ°ì¡¢´ı°ì¡¢ÔÚ°ì¡¢°ì½á ÁíÍâ»¹ÓĞ×ª·¢µÄ¸ĞÄî¡£
+ * æ‹ŸåŠã€å¾…åŠã€åœ¨åŠã€åŠç»“ å¦å¤–è¿˜æœ‰è½¬å‘çš„æ„Ÿå¿µã€‚
  * 
- * ×ª·¢ÊÇÖ¸Ìá½»¸øÏÂÒ»¸ö½Úµã£¬ÏÂÒ»¸ö½Úµã»¹Î´Ç©ÊÕ£¬ÒÑ°ì°üº¬ÔÚ¡°ÒÑ°ì¡±¸ÅÄîµ«ÊÇ±ÈÕâ¸ö¸ÅÄîÒª´ó¡£
+ * è½¬å‘æ˜¯æŒ‡æäº¤ç»™ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼Œä¸‹ä¸€ä¸ªèŠ‚ç‚¹è¿˜æœªç­¾æ”¶ï¼Œå·²åŠåŒ…å«åœ¨â€œå·²åŠâ€æ¦‚å¿µä½†æ˜¯æ¯”è¿™ä¸ªæ¦‚å¿µè¦å¤§ã€‚
  *   
- *  ÔÚ°ìÊÇ×Ô¼ºÕıÔÚ°ìÀí  ´æÔÚÁìÈ¡  ¹ı³Ì²Å´æÔÚÔÚ°ì
+ *  åœ¨åŠæ˜¯è‡ªå·±æ­£åœ¨åŠç†  å­˜åœ¨é¢†å–  è¿‡ç¨‹æ‰å­˜åœ¨åœ¨åŠ
  * 
 
-      °ì½áÎÄ¼ş£ºÈç¹ûÕû¸öÁ÷³Ì°ìÀíÍê±Ï£¬Ôò´Ó¡°ÔÚ°ìÎÄ¼ş¡±ÖĞ×Ô¶¯×ªÒÆµ½¡°°ì½áÎÄ¼ş¡±ÖĞ¡£
+      åŠç»“æ–‡ä»¶ï¼šå¦‚æœæ•´ä¸ªæµç¨‹åŠç†å®Œæ¯•ï¼Œåˆ™ä»â€œåœ¨åŠæ–‡ä»¶â€ä¸­è‡ªåŠ¨è½¬ç§»åˆ°â€œåŠç»“æ–‡ä»¶â€ä¸­ã€‚
 
 
-/////´ı°ì
+/////å¾…åŠ
 select distinct curstate,node_uid,nodeDate, ni.OBJUID contextNIUid,wpi.objuid contextPIUid, instance_uid,pass_txt,reject_txt,user_uid from  
 do_wfi_nodeinstance ni, DO_WFI_PROCESSINSTANCE wpi,do_org_user_role ur ,do_org_role r,do_authorization  a where wpi.objuid = ni.pi_uid and 
  ur.role_uid and r.objuid and a.parteruid='9' and a.ouuid= r.objuid  and node_uid = a.whatuid and ni.exestatus=2 and wpi.exestatus=2
 
-////ÔÚ°ì
+////åœ¨åŠ
 select distinct wpi.objuid contextPIUid, curstate, instance_uid, user_uid from  
 do_wfi_nodeinstance ni, DO_WFI_PROCESSINSTANCE wpi,do_org_user_role ur ,do_org_role r,do_authorization  a where wpi.objuid = ni.pi_uid and 
  ur.role_uid and r.objuid and a.parteruid='9' and a.ouuid= r.objuid  and node_uid = a.whatuid and ni.exestatus=3 and wpi.exestatus=2
 
- ////°ì½á
+ ////åŠç»“
   * select distinct wpi.objuid contextPIUid, curstate, instance_uid, user_uid from  
 do_wfi_his_nodeinstance ni, DO_WFI_his_PROCESSINSTANCE wpi,do_org_user_role ur ,do_org_role r,do_authorization  a where wpi.objuid = ni.pi_uid and 
  ur.role_uid and r.objuid and a.parteruid='9' and a.ouuid= r.objuid  and node_uid = a.whatuid 
  
  * 
- * ×îĞÂµÄÉè¼ÆË¼Â·: ²ÉÓÃ×´Ì¬¹¤×÷Á÷µÄÉè¼ÆË¼Â·£º Node NodeÊÇÒ»¸öÈİÆ÷¡£
- * NodeÓĞ¶àÖÖÀàĞÍ£¬ÕâÑù¿ÉÒÔ½è¼ø¶àÖÖ¹ı³Ì½¨Ä£ÀíÂÛ£¬Èçxpdl,activity diagram,epc£¨event Çı¶¯½¨Ä££©µÈ¡£
- * ÓÉÓÚNodeÊÇÒ»¸öÈİÆ÷£¬²»¾ÖÏŞÀàĞÍ£¬ËùÒÔ¿ÉÒÔºÜºÃµÃÊÂÏÈÎ¢ÈíµÄÁ½ÖÖÁ÷³Ì£º¹ı³Ì¶¨ÒåÁ¼ºÃµÄºÍÁ÷³ÌÁé»îµÄ¡£ ÎªÁËÖ§³ÖÁ÷³ÌÁé»îµÄÇé¿ö£¬ÒıÈëÀàĞÍ¹æÔòÒıÇæÖ´ĞĞ»úµÄ¸ÅÄî£¬
- * µ±Á÷³Ì±»´¥·¢Ö´ĞĞÊ±£¬ËùÓĞµÄ½Úµã¶¼±éÀúÒ»±é£¬Ã¿¸ö½ÚµãÓĞÖ´ĞĞÌõ¼ş£¬Ö»ÒªÂú×ãÌõ¼ş£¬¾ÍÖ´ĞĞ£¨¼´½Úµã´¦ÓÚSTATUS_RUN×´Ì¬£©¡£
- * ËùÒÔÃ¿¸ö½Úµã£¨³õ¿ªÊ¼½Úµã£©µÄÖ´ĞĞ¿ÉÒÔÓĞÁ½ÖÖÇé¿ö£º 1£¬±»Ç°Ò»¸ö½Úµã´¥·¢ 2£¬±»Ëù¶¨ÒåµÄÌõ¼ş´¥·¢
- * ËüµÄÖ÷ÌâÊÇÒ»¸öRule.¸ù¾İÌõ¼ş´¥·¢£¬Ò²¾ÍÊÇ¸ù¾İ×´Ì¬´¥·¢¡£Õâ¸ö¿ÉÒÔ·Ç³£ºÃµÄ´¦Àí»ØÍË£¬Ìø×ª¡£ Ë³Ğò¹¤×÷Á÷¿ÉÒÔ¿´³É×´Ì¬¹¤×÷Á÷µÄÌØÀı¡£ ÏÂÃæÊÇÔ­À´µÄ½âÊÍ:
- * ¿¼ÂÇÁ÷³ÌµÄ¸´ÔÓĞÔ£¬ÈçÖ´ĞĞ×´Ì¬£¬×ÔÁ÷³Ì £¬Node µÄÀàĞÍµÈ¡£»¹ÊÇ±£ÁôNode ,ProcessµÈÁ÷³Ì¶ÔÏóµÄ´æÔÚ¡£ * Node
- * µÄÖ´ĞĞÖ÷ÌåÊÇDOService,²Î¿¼ÖÜ»ª¶ÔÁ÷³ÌµÄÊµÏÖ£¬Node ÏÂÃæ·ÖAction. DOService¾ÍÏàµ±ÓÚAction. µ«Node
- * Ö»ÄÜ°üº¬Ò»¸öDOService £¬DOService ÓĞ×Ô¼ºµÄÖ´ĞĞË³Ğò¡£
+ * æœ€æ–°çš„è®¾è®¡æ€è·¯: é‡‡ç”¨çŠ¶æ€å·¥ä½œæµçš„è®¾è®¡æ€è·¯ï¼š Node Nodeæ˜¯ä¸€ä¸ªå®¹å™¨ã€‚
+ * Nodeæœ‰å¤šç§ç±»å‹ï¼Œè¿™æ ·å¯ä»¥å€Ÿé‰´å¤šç§è¿‡ç¨‹å»ºæ¨¡ç†è®ºï¼Œå¦‚xpdl,activity diagram,epcï¼ˆevent é©±åŠ¨å»ºæ¨¡ï¼‰ç­‰ã€‚
+ * ç”±äºNodeæ˜¯ä¸€ä¸ªå®¹å™¨ï¼Œä¸å±€é™ç±»å‹ï¼Œæ‰€ä»¥å¯ä»¥å¾ˆå¥½å¾—äº‹å…ˆå¾®è½¯çš„ä¸¤ç§æµç¨‹ï¼šè¿‡ç¨‹å®šä¹‰è‰¯å¥½çš„å’Œæµç¨‹çµæ´»çš„ã€‚ ä¸ºäº†æ”¯æŒæµç¨‹çµæ´»çš„æƒ…å†µï¼Œå¼•å…¥ç±»å‹è§„åˆ™å¼•æ“æ‰§è¡Œæœºçš„æ¦‚å¿µï¼Œ
+ * å½“æµç¨‹è¢«è§¦å‘æ‰§è¡Œæ—¶ï¼Œæ‰€æœ‰çš„èŠ‚ç‚¹éƒ½éå†ä¸€éï¼Œæ¯ä¸ªèŠ‚ç‚¹æœ‰æ‰§è¡Œæ¡ä»¶ï¼Œåªè¦æ»¡è¶³æ¡ä»¶ï¼Œå°±æ‰§è¡Œï¼ˆå³èŠ‚ç‚¹å¤„äºSTATUS_RUNçŠ¶æ€ï¼‰ã€‚
+ * æ‰€ä»¥æ¯ä¸ªèŠ‚ç‚¹ï¼ˆåˆå¼€å§‹èŠ‚ç‚¹ï¼‰çš„æ‰§è¡Œå¯ä»¥æœ‰ä¸¤ç§æƒ…å†µï¼š 1ï¼Œè¢«å‰ä¸€ä¸ªèŠ‚ç‚¹è§¦å‘ 2ï¼Œè¢«æ‰€å®šä¹‰çš„æ¡ä»¶è§¦å‘
+ * å®ƒçš„ä¸»é¢˜æ˜¯ä¸€ä¸ªRule.æ ¹æ®æ¡ä»¶è§¦å‘ï¼Œä¹Ÿå°±æ˜¯æ ¹æ®çŠ¶æ€è§¦å‘ã€‚è¿™ä¸ªå¯ä»¥éå¸¸å¥½çš„å¤„ç†å›é€€ï¼Œè·³è½¬ã€‚ é¡ºåºå·¥ä½œæµå¯ä»¥çœ‹æˆçŠ¶æ€å·¥ä½œæµçš„ç‰¹ä¾‹ã€‚ ä¸‹é¢æ˜¯åŸæ¥çš„è§£é‡Š:
+ * è€ƒè™‘æµç¨‹çš„å¤æ‚æ€§ï¼Œå¦‚æ‰§è¡ŒçŠ¶æ€ï¼Œè‡ªæµç¨‹ ï¼ŒNode çš„ç±»å‹ç­‰ã€‚è¿˜æ˜¯ä¿ç•™Node ,Processç­‰æµç¨‹å¯¹è±¡çš„å­˜åœ¨ã€‚ * Node
+ * çš„æ‰§è¡Œä¸»ä½“æ˜¯DOService,å‚è€ƒå‘¨åå¯¹æµç¨‹çš„å®ç°ï¼ŒNode ä¸‹é¢åˆ†Action. DOServiceå°±ç›¸å½“äºAction. ä½†Node
+ * åªèƒ½åŒ…å«ä¸€ä¸ªDOService ï¼ŒDOService æœ‰è‡ªå·±çš„æ‰§è¡Œé¡ºåºã€‚
  */
 public class PTNode extends BaseObject {
 
@@ -68,7 +68,7 @@ public class PTNode extends BaseObject {
 	public final static int TYPE_SELF = 11;
 
 	/**
-	 * ×Ô¶¯µÄ»áÇ©Ö§³Ö£¬ÒÀ¾İDOAuthorizationµÄgetAuthConfigUsers Ã¿¸ö»áÇ©½á¹û±£´æÎªxmlÎÄ¼ş¡£
+	 * è‡ªåŠ¨çš„ä¼šç­¾æ”¯æŒï¼Œä¾æ®DOAuthorizationçš„getAuthConfigUsers æ¯ä¸ªä¼šç­¾ç»“æœä¿å­˜ä¸ºxmlæ–‡ä»¶ã€‚
 	 * 
 	 */
 
@@ -79,19 +79,19 @@ public class PTNode extends BaseObject {
 	public final static int TYPE_END = 3;
 
 	/**
-	 * ·ÖÖ§£¬²»¼ÓÌõ¼ş
+	 * åˆ†æ”¯ï¼Œä¸åŠ æ¡ä»¶
 	 */
 	public final static int TYPE_AND_DECISION = 4;
 
 	/**
-	 * ·ÖÖ§¼ÓÌõ¼ş
+	 * åˆ†æ”¯åŠ æ¡ä»¶
 	 */
 	public final static int TYPE_XOR_DECISION = 5;
 
 	/**
-	 * ÓĞ·Ö¾ÍÒªÓĞºÏ£¬ÓĞdecision¾ÍÒªÓĞconjunction,ËùÒÔ»¹²»ÄÜÈ¥µô×¨ÃÅµÄ»áÇ©¶¨Òå¡£
+	 * æœ‰åˆ†å°±è¦æœ‰åˆï¼Œæœ‰decisionå°±è¦æœ‰conjunction,æ‰€ä»¥è¿˜ä¸èƒ½å»æ‰ä¸“é—¨çš„ä¼šç­¾å®šä¹‰ã€‚
 	 * 
-	 * OR_CONJUNCTION ÔİÊ±Ê¡ÂÔµô
+	 * OR_CONJUNCTION æš‚æ—¶çœç•¥æ‰
 	 */
 
 	public final static int TYPE_AND_CONJUNCTION = 6;
@@ -101,7 +101,7 @@ public class PTNode extends BaseObject {
 	public final static int TYPE_SUBPROCESS = 8;
 
 	/**
-	 * ÊÖ¶¯·½Ê½Ò²ÊÇÒ»ÖÖscript ·½Ê½ ÊÖ¶¯¾ö¶¨ÏÂÒ»²½µÄÉóÅúÕßÊÇË­£¬¼¶ÁªÏÂÀ­ÁĞ±í¡£ Ò»¸ö½ÚµãºóÃæ¿ÉÄÜÓĞ¶à¸ö½Úµã£¬Ã¿¸ö½ÚµãÓÖ¶ÔÓ¦¶à¸öÓÃ»§
+	 * æ‰‹åŠ¨æ–¹å¼ä¹Ÿæ˜¯ä¸€ç§script æ–¹å¼ æ‰‹åŠ¨å†³å®šä¸‹ä¸€æ­¥çš„å®¡æ‰¹è€…æ˜¯è°ï¼Œçº§è”ä¸‹æ‹‰åˆ—è¡¨ã€‚ ä¸€ä¸ªèŠ‚ç‚¹åé¢å¯èƒ½æœ‰å¤šä¸ªèŠ‚ç‚¹ï¼Œæ¯ä¸ªèŠ‚ç‚¹åˆå¯¹åº”å¤šä¸ªç”¨æˆ·
 	 * 
 	 */
 	public final static int DECISION_TYPE_SCRIPT = 1;
@@ -109,42 +109,42 @@ public class PTNode extends BaseObject {
 	public final static int DECISION_TYPE_JAVA = 2;
 
 	/**
-	 * È¨ÏŞ±í·½Ê½
+	 * æƒé™è¡¨æ–¹å¼
 	 */
 	public final static int AUTH_TYPE_AUTHTABLE = 0;
 
 	/**
-	 * È¨ÏŞ±í·½Ê½£¨¶Ô¹¤×÷Á÷ÊµÀı£© Õâ¸öÔİÊ±¿ÉÒÔ²»ÊµÏÖ
+	 * æƒé™è¡¨æ–¹å¼ï¼ˆå¯¹å·¥ä½œæµå®ä¾‹ï¼‰ è¿™ä¸ªæš‚æ—¶å¯ä»¥ä¸å®ç°
 	 */
 	public final static int AUTH_TYPE_AUTHTABLE_INSTANCE = 10;
 
 	/**
-	 * Ê¹ÓÃ½Å±¾
+	 * ä½¿ç”¨è„šæœ¬
 	 */
 	public final static int AUTH_TYPE_SCRIPT = 1;
 
 	/**
-	 * Ê¹ÓÃjavaÀà
+	 * ä½¿ç”¨javaç±»
 	 */
 	public final static int AUTH_TYPE_JAVA = 2;
 
 	/**
-	 * Êı¾İÓµÓĞ×ÅÈ¨ÏŞ (Ò»°ãÖ¸´´½¨Õß)
+	 * æ•°æ®æ‹¥æœ‰ç€æƒé™ (ä¸€èˆ¬æŒ‡åˆ›å»ºè€…)
 	 */
 
 	public final static int AUTH_TYPE_DATA_OWNER = 3;
 
 	/**
-	 * Ö¸¶¨ÓÃ»§
+	 * æŒ‡å®šç”¨æˆ·
 	 */
 	public final static int AUTH_TYPE_SCHEDULE_USER = 8;
 
 	/**
-	 * Ö¸¶¨²¿ÃÅ,ÔİÊ±²»ÊµÏÖ
+	 * æŒ‡å®šéƒ¨é—¨,æš‚æ—¶ä¸å®ç°
 	 */
 	public final static int AUTH_TYPE_SCHEDULE_DEPT = 12;
 	/**
-	 * Ö¸¶¨½ÇÉ«
+	 * æŒ‡å®šè§’è‰²
 	 */
 	public final static int AUTH_TYPE_SCHEDULE_ROLE = 16;
 
@@ -153,7 +153,7 @@ public class PTNode extends BaseObject {
 	private String nodeDesc;
 
 	/**
-	 * ¿ÉÒÔÊÇscript£¬Ò²¿ÉÒÔÊÇjava class
+	 * å¯ä»¥æ˜¯scriptï¼Œä¹Ÿå¯ä»¥æ˜¯java class
 	 */
 	private Integer decisionType;
 
@@ -168,29 +168,29 @@ public class PTNode extends BaseObject {
 	private DOService autoExcutesService;
 
 	/**
-	 * µ±conditon Âú×ãÊ±£¬Õâ¸ö node ¾Í¿ÉÒÔ´¥·¢ Ö§³Ö×ÔÓÉÁ÷µÄcondtion
+	 * å½“conditon æ»¡è¶³æ—¶ï¼Œè¿™ä¸ª node å°±å¯ä»¥è§¦å‘ æ”¯æŒè‡ªç”±æµçš„condtion
 	 */
 	private String conditon;
 
 	/**
-	 * µ±Ç°Á÷³Ì×´Ì¬ÏÔÊ¾,Õâ¸ö×´Ì¬²»ÊÇÉÏÃæµÄÖ´ĞĞ×´Ì¬£¬¶øÊÇ½ÚµãÖ´ĞĞµ½ÄÇÒ»²½ĞèÒªÏÔÊ¾Ê²Ã´×´Ì¬¡£
-	 * µ±È»£¬Ò»¸öÁ÷³Ì¿ÉÄÜÍ¬Ê±ÓĞ¶à¸ö»î¶¯½Úµã¡£Ã¿¸ö½Úµã¶¼ÓĞ¿ÉÄÜÉèÖÃnodeStateShow¡£ ÒÔ×îºóÒ»¸ö¸üĞÂÎª×¼¡£
-	 * ÔÚÊµ¼ÊÓ¦ÓÃÖĞ£¬Èç¹ûÒ»¸ö½ÚµãµÄÖ´ĞĞ²¢²»Ó°ÏìÕû¸öÁ÷³ÌµÄ×´Ì¬£¬¿ÉÒÔ²»ÉèÖÃnodeStateShow ÕâÑùÒıÇæ¾Í²»»á´¦Àí¡£
+	 * å½“å‰æµç¨‹çŠ¶æ€æ˜¾ç¤º,è¿™ä¸ªçŠ¶æ€ä¸æ˜¯ä¸Šé¢çš„æ‰§è¡ŒçŠ¶æ€ï¼Œè€Œæ˜¯èŠ‚ç‚¹æ‰§è¡Œåˆ°é‚£ä¸€æ­¥éœ€è¦æ˜¾ç¤ºä»€ä¹ˆçŠ¶æ€ã€‚
+	 * å½“ç„¶ï¼Œä¸€ä¸ªæµç¨‹å¯èƒ½åŒæ—¶æœ‰å¤šä¸ªæ´»åŠ¨èŠ‚ç‚¹ã€‚æ¯ä¸ªèŠ‚ç‚¹éƒ½æœ‰å¯èƒ½è®¾ç½®nodeStateShowã€‚ ä»¥æœ€åä¸€ä¸ªæ›´æ–°ä¸ºå‡†ã€‚
+	 * åœ¨å®é™…åº”ç”¨ä¸­ï¼Œå¦‚æœä¸€ä¸ªèŠ‚ç‚¹çš„æ‰§è¡Œå¹¶ä¸å½±å“æ•´ä¸ªæµç¨‹çš„çŠ¶æ€ï¼Œå¯ä»¥ä¸è®¾ç½®nodeStateShow è¿™æ ·å¼•æ“å°±ä¸ä¼šå¤„ç†ã€‚
 	 */
 	private String nodeStateShow;
 
 	private String nodeStateShowBack;
 
-	private DOPaneModel pane;///´ı°ì
+	private DOPaneModel pane;///å¾…åŠ
 
-	private DOPaneModel donePane;///ÒÑ°ì
+	private DOPaneModel donePane;///å·²åŠ
 
-	private DOPaneModel resultPane;///°ì½á
+	private DOPaneModel resultPane;///åŠç»“
 
 	private Integer authType;
 
 	/**
-	 * È¨ÏŞµÄÁíÒ»ÖÖ¿ØÖÆÊÖ¶Î¡£ È¨ÏŞ¿ØÖÆÓĞÁ½ÖÖ 1£¬Í¨¹ıDOAuthrizaiton±í 2£¬Èç¹û¶¨ÒåÕâ¸öClass ÔòÒÀÕÕÕâ¸öclass
+	 * æƒé™çš„å¦ä¸€ç§æ§åˆ¶æ‰‹æ®µã€‚ æƒé™æ§åˆ¶æœ‰ä¸¤ç§ 1ï¼Œé€šè¿‡DOAuthrizaitonè¡¨ 2ï¼Œå¦‚æœå®šä¹‰è¿™ä¸ªClass åˆ™ä¾ç…§è¿™ä¸ªclass
 	 */
 	private String accessClass;
 
@@ -478,7 +478,7 @@ public class PTNode extends BaseObject {
 	}
 
 	/**
-	 * »ñµÃÇ°Ğø½Úµã
+	 * è·å¾—å‰ç»­èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -500,7 +500,7 @@ public class PTNode extends BaseObject {
 	}
 
 	/**
-	 * »ñµÃÇ°Ğø½Úµã
+	 * è·å¾—å‰ç»­èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -521,7 +521,7 @@ public class PTNode extends BaseObject {
 	}
 
 	/**
-	 * »ñµÃºóĞø½Úµã
+	 * è·å¾—åç»­èŠ‚ç‚¹
 	 * 
 	 * @return
 	 */
@@ -542,7 +542,7 @@ public class PTNode extends BaseObject {
 	}
 
 	/**
-	 * »ñµÃºóĞø½ÚµãÒÀÀµ¹ØÏµ
+	 * è·å¾—åç»­èŠ‚ç‚¹ä¾èµ–å…³ç³»
 	 * 
 	 * @return
 	 */
@@ -564,7 +564,7 @@ public class PTNode extends BaseObject {
 	}
 
 	/**
-	 * »ñÈ¡ÕıÔÚÔËĞĞµÄÖÆ¶¨ÊµÀıµÄnodeInstanceÊıÄ¿¡£
+	 * è·å–æ­£åœ¨è¿è¡Œçš„åˆ¶å®šå®ä¾‹çš„nodeInstanceæ•°ç›®ã€‚
 	 * 
 	 * @return
 	 */
@@ -624,7 +624,7 @@ public class PTNode extends BaseObject {
 
 	public static void main(String[] args) {
 
-		String aFile = "c:\\aaa\\bbb\\ÖĞ¹ú\\dd.txt";
+		String aFile = "c:\\aaa\\bbb\\ä¸­å›½\\dd.txt";
 		System.out.println(aFile.substring(aFile.lastIndexOf("\\") + 1));
 
 	}

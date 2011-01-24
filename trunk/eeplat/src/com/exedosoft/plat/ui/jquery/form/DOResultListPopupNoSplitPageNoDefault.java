@@ -1,133 +1,37 @@
 package com.exedosoft.plat.ui.jquery.form;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.StringUtil;
 
 /**
- *³ıÁËÏÂÀ­¿ò²»·ÖÒ³Íâ£¬È¡µ±Ç°¶ÔÓ¦ÖµÊ±£¬Èç¹ûÃ»ÓĞÖµ£¬»á´Óµ±Ç°¶¨ÒåµÄ
- *·şÎñ¶ÔÓ¦µÄÒµÎñ¶ÔÏóÖĞÈ¡µ±Ç°Öµ¡£
- *ÕâºÍDOResultListPopup DOResultListµÈ²»Ò»Ñù¡£
+ *é™¤äº†ä¸‹æ‹‰æ¡†ä¸åˆ†é¡µå¤–ï¼Œå–å½“å‰å¯¹åº”å€¼æ—¶ï¼Œå¦‚æœæ²¡æœ‰å€¼ï¼Œä¼šä»å½“å‰å®šä¹‰çš„
+ *æœåŠ¡å¯¹åº”çš„ä¸šåŠ¡å¯¹è±¡ä¸­å–å½“å‰å€¼ã€‚
+ *è¿™å’ŒDOResultListPopup DOResultListç­‰ä¸ä¸€æ ·ã€‚
  *
  *					theValue = fm.getData().getValue(
 					fm.getRelationProperty().getColName());
 					
-	Õâ¸öµØ·½ÓĞ¸Ä¶¯¡£
+	è¿™ä¸ªåœ°æ–¹æœ‰æ”¹åŠ¨ã€‚
  * @author IBM
  *
  */
-public class DOResultListPopupNoSplitPageNoDefault extends DOBaseForm {
+public class DOResultListPopupNoSplitPageNoDefault extends DOResultListPopup {
 
 	public DOResultListPopupNoSplitPageNoDefault() {
 		super();
+		max_pagesize = 1000;
+		default_data = false;
 	}
 
-	public String getHtmlCode(DOIModel iModel) {
+	
 
-		DOFormModel property = (DOFormModel) iModel;
-
-		return getPopupForm(property);
-	}
-
-	/**
-	 * »ñÈ¡¶¯Ì¬ÁĞ±íĞÎÊ½µÄSelect Form
-	 * 
-	 * @param property
-	 *            TODO
-	 * @param db
-	 * @return
-	 */
-	String getPopupForm(DOFormModel fm) {
-
-		if (fm.getLinkService() == null) {
-			return "&nbsp;";
-		}
-		StringBuffer buffer = new StringBuffer();
-
-		String theValue = fm.getValue();
-
-		BOInstance data = null;
-		
-		if (theValue != null && !"".equals(theValue.trim())) {
-
-			DOBO corrBO = fm.getLinkBO();
-
-			if (corrBO == null && fm.getLinkService() != null) {
-				corrBO = fm.getLinkService().getBo();
-			}
-			data = DOValueResultList
-					.getAInstance(fm, corrBO, theValue);
-		}
-		buffer.append("	<input type='hidden' class='resultlistpopup'  name='").append(
-				fm.getColName()).append("' id='").append(
-				fm.getFullColID()).append("' serviceName='")
-				.append(fm.getLinkService().getName())
-				.append("' ");
-		if (theValue != null) {
-
-			buffer.append(" value='").append(theValue).append("'");
-		}
-		
-		buffer.append(this.appendValidateConfig(fm));
-		buffer.append("/>");
-
-		buffer.append("<input  type='text' size='25' style='border:#B3B3B3 1px solid;margin-top:1px'  onchange=\"if(this.value==''){this.previousSibling.value='';}\"'")
-		.append(" onclick=\"this.style.borderColor='#406B9B'\" onmouseover=\"this.style.borderColor='#99E300'\" onmouseout=\"this.style.borderColor='#A1BCA3'\" name='").append(fm.getFullColID())
-				.append("_show' id='").append(fm.getFullColID()).append(
-						"_show' class='").append(fm.getFullColID()).append(
-								"_show' ");
-		buffer.append(getDecoration(fm));
-
-
-		if (data != null) {
-			buffer.append(" value='").append(data.getName())
-					.append("'");
-		}
-//		else{
-//			buffer.append(" value='").append(fm.getL10n())
-//			.append("'");
-//		}
-		
-		if(data!=null){
-			buffer.append(" title='").append(data.getName()).append("'");
-		}else{
-			buffer.append(" title='").append(fm.getL10n()).append("'");
-		}	
-
-		
-		
-		if (isReadOnly(fm)) {
-			buffer.append(" readonly='readonly' ");
-
-		}
-
-		buffer.append(" size=\"").append(getInputSize(fm)).append("\"/>");
-
-		buffer
-				.append(
-						"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-21px;' onclick=\"invokePopup(this")
-		.append(",'").append(fm.getTargetForms())
-		.append("','");
-		buffer.append(
-				fm.getLinkService().getBo().getValueCol()).append("',1,100");
-		buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER).append(
-				"images/darraw.gif' align=absMiddle>");
-
-		if (fm.getNote() != null && !"".equals(fm.getNote())) {
-			buffer.append(fm.getNote());
-		}
-
-		if (fm.isNotNull()) {
-			buffer.append("&nbsp;<font color='red'>*</font>");
-		}
-
-		// <input id="test1_show" size="30" name="test1" msg="ĞÕÃûÊÇ±ØÌî" /> <IMG
-		// style="CURSOR: pointer" onclick="setTip($('test1_show'))"
-		// src="s_arrow.png" align=absMiddle>
-
-		return buffer.toString();
-	}
 
 }

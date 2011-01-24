@@ -20,19 +20,6 @@
 	</filter>
 
 
-
-	<filter>
-		<filter-name>gzip</filter-name>
-		<filter-class>
-			com.ken.finance.gzip.CompressionFilter
-		</filter-class>
-	</filter>
-
-
-	<filter-mapping>
-		<filter-name>gzip</filter-name>
-		<url-pattern>*.js</url-pattern>
-	</filter-mapping>
 	
 	<filter-mapping>
 		<filter-name>doFilter</filter-name>
@@ -69,16 +56,6 @@
 		<servlet-class>com.exedosoft.plat.SSOController</servlet-class>
 	</servlet>
 
-	<servlet>
-		<servlet-name>
-			net.sourceforge.barbecue.BarcodeServlet
-		</servlet-name>
-		<servlet-class>
-			net.sourceforge.barbecue.BarcodeServlet
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
 
 	<servlet-mapping>
 		<servlet-name>mvccontroller</servlet-name>
@@ -101,12 +78,7 @@
 		<url-pattern>/ssocontroller</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>
-			net.sourceforge.barbecue.BarcodeServlet
-		</servlet-name>
-		<url-pattern>/dobarcode/*</url-pattern>
-	</servlet-mapping>
+
 
 	<servlet-mapping>
 		<servlet-name>ConnectorServlet</servlet-name>

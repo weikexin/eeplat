@@ -72,7 +72,7 @@ public class TreeGridList extends DOViewTemplate {
 //					System.out.println("i==j==data::" + i + "-----" + j + "----" + aChild);
 					aChild.putValue("child_of_class", "child-of-"+bi.getUid());
 					list.add(i+j, aChild);
-					if(bi.getUid().equals(aChild.getUid())){///自己包含自己，预防死循环
+					if(bi.getUid().equals(aChild.getUid())){///鑷繁鍖呭惈鑷繁锛岄闃叉寰幆
 						return j;
 					}
 					j = getListDataHelper(list,secondService,j,i,aChild);

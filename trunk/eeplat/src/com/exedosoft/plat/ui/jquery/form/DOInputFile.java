@@ -50,17 +50,17 @@ public class DOInputFile extends DOBaseForm {
 		}
 		
 		
-		//////增加装饰
+		//////澧炲姞瑁呴グ
 		buffer.append(getDecoration(property));
 
-		/////////end 增加装饰
+		/////////end 澧炲姞瑁呴グ
 		buffer.append(" title='")
 		.append(property.getL10n())
 		.append("'");
 	
 		buffer.append(" size=\"").append(getInputSize(property)).append("\"/>");
 
-		buffer.append("<input type='button' value='上传'");
+		buffer.append("<input type='button' value='涓婁紶'");
 
 		buffer.append(" onclick=\"").append(href).append(" \"");
 		buffer.append(" />\n");

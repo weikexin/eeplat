@@ -4,7 +4,7 @@ import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 
 /**
- * ÔÚÄ¿±ê Form ÉÏ½¨Á¢Á¬½Ó£¬¿ÉÒÔµ¯³öÒ»¸öÅäÖÃPane.
+ * åœ¨ç›®æ ‡ Form ä¸Šå»ºç«‹è¿æ¥ï¼Œå¯ä»¥å¼¹å‡ºä¸€ä¸ªé…ç½®Pane.
  * 
  * @author aa
  * 

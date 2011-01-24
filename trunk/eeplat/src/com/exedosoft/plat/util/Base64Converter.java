@@ -77,7 +77,7 @@ public class Base64Converter
     	 
 //    	 5Zu96ZmF5bGV5Lya6YCa55+l
 //    	 ufq8ytW5u+HNqNaq
-    	 String tem = "国际展会通知";
+    	 String tem = "鍥介檯灞曚細閫氱煡";
     	 System.out.println("Base64::" + StringUtil.encodeBase64(tem));
     	 
     	

@@ -27,8 +27,8 @@ import com.exedosoft.plat.util.StringUtil;
  * 
  * o(Organizational) c(Country)
  * 
- * http://baike.baidu.com/view/159263.htm DN (Distinguished Name) RDN£¨Relative
- * Distinguished Name) DC (Domain Component) CN (Common Name) SN £¨SURNAME£© OU
+ * http://baike.baidu.com/view/159263.htm DN (Distinguished Name) RDNï¼ˆRelative
+ * Distinguished Name) DC (Domain Component) CN (Common Name) SN ï¼ˆSURNAMEï¼‰ OU
  * (Organizational Unit)
  * 
  * ldapadd -x -D "cn=Manager,o=zephyr.com.cn" -W -f a.ldif
@@ -42,10 +42,10 @@ import com.exedosoft.plat.util.StringUtil;
  * System.out.println("Insert Succeeded"); }
  * 
  * 
- * Ou,sn,cnÊÇĞÂÌõÄ¿µÄÈë¿Ú±êÊ¶¡£
+ * Ou,sn,cnæ˜¯æ–°æ¡ç›®çš„å…¥å£æ ‡è¯†ã€‚
  * 
- * Jdbc-LDAP²»¿ÉÒÔÍê³É´®ĞĞ»¯binding£¬Òò´Ë£¬Ö»ÊÊÒË¶ÔÒÑÓĞµÄLDAP½øĞĞÁÙÊ±·ÃÎÊ£¨Èç³ÌĞòÔ±²»ÊìÏ¤£¬»ò±£³Ö¾É³ÌĞò£¬½öĞŞ¸Ä±ØÒªµÄÁ¬½ÓÏî£©£¬
- * ²»ÒË°ÑÕû¸öÏîÄ¿½¨ÖşÔÚJDBC-LDAPÉÏ¡£Êµ¼ÊÉÏ£¬LDAP±¾Éí¾ÍÊÇÒ»ÖÖ·ÃÎÊµÄÇ°¶ËĞ­Òé£¬Ó²Òª°ÑSQLÔÙ×÷ÎªÇ°¶ËÊ¹ÓÃ£¬ÊÇÍêÈ«Ã»ÓĞ±ØÒªµÄ¡£
+ * Jdbc-LDAPä¸å¯ä»¥å®Œæˆä¸²è¡ŒåŒ–bindingï¼Œå› æ­¤ï¼Œåªé€‚å®œå¯¹å·²æœ‰çš„LDAPè¿›è¡Œä¸´æ—¶è®¿é—®ï¼ˆå¦‚ç¨‹åºå‘˜ä¸ç†Ÿæ‚‰ï¼Œæˆ–ä¿æŒæ—§ç¨‹åºï¼Œä»…ä¿®æ”¹å¿…è¦çš„è¿æ¥é¡¹ï¼‰ï¼Œ
+ * ä¸å®œæŠŠæ•´ä¸ªé¡¹ç›®å»ºç­‘åœ¨JDBC-LDAPä¸Šã€‚å®é™…ä¸Šï¼ŒLDAPæœ¬èº«å°±æ˜¯ä¸€ç§è®¿é—®çš„å‰ç«¯åè®®ï¼Œç¡¬è¦æŠŠSQLå†ä½œä¸ºå‰ç«¯ä½¿ç”¨ï¼Œæ˜¯å®Œå…¨æ²¡æœ‰å¿…è¦çš„ã€‚
  * 
  * 
  * 
@@ -117,7 +117,7 @@ public class LDAPManager {
 			// pstmt.setString(1, "person");
 			// pstmt.setString(2, "wanghongliang2");
 			// pstmt.setString(3, "wang2");
-			// pstmt.setString(4, "¾«²Ê");
+			// pstmt.setString(4, "ç²¾å½©");
 			// pstmt.executeUpdate();
 
 			// test delete
@@ -171,12 +171,12 @@ public class LDAPManager {
 		DirContext ctx = null;
 		try {
 			ctx = new InitialDirContext(env);
-			System.out.println("ÈÏÖ¤³É¹¦");
+			System.out.println("è®¤è¯æˆåŠŸ");
 		} catch (javax.naming.AuthenticationException e) {
 			e.printStackTrace();
-			System.out.println("ÈÏÖ¤Ê§°Ü");
+			System.out.println("è®¤è¯å¤±è´¥");
 		} catch (Exception e) {
-			System.out.println("ÈÏÖ¤³ö´í£º");
+			System.out.println("è®¤è¯å‡ºé”™ï¼š");
 			e.printStackTrace();
 		}
 
@@ -205,7 +205,7 @@ public class LDAPManager {
 					"uid=wkx,ou=people,o=zephyr.com.cn");
 			envi.put(Context.SECURITY_CREDENTIALS, "123567");
 			iCnt = new InitialContext(envi);
-			System.out.println("ÈÏÖ¤Í¨¹ı!");
+			System.out.println("è®¤è¯é€šè¿‡!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -236,7 +236,7 @@ public class LDAPManager {
 //		LDAPManager.t();
 //		try {
 //			MessageDigest sha = MessageDigest.getInstance("SHA");
-//			System.out.println("SHA ¼ÓÃÜÖ®ºó::"
+//			System.out.println("SHA åŠ å¯†ä¹‹å::"
 //					+ StringUtil.byte2hex(sha.digest("123567".getBytes())));
 //		} catch (NoSuchAlgorithmException e) {
 //			// TODO Auto-generated catch block

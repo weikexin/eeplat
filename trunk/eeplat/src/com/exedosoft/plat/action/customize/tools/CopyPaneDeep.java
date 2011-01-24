@@ -26,8 +26,8 @@ public class CopyPaneDeep extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
@@ -40,15 +40,15 @@ public class CopyPaneDeep extends DOAbstractAction {
 			DOBO boFormLink = DOBO.getDOBOByName("DO_UI_FormLinks");
 			DOBO boFormTarget = DOBO.getDOBOByName("DO_UI_FormTargets");
 
-			// /»¹Òª¸´ÖÆ×ÓÃæ°åÁ¬½Ó£¨×ÓÃæ°åÄÚ²¿²»¸´ÖÆ£©
+			// /è¿˜è¦å¤åˆ¶å­é¢æ¿è¿æ¥ï¼ˆå­é¢æ¿å†…éƒ¨ä¸å¤åˆ¶ï¼‰
 			BOInstance biPane = boPane.getCorrInstance();
 			DOPaneModel pm = DOPaneModel.getPaneModelByID(biPane.getUid());
 
 			DOGridModel gm = pm.getGridModel();
-			// //Èç¹ûÁ¬½ÓµÄÊÇ±í¸ñ:::::ÔİÊ±Ö»ÊµÏÖÕâ¸ö
+			// //å¦‚æœè¿æ¥çš„æ˜¯è¡¨æ ¼:::::æš‚æ—¶åªå®ç°è¿™ä¸ª
 			if (gm != null) {
 
-				// /////±£´æGridModel
+				// /////ä¿å­˜GridModel
 				BOInstance biGrid = boGrid.getInstance(gm.getObjUid());
 				biGrid.putValue("objuid", null);
 				biGrid.putValue("name", biGrid.getValue("name") + "_copy");
@@ -56,27 +56,27 @@ public class CopyPaneDeep extends DOAbstractAction {
 				BOInstance newBiGrid = boGrid.getDInsertService().invokeUpdate(
 						biGrid);
 
-				// //±£´æGridModel
+				// //ä¿å­˜GridModel
 
-				// /±£´æÃæ°å
+				// /ä¿å­˜é¢æ¿
 				biPane.putValue("objuid", null);
 				biPane.putValue("name", biPane.getValue("name") + "_copy");
 				biPane.putValue("l10n", biPane.getValue("l10n") + "_copy");
 				biPane.putValue("linkuid", newBiGrid.getUid());				
 				boPane.getDInsertService().invokeUpdate(biPane);
-				// /±£´æÃæ°å
+				// /ä¿å­˜é¢æ¿
 
 				List<DOFormModel> fms = gm.getAllGridFormLinks();
 				Map<DOFormModel,BOInstance> map = new HashMap<DOFormModel,BOInstance>();
 				for (Iterator<DOFormModel> it = fms.iterator(); it.hasNext();) {
 					DOFormModel aFm = it.next();
-					// ///±£´æFormModel
+					// ///ä¿å­˜FormModel
 					BOInstance biForm = boForm.getInstance(aFm.getObjUid());
 					biForm.putValue("objuid", null);
 					biForm.putValue("gridModelUid", newBiGrid.getUid());
 					BOInstance newBiForm = boForm.getDInsertService().invokeUpdate(biForm);
 					map.put(aFm, newBiForm);
-					// //±£´æFormModel
+					// //ä¿å­˜FormModel
 					for(Iterator<DOFormTarget> itTargetGrid = aFm.getTargetGridModels().iterator();itTargetGrid.hasNext(); ){
 						DOFormTarget aFt = itTargetGrid.next();
 						BOInstance biFt = boFormTarget.getInstance(aFt.getObjUid());
@@ -86,7 +86,7 @@ public class CopyPaneDeep extends DOAbstractAction {
 					}
 				}
 
-				/////linkForms ĞèÒªµ¥¶À´¦Àí
+				/////linkForms éœ€è¦å•ç‹¬å¤„ç†
 				for (Iterator<DOFormModel> it = fms.iterator(); it.hasNext();) {
 					DOFormModel aFm = it.next();
 					BOInstance newBiForm = map.get(aFm);
@@ -115,7 +115,7 @@ public class CopyPaneDeep extends DOAbstractAction {
 			t.rollback();
 			e.printStackTrace();
 		}
-		this.setEchoValue("¸´ÖÆ³É¹¦,Çëµã»÷×ó²àÊ÷½Úµã½øĞĞ²Ù×÷!");
+		this.setEchoValue("å¤åˆ¶æˆåŠŸ,è¯·ç‚¹å‡»å·¦ä¾§æ ‘èŠ‚ç‚¹è¿›è¡Œæ“ä½œ!");
 		return DEFAULT_FORWARD;
 
 	}

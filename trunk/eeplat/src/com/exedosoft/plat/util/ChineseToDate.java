@@ -6,34 +6,34 @@ import java.util.HashMap;
 
 
 /**
- * forÁ¬½Ü. µÚÒ»²½Ö»Ö§³Ö28-ÆßÔÂ-2008 ÕâÖÖ¸ñÊ½¡£ ·µ»Ø java.sql.Date
+ * forè¿æ°. ç¬¬ä¸€æ­¥åªæ”¯æŒ28-ä¸ƒæœˆ-2008 è¿™ç§æ ¼å¼ã€‚ è¿”å› java.sql.Date
  */
 public class ChineseToDate {
 
-	static String[] chinese = { "Ò»", "¶ş", "Èı", "ËÄ", "Îå", "Áù", "Æß", "°Ë", "¾Å",
-			"Ê®" };
+	static String[] chinese = { "ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­", "ä¸ƒ", "å…«", "ä¹",
+			"å" };
 
 	private static SimpleDateFormat dateFormat = null;
 	static {
-		// Ö¸¶¨ÈÕÆÚ¸ñÊ½ÎªËÄÎ»Äê/Á½Î»ÔÂ·İ/Á½Î»ÈÕÆÚ£¬×¢Òâdd-MM-yyyyÇø·Ö´óĞ¡Ğ´£»
+		// æŒ‡å®šæ—¥æœŸæ ¼å¼ä¸ºå››ä½å¹´/ä¸¤ä½æœˆä»½/ä¸¤ä½æ—¥æœŸï¼Œæ³¨æ„dd-MM-yyyyåŒºåˆ†å¤§å°å†™ï¼›
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		// ÉèÖÃlenientÎªfalse.
-		// ·ñÔòSimpleDateFormat»á±È½Ï¿íËÉµØÑéÖ¤ÈÕÆÚ£¬±ÈÈç2007/02/29»á±»½ÓÊÜ£¬²¢×ª»»³É2007/03/01
+		// è®¾ç½®lenientä¸ºfalse.
+		// å¦åˆ™SimpleDateFormatä¼šæ¯”è¾ƒå®½æ¾åœ°éªŒè¯æ—¥æœŸï¼Œæ¯”å¦‚2007/02/29ä¼šè¢«æ¥å—ï¼Œå¹¶è½¬æ¢æˆ2007/03/01
 		dateFormat.setLenient(false);
 	}
 
 	/**
-	 * forÁ¬½Ü. µÚÒ»²½Ö»Ö§³ÖÀàËÆ 28-ÆßÔÂ-2008 ÕâÖÖ¸ñÊ½¡£ ·µ»Ø java.sql.Date
+	 * forè¿æ°. ç¬¬ä¸€æ­¥åªæ”¯æŒç±»ä¼¼ 28-ä¸ƒæœˆ-2008 è¿™ç§æ ¼å¼ã€‚ è¿”å› java.sql.Date
 	 * @throws ParseException 
 
 	 */
 	public static java.sql.Date getChineseToSqlDate(String s) throws ParseException
 			 {
 
-		// °ÑÔÂÈ¥µô
-		s = s.replaceAll("ÔÂ", "");
-		s = s.replaceAll("Ê®Ò»", "11");
-		s = s.replaceAll("Ê®¶ş", "12");
+		// æŠŠæœˆå»æ‰
+		s = s.replaceAll("æœˆ", "");
+		s = s.replaceAll("åä¸€", "11");
+		s = s.replaceAll("åäºŒ", "12");
 		for (int i = 0; i < chinese.length; i++) {
 			s = s.replaceAll(chinese[i], String.valueOf(i + 1));
 		}
@@ -47,8 +47,8 @@ public class ChineseToDate {
 	 */
 
 	public static void main(String[] args) throws ParseException {
-		// TODO ×Ô¶¯Éú³É·½·¨´æ¸ù
-		//System.out.println(ChineseToDate.getChineseToSqlDate("28-ÆßÔÂ-2008"));
+		// TODO è‡ªåŠ¨ç”Ÿæˆæ–¹æ³•å­˜æ ¹
+		//System.out.println(ChineseToDate.getChineseToSqlDate("28-ä¸ƒæœˆ-2008"));
 		
 		HashMap t = new HashMap();
 		t.put("a", null);

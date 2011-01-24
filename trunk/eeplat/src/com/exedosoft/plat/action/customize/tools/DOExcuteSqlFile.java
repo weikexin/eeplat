@@ -19,9 +19,9 @@ import com.exedosoft.plat.util.ExcuteSqlFile;
 /**
  * 
  * 
- * ×öÔö¼Ó£¬²»×öĞŞ¸ÄºÍÉ¾³ı
+ * åšå¢åŠ ï¼Œä¸åšä¿®æ”¹å’Œåˆ é™¤
  * 
- * ¿ÉÒÔ¶ÔÔö¼Ó×öÉ¨Ãè
+ * å¯ä»¥å¯¹å¢åŠ åšæ‰«æ
  * 
  * @author anolesoft
  * 
@@ -59,7 +59,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		else if ("db2".equalsIgnoreCase(dss.getDialect())){
 			fileName = prefix + "/exedo/initsql/db2.sql";
 		}else{
-			this.setEchoValue("ÏÖÔÚÖ»Ö§³Ömysql¡¢oracle¡¢sqlserver¡¢db2ºÍgaeÄ¬ÈÏ³õÊ¼»¯!");
+			this.setEchoValue("ç°åœ¨åªæ”¯æŒmysqlã€oracleã€sqlserverã€db2å’Œgaeé»˜è®¤åˆå§‹åŒ–!");
 			return NO_FORWARD;
 		}
 
@@ -71,11 +71,11 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			ResultSet rs = meta.getTables(null, null, null, tblTypes);
 			while (rs.next()) {
 				String tableName = rs.getString("TABLE_NAME").toLowerCase();
-				// ////////////ÔöÇ¿¸üĞÂ¹¦ÄÜ
+				// ////////////å¢å¼ºæ›´æ–°åŠŸèƒ½
 				if(tableName.equalsIgnoreCase("do_org_dept")){
 					rs.close();
 
-					this.setEchoValue("È±Ê¡ÊµÏÖ±íÒÑ¾­³õÊ¼»¯Íê³ÉÇë²»ÒªÖØ¸´³õÊ¼»¯!");
+					this.setEchoValue("ç¼ºçœå®ç°è¡¨å·²ç»åˆå§‹åŒ–å®Œæˆè¯·ä¸è¦é‡å¤åˆå§‹åŒ–!");
 					changeTableDS(dss);
 					return NO_FORWARD;
 				}
@@ -85,7 +85,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			List<String> sqls = ExcuteSqlFile.readSqlFile(fileName);
 			for(String sql:sqls){
 				if(sql!=null && !sql.trim().equals("")){
-					System.out.println("ÕıÔÚÖ´ĞĞSQLÓï¾ä:::" + sql);
+					System.out.println("æ­£åœ¨æ‰§è¡ŒSQLè¯­å¥:::" + sql);
 					PreparedStatement pstmt = con.prepareStatement(sql);
 					pstmt.execute();
 				}
@@ -113,7 +113,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		changeTableDS(dss);
 
 		
-		this.setEchoValue("³õÊ¼»¯Íê³É£¬Çë²»ÒªÔÙ´Î³õÊ¼»¯£¡");
+		this.setEchoValue("åˆå§‹åŒ–å®Œæˆï¼Œè¯·ä¸è¦å†æ¬¡åˆå§‹åŒ–ï¼");
 		return DEFAULT_FORWARD;
 	}
 
@@ -141,7 +141,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		changeDataSource("do_wfi_his_processinstance",dss);
 		changeDataSource("do_wfi_his_varinstance",dss);
 		
-		///¹¤×÷Á÷²âÊÔµÄÀı×Ó
+		///å·¥ä½œæµæµ‹è¯•çš„ä¾‹å­
 		changeDataSource("t_expense",dss);
 	}
 

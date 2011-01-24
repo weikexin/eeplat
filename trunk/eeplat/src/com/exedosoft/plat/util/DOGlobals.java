@@ -39,27 +39,27 @@ public class DOGlobals {
 
 
 	/**
-	 * È«¾ÖÅäÖÃ³£Á¿
+	 * å…¨å±€é…ç½®å¸¸é‡
 	 */
 	public static Map<String, String> globalConfigs = new HashMap<String, String>();
 
 	/**
-	 * ÏÂÒ»²½È«²¿¸Ä×÷²ÉÓÃGET·½·¨¶ÁÈ¡¡£
+	 * ä¸‹ä¸€æ­¥å…¨éƒ¨æ”¹ä½œé‡‡ç”¨GETæ–¹æ³•è¯»å–ã€‚
 	 */
 	public static String URL = "yiyi";
 
 	/**
-	 * ÒµÎñÆ½Ì¨¹¤×÷jspÖ÷Ä¿Â¼
+	 * ä¸šåŠ¡å¹³å°å·¥ä½œjspä¸»ç›®å½•
 	 */
 	public static String PRE_FULL_FOLDER = "/" + URL + "/exedo/webv3/";
 
 	/**
-	 * ÏÂÔØÎÄ¼şµÄURL£¬Ò»°ã²»²ÉÓÃÕâ¸öurlÁË,ÓÃdownloadfile_db.jsp,ÉÏÔØÄ¿Â¼¿ÉÒÔÔÚÈÎºÎÄ¿Â¼
+	 * ä¸‹è½½æ–‡ä»¶çš„URLï¼Œä¸€èˆ¬ä¸é‡‡ç”¨è¿™ä¸ªurläº†,ç”¨downloadfile_db.jsp,ä¸Šè½½ç›®å½•å¯ä»¥åœ¨ä»»ä½•ç›®å½•
 	 */
 	public static String UPLOAD_URL = "/" + URL + "/upload/";
 
 	/**
-	 * ²úÉúµÄURL£¬ËùÔÚµÄÄ¿Â¼
+	 * äº§ç”Ÿçš„URLï¼Œæ‰€åœ¨çš„ç›®å½•
 	 */
 
 	public static String OUT_HTML_URL = "/" + URL + "/exedo/webv3/outhtml/";
@@ -73,14 +73,14 @@ public class DOGlobals {
 	public static int MAX_RECORD_DIRECT_DB = 12000;
 
 	/**
-	 * ÊÇ·ñ½ö½öÊÇÍ¨¹ı½ÇÉ«À´ÑéÖ¤È¨ÏŞ£¬Õâ¸öÊôĞÔ»ù±¾Ã»ÓÃ£¬×éÖ¯È¨ÏŞÄ£ĞÍ»¹ĞèÒªÕûÀí
+	 * æ˜¯å¦ä»…ä»…æ˜¯é€šè¿‡è§’è‰²æ¥éªŒè¯æƒé™ï¼Œè¿™ä¸ªå±æ€§åŸºæœ¬æ²¡ç”¨ï¼Œç»„ç»‡æƒé™æ¨¡å‹è¿˜éœ€è¦æ•´ç†
 	 */
 	public static boolean AUTH_ROLE_ONLY = false;
 
 	/**
-	 * ÊÇ·ñÃ¿´Î·ÖÒ³²éÑ¯Ê±¶¼Òª²éÑ¯È«¼¯ºÏµÄÊıÁ¿£¬Ä¬ÈÏÊÇfalse. ÔÚfalse µÄÇé¿öÏÂ£¬¿ÉÄÜ ²»ÄÜ×¼È··´Ó³¸Ã¼¯ºÏµÄÊıÁ¿£¬µ«ÊÇÌá¸ßÁË²éÑ¯ËÙ¶È¡£
+	 * æ˜¯å¦æ¯æ¬¡åˆ†é¡µæŸ¥è¯¢æ—¶éƒ½è¦æŸ¥è¯¢å…¨é›†åˆçš„æ•°é‡ï¼Œé»˜è®¤æ˜¯false. åœ¨false çš„æƒ…å†µä¸‹ï¼Œå¯èƒ½ ä¸èƒ½å‡†ç¡®åæ˜ è¯¥é›†åˆçš„æ•°é‡ï¼Œä½†æ˜¯æé«˜äº†æŸ¥è¯¢é€Ÿåº¦ã€‚
 	 * 
-	 * Õâ¸ö¶«Î÷¿ÉÒÔºÜ´óµÃ·á¸»£¬¿ÉÒÔ¿¼ÂÇjdbcµÄ¸ôÀë¼¶±ğ¡£
+	 * è¿™ä¸ªä¸œè¥¿å¯ä»¥å¾ˆå¤§å¾—ä¸°å¯Œï¼Œå¯ä»¥è€ƒè™‘jdbcçš„éš”ç¦»çº§åˆ«ã€‚
 	 * 
 	 */
 
@@ -96,7 +96,7 @@ public class DOGlobals {
 
 	public static String OUT_TEMPLATE = "F:\\eclipse32\\workspace\\anoles_client\\WebContent\\exedo\\web\\template\\";
 
-	// ///////////////////ÒÑ¾­Íü¼ÇDB_CONFIGÊ²Ã´ÒâË¼ÁË
+	// ///////////////////å·²ç»å¿˜è®°DB_CONFIGä»€ä¹ˆæ„æ€äº†
 	// // public static String DB_CONFIG =
 	// "D:\\eclipse\\workspace\\exedo\\db\\mydb";
 
@@ -115,27 +115,27 @@ public class DOGlobals {
 	public static String WORK_DIR = "";
 
 	/**
-	 * ¹úÍÁ×¨ÓÃ£¬Êä³öxmlÂ·¾¶
+	 * å›½åœŸä¸“ç”¨ï¼Œè¾“å‡ºxmlè·¯å¾„
 	 */
 	public static String GT_OUT_XML = "";
 
 	/**
-	 * ¹¤×÷Á÷·µ»Øºó½Úµã¼ÌĞøÏòÇ°×ßµÄ·½Ê½£¬1£¬Ö±½Ó°´Ô­¶¨Òå½ÚµãË³Ğò×ß£¬2£¬Ö±½ÓÂ·ÓÉµ½Ö´ĞĞ·µ»Ø¶¯×÷µÄ½Úµã
+	 * å·¥ä½œæµè¿”å›åèŠ‚ç‚¹ç»§ç»­å‘å‰èµ°çš„æ–¹å¼ï¼Œ1ï¼Œç›´æ¥æŒ‰åŸå®šä¹‰èŠ‚ç‚¹é¡ºåºèµ°ï¼Œ2ï¼Œç›´æ¥è·¯ç”±åˆ°æ‰§è¡Œè¿”å›åŠ¨ä½œçš„èŠ‚ç‚¹
 	 */
 	public static int WF_BACK_FORWORD = 1;
 
 	/**
-	 * ÊÇ·ñÊ¹ÓÃCAÈÏÖ¤
+	 * æ˜¯å¦ä½¿ç”¨CAè®¤è¯
 	 */
 	public static int LOGIN_CA = 0;
 
 	/**
-	 * ÊÇ·ñÊ¹ÓÃCAÈÏÖ¤
+	 * æ˜¯å¦ä½¿ç”¨CAè®¤è¯
 	 */
 	public static int LOGIN_GREENCHANNEL = 0;
 
 	/**
-	 * Ïß³Ì³ØµÄ´óĞ¡
+	 * çº¿ç¨‹æ± çš„å¤§å°
 	 */
 	public static int EXECUTOR_POOL_SIZE = 10;
 
@@ -243,7 +243,7 @@ public class DOGlobals {
 
 				}
 
-				// ///////ca ÈÏÖ¤
+				// ///////ca è®¤è¯
 				if ("login.ca".equals(attrName)) {
 
 					System.out.println("login.ca::::::::::::::::::::"
@@ -255,9 +255,9 @@ public class DOGlobals {
 
 				}
 
-				// ////////ÊÇ·ñ°´Ê±Í³¼Æ
+				// ////////æ˜¯å¦æŒ‰æ—¶ç»Ÿè®¡
 
-				// ///////ca ÈÏÖ¤
+				// ///////ca è®¤è¯
 				if ("is.shedule".equals(attrName)) {
 
 					System.out.println("is.shedule::::::::::::::::::::"
@@ -269,7 +269,7 @@ public class DOGlobals {
 
 				}
 
-				// /////////ÂÌÉ«Í¨µÀ
+				// /////////ç»¿è‰²é€šé“
 				if ("login.greenchannel".equals(attrName)) {
 
 					System.out.println("login.greenchannel::::::::::::::::::::"
@@ -283,7 +283,7 @@ public class DOGlobals {
 
 				if ("work.dir".equals(attrName)) {
 
-					System.out.println("¹¤×÷Â·¾¶::::::::::::::::::::" + nodeValue);
+					System.out.println("å·¥ä½œè·¯å¾„::::::::::::::::::::" + nodeValue);
 					if (nodeValue != null) {
 						WORK_DIR = nodeValue;
 					}
@@ -318,11 +318,11 @@ public class DOGlobals {
 					continue;
 				}
 
-				// Ïß³Ì³ØµÄ´óĞ¡
+				// çº¿ç¨‹æ± çš„å¤§å°
 				if ("executor.pool.size".equals(attrName)) {
 
 					System.out
-							.println("Ïß³Ì³ØµÄ´óĞ¡::::::::::::::::::::" + nodeValue);
+							.println("çº¿ç¨‹æ± çš„å¤§å°::::::::::::::::::::" + nodeValue);
 					if (nodeValue != null)
 						EXECUTOR_POOL_SIZE = Integer.parseInt(nodeValue);
 					continue;
@@ -330,7 +330,7 @@ public class DOGlobals {
 				}
 				
 				
-				////////////SESSION_PARTER session_parterÈ¨ÏŞµÄparter
+				////////////SESSION_PARTER session_parteræƒé™çš„parter
 				if ("sessionparter.class".equals(attrName)) {
 
 					System.out
@@ -355,12 +355,12 @@ public class DOGlobals {
 
 			log.info("Init global config finished!");
 
-			// ///////////Ö´ĞĞ¶¨Ê±Í³¼Æ
+			// ///////////æ‰§è¡Œå®šæ—¶ç»Ÿè®¡
 //			if (IS_SCHEDULE == 1) {
 //				GTSchedule.scheduleStat();
 //			}
 
-			// ///////Ã¿ÌìÔç³¿8µã¿ªÊ¼ÅäºÅ
+			// ///////æ¯å¤©æ—©æ™¨8ç‚¹å¼€å§‹é…å·
 			// GTSchedule.scheduleStat();
 
 
@@ -378,7 +378,7 @@ public class DOGlobals {
 	}
 
 	/**
-	 * »ñÈ¡DOGlobals ÊµÀı
+	 * è·å–DOGlobals å®ä¾‹
 	 */
 	public synchronized static DOGlobals getInstance() {
 
@@ -409,8 +409,8 @@ public class DOGlobals {
 	}
 
 	/**
-	 * ÔÚ¶àÏß³Ì£¬ÈçQuartzÆô¶¯Ïß³Ì³ØÀ´ÔËĞĞÈÎÎñ£¬servletcontext ¿Ï¶¨Îªnull,Ïß³ÌÖ®¼äµÄÈç¹û¹²ÏíServletContext
-	 * ¿ÉÄÜ±È½ÏÀ§ÄÑ£¬µ«±ØÒªĞÔÒ²²»´ó¡£
+	 * åœ¨å¤šçº¿ç¨‹ï¼Œå¦‚Quartzå¯åŠ¨çº¿ç¨‹æ± æ¥è¿è¡Œä»»åŠ¡ï¼Œservletcontext è‚¯å®šä¸ºnull,çº¿ç¨‹ä¹‹é—´çš„å¦‚æœå…±äº«ServletContext
+	 * å¯èƒ½æ¯”è¾ƒå›°éš¾ï¼Œä½†å¿…è¦æ€§ä¹Ÿä¸å¤§ã€‚
 	 * 
 	 * @return
 	 */

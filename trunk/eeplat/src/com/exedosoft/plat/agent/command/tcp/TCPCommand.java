@@ -11,7 +11,7 @@ import com.exedosoft.plat.agent.Message;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 
 /**
- * ˆÈTCP/IP????“I˜aAgentŒğŒİ“IICommand?B
+ * åŸ²TCP/IP????æ‘æ¦“Agentå²å±³æ‘ICommand?ä¸…
  * @author Administrator
  *
  */
@@ -19,7 +19,7 @@ import com.exedosoft.plat.agent.config.HumletGlobals;
 
 public abstract class TCPCommand implements Command, Serializable {
 	
-	private Socket con;// ‹q?’[?Úsocket
+	private Socket con;// åª?æŠ‚?æ„™socket
 	
 	protected TCPCommand(){
 		try {

@@ -12,7 +12,7 @@ import com.exedosoft.plat.ui.DOViewTemplate;
 import com.exedosoft.plat.util.DOGlobals;
 
 /**
- * ½«²éÑ¯½á¹ûµ¼³ö³ÉexcelµÄ¿ØÖÆÆ÷£¬ÊµÏÖÎŞÂÛ¸Ã°´Å¥´¦ÔÚÌõ¼ş±í¸ñÖĞ£¬»¹ÊÇ½á¹ûÁĞ±íÖĞ£¬¶¼¿ÉÒÔÊ¹ÓÃ¡£
+ * å°†æŸ¥è¯¢ç»“æœå¯¼å‡ºæˆexcelçš„æ§åˆ¶å™¨ï¼Œå®ç°æ— è®ºè¯¥æŒ‰é’®å¤„åœ¨æ¡ä»¶è¡¨æ ¼ä¸­ï¼Œè¿˜æ˜¯ç»“æœåˆ—è¡¨ä¸­ï¼Œéƒ½å¯ä»¥ä½¿ç”¨ã€‚
  * 
  * @author ZhangYunHe
  * 
@@ -32,28 +32,28 @@ public class TExportDataToExcel extends DOViewTemplate {
 		data.put("webmodule", DOGlobals.URL);
 		data.put("model", btn);
 
-		DOGridModel grid = btn.getGridModel();// ÎÒµÄ¸¸½Úµã,±í¸ñ
-		DOPaneModel panel = grid.getContainerPane();// »ñµÃ±í¸ñµÄÉÏ¼¶£¬ÄÚÈİÃæ°å
-		List children = panel.getParent().retrieveChildren();// ÄÚÈİÃæ°åµÄÉÏ¼¶£¬Ö÷Ãæ°å£¬´ÓÖ÷Ãæ°åÖĞ»ñµÃ¡°Ìõ¼şÃæ°å¡±ºÍ¡°½á¹ûÃæ°å¡±
+		DOGridModel grid = btn.getGridModel();// æˆ‘çš„çˆ¶èŠ‚ç‚¹,è¡¨æ ¼
+		DOPaneModel panel = grid.getContainerPane();// è·å¾—è¡¨æ ¼çš„ä¸Šçº§ï¼Œå†…å®¹é¢æ¿
+		List children = panel.getParent().retrieveChildren();// å†…å®¹é¢æ¿çš„ä¸Šçº§ï¼Œä¸»é¢æ¿ï¼Œä»ä¸»é¢æ¿ä¸­è·å¾—â€œæ¡ä»¶é¢æ¿â€å’Œâ€œç»“æœé¢æ¿â€
 		if (children != null && children.size() == 2) {
-			if (grid.getName().toLowerCase().indexOf("conditionpanel") != -1) {// ÅĞ¶ÏÎÒÎ»ÓÚ¡°Ìõ¼şÃæ°å¡±
-				// Èç¹û¡°µ¼³ö¡±°´Å¥´¦ÔÚ¡°Ìõ¼ş±íµ¥¡±ÖĞ£¬ĞèÒª»ñµÃ¡°½á¹ûÁĞ±í¡±ÖĞµÄ¡°·şÎñ¡±µÄID
-				DOPaneModel result = (DOPaneModel) children.get(1);// ½á¹ûÃæ°å
+			if (grid.getName().toLowerCase().indexOf("conditionpanel") != -1) {// åˆ¤æ–­æˆ‘ä½äºâ€œæ¡ä»¶é¢æ¿â€
+				// å¦‚æœâ€œå¯¼å‡ºâ€æŒ‰é’®å¤„åœ¨â€œæ¡ä»¶è¡¨å•â€ä¸­ï¼Œéœ€è¦è·å¾—â€œç»“æœåˆ—è¡¨â€ä¸­çš„â€œæœåŠ¡â€çš„ID
+				DOPaneModel result = (DOPaneModel) children.get(1);// ç»“æœé¢æ¿
 				if (result != null) {
 					if (result.getDOGridModel() != null) {
 						data.put("serviceID", result.getDOGridModel()
-								.getService().getObjUid());// ·şÎñµÄID
+								.getService().getObjUid());// æœåŠ¡çš„ID
 					}
 				}
 			}
 
-			if (grid.getName().toLowerCase().indexOf("resultpanel") != -1) {// ÅĞ¶ÏÎÒÊÇ·ñÎ»ÓÚ¡°½á¹ûÃæ°å¡±
-				// Èç¹û¡°µ¼³ö¡±°´Å¥´¦ÔÚ¡°½á¹ûÁĞ±í¡±ÖĞ£¬ĞèÒª»ñµÃ¡°Ìõ¼ş±íµ¥¡±ÖĞµÄformµÄID
+			if (grid.getName().toLowerCase().indexOf("resultpanel") != -1) {// åˆ¤æ–­æˆ‘æ˜¯å¦ä½äºâ€œç»“æœé¢æ¿â€
+				// å¦‚æœâ€œå¯¼å‡ºâ€æŒ‰é’®å¤„åœ¨â€œç»“æœåˆ—è¡¨â€ä¸­ï¼Œéœ€è¦è·å¾—â€œæ¡ä»¶è¡¨å•â€ä¸­çš„formçš„ID
 				DOPaneModel condition = (DOPaneModel) children.get(0);
 				if (condition != null) {
 					if (condition.getDOGridModel() != null) {
 						data.put("formID", "a"+condition
-								.getDOGridModel().getObjUid());// FORMµÄID
+								.getDOGridModel().getObjUid());// FORMçš„ID
 					}
 				}
 			}

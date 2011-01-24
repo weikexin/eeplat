@@ -29,7 +29,7 @@ public class DOSelectInvokeWithRefresh extends DOBaseForm {
 
 		if (property.getInputConfig() != null) {
 			
-			////////////////隐藏的inputType formModel Name
+			////////////////闅愯棌鐨刬nputType formModel Name
 			buffer.append("<input name=\"").append(property.getInputConfig())
 					.append("\" type=\"hidden\"").append(" id=\"").append(
 							property.getInputConfig()).append("\" ");
@@ -78,19 +78,19 @@ public class DOSelectInvokeWithRefresh extends DOBaseForm {
 
 		buffer.append(" readonly=\"readonly\" ");
 
-		// ////增加装饰
+		// ////澧炲姞瑁呴グ
 		buffer.append(getDecoration(property));
 
-		// ///////end 增加装饰
+		// ///////end 澧炲姞瑁呴グ
 		buffer.append(" title='").append(property.getL10n()).append("'");
 
 		buffer.append(" size=\"").append(getInputSize(property)).append("\"/>");
 
-		buffer.append(DOValueService.stardardOnlyPane(property, "查找"));
+		buffer.append(DOValueService.stardardOnlyPane(property, "鏌ユ壘"));
 		
-		buffer.append("&nbsp;&nbsp;&nbsp;<a href='#' onclick='doAjax.refresh(\"tbstudentclass.Service.getInfoByStudent2result.panel\", \"tbstudentclass.Service.getInfoByStudent2result.panel.pml?isGet=true\");'>刷新</a>");
+		buffer.append("&nbsp;&nbsp;&nbsp;<a href='#' onclick='doAjax.refresh(\"tbstudentclass.Service.getInfoByStudent2result.panel\", \"tbstudentclass.Service.getInfoByStudent2result.panel.pml?isGet=true\");'>鍒锋柊</a>");
 
-		// buffer.append(DOValueService.stardardOnlyPane(property, "新增"));
+		// buffer.append(DOValueService.stardardOnlyPane(property, "鏂板"));
 
 		return buffer.toString();
 	}

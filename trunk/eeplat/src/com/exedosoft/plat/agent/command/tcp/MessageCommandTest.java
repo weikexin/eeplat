@@ -28,7 +28,7 @@ public class MessageCommandTest extends TestCase {
 		sm1.setCommndID(mc1.getCommandID());
 		sm1.setMessageType(Message.MSG_REQ);
 		Message aMsg1 = mc1.excute(sm1);
-		System.out.println("¾“”½?Á‘§BBBBBBBBBB");
+		System.out.println("æ¾—æ‘“æ–€?å¾šæ‡…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
 		System.out.println(aMsg1);
 
 		

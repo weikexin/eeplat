@@ -23,7 +23,7 @@ public class DOBarCode extends DOBaseForm {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("<a href=");
 			buffer.append(aPath).append(">");
-			// //////////¶ÔpictureÀàĞÍµÄÌØÊâ´¦Àí
+			// //////////å¯¹pictureç±»å‹çš„ç‰¹æ®Šå¤„ç†
 
 			buffer.append("<img src=").append(aPath).append(" border='0'>");
 

@@ -10,7 +10,7 @@ public class TimerAxis {
 	private static Log log = LogFactory.getLog(TimerAxis.class);
 
 	/**
-	 * »ñÈ¡Ê±¼äÖá£¬°üº¬Ò»¸öÔÂµÄÊı¾İ
+	 * è·å–æ—¶é—´è½´ï¼ŒåŒ…å«ä¸€ä¸ªæœˆçš„æ•°æ®
 	 * 
 	 * @param calendar
 	 * @param theYear
@@ -21,7 +21,7 @@ public class TimerAxis {
 			String theMonth) {
 
 		if (calendar == null || theYear == null || theMonth == null) {
-			return "´«ÈëµÄ²ÎÊı²»ÄÜÎª¿Õ£¡";
+			return "ä¼ å…¥çš„å‚æ•°ä¸èƒ½ä¸ºç©ºï¼";
 
 		}
 
@@ -33,7 +33,7 @@ public class TimerAxis {
 		
 		
 		
-		// ///////////////Õâ¸öÔÂÓĞ¶àÉÙÌì
+		// ///////////////è¿™ä¸ªæœˆæœ‰å¤šå°‘å¤©
 		StringBuilder out = new StringBuilder();
 		int daysofmonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
@@ -41,9 +41,9 @@ public class TimerAxis {
 			out
 					.append("<th  nowrap='nowrap'  align='center' sort='asc' title='");
 			out.append(theMonth);
-			out.append("ÔÂ");
+			out.append("æœˆ");
 			out.append(i);
-			out.append("ÈÕ' ");
+			out.append("æ—¥' ");
 
 			if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
 					|| calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
@@ -68,7 +68,7 @@ public class TimerAxis {
 	}
 
 	/**
-	 * »ñÈ¡Ò»¸öÊ±¼äÖá£¬»ñÈ¡Ò»ÄêÊ®¶ş¸öÔÂµÄÊı¾İ
+	 * è·å–ä¸€ä¸ªæ—¶é—´è½´ï¼Œè·å–ä¸€å¹´åäºŒä¸ªæœˆçš„æ•°æ®
 	 * 
 	 * @param theYear
 	 * @return
@@ -80,9 +80,9 @@ public class TimerAxis {
 			out
 					.append("<th  nowrap='nowrap'  align='center' sort='asc' title='");
 			out.append(theYear);
-			out.append("Äê");
+			out.append("å¹´");
 			out.append(i);
-			out.append("ÔÂ' ");
+			out.append("æœˆ' ");
 			out.append(" >");
 
 			// out.append("<a href='javascript:loadReporterPaneMine(");
@@ -94,7 +94,7 @@ public class TimerAxis {
 			// out.append(")'>");
 			// pane_gt_reporter_list_by_mine.jsp
 			out.append(i);
-			out.append("ÔÂ</th>");
+			out.append("æœˆ</th>");
 			// </a>
 		}
 
@@ -103,7 +103,7 @@ public class TimerAxis {
 	}
 
 	/**
-	 * Ê±¼äÖá ×ó¹ö¶¯µÄÌáÊ¾
+	 * æ—¶é—´è½´ å·¦æ»šåŠ¨çš„æç¤º
 	 * 
 	 * @param aMonth
 	 * @param aYear
@@ -128,16 +128,16 @@ public class TimerAxis {
 			iYear = iYear + 1;
 		}
 
-		StringBuilder sb = new StringBuilder().append(iYear).append("Äê");
+		StringBuilder sb = new StringBuilder().append(iYear).append("å¹´");
 
 		if (!"-1".equals(aMonth)) {
-			sb.append(iMonth).append("ÔÂ");
+			sb.append(iMonth).append("æœˆ");
 		}
 		return sb.toString();
 	}
 
 	/**
-	 * Ê±¼äÖá ÓÒ¹ö¶¯µÄÌáÊ¾
+	 * æ—¶é—´è½´ å³æ»šåŠ¨çš„æç¤º
 	 * 
 	 * @param aMonth
 	 * @param aYear
@@ -162,10 +162,10 @@ public class TimerAxis {
 			iYear = iYear - 1;
 		}
 
-		StringBuilder sb = new StringBuilder().append(iYear).append("Äê");
+		StringBuilder sb = new StringBuilder().append(iYear).append("å¹´");
 
 		if (!"-1".equals(aMonth)) {
-			sb.append(iMonth).append("ÔÂ");
+			sb.append(iMonth).append("æœˆ");
 		}
 		return sb.toString();
 	}

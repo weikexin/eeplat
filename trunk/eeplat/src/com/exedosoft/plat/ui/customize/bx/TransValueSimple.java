@@ -16,14 +16,14 @@ public class TransValueSimple extends DOBaseForm {
 			if (!sn.trim().equals("")) {
 				return LDAPPeopleUtil.getLDAPCNBySN(sn);
 			}
-		//¹¤×ÊÌõ·¢ËÍÓÊÏä
+		//å·¥èµ„æ¡å‘é€é‚®ç®±
 		if(sn == null || sn.trim().equals(""))
 			sn = fm.getData().getValue("toname");
 		if (sn != null)
 			if (!sn.trim().equals("")) {
 				return LDAPPeopleUtil.getLDAPCNBySN(sn);
 			}
-		//ÏîÄ¿
+		//é¡¹ç›®
 		if(sn == null || sn.trim().equals(""))
 			sn = fm.getData().getValue("projectmanageruid");
 		if (sn != null)
@@ -31,7 +31,7 @@ public class TransValueSimple extends DOBaseForm {
 				return LDAPPeopleUtil.getLDAPCNBySN(sn);
 			}
 		
-		//¿Í»§
+		//å®¢æˆ·
 		if(sn == null || sn.trim().equals(""))
 			sn = fm.getData().getValue("mainsaleruid");
 		if (sn != null)

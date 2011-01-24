@@ -23,9 +23,9 @@ import com.exedosoft.plat.util.DOGlobals;
 /**
  * 
  * 
- * ×öÔö¼Ó£¬²»×öĞŞ¸ÄºÍÉ¾³ı
+ * åšå¢åŠ ï¼Œä¸åšä¿®æ”¹å’Œåˆ é™¤
  * 
- * ¿ÉÒÔ¶ÔÔö¼Ó×öÉ¨Ãè
+ * å¯ä»¥å¯¹å¢åŠ åšæ‰«æ
  * 
  * @author anolesoft
  * 
@@ -78,7 +78,7 @@ public class DOAlterTable extends DOAbstractAction {
 		Transaction t = dss.getTransaction();
 		t.begin();
 
-		// /ÏÈÈ·¶¨É¾³ıµÄ
+		// /å…ˆç¡®å®šåˆ é™¤çš„
 		List list = selected.retrieveProperties();
 		List propCols = new ArrayList();
 
@@ -94,7 +94,7 @@ public class DOAlterTable extends DOAbstractAction {
 		System.out.println("AllCols::" + removeCols);
 
 		removeCols.removeAll(listHiddenKeys);
-		// //ĞèÒªÉ¾³ıµÄ×Ö¶ÎpropCols
+		// //éœ€è¦åˆ é™¤çš„å­—æ®µpropCols
 
 		System.out.println("RemoveCols::" + removeCols);
 
@@ -111,7 +111,7 @@ public class DOAlterTable extends DOAbstractAction {
 			pm.removeProperty(selected, dop);
 		}
 
-		// ÏÈÈ·¶¨ĞÂÔöµÄ
+		// å…ˆç¡®å®šæ–°å¢çš„
 
 		for (int len = 0; len < key_hiddens.length; len++) {
 
@@ -147,14 +147,14 @@ public class DOAlterTable extends DOAbstractAction {
 						
 
 					}else{
-						System.out.println("ÒÑ¾­´æÔÚColName::" + DOBOProperty.getDOBOPropertyByName(selected.getName(),
+						System.out.println("å·²ç»å­˜åœ¨ColName::" + DOBOProperty.getDOBOPropertyByName(selected.getName(),
 								colNames[len]));
 					}
 				}
 			}
 		}
 
-		// //È·¶¨ĞŞ¸ÄµÄ
+		// //ç¡®å®šä¿®æ”¹çš„
 
 		Connection con = null;
 		try {
@@ -184,7 +184,7 @@ public class DOAlterTable extends DOAbstractAction {
 		}
 		// TODO Auto-generated method stub
 		CacheFactory.getCacheRelation().getData().remove((new StringBuilder(String.valueOf(selected.getObjUid()))).append("_property").toString());
-		this.setEchoValue("±£´æ³É¹¦!");
+		this.setEchoValue("ä¿å­˜æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 	}
 

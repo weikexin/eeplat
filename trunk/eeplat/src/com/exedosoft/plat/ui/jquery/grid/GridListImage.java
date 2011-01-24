@@ -46,7 +46,7 @@ public class GridListImage extends DOViewTemplate {
 			data.put("pmlName", gm.getContainerPane().getName());
 		}
 		data.put("formName", "a" + gm.getObjUid());
-		//Ã¿ĞĞÏÔÊ¾µÄÁĞÊı¡£Èç¹û½çÃæÃ»ÊäÈë£¬Ä¬ÈÏÎª3
+		//æ¯è¡Œæ˜¾ç¤ºçš„åˆ—æ•°ã€‚å¦‚æœç•Œé¢æ²¡è¾“å…¥ï¼Œé»˜è®¤ä¸º3
 		int datarowSize ;
 		String rowTmp = DOGlobals.getInstance().getSessoinContext().getFormInstance().getValue("rowSize");
 		if ( rowTmp != null && ! "".equals(rowTmp)){
@@ -54,12 +54,12 @@ public class GridListImage extends DOViewTemplate {
 		}else {
 			datarowSize = 3;
 		}
-		//»ñÈ¡ÏÔÊ¾Í¼Ïñ°´Å¥
+		//è·å–æ˜¾ç¤ºå›¾åƒæŒ‰é’®
 		List  list = gm.getAllGridFormLinks();
 		DOFormModel fm ;
 		for ( int i = 0 ; i < list.size(); i++ ){
 			fm = (DOFormModel) list.get(i);
-			if ( fm.getL10n().equals("ÏÔÊ¾Í¼Ïñ")){
+			if ( fm.getL10n().equals("æ˜¾ç¤ºå›¾åƒ")){
 				data.put("fm", fm);
 				break ;
 			}else{
@@ -108,7 +108,7 @@ public class GridListImage extends DOViewTemplate {
 
 		}
 		
-		/////´¦ÀíµÚ¶ş·şÎñ£¨Í³¼ÆÓÃ£©
+		/////å¤„ç†ç¬¬äºŒæœåŠ¡ï¼ˆç»Ÿè®¡ç”¨ï¼‰
 		DOService secondService = gridModel.getSecondService();
 		if(secondService!=null){
 			List secondResult = secondService.invokeSelect();

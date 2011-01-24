@@ -17,18 +17,18 @@ public class ImgTest {
 	
 	 public static BufferedImage rotateImg( BufferedImage image, int degree, Color bgcolor ){
 		 
-		  int iw = image.getWidth();//Ô­Ê¼Í¼ÏóµÄ¿í¶È 
-		  int ih = image.getHeight();//Ô­Ê¼Í¼ÏóµÄ¸ß¶È  
+		  int iw = image.getWidth();//åŽŸå§‹å›¾è±¡çš„å®½åº¦ 
+		  int ih = image.getHeight();//åŽŸå§‹å›¾è±¡çš„é«˜åº¦  
 		  int w=0;
 		  int h=0; 
 		  int x=0; 
 		  int y=0; 
 		  degree=degree%360;
-		  if(degree<0)degree=360+degree;//½«½Ç¶È×ª»»µ½0-360¶ÈÖ®¼ä
-		  double ang=degree* 0.0174532925;//½«½Ç¶È×ªÎª»¡¶È
+		  if(degree<0)degree=360+degree;//å°†è§’åº¦è½¬æ¢åˆ°0-360åº¦ä¹‹é—´
+		  double ang=degree* 0.0174532925;//å°†è§’åº¦è½¬ä¸ºå¼§åº¦
 		  
 		  /**
-		   *È·¶¨Ðý×ªºóµÄÍ¼ÏóµÄ¸ß¶ÈºÍ¿í¶È
+		   *ç¡®å®šæ—‹è½¬åŽçš„å›¾è±¡çš„é«˜åº¦å’Œå®½åº¦
 		   */
 		   
 		  if(degree == 180|| degree == 0 || degree == 360){
@@ -43,14 +43,14 @@ public class ImgTest {
 		   h=(int)(d*Math.abs(Math.sin(ang)));
 		  }
 		  
-		  x = (w/2)-(iw/2);//È·¶¨Ô­µã×ø±ê
+		  x = (w/2)-(iw/2);//ç¡®å®šåŽŸç‚¹åæ ‡
 		  y = (h/2)-(ih/2); 
 		  BufferedImage rotatedImage=new BufferedImage(w,h,image.getType()); 
 		  Graphics gs=rotatedImage.getGraphics();
 		  gs.setColor(bgcolor);
-		  gs.fillRect(0,0,w,h);//ÒÔ¸ø¶¨ÑÕÉ«»æÖÆÐý×ªºóÍ¼Æ¬µÄ±³¾°
+		  gs.fillRect(0,0,w,h);//ä»¥ç»™å®šé¢œè‰²ç»˜åˆ¶æ—‹è½¬åŽå›¾ç‰‡çš„èƒŒæ™¯
 		  AffineTransform at=new AffineTransform();
-		  at.rotate(ang,w/2,h/2);//Ðý×ªÍ¼Ïó
+		  at.rotate(ang,w/2,h/2);//æ—‹è½¬å›¾è±¡
 		  at.translate(x,y); 
 		  AffineTransformOp op=new AffineTransformOp(at,AffineTransformOp.TYPE_NEAREST_NEIGHBOR); 
 		  op.filter(image, rotatedImage); 
@@ -61,7 +61,7 @@ public class ImgTest {
 
 	public static void main(String argv[]) throws IOException {
 		
-		File fi = new File("c:/zhang.jpg"); // ´óÍ¼ÎÄ¼þ
+		File fi = new File("c:/zhang.jpg"); // å¤§å›¾æ–‡ä»¶
 		BufferedImage bis = ImageIO.read(fi);
 		ImgTest.rotateImg(bis,30,Color.white);
 
@@ -76,15 +76,15 @@ public class ImgTest {
 		
 		
 //		try {
-//			File fi = new File("c:/zhang.jpg"); // ´óÍ¼ÎÄ¼þ
-//			File fo = new File("c:/imgTest.jpg"); // ½«Òª×ª»»³öµÄÐ¡Í¼ÎÄ¼þ
+//			File fi = new File("c:/zhang.jpg"); // å¤§å›¾æ–‡ä»¶
+//			File fo = new File("c:/imgTest.jpg"); // å°†è¦è½¬æ¢å‡ºçš„å°å›¾æ–‡ä»¶
 //			int nw = 100;
 //			AffineTransform transform = new AffineTransform();
 //			BufferedImage bis = ImageIO.read(fi);
 //			AffineTransformOp ato = new AffineTransformOp(transform, null);
 //			
 //			AffineTransform at=new AffineTransform();
-//			  at.rotate(ang,w/2,h/2);//Ðý×ªÍ¼Ïó
+//			  at.rotate(ang,w/2,h/2);//æ—‹è½¬å›¾è±¡
 //			  at.translate(x,y); 
 //			  AffineTransformOp op=new AffineTransformOp(at,AffineTransformOp.TYPE_NEAREST_NEIGHBOR); 
 //			  op.filter(image, rotatedImage); 

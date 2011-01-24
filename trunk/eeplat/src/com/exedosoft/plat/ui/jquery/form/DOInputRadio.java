@@ -49,11 +49,11 @@ public class DOInputRadio extends DOStaticList {
 				buffer.append(this.appendValidateConfig(property));
 
 				
-				if (value != null) { // ////////ÐÞ¸ÄµÄÇé¿ö
+				if (value != null) { // ////////ä¿®æ”¹çš„æƒ…å†µ
 					if (value.equals(half[0])) {
 						buffer.append(" checked=\"checked\"  ");
 					}
-				} else { // //////Ìí¼ÓµÄÇé¿ö
+				} else { // //////æ·»åŠ çš„æƒ…å†µ
 
 					if (defaultValue != null && defaultValue.equals(half[0])) {
 						buffer.append(" checked=\"checked\"  ");

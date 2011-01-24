@@ -36,7 +36,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 			return this.DEFAULT_FORWARD;
 		}
 
-		// Àú±éËùÓĞµÄÊı¾İ£»
+		// å†éæ‰€æœ‰çš„æ•°æ®ï¼›
 		if (users != null && users.size() > 0) {
 			String s = users.get(0).toString();
 			String st = s.substring(s.indexOf("{") + 1, s.lastIndexOf("}"));
@@ -45,7 +45,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 			System.out.println(s + "\n" + st + "\n" + sarray);
 			System.out.println("++++++++++++++++++++++++++++++++++++++");
 			SalaryMessage sm = new SalaryMessage();
-			// ¶ÔÃ¿ÌõÊı¾İ½øĞĞ´¦Àí£¬È¡µÃÓĞĞ§ÊôĞÔ£»
+			// å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±æ€§ï¼›
 			for (int i = 0; i < sarray.length; i++) {
 				String temp = sarray[i];
 				String[] nv = temp.split("=");
@@ -88,7 +88,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 					);
 			System.out.println("++++++++++++++++++++++++++++++++++++++");
 
-			// Ó¦·¢¹¤×Ê
+			// åº”å‘å·¥èµ„
 			double base = sm.getBasesalary();
 			double buck = sm.getBuckshee();
 			double rent = sm.getRentdeduct();
@@ -99,27 +99,27 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 			else
 				sm.setFactsalary(0D);
 
-			// Éç±£Ğ¡¼Æ
+			// ç¤¾ä¿å°è®¡
 			double yanglao = sm.getPayyanglaoinsure();
 			double shiye = sm.getPayshiyeinsure();
 			double yiliao = sm.getPayyilaioinsure();
 			double shebao = yanglao + shiye + yiliao;
 			sm.setPayshebaofee(shebao);
 
-			// Ë°Ç°Ó¦·¢
+			// ç¨å‰åº”å‘
 			double housing = sm.getPayhousingsurplus();
 			double before = fact - shebao - housing;
 			if(before > 0)
 				sm.setTaxbefore(before);
 			else 
 				sm.setTaxbefore(0D);
-			// Ó¦Ë°ËùµÃG=F-2000
+			// åº”ç¨æ‰€å¾—G=F-2000
 			double taxget = before - 2000;
 			if(taxget >= 0)
 				sm.setTaxget(taxget);
 			else
 				sm.setTaxget(0D);
-			// Ë°ÂÊHºÍËÙËã¿Û³ı
+			// ç¨ç‡Hå’Œé€Ÿç®—æ‰£é™¤
 			double taxlv = 0D;
 			double taxrm = 0D;
 			if (taxget <= 0) {
@@ -145,10 +145,10 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				sm.setTaxlv("20%");
 				sm.setTaxrm(375D);
 			} else {
-				sm.setTaxlv("ÆäËûÇé¿ö");
+				sm.setTaxlv("å…¶ä»–æƒ…å†µ");
 				sm.setTaxrm(0D);
 			}
-			// Ë°
+			// ç¨
 			double tax = 0D;
 			if (taxget <= 0)
 				sm.setTax(0D);
@@ -159,7 +159,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				if (tax >= 0)
 					sm.setTax(tax);
 			}
-			// Ë°ºóÊµ·¢
+			// ç¨åå®å‘
 			double after = before - tax;
 			if (after > 0)
 				sm.setTaxafter(after);

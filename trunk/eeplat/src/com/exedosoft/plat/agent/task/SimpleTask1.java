@@ -8,9 +8,9 @@ public class SimpleTask1 implements Task {
 
 	public Message perform(Message aMessage) throws Exception {
 		
-		System.out.println("³İ?s”C?BBBBBBBBBBB");
-		System.out.println("”C?–¼Ì::" + this.getClass().getName());
-		System.out.println("¢ŠE^“I”üD!!!!!!!!!!!!");
+		System.out.println("æƒ“åµ¼?å³´æ“Ÿ?ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
+		System.out.println("æ“Ÿ?æŸ¤å¾§::" + this.getClass().getName());
+		System.out.println("æ‚½å¥…æ€æ‘æ—¤å²²!!!!!!!!!!!!");
 		SimpleMessage sm = SimpleMessage.wrapperSimpeMessage();
 		sm.setMessageName("From Task2=============");
 		return sm;

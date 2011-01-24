@@ -19,7 +19,7 @@ public class DOResultListCode extends DOStaticList {
 	}
 
 	/**
-	 * 获取动态列表形式的Select Form
+	 * 鑾峰彇鍔ㄦ�佸垪琛ㄥ舰寮忕殑Select Form
 	 *
 	 * @param property
 	 *            TODO
@@ -45,7 +45,7 @@ public class DOResultListCode extends DOStaticList {
 	}
 
 	/***************************************************************************
-	 * 自动链接查找页面
+	 * 鑷姩閾炬帴鏌ユ壘椤甸潰
 	 *
 	 * @param property
 	 *            TODO
@@ -73,7 +73,7 @@ public class DOResultListCode extends DOStaticList {
 //		if (db != null) {
 //			uid = db.getObjUid().toString();
 //		}
-//		buffer.append("var js") // ///javascript变量 每个列应该有一个不同那个的名字
+//		buffer.append("var js") // ///javascript鍙橀噺 姣忎釜鍒楀簲璇ユ湁涓�涓笉鍚岄偅涓殑鍚嶅瓧
 //				.append(property.getColName()).append("S=\"contextClassUid=")
 //				.append(uid).append("\";\n").append(" function redirectPage")
 //				.append(property.getColName()).append("S(){ \n")
@@ -89,7 +89,7 @@ public class DOResultListCode extends DOStaticList {
 //						"S,'','width=500,height=370,left=230,top=130,scrollbars=yes');}\n}\n")
 //				.append("document.writeln(\"<a onClick='redirectPage").append(
 //						property.getColName()).append(
-//						"S();'  style='cursor:hand'>查找</a>\");\n");
+//						"S();'  style='cursor:hand'>鏌ユ壘</a>\");\n");
 //		buffer.append("</script>");
 	}
 

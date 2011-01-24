@@ -11,7 +11,7 @@ import javax.servlet.ServletOutputStream;
  * 
  * Version: V1.0
  * 
- * Description£ºBEA WebLogicÏÂGZIPÑ¹ËõÊµÏÖÀà
+ * Descriptionï¼šBEA WebLogicä¸‹GZIPå‹ç¼©å®ç°ç±»
  * 
  */
 public class CompressedStream extends ServletOutputStream {
@@ -19,9 +19,9 @@ public class CompressedStream extends ServletOutputStream {
 	private GZIPOutputStream gzip;
 
 	/**
-	 * Ö¸¶¨Ñ¹Ëõ»º³åÁ÷
+	 * æŒ‡å®šå‹ç¼©ç¼“å†²æµ
 	 * 
-	 * @param Êä³öÁ÷µ½Ñ¹Ëõ
+	 * @param è¾“å‡ºæµåˆ°å‹ç¼©
 	 * @throws IOException
 	 *             if an error occurs with the {@link GZIPOutputStream}.
 	 */

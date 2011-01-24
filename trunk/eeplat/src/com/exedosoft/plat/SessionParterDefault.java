@@ -31,20 +31,20 @@ public class SessionParterDefault implements SessionParter {
 
 	public List getParterAuths(String accountUid) {
 
-		// //Õâ¸ù¾İÓÃ»§ºÍ½ÇÉ«Á½ÖÖparter È¨ÏŞ¹ıÂË
+		// //è¿™æ ¹æ®ç”¨æˆ·å’Œè§’è‰²ä¸¤ç§parter æƒé™è¿‡æ»¤
 
 		List allAuths = new ArrayList();
-		// //Öµ¸ù¾İÓÃ»§½øĞĞÈ¨ÏŞ¹ıÂË
+		// //å€¼æ ¹æ®ç”¨æˆ·è¿›è¡Œæƒé™è¿‡æ»¤
 		OrgParter userPater = OrgParter.getDefaultEmployee();
 		OrgParterValue pv = new OrgParterValue(userPater, accountUid);
 		allAuths.add(pv);
 
-		// ////////¼ÓÈë½ÇÉ«
+		// ////////åŠ å…¥è§’è‰²
 
 		OrgParter roleParter = OrgParter.getDefaultRole();
 
 		appendRoles(allAuths, accountUid, roleParter);
-		log.info("²ÎÓëÑéÖ¤µÄ×éÖ¯ÔªËØ::" + allAuths);
+		log.info("å‚ä¸éªŒè¯çš„ç»„ç»‡å…ƒç´ ::" + allAuths);
 
 		return allAuths;
 	}
@@ -87,7 +87,7 @@ public class SessionParterDefault implements SessionParter {
 
 	public List getMenuAuthConfigByAccount(String accountUid) {
 
-		// //////////ÏÈ»ñÈ¡½ÇÉ«²Ëµ¥µÄÈ¨ÏŞ
+		// //////////å…ˆè·å–è§’è‰²èœå•çš„æƒé™
 
 		// / remove 2010
 		// List pureMenuUids = new ArrayList();
@@ -101,7 +101,7 @@ public class SessionParterDefault implements SessionParter {
 		// }
 
 		// /remove long long ago
-		// ////////////////ÓÃ»§·´ÏòÊÚÈ¨ĞèÒªÒÆ³ıµÄÈ¨ÏŞ
+		// ////////////////ç”¨æˆ·åå‘æˆæƒéœ€è¦ç§»é™¤çš„æƒé™
 		// DOService fxService = DOService
 		// .getService("auth.menu.user.access.0.xes");
 		// List fxList = fxService.invokeSelect(accountUid);
@@ -109,7 +109,7 @@ public class SessionParterDefault implements SessionParter {
 		// BOInstance bi = (BOInstance) it.next();
 		// pureMenuUids.remove(bi.getValue("whatuid"));
 		// }
-		// //////////////ÔÙ¼ÓÉÏÓÃ»§ÕıÏòÊÚÈ¨µÄÈ¨ÏŞ
+		// //////////////å†åŠ ä¸Šç”¨æˆ·æ­£å‘æˆæƒçš„æƒé™
 		// DOService aService = DOService
 		// .getService("auth.menu.user.access.1.xes");
 		// List list = aService.invokeSelect(accountUid);

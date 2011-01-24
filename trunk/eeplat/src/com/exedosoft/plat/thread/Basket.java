@@ -10,7 +10,7 @@ public class Basket {
 
 	Lock lock = new ReentrantLock();
 
-	// ²úÉúCondition¶ÔÏó
+	// äº§ç”ŸConditionå¯¹è±¡
 
 	Condition produced = lock.newCondition();
 
@@ -28,17 +28,17 @@ public class Basket {
 
 			if (available) {
 
-				consumed.await(); // ·ÅÆúlock½øÈëË¯Ãß
+				consumed.await(); // æ”¾å¼ƒlockè¿›å…¥ç¡çœ 
 
 			}
 
-			/* Éú²úÆ»¹û */
+			/* ç”Ÿäº§è‹¹æœ */
 
 			System.out.println("Apple produced.");
 
 			available = true;
 
-			produced.signal(); // ·¢ĞÅºÅ»½ĞÑµÈ´ıÕâ¸öConditionµÄÏß³Ì
+			produced.signal(); // å‘ä¿¡å·å”¤é†’ç­‰å¾…è¿™ä¸ªConditionçš„çº¿ç¨‹
 	
 
 		} finally {
@@ -57,17 +57,17 @@ public class Basket {
 
 			if (!available) {
 
-				produced.await();// ·ÅÆúlock½øÈëË¯Ãß
+				produced.await();// æ”¾å¼ƒlockè¿›å…¥ç¡çœ 
 
 			}
 
-			/* ³ÔÆ»¹û */
+			/* åƒè‹¹æœ */
 
 			System.out.println("Apple consumed.");
 
 			available = false;
 
-			consumed.signal();// ·¢ĞÅºÅ»½ĞÑµÈ´ıÕâ¸öConditionµÄÏß³Ì
+			consumed.signal();// å‘ä¿¡å·å”¤é†’ç­‰å¾…è¿™ä¸ªConditionçš„çº¿ç¨‹
 
 		} finally {
 
@@ -81,7 +81,7 @@ public class Basket {
 
 		final Basket basket = new Basket();
 
-		// ¶¨ÒåÒ»¸öproducer
+		// å®šä¹‰ä¸€ä¸ªproducer
 
 		Runnable producer = new Runnable() {
 
@@ -101,7 +101,7 @@ public class Basket {
 
 		};
 
-		// ¶¨ÒåÒ»¸öconsumer
+		// å®šä¹‰ä¸€ä¸ªconsumer
 
 		Runnable consumer = new Runnable() {
 
@@ -121,7 +121,7 @@ public class Basket {
 
 		};
 
-		// ¸÷²úÉú10¸öconsumerºÍproducer
+		// å„äº§ç”Ÿ10ä¸ªconsumerå’Œproducer
 
 		ExecutorService service = Executors.newCachedThreadPool();
 		service.submit(producer);

@@ -43,18 +43,18 @@ public class DOPTStore extends DOAbstractAction {
 
 		try {
 			
-			// /É¾³ıÑ¡ÖĞÄ£°åµÄ½Úµã
+			// /åˆ é™¤é€‰ä¸­æ¨¡æ¿çš„èŠ‚ç‚¹
 			if (curPt != null) {
 				DOService deleService = DOService
 						.getService("do_pt_node_deletebyptuid");
 				deleService.invokeUpdate(curPt.getUid());
 
-				////É¾³ı¹ØÁª
+				////åˆ é™¤å…³è”
 				DOService deleRelations = DOService
 				.getService("do_pt_node_denpendency_deleterubbish");
 				deleRelations.invokeUpdate();
 			}else{
-				this.setEchoValue("µ±Ç°Session¶ªÊ§£¬ÇëÖØĞÂµÇÂ¼!");
+				this.setEchoValue("å½“å‰Sessionä¸¢å¤±ï¼Œè¯·é‡æ–°ç™»å½•!");
 				return NO_FORWARD;
 			}
 
@@ -69,7 +69,7 @@ public class DOPTStore extends DOAbstractAction {
 			DOService getNodeDByUid = DOService.getService("do_pt_node_denpendency_browse");
 			
 			StringReader read = new StringReader(ptXml);
-			// ´´½¨ĞÂµÄÊäÈëÔ´SAX ½âÎöÆ÷½«Ê¹ÓÃ InputSource ¶ÔÏóÀ´È·¶¨ÈçºÎ¶ÁÈ¡ XML ÊäÈë
+			// åˆ›å»ºæ–°çš„è¾“å…¥æºSAX è§£æå™¨å°†ä½¿ç”¨ InputSource å¯¹è±¡æ¥ç¡®å®šå¦‚ä½•è¯»å– XML è¾“å…¥
 			InputSource source = new InputSource(read);
 
 			Document doc = DOMXmlUtil.getInstance().getDocumentBuilder().parse(

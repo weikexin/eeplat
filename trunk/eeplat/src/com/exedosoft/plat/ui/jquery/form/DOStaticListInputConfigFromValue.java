@@ -7,7 +7,7 @@ import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.util.StringUtil;
 
 /**
- * 静态列表应该单独作为一个表
+ * 闈欐�佸垪琛ㄥ簲璇ュ崟鐙綔涓轰竴涓〃
  * @author IBM
  *
  */

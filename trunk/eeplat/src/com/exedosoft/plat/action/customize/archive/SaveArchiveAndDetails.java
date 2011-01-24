@@ -24,12 +24,12 @@ public class SaveArchiveAndDetails extends DOAbstractAction{
 
 			
 		DOService insertArchAccount = DOService.getService("Arch.Account.Insert");
-		//ÊÂÎñ¿ªÊ¼
+		//äº‹åŠ¡å¼€å§‹
 		
 //		Transaction t = Transaction.getTransaction(insertArchAccount);
 //		
 //		t.begin();
-		///ÊÂÎñ¿ØÖÆÓĞÎÊÌâ
+		///äº‹åŠ¡æ§åˆ¶æœ‰é—®é¢˜
 		
 		insertArchAccount.invokeUpdate(formData);
 		
@@ -49,7 +49,7 @@ public class SaveArchiveAndDetails extends DOAbstractAction{
 			insertArchDetails.invokeUpdate(map);
 		}
 		
-		return "±£´æ³É¹¦";
+		return "ä¿å­˜æˆåŠŸ";
 	}
 	
 	public static void main(String[] args){

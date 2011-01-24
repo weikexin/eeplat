@@ -48,7 +48,7 @@ public class PropertyManager {
 
 	
 	/**
-	 * ÎªÒµÎñ¶ÔÏóÉ¾³ıÒ»¸öÊôĞÔ
+	 * ä¸ºä¸šåŠ¡å¯¹è±¡åˆ é™¤ä¸€ä¸ªå±æ€§
 	 * @param aDOBO
 	 * @param colName
 	 */
@@ -70,7 +70,7 @@ public class PropertyManager {
 					DAOUtil.INSTANCE().delete(aPara);
 				}
 				
-//////////////////////±í¸ñÔªËØ
+//////////////////////è¡¨æ ¼å…ƒç´ 
 				for(int i = 0 ;i < 10;i++){
 					DOFormModel aFm = DOFormModel.getFormModelByProperty(dop.getObjUid());
 					if(aFm!=null){
@@ -87,7 +87,7 @@ public class PropertyManager {
 	}
 
 	/**
-	 * ÎªÒµÎñ¶ÔÏóÔö¼ÓÒ»¸öÊôĞÔ
+	 * ä¸ºä¸šåŠ¡å¯¹è±¡å¢åŠ ä¸€ä¸ªå±æ€§
 	 * 
 	 * @param aDOBO
 	 * @param colName
@@ -95,7 +95,7 @@ public class PropertyManager {
 	 */
 	public void addProperty(DOBO aDOBO, String colName, int type,int size) {
 
-		// Ôö¼ÓÊôĞÔ
+		// å¢åŠ å±æ€§
 		DOBOProperty pro = new DOBOProperty();
 		try {
 			pro.setColName(colName);
@@ -106,7 +106,7 @@ public class PropertyManager {
 			pro.setPropName(colName);
 			DAOUtil.INSTANCE().store(pro);
 
-			// Ôö¼Ó²ÎÊı
+			// å¢åŠ å‚æ•°
 
 			DOParameter dop = new DOParameter();
 			dop.setL10n(colName);
@@ -116,7 +116,7 @@ public class PropertyManager {
 			dop.setParaBO(aDOBO);
 			DAOUtil.INSTANCE().store(dop);
 
-			// /·şÎñÏà¹Ø
+			// /æœåŠ¡ç›¸å…³
 			// /insert service
 			DOService insertService = aDOBO.getDInsertService();
 			if (insertService != null) {
@@ -157,8 +157,8 @@ public class PropertyManager {
 			
 			
 
-			// ///////////////////////UIÔİÊ±¿ÉÒÔ²»ÓÃÏÈÔö¼Ó
-			// //Ôö¼ÓUI
+			// ///////////////////////UIæš‚æ—¶å¯ä»¥ä¸ç”¨å…ˆå¢åŠ 
+			// //å¢åŠ UI
 
 		} catch (ExedoException e) {
 			// TODO Auto-generated catch block
@@ -176,8 +176,8 @@ public class PropertyManager {
 		String aName = gridM.getName().toLowerCase();
 		
 		/**
-		 *  * ¿Í»§¶ËÑéÖ¤ÅäÖÃ£¬·ÖÎª£³²¿·Ö£¬ÒÔ;¸ô¿ª £±£¬ÀàĞÍ£ºInteger RealNumber EMail Text Others 2, ³¤¶È £³,
-			 * ÆäËûScript Ô¼Êø
+		 *  * å®¢æˆ·ç«¯éªŒè¯é…ç½®ï¼Œåˆ†ä¸ºï¼“éƒ¨åˆ†ï¼Œä»¥;éš”å¼€ ï¼‘ï¼Œç±»å‹ï¼šInteger RealNumber EMail Text Others 2, é•¿åº¦ ï¼“,
+			 * å…¶ä»–Script çº¦æŸ
 			 * 
 		 */
 			
@@ -226,7 +226,7 @@ public class PropertyManager {
 	
 	/**
 	 * 
-	 * ½¨Á¢Íâ¼ü¹ØÏµ
+	 * å»ºç«‹å¤–é”®å…³ç³»
 	 * @param propertyName
 	 * @param aBO
 	 */
@@ -234,17 +234,17 @@ public class PropertyManager {
 	public void buildRelation(String propertyName,DOBO aBO){
 		
 		if(propertyName == null || aBO==null){
-			log.error("´«ÈëµÄ²ÎÊıÓĞÎó!!!!!!!!!!");
+			log.error("ä¼ å…¥çš„å‚æ•°æœ‰è¯¯!!!!!!!!!!");
 			return;
 		}
 		
 		//////property  ---- linkBO
-		///´ÓpropertyÍùÏÂ×·
+		///ä»propertyå¾€ä¸‹è¿½
 		Transaction t = DODataSource.parseGlobals().getTransaction();
 		t.begin();
 		List<DOBOProperty> lists = DAOUtil.INSTANCE().select(DOBOProperty.class, "select * from DO_BO_Property  where col_name = ?", propertyName);
 		
-		////¿ÉÒÔ¸ù¾İÍâ¼ü¹ØÏµ´´½¨Ö÷×Ó±íµÄ¹ØÁª¹ØÏµ
+		////å¯ä»¥æ ¹æ®å¤–é”®å…³ç³»åˆ›å»ºä¸»å­è¡¨çš„å…³è”å…³ç³»
 		try {
 			for(Iterator<DOBOProperty> it = lists.iterator(); it.hasNext();){
 				DOBOProperty dop = it.next();

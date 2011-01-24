@@ -38,15 +38,15 @@ import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 /**
- * Ê¹ÓÃ·Ö²¼Ê½ÅäÖÃ¿â£¬ÊµÏÖÆğÀ´Ì«¸´ÔÓ µ«ÊÇ¿ÉÒÔ¶¯Ì¬ÇĞ»»ÅäÖÃ¿â »¹ÊÇÊ¹ÓÃµ¼Èë¡¢µ¼³ö·½Ê½£¬ÊµÏÖÍÅ¶ÓĞ­×÷¿ª·¢
+ * ä½¿ç”¨åˆ†å¸ƒå¼é…ç½®åº“ï¼Œå®ç°èµ·æ¥å¤ªå¤æ‚ ä½†æ˜¯å¯ä»¥åŠ¨æ€åˆ‡æ¢é…ç½®åº“ è¿˜æ˜¯ä½¿ç”¨å¯¼å…¥ã€å¯¼å‡ºæ–¹å¼ï¼Œå®ç°å›¢é˜Ÿåä½œå¼€å‘
  * 
- * µ¼Èë¡¢µ¼³öµÄ·½Ê½¿ÉÒÔÊ¹ÓÃxmlÎÄ¼ş£¬sqlÎÄ¼ş¡£ µ¼Èë¡¢µ¼³öµÄÁ£¶È£º 1£¬¹¤³Ì 2£¬ÒµÎñ°ü 3£¬ÒµÎñ¶ÔÏó 4£¬·şÎñ 5£¬Ãæ°å 6£¬±í¸ñ
+ * å¯¼å…¥ã€å¯¼å‡ºçš„æ–¹å¼å¯ä»¥ä½¿ç”¨xmlæ–‡ä»¶ï¼Œsqlæ–‡ä»¶ã€‚ å¯¼å…¥ã€å¯¼å‡ºçš„ç²’åº¦ï¼š 1ï¼Œå·¥ç¨‹ 2ï¼Œä¸šåŠ¡åŒ… 3ï¼Œä¸šåŠ¡å¯¹è±¡ 4ï¼ŒæœåŠ¡ 5ï¼Œé¢æ¿ 6ï¼Œè¡¨æ ¼
  * 
- * »¹ÓĞÒ»ÖÖ ¿ÉÒÔ°´ÈÕÆÚ¡£ ¾ÍÊÇÄ³¸öÈÕÆÚÖ®ºóµÄ£¬È«²¿µ¼³öÈ¥
+ * è¿˜æœ‰ä¸€ç§ å¯ä»¥æŒ‰æ—¥æœŸã€‚ å°±æ˜¯æŸä¸ªæ—¥æœŸä¹‹åçš„ï¼Œå…¨éƒ¨å¯¼å‡ºå»
  * 
- * ÆäËü¸üĞ¡Á£¶È£¨×îºóÊµÏÖÊÇ·ñ¿¼ÂÇ£©
+ * å…¶å®ƒæ›´å°ç²’åº¦ï¼ˆæœ€åå®ç°æ˜¯å¦è€ƒè™‘ï¼‰
  * 
- * ÊôĞÔ ²ÎÊı ±í¸ñÔªËØ Ê÷ Ê÷½Úµã ²Ëµ¥
+ * å±æ€§ å‚æ•° è¡¨æ ¼å…ƒç´  æ ‘ æ ‘èŠ‚ç‚¹ èœå•
  * 
  * 
  * 
@@ -76,7 +76,7 @@ public class AProjectForwarderJquery {
 	DOController contentPane = DOController
 			.getControllerByName(ContentPane.class.getName());
 	/**
-	 * MenuController,µ«ÊÇÓĞ¹ö¶¯Ìõ
+	 * MenuController,ä½†æ˜¯æœ‰æ»šåŠ¨æ¡
 	 */
 	DOController menuController = DOController
 			.getControllerByName(JqueryMenuXP.class.getName());
@@ -91,7 +91,7 @@ public class AProjectForwarderJquery {
 		// HbmDAO dao = new HbmDAO();
 		// dao.setAutoClose(false);
 
-		// //¶¨ÒåÖ÷ÒµÎñ°ü,Í¬ÃûÒµÎñ°ü
+		// //å®šä¹‰ä¸»ä¸šåŠ¡åŒ…,åŒåä¸šåŠ¡åŒ…
 		BusiPackage bp = new BusiPackage();
 		bp.setApplication(project);
 		bp.setL10n(project.getL10n());
@@ -100,7 +100,7 @@ public class AProjectForwarderJquery {
 		DOBO aBO = new DOBO();
 		aBO.setType(DOBO.TYPE_BUSINESS);
 		aBO.setName(project.getName() + "_global_bo");
-		aBO.setL10n(project.getL10n() + "_È«¾Ö");
+		aBO.setL10n(project.getL10n() + "_å…¨å±€");
 
 		DODataSource dds = DODataSource.parseGlobals();
 
@@ -110,17 +110,17 @@ public class AProjectForwarderJquery {
 
 		DOService aService = DOService.getService("DO_UI_PaneLinks_copy");
 		try {
-			// //////////±£´æÒµÎñ°ü
+			// //////////ä¿å­˜ä¸šåŠ¡åŒ…
 			DAOUtil.INSTANCE().currentDataSource(dds);
 
 			DAOUtil.INSTANCE().store(bp);
 
-			// //±£´æÒµÎñ¶ÔÏó
+			// //ä¿å­˜ä¸šåŠ¡å¯¹è±¡
 			aBO.setPakage(bp);
 
 			DAOUtil.INSTANCE().store(aBO);
 			
-			///////¹ØÁª×éÖ¯È¨ÏŞÏà¹ØµÄÒµÎñ°üµ½³õÊ¼»¯µÄ¹¤³ÌÏÂÃæ
+			///////å…³è”ç»„ç»‡æƒé™ç›¸å…³çš„ä¸šåŠ¡åŒ…åˆ°åˆå§‹åŒ–çš„å·¥ç¨‹ä¸‹é¢
 
 			DOService updateBPService = DOService.getService("DO_BusiPackage_Update_copy");
 			BusiPackage bporg = BusiPackage.getPackageByName("dorgauth");
@@ -151,12 +151,12 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(wf_history,updateBPService);
 
 			/**
-			 * ´æ´¢Ó¦ÓÃµÄ¸ùÃæ°å
+			 * å­˜å‚¨åº”ç”¨çš„æ ¹é¢æ¿
 			 */
 			DOPaneModel pmRoot = new DOPaneModel();
 			pmRoot.setCategory(aBO);
 			pmRoot.setName("pane_" + project.getName());
-			pmRoot.setL10n(project.getL10n() + "_¸ùÃæ°å");
+			pmRoot.setL10n(project.getL10n() + "_æ ¹é¢æ¿");
 			pmRoot.setTitle(project.getDescription());
 
 			// //////////////ccLayOutPane
@@ -164,11 +164,11 @@ public class AProjectForwarderJquery {
 
 			DAOUtil.INSTANCE().store(pmRoot);
 
-			// ///////ÒµÎñ¶ÔÏó·¢²¼ÎªÒ»¸öÓ¦ÓÃ
+			// ///////ä¸šåŠ¡å¯¹è±¡å‘å¸ƒä¸ºä¸€ä¸ªåº”ç”¨
 			project.setDobo(aBO);
 			DAOUtil.INSTANCE().store(project);
 			
-			////Í·²¿jsp
+			////å¤´éƒ¨jsp
 			DOResource rs = new DOResource();
 			rs.setResourceName("jspheader_" + project.getName());
 			rs.setResourcePath(project.getName() + "/FormHeader.jsp");
@@ -176,7 +176,7 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(rs);
 																	
 			/**
-			 * ½¨Á¢ĞÂµÄÍ·Ãæ°å
+			 * å»ºç«‹æ–°çš„å¤´é¢æ¿
 			 */
 			DOPaneModel pmTop = new DOPaneModel();
 
@@ -185,12 +185,12 @@ public class AProjectForwarderJquery {
 			pmTop.setLinkUID(rs.getObjUid());
 			pmTop.setLayoutAlign("top");
 			pmTop.setCategory(aBO);
-			pmTop.setL10n(project.getL10n() + "_Í·Ãæ°å");
+			pmTop.setL10n(project.getL10n() + "_å¤´é¢æ¿");
 			pmTop.setName(project.getName() + "_headerPane");
 			DAOUtil.INSTANCE().store(pmTop);
 
 			/**
-			 * ½¨Á¢¸ùÃæ°åºÍÍ·Ãæ°åµÄ¹ØÁª¹ØÏµ
+			 * å»ºç«‹æ ¹é¢æ¿å’Œå¤´é¢æ¿çš„å…³è”å…³ç³»
 			 */
 			DOPaneLinks pmTopLink = new DOPaneLinks();
 			pmTopLink.setParentPane(pmRoot);
@@ -199,17 +199,17 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(pmTopLink, aService);
 
 			/**
-			 * ´´½¨ÏÂ·½µÄÃæ°å
+			 * åˆ›å»ºä¸‹æ–¹çš„é¢æ¿
 			 */
 			DOPaneModel pmBottom = new DOPaneModel();
 			pmBottom.setCategory(aBO);
-			pmBottom.setL10n(project.getL10n() + "_¹¤×÷ÇøÓòÃæ°å");
+			pmBottom.setL10n(project.getL10n() + "_å·¥ä½œåŒºåŸŸé¢æ¿");
 			pmBottom.setName(project.getName() + "_mainpane");
 
 			pmBottom.setController(ccSplitePane);
 			DAOUtil.INSTANCE().store(pmBottom);
 			/**
-			 * ½¨Á¢¸ùÃæ°åºÍ¹¤×÷ÇøÓòÃæ°åµÄ¹ØÁª
+			 * å»ºç«‹æ ¹é¢æ¿å’Œå·¥ä½œåŒºåŸŸé¢æ¿çš„å…³è”
 			 */
 
 			DOPaneLinks pmBottomLink = new DOPaneLinks();
@@ -218,18 +218,18 @@ public class AProjectForwarderJquery {
 			pmBottomLink.setOrderNum(new Integer(10));
 			DAOUtil.INSTANCE().store(pmBottomLink, aService);
 
-			// /×ó±ßÃæ°å
+			// /å·¦è¾¹é¢æ¿
 
 			DOMenuModel dmRoot = new DOMenuModel();
 			dmRoot.setCategory(aBO);
 			dmRoot.setController(menuController); 
-			// ////////Í¬ÃûDOMenuModel
+			// ////////åŒåDOMenuModel
 			dmRoot.setName(project.getName() + "_root");
-			dmRoot.setL10n("»¶Ó­Ê¹ÓÃ" + project.getL10n());
+			dmRoot.setL10n("æ¬¢è¿ä½¿ç”¨" + project.getL10n());
 			DAOUtil.INSTANCE().store(dmRoot);
 			
 			
-			////¸üĞÂ²Ëµ¥»ñÈ¡µÄsqlÓï¾ä
+			////æ›´æ–°èœå•è·å–çš„sqlè¯­å¥
 		 	DOService menuService = DOService.getService("s_menumodel_byName");
 		 	menuService.setMainSql("select * from do_ui_menumodel where name = '" + dmRoot.getName() + "'");
 		 	DAOUtil.INSTANCE().store(menuService);
@@ -239,42 +239,42 @@ public class AProjectForwarderJquery {
 			dmBP.setCategory(aBO);
 			dmBP.setParentMenu(dmRoot);
 			dmBP.setController(menuController);
-			// ////////Í¬ÃûDOMenuModel
+			// ////////åŒåDOMenuModel
 			dmBP.setName(project.getName() + "_bp");
-			dmBP.setL10n(project.getL10n() + "²Ëµ¥");
+			dmBP.setL10n(project.getL10n() + "èœå•");
 			DAOUtil.INSTANCE().store(dmBP);
 			
 			
-			///////×éÖ¯È¨ÏŞÏà¹ØµÄ²Ëµ¥ ³õÊ¼»¯µ½¹¤³Ì¸ù²Ëµ¥ÏÂÃæ
+			///////ç»„ç»‡æƒé™ç›¸å…³çš„èœå• åˆå§‹åŒ–åˆ°å·¥ç¨‹æ ¹èœå•ä¸‹é¢
 			DOMenuModel dmmAuth = DOMenuModel.getMenuModelByName("dorgauth_bp");
 			dmmAuth.setParentMenu(dmRoot);
 			DAOUtil.INSTANCE().store(dmmAuth);
 						
-			///°Ñ¹¤×÷Á÷Ïà¹ØµÄ²Ëµ¥³õÊ¼»¯µ½¹¤³Ì¸ù²Ëµ¥ÏÂÃæ
+			///æŠŠå·¥ä½œæµç›¸å…³çš„èœå•åˆå§‹åŒ–åˆ°å·¥ç¨‹æ ¹èœå•ä¸‹é¢
 			DOMenuModel dorgauth_flow_test  = DOMenuModel.getMenuModelByName("dorgauth_flow_test");
 			dorgauth_flow_test .setParentMenu(dmRoot);
 			DAOUtil.INSTANCE().store(dorgauth_flow_test );
 						
 			
 			
-			////¹¤×÷Ì¨jsp
+			////å·¥ä½œå°jsp
 			rs = new DOResource();
 			rs.setResourceName("workbenchjsp_" + project.getName());
 			rs.setResourcePath(project.getName() + "/workbench.jsp");
 			rs.setResourceType(1);
 			DAOUtil.INSTANCE().store(rs);
 			
-			DOPaneModel pmContent = new DOPaneModel();// ///Ö÷ÄÚÈİÏÔÊ¾Çø¡£
+			DOPaneModel pmContent = new DOPaneModel();// ///ä¸»å†…å®¹æ˜¾ç¤ºåŒºã€‚
 			pmContent.setCategory(aBO);
 			pmContent.setName(project.getName() + "_MainContent");
-			pmContent.setL10n(project.getL10n() + "»ù±¾ÄÚÈİÏÔÊ¾");
+			pmContent.setL10n(project.getL10n() + "åŸºæœ¬å†…å®¹æ˜¾ç¤º");
 			pmContent.setController(mainPage);
 			pmContent.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
 			pmContent.setLinkUID(rs.getObjUid());
 			DAOUtil.INSTANCE().store(pmContent);
 
 			DOPaneLinks pmContentLink = new DOPaneLinks();
-			pmContentLink.setParentPane(pmBottom);// //bottomPaneÎª¸¸Ç×
+			pmContentLink.setParentPane(pmBottom);// //bottomPaneä¸ºçˆ¶äº²
 			pmContentLink.setChildPane(pmContent);
 			pmContentLink.setOrderNum(new Integer(17));
 			DAOUtil.INSTANCE().store(pmContentLink, aService);
@@ -284,22 +284,22 @@ public class AProjectForwarderJquery {
 			pmLeft.setLinkType(DOPaneModel.LINKTYPE_MENU);
 			pmLeft.setLinkUID(dmRoot.getObjUid());
 			pmLeft.setCategory(aBO);
-			pmLeft.setL10n(project.getL10n() + "×ó±ßË÷ÒıÃæ°å");
+			pmLeft.setL10n(project.getL10n() + "å·¦è¾¹ç´¢å¼•é¢æ¿");
 			pmLeft.setName(project.getName() + "_leftindex_pane");
 
 			/**
-			 * ±£´æ×ó±ßµÄ×ó±ßµÄË÷Òı²Ëµ¥
+			 * ä¿å­˜å·¦è¾¹çš„å·¦è¾¹çš„ç´¢å¼•èœå•
 			 */
 			pmLeft.setTargetPane(pmContent);
 			DAOUtil.INSTANCE().store(pmLeft);
 
 			DOPaneLinks pmLeftLink = new DOPaneLinks();
-			pmLeftLink.setParentPane(pmBottom);// //bottomPaneÎª¸¸Ç×
+			pmLeftLink.setParentPane(pmBottom);// //bottomPaneä¸ºçˆ¶äº²
 			pmLeftLink.setChildPane(pmLeft);
 			pmLeftLink.setOrderNum(new Integer(15));
 			DAOUtil.INSTANCE().store(pmLeftLink, aService);
 			
-////×îºócopy
+////æœ€åcopy
 			this.copyDir(project);
 
 		} catch (Exception e) {
@@ -310,7 +310,7 @@ public class AProjectForwarderJquery {
 			t.end();
 		}
 	
-		// /Ö´ĞĞÄ¿Â¼copy¹¤×÷
+		// /æ‰§è¡Œç›®å½•copyå·¥ä½œ
 	}
 
 	void copyDir(DOApplication dop) {
@@ -373,7 +373,7 @@ public class AProjectForwarderJquery {
 		paras.put("resourceType", "1");
 //		BOInstance newResource = resourceInsert.invokeUpdate(paras);
 //
-//		////Í·²¿jsp
+//		////å¤´éƒ¨jsp
 //		DOResource rs = DOResource.getResourceByID(newResource.getUid());
 		System.out.println("Hello:::::::::" + resourceInsert);
 																

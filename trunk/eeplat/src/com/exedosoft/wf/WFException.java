@@ -2,7 +2,7 @@ package com.exedosoft.wf;
 /**
  *
  * <p>Title: </p>
- * <p>¹¤×÷Á÷ÒıÇæÒì³££¬¹¤×÷Á÷ÔËĞĞ»ò½»»¥¹ı³ÌÖĞ¿ÉÄÜ³öÏÖµÄÒì³£¡¢´íÎó¡£</p>
+ * <p>å·¥ä½œæµå¼•æ“å¼‚å¸¸ï¼Œå·¥ä½œæµè¿è¡Œæˆ–äº¤äº’è¿‡ç¨‹ä¸­å¯èƒ½å‡ºç°çš„å¼‚å¸¸ã€é”™è¯¯ã€‚</p>
  * <p>Copyright: Copyright (c) 2004</p>
  * <p>Company: </p>
  * @author not attributable
@@ -11,7 +11,7 @@ package com.exedosoft.wf;
 public class WFException extends Exception {
 
   public WFException() {
-   super("¹¤×÷Á÷ÒıÇæÒì³£");
+   super("å·¥ä½œæµå¼•æ“å¼‚å¸¸");
   }
 
   public WFException(String message) {

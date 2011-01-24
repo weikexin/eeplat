@@ -20,16 +20,16 @@ public class TemplateHelper {
 	public TemplateHelper(String code) {
 
 		if (code.indexOf("/*beforsplit*/") != -1) {
-			// ///得到相关的js
+			// ///寰楀埌鐩稿叧鐨刯s
 			beforScript = code.substring(0, code.indexOf("/*beforsplit*/"));
-			// ///得到相关的json config
+			// ///寰楀埌鐩稿叧鐨刯son config
 			code = code.substring((code.indexOf("/*beforsplit*/") + 14));
 		}
 
 		if (code.indexOf("/*aftersplit*/") != -1) {
-			// ///得到相关的js
+			// ///寰楀埌鐩稿叧鐨刯s
 			afterScript = code.substring(code.indexOf("/*aftersplit*/") + 14);
-			// ///得到相关的json config
+			// ///寰楀埌鐩稿叧鐨刯son config
 			code = code.substring(0, code.indexOf("/*aftersplit*/"));
 		}
 		uiCode = code;

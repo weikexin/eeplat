@@ -22,8 +22,8 @@ public class CopyServiceDeep extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			System.out.println("鏈厤缃甋QL 璇彞");
+			this.setEchoValue("鏈厤缃甋QL 璇彞");
 			return NO_FORWARD;
 		}
 
@@ -33,7 +33,7 @@ public class CopyServiceDeep extends DOAbstractAction {
 		DOService dos = DOService.getServiceByID(biService.getUid());
 
 		copyService(biService, dos);
-		this.setEchoValue("复制成功,请点击左侧树节点进行操作!");
+		this.setEchoValue("澶嶅埗鎴愬姛,璇风偣鍑诲乏渚ф爲鑺傜偣杩涜鎿嶄綔!");
 		return DEFAULT_FORWARD;
 
 	}

@@ -17,7 +17,7 @@ import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.wf.wfi.ProcessInstance;
 
 /**
- * ²»±Ø¾ĞÄàÓÚ¾­µäµÄ¹¤×÷Á÷ÀíÂÛ¡£¹¤×÷Á÷Æô¶¯±ØĞëÓĞÀíÓÉ£¬µÚÒ»¸ö»î¶¯ÓÉÆô¶¯¹¤×÷Á÷±¾ÉíÍê³É¡£ <p> Title: </p> <p> Description: </p> <p> Copyright: Copyright (c) 2004 </p> <p> Company: </p>
+ * ä¸å¿…æ‹˜æ³¥äºç»å…¸çš„å·¥ä½œæµç†è®ºã€‚å·¥ä½œæµå¯åŠ¨å¿…é¡»æœ‰ç†ç”±ï¼Œç¬¬ä¸€ä¸ªæ´»åŠ¨ç”±å¯åŠ¨å·¥ä½œæµæœ¬èº«å®Œæˆã€‚ <p> Title: </p> <p> Description: </p> <p> Copyright: Copyright (c) 2004 </p> <p> Company: </p>
  * @author  not attributable
  * @version  1.0
  */
@@ -38,7 +38,7 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 	private String ptDesc;
 
 	/**
-	 * ¸úÉè¼ÆÏà¹Ø£¬ÊÇ·ñ»î¶¯£¬ÊôÓÚ¶¯Ì¬¹¤×÷Á÷µÄ·¶³ë
+	 * è·Ÿè®¾è®¡ç›¸å…³ï¼Œæ˜¯å¦æ´»åŠ¨ï¼Œå±äºåŠ¨æ€å·¥ä½œæµçš„èŒƒç•´
 	 *
 	 */
 	private Boolean active;
@@ -48,7 +48,7 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 	private Boolean isModify;
 
 	/**
-	 * Á÷³Ì¶ÔÓ¦µÄÖ÷ÒµÎñ¶ÔÏó£¬Ã¿¸öÁ÷³ÌÆäÊµÓĞÒ»¸ö¶ÔÓ¦µÄÖ÷ÌåÒµÎñ£¬Õâ¸öÖ÷ÌâÒµÎñÏà¹ØµÄÒµÎñ¶ÔÏó¡£ »òÕß·´¹ıÀ´ÕâÑù½²£¬Ò»¸öÒµÎñ¶ÔÏó¿ÉÒÔÓĞÒ»¸öÁ÷³Ì¡£ ÕâÑùÃ¿¸öÒµÎñ¶ÔÏóÓĞ¶àÁËÒ»¸öÁ÷³ÌµÄÔªËØ¡£ ÒµÎñ¶ÔÏó°üº¬£¬·şÎñ£¬ÊôĞÔ£¬²ÎÊıºÍÁ÷³Ì¡£ ¼¯ÖĞÔÚÒµÎñ¶ÔÏóÕâ¸ö²ãÃæ£¬ÒµÎñ¶ÔÏó×éÖ¯ÒµÎñ¡£
+	 * æµç¨‹å¯¹åº”çš„ä¸»ä¸šåŠ¡å¯¹è±¡ï¼Œæ¯ä¸ªæµç¨‹å…¶å®æœ‰ä¸€ä¸ªå¯¹åº”çš„ä¸»ä½“ä¸šåŠ¡ï¼Œè¿™ä¸ªä¸»é¢˜ä¸šåŠ¡ç›¸å…³çš„ä¸šåŠ¡å¯¹è±¡ã€‚ æˆ–è€…åè¿‡æ¥è¿™æ ·è®²ï¼Œä¸€ä¸ªä¸šåŠ¡å¯¹è±¡å¯ä»¥æœ‰ä¸€ä¸ªæµç¨‹ã€‚ è¿™æ ·æ¯ä¸ªä¸šåŠ¡å¯¹è±¡æœ‰å¤šäº†ä¸€ä¸ªæµç¨‹çš„å…ƒç´ ã€‚ ä¸šåŠ¡å¯¹è±¡åŒ…å«ï¼ŒæœåŠ¡ï¼Œå±æ€§ï¼Œå‚æ•°å’Œæµç¨‹ã€‚ é›†ä¸­åœ¨ä¸šåŠ¡å¯¹è±¡è¿™ä¸ªå±‚é¢ï¼Œä¸šåŠ¡å¯¹è±¡ç»„ç»‡ä¸šåŠ¡ã€‚
 	 */
 	private DOBO doBO;
 	
@@ -184,13 +184,13 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 
 
 	/**
-	 * »ñµÃ¿ÉÒÔ¶Ô¹¤×÷Á÷ÊµÀı½øĞĞÃüÃûµÄPTVar
+	 * è·å¾—å¯ä»¥å¯¹å·¥ä½œæµå®ä¾‹è¿›è¡Œå‘½åçš„PTVar
 	 * 
 	 * @return
 	 */
 
 	/**
-	 * »ñµÃ¸ÃÄ£°åµÄ½ÚµãÖ®¼äµÄÒÀÀµ¹ØÏµ
+	 * è·å¾—è¯¥æ¨¡æ¿çš„èŠ‚ç‚¹ä¹‹é—´çš„ä¾èµ–å…³ç³»
 	 * 
 	 * @return
 	 */
@@ -208,7 +208,7 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 	}
 
 	/**
-	 * »ñµÃ¸ÃÄ£°åµÄ½ÚµãÖ®¼äµÄÒÀÀµ¹ØÏµ
+	 * è·å¾—è¯¥æ¨¡æ¿çš„èŠ‚ç‚¹ä¹‹é—´çš„ä¾èµ–å…³ç³»
 	 * 
 	 * @return
 	 */
@@ -226,7 +226,7 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Õâ¸öÄ£°å¶¨ÒåµÄStart ½Úµã£¬Ò²ÊÇÎ¨Ò»µÄÒ»¸ö½Úµã¡£
+	 * è·å–è¿™ä¸ªæ¨¡æ¿å®šä¹‰çš„Start èŠ‚ç‚¹ï¼Œä¹Ÿæ˜¯å”¯ä¸€çš„ä¸€ä¸ªèŠ‚ç‚¹ã€‚
 	 * 
 	 * @return
 	 */
@@ -275,7 +275,7 @@ public class ProcessTemplate extends BaseObject  implements Serializable {
 	}
 
 	/**
-	 * »ñµÃ¸ÃÄ£°åµÄ½ÚµãViewÖ®¼äµÄÁ¬Ïß
+	 * è·å¾—è¯¥æ¨¡æ¿çš„èŠ‚ç‚¹Viewä¹‹é—´çš„è¿çº¿
 	 * 
 	 * @return
 	 */

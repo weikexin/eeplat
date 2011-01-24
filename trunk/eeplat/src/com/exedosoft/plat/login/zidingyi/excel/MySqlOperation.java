@@ -30,7 +30,7 @@ public class MySqlOperation {
 		try {
 //			Class.forName(driverName);
 //			conn = DriverManager.getConnection(url, user, password);
-			 DODataSource dss = DODataSource.getDataSourceByL10n("×Ï·ã±¨ÏúÊı¾İ¿âII");
+			 DODataSource dss = DODataSource.getDataSourceByL10n("ç´«æ«æŠ¥é”€æ•°æ®åº“II");
 			 conn = dss.getConnection();
 
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public class MySqlOperation {
 	// ============================gz_salarymessage============================
 	public static void insert(Connection conn, SalaryMessage sm, long objuid)
 			throws SQLException {
-		// 5+4+3+4=16¸ö²ÎÊı
+		// 5+4+3+4=16ä¸ªå‚æ•°
 		String sql = "insert into gz_salarymessage"
 				+ "(objuid,month,name,basesalary,buckshee,rentdeduct," + // 6
 				"leavededuct,factsalary,payyanglaoinsure,payshiyeinsure," + // 4
@@ -81,7 +81,7 @@ public class MySqlOperation {
 
 	public static void update(Connection conn, SalaryMessage sm, String objuid)
 			throws SQLException {
-		// 5+4+3+4=16¸ö²ÎÊı
+		// 5+4+3+4=16ä¸ªå‚æ•°
 		String sql = "update gz_salarymessage set "
 				+ "month=?,name=?,basesalary=?,buckshee=?,rentdeduct=?,"
 				+ // 5
@@ -233,8 +233,8 @@ public class MySqlOperation {
 		return email;
 	}
 
-	// ============================±¨Ïúµ¥Ïà¹Ø´Êµä±í============================
-	// ============================±¨Ïúµ¥Ïà¹Ø´Êµä±í============================
+	// ============================æŠ¥é”€å•ç›¸å…³è¯å…¸è¡¨============================
+	// ============================æŠ¥é”€å•ç›¸å…³è¯å…¸è¡¨============================
 	public static ResultSet BXusefee(Connection conn, String baoxiaouid)
 			throws SQLException {
 		String sql = "select * from cw_bxusefeedetail where baoxiaouid='"
@@ -313,9 +313,9 @@ public class MySqlOperation {
 		return name;
 	}
 
-	// ++++++++++++++++++++++++++++ĞèÓÃµ½µÄº¯Êı++++++++++++++++++++++++++++
-	// ++++++++++++++++++++++++++++ĞèÓÃµ½µÄº¯Êı++++++++++++++++++++++++++++
-	// Ö÷¼üÉè¶¨£¬ Ê®Áù½øÖÆ
+	// ++++++++++++++++++++++++++++éœ€ç”¨åˆ°çš„å‡½æ•°++++++++++++++++++++++++++++
+	// ++++++++++++++++++++++++++++éœ€ç”¨åˆ°çš„å‡½æ•°++++++++++++++++++++++++++++
+	// ä¸»é”®è®¾å®šï¼Œ åå…­è¿›åˆ¶
 	private static String HexToStr(long i) {
 		String s = "0123456789abcdef";
 		i = i + 16 * 3732000000000L;
@@ -342,11 +342,11 @@ public class MySqlOperation {
 		Connection conn = MySqlOperation.getConnection();
 		// Date date = Date.valueOf("2009-01-28");
 		// try {
-		// ResultSet rs = MySqlOperation.SMfindByNameAndDate(conn, "ËÎºÍÆ½	"
+		// ResultSet rs = MySqlOperation.SMfindByNameAndDate(conn, "å®‹å’Œå¹³	"
 		// .trim(), date);
 		// while (rs.next()) {
 		// System.out.println("delete");
-		// MySqlOperation.SMDeleteByNameAndDate(conn, " ËÎºÍÆ½".trim(), date);
+		// MySqlOperation.SMDeleteByNameAndDate(conn, " å®‹å’Œå¹³".trim(), date);
 		// }
 		// } catch (SQLException e) {
 		// // TODO Auto-generated catch block

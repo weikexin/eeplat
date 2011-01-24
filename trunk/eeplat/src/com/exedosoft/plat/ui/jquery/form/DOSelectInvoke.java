@@ -64,16 +64,16 @@ public class DOSelectInvoke extends DOBaseForm {
 
 		buffer.append(" readonly=\"readonly\" ");
 
-		// ////增加装饰
+		// ////澧炲姞瑁呴グ
 		buffer.append(getDecoration(property));
 
 		appendHtmlJs(buffer,property);
-		// ///////end 增加装饰
+		// ///////end 澧炲姞瑁呴グ
 		buffer.append(" title='").append(property.getL10n()).append("'");
 
 		buffer.append(" size=\"").append(getInputSize(property)).append("\"/>");
 
-		buffer.append(DOValueService.stardardOnlyPane(property, "查找"));
+		buffer.append(DOValueService.stardardOnlyPane(property, "鏌ユ壘"));
 		
 		if (property.isNotNull()) {
 			buffer.append("&nbsp;<font color='red'>*</font>&nbsp;");
@@ -92,7 +92,7 @@ public class DOSelectInvoke extends DOBaseForm {
 			buffer.append("</script>");
 
 		}
-		// buffer.append(DOValueService.stardardOnlyPane(property, "新增"));
+		// buffer.append(DOValueService.stardardOnlyPane(property, "鏂板"));
 
 		return buffer.toString();
 	}

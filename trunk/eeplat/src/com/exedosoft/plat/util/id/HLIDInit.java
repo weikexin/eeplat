@@ -25,7 +25,7 @@ public class HLIDInit {
   public void initHLID(){
 	  
 	  /**
-	   * Keys ��ֻ�ŵ��������ݿ��У��Ա�ͳһά����
+	   * Keys 表只放到配置数据库中，以便统一维护。
 	   */
 
     String sql = "SELECT * FROM DO_KEYS";

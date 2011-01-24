@@ -1,7 +1,7 @@
 package com.exedosoft.plat.login;
 
 /**
- * ×¢Òâ ÎÒ°Ñ date ×ª»»³ÉÁË datetime ×¢Òâ¸Ä¹ıÀ´
+ * æ³¨æ„ æˆ‘æŠŠ date è½¬æ¢æˆäº† datetime æ³¨æ„æ”¹è¿‡æ¥
  */
 import java.sql.Date;
 import java.util.ArrayList;
@@ -19,15 +19,15 @@ import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
 
 //
-// //ĞŞ¸Ä±¾ÈËÃÜÂë
+// //ä¿®æ”¹æœ¬äººå¯†ç 
 // public static final String MODIFY_SELF_PWD = "modify_self_pwd";
-// //ÓÃ»§¹ÜÀí
+// //ç”¨æˆ·ç®¡ç†
 // public static final String MANAGE_CLERK = "manage_clerk_p";
-// //µ¥¾İ²éÑ¯
+// //å•æ®æŸ¥è¯¢
 // public static final String BROWSER_IMAGE = "browser_image_p";
-// //É¨ÃèÉÏ´«
+// //æ‰«æä¸Šä¼ 
 // public static final String SCAN_UPDATE = "scan_update_p";
-// //ÉóºËÖØ¸´µ¥¾İ
+// //å®¡æ ¸é‡å¤å•æ®
 // public static final String CHECK_REDUPLICATE = "check_reduplicate_p";
 
 public class LoginAction2 extends DOAbstractAction {
@@ -51,7 +51,7 @@ public class LoginAction2 extends DOAbstractAction {
 //		    HttpServletRequest request = 	DOGlobals.getInstance().getServletContext().getRequest();
 //		    String caID =  (String)request.getSession().getAttribute("UserId");
 //		    if(caID==null || "".equals(caID.trim())){
-//		    	this.setEchoValue("¶Ô²»Æğ£¬ÄúÃ»ÓĞÍ¨¹ıCAÈÏÖ¤£¡");
+//		    	this.setEchoValue("å¯¹ä¸èµ·ï¼Œæ‚¨æ²¡æœ‰é€šè¿‡CAè®¤è¯ï¼");
 //		    	return "notpass";
 //		    }
 //		    System.out.println(caID);
@@ -65,38 +65,38 @@ public class LoginAction2 extends DOAbstractAction {
 			BOInstance user = (BOInstance) users.get(0);
 			Date invalidTime = user.getDateValue("invalidTime");
 			if (invalidTime != null) {
-				System.out.println("¸ÃÓÃ»§µÄ¹ıÆÚÊ±¼ä::" + invalidTime);
+				System.out.println("è¯¥ç”¨æˆ·çš„è¿‡æœŸæ—¶é—´::" + invalidTime);
 				if (invalidTime.before(new Date(System.currentTimeMillis()))) {
-					this.setEchoValue("¸ÃÓÃ»§ÕË»§ÒÑ¾­¹ıÆÚ£¡");
+					this.setEchoValue("è¯¥ç”¨æˆ·è´¦æˆ·å·²ç»è¿‡æœŸï¼");
 					return NO_FORWARD;
 				}
 			}
 			
 			String fdstate = user.getValue("fdstate");
 			if("0".equals(fdstate)){
-				this.setEchoValue("¸ÃÓÃ»§ÒÑ¶³½á£¬Çë¸úÏµÍ³¹ÜÀíÔ±ÁªÏµ£¡");
+				this.setEchoValue("è¯¥ç”¨æˆ·å·²å†»ç»“ï¼Œè¯·è·Ÿç³»ç»Ÿç®¡ç†å‘˜è”ç³»ï¼");
 				return NO_FORWARD;
 			}
 			LoginMain.makeLogin(user,DOGlobals.getInstance().getServletContext().getRequest());
 
 			return "success";
 		} else {
-			this.setEchoValue("ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÊÔ!");
+			this.setEchoValue("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼Œè¯·é‡è¯•!");
 			return "notpass";
 		}
 	}
 }
 
 
-// ///////////º£Ñó¾Ö×¨ÓÃ
+// ///////////æµ·æ´‹å±€ä¸“ç”¨
 //
 //if (this.actionForm.getValue("inner_user") != null
 //		&& Integer.parseInt(maxDegree) < 6) {
-//	this.setEchoValue("¶Ô²»Æğ£¬ÄúÖ»ÄÜÒÔÃ½ÌåÓÃ»§½øÈë!");
+//	this.setEchoValue("å¯¹ä¸èµ·ï¼Œæ‚¨åªèƒ½ä»¥åª’ä½“ç”¨æˆ·è¿›å…¥!");
 //	return "notpass";
 //}
 
-// ////////////º£Ñó¾Ö×¨ÓÃ
+// ////////////æµ·æ´‹å±€ä¸“ç”¨
 
 //BOInstance aDegreeIns = new BOInstance();
 //aDegreeIns.putValue("secret_name", user.getName());
@@ -105,4 +105,4 @@ public class LoginAction2 extends DOAbstractAction {
 //DOBO aDegreeBO = DOBO.getDOBOByName("sea.docsecret");
 //DOGlobals.getInstance().getSessoinContext().putCorrInstance(
 //		aDegreeBO, aDegreeIns);
-// //////////////////º£Ñó¾ÖÎÄµµÏµÍ³
+// //////////////////æµ·æ´‹å±€æ–‡æ¡£ç³»ç»Ÿ

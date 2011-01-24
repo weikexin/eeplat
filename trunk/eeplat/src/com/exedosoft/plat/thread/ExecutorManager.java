@@ -23,7 +23,7 @@ import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
- * ĞèÒª×¢ÒâµÄÊÇÏß³Ì³Ø±ØĞëÊ¹ÓÃshutdownÀ´ÏÔÊ½¹Ø±Õ£¬ ·ñÔòÖ÷Ïß³Ì¾ÍÎŞ·¨ÍË³ö¡£shutdownÒ²²»»á×èÈûÖ÷Ïß³Ì¡£
+ * éœ€è¦æ³¨æ„çš„æ˜¯çº¿ç¨‹æ± å¿…é¡»ä½¿ç”¨shutdownæ¥æ˜¾å¼å…³é—­ï¼Œ å¦åˆ™ä¸»çº¿ç¨‹å°±æ— æ³•é€€å‡ºã€‚shutdownä¹Ÿä¸ä¼šé˜»å¡ä¸»çº¿ç¨‹ã€‚
  * 
  * @author anolesoft
  * 
@@ -45,7 +45,7 @@ public class ExecutorManager {
 
 	public final static Object lockObect = new Object();
 
-	// ²úÉúCondition¶ÔÏó
+	// äº§ç”ŸConditionå¯¹è±¡
 
 	public final static Condition exeCondition = lock.newCondition();
 
@@ -79,7 +79,7 @@ public class ExecutorManager {
 	}
 
 	/**
-	 * Òª¶ÁÈ¡¹æÔò¶¨Òå²ÅĞĞ
+	 * è¦è¯»å–è§„åˆ™å®šä¹‰æ‰è¡Œ
 	 * 
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public class ExecutorManager {
 							.get(Calendar.DAY_OF_WEEK) == 7)) {
 				return false;
 			}else{
-				/////////Èç¹ûÊÇÀıÍâÈÕÆÚ£¬Ôò·µ»Øfalse,Èç¹ûÊÇÔö¼ÓµÄÈÕÆÚ£¬²ÉÓÃÈ±Ê¡µÄtrue
+				/////////å¦‚æœæ˜¯ä¾‹å¤–æ—¥æœŸï¼Œåˆ™è¿”å›false,å¦‚æœæ˜¯å¢åŠ çš„æ—¥æœŸï¼Œé‡‡ç”¨ç¼ºçœçš„true
 				if(jj!=null && !jj.booleanValue()){
 					return false;
 				}
@@ -132,7 +132,7 @@ public class ExecutorManager {
 
 		Document doc = DOGlobals.timeDefineDoc;
 		if (doc == null) {
-			log.error("ÎŞ·¨½âÎöÈÕÀúÅäÖÃ!!!!!");
+			log.error("æ— æ³•è§£ææ—¥å†é…ç½®!!!!!");
 			return null;
 		}
 
@@ -200,11 +200,11 @@ public class ExecutorManager {
 		// || cc.get(Calendar.DAY_OF_WEEK) == 7)) {
 		// return false;
 		// }
-		// ¿ªÊ¼µÄµ¹ÊıËø
+		// å¼€å§‹çš„å€’æ•°é”
 		// final CountDownLatch begin = new CountDownLatch(1);
-		// // ½áÊøµÄµ¹ÊıËø
+		// // ç»“æŸçš„å€’æ•°é”
 		// final CountDownLatch end = new CountDownLatch(10);
-		// // Ê®ÃûÑ¡ÊÖ
+		// // ååé€‰æ‰‹
 		// threadPool.shutdown();
 		//
 		// for (int index = 0; index < 10; index++) {

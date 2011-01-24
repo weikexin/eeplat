@@ -38,7 +38,7 @@ public class ProcessQueue extends MSGAbstractQueue {
 	}
 
 	/**
-	 * ˆÚœ“–‘O?—?—ñ“IMessage ??“–‘O?—?—ñ“I?“x ~“––v?“?“x?C˜¸InpoolæMessage ?s“U[B
+	 * å å½æ‘‰æ…œ?æ£Ÿ?æ¥æ‘Message ??æ‘‰æ…œ?æ£Ÿ?æ¥æ‘?æ™ äºŠæ‘‰æ¤?æ‘“?æ™?ä¸†æ¨ƒInpoolåº¢Message ?å³´æ¢å»©ä¸…
 	 * 
 	 */
 	public synchronized void removeMessage(Message aMessage) {

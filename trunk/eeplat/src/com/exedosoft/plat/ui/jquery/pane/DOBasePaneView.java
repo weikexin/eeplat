@@ -75,7 +75,7 @@ public abstract class DOBasePaneView extends DOBaseView {
 			}
 		} else {
 
-			// ////////////////�ȴ�ӡ�˵���Ϣ
+			// ////////////////锟饺达拷印锟剿碉拷锟斤拷息
 
 			// List menus = DOMenuLinks.getMenusByPaneModelUid(pm.getObjUid());
 			// DOMenuModel showMenu = null;

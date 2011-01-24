@@ -76,10 +76,10 @@ public class ATableForwarderJquery {
 		try {
 			con = DODataSource.getDefaultCon();
 			String boUid = this.getDOBOUid(table);
-			log.info("µ±Ç°Ìí¼ÓµÄÒµÎñ¶ÔÏóÃû³Æ:" + table);
-			log.info("µ±Ç°Ìí¼ÓµÄÒµÎñ¶ÔÏóID:" + boUid);
+			log.info("å½“å‰æ·»åŠ çš„ä¸šåŠ¡å¯¹è±¡åç§°:" + table);
+			log.info("å½“å‰æ·»åŠ çš„ä¸šåŠ¡å¯¹è±¡ID:" + boUid);
 
-			if (boUid == null) { // ////Èç¹ûÅäÖÃÖĞÃ»ÓĞµ±Ç°view µÄÅäÖÃ
+			if (boUid == null) { // ////å¦‚æœé…ç½®ä¸­æ²¡æœ‰å½“å‰view çš„é…ç½®
 				String judgeSql = "select * from do_bo where name = ? ";
 
 				PreparedStatement pstmt = con.prepareStatement(judgeSql);
@@ -113,10 +113,10 @@ public class ATableForwarderJquery {
 		try {
 			con = DODataSource.getDefaultCon();
 			String boUid = this.getDOBOUid(table);
-			log.info("µ±Ç°Ìí¼ÓµÄÒµÎñ¶ÔÏóÃû³Æ:" + table);
-			log.info("µ±Ç°Ìí¼ÓµÄÒµÎñ¶ÔÏóID:" + boUid);
+			log.info("å½“å‰æ·»åŠ çš„ä¸šåŠ¡å¯¹è±¡åç§°:" + table);
+			log.info("å½“å‰æ·»åŠ çš„ä¸šåŠ¡å¯¹è±¡ID:" + boUid);
 
-			if (boUid == null) { // ////Èç¹ûÅäÖÃÖĞÃ»ÓĞµ±Ç°view µÄÅäÖÃ
+			if (boUid == null) { // ////å¦‚æœé…ç½®ä¸­æ²¡æœ‰å½“å‰view çš„é…ç½®
 				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1,1)";
 
 				PreparedStatement pstmt = con.prepareStatement(insertTable);
@@ -153,17 +153,17 @@ public class ATableForwarderJquery {
 			Statement stmt = con.createStatement();
 			String boUid = this.getDOBOUid(table);
 			if (boUid == null) {
-				log.warn("boUidÎ´ÖÆ¶¨£º" + table + "¿ÉÄÜÎ´ÅäÖÃ");
+				log.warn("boUidæœªåˆ¶å®šï¼š" + table + "å¯èƒ½æœªé…ç½®");
 				return;
 			}
 			log.info("");
-			log.info("ÕıÔÚ´¦ÀíÒµÎñ¶ÔÏó:" + table);
-			log.info("ÕıÔÚ²úÉúÒµÎñÊôĞÔÌí¼ÓÓï¾ä¡£¡£¡£¡£¡£");
+			log.info("æ­£åœ¨å¤„ç†ä¸šåŠ¡å¯¹è±¡:" + table);
+			log.info("æ­£åœ¨äº§ç”Ÿä¸šåŠ¡å±æ€§æ·»åŠ è¯­å¥ã€‚ã€‚ã€‚ã€‚ã€‚");
 			int i = 1;
 			for (Iterator itCol = this.getCols(table).iterator(); itCol
 					.hasNext();) {
 				SqlCol sqlCol = (SqlCol) itCol.next();
-				if (!isModify(sqlCol.getName(), boUid)) { // ///Ã»ÓĞ±»ĞŞ¸Ä¹ıµÄ×Ö¶Î²Å¿ÉÒÔ±»¸²¸Ç
+				if (!isModify(sqlCol.getName(), boUid)) { // ///æ²¡æœ‰è¢«ä¿®æ”¹è¿‡çš„å­—æ®µæ‰å¯ä»¥è¢«è¦†ç›–
 					StringBuffer buffer = new StringBuffer();
 					buffer
 							.append(
@@ -182,7 +182,7 @@ public class ATableForwarderJquery {
 					} else {
 						buffer.append("'0'");
 					} // /////////////////////////////isNull
-					buffer.append(",").append("'0'"); // ///isModify,Ö¸ĞŞ¸Ä×´Ì¬£¬ÏÖÔÚÊÇÎ´ĞŞ¸Ä£¬ÊÇÓÉÏµÍ³Éú³ÉµÄ
+					buffer.append(",").append("'0'"); // ///isModify,æŒ‡ä¿®æ”¹çŠ¶æ€ï¼Œç°åœ¨æ˜¯æœªä¿®æ”¹ï¼Œæ˜¯ç”±ç³»ç»Ÿç”Ÿæˆçš„
 					buffer.append(",").append(i * 5); // ///order numbber
 					buffer.append(",").append(sqlCol.getSize()); // ///readonly
 					buffer.append(",").append("'0'"); // ///readonly
@@ -191,10 +191,10 @@ public class ATableForwarderJquery {
 					stmt.addBatch(buffer.toString());
 				}
 				i++;
-			} // ///Ìí¼ÓÃ¿¸ö±í×Ö¶ÎµÄĞÅÏ¢
-			log.info("ÕıÔÚÖ´ĞĞÌí¼Ó²Ù×÷¡£¡£¡£¡£¡£");
+			} // ///æ·»åŠ æ¯ä¸ªè¡¨å­—æ®µçš„ä¿¡æ¯
+			log.info("æ­£åœ¨æ‰§è¡Œæ·»åŠ æ“ä½œã€‚ã€‚ã€‚ã€‚ã€‚");
 			stmt.executeBatch();
-			log.info("²Ù×÷Íê³É¡£");
+			log.info("æ“ä½œå®Œæˆã€‚");
 		} catch (SQLException ex) {
 			try {
 				con.rollback();
@@ -221,7 +221,7 @@ public class ATableForwarderJquery {
 			con.setAutoCommit(false);
 			String seleProps = "SELECT property.* from DO_BO_Property property, DO_BO db where property.boUid = db.objuid and db.name = ?";
 			log.info("");
-			log.info("ÕıÔÚ´¦Àí²ÎÊı×ª»¯¡£¡£¡£¡£¡£");
+			log.info("æ­£åœ¨å¤„ç†å‚æ•°è½¬åŒ–ã€‚ã€‚ã€‚ã€‚ã€‚");
 
 			PreparedStatement stmt1 = con.prepareStatement(seleProps);
 			stmt1.setString(1, table);
@@ -252,7 +252,7 @@ public class ATableForwarderJquery {
 			stmt1.close();
 			stmt2.executeBatch();
 			con.commit();
-			log.info("²Ù×÷Íê³É¡£");
+			log.info("æ“ä½œå®Œæˆã€‚");
 		} catch (SQLException ex) {
 			try {
 				con.rollback();
@@ -291,7 +291,7 @@ public class ATableForwarderJquery {
 	// String aTableServices =
 	// "SELECT service.* FROM DO_Service  service ,DO_BO db where service.bouid = db.objuid and db.name = ? ";
 	// log.info("");
-	// log.info("ÕıÔÚ´¦Àí²ÎÊı×ª»¯¡£¡£¡£¡£¡£");
+	// log.info("æ­£åœ¨å¤„ç†å‚æ•°è½¬åŒ–ã€‚ã€‚ã€‚ã€‚ã€‚");
 	//
 	// PreparedStatement stmtService = con
 	// .prepareStatement(aTableServices);
@@ -310,7 +310,7 @@ public class ATableForwarderJquery {
 	// stmtService.close();
 	// stmtRule.executeBatch();
 	// con.commit();
-	// log.info("²Ù×÷Íê³É¡£");
+	// log.info("æ“ä½œå®Œæˆã€‚");
 	// } catch (SQLException ex) {
 	// try {
 	// con.rollback();
@@ -331,7 +331,7 @@ public class ATableForwarderJquery {
 	// }
 
 	/**
-	 * InsertService ÀûÓÃhibernateµÄapi»òÓÃexedo±¾ÉíapiÀ´Ğ´
+	 * InsertService åˆ©ç”¨hibernateçš„apiæˆ–ç”¨exedoæœ¬èº«apiæ¥å†™
 	 * 
 	 * @param table
 	 * @param type
@@ -342,18 +342,18 @@ public class ATableForwarderJquery {
 		Connection con = null;
 
 		log.info("");
-		log.info("ÕıÔÚÉú³É" + table + "µÄ·şÎñ¡£¡£¡£¡£¡£¡£¡£");
+		log.info("æ­£åœ¨ç”Ÿæˆ" + table + "çš„æœåŠ¡ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 
 		try {
-			con = DODataSource.getDefaultCon();// /»ñÈ¡È±Ê¡µÄÊı¾İ¿âÁ¬½Ó
+			con = DODataSource.getDefaultCon();// /è·å–ç¼ºçœçš„æ•°æ®åº“è¿æ¥
 			con.setAutoCommit(false);
 			Statement stmt = con.createStatement();// //deal service statement
 			Statement stmt2 = con.createStatement();// ////////deal parameter
 			// statement
-			String serviceUid = UUIDHex.getInstance().generate();// ////ÒªÉú³ÉµÄservcie
+			String serviceUid = UUIDHex.getInstance().generate();// ////è¦ç”Ÿæˆçš„servcie
 			// uuid
 
-			DOBO bo = DOBO.getDOBOByName(table);// ////±í¶ÔÓ¦µÄÒµÎñ¶ÔÏó
+			DOBO bo = DOBO.getDOBOByName(table);// ////è¡¨å¯¹åº”çš„ä¸šåŠ¡å¯¹è±¡
 			List props = new ArrayList();
 
 			StringBuffer mainSql = null;
@@ -414,7 +414,7 @@ public class ATableForwarderJquery {
 				mainSql = new StringBuffer("select * from ").append(table);
 			}
 
-			// ///////¸ù¾İprops ¶¨Î»parameter £¬È»ºóservice ºÍ parameter ½øĞĞ¹ØÁª
+			// ///////æ ¹æ®props å®šä½parameter ï¼Œç„¶åservice å’Œ parameter è¿›è¡Œå…³è”
 			this.setParaLinkBatch(props, stmt2, serviceUid, isNew);
 
 			StringBuffer aSql = new StringBuffer(
@@ -451,7 +451,7 @@ public class ATableForwarderJquery {
 
 		StringBuffer insertSql = new StringBuffer();
 		insertSql.append("insert into ").append(table).append("(");
-		log.info("ÕıÔÚÉú³É·şÎñºÍ²ÎÊı¹ØÁªSQL:");
+		log.info("æ­£åœ¨ç”ŸæˆæœåŠ¡å’Œå‚æ•°å…³è”SQL:");
 		for (Iterator itCol = allProps.iterator(); itCol.hasNext();) {
 			DOBOProperty property = (DOBOProperty) itCol.next();
 			insertSql.append(property.getColName()); // /colname
@@ -478,7 +478,7 @@ public class ATableForwarderJquery {
 
 		StringBuffer modiSql = new StringBuffer();
 		modiSql.append("update ").append(table).append(" set ");
-		log.info("ÕıÔÚÉú³É·şÎñºÍ²ÎÊı¹ØÁªSQL:");
+		log.info("æ­£åœ¨ç”ŸæˆæœåŠ¡å’Œå‚æ•°å…³è”SQL:");
 
 		List<String> list = new ArrayList<String>();
 
@@ -513,20 +513,20 @@ public class ATableForwarderJquery {
 		for (Iterator itCol = allProps.iterator(); itCol.hasNext();) {
 			DOBOProperty property = (DOBOProperty) itCol.next();
 
-			if (this.keyCol.equals(property.getColName().toLowerCase()) && (isNew == null)) {// ///²ì¿´Çé¿ö
+			if (this.keyCol.equals(property.getColName().toLowerCase()) && (isNew == null)) {// ///å¯Ÿçœ‹æƒ…å†µ
 
 				String paraUid = this.getParaUidByProp(property.getObjUid(),
 						DOParameter.TYPE_CURRENT);
 				addParaRelationStr(stmt2, serviceUid, order, paraUid);
 
 			} else if (this.keyCol.equals(property.getColName().toLowerCase())
-					&& (isNew != null) && !isNew.booleanValue()) {// /ĞŞ¸ÄÇé¿ö
-				// /////////Õâ¾ä»°µÄÒâË¼ÊÇ·Åµ½×îºóÖ´ĞĞ
+					&& (isNew != null) && !isNew.booleanValue()) {// /ä¿®æ”¹æƒ…å†µ
+				// /////////è¿™å¥è¯çš„æ„æ€æ˜¯æ”¾åˆ°æœ€åæ‰§è¡Œ
 				modiParaUid = this.getParaUidByProp(property.getObjUid(),
 						DOParameter.TYPE_CURRENT);
 				continue;
 			} else if (this.keyCol.equals(property.getColName().toLowerCase())
-					&& (isNew != null) && isNew.booleanValue()) {// /ĞÂÔöµÄÇé¿ö
+					&& (isNew != null) && isNew.booleanValue()) {// /æ–°å¢çš„æƒ…å†µ
 				String paraUid = this.getParaUidByProp(property.getObjUid(),
 						DOParameter.TYPE_KEY);
 				addParaRelationStr(stmt2, serviceUid, order, paraUid);
@@ -559,7 +559,7 @@ public class ATableForwarderJquery {
 				.append(UUIDHex.getInstance().generate()).append("','").append(
 						serviceUid).append("','").append(paraUid).append("',")
 				.append(order * 5).append(")");
-		log.info("¹ØÁªµÄSQLÓï¾ä:" + paraRelationStr);
+		log.info("å…³è”çš„SQLè¯­å¥:" + paraRelationStr);
 		stmt2.addBatch(paraRelationStr.toString());
 	}
 
@@ -585,7 +585,7 @@ public class ATableForwarderJquery {
 						",'").append(colName).append("',").append(paraType)
 				.append(",'").append(prop.getString("bouid")).append("'")
 				.append(",'").append(prop.getString("objuid")).append("')");
-		log.info("Ìí¼Ó²ÎÊıµÄsqlÓï¾ä:" + aSql);
+		log.info("æ·»åŠ å‚æ•°çš„sqlè¯­å¥:" + aSql);
 		stmt2.addBatch(aSql.toString());
 	}
 
@@ -608,12 +608,12 @@ public class ATableForwarderJquery {
 				.append(",'true'").append(",null").append(",null").append(",'")
 				.append(prop.getString("objuid")).append("'").append(",1")
 				.append(",'").append(this.BOUid).append("')");
-		log.info("Ìí¼Ó²ÎÊıµÄsqlÓï¾ä:" + aSql);
+		log.info("æ·»åŠ å‚æ•°çš„sqlè¯­å¥:" + aSql);
 		stmt2.addBatch(aSql.toString());
 	}
 
 	/**
-	 * Í¨¹ısql²éÑ¯Óï¾ä£¬·µ»ØviewName¶ÔÓ¦µÄobjUID
+	 * é€šè¿‡sqlæŸ¥è¯¢è¯­å¥ï¼Œè¿”å›viewNameå¯¹åº”çš„objUID
 	 * 
 	 * @param boName
 	 */
@@ -655,7 +655,7 @@ public class ATableForwarderJquery {
 			pstmt.setString(1, colName);
 			pstmt.setString(2, boUid);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {// //´¦ÓÚĞŞ¸Ä×´Ì¬£¬ÏµÍ³³õÊ¼»¯Ê±°Ñ¸Ã×Ö¶ÎºöÂÔ¡£
+			if (rs.next()) {// //å¤„äºä¿®æ”¹çŠ¶æ€ï¼Œç³»ç»Ÿåˆå§‹åŒ–æ—¶æŠŠè¯¥å­—æ®µå¿½ç•¥ã€‚
 				return true;
 			} else {
 				sql = "delete from DO_BO_Property where col_name = ? and bouid = ?";
@@ -691,7 +691,7 @@ public class ATableForwarderJquery {
 			pstmt.setString(1, propertyUid);
 			pstmt.setInt(2, type);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {// //ÕÒµÃµ½¼ÇÂ¼
+			if (rs.next()) {// //æ‰¾å¾—åˆ°è®°å½•
 				ret = rs.getString("objUid");
 			}
 			rs.close();
@@ -726,7 +726,7 @@ public class ATableForwarderJquery {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, propertyUid);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {// //ÕÒµÃµ½¼ÇÂ¼
+			if (rs.next()) {// //æ‰¾å¾—åˆ°è®°å½•
 				ret = rs.getString("objUid");
 			}
 			rs.close();

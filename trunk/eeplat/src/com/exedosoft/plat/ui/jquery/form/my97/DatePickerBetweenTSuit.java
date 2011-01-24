@@ -24,7 +24,7 @@ public class DatePickerBetweenTSuit extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer();
 
 		getAInputTimeStr(fm1, buffer, "");
-		buffer.append("&nbsp;ÖÁ &nbsp;");
+		buffer.append("&nbsp;è‡³ &nbsp;");
 		getAInputTimeStr(fm2, buffer, "");
 		
 		return buffer.toString();

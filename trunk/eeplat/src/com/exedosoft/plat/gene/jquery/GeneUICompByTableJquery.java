@@ -91,7 +91,7 @@ public class GeneUICompByTableJquery  {
 	
 
 
-	// /////////////////////²»ÄÜÔÚÕâ¸ö¾Í»ñÈ¡bp,ÒòÎªÀà±äÁ¿£¬µ±Õâ¸öÊµÀıÊµÀı»¯Ê±¾ÍÖ´ĞĞÁË
+	// /////////////////////ä¸èƒ½åœ¨è¿™ä¸ªå°±è·å–bp,å› ä¸ºç±»å˜é‡ï¼Œå½“è¿™ä¸ªå®ä¾‹å®ä¾‹åŒ–æ—¶å°±æ‰§è¡Œäº†
 
 	private String geneATable = "";
 
@@ -117,17 +117,17 @@ public class GeneUICompByTableJquery  {
 			List sers = DAOUtil.INSTANCE().select(DOService.class, SQL_SELECT_SERVICE,this.geneATable);
 
 			/**
-			 * ¸ù¾İServiceÉú³Éui×é¼ş¡£
+			 * æ ¹æ®Serviceç”Ÿæˆuiç»„ä»¶ã€‚
 			 */
 
 			DOService aService = DOService.getService(geneATable + "_list");
-			genePaneAndGrid( aService, gridList, geneATable + "_list","ĞÅÏ¢ÁĞ±í");
+			genePaneAndGrid( aService, gridList, geneATable + "_list","ä¿¡æ¯åˆ—è¡¨");
 			
 			aService = DOService.getService(geneATable + "_browse");
 			
-			genePaneAndGrid( aService, gridSupportMore,  geneATable + "_browse","ä¯ÀÀĞÅÏ¢");
-			genePaneAndGrid( aService, gridSupportMore,   geneATable + "_update","ĞŞ¸ÄĞÅÏ¢");
-			genePaneAndGrid( aService, gridSupportMore, geneATable +  "_insert","ĞÂÔöÊı¾İ");
+			genePaneAndGrid( aService, gridSupportMore,  geneATable + "_browse","æµè§ˆä¿¡æ¯");
+			genePaneAndGrid( aService, gridSupportMore,   geneATable + "_update","ä¿®æ”¹ä¿¡æ¯");
+			genePaneAndGrid( aService, gridSupportMore, geneATable +  "_insert","æ–°å¢æ•°æ®");
 
 
 
@@ -153,7 +153,7 @@ public class GeneUICompByTableJquery  {
 //
 //				formModel.setL10n(prop.getColName());
 //				dao.store(formModel);
-//				log.info("ÕıÔÚ´Ó" + prop.getColName() + "Éú³É½çÃæ×é¼ş.....");
+//				log.info("æ­£åœ¨ä»" + prop.getColName() + "ç”Ÿæˆç•Œé¢ç»„ä»¶.....");
 //			}
 //		} catch (DAOException e) {
 //			// TODO Auto-generated catch block
@@ -190,7 +190,7 @@ public class GeneUICompByTableJquery  {
 
 		int i = 1;
 		
-		/////·şÎñµÄÊôĞÔ Ô­À´ÊÇaService.retrieveProperties
+		/////æœåŠ¡çš„å±æ€§ åŸæ¥æ˜¯aService.retrieveProperties
 		for (Iterator itProp = aService.getBo().retrieveProperties().iterator(); itProp
 				.hasNext();) {
 
@@ -203,8 +203,8 @@ public class GeneUICompByTableJquery  {
 			
 			
 			/**
-			 *  * ¿Í»§¶ËÑéÖ¤ÅäÖÃ£¬·ÖÎª£³²¿·Ö£¬ÒÔ;¸ô¿ª £±£¬ÀàĞÍ£ºInteger RealNumber EMail Text Others 2, ³¤¶È £³,
-				 * ÆäËûScript Ô¼Êø
+			 *  * å®¢æˆ·ç«¯éªŒè¯é…ç½®ï¼Œåˆ†ä¸ºï¼“éƒ¨åˆ†ï¼Œä»¥;éš”å¼€ ï¼‘ï¼Œç±»å‹ï¼šInteger RealNumber EMail Text Others 2, é•¿åº¦ ï¼“,
+				 * å…¶ä»–Script çº¦æŸ
 				 * 
 			 */
 				
@@ -252,13 +252,13 @@ public class GeneUICompByTableJquery  {
 			geneSaveButtonForm(aService, aName, gridM);
 		}
 
-		// ¶ÔÃ¿¸öGrid¸³½oÒ»¸öPane
+		// å¯¹æ¯ä¸ªGridèµ‹çµ¦ä¸€ä¸ªPane
 
 		DOPaneModel pane = new DOPaneModel();
 		pane.setCategory(aService.getBo());
 		pane.setName("PM_" + aName);
 
-		// ///ÏÂÒ»²½¿¼ÂÇ ÊÇ²»ÊÇÃû³Æ²ÉÓÃºÍServie Ò»ÖÂ
+		// ///ä¸‹ä¸€æ­¥è€ƒè™‘ æ˜¯ä¸æ˜¯åç§°é‡‡ç”¨å’ŒServie ä¸€è‡´
 		pane.setTitle(title);
 		pane.setL10n("PM_" + aName);
 		pane.setLinkType(Integer.valueOf(DOPaneModel.LINKTYPE_GRIDMODEL));
@@ -283,11 +283,11 @@ public class GeneUICompByTableJquery  {
 	private static void geneSaveButtonForm( DOService aService,
 			String aName, DOGridModel gridM) throws ExedoException  {
 
-		// ///×°µç»°Ğ¡ÁéÍ¨, 83747268
-		// //×°µç»°¹«Ë¾µç»°, 61758100
+		// ///è£…ç”µè¯å°çµé€š, 83747268
+		// //è£…ç”µè¯å…¬å¸ç”µè¯, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("±£´æ");
+		formM.setL10n("ä¿å­˜");
 		String uName = "_update";
 		if(aName.endsWith("insert")){
 			uName = "_insert";
@@ -329,11 +329,11 @@ public class GeneUICompByTableJquery  {
 	private static void geneCloseButtonForm( DOService aService,
 			DOGridModel gridM) throws ExedoException  {
 
-		// ///×°µç»°Ğ¡ÁéÍ¨, 83747268
-		// //×°µç»°¹«Ë¾µç»°, 61758100
+		// ///è£…ç”µè¯å°çµé€š, 83747268
+		// //è£…ç”µè¯å…¬å¸ç”µè¯, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("¹Ø±Õ");
+		formM.setL10n("å…³é—­");
 //		DOService linkService = DOService.getService(aService.getBo().getName()
 //				+ ".delete");
 //		formM.setLinkService(linkService);

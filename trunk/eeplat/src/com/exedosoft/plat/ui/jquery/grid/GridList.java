@@ -49,7 +49,7 @@ public class GridList extends DOViewTemplate {
 		if (gm.getContainerPane() != null
 				&& gm.getContainerPane().getParent() != null) {
 
-			// //×Ô¶¯ÅĞ¶ÏÌõ¼şÃæ°å
+			// //è‡ªåŠ¨åˆ¤æ–­æ¡ä»¶é¢æ¿
 			List children = gm.getContainerPane().getParent()
 					.retrieveChildren();
 
@@ -66,7 +66,7 @@ public class GridList extends DOViewTemplate {
 
 			}
 
-			// //Èç¹ûÅäÖÃÁËÒş²ØÃæ°å£¨ÕâÀïµÄº¬ÒåÊÇ ÓµÓĞ±íµ¥µÄÃæ°å£©
+			// //å¦‚æœé…ç½®äº†éšè—é¢æ¿ï¼ˆè¿™é‡Œçš„å«ä¹‰æ˜¯ æ‹¥æœ‰è¡¨å•çš„é¢æ¿ï¼‰
 			DOPaneModel hpm = gm.getContainerPane().getHiddenPane();
 			if (hpm != null) {
 				if (hpm.getDOGridModel() != null) {
@@ -141,7 +141,7 @@ public class GridList extends DOViewTemplate {
 			}
 		}
 
-		// ///´¦ÀíµÚ¶ş·şÎñ£¨Í³¼ÆÓÃ£©
+		// ///å¤„ç†ç¬¬äºŒæœåŠ¡ï¼ˆç»Ÿè®¡ç”¨ï¼‰
 		DOService secondService = gridModel.getSecondService();
 		if (secondService != null) {
 			List secondResult = secondService.invokeSelect();
@@ -157,7 +157,7 @@ public class GridList extends DOViewTemplate {
 						DOFormModel aFm = it.next();
 						aFm.setData(statistics);
 						sb.append("&nbsp;&nbsp;&nbsp;&nbsp;").append(
-								aFm.getL10n()).append("£º").append(
+								aFm.getL10n()).append("ï¼š").append(
 								aFm.getValue()).append(
 								"&nbsp;&nbsp;&nbsp;&nbsp;");
 					}

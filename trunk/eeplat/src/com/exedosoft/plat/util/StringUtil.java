@@ -33,7 +33,7 @@ import java.math.BigInteger;
 //import sun.misc.BASE64Decoder;
 
 /**
- * Ö÷ÒªÊÇ¶ÔStringÏà¹Ø²Ù×÷µÄÀà£¬»¹Ìá¹©ÆäËüÒ»Ğ©³£¼ûµÄ°ïÖú·½·¨£¬ÊÇÆ½Ì¨ÖĞÊ¹ÓÃ×î¶àµÄ°ïÖúÀà¡£
+ * ä¸»è¦æ˜¯å¯¹Stringç›¸å…³æ“ä½œçš„ç±»ï¼Œè¿˜æä¾›å…¶å®ƒä¸€äº›å¸¸è§çš„å¸®åŠ©æ–¹æ³•ï¼Œæ˜¯å¹³å°ä¸­ä½¿ç”¨æœ€å¤šçš„å¸®åŠ©ç±»ã€‚
  */
 
 public class StringUtil {
@@ -144,7 +144,7 @@ public class StringUtil {
 		}
 	}
 
-	public static String byte2hex(byte[] b) // ¶şĞĞÖÆ×ª×Ö·û´®
+	public static String byte2hex(byte[] b) // äºŒè¡Œåˆ¶è½¬å­—ç¬¦ä¸²
 	{
 		String hs = "";
 		String stmp = "";
@@ -173,17 +173,17 @@ public class StringUtil {
 	}
 
 	/**
-	 * ´¦ÀíÒ»¸ö±í´ïÊ½£¬Õâ¸ö±í´ïÊ½¿ÉÄÜÔÚ DOFormModel »òÕß NodeInstance
-	 * ÖĞÓÃµ½¡£DOFormModelÀïÃæÖ÷ÒªÊÇÏÔÊ¾µÄ×Ö¶ÎÊÇ¾­¹ı¼ÆËã¶øÀ´. NodeInstanceÖ÷ÒªÊÇ¶Ô±í´ïÊ½µÄÅĞ¶Ï
+	 * å¤„ç†ä¸€ä¸ªè¡¨è¾¾å¼ï¼Œè¿™ä¸ªè¡¨è¾¾å¼å¯èƒ½åœ¨ DOFormModel æˆ–è€… NodeInstance
+	 * ä¸­ç”¨åˆ°ã€‚DOFormModelé‡Œé¢ä¸»è¦æ˜¯æ˜¾ç¤ºçš„å­—æ®µæ˜¯ç»è¿‡è®¡ç®—è€Œæ¥. NodeInstanceä¸»è¦æ˜¯å¯¹è¡¨è¾¾å¼çš„åˆ¤æ–­
 	 * 
 	 * @param expression
-	 *            ĞèÒª´¦ÀíµÄ±í´ïÊ½
+	 *            éœ€è¦å¤„ç†çš„è¡¨è¾¾å¼
 	 * @param bi
-	 *            °üº¬²ÎÊıÊı¾İ
+	 *            åŒ…å«å‚æ•°æ•°æ®
 	 * @param boProperties
-	 *            ĞèÒªÌæ»»µÄ²ÎÊı ²ÉÓÃboProperties ²»ÊÇ´Óbi.getBO»ñÈ¡£¬¿ÉÒÔÌá¹©¸üÁé»îµÄ°´ĞèÌæ»»¡£
+	 *            éœ€è¦æ›¿æ¢çš„å‚æ•° é‡‡ç”¨boProperties ä¸æ˜¯ä»bi.getBOè·å–ï¼Œå¯ä»¥æä¾›æ›´çµæ´»çš„æŒ‰éœ€æ›¿æ¢ã€‚
 	 * @param placeHolder
-	 *            Õ¼Î»·û
+	 *            å ä½ç¬¦
 	 * @return
 	 */
 	public static String getCalException(String expression, BOInstance bi,
@@ -207,7 +207,7 @@ public class StringUtil {
 		} else {
 
 			List<StringLengthSort> list = new ArrayList<StringLengthSort>();
-			// /////////////////////ÒµÎñ¶ÔÏó±íµ¥µÄÖµÌæ»»
+			// /////////////////////ä¸šåŠ¡å¯¹è±¡è¡¨å•çš„å€¼æ›¿æ¢
 			for (Iterator it = boProperties.iterator(); it.hasNext();) {
 				DOBOProperty property = (DOBOProperty) it.next();
 				String varName = property.getColName();
@@ -237,11 +237,11 @@ public class StringUtil {
 	}
 
 	/**
-	 * ¸ù¾İ×ÜµÄ¼ÇÂ¼ÊıºÍÃ¿Ò³ÏÔÊ¾µÄĞĞÊıÅĞ¶Ï¹²ÓĞ¶àÉÙÒ³
+	 * æ ¹æ®æ€»çš„è®°å½•æ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°åˆ¤æ–­å…±æœ‰å¤šå°‘é¡µ
 	 * 
 	 * @param totalSize
 	 * @param rowSize
-	 *            Ã¿Ò³ÏÔÊ¾µÄĞĞÊı
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
 	 * @return
 	 */
 	public static int getPageSize(int totalSize, int rowSize) {
@@ -271,7 +271,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * »®·Ö×Ö·û´®
+	 * åˆ’åˆ†å­—ç¬¦ä¸²
 	 * 
 	 * @param mapFormatStr
 	 * @param isAddLastZero
@@ -322,11 +322,11 @@ public class StringUtil {
 			if (i % 2 == 0) {
 				oneTr = new HashMap();
 				oneTr.put("id", String.valueOf(count));
-				// ////////////////×ø±ê,x jd====¾­¶È
+				// ////////////////åæ ‡,x jd====ç»åº¦
 				oneTr.put("jd", oneStr);
 				count++;
 			} else {
-				// //////////////×ø±ê,y wd====Î³¶È
+				// //////////////åæ ‡,y wd====çº¬åº¦
 				oneTr.put("wd", oneStr);
 				list.add(oneTr);
 			}
@@ -351,7 +351,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * »®·Ö×Ö·û´®
+	 * åˆ’åˆ†å­—ç¬¦ä¸²
 	 * 
 	 * @param mapFormatStr
 	 * @param isAddZero
@@ -376,7 +376,7 @@ public class StringUtil {
 		int count = 1;
 		HashMap oneTr = new HashMap();
 		int computerStr = secondStr * 3 + 5;
-		System.out.println("¹ÕµãÊıÎª£º" + secondStr);
+		System.out.println("æ‹ç‚¹æ•°ä¸ºï¼š" + secondStr);
 		if (computerStr >= strs.length) {
 			oneTr = new HashMap();
 			oneTr.put("cid", String.valueOf(count));
@@ -399,11 +399,11 @@ public class StringUtil {
 			list.add(oneTr);
 			count++;
 
-			System.out.println("¹ÕµãÊıÎª£º" + strs[computerStr]);
+			System.out.println("æ‹ç‚¹æ•°ä¸ºï¼š" + strs[computerStr]);
 			secondStr = Integer.parseInt(strs[computerStr]);
 			computerStr += secondStr * 3 + 5;
-			System.out.println("×ª»¯" + computerStr);
-			System.out.println("×ª»¯" + strs.length);
+			System.out.println("è½¬åŒ–" + computerStr);
+			System.out.println("è½¬åŒ–" + strs.length);
 
 			if (computerStr == strs.length) {
 				oneTr = new HashMap();
@@ -451,7 +451,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * °Ñ×Ö·û´®×ª»¯ÎªÁĞ±íĞÎÊ½
+	 * æŠŠå­—ç¬¦ä¸²è½¬åŒ–ä¸ºåˆ—è¡¨å½¢å¼
 	 * 
 	 * @param src
 	 * @return
@@ -500,7 +500,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * Ìæ»»< > " ' µÈÌØÊâ×Ö·û
+	 * æ›¿æ¢< > " ' ç­‰ç‰¹æ®Šå­—ç¬¦
 	 * 
 	 * @param args
 	 */
@@ -514,7 +514,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * Ìí¼ÓTab¿Õ¸ñ
+	 * æ·»åŠ Tabç©ºæ ¼
 	 * 
 	 * @param buffer
 	 */
@@ -568,7 +568,7 @@ public class StringUtil {
 	// }
 
 	/**
-	 * ·ÀÖ¹¿çÕ¾½Å±¾¹¥»÷xss
+	 * é˜²æ­¢è·¨ç«™è„šæœ¬æ”»å‡»xss
 	 * 
 	 * @param value
 	 * @return
@@ -637,7 +637,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * »ñÈ¡¸½¼şÎÄ¼ş£¬Ïà¶ÔÂ·¾¶£¨Ïà¶ÔÓëÏµÍ³Éè¶¨µÄÏÂÔØÉÏ´«Â·¾¶£©
+	 * è·å–é™„ä»¶æ–‡ä»¶ï¼Œç›¸å¯¹è·¯å¾„ï¼ˆç›¸å¯¹ä¸ç³»ç»Ÿè®¾å®šçš„ä¸‹è½½ä¸Šä¼ è·¯å¾„ï¼‰
 	 * 
 	 * @param theFileName
 	 * @return
@@ -652,7 +652,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * * »ñÈ¡¸½¼şÎÄ¼ş£¬¾ø¶ÔÂ·¾¶
+	 * * è·å–é™„ä»¶æ–‡ä»¶ï¼Œç»å¯¹è·¯å¾„
 	 * 
 	 * @param theFileName
 	 * @return
@@ -670,7 +670,7 @@ public class StringUtil {
 									.substring(theFileName.indexOf("/") + 1)),
 									"utf-8"));
 		} catch (UnsupportedEncodingException e) {
-			// TODO ×Ô¶¯Éú³É catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆ catch å—
 			e.printStackTrace();
 		}
 		return fileUrl;
@@ -764,7 +764,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * ¼ì²éÕıÔò±í´ïÊ½
+	 * æ£€æŸ¥æ­£åˆ™è¡¨è¾¾å¼
 	 * 
 	 * @param str
 	 * @param regExt
@@ -773,8 +773,8 @@ public class StringUtil {
 
 	public static boolean isValid(String str, String regExt) {
 
-		log.info("Ä¿±ê×Ö·û´®::::" + str);
-		log.info("ÕıÔò±í´ïÊ½:::" + regExt);
+		log.info("ç›®æ ‡å­—ç¬¦ä¸²::::" + str);
+		log.info("æ­£åˆ™è¡¨è¾¾å¼:::" + regExt);
 
 		str = str.trim();
 		regExt = regExt.trim();
@@ -784,29 +784,29 @@ public class StringUtil {
 		if (doMatcher.matches()) {
 			return true;
 		}
-		log.info("Ä¿±ê×Ö·û´®Ã»ÓĞÂú×ãÕıÔò±í´ï");
+		log.info("ç›®æ ‡å­—ç¬¦ä¸²æ²¡æœ‰æ»¡è¶³æ­£åˆ™è¡¨è¾¾");
 		return false;
 	}
 
 	// ////////////////////
 	/**
-	 * db2 µÄÅÅĞòÇ¿ÖÆ²»ÄÜ²ÉÓÃtable.colÕâÖÖĞÎÊ½ Ö»ÄÜ²ÉÓÃcolµÄĞÎÊ½£¬Èç¹ûcolÖØ¸´£¬Çëas othername
+	 * db2 çš„æ’åºå¼ºåˆ¶ä¸èƒ½é‡‡ç”¨table.colè¿™ç§å½¢å¼ åªèƒ½é‡‡ç”¨colçš„å½¢å¼ï¼Œå¦‚æœcolé‡å¤ï¼Œè¯·as othername
 	 */
 	public static String getOrderByCol(String str) {
 
 		// //select * from do_enum order by a_code
 		// ///\\w*(\\s)+[order](\\s)+[by]{1}{\\w*}(\\s)+\\w*
-		// ///////////È¥µô,ºóÃæµÄ¿Õ¸ñ
+		// ///////////å»æ‰,åé¢çš„ç©ºæ ¼
 		str = str.replaceAll(",(\\s)*", ",");
 		System.out.println(str);
 
-		// ////////¸ù¾İorder by ÌØÕ÷ ÌáÈ¡order by col ×Ö¶Î
+		// ////////æ ¹æ®order by ç‰¹å¾ æå–order by col å­—æ®µ
 		Pattern pattern = Pattern.compile("order(\\s)+by(\\s)+(.)+(\\s)*");
 
 		Matcher matcher = pattern.matcher(str);
 
 		if (matcher.find()) {
-			// ///////////È¥µôorder by Ö»·µ»Øcol
+			// ///////////å»æ‰order by åªè¿”å›col
 			return matcher.group().replaceAll("order(\\s)+by(\\s)+", "");
 
 		}
@@ -817,8 +817,8 @@ public class StringUtil {
 	// (\S)+[@]{1}(\S)+[.]{1}(\w)+
 
 	public static void test_replace() {
-		Pattern p = null; // ÕıÔò±í´ïÊ½
-		Matcher m = null; // ²Ù×÷µÄ×Ö·û´®
+		Pattern p = null; // æ­£åˆ™è¡¨è¾¾å¼
+		Matcher m = null; // æ“ä½œçš„å­—ç¬¦ä¸²
 		StringBuffer sb = null;
 		int i = 0;
 		p = Pattern.compile("\\{\\w*\\}");
@@ -835,11 +835,11 @@ public class StringUtil {
 	/**
 	 * 
 	 * @param aWholeStr
-	 *            ĞèÒª´¦ÀíµÄSQL Óï¾ä
+	 *            éœ€è¦å¤„ç†çš„SQL è¯­å¥
 	 * @param anOldCol
-	 *            ¾ÉµÄÁĞÃ÷
+	 *            æ—§çš„åˆ—æ˜
 	 * @param aNewCol
-	 *            ĞÂµÄÁĞÃû
+	 *            æ–°çš„åˆ—å
 	 * @return
 	 */
 	public static String replaceSqlCol(String aWholeStr, String anOldCol,
@@ -849,8 +849,8 @@ public class StringUtil {
 			return aWholeStr;
 		}
 
-		Pattern p = null; // ÕıÔò±í´ïÊ½
-		Matcher m = null; // ²Ù×÷µÄ×Ö·û´®
+		Pattern p = null; // æ­£åˆ™è¡¨è¾¾å¼
+		Matcher m = null; // æ“ä½œçš„å­—ç¬¦ä¸²
 
 		StringBuffer sb = new StringBuffer();
 
@@ -915,7 +915,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * °ÑĞ¡ÊıµãĞÎÊ½×ª»»Îª¾­Î³¶È×ø±ê
+	 * æŠŠå°æ•°ç‚¹å½¢å¼è½¬æ¢ä¸ºç»çº¬åº¦åæ ‡
 	 * 
 	 * @param beforStr
 	 * @return
@@ -936,27 +936,27 @@ public class StringUtil {
 			String beforDot = beforStr.substring(0, beforStr.indexOf("."));
 			String afterDot = beforStr.substring(beforStr.indexOf(".") + 1,
 					beforStr.length());
-			// ///////////////////////Ğ¡ÊıµãºóÃæ³ËÒÔ60 »ñÈ¡·Ö
+			// ///////////////////////å°æ•°ç‚¹åé¢ä¹˜ä»¥60 è·å–åˆ†
 			double dAfterDot = Double.parseDouble("0." + afterDot);
 			String ffStr = String.valueOf(dAfterDot * 60);
 			String ff = ffStr.substring(0, ffStr.indexOf("."));
-			// /////////////////ÔÙÔÚĞ¡ÊıµãºóÃæ³ËÒÔ60»ñÈ¡Ãë
+			// /////////////////å†åœ¨å°æ•°ç‚¹åé¢ä¹˜ä»¥60è·å–ç§’
 			String afterFF = ffStr.substring(ffStr.indexOf(".") + 1, ffStr
 					.length());
 			double dAfterFF = Double.parseDouble("0." + afterFF);
 			double dMM = dAfterFF * 60;
 			// String mm = new BigDecimal(dMM).setScale(0,
 			// BigDecimal.ROUND_HALF_UP).toString();
-			beforStr = new StringBuilder(beforDot).append("¡ã").append(ff)
-					.append("¡ä").append((int) dMM).append("¡å").toString();
+			beforStr = new StringBuilder(beforDot).append("Â°").append(ff)
+					.append("â€²").append((int) dMM).append("â€³").toString();
 		} else {
-			beforStr = beforStr + "¡ã00¡ä00¡å";
+			beforStr = beforStr + "Â°00â€²00â€³";
 		}
 		return beforStr;
 	}
 
 	/**
-	 * Copy Õû¸öÄ¿Â¼Ò»°ã·½Ê½ svn¿ØÖÆÎÄ¼ş²»copy
+	 * Copy æ•´ä¸ªç›®å½•ä¸€èˆ¬æ–¹å¼ svnæ§åˆ¶æ–‡ä»¶ä¸copy
 	 * 
 	 * @param file1
 	 * @param file2
@@ -990,7 +990,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * Copy Ä³¸öÌØ¶¨ÎÄ¼ş£¬nio ·½Ê½
+	 * Copy æŸä¸ªç‰¹å®šæ–‡ä»¶ï¼Œnio æ–¹å¼
 	 * 
 	 * @param in
 	 * @param out
@@ -1020,8 +1020,8 @@ public class StringUtil {
 	public static String getDateStr(java.util.Date aDate, String format) {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-		// ÉèÖÃlenientÎªfalse.
-		// ·ñÔòSimpleDateFormat»á±È½Ï¿íËÉµØÑéÖ¤ÈÕÆÚ£¬±ÈÈç2007/02/29»á±»½ÓÊÜ£¬²¢×ª»»³É2007/03/01
+		// è®¾ç½®lenientä¸ºfalse.
+		// å¦åˆ™SimpleDateFormatä¼šæ¯”è¾ƒå®½æ¾åœ°éªŒè¯æ—¥æœŸï¼Œæ¯”å¦‚2007/02/29ä¼šè¢«æ¥å—ï¼Œå¹¶è½¬æ¢æˆ2007/03/01
 		return dateFormat.format(aDate);
 
 	}
@@ -1034,20 +1034,20 @@ public class StringUtil {
 		// StringUtil.copyFile(f1, f2);
 
 	
-		// System.out.println(StringUtil.encodeFromISO2GBK("ÖĞ¹úÈËÃñ¹²ºÍ¹ú"));
+		// System.out.println(StringUtil.encodeFromISO2GBK("ä¸­å›½äººæ°‘å…±å’Œå›½"));
 		//		
-		// System.out.println(StringUtil.encodeFromISO2UTF("ÖĞ¹úÈËÃñ¹²ºÍ¹ú"));
-		//		
-		//		
-		// System.out.println(StringUtil.encodeFromGBK2UTF("ÖĞ¹úÈËÃñ¹²ºÍ¹ú"));
-		//		
-		// System.out.println(StringUtil.encodeFromGBK2UTF(StringUtil.encodeFromISO2GBK("ÖĞ¹úÈËÃñ¹²ºÍ¹ú")));
+		// System.out.println(StringUtil.encodeFromISO2UTF("ä¸­å›½äººæ°‘å…±å’Œå›½"));
 		//		
 		//		
-		// System.out.println(StringUtil.encodeFromUTF2GBK("ÖĞ¹úÈËÃñ¹²ºÍ¹ú"));
+		// System.out.println(StringUtil.encodeFromGBK2UTF("ä¸­å›½äººæ°‘å…±å’Œå›½"));
 		//		
-		// System.out.println(StringUtil.encodeFromUTF2GBK(StringUtil.encodeFromISO2UTF("ÖĞ¹úÈËÃñ¹²ºÍ¹ú")));
-		// String name = new String("ÖĞ¹úÈËÃñ¹²ºÍ¹ú".getBytes("utf-8"), "iso-8859-1");
+		// System.out.println(StringUtil.encodeFromGBK2UTF(StringUtil.encodeFromISO2GBK("ä¸­å›½äººæ°‘å…±å’Œå›½")));
+		//		
+		//		
+		// System.out.println(StringUtil.encodeFromUTF2GBK("ä¸­å›½äººæ°‘å…±å’Œå›½"));
+		//		
+		// System.out.println(StringUtil.encodeFromUTF2GBK(StringUtil.encodeFromISO2UTF("ä¸­å›½äººæ°‘å…±å’Œå›½")));
+		// String name = new String("ä¸­å›½äººæ°‘å…±å’Œå›½".getBytes("utf-8"), "iso-8859-1");
 		//
 		// System.out.println(name);
 		//		
@@ -1069,10 +1069,10 @@ public class StringUtil {
 		// ?";
 		//
 		// String tempReplaceColA = "(\\s)+" + "name"
-		// + "(\\s)*[=](\\s)*[?](\\s)*[,]";// //µÚÒ»ÖÖÌæ»»·½Ê½
+		// + "(\\s)*[=](\\s)*[?](\\s)*[,]";// //ç¬¬ä¸€ç§æ›¿æ¢æ–¹å¼
 		//
 		// String tempReplaceColB = "[,]{1}(\\s)*" + "l10n" +
-		// "(\\s)*[=](\\s)*[?]";// //µÚ¶şÖÖÌæ»»·½Ê½
+		// "(\\s)*[=](\\s)*[?]";// //ç¬¬äºŒç§æ›¿æ¢æ–¹å¼
 		//
 		// aUpdateSql = aUpdateSql.replaceAll(tempReplaceColA, " ");
 		//
@@ -1088,11 +1088,11 @@ public class StringUtil {
 		// theP =
 		// "^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))$";
 		//
-		// theP = "11(.){4}(¡¢11(.){4})*";
+		// theP = "11(.){4}(ã€11(.){4})*";
 		//		
 		// System.out.println(theP);
 		// Pattern pattern = Pattern.compile(theP);
-		// Matcher mm = pattern.matcher("110000¡¢210000¡¢110000");
+		// Matcher mm = pattern.matcher("110000ã€210000ã€110000");
 		// System.out.println(mm.matches());
 		// System.out.println(StringUtil.isValid("2007-9-14", theP));
 		// if (StringUtil.isValid("2007gtggt-9-14", theP)) {

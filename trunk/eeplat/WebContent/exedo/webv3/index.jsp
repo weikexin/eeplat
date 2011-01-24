@@ -1,11 +1,17 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
+<%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>管理平台登录</title>
+
+<script language="javascript">
+  globalURL = "/<%=DOGlobals.URL%>/";
+</script>  
+
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
@@ -27,7 +33,7 @@
 <body class="login">
 <div id="login">
 
-<h1><a  title="易元平台"><img border=0 height=125px width=303px src="images/logo.png"/></a></h1>
+<h1><a  title="易一平台"><img border=0 height=125px width=303px src="images/logo.png"/></a></h1>
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
