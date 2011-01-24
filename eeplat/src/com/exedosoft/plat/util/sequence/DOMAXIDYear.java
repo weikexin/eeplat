@@ -90,7 +90,7 @@ public class DOMAXIDYear implements SequenceBuilder{
 
 		Connection con = null;
 		PreparedStatement stmt = null;
-		int retId = 1;// //////////·µ»ØµÄÖµ
+		int retId = 1;// //////////è¿”å›žçš„å€¼
 		DOBO bo = DOBO.getDOBOByName("DO_CODE_MAXSEQUENCE");
 		DODataSource dss =  bo.getDataBase();
 		try {

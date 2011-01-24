@@ -9,14 +9,14 @@ import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
 /**
- * ÓÉÓÚ¿ØÖÆword ĞèÒª¶àÖÖ²ÎÊı¡£¿ÉÄÜÖ»ÊÇÓÃÖ»¶Á/¿ÉĞ´²»ÄÜ¸ã¶¨¡£ ±ØĞèÒÔÀ´ÓÚinputconfigµÄ¶¨Òå¡£ Èçinputconfig = 1 ÊÇÖ»¶Á
- * (Ö»Òªinputconfig¶¨ÒåµÄµÚÒ»¸ö×Ö·ûÊÇ1) Ä¬ÈÏÊÇ¿ÉĞŞ¸Ä = 3 ÔÊĞíÁôºÛ Ä¬ÈÏ = -3 ²»ÔÊĞíÁôºÛ = 5 ÏÔÊ¾ºÛ¼£ Ä¬ÈÏ = -5
- * ²»ÏÔÊ¾ºÛ¼£
+ * ç”±äºæ§åˆ¶word éœ€è¦å¤šç§å‚æ•°ã€‚å¯èƒ½åªæ˜¯ç”¨åªè¯»/å¯å†™ä¸èƒ½æå®šã€‚ å¿…éœ€ä»¥æ¥äºinputconfigçš„å®šä¹‰ã€‚ å¦‚inputconfig = 1 æ˜¯åªè¯»
+ * (åªè¦inputconfigå®šä¹‰çš„ç¬¬ä¸€ä¸ªå­—ç¬¦æ˜¯1) é»˜è®¤æ˜¯å¯ä¿®æ”¹ = 3 å…è®¸ç•™ç—• é»˜è®¤ = -3 ä¸å…è®¸ç•™ç—• = 5 æ˜¾ç¤ºç—•è¿¹ é»˜è®¤ = -5
+ * ä¸æ˜¾ç¤ºç—•è¿¹
  * 
  * 
  * 
  * 
- * Èç¹û¶à¸öÑ¡ÏîÔòÒÔ,¸ô¿ª
+ * å¦‚æœå¤šä¸ªé€‰é¡¹åˆ™ä»¥,éš”å¼€
  * 
  */
 public class DONKWordEdit extends DOBaseForm {
@@ -50,10 +50,10 @@ public class DONKWordEdit extends DOBaseForm {
 		buffer.append(" readonly=\"readonly\" ");
 		// }
 
-		// ////Ôö¼Ó×°ÊÎ
+		// ////å¢åŠ è£…é¥°
 		buffer.append(getDecoration(fm));
 
-		// ///////end Ôö¼Ó×°ÊÎ
+		// ///////end å¢åŠ è£…é¥°
 		buffer.append(" title='").append(fm.getL10n()).append("'");
 
 		buffer.append(" />");
@@ -90,7 +90,7 @@ public class DONKWordEdit extends DOBaseForm {
 			buffer.append("</a>");
 		} else {
 
-			buffer.append("<input type='button' value='ÉÏ´«'");
+			buffer.append("<input type='button' value='ä¸Šä¼ '");
 
 			buffer.append(" onclick=\"").append(href).append(" \"");
 			buffer.append(" />\n");
@@ -103,7 +103,7 @@ public class DONKWordEdit extends DOBaseForm {
 
 		return buffer.toString();
 
-		// //////////¿ØÖÆÖ»¶Á
+		// //////////æ§åˆ¶åªè¯»
 		// OCX_OBJ. SetReadOnly (true,"");
 
 	}

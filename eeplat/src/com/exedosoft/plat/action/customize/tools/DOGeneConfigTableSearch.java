@@ -18,7 +18,7 @@ public class DOGeneConfigTableSearch extends DOAbstractAction {
 	private static Log log = LogFactory.getLog(DOGeneConfigTableSearch.class);
 
 	/**
-	 * Save µÄÇé¿ö£¬ËùÒÔParameter È¡ÖµÊ±²»¿¼ÂÇauto_condition£¨²éÑ¯£© µÄÇé¿ö
+	 * Save çš„æƒ…å†µï¼Œæ‰€ä»¥Parameter å–å€¼æ—¶ä¸è€ƒè™‘auto_conditionï¼ˆæŸ¥è¯¢ï¼‰ çš„æƒ…å†µ
 	 */
 
 	public String excute() {
@@ -26,13 +26,13 @@ public class DOGeneConfigTableSearch extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if(instance==null){
-			this.setEchoValue("Ã»ÓĞÊı¾İ!");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®!");
 			return NO_FORWARD;
 		}
 		GeneUIMain gum = new GeneUIMain(instance.getValue("sqlStr"));
 		gum.geneConfig();
 		
-		this.setEchoValue("³õÊ¼»¯³É¹¦!");
+		this.setEchoValue("åˆå§‹åŒ–æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 	}
 

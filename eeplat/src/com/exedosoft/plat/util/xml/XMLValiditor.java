@@ -28,54 +28,54 @@ public class XMLValiditor {
 //        System.out.println(ex.getMessage());
 //    }  
 //
-//Èç¹ûÒªÊ¹ÓÃxml×ÔÉíÖ¸¶¨µÄxsd½øĞĞĞ£Ñé£¬ÔòÊ¹ÓÃÏÂÃæµÄ·½·¨£º
+//å¦‚æœè¦ä½¿ç”¨xmlè‡ªèº«æŒ‡å®šçš„xsdè¿›è¡Œæ ¡éªŒï¼Œåˆ™ä½¿ç”¨ä¸‹é¢çš„æ–¹æ³•ï¼š
 //SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 //Schema schema = factory.newSchema();
-//ÕâÖÖ·½·¨½öÊÊÓÃÓÚ XSD¡£
+//è¿™ç§æ–¹æ³•ä»…é€‚ç”¨äº XSDã€‚
 	
 //	
 //	
 //	<?xml version="1.1" encoding="UTF-8" standalone="yes"?>
-//	¡¡¡¡
-//	¡¡¡¡¸ù¾İW3C SchemaÀ´Ğ£ÑéXMLÎÄµµ(WXS)
-//	¡¡¡¡
-//	¡¡¡¡XMLSchema ÊÇXMLÎÄµµµÄÁíÍâÒ»ÖÖÎÄ·¨ÃèÊö¡£XMLSchema·Ç³£Á÷ĞĞÊĞÒòÎªËüºÍXMLÎÄµµÊ¹ÓÃÍ¬ÑùµÄÓï·¨²¢ÇÒÌá¹©ÁË·á¸»µÄ¶¨ÒåĞ£ÑéÏŞÖÆµÄÌØĞÔ¡£Èç¹ûÒ»¸öXMLÎÄµµÓÃ"schemaLocation" ºÍ"noNamespaceSchemaLocation"Ö¸ÏòÁËÒ»¸öschema£¬½áÏÂÀ´ÄãÏëÆôÓÃ¸ù¾İXMLSchemaĞ£ÑéÎÄµµÕâ¸öÌØĞÔ£¬Äã»¹Òª×öÈçÏÂµÄ²½Öè£º
-//	¡¡¡¡
-//	¡¡¡¡1.ºÍÉÏÃæËµµÄÒ»Ñù£¬µ÷ÓÃSAXParserFactory o»òDocumentBuilderFactoryµÄsetValidatingº¯ÊıÀ´ÆôÓÃvalidationÕâ¸öÌØĞÔ¡£ bitsCN.nETÖĞ¹úÍø¹Ü²©¿Í 
-//	¡¡¡¡
-//	¡¡¡¡2.°ÑÊôĞÔ "http://java.sun.com/xml/jaxp/properties/schemaLanguage" ÖµÉèÎª "http://www.w3.org/2001/XMLSchema"
-//	¡¡¡¡
-//	¡¡¡¡×¢Òâ£¬ÕâÖÖÇé¿öÏÂ£¬¼´Ê¹XMLÎÄµµÓĞDOCTYPEÉùÃ÷£¬´¦ÀíÆ÷ÈÔ²»»áÓÃDTDÀ´Ğ£ÑéÕâ¸öÎÄµµ¡£µ«ÊÇºÍÇ°ÃæÌáµ½µÄÒ»Ñù£¬ÎªÁËÈÎºÎÒ»¸öentity referenceÊÇ±»ÕıÈ·À©Õ¹µÄ£¬Õâ¸öDTD»¹ÊÇ»á±»×°ÔØµÄ£¬
-//	¡¡¡¡
-//	¡¡¡¡¼ÈÈ»"schemaLocation" ºÍ"noNamespaceSchemaLocation"½ö½öÊÇÌáÊ¾£¬ËùÒÔ¿ÉÒÔÊ¹ÓÃÊôĞÔ"http://java.sun.com/xml/jaxp/properties/schemaSource"´ÓÍâ²¿Ìá¹©schemasÀ´¸²¸ÇÕâĞ©ÌáÊ¾¡£
-//	¡¡¡¡
-//	¡¡¡¡¶ÔÓÚÕâ¸öÊôĞÔ£¬Ò»Ğ©¿ÉÒÔ½ÓÊÜÖµÊÇ£º
-//	¡¡¡¡
-//	¡¡¡¡¡¤ÊÇÒ»¸ö´ú±íschemaµÄURLµØÖ·µÄ×Ö·û´®¡£
-//	¡¡¡¡
-//	¡¡¡¡¡¤java.io.InputStream with the contents of the schema
-//	¡¡¡¡
-//	¡¡¡¡¡¤org.xml.sax.InputSource
-//	¡¡¡¡
-//	¡¡¡¡¡¤java.io.File
-//	¡¡¡¡
-//	¡¡¡¡¡¤Ò»¸ö java.lang.Object µÄÊı×é£¬Êı×éÄÚÈİÊÇÉÏÃæËùÌáµ½ÈıÀàÖĞµÄÒ»¸ö¡£
-//	¡¡¡¡
-//	¡¡¡¡ÀıÈç:
-//	¡¡¡¡
-//	¡¡¡¡SAXParserFactory spfactory = SAXParserFactory.newInstance();
-//	¡¡¡¡spfactory.setNamespaceAware(true);
-//	¡¡¡¡//turn the validation on
-//	¡¡¡¡spfactory.setValidating(true);
-//	¡¡¡¡//set the validation to be against WXS 
-//	bitsCN.nETÖĞ¹úÍø¹Ü²©¿Í
+//	ã€€ã€€
+//	ã€€ã€€æ ¹æ®W3C Schemaæ¥æ ¡éªŒXMLæ–‡æ¡£(WXS)
+//	ã€€ã€€
+//	ã€€ã€€XMLSchema æ˜¯XMLæ–‡æ¡£çš„å¦å¤–ä¸€ç§æ–‡æ³•æè¿°ã€‚XMLSchemaéå¸¸æµè¡Œå¸‚å› ä¸ºå®ƒå’ŒXMLæ–‡æ¡£ä½¿ç”¨åŒæ ·çš„è¯­æ³•å¹¶ä¸”æä¾›äº†ä¸°å¯Œçš„å®šä¹‰æ ¡éªŒé™åˆ¶çš„ç‰¹æ€§ã€‚å¦‚æœä¸€ä¸ªXMLæ–‡æ¡£ç”¨"schemaLocation" å’Œ"noNamespaceSchemaLocation"æŒ‡å‘äº†ä¸€ä¸ªschemaï¼Œç»“ä¸‹æ¥ä½ æƒ³å¯ç”¨æ ¹æ®XMLSchemaæ ¡éªŒæ–‡æ¡£è¿™ä¸ªç‰¹æ€§ï¼Œä½ è¿˜è¦åšå¦‚ä¸‹çš„æ­¥éª¤ï¼š
+//	ã€€ã€€
+//	ã€€ã€€1.å’Œä¸Šé¢è¯´çš„ä¸€æ ·ï¼Œè°ƒç”¨SAXParserFactory oæˆ–DocumentBuilderFactoryçš„setValidatingå‡½æ•°æ¥å¯ç”¨validationè¿™ä¸ªç‰¹æ€§ã€‚ bitsCN.nETä¸­å›½ç½‘ç®¡åšå®¢ 
+//	ã€€ã€€
+//	ã€€ã€€2.æŠŠå±æ€§ "http://java.sun.com/xml/jaxp/properties/schemaLanguage" å€¼è®¾ä¸º "http://www.w3.org/2001/XMLSchema"
+//	ã€€ã€€
+//	ã€€ã€€æ³¨æ„ï¼Œè¿™ç§æƒ…å†µä¸‹ï¼Œå³ä½¿XMLæ–‡æ¡£æœ‰DOCTYPEå£°æ˜ï¼Œå¤„ç†å™¨ä»ä¸ä¼šç”¨DTDæ¥æ ¡éªŒè¿™ä¸ªæ–‡æ¡£ã€‚ä½†æ˜¯å’Œå‰é¢æåˆ°çš„ä¸€æ ·ï¼Œä¸ºäº†ä»»ä½•ä¸€ä¸ªentity referenceæ˜¯è¢«æ­£ç¡®æ‰©å±•çš„ï¼Œè¿™ä¸ªDTDè¿˜æ˜¯ä¼šè¢«è£…è½½çš„ï¼Œ
+//	ã€€ã€€
+//	ã€€ã€€æ—¢ç„¶"schemaLocation" å’Œ"noNamespaceSchemaLocation"ä»…ä»…æ˜¯æç¤ºï¼Œæ‰€ä»¥å¯ä»¥ä½¿ç”¨å±æ€§"http://java.sun.com/xml/jaxp/properties/schemaSource"ä»å¤–éƒ¨æä¾›schemasæ¥è¦†ç›–è¿™äº›æç¤ºã€‚
+//	ã€€ã€€
+//	ã€€ã€€å¯¹äºè¿™ä¸ªå±æ€§ï¼Œä¸€äº›å¯ä»¥æ¥å—å€¼æ˜¯ï¼š
+//	ã€€ã€€
+//	ã€€ã€€Â·æ˜¯ä¸€ä¸ªä»£è¡¨schemaçš„URLåœ°å€çš„å­—ç¬¦ä¸²ã€‚
+//	ã€€ã€€
+//	ã€€ã€€Â·java.io.InputStream with the contents of the schema
+//	ã€€ã€€
+//	ã€€ã€€Â·org.xml.sax.InputSource
+//	ã€€ã€€
+//	ã€€ã€€Â·java.io.File
+//	ã€€ã€€
+//	ã€€ã€€Â·ä¸€ä¸ª java.lang.Object çš„æ•°ç»„ï¼Œæ•°ç»„å†…å®¹æ˜¯ä¸Šé¢æ‰€æåˆ°ä¸‰ç±»ä¸­çš„ä¸€ä¸ªã€‚
+//	ã€€ã€€
+//	ã€€ã€€ä¾‹å¦‚:
+//	ã€€ã€€
+//	ã€€ã€€SAXParserFactory spfactory = SAXParserFactory.newInstance();
+//	ã€€ã€€spfactory.setNamespaceAware(true);
+//	ã€€ã€€//turn the validation on
+//	ã€€ã€€spfactory.setValidating(true);
+//	ã€€ã€€//set the validation to be against WXS 
+//	bitsCN.nETä¸­å›½ç½‘ç®¡åšå®¢
 //
 //
-//	¡¡¡¡saxparser.setProperty("http://java.sun.com/xml/jaxp/properties/
-//	¡¡¡¡schemaLanguage", "http://www.w3.org/2001/XMLSchema");
-//	¡¡¡¡//set the schema against which the validation is to be done
-//	¡¡¡¡saxparser.setProperty("http://java.sun.com/xml/jaxp/properties/
-//	¡¡¡¡schemaSource", new File("myschema.xsd"));
+//	ã€€ã€€saxparser.setProperty("http://java.sun.com/xml/jaxp/properties/
+//	ã€€ã€€schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+//	ã€€ã€€//set the schema against which the validation is to be done
+//	ã€€ã€€saxparser.setProperty("http://java.sun.com/xml/jaxp/properties/
+//	ã€€ã€€schemaSource", new File("myschema.xsd"));
 
 
 

@@ -19,7 +19,7 @@ public class DOWithDrawStart extends DOAbstractAction {
 	public String excute() {
 
 		if(service.getProcessTemplate()==null){
-			this.setEchoValue("服务未定义工作流模板");
+			this.setEchoValue("鏈嶅姟鏈畾涔夊伐浣滄祦妯℃澘");
 			return null;
 		}
 		ProcessTemplate pt = this.service.getProcessTemplate();	

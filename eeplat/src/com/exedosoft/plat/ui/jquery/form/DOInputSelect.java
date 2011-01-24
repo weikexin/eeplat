@@ -23,7 +23,7 @@ public class DOInputSelect extends DOBaseForm {
 		
 
 		buffer.append("/>");
-		property.setOperationLabel("&nbsp;Ñ¡Ôñ");
+		property.setOperationLabel("&nbsp;é€‰æ‹©");
 		buffer.append(DOValueService.stardardOnlyPane(property, null));
 
 		buffer.append("<input name=\"").append(property.getFullColName())

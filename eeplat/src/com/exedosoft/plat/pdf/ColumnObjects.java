@@ -58,7 +58,7 @@ public class ColumnObjects {
             // step 2: we create a writer that listens to the document
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:\\ITextTest2.pdf"));
             
-            //�м�߾�
+            //中间边距
             float gutter = 20;
             int numColumns = 2;
             

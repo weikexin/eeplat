@@ -20,7 +20,7 @@ public class DOInitWf extends DOAbstractAction {
 		System.out.println("1111111111111111111111111111");
 
 		if (service.getProcessTemplate() == null) {
-			this.setEchoValue("服务未定义工作流模板");
+			this.setEchoValue("鏈嶅姟鏈畾涔夊伐浣滄祦妯℃澘");
 			return null;
 		}
 		System.out.println("22222222222222222222222222222");

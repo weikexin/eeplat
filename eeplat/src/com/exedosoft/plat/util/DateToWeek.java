@@ -13,7 +13,7 @@ public class DateToWeek {
 		String aa = "2008-08-14";
 		try {
 			date = formatYMD.parse(aa);
-			// ½«String ×ª»»Îª·ûºÏ¸ñÊ½µÄÈÕÆÚ
+			// å°†String è½¬æ¢ä¸ºç¬¦åˆæ ¼å¼çš„æ—¥æœŸ
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -23,15 +23,15 @@ public class DateToWeek {
 		
 		Date d=new Date();   
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");   
-        System.out.println("½ñÌìµÄÈÕÆÚ£º"+df.format(d));   
-        System.out.println("Á½ÌìÇ°µÄÈÕÆÚ£º" + df.format(new Date(d.getTime() - 2 * 24 * 60 * 60 * 1000)));   
-        System.out.println("ÈıÌìºóµÄÈÕÆÚ£º" + df.format(new Date(d.getTime() + 3 * 24 * 60 * 60 * 1000)));
+        System.out.println("ä»Šå¤©çš„æ—¥æœŸï¼š"+df.format(d));   
+        System.out.println("ä¸¤å¤©å‰çš„æ—¥æœŸï¼š" + df.format(new Date(d.getTime() - 2 * 24 * 60 * 60 * 1000)));   
+        System.out.println("ä¸‰å¤©åçš„æ—¥æœŸï¼š" + df.format(new Date(d.getTime() + 3 * 24 * 60 * 60 * 1000)));
         
         Calendar calendar=Calendar.getInstance();   
         calendar.setTime(new Date());
-         System.out.println(calendar.get(Calendar.DAY_OF_MONTH));//½ñÌìµÄÈÕÆÚ 
-         calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH)+1);//ÈÃÈÕÆÚ¼Ó1   
-         System.out.println(calendar.get(Calendar.DATE));//¼Ó1Ö®ºóµÄÈÕÆÚTop
+         System.out.println(calendar.get(Calendar.DAY_OF_MONTH));//ä»Šå¤©çš„æ—¥æœŸ 
+         calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH)+1);//è®©æ—¥æœŸåŠ 1   
+         System.out.println(calendar.get(Calendar.DATE));//åŠ 1ä¹‹åçš„æ—¥æœŸTop
 	}
 	
 }

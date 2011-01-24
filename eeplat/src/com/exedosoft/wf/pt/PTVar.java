@@ -3,7 +3,7 @@ package com.exedosoft.wf.pt;
 import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DOBO;
 /**
- * ¹¤×÷Á÷±äÁ¿µÄ¸ÅÄîºÜÖØÒª ¡£¹¤×÷Á÷±äÁ¿¿ÉÒÔÖ¸ÏòÖ÷±íµ¥£¬¸÷ÖÖÅĞ¶ÏµÄÖµµÈ¡£ ÏÖÔÚµÄ¹¤×÷Á÷±äÁ¿Ö»¿¼ÂÇºÍProcessTemplate ¹ØÁª¡£ ÔİÊ±²»¿¼ÂÇºÍPTNode ¹ØÁª¡£ ÏÂÒ»²½¿¼ÂÇPTVar ºÍ DOParameter µÄ¹ØÏµ¡£ ºÍPTNode ¹ØÁªÒ²ÊÇÓĞÒ»¶¨µÄ±ØÒªĞÔµÄ¡£ ¿ÉÒÔ×÷ÎªPTNode ¶ÔÓ¦Pane,PaneÄÚ±íµ¥µÄÀ©³ä.(±íµ¥±¾À´¾ÍÊÇ¶ÀÁ¢µÄÓÉPane ¾ö¶¨µÄ,ÏÂÒ»²½¿¼ÂÇ.)
+ * å·¥ä½œæµå˜é‡çš„æ¦‚å¿µå¾ˆé‡è¦ ã€‚å·¥ä½œæµå˜é‡å¯ä»¥æŒ‡å‘ä¸»è¡¨å•ï¼Œå„ç§åˆ¤æ–­çš„å€¼ç­‰ã€‚ ç°åœ¨çš„å·¥ä½œæµå˜é‡åªè€ƒè™‘å’ŒProcessTemplate å…³è”ã€‚ æš‚æ—¶ä¸è€ƒè™‘å’ŒPTNode å…³è”ã€‚ ä¸‹ä¸€æ­¥è€ƒè™‘PTVar å’Œ DOParameter çš„å…³ç³»ã€‚ å’ŒPTNode å…³è”ä¹Ÿæ˜¯æœ‰ä¸€å®šçš„å¿…è¦æ€§çš„ã€‚ å¯ä»¥ä½œä¸ºPTNode å¯¹åº”Pane,Paneå†…è¡¨å•çš„æ‰©å…….(è¡¨å•æœ¬æ¥å°±æ˜¯ç‹¬ç«‹çš„ç”±Pane å†³å®šçš„,ä¸‹ä¸€æ­¥è€ƒè™‘.)
  * @author   anolesoft
  */
 public class PTVar extends BaseObject {
@@ -12,7 +12,7 @@ public class PTVar extends BaseObject {
 	private static final long serialVersionUID = 4825992548081140898L;
 
 	/**
-	 * ÔİÊ±PTVar Ö»¸úPT¹ØÁª£¬²»¸úPTNode ¹ØÁª¡£¿´ÏÂÒ»²½ĞèÇóºÍÓ¦ÓÃµÄÇé¿ö¡£
+	 * æš‚æ—¶PTVar åªè·ŸPTå…³è”ï¼Œä¸è·ŸPTNode å…³è”ã€‚çœ‹ä¸‹ä¸€æ­¥éœ€æ±‚å’Œåº”ç”¨çš„æƒ…å†µã€‚
 	 */
 	public static final int SCOPE_PVAR = 1;
 
@@ -61,7 +61,7 @@ public class PTVar extends BaseObject {
 	 */
 	private Integer varType;
 	/**
-	 * Ö»ÓĞvartype is Type_Bo Ê±,²ÅÆğ×÷ÓÃ
+	 * åªæœ‰vartype is Type_Bo æ—¶,æ‰èµ·ä½œç”¨
 	 * @uml.property  name="doBO"
 	 */
 	private DOBO doBO;
@@ -191,18 +191,18 @@ public class PTVar extends BaseObject {
 
 
 	/**
-	 * ¸ù¾İPTVar ·µ»ØÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * æ ¹æ®PTVar è¿”å›è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 * 
 	 * @param pv
 	 * @param wfiIOMaps
-	 * @return ÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * @return è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 */
 	// public String getCorrValue(Collection wfiIOMaps) {
 	//
 	// if(wfiIOMaps!=null){
 	// for (Iterator it = wfiIOMaps.iterator(); it.hasNext(); ) {
 	// WFIParameter wp = (WFIParameter) it.next();
-	// //////////////////(¹¤×÷Á÷Æô¶¯²ÎÊı)¶ÔÓ¦µÄÖµ
+	// //////////////////(å·¥ä½œæµå¯åŠ¨å‚æ•°)å¯¹åº”çš„å€¼
 	// if (getVarName() != null &&
 	// getVarName().equalsIgnoreCase(wp.getKey())) {
 	// return wp.getValue();
@@ -212,18 +212,18 @@ public class PTVar extends BaseObject {
 	// return null;
 	// }
 	/**
-	 * ¸ù¾İPTVar ·µ»ØÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * æ ¹æ®PTVar è¿”å›è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 * 
 	 * @param pv
 	 * @param wfiIOMaps
-	 * @return ÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * @return è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 */
 	// public byte[] getCorrBytes(Collection wfiIOMaps) {
 	//
 	// if(wfiIOMaps!=null){
 	// for (Iterator it = wfiIOMaps.iterator(); it.hasNext(); ) {
 	// WFIParameter wp = (WFIParameter) it.next();
-	// //////////////////(¹¤×÷Á÷Æô¶¯²ÎÊı)¶ÔÓ¦µÄÖµ
+	// //////////////////(å·¥ä½œæµå¯åŠ¨å‚æ•°)å¯¹åº”çš„å€¼
 	// if (getVarName() != null &&
 	// getVarName().equalsIgnoreCase(wp.getKey())) {
 	// return wp.getBlob();
@@ -233,18 +233,18 @@ public class PTVar extends BaseObject {
 	// return null;
 	// }
 	/**
-	 * ¸ù¾İPTVar ·µ»ØÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * æ ¹æ®PTVar è¿”å›è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 * 
 	 * @param pv
 	 * @param wfiIOMaps
-	 * @return ÊäÈë(WFIParamter²ÎÊı)¶ÔÓ¦µÄÖµ
+	 * @return è¾“å…¥(WFIParamterå‚æ•°)å¯¹åº”çš„å€¼
 	 */
 	// public String getCorrFileName(Collection wfiIOMaps) {
 	//
 	// if(wfiIOMaps!=null){
 	// for (Iterator it = wfiIOMaps.iterator(); it.hasNext(); ) {
 	// WFIParameter wp = (WFIParameter) it.next();
-	// //////////////////(¹¤×÷Á÷Æô¶¯²ÎÊı)¶ÔÓ¦µÄÖµ
+	// //////////////////(å·¥ä½œæµå¯åŠ¨å‚æ•°)å¯¹åº”çš„å€¼
 	// if (getVarName() != null &&
 	// getVarName().equalsIgnoreCase(wp.getKey())) {
 	// return wp.getFileName();

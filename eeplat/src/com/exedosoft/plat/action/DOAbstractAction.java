@@ -30,13 +30,13 @@ public abstract class DOAbstractAction implements Serializable, DOAction {
 
 	protected BOInstance actionForm;
 
-	protected boolean isInRuleScope = false;// ////////ÊÇ·ñÔÚrulescopeÏÂ£¬Ò»°ãÔÚÔËĞĞ»·¾³ÏÂ¶¼ÔÚ,ÉèÖÃÕâ¸öÊôĞÔµÄÄ¿µÄÓÃÓÚ²âÊÔ¡£
+	protected boolean isInRuleScope = false;// ////////æ˜¯å¦åœ¨rulescopeä¸‹ï¼Œä¸€èˆ¬åœ¨è¿è¡Œç¯å¢ƒä¸‹éƒ½åœ¨,è®¾ç½®è¿™ä¸ªå±æ€§çš„ç›®çš„ç”¨äºæµ‹è¯•ã€‚
 
 	public DOAbstractAction() {
 	}
 
 	/**
-	 * ÓÃÓÚ²âÊÔµÄ³õÊ¼»¯Êı¾İ¿âÁ¬½Ó·½·¨
+	 * ç”¨äºæµ‹è¯•çš„åˆå§‹åŒ–æ•°æ®åº“è¿æ¥æ–¹æ³•
 	 * 
 	 */
 	public void initTransConnection() {
@@ -54,7 +54,7 @@ public abstract class DOAbstractAction implements Serializable, DOAction {
 	}
 
 	/**
-	 * ÓÃÓÚ²âÊÔµÄ¹Ø±ÕÊı¾İ¿âÁ¬½Ó·½·¨
+	 * ç”¨äºæµ‹è¯•çš„å…³é—­æ•°æ®åº“è¿æ¥æ–¹æ³•
 	 * 
 	 */
 
@@ -77,8 +77,8 @@ public abstract class DOAbstractAction implements Serializable, DOAction {
 
 
 	/**
-	 * Ö±½Ó×ªÏò¿ÉÄÜÓĞÎÊÌâ(ÓĞµÄWeb Container ²»Ö§³Ö) ËùÒÔÒª·µ»ØÒ»¸ö°üº¬Á´½ÓµÄ¶ÔÏó ¿ÉÒÔÖ§³Öweb framework£¬ajax web
-	 * framework. paras »ò instance ¿ÉÒÔÍ¨¹ı×¢ÈëÊµÏÖ¡£
+	 * ç›´æ¥è½¬å‘å¯èƒ½æœ‰é—®é¢˜(æœ‰çš„Web Container ä¸æ”¯æŒ) æ‰€ä»¥è¦è¿”å›ä¸€ä¸ªåŒ…å«é“¾æ¥çš„å¯¹è±¡ å¯ä»¥æ”¯æŒweb frameworkï¼Œajax web
+	 * framework. paras æˆ– instance å¯ä»¥é€šè¿‡æ³¨å…¥å®ç°ã€‚
 	 */
 
 	public abstract String excute() throws ExedoException;
@@ -90,10 +90,10 @@ public abstract class DOAbstractAction implements Serializable, DOAction {
 			context.put(service.getName(), instance);
 		}
 		
-		//////µ±Ê±×¢ÊÍµô ¿Ï¶¨ÊÇÓĞµÀÀíµÄ£¬¿ÖÅÂÓ°ÏìÈ«¾Ö£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿¡¢
+		//////å½“æ—¶æ³¨é‡Šæ‰ è‚¯å®šæ˜¯æœ‰é“ç†çš„ï¼Œææ€•å½±å“å…¨å±€ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿã€
 //		context.setInstance(instance);
 
-	//////////ÏÖÔÚ·Å¿ª
+	//////////ç°åœ¨æ”¾å¼€
 		context.setInstance(instance);
 
 	

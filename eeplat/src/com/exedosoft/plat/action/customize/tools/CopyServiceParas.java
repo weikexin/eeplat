@@ -16,21 +16,21 @@ public class CopyServiceParas extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
 
 		String serviceUid = this.actionForm.getValue("serviceUid");
 		if(serviceUid==null){
-			this.setEchoValue("Ã»ÓĞÑ¡Ôñ·şÎñ£¡");
+			this.setEchoValue("æ²¡æœ‰é€‰æ‹©æœåŠ¡ï¼");
 			return  DEFAULT_FORWARD;
 		}
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
-			System.out.println("Ã»ÓĞÊı¾İ£¡");
-			this.setEchoValue("Ã»ÓĞÊı¾İ£¡");
+			System.out.println("æ²¡æœ‰æ•°æ®ï¼");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®ï¼");
 			return NO_FORWARD;
 		}
 		

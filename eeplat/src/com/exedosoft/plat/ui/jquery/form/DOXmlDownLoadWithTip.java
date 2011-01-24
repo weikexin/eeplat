@@ -33,7 +33,7 @@ public class DOXmlDownLoadWithTip implements DOIView {
 						fm.getLinkService().getName());
 			}
 
-			strLink.append("\">обть</a>");
+			strLink.append("\">Д╦▀Х╫╫</a>");
 
 			if (fm.getData().getValue("newrecord") == null) {
 

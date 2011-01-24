@@ -11,7 +11,7 @@ import com.exedosoft.plat.ui.DOPaneModel;
 
 
 /**
- *	左侧菜单样式的控制器
+ *	宸︿晶鑿滃崟鏍峰紡鐨勬帶鍒跺櫒
  */
 public class MainPage extends TPaneTemplate {
 

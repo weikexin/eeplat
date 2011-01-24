@@ -34,7 +34,7 @@ public class LoginAction extends DOAbstractAction {
 			// String caID =
 			// (String)request.getSession().getAttribute("UserId");
 			// if(caID==null || "".equals(caID.trim())){
-			// this.setEchoValue("¶Ô²»Æğ£¬ÄúÃ»ÓĞÍ¨¹ıCAÈÏÖ¤£¡");
+			// this.setEchoValue("å¯¹ä¸èµ·ï¼Œæ‚¨æ²¡æœ‰é€šè¿‡CAè®¤è¯ï¼");
 			// return "notpass";
 			// }
 			// System.out.println(caID);
@@ -48,16 +48,16 @@ public class LoginAction extends DOAbstractAction {
 			BOInstance user = (BOInstance) users.get(0);
 			Date invalidTime = user.getDateValue("invalidTime");
 			if (invalidTime != null) {
-				System.out.println("¸ÃÓÃ»§µÄ¹ıÆÚÊ±¼ä::" + invalidTime);
+				System.out.println("è¯¥ç”¨æˆ·çš„è¿‡æœŸæ—¶é—´::" + invalidTime);
 				if (invalidTime.before(new Date(System.currentTimeMillis()))) {
-					this.setEchoValue("¸ÃÓÃ»§ÕË»§ÒÑ¾­¹ıÆÚ£¡");
+					this.setEchoValue("è¯¥ç”¨æˆ·è´¦æˆ·å·²ç»è¿‡æœŸï¼");
 					return NO_FORWARD;
 				}
 			}
 
 			String fdstate = user.getValue("fdstate");
 			if ("0".equals(fdstate)) {
-				this.setEchoValue("¸ÃÓÃ»§ÒÑ¶³½á£¬Çë¸úÏµÍ³¹ÜÀíÔ±ÁªÏµ£¡");
+				this.setEchoValue("è¯¥ç”¨æˆ·å·²å†»ç»“ï¼Œè¯·è·Ÿç³»ç»Ÿç®¡ç†å‘˜è”ç³»ï¼");
 				return NO_FORWARD;
 			}
 			LoginMain.makeLogin(user, DOGlobals.getInstance()
@@ -65,7 +65,7 @@ public class LoginAction extends DOAbstractAction {
 			
 			return "success";
 		} else {
-			this.setEchoValue("ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÊÔ!");
+			this.setEchoValue("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼Œè¯·é‡è¯•!");
 			return "notpass";
 		}
 

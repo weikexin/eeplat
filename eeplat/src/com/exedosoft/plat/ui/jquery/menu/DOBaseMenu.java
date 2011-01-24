@@ -24,7 +24,7 @@ public abstract class DOBaseMenu implements DOIView {
 	protected void appendLink(StringBuffer buffer, DOMenuModel aMenu,
 			String echoStr) {
 
-		// //Èç¹ûÓµÓĞLinkPane
+		// //å¦‚æœæ‹¥æœ‰LinkPane
 
 		if (aMenu.getMenuType() != null
 				&& aMenu.getMenuType().intValue() == DOMenuModel.MENUTYPE_LINK) {
@@ -59,10 +59,10 @@ public abstract class DOBaseMenu implements DOIView {
 					.append("','target':'").append(targetname).append("'} );");
 
 		} else if (aMenu.getLinkService() != null) {
-			// ////ÏÂÒ»²½Ö§³Ö
+			// ////ä¸‹ä¸€æ­¥æ”¯æŒ
 		} else if (aMenu.getDoClickJs() != null) {
 
-			// ////ÏÂÒ»²½Ö§³Ö
+			// ////ä¸‹ä¸€æ­¥æ”¯æŒ
 		}
 
 		else {
@@ -100,7 +100,7 @@ public abstract class DOBaseMenu implements DOIView {
 	// menuChild.getName()).append("' ");
 	// }
 	//
-	// // //Èç¹ûÓµÓĞLinkPane»òlinkService
+	// // //å¦‚æœæ‹¥æœ‰LinkPaneæˆ–linkService
 	// if (menuChild.getLinkPane() != null
 	// || menuChild.getLinkService() != null) {
 	// buffer.append(" onclick=\"javascript:");

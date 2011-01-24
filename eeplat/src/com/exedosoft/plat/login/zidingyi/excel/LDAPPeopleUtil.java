@@ -84,7 +84,7 @@ public class LDAPPeopleUtil {
 
 	}
 
-	// ¸ù¾İsnÈ¡µÃÓÊÏäµØÖ·
+	// æ ¹æ®snå–å¾—é‚®ç®±åœ°å€
 	public static String getLDAPEmailBySN(String user) {
 		String mail = null;
 		LDAPEntry fullEntry = null;
@@ -117,21 +117,21 @@ public class LDAPPeopleUtil {
 				}
 			}
 		} catch (LDAPException e) {
-			System.err.print("Á¬½ÓÒì³££¡   ");
+			System.err.print("è¿æ¥å¼‚å¸¸ï¼   ");
 			e.printStackTrace();
 		} finally {
 			if (lc != null && lc.isConnected()) {
 				try {
 					lc.disconnect();
 				} catch (LDAPException e) {
-					System.err.print("Á¬½ÓÒì³££¡   1" + e.toString());
+					System.err.print("è¿æ¥å¼‚å¸¸ï¼   1" + e.toString());
 				}
 			}
 		}
 		return mail;
 	}
 
-	// ¸ù¾İcnÈ¡µÃÓÊÏäµØÖ·
+	// æ ¹æ®cnå–å¾—é‚®ç®±åœ°å€
 	public static String getLDAPEmailByCN(String user) {
 		String mail = null;
 		LDAPEntry fullEntry = null;
@@ -163,21 +163,21 @@ public class LDAPPeopleUtil {
 				}
 			}
 		} catch (LDAPException e) {
-			System.err.print("Á¬½ÓÒì³££¡   ");
+			System.err.print("è¿æ¥å¼‚å¸¸ï¼   ");
 			e.printStackTrace();
 		} finally {
 			if (lc != null && lc.isConnected()) {
 				try {
 					lc.disconnect();
 				} catch (LDAPException e) {
-					System.err.print("Á¬½ÓÒì³££¡   1" + e.toString());
+					System.err.print("è¿æ¥å¼‚å¸¸ï¼   1" + e.toString());
 				}
 			}
 		}
 		return mail;
 	}
 
-	// ¸ù¾İÖĞÎÄĞÕÃû(cn)È¡µÃsn
+	// æ ¹æ®ä¸­æ–‡å§“å(cn)å–å¾—sn
 	public static String getLDAPSNByCN(String cn) {
 		String sn = null;
 		LDAPEntry fullEntry = null;
@@ -208,21 +208,21 @@ public class LDAPPeopleUtil {
 				}
 			}
 		} catch (LDAPException e) {
-			System.err.print("Á¬½ÓÒì³££¡   ");
+			System.err.print("è¿æ¥å¼‚å¸¸ï¼   ");
 			e.printStackTrace();
 		} finally {
 			if (lc != null && lc.isConnected()) {
 				try {
 					lc.disconnect();
 				} catch (LDAPException e) {
-					System.err.print("Á¬½ÓÒì³££¡   1" + e.toString());
+					System.err.print("è¿æ¥å¼‚å¸¸ï¼   1" + e.toString());
 				}
 			}
 		}
 		return sn;
 	}
 
-	// ¸ù¾İsnÈ¡µÃcn
+	// æ ¹æ®snå–å¾—cn
 	public static String getLDAPCNBySN(String sn) {
 		String cn = null;
 		LDAPEntry fullEntry = null;
@@ -254,14 +254,14 @@ public class LDAPPeopleUtil {
 				}
 			}
 		} catch (LDAPException e) {
-			System.err.print("Á¬½ÓÒì³££¡   ");
+			System.err.print("è¿æ¥å¼‚å¸¸ï¼   ");
 			e.printStackTrace();
 		} finally {
 			if (lc != null && lc.isConnected()) {
 				try {
 					lc.disconnect();
 				} catch (LDAPException e) {
-					System.err.print("Á¬½ÓÒì³££¡   1" + e.toString());
+					System.err.print("è¿æ¥å¼‚å¸¸ï¼   1" + e.toString());
 				}
 			}
 		}
@@ -270,7 +270,7 @@ public class LDAPPeopleUtil {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String sn = LDAPPeopleUtil.getLDAPSNByCN("Ô¬Ğ³");
+		String sn = LDAPPeopleUtil.getLDAPSNByCN("è¢è°");
 		String cn = LDAPPeopleUtil.getLDAPCNBySN("yuanxx");
 		System.out.println(sn);
 		System.out.println(cn);

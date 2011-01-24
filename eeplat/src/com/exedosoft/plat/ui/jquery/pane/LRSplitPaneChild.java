@@ -2,7 +2,7 @@ package com.exedosoft.plat.ui.jquery.pane;
 
 
 /**
- *	左侧菜单样式的控制器
+ *	宸︿晶鑿滃崟鏍峰紡鐨勬帶鍒跺櫒
  */
 public class LRSplitPaneChild extends TPaneTemplate {
 

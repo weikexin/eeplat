@@ -72,7 +72,7 @@ public class GeneUICompByTable  {
 
 	private DOController  formDelete = null;
 
-	// /////////////////////²»ÄÜÔÚÕâ¸ö¾Í»ñÈ¡bp,ÒòÎªÀà±äÁ¿£¬µ±Õâ¸öÊµÀıÊµÀı»¯Ê±¾ÍÖ´ĞĞÁË
+	// /////////////////////ä¸èƒ½åœ¨è¿™ä¸ªå°±è·å–bp,å› ä¸ºç±»å˜é‡ï¼Œå½“è¿™ä¸ªå®ä¾‹å®ä¾‹åŒ–æ—¶å°±æ‰§è¡Œäº†
 
 	private String geneATable = "";
 
@@ -105,7 +105,7 @@ public class GeneUICompByTable  {
 			List sers = DAOUtil.INSTANCE().select(DOService.class, SQL_SELECT_SERVICE,this.geneATable);
 
 			/**
-			 * ¸ù¾İServiceÉú³Éui×é¼ş¡£
+			 * æ ¹æ®Serviceç”Ÿæˆuiç»„ä»¶ã€‚
 			 */
 			for (Iterator itServ = sers.iterator(); itServ.hasNext();) {
 
@@ -148,7 +148,7 @@ public class GeneUICompByTable  {
 //
 //				formModel.setL10n(prop.getColName());
 //				dao.store(formModel);
-//				log.info("ÕıÔÚ´Ó" + prop.getColName() + "Éú³É½çÃæ×é¼ş.....");
+//				log.info("æ­£åœ¨ä»" + prop.getColName() + "ç”Ÿæˆç•Œé¢ç»„ä»¶.....");
 //			}
 //		} catch (DAOException e) {
 //			// TODO Auto-generated catch block
@@ -182,7 +182,7 @@ public class GeneUICompByTable  {
 
 		int i = 1;
 		
-		/////·şÎñµÄÊôĞÔ Ô­À´ÊÇaService.retrieveProperties
+		/////æœåŠ¡çš„å±æ€§ åŸæ¥æ˜¯aService.retrieveProperties
 		for (Iterator itProp = aService.getBo().retrieveProperties().iterator(); itProp
 				.hasNext();) {
 
@@ -195,8 +195,8 @@ public class GeneUICompByTable  {
 			
 			
 			/**
-			 *  * ¿Í»§¶ËÑéÖ¤ÅäÖÃ£¬·ÖÎª£³²¿·Ö£¬ÒÔ;¸ô¿ª £±£¬ÀàĞÍ£ºInteger RealNumber EMail Text Others 2, ³¤¶È £³,
-				 * ÆäËûScript Ô¼Êø
+			 *  * å®¢æˆ·ç«¯éªŒè¯é…ç½®ï¼Œåˆ†ä¸ºï¼“éƒ¨åˆ†ï¼Œä»¥;éš”å¼€ ï¼‘ï¼Œç±»å‹ï¼šInteger RealNumber EMail Text Others 2, é•¿åº¦ ï¼“,
+				 * å…¶ä»–Script çº¦æŸ
 				 * 
 			 */
 				
@@ -245,13 +245,13 @@ public class GeneUICompByTable  {
 			geneSaveButtonForm(aService, aName, gridM);
 		}
 
-		// ¶ÔÃ¿¸öGrid¸³½oÒ»¸öPane
+		// å¯¹æ¯ä¸ªGridèµ‹çµ¦ä¸€ä¸ªPane
 
 		DOPaneModel pane = new DOPaneModel();
 		pane.setCategory(aService.getBo());
 		pane.setName("pane_" + aService.getName() + aName);
 
-		// ///ÏÂÒ»²½¿¼ÂÇ ÊÇ²»ÊÇÃû³Æ²ÉÓÃºÍServie Ò»ÖÂ
+		// ///ä¸‹ä¸€æ­¥è€ƒè™‘ æ˜¯ä¸æ˜¯åç§°é‡‡ç”¨å’ŒServie ä¸€è‡´
 		pane.setTitle(aService.getName() + "paneModel" + aName);
 		pane.setL10n(aService.getName() + "paneModel" + aName);
 		pane.setLinkType(Integer.valueOf(DOPaneModel.LINKTYPE_GRIDMODEL));
@@ -278,11 +278,11 @@ public class GeneUICompByTable  {
 	private void geneSaveButtonForm( DOService aService,
 			String aName, DOGridModel gridM) throws ExedoException  {
 
-		// ///×°µç»°Ğ¡ÁéÍ¨, 83747268
-		// //×°µç»°¹«Ë¾µç»°, 61758100
+		// ///è£…ç”µè¯å°çµé€š, 83747268
+		// //è£…ç”µè¯å…¬å¸ç”µè¯, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("±£´æ");
+		formM.setL10n("ä¿å­˜");
 		DOService linkService = DOService.getService(aService.getBo().getName()
 				+ aName);
 		formM.setLinkService(linkService);
@@ -317,11 +317,11 @@ public class GeneUICompByTable  {
 	private void geneCloseButtonForm( DOService aService,
 			DOGridModel gridM) throws ExedoException  {
 
-		// ///×°µç»°Ğ¡ÁéÍ¨, 83747268
-		// //×°µç»°¹«Ë¾µç»°, 61758100
+		// ///è£…ç”µè¯å°çµé€š, 83747268
+		// //è£…ç”µè¯å…¬å¸ç”µè¯, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("¹Ø±Õ");
+		formM.setL10n("å…³é—­");
 //		DOService linkService = DOService.getService(aService.getBo().getName()
 //				+ ".delete");
 //		formM.setLinkService(linkService);

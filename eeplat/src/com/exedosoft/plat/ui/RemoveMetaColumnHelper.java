@@ -14,7 +14,7 @@ public class RemoveMetaColumnHelper {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DODataSource  dds = DODataSource.getDataSourceByL10n("国土资源部配号系统数据库");
+		DODataSource  dds = DODataSource.getDataSourceByL10n("鍥藉湡璧勬簮閮ㄩ厤鍙风郴缁熸暟鎹簱");
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -49,7 +49,7 @@ public class LoginMainStu {
 
 	private static Log log = LogFactory.getLog(LoginMainStu.class);
 	private static DOService insertLoginLog = DOService.getService("do.log.insert");
-	// ////////////Ë¢ĞÂµ±Ç°µÇÂ¼µ¥Î»
+	// ////////////åˆ·æ–°å½“å‰ç™»å½•å•ä½
 	private static DOBO aDeptBO = DOBO.getDOBOByName("do.bx.dept");
 
 
@@ -65,7 +65,7 @@ public class LoginMainStu {
 		BOInstance biDept = null;
 		if (aDeptBO != null) {
 			biDept = aDeptBO.refreshContext(user.getValue("dept_uid"));
-			System.out.println("µÇÂ½²¿ÃÅ:::::::::;" + biDept);
+			System.out.println("ç™»é™†éƒ¨é—¨:::::::::;" + biDept);
 			if (biDept != null) {
 				user.putValue("deptobject", biDept);
 				user.putValue("deptname", biDept.getName());
@@ -85,8 +85,8 @@ public class LoginMainStu {
 		System.out.println("gradeInfor::" + gradeInfor);
 		user.putValue("grade_login", gradeInfor);
 
-		// /////////////¹úÍÁ×¨ÓÃ£¬user Í¬Ê±Ğ¯´øĞĞÕşÇø´úÂë createb by weikx at 070706
-		// ÆäËülogin¿ÉÒÔÈ¥µô
+		// /////////////å›½åœŸä¸“ç”¨ï¼Œuser åŒæ—¶æºå¸¦è¡Œæ”¿åŒºä»£ç  createb by weikx at 070706
+		// å…¶å®ƒloginå¯ä»¥å»æ‰
 
 		if (biDept != null) {
 			user.putValue("deptcode", biDept.getValue("code"));
@@ -123,7 +123,7 @@ public class LoginMainStu {
 //			log.info(e.fillInStackTrace());
 //		}
 
-		// /////º£Ñó¾ÖÎÄµµÏµÍ³
+		// /////æµ·æ´‹å±€æ–‡æ¡£ç³»ç»Ÿ
 //		DOService findMaxDegree = DOService
 //				.getService("do.bx.findmaxdegreeofuser");
 //
@@ -134,15 +134,15 @@ public class LoginMainStu {
 //			if (maxDegree == null || "".equals(maxDegree.trim())) {
 //				maxDegree = "0";
 //			}
-//			log.info("¸ÃÓÃ»§µÄÈ¨ÏŞ¼¶±ğÊÇ:" + maxDegree);
+//			log.info("è¯¥ç”¨æˆ·çš„æƒé™çº§åˆ«æ˜¯:" + maxDegree);
 //		}
 
 		// System.out.println("llllllllllll"
 		// + DOGlobals.getInstance().getServletContext().getRequest()
 		// .getSession().getAttribute("userInfo"));
 
-		// ///////¶ÔÓÚ¹úÍÁ×ÊÔ´²¿ÏîÄ¿£¬ÎªÁË¸üºÃµÃÇø·ÖÌ½¿ó£¬²É¿ó£¬µØÖÊ¿±²é×ÊÖÊ¶ø¼ÓµÄÊôĞÔ
-		// /////////1,Ì½¿ó,2,²É¿ó,3,²É¿óÌ½¿ó¶¼ÓĞ ..........ÏòºóÀ©Õ¹
+		// ///////å¯¹äºå›½åœŸèµ„æºéƒ¨é¡¹ç›®ï¼Œä¸ºäº†æ›´å¥½å¾—åŒºåˆ†æ¢çŸ¿ï¼Œé‡‡çŸ¿ï¼Œåœ°è´¨å‹˜æŸ¥èµ„è´¨è€ŒåŠ çš„å±æ€§
+		// /////////1,æ¢çŸ¿,2,é‡‡çŸ¿,3,é‡‡çŸ¿æ¢çŸ¿éƒ½æœ‰ ..........å‘åæ‰©å±•
 		// /////////
 		List roles = getCorrRoles(user.getUid());
 		if (roles.size() > 0) {
@@ -170,14 +170,14 @@ public class LoginMainStu {
 			if("admin".equals(user.getName())){
 				user.putValue("gtType", "3");
 			}
-			log.info("¹úÍÁ×ÊÔ´²¿×¨ÓÃ£º¸ÃÓÃ»§µÄÀà±ğÊÇ:" + user.getValue("gtType"));
+			log.info("å›½åœŸèµ„æºéƒ¨ä¸“ç”¨ï¼šè¯¥ç”¨æˆ·çš„ç±»åˆ«æ˜¯:" + user.getValue("gtType"));
 
 		}
 		
 	//	jit();
 	
 		
-		/////////////////³õÊ¼»¯È«¾Ö²ÎÊı,ÆäÊµÓ¦¸Ã·ÅÈëDOGlobals ÀïÃæ×÷ÎªÈ«¾Ö±äÁ¿£¬µ«ÊÇÆ½Ì¨»¹²»Ö±½ÓÖ§³ÖÈ«¾Ö±äÁ¿£¬Ö»ÄÜÏÈÕâÑù
+		/////////////////åˆå§‹åŒ–å…¨å±€å‚æ•°,å…¶å®åº”è¯¥æ”¾å…¥DOGlobals é‡Œé¢ä½œä¸ºå…¨å±€å˜é‡ï¼Œä½†æ˜¯å¹³å°è¿˜ä¸ç›´æ¥æ”¯æŒå…¨å±€å˜é‡ï¼Œåªèƒ½å…ˆè¿™æ ·
 		DOBO doGlobals = DOBO.getDOBOByName("do.globals");
 		if(doGlobals!=null){
 			doGlobals.refreshContext("000000");
@@ -194,16 +194,16 @@ public class LoginMainStu {
 //		
 //		
 //		UserPrincipal p = SPUtil.getUserPrincipal(DOGlobals.getInstance().getServletContext().getRequest());
-////		»ñÈ¡ÓÃ»§ÁîÅÆID
+////		è·å–ç”¨æˆ·ä»¤ç‰ŒID
 //		String tokenId=(String)p.getAttribute(SAMLConstants.KEY_SAML_ATTR_ID);
-////		»ñÈ¡ÓÃ»§ÊôĞÔ¼¯ºÏ
+////		è·å–ç”¨æˆ·å±æ€§é›†åˆ
 //		SAMLAttributes attrs =(SAMLAttributes)p.getAttribute
 //		(SAMLConstants.KEY_SAML_ATTR_STATEMENT_ATTRIBUTES);
-////		Èç¹ûÊÇÖ¤ÊéÓÃ»§£¬¿É²éÑ¯Ö¤ÊéµÄDN
+////		å¦‚æœæ˜¯è¯ä¹¦ç”¨æˆ·ï¼Œå¯æŸ¥è¯¢è¯ä¹¦çš„DN
 //			List values=attrs.getAttributeValue(
 //		X509Constants.KEY_SAML_X509_SUBJECT_DN,
 //		X509Constants.VALUE_X509_NAMESPACE);
-//		String subjectDN=(String)values.get(0); //Ö¤ÊéÖ÷ÌâÎªµ¥ÖµÊôĞÔ
+//		String subjectDN=(String)values.get(0); //è¯ä¹¦ä¸»é¢˜ä¸ºå•å€¼å±æ€§
 //	
 //				
 //		System.out.println(subjectDN);

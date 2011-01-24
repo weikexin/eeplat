@@ -15,10 +15,10 @@ public class RemoveParameterHelper {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// ///////¸ø¶¨Ò»¸ö·þÎñ
-		// //////////¸ø¸øÒ»¸öÐèÒª±£ÁôµÄparameterÁÐ±í
-		// /////////ÐÞ¸ÄÕâ¸ö·þÎñµÄsqlÓï¾ä
-		// ////////////É¾³ý²»ÐèÒªµÄ²ÎÊý¹ØÁª
+		// ///////ç»™å®šä¸€ä¸ªæœåŠ¡
+		// //////////ç»™ç»™ä¸€ä¸ªéœ€è¦ä¿ç•™çš„parameteråˆ—è¡¨
+		// /////////ä¿®æ”¹è¿™ä¸ªæœåŠ¡çš„sqlè¯­å¥
+		// ////////////åˆ é™¤ä¸éœ€è¦çš„å‚æ•°å…³è”
 		DOService aService = DOService.getService("db.perambulate.item.insert");
 		String leftParas = "OBJUID,NA_ITEM_NAME,NA_APPLY_PERSON,NA_PERAMBULATE_COMP,ID_QUALIFICATION_CARD,NA_COMP_ADDRESS,QT_PERAMBULATE_MINE,IN_PERAMBULATE_PHASE,IN_ITEM_KIND,IN_ECONOMY_TYPE,NA_GEOGRAPHY_POSITION,NA_AREA_COORDINATE,QT_BASIC_SECTION,QT_QTRBASIC_SECTION,QT_SMALL_SECTION,QT_CONVERTBASIC_SECTION,QT_TOTAL_AREA,QT_LONGEAST_START,QT_LONGEAST_END,QT_LATNORTH_START,QT_LATNORTH_END,IN_PROSPECT_KIND,QT_COST,IN_ITEM_TYPE,ID_LICENCEID,approve_org,approve_org_code";
 		String theSql = aService.getMainSql().toLowerCase();

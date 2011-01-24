@@ -1,8 +1,8 @@
 package com.exedosoft.proxy;
 
-// HttpProxyµÄ¼òµ¥ÅÉÉúÀà
-// ²»¼ÇÂ¼Ö÷»úÃû×Ö
-// ÔÚÈÕÖ¾Êä³öµÄÃ¿Ò»ĞĞÇ°Ãæ¼ÓÉÏÒ»¸ö'*'
+// HttpProxyçš„ç®€å•æ´¾ç”Ÿç±»
+// ä¸è®°å½•ä¸»æœºåå­—
+// åœ¨æ—¥å¿—è¾“å‡ºçš„æ¯ä¸€è¡Œå‰é¢åŠ ä¸Šä¸€ä¸ª'*'
 
 import java.io.*;
 import java.net.*;
@@ -24,13 +24,13 @@ public class SubHttpProxy extends HttpProxy {
 	}
 
 	public String processHostName(String url, String host, int port, Socket sock) {
-		// Ö±½Ó·µ»Ø
+		// ç›´æ¥è¿”å›
 		return host;
 	}
 
-	// ²âÊÔÓÃµÄ¼òµ¥main·½·¨
+	// æµ‹è¯•ç”¨çš„ç®€å•mainæ–¹æ³•
 	static public void main(String args[]) {
-		System.out.println("ÔÚ¶Ë¿Ú808Æô¶¯´úÀí·şÎñÆ÷\n");
+		System.out.println("åœ¨ç«¯å£808å¯åŠ¨ä»£ç†æœåŠ¡å™¨\n");
 		HttpProxy.log = System.out;
 		HttpProxy.logging = true;
 		HttpProxy.startProxy(808, SubHttpProxy.class);

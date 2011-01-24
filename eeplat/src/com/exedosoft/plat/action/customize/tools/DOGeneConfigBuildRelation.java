@@ -19,7 +19,7 @@ public class DOGeneConfigBuildRelation extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if(instance==null){
-			this.setEchoValue("Ã»ÓĞÊı¾İ!");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®!");
 			return NO_FORWARD;
 		}
 		
@@ -27,7 +27,7 @@ public class DOGeneConfigBuildRelation extends DOAbstractAction {
 		String dobouid = this.actionForm.getValue("bouid");
 		
 		if(colName==null && dobouid ==null){
-			this.setEchoValue("×Ö¶ÎÃû³Æ»òÕßÀàĞÍÃ»ÓĞ¶¨Òå!");
+			this.setEchoValue("å­—æ®µåç§°æˆ–è€…ç±»å‹æ²¡æœ‰å®šä¹‰!");
 			return NO_FORWARD;
 		}
 		

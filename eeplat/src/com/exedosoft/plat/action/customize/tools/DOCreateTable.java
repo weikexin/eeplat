@@ -20,9 +20,9 @@ import com.exedosoft.plat.util.DOGlobals;
 /**
  * 
  * 
- * ×öÔö¼Ó£¬²»×öĞŞ¸ÄºÍÉ¾³ı
+ * åšå¢åŠ ï¼Œä¸åšä¿®æ”¹å’Œåˆ é™¤
  * 
- * ¿ÉÒÔ¶ÔÔö¼Ó×öÉ¨Ãè
+ * å¯ä»¥å¯¹å¢åŠ åšæ‰«æ
  * 
  * @author anolesoft
  * 
@@ -93,7 +93,7 @@ public class DOCreateTable extends DOAbstractAction {
 
 		}
 		// TODO Auto-generated method stub
-		this.setEchoValue("±£´æ³É¹¦!");
+		this.setEchoValue("ä¿å­˜æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 	}
 

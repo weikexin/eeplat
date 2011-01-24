@@ -13,7 +13,7 @@ public class DOInputTextBetweenOnlyInteger extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer();
 
 		getAInputTimeStr(fm, buffer, "");
-		buffer.append("&nbsp;ÖÁ &nbsp;");
+		buffer.append("&nbsp;è‡³ &nbsp;");
 		getAInputTimeStr(fm, buffer, "2");
 
 		return buffer.toString();

@@ -22,7 +22,7 @@ import com.exedosoft.plat.ExedoException;
 
 /**
  * @todo
- * @todo  Ó¦¸Ã¼ÓÒ»ÖÖÀàĞÍ,×Ó»ú·¢ËÍÊ§°Ü
+ * @todo  åº”è¯¥åŠ ä¸€ç§ç±»å‹,å­æœºå‘é€å¤±è´¥
  */
 
 public class ProcessInstance extends BaseObject{
@@ -65,7 +65,7 @@ public class ProcessInstance extends BaseObject{
 	private Integer exeStatus;
 
 	/**
-	 * µ±Ç°Á÷³Ì×´Ì¬ÏÔÊ¾,Õâ¸ö×´Ì¬²»ÊÇÉÏÃæµÄÖ´ĞĞ×´Ì¬£¬¶øÊÇ½ÚµãÖ´ĞĞµ½ÄÇÒ»²½ĞèÒªÏÔÊ¾Ê²Ã´×´Ì¬¡£ µ±È»£¬Ò»¸öÁ÷³Ì¿ÉÄÜÍ¬Ê±ÓĞ¶à¸ö»î¶¯½Úµã¡£Ã¿¸ö½Úµã¶¼ÓĞ¿ÉÄÜÉèÖÃnodeStateShow¡£ ÒÔ×îºóÒ»¸ö¸üĞÂÎª×¼¡£ ÔÚÊµ¼ÊÓ¦ÓÃÖĞ£¬Èç¹ûÒ»¸ö½ÚµãµÄÖ´ĞĞ²¢²»Ó°ÏìÕû¸öÁ÷³ÌµÄ×´Ì¬£¬¿ÉÒÔ²»ÉèÖÃnodeStateShow ÕâÑùÒıÇæ¾Í²»»á´¦Àí¡£
+	 * å½“å‰æµç¨‹çŠ¶æ€æ˜¾ç¤º,è¿™ä¸ªçŠ¶æ€ä¸æ˜¯ä¸Šé¢çš„æ‰§è¡ŒçŠ¶æ€ï¼Œè€Œæ˜¯èŠ‚ç‚¹æ‰§è¡Œåˆ°é‚£ä¸€æ­¥éœ€è¦æ˜¾ç¤ºä»€ä¹ˆçŠ¶æ€ã€‚ å½“ç„¶ï¼Œä¸€ä¸ªæµç¨‹å¯èƒ½åŒæ—¶æœ‰å¤šä¸ªæ´»åŠ¨èŠ‚ç‚¹ã€‚æ¯ä¸ªèŠ‚ç‚¹éƒ½æœ‰å¯èƒ½è®¾ç½®nodeStateShowã€‚ ä»¥æœ€åä¸€ä¸ªæ›´æ–°ä¸ºå‡†ã€‚ åœ¨å®é™…åº”ç”¨ä¸­ï¼Œå¦‚æœä¸€ä¸ªèŠ‚ç‚¹çš„æ‰§è¡Œå¹¶ä¸å½±å“æ•´ä¸ªæµç¨‹çš„çŠ¶æ€ï¼Œå¯ä»¥ä¸è®¾ç½®nodeStateShow è¿™æ ·å¼•æ“å°±ä¸ä¼šå¤„ç†ã€‚
 	 */
 	private String curState;
 
@@ -221,7 +221,7 @@ public class ProcessInstance extends BaseObject{
 	
 	
 	/**
-	 * ÎŞÌõ¼şÉ±ËÀÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
+	 * æ— æ¡ä»¶æ€æ­»ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -243,7 +243,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * ÎŞÌõ¼şÉ±ËÀÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
+	 * æ— æ¡ä»¶æ€æ­»ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -265,7 +265,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * ÎŞÌõ¼şÉ±ËÀÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
+	 * æ— æ¡ä»¶æ€æ­»ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -275,13 +275,13 @@ public class ProcessInstance extends BaseObject{
 		try {
 			DAOUtil.BUSI().store(this);
 		} catch (Exception ex) {
-			throw new WFException("É±ËÀ¹¤×÷Á÷ÊµÀıÊ±³ö´í", ex);
+			throw new WFException("æ€æ­»å·¥ä½œæµå®ä¾‹æ—¶å‡ºé”™", ex);
 		}
 
 	}
 
 	/**
-	 * ¹ÒÆğÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
+	 * æŒ‚èµ·ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -291,15 +291,15 @@ public class ProcessInstance extends BaseObject{
 		try {
 			DAOUtil.BUSI().store(this);
 		} catch (Exception ex) {
-			throw new WFException("¹ÒÆğÒ»¸ö¹¤×÷Á÷Ê±³ö´í", ex);
+			throw new WFException("æŒ‚èµ·ä¸€ä¸ªå·¥ä½œæµæ—¶å‡ºé”™", ex);
 		}
 		return this;
 	}
 
 	/**
-	 * »ñµÃ¸Ã¹¤×÷Á÷ÊµÀı¶ÔÓ¦µÄËùÓĞ±äÁ¿
+	 * è·å¾—è¯¥å·¥ä½œæµå®ä¾‹å¯¹åº”çš„æ‰€æœ‰å˜é‡
 	 * 
-	 * @return ±äÁ¿¼¯ºÏ
+	 * @return å˜é‡é›†åˆ
 	 */
 	public List retrieveVarInstances() {
 //		WFDAO dao = new WFDAO();
@@ -327,7 +327,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * ¼ÌĞøÖ´ĞĞ±¾Á÷³Ì
+	 * ç»§ç»­æ‰§è¡Œæœ¬æµç¨‹
 	 */
 	public ProcessInstance reStartProcess() throws WFException {
 //		WFDAO dao = new WFDAO();
@@ -345,7 +345,7 @@ public class ProcessInstance extends BaseObject{
 				}
 			}
 		} catch (Exception ex) {
-			throw new WFException("ÎŞ·¨ÖØĞÂÆô¶¯Á÷³Ì", ex);
+			throw new WFException("æ— æ³•é‡æ–°å¯åŠ¨æµç¨‹", ex);
 		}
 //		finally {
 //			dao.closeSession();
@@ -355,7 +355,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * »ñÈ¡Õâ¸öÄ£°å¶¨ÒåµÄStart ½ÚµãÊµÀı¡£
+	 * è·å–è¿™ä¸ªæ¨¡æ¿å®šä¹‰çš„Start èŠ‚ç‚¹å®ä¾‹ã€‚
 	 * 
 	 * @return
 	 */
@@ -378,7 +378,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * »ñÈ¡¿ªÊ¼µÄÈË¹¤½Úµã¡£
+	 * è·å–å¼€å§‹çš„äººå·¥èŠ‚ç‚¹ã€‚
 	 * 
 	 * @return
 	 */
@@ -453,7 +453,7 @@ public class ProcessInstance extends BaseObject{
 //	}
 
 	/**
-	 * Ò»ÖÖÌØÊâµÄÈ¡»Ø²Ù×÷£¬Ö±½ÓÈ¡»Øµ½¿ªÊ¼½Úµã¡£
+	 * ä¸€ç§ç‰¹æ®Šçš„å–å›æ“ä½œï¼Œç›´æ¥å–å›åˆ°å¼€å§‹èŠ‚ç‚¹ã€‚
 	 * 
 	 * @throws WFException
 	 */
@@ -461,7 +461,7 @@ public class ProcessInstance extends BaseObject{
 
 		if (getExeStatus() != null
 				&& (getExeStatus().intValue() != ProcessInstance.STATUS_RUN)) {
-			throw new WFException("Á÷³ÌÒÑ²»ÔÚÔËĞĞÖĞ£¬ÎŞ·¨³·»Ø£¡");
+			throw new WFException("æµç¨‹å·²ä¸åœ¨è¿è¡Œä¸­ï¼Œæ— æ³•æ’¤å›ï¼");
 		}
 
 //		WFDAO dao = new WFDAO();
@@ -490,7 +490,7 @@ public class ProcessInstance extends BaseObject{
 			}
 
 		} catch (Exception e) {
-			throw new WFException("´¦Àí»ØÍËÊ±³ö´í:" + this, e);
+			throw new WFException("å¤„ç†å›é€€æ—¶å‡ºé”™:" + this, e);
 		} 
 //		finally {
 //			dao.closeSession();
@@ -499,7 +499,7 @@ public class ProcessInstance extends BaseObject{
 	}
 
 	/**
-	 * Ö±½ÓÈ¡»Øµ½¿ªÊ¼½Úµã£¬²¢ÇÒ³õÊ¼»¯Á÷³Ì°ÑÒµÎñinstanceuidÖÃÎª¿Õ
+	 * ç›´æ¥å–å›åˆ°å¼€å§‹èŠ‚ç‚¹ï¼Œå¹¶ä¸”åˆå§‹åŒ–æµç¨‹æŠŠä¸šåŠ¡instanceuidç½®ä¸ºç©º
 	 * 
 	 * @throws WFException
 	 */
@@ -510,7 +510,7 @@ public class ProcessInstance extends BaseObject{
 		try {
 			DAOUtil.BUSI().store(this);
 		} catch (Exception e) {
-			// TODO ×Ô¶¯Éú³É catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆ catch å—
 			e.printStackTrace();
 		}
 		this.withDrawStartNode();

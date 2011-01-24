@@ -30,9 +30,9 @@ public class MessageCommand extends TCPCommand {
 		try {
 			ObjectOutputStream serverOutputStream = new ObjectOutputStream(
 					getSocket().getOutputStream());
-			System.out.println("Client ³İ?‘—Á‘§BBBBB");
+			System.out.println("Client æƒ“åµ¼?æ†²å¾šæ‡…ä¸…ä¸…ä¸…ä¸…ä¸…");
 			serverOutputStream.writeObject(aMsg);
-			System.out.println("Client Á‘§??Š®?II");
+			System.out.println("Client å¾šæ‡…??å§°?ä¸¡ä¸¡");
 			
 			if(aMsg.getMessageType() != Message.MSG_RES){
 			  aMessage = this.getInMessage();
@@ -97,7 +97,7 @@ public class MessageCommand extends TCPCommand {
 		sm.setCommndID(mc.getCommandID());
 		
 		Message aMsg = mc.excute(sm);
-		System.out.println("¾“”½?Á‘§BBBBBBBBBB");
+		System.out.println("æ¾—æ‘“æ–€?å¾šæ‡…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
 		System.out.println(aMsg);
 
 		
@@ -106,7 +106,7 @@ public class MessageCommand extends TCPCommand {
 		sm1.setCommndID(mc1.getCommandID());
 		sm1.setMessageType(Message.MSG_RES);
 		Message aMsg1 = mc1.excute(sm1);
-		System.out.println("¾“”½?Á‘§BBBBBBBBBB");
+		System.out.println("æ¾—æ‘“æ–€?å¾šæ‡…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
 		System.out.println(aMsg1);
 
 

@@ -54,7 +54,7 @@ public class Escape {
 			0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F };
 
 	/**
-	 * ±àÂë
+	 * ç¼–ç 
 	 * 
 	 * @param s
 	 * @return
@@ -94,7 +94,7 @@ public class Escape {
 	}
 
 	/**
-	 * ½âÂë ËµÃ÷£º±¾·½·¨±£Ö¤ ²»ÂÛ²ÎÊısÊÇ·ñ¾­¹ıescape()±àÂë£¬¾ùÄÜµÃµ½ÕıÈ·µÄ¡°½âÂë¡±½á¹û
+	 * è§£ç  è¯´æ˜ï¼šæœ¬æ–¹æ³•ä¿è¯ ä¸è®ºå‚æ•°sæ˜¯å¦ç»è¿‡escape()ç¼–ç ï¼Œå‡èƒ½å¾—åˆ°æ­£ç¡®çš„â€œè§£ç â€ç»“æœ
 	 * 
 	 * @param s
 	 * @return
@@ -130,7 +130,7 @@ public class Escape {
 						i += 5;
 					}
 					sbuf.append((char) cint);
-				} else { // ¶ÔÓ¦µÄ×Ö·ûÎ´¾­¹ı±àÂë
+				} else { // å¯¹åº”çš„å­—ç¬¦æœªç»è¿‡ç¼–ç 
 					sbuf.append((char) ch);
 				}
 				i++;
@@ -161,7 +161,7 @@ public class Escape {
 	
 	
 	public static void main(String[] args) {
-		String stest = "oracleµ¹Èë";
+		String stest = "oracleå€’å…¥";
 //		System.out.println(stest);
 //		System.out.println(URLEncoder.encode(stest));
 		

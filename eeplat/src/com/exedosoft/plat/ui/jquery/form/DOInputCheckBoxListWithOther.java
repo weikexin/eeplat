@@ -52,7 +52,7 @@ public class DOInputCheckBoxListWithOther extends DOStaticList {
 			List list = StringUtil.getStaticList(property.getInputConfig());
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				String[] half = (String[]) it.next();
-				if(!half[1].contains("其他")) {
+				if(!half[1].contains("鍏朵粬")) {
 					buffer.append("<input name=\"").append(
 							property.getFullColName());
 
@@ -110,7 +110,7 @@ public class DOInputCheckBoxListWithOther extends DOStaticList {
 						.append(
 								"<input  style='border:#B3B3B3 1px solid;'   onclick=\"this.style.borderColor='#406B9B'\" onmouseover=\"this.style.borderColor='#99E300'\" onmouseout=\"this.style.borderColor='#A1BCA3'\"  type='text' name='")
 						.append(property.getFullColName()).append("'");
-						buffer.append(" title='").append("其他").append("'");
+						buffer.append(" title='").append("鍏朵粬").append("'");
 						if (DOStaticList.isChecked(half[0], property.getValue())) {
 							String[] strs = property.getValue().split(";");
 							buffer.append(" value='"+ strs[strs.length-1] +"'");

@@ -17,7 +17,7 @@ public class GeneRulesFromService extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null ) {
-			this.setEchoValue("没有定义服务!");
+			this.setEchoValue("娌℃湁瀹氫箟鏈嶅姟!");
 			return NO_FORWARD;
 		}
 
@@ -30,7 +30,7 @@ public class GeneRulesFromService extends DOAbstractAction {
 			paras.putValue("serviceUid", biService.getUid());
 			paras.putValue("onlyRun", "1");
 			paras.putValue("condition", "true");
-			paras.putValue("conditionType", "1");//1 代表script 
+			paras.putValue("conditionType", "1");//1 浠ｈ〃script 
 			paras.putValue("name", "Rule_" + biService.getValue("name"));
 			paras.putValue("l10n", "Rule_" + biService.getValue("l10n"));
 			paras.putValue("salience", "5");
@@ -41,7 +41,7 @@ public class GeneRulesFromService extends DOAbstractAction {
 			t.rollback();
 			e.printStackTrace();
 		}
-		this.setEchoValue("成功生成规则!");
+		this.setEchoValue("鎴愬姛鐢熸垚瑙勫垯!");
 		return DEFAULT_FORWARD;
 
 	}

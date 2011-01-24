@@ -68,7 +68,7 @@ public class DOFCKEditor extends DOBaseForm {
 //        buffer.append("	value='FlashUploadURL=/abp/FCKeditor/editor/filemanager/upload/simpleuploader?Type%3DFlash&FlashBrowserURL=/abp/FCKeditor/editor/filemanager/browser/default/browser.html?");
 //        buffer.append("Type%3DFlash%26Connector%3Dconnectors/jsp/connector&ImageBrowserURL=/abp/FCKeditor/editor/filemanager/browser/default/browser.html?");
 //        buffer.append("Type%3DImage%26Connector%3Dconnectors/jsp/connector&ImageUploadURL=/abp/FCKeditor/editor/filemanager/upload/simpleuploader?Type%3DImage&LinkUploadURL=/abp/FCKeditor/editor/filemanager/upload/simpleuploader?Type%3DFile&LinkBrowserURL=/abp/FCKeditor/editor/filemanager/browser/default/browser.html?");
-//        buffer.append("Connector%3Dconnectors/jsp/connector&FontNames=ËÎÌå;ºÚÌå;Á¥Êé;¿¬Ìå_GB2312;Arial;Comic Sans MS;Courier");
+//        buffer.append("Connector%3Dconnectors/jsp/connector&FontNames=å®‹ä½“;é»‘ä½“;éš¶ä¹¦;æ¥·ä½“_GB2312;Arial;Comic Sans MS;Courier");
 //        buffer.append("New;Tahoma;Times New Roman;Verdana'>");
 //        buffer.append("<iframe id='")
 //        .append(fm.getFullColName())

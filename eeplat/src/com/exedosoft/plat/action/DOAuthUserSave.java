@@ -14,8 +14,8 @@ import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
- * Ö§³Ö·´ÏòÊÚÈ¨µÄÓÃ»§ÊÚÈ¨·½°¸¡£ ÓÃ»§È¨ÏŞ±£´æµÄË¼Â·£¬Ê×ÏÈÅĞ¶ÏÒ»ÏÂÊÇ·ñĞèÒª½øĞĞÈ¨ÏŞÅäÖÃ£¬Èç¹û²»ĞèÒª¼´·µ»Ø¡£
- * Èç¹ûĞèÒª£¬°ÑÅäÖÃÔÚÓÃ»§ÉÏµÄÈ¨ÏŞÈ«²¿È¥µô£¬ÖØĞÂ½øĞĞÅäÖÃ¡£
+ * æ”¯æŒåå‘æˆæƒçš„ç”¨æˆ·æˆæƒæ–¹æ¡ˆã€‚ ç”¨æˆ·æƒé™ä¿å­˜çš„æ€è·¯ï¼Œé¦–å…ˆåˆ¤æ–­ä¸€ä¸‹æ˜¯å¦éœ€è¦è¿›è¡Œæƒé™é…ç½®ï¼Œå¦‚æœä¸éœ€è¦å³è¿”å›ã€‚
+ * å¦‚æœéœ€è¦ï¼ŒæŠŠé…ç½®åœ¨ç”¨æˆ·ä¸Šçš„æƒé™å…¨éƒ¨å»æ‰ï¼Œé‡æ–°è¿›è¡Œé…ç½®ã€‚
  * 
  * @author IBM
  * 
@@ -44,14 +44,14 @@ public class DOAuthUserSave extends DOAbstractAction {
 		}
 		
 		
-		///////////formModelµÄÈ¨ÏŞÅäÖÃ
+		///////////formModelçš„æƒé™é…ç½®
 		String fmConfigs = DOGlobals.getInstance().getSessoinContext()
 		.getFormInstance().getValue("fmConfigs");
 		
 		
 		
 		
-		///////////////////////////isExcel ÊÇ·ñ¿ÉÒÔµ¼³öµ½excel
+		///////////////////////////isExcel æ˜¯å¦å¯ä»¥å¯¼å‡ºåˆ°excel
 		String isExcel = DOGlobals.getInstance().getSessoinContext()
 		.getFormInstance().getValue("isExcel");
 		if("5".equals(isExcel)){
@@ -88,7 +88,7 @@ public class DOAuthUserSave extends DOAbstractAction {
 //		dao.setAutoClose(false);
 		try {
 
-			// /////////////////É¾³ıÈ¨ÏŞÉèÖÃ
+			// /////////////////åˆ é™¤æƒé™è®¾ç½®
 			for (int i = 0; i < menuConfigs.length; i++) {
 				String[] aConfig = menuConfigs[i].split(",");
 				if (aConfig[0] != null && !"".equals(aConfig[0])) {
@@ -107,11 +107,11 @@ public class DOAuthUserSave extends DOAbstractAction {
 				}
 			}
 
-			// ////////////É¾³ıÖ®ºóÔÙ¼ÆËãÒ»ÏÂÈ¨ÏŞÉèÖÃ
+			// ////////////åˆ é™¤ä¹‹åå†è®¡ç®—ä¸€ä¸‹æƒé™è®¾ç½®
 			allAuthMenus = SessionParterFactory.getSessionParter()
 					.getMenuAuthConfigByAccount(parterUid);
 
-			// //////////////////Ôö¼ÓÈ¨ÏŞÉèÖÃ
+			// //////////////////å¢åŠ æƒé™è®¾ç½®
 
 			for (int i = 0; i < menuConfigs.length; i++) {
 				String[] aConfig = menuConfigs[i].split(",");

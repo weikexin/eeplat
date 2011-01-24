@@ -22,7 +22,7 @@ public class ContextListener implements ServletContextListener {
 	private static Log log = LogFactory.getLog(ContextListener.class);
 
 	/**
-	 * ¹Ø±ÕÊı¾İ¿âÁ¬½Ó³Ø
+	 * å…³é—­æ•°æ®åº“è¿æ¥æ± 
 	 */
 	public void contextDestroyed(ServletContextEvent arg0) {
 
@@ -41,14 +41,14 @@ public class ContextListener implements ServletContextListener {
 
 				DODataSource dss = (DODataSource) it.next();
 
-				// /ÒÔDODataSource Îªkey
+				// /ä»¥DODataSource ä¸ºkey
 				if (DODataSource.pools != null && dss != null) {
 					BasicDataSource bds = (BasicDataSource) DODataSource.pools
 							.get(dss);
-					log.info("¹Ø±ÕÊı¾İ¿âÁ¬½Ó³Ø::" + dss.getDriverUrl());
+					log.info("å…³é—­æ•°æ®åº“è¿æ¥æ± ::" + dss.getDriverUrl());
 					if (bds != null) {
 						bds.close();
-						log.info("Êı¾İ¿âÁ¬½Ó³ØÕı³£¹Ø±Õ£¡");
+						log.info("æ•°æ®åº“è¿æ¥æ± æ­£å¸¸å…³é—­ï¼");
 					}
 				}
 
@@ -61,7 +61,7 @@ public class ContextListener implements ServletContextListener {
 	}
 
 	/**
-	 * ¿ªÆôÊı¾İ¿âÁ¬½Ó³Ø
+	 * å¼€å¯æ•°æ®åº“è¿æ¥æ± 
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
@@ -72,7 +72,7 @@ public class ContextListener implements ServletContextListener {
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 			CacheFactory.getCacheData().fromSerialObject();
 
-			// //Ó¦¸Ã¿ÉÒÔ´ÓÀï´ÓÁ½¸öÎÄ¼şÖĞ¼ÓÔØ
+			// //åº”è¯¥å¯ä»¥ä»é‡Œä»ä¸¤ä¸ªæ–‡ä»¶ä¸­åŠ è½½
 
 		}
 
@@ -92,10 +92,10 @@ public class ContextListener implements ServletContextListener {
 			for (Iterator<DODataSource> it = list.iterator(); it.hasNext();) {
 
 				DODataSource dss = (DODataSource) it.next();
-				log.info("³õÊ¼»¯Êı¾İ¿âÁ¬½Ó³Ø::" + dss.getDriverUrl());
+				log.info("åˆå§‹åŒ–æ•°æ®åº“è¿æ¥æ± ::" + dss.getDriverUrl());
 
 				if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
-					log.info("...ºÍ³õÊ¼»¯Á¬½Ó³ØÏàÍ¬£¬Ê¹ÓÃ³õÊ¼»¯Á¬½Ó³Ø::" + dss.getDriverUrl());
+					log.info("...å’Œåˆå§‹åŒ–è¿æ¥æ± ç›¸åŒï¼Œä½¿ç”¨åˆå§‹åŒ–è¿æ¥æ± ::" + dss.getDriverUrl());
 					DODataSource.pools.put(dss, DODataSource.pools
 							.get(defaultDs));
 					continue;
@@ -107,13 +107,13 @@ public class ContextListener implements ServletContextListener {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.error("Êı¾İ¿âÁ¬½Ó³ØÆô¶¯Ê§°Ü::" + e.getMessage());
+			log.error("æ•°æ®åº“è¿æ¥æ± å¯åŠ¨å¤±è´¥::" + e.getMessage());
 		}
 	}
 
 	private BasicDataSource poolASource(DODataSource dss) {
 		// ////////////////////////////////////////////////////////////////////////
-		// ¸ù¾İÅäÖÃÎÄ¼ş
+		// æ ¹æ®é…ç½®æ–‡ä»¶
 		if (dss.getOtherparas() != null && dss.getOtherparas().endsWith(".xml")) {
 			dss = DODataSource.parseConfigHelper(dss.getOtherparas(), dss
 					.getObjUid());
@@ -126,20 +126,20 @@ public class ContextListener implements ServletContextListener {
 		bds.setUrl(dss.getDriverUrl());
 		bds.setUsername(dss.getUserName());
 		bds.setPassword(dss.getPassword());
-		// ×îĞ¡¿ÕÏĞÁ¬½Ó
+		// æœ€å°ç©ºé—²è¿æ¥
 		// bds.setMinIdle(5);
-		// ×î´ó¿ÕÏĞÁ¬½Ó
+		// æœ€å¤§ç©ºé—²è¿æ¥
 		bds.setMaxIdle(5);
-		// ³¬Ê±»ØÊÕÊ±¼ä(ÒÔºÁÃëÎªµ¥Î»)
-		// //µÈ´ı30Ãë
+		// è¶…æ—¶å›æ”¶æ—¶é—´(ä»¥æ¯«ç§’ä¸ºå•ä½)
+		// //ç­‰å¾…30ç§’
 		bds.setMaxWait(30000);
-		// /////////³õÊ¼»¯Á¬½Ó³Ø
+		// /////////åˆå§‹åŒ–è¿æ¥æ± 
 		bds.setInitialSize(10);
 
 		bds.setRemoveAbandoned(true);
 		bds.setRemoveAbandonedTimeout(60);
 
-		// //////////×î´óÁ¬½ÓÊı
+		// //////////æœ€å¤§è¿æ¥æ•°
 		if (dss.getPoolsize() != null) {
 			bds.setMaxActive(dss.getPoolsize().intValue());
 		} else {
@@ -179,5 +179,5 @@ class LoggerPrintStream extends PrintStream {
 			logger.warn(s);
 		}
 	}
-	// /ÆäËüËü´úÂëÂÔ.......
+	// /å…¶å®ƒå®ƒä»£ç ç•¥.......
 }

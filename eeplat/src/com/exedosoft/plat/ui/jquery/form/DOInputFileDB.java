@@ -11,7 +11,7 @@ public class DOInputFileDB extends DOBaseForm {
 		DOFormModel fm = (DOFormModel) property;
 		
 		if(fm.getData()==null){
-			return "无法下载";
+			return "鏃犳硶涓嬭浇";
 		}		
 		
 		String renameValue = fm.getInputConfig();
@@ -42,7 +42,7 @@ public class DOInputFileDB extends DOBaseForm {
 			buffer.append("&downLoadSizeCol=")
 			.append(downLoadSizeCol);
 		}
-		buffer.append("'>下载</a>");
+		buffer.append("'>涓嬭浇</a>");
 		//property
 		// TODO Auto-generated method stub
 		return buffer.toString();

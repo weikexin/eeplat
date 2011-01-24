@@ -14,7 +14,7 @@ import com.exedosoft.plat.ui.DOViewTemplate;
 import com.exedosoft.plat.util.DOGlobals;
 
 /**
- * Pane和Service的调用分开
+ * Pane鍜孲ervice鐨勮皟鐢ㄥ垎寮�
  * @author aa
  * 
  */

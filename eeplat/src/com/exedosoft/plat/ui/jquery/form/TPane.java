@@ -6,7 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.ui.DOViewTemplate;
 
 /**
- * Pane和Service的调用分开
+ * Pane鍜孲ervice鐨勮皟鐢ㄥ垎寮�
  * @author aa
  * 
  */

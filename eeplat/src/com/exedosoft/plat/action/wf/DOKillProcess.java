@@ -22,7 +22,7 @@ public class DOKillProcess extends DOAbstractAction {
 		System.out.println("ptPI=========" +  ptPI.getCorrInstance());
 		
 		if (ptPI.getCorrInstance() == null) {
-			this.setEchoValue("µ±Ç°¹¤×÷Á÷ÉÏÏÂÎÄ¶ªÊ§,ÇëÖØĞÂ²Ù×÷!");
+			this.setEchoValue("å½“å‰å·¥ä½œæµä¸Šä¸‹æ–‡ä¸¢å¤±,è¯·é‡æ–°æ“ä½œ!");
 			return null;
 		}
 		

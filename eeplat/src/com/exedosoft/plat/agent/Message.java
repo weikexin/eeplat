@@ -4,18 +4,18 @@ import java.io.Serializable;
 public interface Message  extends Serializable{
 	
 	/**
-	 * “¯??‹?“š
+	 * æ‘¨??åª®?æ‘
 	 */
 	public static  int MSG_RES_REQ = 1;
 	
 	/**
-	 * ›ö”dC•s—v‹‰ñ“š
+	 * æ¶¼æ”„ä¸†æ™„æ¢«åª®å¤æ‘
 	 */
 	public static  int MSG_RES = 2;
 	
 	/**
-	 *Á‘§–v—L??Task,’m?—væMessages
-	 *‘ü—v‹‰ñ“š
+	 *å¾šæ‡…æ¤æ¡³??Task,æŠ¦?æ¢«åº¢Messages
+	 *æ‰…æ¢«åª®å¤æ‘
 	 * @return
 	 */
 	
@@ -33,8 +33,8 @@ public interface Message  extends Serializable{
 	
 	/**
 	 * 
-	 * “–Command ?‘—Message ?Cù—vCommand??©ŒÈC??
-	 * •?Ší’[‰ğÍMessage Á‘§?CË”\?õ“??“ITasks
+	 * æ‘‰Command ?æ†²Message ?ä¸†å»€æ¢«Command??å¸ºå±“ä¸†??
+	 * æšˆ?å©æŠ‚å¤æ„…Message å¾šæ‡…?ä¸†åµ¥æ“»?å¶•æ‘“??æ‘Tasks
 	 * 
 	 * @return
 	 */

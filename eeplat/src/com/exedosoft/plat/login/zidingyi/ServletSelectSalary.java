@@ -155,7 +155,7 @@ public class ServletSelectSalary extends HttpServlet {
 				while(set.next()) {
 					Map<String, Object> map = new HashMap<String, Object>();
 					java.util.Date date = set.getDate("month");
-					SimpleDateFormat format = new SimpleDateFormat("yyyyÄêMMÔÂ");
+					SimpleDateFormat format = new SimpleDateFormat("yyyyå¹´MMæœˆ");
 					String sd = format.format(date);
 					map.put("month", sd);
 					map.put("name", set.getString("name"));

@@ -36,7 +36,7 @@ public class DOMXmlUtilTest {
 
 		// InputStream is = InputStream.class.
 		 
-//		SimpleXMLUtil  sxu = new SimpleXMLUtil("C:\\Documents and Settings\\IBM\\桌面\\申请xml文件\\探矿权\\ExpXML_2.xml");
+//		SimpleXMLUtil  sxu = new SimpleXMLUtil("C:\\Documents and Settings\\IBM\\妗岄潰\\鐢宠xml鏂囦欢\\鎺㈢熆鏉僜\ExpXML_2.xml");
 //		String applyId = sxu.getProperty("DATA.ID_APPLYID");
 //		sxu.setProperty("DATA.ID_LICENCEID", "22222222");
 //		System.out.println("ApplyID:::::" + applyId);

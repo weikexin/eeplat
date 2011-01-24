@@ -15,7 +15,7 @@ public class MessageIn implements Runnable {
 	public MessageIn(Socket ss) {
 
 		aSocket = ss;
-		System.out.println("Úó?‹@C³??ˆê˜¢JOB!");
+		System.out.println("æ„™åº´?åª®å²ªä¸†æƒ“??å ¦æ§©JOB!");
 	}
 
 	public void run() {
@@ -24,7 +24,7 @@ public class MessageIn implements Runnable {
 			ObjectInputStream serverInputStream = new ObjectInputStream(aSocket
 					.getInputStream());
 			SimpleMessage sm = (SimpleMessage) serverInputStream.readObject();
-			System.out.println("Úó“ˆê˜¢Message::");
+			System.out.println("æ„™åº´æ‘“å ¦æ§©Message::");
 			System.out.println(sm);
 			
 			if(sm.getMessageType()==Message.MSG_REQ){

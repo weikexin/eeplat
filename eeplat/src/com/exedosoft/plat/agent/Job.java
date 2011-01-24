@@ -1,11 +1,11 @@
 package com.exedosoft.plat.agent;
 
 /**
- * ??ˆê˜¢Command“I–½—ßB<br>
- * ˆê˜¢Command“I–½—ßİ@‘ä?¶ˆê˜¢Job.<br>
- * ˆê˜¢Job ‰Â”\?—L‘½˜¢Task.<br>
- * ˆê˜¢Job¥ˆê˜¢?’öB<br>
- * ‘½˜¢Task¥?˜?s“IB<br> 
+ * ??å ¦æ§©Commandæ‘æŸ¦æ¤·ä¸…<br>
+ * å ¦æ§©Commandæ‘æŸ¦æ¤·åµ¼å²ªæˆœ?æƒ—å ¦æ§©Job.<br>
+ * å ¦æ§©Job å£œæ“»?æ¡³æ‡¡æ§©Task.<br>
+ * å ¦æ§©Jobæƒ€å ¦æ§©?æ±ä¸…<br>
+ * æ‡¡æ§©Taskæƒ€?å½‰?å³´æ‘ä¸…<br> 
  *
  * @author Administrator
  *
@@ -13,7 +13,7 @@ package com.exedosoft.plat.agent;
 public interface Job extends Runnable {
 	
 	/**
-	 * ?æˆê˜¢Job??“ITasks;
+	 * ?åº¢å ¦æ§©Job??æ‘Tasks;
 	 *
 	 */
 	java.util.List<Task> getTasks();

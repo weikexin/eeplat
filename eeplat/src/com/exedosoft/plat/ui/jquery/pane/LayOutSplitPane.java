@@ -3,7 +3,7 @@ package com.exedosoft.plat.ui.jquery.pane;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 /**
- * 左右分割面板样式的控制器
+ * 宸﹀彸鍒嗗壊闈㈡澘鏍峰紡鐨勬帶鍒跺櫒
  */
 public class LayOutSplitPane extends TPaneTemplate {
 	

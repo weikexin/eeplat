@@ -8,9 +8,9 @@ import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.jquery.form.DOBaseForm;
 
 /**
- * my97 ÊÇ·Ç³£Ç¿´óµÄÈÕÆÚ¿Ø¼ş¡£ ¿ÉÒÔÍ¨¹ıÅäÖÃÀà¸Ä±äÆäÏÔÊ¾ĞĞÎª¡£ Ä¬ÈÏÊÇÈÕÆÚÏÔÊ¾£¬¿ÉÒÔÏÔÊ¾³ÉÈÕÆÚÊ±¼ä£¬Ê±¼äµÈ¡£
- * ÈÕÆÚÊ±¼äµÄÅäÖÃ£º{dateFmt:'yyyy-MM-dd HH:mm:ss'}
- * Ê±¼äµÄÅäÖÃÈç£º{skin:'whyGreen',dateFmt:'H:mm:ss'}
+ * my97 æ˜¯éå¸¸å¼ºå¤§çš„æ—¥æœŸæ§ä»¶ã€‚ å¯ä»¥é€šè¿‡é…ç½®ç±»æ”¹å˜å…¶æ˜¾ç¤ºè¡Œä¸ºã€‚ é»˜è®¤æ˜¯æ—¥æœŸæ˜¾ç¤ºï¼Œå¯ä»¥æ˜¾ç¤ºæˆæ—¥æœŸæ—¶é—´ï¼Œæ—¶é—´ç­‰ã€‚
+ * æ—¥æœŸæ—¶é—´çš„é…ç½®ï¼š{dateFmt:'yyyy-MM-dd HH:mm:ss'}
+ * æ—¶é—´çš„é…ç½®å¦‚ï¼š{skin:'whyGreen',dateFmt:'H:mm:ss'}
  * 
  * @author IBM
  * 

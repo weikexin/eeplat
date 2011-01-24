@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
- * Autour: Ken.xu Version: V1.0 Description£ºBEA WebLogicÏÂGZIPÑ¹ËõÀà
+ * Autour: Ken.xu Version: V1.0 Descriptionï¼šBEA WebLogicä¸‹GZIPå‹ç¼©ç±»
  */
 public class CompressionResponse extends HttpServletResponseWrapper {
 	private HttpServletResponse response;
@@ -21,7 +21,7 @@ public class CompressionResponse extends HttpServletResponseWrapper {
 	private int contentLength;
 
 	/**
-	 * ´´½¨Ò»¸öĞÂµÄ±»Ñ¹ËõÏìÓ¦¸øHTTP
+	 * åˆ›å»ºä¸€ä¸ªæ–°çš„è¢«å‹ç¼©å“åº”ç»™HTTP
 	 * 
 	 * @param response
 	 *            the HTTP response to wrap.

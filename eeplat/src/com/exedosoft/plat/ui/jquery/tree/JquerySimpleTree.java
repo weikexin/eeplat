@@ -10,15 +10,15 @@ import com.exedosoft.plat.util.DOGlobals;
 
 
 /***
- *Ê÷²ÉÓÃajaxµÄĞÎÊ½,×îºÃ²ÉÓÃdwr·½Ê½¡£¶ø²»ÊÇ´«Í³µÄÄÇ¸ö·½Ê½¡£
+ *æ ‘é‡‡ç”¨ajaxçš„å½¢å¼,æœ€å¥½é‡‡ç”¨dwræ–¹å¼ã€‚è€Œä¸æ˜¯ä¼ ç»Ÿçš„é‚£ä¸ªæ–¹å¼ã€‚
  *
  * @author aa
  *
  */
 public class JquerySimpleTree extends DOViewTemplate {
 	
-	//¼ÓÔØÖ´ĞĞµÄjs:resscrEvt();$('.mRight:eq(0)').css(\"overflow-y\",\"hidden\")
-    //resscrEvt()¸ù¾İä¯ÀÀÆ÷¸ß¶Èµ÷ÕûÓÒ±ßÇøÓòµÄ¸ß¶È£¬$('.mRight:eq(0)').css(\"overflow-y\",\"hidden\")ÏŞÖÆ×Ü¿ò¼ÜµÄ¹ö¶¯ÌõÒş²Ø¡£·ñÔò»á±È½ÏÂÒ.
+	//åŠ è½½æ‰§è¡Œçš„js:resscrEvt();$('.mRight:eq(0)').css(\"overflow-y\",\"hidden\")
+    //resscrEvt()æ ¹æ®æµè§ˆå™¨é«˜åº¦è°ƒæ•´å³è¾¹åŒºåŸŸçš„é«˜åº¦ï¼Œ$('.mRight:eq(0)').css(\"overflow-y\",\"hidden\")é™åˆ¶æ€»æ¡†æ¶çš„æ»šåŠ¨æ¡éšè—ã€‚å¦åˆ™ä¼šæ¯”è¾ƒä¹±.
 //	
 //	public String getHtmlCode(DOIModel aModel) {
 //		

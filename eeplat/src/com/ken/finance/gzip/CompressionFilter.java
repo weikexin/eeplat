@@ -19,18 +19,18 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * Version: V1.0
  * 
- * Description BEA WebLogicÏÂGZIP¹ıÂËÆ÷
+ * Description BEA WebLogicä¸‹GZIPè¿‡æ»¤å™¨
  * 
  */
 public class CompressionFilter implements Filter {
 	private FilterConfig config;
 
 	/**
-	 * Èç¹ûä¯ÀÀÆ÷Ö§³Ö½âÑ¹Ëõ,ÔòÑ¹Ëõ¸Ã´úÂë
+	 * å¦‚æœæµè§ˆå™¨æ”¯æŒè§£å‹ç¼©,åˆ™å‹ç¼©è¯¥ä»£ç 
 	 * 
 	 * @throws IOException
 	 *             ServletException if an error occurs with the
-	 *             {@link GZIPOutputStream}. Èç¹ûĞèÒª¿ªÆô¸Ã¹ıÂËÆ÷,ÔÚweb.xmlÖĞ¼ÓÈë´Ë´úÂë <filter>
+	 *             {@link GZIPOutputStream}. å¦‚æœéœ€è¦å¼€å¯è¯¥è¿‡æ»¤å™¨,åœ¨web.xmlä¸­åŠ å…¥æ­¤ä»£ç  <filter>
 	 *             <filter-name>gzip</filter-name>
 	 *             <filter-class>com.ken.finance.gzip</filter-class> </filter>
 	 *             <filter-mapping> <filter-name>gzip</filter-name>
@@ -59,7 +59,7 @@ public class CompressionFilter implements Filter {
 		}
 		request.setAttribute(HAS_RUN_KEY, "true");
 		if (compress) {
-			// Èç¹ûä¯ÀÀÆ÷Ö§³ÖÔòÑ¹Ëõ
+			// å¦‚æœæµè§ˆå™¨æ”¯æŒåˆ™å‹ç¼©
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.addHeader("Content-Encoding", "gzip");
 			CompressionResponse compressionResponse = new CompressionResponse(
@@ -67,10 +67,10 @@ public class CompressionFilter implements Filter {
 			chain.doFilter(request, compressionResponse);
 			compressionResponse.finish();
 		} else {
-			// Èç¹ûä¯ÀÀÆ÷²»Ö§³ÖÔò²»Ñ¹Ëõ
+			// å¦‚æœæµè§ˆå™¨ä¸æ”¯æŒåˆ™ä¸å‹ç¼©
 			chain.doFilter(request, response);
 		}
-		System.out.println("Compression Filter Test Servlet");// ²é¿´ÊÇ·ñÖ´ĞĞ¸Ã¹ıÂËÆ÷
+		System.out.println("Compression Filter Test Servlet");// æŸ¥çœ‹æ˜¯å¦æ‰§è¡Œè¯¥è¿‡æ»¤å™¨
 	}
 
 	public void destroy() {

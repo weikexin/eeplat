@@ -22,8 +22,8 @@ import com.exedosoft.plat.ui.DOFormModel;
 
 /**
  * 
- * Èç¹ûÊÇcheckinstance ±»Ñ¡ÔñÊı¾İµÄ²ÎÊı£¬Ö»ÄÜÓÃcurrentÀàĞÍ²ÎÊı£»µ«ÊÇ¿ÉÒÔÓÃcheckinstance_hidden (form ÀàĞÍ) ´úÌæ
- * ÆäËûÇé¿öÏÂ£¬±ØĞëÓÃform 
+ * å¦‚æœæ˜¯checkinstance è¢«é€‰æ‹©æ•°æ®çš„å‚æ•°ï¼Œåªèƒ½ç”¨currentç±»å‹å‚æ•°ï¼›ä½†æ˜¯å¯ä»¥ç”¨checkinstance_hidden (form ç±»å‹) ä»£æ›¿
+ * å…¶ä»–æƒ…å†µä¸‹ï¼Œå¿…é¡»ç”¨form 
  */
 
 public class CoreSaveAllAction extends DOAbstractAction {
@@ -38,16 +38,16 @@ public class CoreSaveAllAction extends DOAbstractAction {
 	}
 
 	/**
-	 * Save µÄÇé¿ö£¬ËùÒÔParameter È¡ÖµÊ±²»¿¼ÂÇauto_condition£¨²éÑ¯£© µÄÇé¿ö
+	 * Save çš„æƒ…å†µï¼Œæ‰€ä»¥Parameter å–å€¼æ—¶ä¸è€ƒè™‘auto_conditionï¼ˆæŸ¥è¯¢ï¼‰ çš„æƒ…å†µ
 	 */
 
 	public String excute() {
 
-		log.info("½øÈëÅúÁ¿ĞŞ¸ÄAction::::::::::::::::::::::::::");
+		log.info("è¿›å…¥æ‰¹é‡ä¿®æ”¹Action::::::::::::::::::::::::::");
 
 		if (this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 		}
 
 		String aKey = "checkinstance";
@@ -55,19 +55,19 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 		if (keys == null || keys.length == 0) {
 			System.out.println("Key:" + aKey);
-			System.out.println("Ã»ÓĞÊı¾İ");
-			this.setEchoValue("Ã»ÓĞÊı¾İ");
+			System.out.println("æ²¡æœ‰æ•°æ®");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®");
 			return NO_FORWARD;
 		}
 
 		List listKeys = Arrays.asList(keys);
-		log.info("Ñ¡ÔñµÄÊı¾İ::" + listKeys);
+		log.info("é€‰æ‹©çš„æ•°æ®::" + listKeys);
 		// checkinstance_hidden
 		String[] key_hiddens = this.actionForm
 				.getValueArray("checkinstance_hidden");
-		// ////////////////Çå³ş»º´æ
+		// ////////////////æ¸…æ¥šç¼“å­˜
 
-		// ///////////½çÃæ¶ÔÓ¦µÄÒµÎñ¶ÔÏó¼´Ê¹ĞèÒªË¢ĞÂµÄÒµÎñ¶ÔÏó
+		// ///////////ç•Œé¢å¯¹åº”çš„ä¸šåŠ¡å¯¹è±¡å³ä½¿éœ€è¦åˆ·æ–°çš„ä¸šåŠ¡å¯¹è±¡
 
 		DOBO refreshBO = null;
 
@@ -75,7 +75,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 			DOFormModel buttonForm = null;
 
 			String invokeButtonID = this.actionForm.getValue("invokeButtonUid");
-			if (invokeButtonID != null && !"".equals(invokeButtonID.trim())) {// ////////////Ê×ÏÈ¸ù¾İÆô·¢°´Å¥»ñÈ¡
+			if (invokeButtonID != null && !"".equals(invokeButtonID.trim())) {// ////////////é¦–å…ˆæ ¹æ®å¯å‘æŒ‰é’®è·å–
 				buttonForm = DOFormModel.getFormModelByID(invokeButtonID);
 			}
 			if (buttonForm != null
@@ -99,7 +99,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 		try {
 			con = this.service.getBo().getDataBase().getContextConnection();
-			log.info("µ±Ç°Ö´ĞĞµÄSQLÓï¾ä:" + this.service.getTempSql());
+			log.info("å½“å‰æ‰§è¡Œçš„SQLè¯­å¥:" + this.service.getTempSql());
 			PreparedStatement pstmt = con.prepareStatement(this.service
 					.getTempSql());
 
@@ -129,7 +129,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 					if (dop.getType() != null
 							&& dop.getType().intValue() == DOParameter.TYPE_FORM
 							&& dop.getDefaultValue() == null) {
-						log.info("ÅúÁ¿ĞŞ¸Ä²ÎÊıµÄÃû³Æ:::" + dop.getName());
+						log.info("æ‰¹é‡ä¿®æ”¹å‚æ•°çš„åç§°:::" + dop.getName());
 
 						String[] valueArray = this.actionForm.getValueArray(dop
 								.getName());
@@ -157,7 +157,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 				}
 				pstmt.addBatch();
 			}
-			log.info("ÅúÁ¿ĞŞ¸Ä::batchSize:::" + batchSize);
+			log.info("æ‰¹é‡ä¿®æ”¹::batchSize:::" + batchSize);
 			pstmt.executeBatch();
 
 		} catch (SQLException ex1) {
@@ -176,7 +176,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 	}
 
 	/**
-	 * ÈÕÖ¾Ò²ÒªÉè¼Æ³ÉÒ»¸öÀ©Õ¹½á¹¹£¬²»½ö½öÊÇ¶àdo_log_data Õâ¸ö±íµÄÔö¼Ó¡£
+	 * æ—¥å¿—ä¹Ÿè¦è®¾è®¡æˆä¸€ä¸ªæ‰©å±•ç»“æ„ï¼Œä¸ä»…ä»…æ˜¯å¤šdo_log_data è¿™ä¸ªè¡¨çš„å¢åŠ ã€‚
 	 * 
 	 * @param uid
 	 */
@@ -222,15 +222,15 @@ public class CoreSaveAllAction extends DOAbstractAction {
 		switch (theService.getType().intValue()) {
 
 		case DOService.TYPE_DELETE:
-			optionType = "É¾³ı";
+			optionType = "åˆ é™¤";
 			break;
 		case DOService.TYPE_INSERT:
-			optionType = "ĞÂÔö";
+			optionType = "æ–°å¢";
 			break;
 		case DOService.TYPE_UPDATE_AUTO_PARA:
 		case DOService.TYPE_UPDATE:
 
-			optionType = "ĞŞ¸Ä";
+			optionType = "ä¿®æ”¹";
 			break;
 		}
 		// insert into
@@ -245,7 +245,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 		aLog.putValue("OPER_DATA", bi.getName());
 		aLog.putValue("oper_data_uid", bi.getUid());
 		if (oldInstance != null) {
-			aLog.putValue("old_value", oldInstance.getName() + "-------ÏêÏ¸ĞÅÏ¢£º"
+			aLog.putValue("old_value", oldInstance.getName() + "-------è¯¦ç»†ä¿¡æ¯ï¼š"
 					+ oldInstance.toString());
 		}
 

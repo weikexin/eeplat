@@ -51,7 +51,7 @@ public class TaskCommandMap {
 	}
 	
 	/**
-	 * ª˜ú?“ICommandID,•Ô‰ñŠ??“Itask—ñ•\
+	 * å´»æ‚©æ…‚?æ‘CommandID,æ›‰å¤å¼·??æ‘taskæ¥æ˜
 	 * @param commandID
 	 * @return
 	 */

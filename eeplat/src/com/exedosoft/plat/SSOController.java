@@ -51,13 +51,13 @@ public class SSOController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		/**
-		 * Ö²Èësession
+		 * æ¤å…¥session
 		 */
 		SessionContext us = new SessionContext();
-		System.out.println("µÚÒ»´Î³õÊ¼»¯Session=================");
+		System.out.println("ç¬¬ä¸€æ¬¡åˆå§‹åŒ–Session=================");
 		request.getSession().setAttribute("userInfo", us);
 
-		// ///////////////////////////*************************²¶»ñÉÏÏÂÎÄ
+		// ///////////////////////////*************************æ•è·ä¸Šä¸‹æ–‡
 		// this.getServletConfig(), this
 		// .getServletContext(),
 
@@ -70,7 +70,7 @@ public class SSOController extends HttpServlet {
 
 		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
 
-		String serviceUid = request.getParameter("contextServiceUid"); // /////////ÒµÎñ¶ÔÏó·şÎñuid
+		String serviceUid = request.getParameter("contextServiceUid"); // /////////ä¸šåŠ¡å¯¹è±¡æœåŠ¡uid
 		DOService curService = null;
 		if (serviceUid != null && !serviceUid.trim().equals("")) {
 			curService = DOService.getServiceByID(serviceUid);
@@ -103,7 +103,7 @@ public class SSOController extends HttpServlet {
 		}
 
 		/**
-		 * Ö´ĞĞÓÃ»§¶¨ÒåµÄÌØ¶¨µÇÂ¼Action Èç LoginAction2 LoginActionµÈ¡£
+		 * æ‰§è¡Œç”¨æˆ·å®šä¹‰çš„ç‰¹å®šç™»å½•Action å¦‚ LoginAction2 LoginActionç­‰ã€‚
 		 */
 		String returnValue = null;
 		try {
@@ -131,7 +131,7 @@ public class SSOController extends HttpServlet {
 
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
-			// ////ÎªÁË±£Áô½á¹¹£¬Ã»ÓĞÊµ¼ÊÒâÒå
+			// ////ä¸ºäº†ä¿ç•™ç»“æ„ï¼Œæ²¡æœ‰å®é™…æ„ä¹‰
 			outHtml.append("{returnPath:'").append("',targetPane:'");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
@@ -146,7 +146,7 @@ public class SSOController extends HttpServlet {
 			}
 			if (!formBI.getValue("randcode").equals(
 					request.getSession().getAttribute("rand"))) {
-				echoStr = "ÑéÖ¤Âë´íÎó£¡";
+				echoStr = "éªŒè¯ç é”™è¯¯ï¼";
 			}
 
 			outHtml.append("',returnValue:'").append(echoStr).append("'}");
@@ -154,7 +154,7 @@ public class SSOController extends HttpServlet {
 		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
 
 			if (!"success".equals(returnValue)) {
-				returnValue = "ÓÃ»§Ãû/ÃÜÂë´íÎó,ÇëÖØÊÔ!";
+				returnValue = "ç”¨æˆ·å/å¯†ç é”™è¯¯,è¯·é‡è¯•!";
 			} else {
 
 				System.out.println(formBI.getValue("randcode"));
@@ -165,7 +165,7 @@ public class SSOController extends HttpServlet {
 					"\'}");
 
 		} else {
-			// ////ÎªÁË±£Áô½á¹¹£¬Ã»ÓĞÊµ¼ÊÒâÒå
+			// ////ä¸ºäº†ä¿ç•™ç»“æ„ï¼Œæ²¡æœ‰å®é™…æ„ä¹‰
 			outHtml.append("{returnPath:'").append("',targetPane:'");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()

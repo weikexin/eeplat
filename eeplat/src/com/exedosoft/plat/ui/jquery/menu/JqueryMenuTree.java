@@ -56,7 +56,7 @@ public class JqueryMenuTree extends DOBaseMenu {
 					
 					sb.append("<div class=\"treeview-file\" id=\" ").append(aChildMenu.getObjUid())
 					.append("\" name=\"").append(aChildMenu.getL10n()).append("\"");
-					//�Զ�������paneid
+					//自定义属性paneid
 					if(aChildMenu.getLinkPane() != null){
 						BOInstance bi = DOGlobals.getInstance().getRuleContext().getInstance();
 						sb.append(" paneid=\"").append(aChildMenu.getLinkPane().getFullCorrHref(bi, null))
@@ -125,7 +125,7 @@ public class JqueryMenuTree extends DOBaseMenu {
 		buffer.append("var ").append(itemName).append(" = new WebFXTreeItem('")
 				.append(item.getL10n()).append("'");
 
-		// //���ӵ��LinkPane��linkService
+		// //锟斤拷锟接碉拷锟絃inkPane锟斤拷linkService
 		if (item.getLinkPane() != null || item.getLinkService() != null) {
 			buffer.append(",\"javascript:");
 			this.appendLink(buffer, item, item.getEchoJs());

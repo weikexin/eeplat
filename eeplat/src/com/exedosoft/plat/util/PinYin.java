@@ -474,8 +474,8 @@ public class PinYin {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(PinYin.getPingyin("ÀÏÊ¦°®´óÃ×"));
-		System.out.println(PinYin.getPingyinSM("ÀÏÊ¦°®´óÃ×"));
+		System.out.println(PinYin.getPingyin("è€å¸ˆçˆ±å¤§ç±³"));
+		System.out.println(PinYin.getPingyinSM("è€å¸ˆçˆ±å¤§ç±³"));
 	}
 
 }

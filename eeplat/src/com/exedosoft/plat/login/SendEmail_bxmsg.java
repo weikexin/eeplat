@@ -42,16 +42,16 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 	
 	
 	public String excute() {
-		String baoxiaoempuid = null;// ±¨ÏúÈË;
-		String baoxiaoid = null;// ±¨Ïúµ¥±àºÅ;
-		String baoxiaostate = null;// ±¨Ïúµ¥×´Ì¬;
+		String baoxiaoempuid = null;// æŠ¥é”€äºº;
+		String baoxiaoid = null;// æŠ¥é”€å•ç¼–å·;
+		String baoxiaostate = null;// æŠ¥é”€å•çŠ¶æ€;
 
-		String receivepeople = null;// ±¨ÏúÈË²¿ÃÅÁìµ¼(¾­Àí)»òÏÂÒ»¸öÉóÅúÈË;
+		String receivepeople = null;// æŠ¥é”€äººéƒ¨é—¨é¢†å¯¼(ç»ç†)æˆ–ä¸‹ä¸€ä¸ªå®¡æ‰¹äºº;
 		
-		//·¢ËÍÓÊ¼þ£¬ÒÔ¹ÜÀíÔ±Éí·Ý·¢ËÍ
-		String manager_email = "uii2008@sohu.com";// ¹ÜÀíÔ±ÓÊÏäµØÖ·;
-		String baoxiaoemail = null;// ±¨ÏúÈËµØÖ·;
-		 String emailTo = null;// ÊÕÐÅÈËµØÖ· ;
+		//å‘é€é‚®ä»¶ï¼Œä»¥ç®¡ç†å‘˜èº«ä»½å‘é€
+		String manager_email = "uii2008@sohu.com";// ç®¡ç†å‘˜é‚®ç®±åœ°å€;
+		String baoxiaoemail = null;// æŠ¥é”€äººåœ°å€;
+		 String emailTo = null;// æ”¶ä¿¡äººåœ°å€ ;
 
 		List users = new ArrayList();
 		
@@ -61,9 +61,9 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			return this.DEFAULT_FORWARD;
 		}
 
-		// ÅÐ¶ÏÊÇ·ñÓÐÊý¾Ý½ÓÊÜ£»
+		// åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®æŽ¥å—ï¼›
 		if (users != null && users.size() > 0) {
-			 // Àú±éËùÓÐµÄÊý¾Ý£»
+			 // åŽ†éæ‰€æœ‰çš„æ•°æ®ï¼›
 			
 			 for (int n = 0; n < users.size(); n++) {
 			 String s = users.get(n).toString();
@@ -73,7 +73,7 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			 
 			
 			
-			 // ¶ÔÃ¿ÌõÊý¾Ý½øÐÐ´¦Àí£¬È¡µÃÓÐÐ§ÊôÐÔ£»
+			 // å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±žæ€§ï¼›
 			 for (int i = 0; i < sarray.length; i++) {
 			 String temp = sarray[i];
 			 String[] nv = temp.split("=");
@@ -89,18 +89,18 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			 }
 			 
 			 /**
-			  * // È¡µÃÓÊÏäµØÖ·;
+			  * // å–å¾—é‚®ç®±åœ°å€;
 			  */
 			 
-			// ±¨ÏúÈËÓÊÏäµØÖ·
+			// æŠ¥é”€äººé‚®ç®±åœ°å€
 			baoxiaoemail = getEmail(baoxiaoempuid);
-			// ½ÓÊÕÈËÓÊÏäµØÖ·
+			// æŽ¥æ”¶äººé‚®ç®±åœ°å€
 			emailTo = getEmail(receivepeople);
 			
-			//LDAP sn È¡µÃcn	
+			//LDAP sn å–å¾—cn	
 //			String baoxiaoemp =  LDAPPeopleUtil.getLDAPCNBySN(baoxiaoempuid);
 			
-			//do_org_user_link user_uid È¡µÃuser_cn		
+			//do_org_user_link user_uid å–å¾—user_cn		
 			String baoxiaoemp = null;
 			try {
 				Connection conii = MySqlOperationII.getConnection();
@@ -112,32 +112,32 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			}
 			
 			/**
-			 * ÉèÖÃÓÊ¼þÖ÷ÌâºÍÄÚÈÝ
+			 * è®¾ç½®é‚®ä»¶ä¸»é¢˜å’Œå†…å®¹
 			 */
-			// Ìá½»¡¢ÉóÅúµÄ±¨Ïúµ¥
-			String emailTitle = "ÄúÓÐ¿ÉÉóÅú±¨Ïúµ¥";// ÓÊ¼þÖ÷Ìâ;
-			String emailText = "±¨Ïúµ¥±àºÅ: " + baoxiaoid + "¡£\n±¨ÏúÈË: "
-					+ baoxiaoemp + "¡£\n±¨Ïúµ¥×´Ì¬£º " + baoxiaostate + "¡£\n¿ÉÒÔÉóÅú¡£";// ÓÊ¼þÄÚÈÝ;
+			// æäº¤ã€å®¡æ‰¹çš„æŠ¥é”€å•
+			String emailTitle = "æ‚¨æœ‰å¯å®¡æ‰¹æŠ¥é”€å•";// é‚®ä»¶ä¸»é¢˜;
+			String emailText = "æŠ¥é”€å•ç¼–å·: " + baoxiaoid + "ã€‚\næŠ¥é”€äºº: "
+					+ baoxiaoemp + "ã€‚\næŠ¥é”€å•çŠ¶æ€ï¼š " + baoxiaostate + "ã€‚\nå¯ä»¥å®¡æ‰¹ã€‚";// é‚®ä»¶å†…å®¹;
 
-			// ÍË»ØµÄ±¨Ïúµ¥
-			String emailTitle_back = "ÄúµÄ±¨Ïúµ¥±»ÍË»Ø";// ÓÊ¼þÖ÷Ìâ;
-			String emailText_back = "±¨Ïúµ¥±àºÅ: " + baoxiaoid + "¡£\n±¨ÏúÈË: "
-					+ baoxiaoemp + "¡£\n±¨Ïúµ¥×´Ì¬£º " + baoxiaostate + "¡£";// ÓÊ¼þÄÚÈÝ;
+			// é€€å›žçš„æŠ¥é”€å•
+			String emailTitle_back = "æ‚¨çš„æŠ¥é”€å•è¢«é€€å›ž";// é‚®ä»¶ä¸»é¢˜;
+			String emailText_back = "æŠ¥é”€å•ç¼–å·: " + baoxiaoid + "ã€‚\næŠ¥é”€äºº: "
+					+ baoxiaoemp + "ã€‚\næŠ¥é”€å•çŠ¶æ€ï¼š " + baoxiaostate + "ã€‚";// é‚®ä»¶å†…å®¹;
 
-			// ÉóÅúÍ¨¹ýµÄ±¨Ïúµ¥
-			String emailTitle_success = "ÄúµÄ±¨Ïúµ¥Í¨¹ýÁËÉóÅú";// ÓÊ¼þÖ÷Ìâ;
-			String emailText_success = "±¨Ïúµ¥±àºÅ: " + baoxiaoid + "¡£\n±¨ÏúÈË: "
-					+ baoxiaoemp + "¡£\n±¨Ïúµ¥×´Ì¬£º " + baoxiaostate + "¡£";// ÓÊ¼þÄÚÈÝ;
-			//Á´½ÓÍøÖ·
-			String webaddress = "\n\n\tµÇÂ¼×Ï·ã±¨ÏúÏµÍ³£º\nhttp://127.0.0.1:8080/yiyi/zfbx_manager";
+			// å®¡æ‰¹é€šè¿‡çš„æŠ¥é”€å•
+			String emailTitle_success = "æ‚¨çš„æŠ¥é”€å•é€šè¿‡äº†å®¡æ‰¹";// é‚®ä»¶ä¸»é¢˜;
+			String emailText_success = "æŠ¥é”€å•ç¼–å·: " + baoxiaoid + "ã€‚\næŠ¥é”€äºº: "
+					+ baoxiaoemp + "ã€‚\næŠ¥é”€å•çŠ¶æ€ï¼š " + baoxiaostate + "ã€‚";// é‚®ä»¶å†…å®¹;
+			//é“¾æŽ¥ç½‘å€
+			String webaddress = "\n\n\tç™»å½•ç´«æž«æŠ¥é”€ç³»ç»Ÿï¼š\nhttp://127.0.0.1:8080/yiyi/zfbx_manager";
 			
 
-			// //¸ù¾Ý±¨Ïúµ¥×´Ì¬£¬·¢ËÍÓÊ¼þ£»
+			// //æ ¹æ®æŠ¥é”€å•çŠ¶æ€ï¼Œå‘é€é‚®ä»¶ï¼›
 			try {
-				if (baoxiaostate.contains("ÍË»Ø")) {
+				if (baoxiaostate.contains("é€€å›ž")) {
 					sendEmail(manager_email, baoxiaoemail, emailTitle_back,
 							emailText_back+webaddress);
-				} else if (baoxiaostate.contains("×Ü¾­ÀíÉóÅúÍ¨¹ý")) {
+				} else if (baoxiaostate.contains("æ€»ç»ç†å®¡æ‰¹é€šè¿‡")) {
 					sendEmail(manager_email, baoxiaoemail, emailTitle_success,
 							emailText_success+webaddress);
 				} else if (baoxiaostate != null) {
@@ -160,12 +160,12 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 		}
 	}
 	////////////////////////////////////////////////////////////////
-	// ·¢ËÍÓÊ¼þ
+	// å‘é€é‚®ä»¶
 	private void sendEmail(String from, String to, String title, String text)
 			throws AddressException, MessagingException {
 		
 		//**************************************************8
-		//²âÊÔÓÃ
+		//æµ‹è¯•ç”¨
 		to = "yuanxx@zephyr.com.cn";
 		//*****************************************************8
 		
@@ -178,7 +178,7 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 
 		
 		   Session myMailSession = Session.getInstance(props);
-		   myMailSession.setDebug(true); // ´ò¿ªDEBUGÄ£Ê½
+		   myMailSession.setDebug(true); // æ‰“å¼€DEBUGæ¨¡å¼
 		   Message msg = new MimeMessage(myMailSession);
 		   msg.setFrom(new InternetAddress(from));
 		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
@@ -188,18 +188,18 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 		   msg.setText(text);
 		   System.out.println("1.Please wait for sending two...");
 
-		   // ·¢ËÍÓÊ¼þ
+		   // å‘é€é‚®ä»¶
 		   Transport myTransport = myMailSession.getTransport("smtp");
 		   myTransport.connect(smtpHost, from, password);
 		   myTransport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
 		   myTransport.close();
-		   // javax.mail.Transport.send(msg); // ÕâÐÐ²»ÄÜÊ¹ÓÃ¡£
+		   // javax.mail.Transport.send(msg); // è¿™è¡Œä¸èƒ½ä½¿ç”¨ã€‚
 		   System.out.println("2.Your message had send!");
 		
 
 	}
 
-	// ¸ù¾ÝÓÃ»§ÃûÈ¡µÃÓÊÏäµØÖ·
+	// æ ¹æ®ç”¨æˆ·åå–å¾—é‚®ç®±åœ°å€
 	private String getEmail(String user) {
 		String mail = null;
 		LDAPEntry fullEntry = null;
@@ -243,14 +243,14 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 				}
 			}
 		} catch (LDAPException e) {
-			System.err.print("Á¬½ÓÒì³££¡   ");
+			System.err.print("è¿žæŽ¥å¼‚å¸¸ï¼   ");
 			e.printStackTrace();
 		} finally {
 			if (lc != null && lc.isConnected()) {
 				try {
 					lc.disconnect();
 				} catch (LDAPException e) {
-					System.err.print("Á¬½ÓÒì³££¡   1" + e.toString());
+					System.err.print("è¿žæŽ¥å¼‚å¸¸ï¼   1" + e.toString());
 				}
 			}
 		}

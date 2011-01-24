@@ -55,11 +55,14 @@
 	   			 ,'pmlHeight':'${model.linkPaneModel.paneHeight?if_exists}'
 				 
 				 <#else>
-				 ,'target':'${model.gridModel.containerPane.name}'	
 		         ,'pml':'${model.gridModel.containerPane.name}'
-				</#if> 
+				</#if>
+				
+				 
 				<#if (model.targetPaneModel)?exists>	         
 		         	,'target':'${model.targetPaneModel.name}'
+		        <#else>
+		        	,'target':'${model.gridModel.containerPane.name}'	 	
 				</#if>				
 				<#if (model.echoJs)?exists>	         
 		         ,'echoJs':'${model.echoJs}'

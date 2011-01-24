@@ -15,7 +15,7 @@ import com.exedosoft.wf.wfi.NodeInstance;
 import com.exedosoft.wf.wfi.ProcessInstance;
 
 /**
- * дё╟Е╠╬иМ╤╗рЕ╣ддё╟Есеох
+ * Ф╗║Ф²©Ф°╛Х╨╚Е╝ Д╧┴Г └Ф╗║Ф²©Д╪≤Е┘┬
  * 
  * @author aa
  * 

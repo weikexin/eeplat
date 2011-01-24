@@ -21,7 +21,7 @@ import com.exedosoft.plat.bo.SQLTypes;
 import com.exedosoft.plat.bo.DODataSource;
 
 /**
- * ÀàĞÍ¾ÍÊÇÊÕÁ²µ½Ò»¶¨µÄ³Ì¶È£¬±ÈÈç¾ÍÊÇÏÖÔÚµÄ4¸öÀàĞÍ¡£ µ«ÊÇ»¹ÒªÖ§³ÖÀ©Õ¹µÄÀàĞÍ¡£
+ * ç±»å‹å°±æ˜¯æ”¶æ•›åˆ°ä¸€å®šçš„ç¨‹åº¦ï¼Œæ¯”å¦‚å°±æ˜¯ç°åœ¨çš„4ä¸ªç±»å‹ã€‚ ä½†æ˜¯è¿˜è¦æ”¯æŒæ‰©å±•çš„ç±»å‹ã€‚
  * 
  * @author anolesoft
  * 
@@ -75,8 +75,8 @@ public class DBTransUtil {
 		}
 		insertSql.append(" from ").append(aHistoryTable);
 
-		// /************************12.Ñ§Éú±¨°à±í
-		// ¸üĞÂÕÛ¿Û************************************************************************/
+		// /************************12.å­¦ç”ŸæŠ¥ç­è¡¨
+		// æ›´æ–°æŠ˜æ‰£************************************************************************/
 		// update tbstudentclass set fdifagio = fdifagio*0.01 where fdifagio is
 		// not null
 
@@ -98,14 +98,14 @@ public class DBTransUtil {
 		}
 		log.info("Target notInCols:::" + notInCols);
 
-		// /*******1.Ô±¹¤±íÊı¾İµ¼Èë********ĞŞ¸ÄÊ¡·İ************/
+		// /*******1.å‘˜å·¥è¡¨æ•°æ®å¯¼å…¥********ä¿®æ”¹çœä»½************/
 		// update tbemployee set fdprovince=(select OBJUID from tbprovince WHERE
 		// tbemployee.fdprovince=fdtemppro)
 		//
-		// /*******1.Ô±¹¤±íÊı¾İµ¼Èë********ĞŞ¸Ä³ÇÊĞ£¬Î´ÍêÈ«ĞŞ¸Ä²»¹æ·¶³ÇÊĞĞÅÏ¢************/
+		// /*******1.å‘˜å·¥è¡¨æ•°æ®å¯¼å…¥********ä¿®æ”¹åŸå¸‚ï¼Œæœªå®Œå…¨ä¿®æ”¹ä¸è§„èŒƒåŸå¸‚ä¿¡æ¯************/
 		// update tbemployee set fdcity=(select OBJUID from tbcity WHERE
-		// tbemployee.fdcity=replace(tbcity.fdcity,'ÊĞ',''))
-		// /*******11.Ñ§Éú±í*Êı¾İµ¼Èë********ĞŞ¸ÄÑ§Ğ£************/
+		// tbemployee.fdcity=replace(tbcity.fdcity,'å¸‚',''))
+		// /*******11.å­¦ç”Ÿè¡¨*æ•°æ®å¯¼å…¥********ä¿®æ”¹å­¦æ ¡************/
 		// update tbstudent set fdschool=(select OBJUID from tbschool WHERE
 		// tbstudent.fdschool=tbschool.fdschool and
 		// tbstudent.fdxuebu=tbschool.fdxuebu)
@@ -129,7 +129,7 @@ public class DBTransUtil {
 					aTargetTable).append(
 					" set fdcity=(select OBJUID from tbcity  WHERE ").append(
 					aTargetTable).append(
-					".fdcity=replace(tbcity.fdcity,'ÊĞ',''))");
+					".fdcity=replace(tbcity.fdcity,'å¸‚',''))");
 			log.info("Replace fdcity::" + buffer);
 
 		}
@@ -150,7 +150,7 @@ public class DBTransUtil {
 					aTargetTable).append(
 					" set fdaddcity=(select OBJUID from tbcity  WHERE ")
 					.append(aTargetTable).append(
-							".fdaddcity=replace(tbcity.fdcity,'ÊĞ',''))");
+							".fdaddcity=replace(tbcity.fdcity,'å¸‚',''))");
 			log.info("Replace fdcity::" + buffer);
 
 		}
@@ -202,9 +202,9 @@ public class DBTransUtil {
 			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME").toLowerCase();
-				// ////////////ÔöÇ¿¸üĞÂ¹¦ÄÜ
+				// ////////////å¢å¼ºæ›´æ–°åŠŸèƒ½
 
-				// //////Ê×ÏÈÒª¸úÏÖÓĞµÄtableName±È½Ï
+				// //////é¦–å…ˆè¦è·Ÿç°æœ‰çš„tableNameæ¯”è¾ƒ
 
 				PreparedStatement pstmt = con
 						.prepareStatement("select * from C192391203."
@@ -253,8 +253,8 @@ public class DBTransUtil {
 			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME");
-				// ////////////ÔöÇ¿¸üĞÂ¹¦ÄÜ
-				// //////Ê×ÏÈÒª¸úÏÖÓĞµÄtableName±È½Ï
+				// ////////////å¢å¼ºæ›´æ–°åŠŸèƒ½
+				// //////é¦–å…ˆè¦è·Ÿç°æœ‰çš„tableNameæ¯”è¾ƒ
 				System.out.println("TableName::::::::::" + tableName);
 				if (!tableName.toUpperCase().equals(tableName)) {
 					continue;
@@ -314,9 +314,9 @@ public class DBTransUtil {
 			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME").toLowerCase();
-				// ////////////ÔöÇ¿¸üĞÂ¹¦ÄÜ
+				// ////////////å¢å¼ºæ›´æ–°åŠŸèƒ½
 
-				// //////Ê×ÏÈÒª¸úÏÖÓĞµÄtableName±È½Ï
+				// //////é¦–å…ˆè¦è·Ÿç°æœ‰çš„tableNameæ¯”è¾ƒ
 
 				PreparedStatement pstmt = con
 						.prepareStatement("select * from C192391203."

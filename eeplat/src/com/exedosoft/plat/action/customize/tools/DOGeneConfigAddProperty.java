@@ -19,7 +19,7 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if(instance==null){
-			this.setEchoValue("Ã»ÓĞÊı¾İ!");
+			this.setEchoValue("æ²¡æœ‰æ•°æ®!");
 			return NO_FORWARD;
 		}
 		
@@ -28,7 +28,7 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 		String dbsize = this.actionForm.getValue("dbsize");
 		
 		if(colName==null || type ==null || dbsize==null){
-			this.setEchoValue("×Ö¶ÎÃû³Æ»òÕßÀàĞÍ»òÕß³¤¶ÈÃ»ÓĞ¶¨Òå!");
+			this.setEchoValue("å­—æ®µåç§°æˆ–è€…ç±»å‹æˆ–è€…é•¿åº¦æ²¡æœ‰å®šä¹‰!");
 			return NO_FORWARD;
 		}
 

@@ -24,8 +24,8 @@ public class DOExport extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
@@ -41,24 +41,24 @@ public class DOExport extends DOAbstractAction {
 		try {
 			t.begin();
 
-			// /ÊôĞÔ
+			// /å±æ€§
 			DOService servProperties = DOService
 					.getService("DO_BO_Property_findbybouid");
 			appendJSONS(sb, "property", servProperties);
-			// /²ÎÊı
+			// /å‚æ•°
 			DOService servParameters = DOService
 					.getService("DO_Parameter_findbybouid");
 			appendJSONS(sb, "parameter", servParameters);
-			// ¹æÔò
+			// è§„åˆ™
 			DOService servRules = DOService.getService("DO_Rule_findbybouid");
 			appendJSONS(sb, "rule", servRules);
 
-			// ÒµÎñ¶ÔÏóÏÂÃæµÄ·şÎñ
+			// ä¸šåŠ¡å¯¹è±¡ä¸‹é¢çš„æœåŠ¡
 			DOService servServices = DOService
 					.getService("DO_Service_Browse_findbybouid");
 			List services = appendJSONS(sb, "service", servServices);
 
-			// ·şÎñÏÂÃæµÄ²ÎÊı
+			// æœåŠ¡ä¸‹é¢çš„å‚æ•°
 			DOService servParaService = DOService
 					.getService("DO_Parameter_Service_findbyserviceUid");
 			sb.append("\n<parameter_service>");
@@ -69,7 +69,7 @@ public class DOExport extends DOAbstractAction {
 			}
 			sb.append("</parameter_service>");
 
-			// ·şÎñÏÂÃæµÄ¹æÔò
+			// æœåŠ¡ä¸‹é¢çš„è§„åˆ™
 			DOService servRuleService = DOService
 					.getService("DO_Service_Rule_findbyserviceuid");
 			sb.append("\n<rule_service>");
@@ -80,7 +80,7 @@ public class DOExport extends DOAbstractAction {
 			}
 			sb.append("</rule_service>");
 
-			// ÒµÎñ¶ÔÏóÏÂÃæµÄÃæ°å
+			// ä¸šåŠ¡å¯¹è±¡ä¸‹é¢çš„é¢æ¿
 			DOService servPanes = DOService
 					.getService("DO_UI_PaneModel_selectbyboduid");
 			List panes = appendJSONS(sb, "pane", servPanes);
@@ -104,7 +104,7 @@ public class DOExport extends DOAbstractAction {
 			}
 			sb.append("</pane_links>");
 
-			// /ÒµÎñ¶ÔÏóÏÂÃæµÄ±í¸ñ Ó¦¸ÃÓÃÃæ°åÏÂÃæ±í¸ñ±È½ÏºÃ
+			// /ä¸šåŠ¡å¯¹è±¡ä¸‹é¢çš„è¡¨æ ¼ åº”è¯¥ç”¨é¢æ¿ä¸‹é¢è¡¨æ ¼æ¯”è¾ƒå¥½
 			DOService servGrids = DOService
 					.getService("DO_UI_GridModel_findbycategoryUid");
 
@@ -116,10 +116,10 @@ public class DOExport extends DOAbstractAction {
 			appendLi(sb, grids);
 			sb.append("</grid>");
 
-			// /±í¸ñÏÂÃæµÄ±í¸ñÔªËØ
+			// /è¡¨æ ¼ä¸‹é¢çš„è¡¨æ ¼å…ƒç´ 
 			DOService servForms = DOService
 					.getService("DO_UI_FormModel_findbyGridModelUid");
-			// /±í¸ñÔªËØÁ¬½ÓµÄ±í¸ñÔªËØ
+			// /è¡¨æ ¼å…ƒç´ è¿æ¥çš„è¡¨æ ¼å…ƒç´ 
 			DOService servFormRelations = DOService
 					.getService("DO_UI_FormLinks_findbyformuid");
 
@@ -150,7 +150,7 @@ public class DOExport extends DOAbstractAction {
 			sb.append(sbRelations);
 			sb.append(sbTargets);
 
-			// ²Ëµ¥
+			// èœå•
 			sb.append("\n<menu>");
 			DOService servMenus = DOService
 					.getService("DO_UI_MenuModel_findbycategoryUid_top");
@@ -167,7 +167,7 @@ public class DOExport extends DOAbstractAction {
 			appendLi(sb, allMenus);
 			sb.append("</menu>");
 
-			// Ê÷
+			// æ ‘
 			sb.append("\n<tree>");
 			DOService servTrees = DOService
 					.getService("DO_UI_TreeModel_findbycategoryUid");
@@ -221,7 +221,7 @@ public class DOExport extends DOAbstractAction {
 
 	protected  void appendLi(StringBuilder sb, List list) {
 		
-		/// toJSONSTring ĞèÒª½øĞĞ×ªÒå
+		/// toJSONSTring éœ€è¦è¿›è¡Œè½¬ä¹‰
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			BOInstance bi = (BOInstance) it.next();
 			sb.append("<li>").append(StringUtil.filter(bi.toJSONString())).append("</li>\n");

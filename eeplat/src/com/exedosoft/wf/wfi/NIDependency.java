@@ -83,7 +83,7 @@ public class NIDependency extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * 判断关系是否已经存在
+	 * 鍒ゆ柇鍏崇郴鏄惁宸茬粡瀛樺湪
 	 * @return
 	 * @uml.property  name="nodeStateShow"
 	 */

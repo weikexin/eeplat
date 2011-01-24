@@ -25,7 +25,7 @@ public class SessionListener implements HttpSessionListener {
 
 		LoginMain.globalSessions.values().remove(se.getSession());
 
-		// /删除过期数据
+		// /鍒犻櫎杩囨湡鏁版嵁
 //		DOService dellogService = DOService
 //				.getService("do_log_delete_guoqi");
 //		try {

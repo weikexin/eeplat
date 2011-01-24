@@ -26,10 +26,10 @@ public class DOInputTextLong extends DOBaseForm {
 		
 
 		
-		//////增加装饰
+		//////澧炲姞瑁呴グ
 		buffer.append(getDecoration(property));
 
-		/////////end 增加装饰
+		/////////end 澧炲姞瑁呴グ
 		buffer.append(" title='")
 		.append(property.getL10n())
 		.append("'");

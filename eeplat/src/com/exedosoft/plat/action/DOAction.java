@@ -11,27 +11,27 @@ public interface DOAction extends Serializable{
 
 	
   /**
-   * Ö±½Ó×ªÏò¿ÉÄÜÓĞÎÊÌâ(ÓĞµÄWeb Container ²»Ö§³Ö) ËùÒÔÒª·µ»ØÒ»¸ö°üº¬Á´½ÓµÄ¶ÔÏó
-   * ¿ÉÒÔÖ§³Öweb framework£¬ajax web framework.
-   * paras »ò instance ¿ÉÒÔÍ¨¹ı×¢ÈëÊµÏÖ¡£
+   * ç›´æ¥è½¬å‘å¯èƒ½æœ‰é—®é¢˜(æœ‰çš„Web Container ä¸æ”¯æŒ) æ‰€ä»¥è¦è¿”å›ä¸€ä¸ªåŒ…å«é“¾æ¥çš„å¯¹è±¡
+   * å¯ä»¥æ”¯æŒweb frameworkï¼Œajax web framework.
+   * paras æˆ– instance å¯ä»¥é€šè¿‡æ³¨å…¥å®ç°ã€‚
    */
 	String excute() throws ExedoException;
 
 	/**
-	 * µ±Ç°ActionËùÅäÖÃµ½µÄService
+	 * å½“å‰Actionæ‰€é…ç½®åˆ°çš„Service
 	 * @param aService
 	 */
     void setService(DOService aService);
 
     /**
-     * °ÑÖ´ĞĞ½á¹û£¨Èç¹ûÊÇÒ»¸öBOInstaace£©ÈûÈëexedo »·¾³¡£
+     * æŠŠæ‰§è¡Œç»“æœï¼ˆå¦‚æœæ˜¯ä¸€ä¸ªBOInstaaceï¼‰å¡å…¥exedo ç¯å¢ƒã€‚
      * @param instance
      */
     
     void setInstance(BOInstance instance);
     
     /**
-     * °ÑÖ´ĞĞ½á¹û£¨Èç¹ûÊÇBOInstance ÁĞ±í£©ÈûÈëexedo»·¾³¡£
+     * æŠŠæ‰§è¡Œç»“æœï¼ˆå¦‚æœæ˜¯BOInstance åˆ—è¡¨ï¼‰å¡å…¥exedoç¯å¢ƒã€‚
      * @param instances
      */
     

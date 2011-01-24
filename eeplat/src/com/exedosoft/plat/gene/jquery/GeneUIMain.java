@@ -120,15 +120,15 @@ public class GeneUIMain {
 	public void geneConfig() {
 
 
-		// /Ãæ°åÃüÃû·½Ê½:PM_DO_LOG_Insert PM_DO_Parameter_Service_Browse
+		// /é¢æ¿å‘½åæ–¹å¼:PM_DO_LOG_Insert PM_DO_Parameter_Service_Browse
 
-		// /±í¸ñÃüÃû·½Ê½ GM_DO_Application_List_List
+		// /è¡¨æ ¼å‘½åæ–¹å¼ GM_DO_Application_List_List
 
 		if (category == null) {
 			return;
 		}
 		
-		////ĞèÒªÓÃµ½µÄÒµÎñ¶ÔÏó
+		////éœ€è¦ç”¨åˆ°çš„ä¸šåŠ¡å¯¹è±¡
 		DOBO bo  = DOBO.getDOBOByName("DO_BO");
 		bo.refreshContext(category.getObjUid());
 
@@ -137,7 +137,7 @@ public class GeneUIMain {
 			return;
 		}
 
-		// ×ÜÃæ°åÃæ³Ê
+		// æ€»é¢æ¿é¢å‘ˆ
 		DODataSource dds = DODataSource.parseGlobals();
 		DAOUtil.INSTANCE().currentDataSource(dds);
 		Transaction t = dds.getTransaction();
@@ -146,14 +146,14 @@ public class GeneUIMain {
 
 
 			if (DOPaneModel.getPaneModelByName(mainPaneName) != null) {
-				System.err.println("Ãæ°åÒÑ¾­´æÔÚ------------");
+				System.err.println("é¢æ¿å·²ç»å­˜åœ¨------------");
 				return;
 			}
 			t.begin();
 			
 			
 			/**
-			 * Éú³É×ÜÃæ°å
+			 * ç”Ÿæˆæ€»é¢æ¿
 			 */
 			DOPaneModel pmTotal = new DOPaneModel();
 			pmTotal.setName(mainPaneName);
@@ -182,7 +182,7 @@ public class GeneUIMain {
 			DAOUtil.INSTANCE().store(link2,aService);
 			
 			
-			////¸ãÒ»ÏÂ²Ëµ¥
+			////æä¸€ä¸‹èœå•
 			
 			DOPaneModel _opener_tab = DOPaneModel.getPaneModelByName("_opener_tab");
 			
@@ -229,21 +229,21 @@ public class GeneUIMain {
 
 	private DOPaneModel geneCondition(List properties, DOPaneModel pmResult) throws ExedoException {
 		/**
-		 * Éú³É±í¸ñ
+		 * ç”Ÿæˆè¡¨æ ¼
 		 */
 		DOGridModel conditionGrid = new DOGridModel();
 		conditionGrid.setL10n(condtionGridName);
 		conditionGrid.setName(condtionGridName);
-		conditionGrid.setCaption("ÇëÊäÈë²éÑ¯Ìõ¼ş");
+		conditionGrid.setCaption("è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶");
 		conditionGrid.setCategory(category);
 		conditionGrid.setController(gridCondition);
 		conditionGrid = DAOUtil.INSTANCE().store(conditionGrid);
 
 		/**
-		 * Éú³ÉÃæ°å
+		 * ç”Ÿæˆé¢æ¿
 		 */
 		DOPaneModel pmCondition = new DOPaneModel();
-		pmCondition.setTitle("ÇëÊäÈë²éÑ¯Ìõ¼ş");
+		pmCondition.setTitle("è¯·è¾“å…¥æŸ¥è¯¢æ¡ä»¶");
 		pmCondition.setName(condtionPaneName);
 		pmCondition.setL10n(condtionPaneName);
 		pmCondition.setCategory(category);
@@ -284,7 +284,7 @@ public class GeneUIMain {
 		}
 
 		DOFormModel fm = new DOFormModel();
-		fm.setL10n("²éÑ¯");
+		fm.setL10n("æŸ¥è¯¢");
 		fm.setController(formPane);
 		fm.setGridModel(conditionGrid);
 		fm.setOrderNum(Integer.valueOf(i));
@@ -298,7 +298,7 @@ public class GeneUIMain {
 	private DOPaneModel geneResult(List properties) throws ExedoException {
 
 		/**
-		 * Ïà¹Ø·şÎñÉú³É
+		 * ç›¸å…³æœåŠ¡ç”Ÿæˆ
 		 */
 		DOService rService = new DOService();
 		rService.setName(geneATable + "_auto_condition")                                                                                                                                         ;
@@ -326,16 +326,16 @@ public class GeneUIMain {
 			DAOUtil.INSTANCE().store(dps,aService);
 		}
 		/**
-		 * END Ïà¹Ø·şÎñÉú³É
+		 * END ç›¸å…³æœåŠ¡ç”Ÿæˆ
 		 */
 
 		/**
-		 * Éú³É±í¸ñ
+		 * ç”Ÿæˆè¡¨æ ¼
 		 */
 		DOGridModel gmResult = new DOGridModel();
 		gmResult.setL10n(resultGridName);
 		gmResult.setName(resultGridName);
-		gmResult.setCaption("²éÑ¯½á¹û");
+		gmResult.setCaption("æŸ¥è¯¢ç»“æœ");
 		gmResult.setCategory(category);
 		gmResult.setController(gridList);
 		gmResult.setService(rService);
@@ -343,10 +343,10 @@ public class GeneUIMain {
 		gmResult = DAOUtil.INSTANCE().store(gmResult);
 
 		/**
-		 * Éú³ÉÃæ°å
+		 * ç”Ÿæˆé¢æ¿
 		 */
 		DOPaneModel pmResult = new DOPaneModel();
-		pmResult.setTitle("²éÑ¯½á¹û");
+		pmResult.setTitle("æŸ¥è¯¢ç»“æœ");
 		pmResult.setName(resultPaneName);
 		pmResult.setL10n(resultPaneName);
 		pmResult.setCategory(category);
@@ -386,7 +386,7 @@ public class GeneUIMain {
 
 	
 		DOFormModel fm = new DOFormModel();
-		fm.setL10n("²é¿´");
+		fm.setL10n("æŸ¥çœ‹");
 
 		DOPaneModel pmBrowse = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_browse");
@@ -402,7 +402,7 @@ public class GeneUIMain {
 
 		fm = new DOFormModel();
 		fm.setController(formItemPane);
-		fm.setL10n("ĞŞ¸Ä");
+		fm.setL10n("ä¿®æ”¹");
 
 		DOPaneModel pmUpdate = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_update");
@@ -427,10 +427,10 @@ public class GeneUIMain {
 
 		fm = new DOFormModel();
 		fm.setController(formItemServiceUf);
-        fm.setEchoJs("confirm(\"ÄãÈ·¶¨ÒªÉ¾³ıÂğ\")");		
+        fm.setEchoJs("confirm(\"ä½ ç¡®å®šè¦åˆ é™¤å—\")");		
 		DOService aService = DOService.getService(this.geneATable + "_delete");
 		fm.setLinkService(aService);
-		fm.setL10n("É¾³ı");
+		fm.setL10n("åˆ é™¤");
 		fm.setGridModel(gmResult);
 		fm.setLinkPaneModel(pmResult);
 		fm.setTargetPaneModel(pmResult);
@@ -441,7 +441,7 @@ public class GeneUIMain {
 
 		fm = new DOFormModel();
 		fm.setController(formPane);
-		fm.setL10n("ĞÂÔö");
+		fm.setL10n("æ–°å¢");
 
 		DOPaneModel pmInsert = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_insert");
@@ -470,7 +470,7 @@ public class GeneUIMain {
 		
 		DOPaneModel pm = DOPaneModel.getPaneModelByName(mainPaneName); 
 		if (pm == null) {
-			System.err.println("Ãæ°åÒÑ¾­´æÔÚ------------");
+			System.err.println("é¢æ¿å·²ç»å­˜åœ¨------------");
 			return;
 		}
 		try {
@@ -486,11 +486,11 @@ public class GeneUIMain {
 					DAOUtil.INSTANCE().delete("delete form do_ui_formmodel where objuid = ?", fm.getObjUid());
 				}
 				DAOUtil.INSTANCE().delete("delete from do_ui_gridmodel where objuid = ?", gm.getObjUid());
-			//É¾³ı×ÓÃæ°å 					
+			//åˆ é™¤å­é¢æ¿ 					
 				removePane(pmChild);
 			}
 			
-			//É¾³ı×ÜÃæ°å 
+			//åˆ é™¤æ€»é¢æ¿ 
 			removePane(pm);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -501,7 +501,7 @@ public class GeneUIMain {
 	}
 
 	private void removePane(DOPaneModel pm) throws ExedoException {
-		///////////////////É¾³ıÃæ°å 			
+		///////////////////åˆ é™¤é¢æ¿ 			
 		DAOUtil.INSTANCE().delete("delete * from do_ui_panemodel where objuid = ?", pm.getObjUid());
 	}
 
@@ -519,7 +519,7 @@ public class GeneUIMain {
 	//
 	// formModel.setL10n(prop.getColName());
 	// dao.store(formModel);
-	// log.info("ÕıÔÚ´Ó" + prop.getColName() + "Éú³É½çÃæ×é¼ş.....");
+	// log.info("æ­£åœ¨ä»" + prop.getColName() + "ç”Ÿæˆç•Œé¢ç»„ä»¶.....");
 	// }
 	// } catch (DAOException e) {
 	// // TODO Auto-generated catch block
@@ -551,7 +551,7 @@ public class GeneUIMain {
 
 		int i = 1;
 
-		// ///·şÎñµÄÊôĞÔ Ô­À´ÊÇaService.retrieveProperties
+		// ///æœåŠ¡çš„å±æ€§ åŸæ¥æ˜¯aService.retrieveProperties
 		for (Iterator itProp = aService.getBo().retrieveProperties().iterator(); itProp
 				.hasNext();) {
 
@@ -563,8 +563,8 @@ public class GeneUIMain {
 			formM.setRelationProperty(prop);
 
 			/**
-			 * * ¿Í»§¶ËÑéÖ¤ÅäÖÃ£¬·ÖÎª£³²¿·Ö£¬ÒÔ;¸ô¿ª £±£¬ÀàĞÍ£ºInteger RealNumber EMail Text Others 2,
-			 * ³¤¶È £³, ÆäËûScript Ô¼Êø
+			 * * å®¢æˆ·ç«¯éªŒè¯é…ç½®ï¼Œåˆ†ä¸ºï¼“éƒ¨åˆ†ï¼Œä»¥;éš”å¼€ ï¼‘ï¼Œç±»å‹ï¼šInteger RealNumber EMail Text Others 2,
+			 * é•¿åº¦ ï¼“, å…¶ä»–Script çº¦æŸ
 			 * 
 			 */
 
@@ -613,13 +613,13 @@ public class GeneUIMain {
 			geneSaveButtonForm(aService, aName, gridM);
 		}
 
-		// ¶ÔÃ¿¸öGrid¸³½oÒ»¸öPane
+		// å¯¹æ¯ä¸ªGridèµ‹çµ¦ä¸€ä¸ªPane
 
 		DOPaneModel pane = new DOPaneModel();
 		pane.setCategory(aService.getBo());
 		pane.setName("pane_" + aService.getName() + aName);
 
-		// ///ÏÂÒ»²½¿¼ÂÇ ÊÇ²»ÊÇÃû³Æ²ÉÓÃºÍServie Ò»ÖÂ
+		// ///ä¸‹ä¸€æ­¥è€ƒè™‘ æ˜¯ä¸æ˜¯åç§°é‡‡ç”¨å’ŒServie ä¸€è‡´
 		pane.setTitle(aService.getName() + "paneModel" + aName);
 		pane.setL10n(aService.getName() + "paneModel" + aName);
 		pane.setLinkType(Integer.valueOf(DOPaneModel.LINKTYPE_GRIDMODEL));
@@ -649,7 +649,7 @@ public class GeneUIMain {
 
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("±£´æ");
+		formM.setL10n("ä¿å­˜");
 		DOService linkService = DOService.getService(aService.getBo().getName()
 				+ aName);
 		formM.setLinkService(linkService);
@@ -681,11 +681,11 @@ public class GeneUIMain {
 	private void geneCloseButtonForm(DOService aService, DOGridModel gridM)
 			throws ExedoException {
 
-		// ///×°µç»°Ğ¡ÁéÍ¨, 83747268
-		// //×°µç»°¹«Ë¾µç»°, 61758100
+		// ///è£…ç”µè¯å°çµé€š, 83747268
+		// //è£…ç”µè¯å…¬å¸ç”µè¯, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("¹Ø±Õ");
+		formM.setL10n("å…³é—­");
 		// DOService linkService =
 		// DOService.getService(aService.getBo().getName()
 		// + ".delete");

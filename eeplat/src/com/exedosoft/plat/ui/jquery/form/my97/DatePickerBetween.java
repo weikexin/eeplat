@@ -17,7 +17,7 @@ public class DatePickerBetween extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer();
 
 		getAInputTimeStr(property, buffer, "");
-		buffer.append("&nbsp;ÖÁ &nbsp;");
+		buffer.append("&nbsp;è‡³ &nbsp;");
 		getAInputTimeStr(property, buffer, "2");
 
 		return buffer.toString();

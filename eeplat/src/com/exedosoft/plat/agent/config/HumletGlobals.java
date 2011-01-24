@@ -1,44 +1,44 @@
 package com.exedosoft.plat.agent.config;
 
 /**
- * Œn?“I‘S‹Ç”z’u’ö˜B •ïŠ‡Agent?s“I’nš¬C’[Œû“™B
+ * å®¯?æ‘æ…¡å¬Šæ”æŠ²æ±å½‰ä¸… æ›ªå¦µAgent?å³´æ‘æŠ§æ¯ˆä¸†æŠ‚å²¥æ‘ä¸…
  * @author  Administrator
  */
 
 public class HumletGlobals {
 
 	/**
-	 * •?Ší–¼Ì
+	 * æšˆ?å©æŸ¤å¾§
 	 * @uml.property  name="serverName"
 	 */
 	private static String serverName;
 
 	/**
-	 * •?Ší’[Œû
+	 * æšˆ?å©æŠ‚å²¥
 	 * @uml.property  name="port"
 	 */
 	private static String port;
 
 	/**
-	 * CommanSerlet•?Ší”\Úó“IÅ‘å‹q?’[?‹?—ñ?“xB
+	 * CommanSerletæšˆ?å©æ“»æ„™åº´æ‘åµŸæˆåª?æŠ‚?åª®?æ¥?æ™ä¸…
 	 * @uml.property  name="cmdSvrBlockMax"
 	 */
 	private static String cmdSvrBlockMax;
 	
 	/**
-	 * inpool Å‘å?—ñ?“x
+	 * inpool åµŸæˆ?æ¥?æ™
 	 * @uml.property  name="inQueueMax"
 	 */
 	private static String inQueueMax;
 	
 	/**
-	 * Å‘½?—“IÁ‘§”
+	 * åµŸæ‡¡?æ£Ÿæ‘å¾šæ‡…æ‚¢
 	 * @uml.property  name="processMax"
 	 */
 	private static String processMax;	
 		
 	/**
-	 * ‹q?’[?Ú’´???B
+	 * åª?æŠ‚?æ„™æŒ»???ä¸…
 	 * @uml.property  name="timeOut"
 	 */
 	private static String timeOut;

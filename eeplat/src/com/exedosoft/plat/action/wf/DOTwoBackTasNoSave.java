@@ -12,11 +12,11 @@ public class DOTwoBackTasNoSave  extends DOAbstractAction{
 
 	@Override
 	public String excute() throws ExedoException {
-		// TODO ×Ô¶¯Éú³É·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆæ–¹æ³•å­˜æ ¹
 		
 		DOBO ptNI = DOBO.getDOBOByName("do_wfi_nodeinstance");
 		if (ptNI.getCorrInstance() == null) {
-			this.setEchoValue("µ±Ç°¹¤×÷Á÷ÉÏÏÂÎÄ¶ªÊ§,ÇëÖØĞÂ²Ù×÷!");
+			this.setEchoValue("å½“å‰å·¥ä½œæµä¸Šä¸‹æ–‡ä¸¢å¤±,è¯·é‡æ–°æ“ä½œ!");
 			return null;
 		}
 		NodeInstance ni = NodeInstance.getNodeInstanceByID(ptNI

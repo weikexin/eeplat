@@ -110,7 +110,7 @@ public class ReadTxtFile {
 				
 			   char aChar = chars[i];
 			   int p = (int) chars[i];
-			   ////´óÓÚ160ÊÇºº×Ö
+			   ////å¤§äº160æ˜¯æ±‰å­—
 				if (p > 160) {
 					zuci.append(aChar);
 					//System.out.println(aChar);
@@ -125,7 +125,7 @@ public class ReadTxtFile {
 			}
 			for(Iterator it = lineChs.iterator(); it.hasNext();){
 				String aChi = (String)it.next();
-				////Õâ¸öµØ·½»ñÈ¡Æ´ÒôºóÓ¦¸Ã¼ÓÉÏËæ»úÊı
+				////è¿™ä¸ªåœ°æ–¹è·å–æ‹¼éŸ³ååº”è¯¥åŠ ä¸Šéšæœºæ•°
 				String theRep = "${" + PinYin.getPingyin(aChi) + "?if_exists}";
 				aLine = aLine.replace(aChi, theRep);
 				StringBuilder theOutStr =  new StringBuilder("<label name=\"");
@@ -161,7 +161,7 @@ public class ReadTxtFile {
 //			.append(aCh)
 //			.append("</label>");
 //			
-//		//	<label name="tbsj">Ìî ±í Ê± ¼ä</label>
+//		//	<label name="tbsj">å¡« è¡¨ æ—¶ é—´</label>
 //			System.out.println(theOutStr);
 //			
 //		}
@@ -178,9 +178,9 @@ public class ReadTxtFile {
 		//System.out.println(allChs);
 		
 		
-//		Ğ´ÎÄ¼ş
+//		å†™æ–‡ä»¶
 		
-		//¶ÁÎÄ¼şÍ¬Ê±Ğ´ÎÄ¼şjava  ²»ÔËĞĞ£¬¿ÉÒÔÒ»±é¶ÁÒ»±é´´½¨ĞÂµÄÎÄ¼ş¡£¶Àµ½ÄÚ´æÖĞÔÙ´¦Àí oÁË¡£
+		//è¯»æ–‡ä»¶åŒæ—¶å†™æ–‡ä»¶java  ä¸è¿è¡Œï¼Œå¯ä»¥ä¸€éè¯»ä¸€éåˆ›å»ºæ–°çš„æ–‡ä»¶ã€‚ç‹¬åˆ°å†…å­˜ä¸­å†å¤„ç† oäº†ã€‚
 
 //		String content = jTextField1.getText() ;
 //		                FileWriter fw = null;

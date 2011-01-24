@@ -88,7 +88,7 @@ $(function() {
 		});
 	})
 	$(".formHeader img:eq(4)").bind("click",function(){
-		window.location.href="exedo/webv3/logoff.jsp";
+		window.location.href="logoff.jsp";
 	})
 	
 	$(".themeLabel img").bind("click",function(){

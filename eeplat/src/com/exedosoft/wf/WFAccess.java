@@ -3,8 +3,8 @@ package com.exedosoft.wf;
 import com.exedosoft.wf.wfi.NodeInstance;
 
 /**
- * isAccess ²ÎÊı²ÉÓÃNodeInstance ¶ø²»ÊÇ BOInstance
- * Ö÷ÒªÊÇisAccess ¿ÉÒÔ·½±ãÅĞ¶ÏÇ°Çı ºó¼ÌµÈ
+ * isAccess å‚æ•°é‡‡ç”¨NodeInstance è€Œä¸æ˜¯ BOInstance
+ * ä¸»è¦æ˜¯isAccess å¯ä»¥æ–¹ä¾¿åˆ¤æ–­å‰é©± åç»§ç­‰
  * @author anolesoft
  *
  */

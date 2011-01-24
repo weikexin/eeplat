@@ -30,8 +30,8 @@ public class DOImport extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("Î´ÅäÖÃSQL Óï¾ä");
-			this.setEchoValue("Î´ÅäÖÃSQL Óï¾ä");
+			System.out.println("æœªé…ç½®SQL è¯­å¥");
+			this.setEchoValue("æœªé…ç½®SQL è¯­å¥");
 			return NO_FORWARD;
 		}
 
@@ -39,15 +39,15 @@ public class DOImport extends DOAbstractAction {
 		try {
 			t.begin();
 
-			// Êı¾İÔ´ID
+			// æ•°æ®æºID
 			String datasourceuid = this.actionForm.getValue("datasourceuid");
-			// ÒµÎñ°üUID
+			// ä¸šåŠ¡åŒ…UID
 			String bpuid = this.actionForm.getValue("bpuid");
 
 			String fileName = this.actionForm.getValue("fileName");
 
 			if (fileName == null) {
-				this.setEchoValue("Äã»¹Ã»ÓĞÑ¡ÔñÎÄ¼ş£¡");
+				this.setEchoValue("ä½ è¿˜æ²¡æœ‰é€‰æ‹©æ–‡ä»¶ï¼");
 				return NO_FORWARD;
 			}
 
@@ -130,10 +130,10 @@ public class DOImport extends DOAbstractAction {
 									BOInstance exists = bo.getInstance(bi
 											.getValue("objuid"));
 									if (exists != null) {
-										log.info("´ıµ¼ÈëµÄÒµÎñ¶ÔÏóÒÑ¾­´æÔÚ£¬ÇëÉ¾³ıºóÔÙµ¼Èë!"
+										log.info("å¾…å¯¼å…¥çš„ä¸šåŠ¡å¯¹è±¡å·²ç»å­˜åœ¨ï¼Œè¯·åˆ é™¤åå†å¯¼å…¥!"
 												+ exists);
 										this
-												.setEchoValue("´ıµ¼ÈëµÄÒµÎñ¶ÔÏóÒÑ¾­´æÔÚ£¬ÇëÉ¾³ıºóÔÙµ¼Èë!");
+												.setEchoValue("å¾…å¯¼å…¥çš„ä¸šåŠ¡å¯¹è±¡å·²ç»å­˜åœ¨ï¼Œè¯·åˆ é™¤åå†å¯¼å…¥!");
 										return NO_FORWARD;
 									}
 									bi.putValue("datasourceuid", datasourceuid);
@@ -181,7 +181,7 @@ public class DOImport extends DOAbstractAction {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			this.setEchoValue("·­ÒëÍê³É!");
+			this.setEchoValue("ç¿»è¯‘å®Œæˆ!");
 
 			t.end();
 		} catch (Exception e) {
@@ -189,7 +189,7 @@ public class DOImport extends DOAbstractAction {
 			e.printStackTrace();
 		}
 
-		this.setEchoValue("µ¼Èë³É¹¦!");
+		this.setEchoValue("å¯¼å…¥æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 
 	}

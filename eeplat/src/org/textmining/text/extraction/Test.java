@@ -21,7 +21,7 @@ class Test
     try
     {
     	
-    	String file = "C:\\¸´¼ş ´óÁ¬Í¶×ÊÕşÎñĞÅÏ¢»¯ÏµÍ³ĞèÇó·ÖÎö±¨¸æ20070104.doc";
+    	String file = "C:\\å¤ä»¶ å¤§è¿æŠ•èµ„æ”¿åŠ¡ä¿¡æ¯åŒ–ç³»ç»Ÿéœ€æ±‚åˆ†ææŠ¥å‘Š20070104.doc";
       WordExtractor extractor = new WordExtractor();
       String s = extractor.extractText(new FileInputStream(file));
 

@@ -20,7 +20,7 @@ public class DOValueFileMult implements DOIView {
 				buffer.append("<a target='_blank' class='exedo_link' href=");
 				buffer.append(StringUtil.getAttachMentFile(paths[i])).append(
 						">");
-				// //////////¶ÔpictureÀàĞÍµÄÌØÊâ´¦Àí
+				// //////////å¯¹pictureç±»å‹çš„ç‰¹æ®Šå¤„ç†
 				buffer.append(paths[i]);
 
 				buffer.append("</a><br/>");

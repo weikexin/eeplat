@@ -5,12 +5,12 @@ import com.exedosoft.plat.ui.DOIModel;
 
 /**
  * 
- * Ñ¡Ôñ²»Í¬ÀàĞÍµÄ¶à¸öÒµÎñ¶ÔÏóµÄÊıÖµµÄÖ´ĞĞ¹ı³ÌÊÇÕâÑù£º
- * ÓĞ¶à¸öÀàĞ­Í¬Íê³É£¬°üÀ¨
+ * é€‰æ‹©ä¸åŒç±»å‹çš„å¤šä¸ªä¸šåŠ¡å¯¹è±¡çš„æ•°å€¼çš„æ‰§è¡Œè¿‡ç¨‹æ˜¯è¿™æ ·ï¼š
+ * æœ‰å¤šä¸ªç±»ååŒå®Œæˆï¼ŒåŒ…æ‹¬
  * 
- *1, DOSelectInvoke:ÔÚÕâ¶ùÅäÖÃÒş²ØÓò,	if (property.getInputConfig() != null) {
+ *1, DOSelectInvoke:åœ¨è¿™å„¿é…ç½®éšè—åŸŸ,	if (property.getInputConfig() != null) {
 			
-			////////////////Òş²ØµÄinputType formModel Name
+			////////////////éšè—çš„inputType formModel Name
 			buffer.append("<input name=\"").append(property.getInputConfig())
 					.append("\" type=\"hidden\"").append(" id=\"").append(
 							property.getInputConfig()).append("\" ");
@@ -22,11 +22,11 @@ import com.exedosoft.plat.ui.DOIModel;
 			}
 			buffer.append(" />");
 		}
-		²¢ÇÒÔÚDOValueService ÀïÃæ°Ñ·ÖÀàÊµ¼ÊÖµ´«¹ıÈ¥ÁË£º
+		å¹¶ä¸”åœ¨DOValueService é‡Œé¢æŠŠåˆ†ç±»å®é™…å€¼ä¼ è¿‡å»äº†ï¼š
 			buffer.append(",doAjax.selectInvoke='").append(fm.getFullColName())
 					.append("'");
 
- 2,DOSelectDataM:ÔÚÕâ¶ù°ÑÒş²ØÓòºÍÖµ´«µİ¸øjs,		if (fm.getInputConfig() != null
+ 2,DOSelectDataM:åœ¨è¿™å„¿æŠŠéšè—åŸŸå’Œå€¼ä¼ é€’ç»™js,		if (fm.getInputConfig() != null
 				&& fm.getInputConfig().indexOf(";") != -1) {
 
 			String[] types = fm.getInputConfig().split(",");
@@ -36,7 +36,7 @@ import com.exedosoft.plat.ui.DOIModel;
 
 		}
 
- 3,ExedoAjax ÀïÃæ selectData Ö´ĞĞ£º
+ 3,ExedoAjax é‡Œé¢ selectData æ‰§è¡Œï¼š
  		 if($(this.inputType)!=null && this.inputTypeValue!=null ){
 		   $(this.inputType).value = this.inputTypeValue;
 		 }
@@ -57,12 +57,12 @@ public class DOSelectDataM extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer("<button ");
 
 
-		// ////Ôö¼Ó×°ÊÎ
+		// ////å¢åŠ è£…é¥°
 		buffer.append(getDecoration(fm));
-		// ///////end Ôö¼Ó×°ÊÎ
+		// ///////end å¢åŠ è£…é¥°
 		buffer.append(" title='").append(fm.getL10n()).append("'");
-		// /// Ô­À´µÄ¿¼ÂÇ::::ÓÃËæ»úÊı,¶ø²»ÊÇÓÃformmodel.id, ÕâÃ´¿¼ÂÇÊÇ¿ÖÅÂ½çÃæÉÏ³öÏÖÁ½¸öformmodel ÅÉÉúµÄbutton
-		// ////////ÏÖÔÚµÄ¿¼ÂÇ:::Ö±½ÓÊ¹ÓÃfm.id ºóÌ¨¿ÉÒÔµÃµ½Õâ¸öid.
+		// /// åŸæ¥çš„è€ƒè™‘::::ç”¨éšæœºæ•°,è€Œä¸æ˜¯ç”¨formmodel.id, è¿™ä¹ˆè€ƒè™‘æ˜¯ææ€•ç•Œé¢ä¸Šå‡ºç°ä¸¤ä¸ªformmodel æ´¾ç”Ÿçš„button
+		// ////////ç°åœ¨çš„è€ƒè™‘:::ç›´æ¥ä½¿ç”¨fm.id åå°å¯ä»¥å¾—åˆ°è¿™ä¸ªid.
 		String buttonId = fm.getObjUid();
 
 		buffer.append(" id='").append(buttonId).append("'");
@@ -87,7 +87,7 @@ public class DOSelectDataM extends DOBaseForm {
 
 		buffer.append(",doAjax.formName='").append(theForm).append("'");
 
-		// /////////²åÈëÓÃ»§×Ô¶¨ÒåµÄonclickÊÂ¼ş
+		// /////////æ’å…¥ç”¨æˆ·è‡ªå®šä¹‰çš„onclickäº‹ä»¶
 		if (fm.getDoClickJs() != null && !"".equals(fm.getDoClickJs().trim())) {
 			buffer.append(",doAjax.doClickJs='")
 					.append(fm.getEscapeDOClickJs()).append("'");
@@ -101,7 +101,7 @@ public class DOSelectDataM extends DOBaseForm {
 					fm.getContainerPaneName()).append("'");
 		}
 
-		////´«Èë½çÃæµÄÖµÓĞÊ²Ã´ÎÊÌâ£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿£¿¡¢¡¢
+		////ä¼ å…¥ç•Œé¢çš„å€¼æœ‰ä»€ä¹ˆé—®é¢˜ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿã€ã€
 		if (fm.getInputConfig() != null
 				&& fm.getInputConfig().indexOf(";") != -1) {
 

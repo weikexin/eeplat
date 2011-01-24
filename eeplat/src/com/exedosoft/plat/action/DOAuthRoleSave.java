@@ -16,8 +16,8 @@ import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
- * Ö§³Ö·´ÏòÊÚÈ¨µÄÓÃ»§ÊÚÈ¨·½°¸¡£ ÓÃ»§È¨ÏŞ±£´æµÄË¼Â·£¬Ê×ÏÈÅĞ¶ÏÒ»ÏÂÊÇ·ñĞèÒª½øĞĞÈ¨ÏŞÅäÖÃ£¬Èç¹û²»ĞèÒª¼´·µ»Ø¡£
- * Èç¹ûĞèÒª£¬°ÑÅäÖÃÔÚÓÃ»§ÉÏµÄÈ¨ÏŞÈ«²¿È¥µô£¬ÖØĞÂ½øĞĞÅäÖÃ¡£
+ * æ”¯æŒåå‘æˆæƒçš„ç”¨æˆ·æˆæƒæ–¹æ¡ˆã€‚ ç”¨æˆ·æƒé™ä¿å­˜çš„æ€è·¯ï¼Œé¦–å…ˆåˆ¤æ–­ä¸€ä¸‹æ˜¯å¦éœ€è¦è¿›è¡Œæƒé™é…ç½®ï¼Œå¦‚æœä¸éœ€è¦å³è¿”å›ã€‚
+ * å¦‚æœéœ€è¦ï¼ŒæŠŠé…ç½®åœ¨ç”¨æˆ·ä¸Šçš„æƒé™å…¨éƒ¨å»æ‰ï¼Œé‡æ–°è¿›è¡Œé…ç½®ã€‚
  * 
  * @author IBM
  * 
@@ -46,7 +46,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 			return null;
 		}
 
-		// /////////////////////////isExcel ÊÇ·ñ¿ÉÒÔµ¼³öµ½excel
+		// /////////////////////////isExcel æ˜¯å¦å¯ä»¥å¯¼å‡ºåˆ°excel
 		String isExcel = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance().getValue("isExcel");
 		if ("5".equals(isExcel)) {
@@ -56,7 +56,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		}
 		// /////////////////////end
 
-		// /////////formModelµÄÈ¨ÏŞÅäÖÃ
+		// /////////formModelçš„æƒé™é…ç½®
 
 		boInstanceAuth(parterUid, "tbclassxuequ");
 
@@ -73,7 +73,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	}
 
 	/**
-	 * ÅäÖÃ»ù´¡Êı¾İµÄÈ¨ÏŞ£¬xes Èç·şÎñÖĞĞÄ£¬Äê¼¶ £¬¿ÆÄ¿
+	 * é…ç½®åŸºç¡€æ•°æ®çš„æƒé™ï¼Œxes å¦‚æœåŠ¡ä¸­å¿ƒï¼Œå¹´çº§ ï¼Œç§‘ç›®
 	 * 
 	 * @param parterUid
 	 */
@@ -131,7 +131,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	}
 
 	/**
-	 * ÅäÖÃ°´Å¥µÄÈ¨ÏŞ ,µ¼³öµ½excel?
+	 * é…ç½®æŒ‰é’®çš„æƒé™ ,å¯¼å‡ºåˆ°excel?
 	 * 
 	 * @param parterUid
 	 */
@@ -178,7 +178,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	}
 
 	/**
-	 * ÅäÖÃ²Ëµ¥µÄÈ¨ÏŞ
+	 * é…ç½®èœå•çš„æƒé™
 	 * 
 	 * @param parterUid
 	 */
@@ -224,7 +224,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 //		dao.closeSession();
 	}
 
-	// /////////½ÇÉ«²»×ö·´Ïò¸³È¨£¬Ö»ÓĞÈËÔ±²Å×ö·´Ïò¸³È¨
+	// /////////è§’è‰²ä¸åšåå‘èµ‹æƒï¼Œåªæœ‰äººå‘˜æ‰åšåå‘èµ‹æƒ
 	private void addAuth(String uiAccess, String dbAccess, String dmmUid,
 			 BOInstance role, int type, String whereDOBO) throws ExedoException
 			 {
@@ -258,7 +258,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 
 	}
 
-	// // /////////½ÇÉ«²»×ö·´Ïò¸³È¨£¬Ö»ÓĞÈËÔ±²Å×ö·´Ïò¸³È¨
+	// // /////////è§’è‰²ä¸åšåå‘èµ‹æƒï¼Œåªæœ‰äººå‘˜æ‰åšåå‘èµ‹æƒ
 	// private void authAForm(String uiAccess, String dbAccess, String dmmUid,
 	// WFDAO dao, BOInstance role) throws DAOException {
 	// if (!uiAccess.equals(dbAccess)) {
@@ -279,7 +279,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	// }
 	//	
 	//	
-	// // /////////½ÇÉ«²»×ö·´Ïò¸³È¨£¬Ö»ÓĞÈËÔ±²Å×ö·´Ïò¸³È¨
+	// // /////////è§’è‰²ä¸åšåå‘èµ‹æƒï¼Œåªæœ‰äººå‘˜æ‰åšåå‘èµ‹æƒ
 	// private void authABOInstance(String uiAccess, String dbAccess, String
 	// dmmUid,
 	// WFDAO dao, BOInstance role) throws DAOException {

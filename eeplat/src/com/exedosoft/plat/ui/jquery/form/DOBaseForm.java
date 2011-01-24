@@ -2,6 +2,7 @@ package com.exedosoft.plat.ui.jquery.form;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.ui.DOFormModel;
+import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOIView;
 import com.exedosoft.plat.ui.DOPaneModel;
@@ -76,11 +77,11 @@ public abstract class DOBaseForm implements DOIView {
 	}
 
 	protected static void appendHtmlJs(StringBuffer buffer, DOFormModel fm) {
-		// /////////²åÈëÓÃ»§×Ô¶¨ÒåµÄonclickÊÂ¼ş
+		// /////////æ’å…¥ç”¨æˆ·è‡ªå®šä¹‰çš„onclickäº‹ä»¶
 		if (fm.getDoClickJs() != null && !"".equals(fm.getDoClickJs().trim())) {
 			buffer.append("  onclick='").append(fm.getDoClickJs()).append("'");
 		}
-		// /////////²åÈëÓÃ»§×Ô¶¨ÒåµÄvalidJsÊÂ¼ş
+		// /////////æ’å…¥ç”¨æˆ·è‡ªå®šä¹‰çš„validJsäº‹ä»¶
 		if (fm.getOnBlurJs() != null && !"".equals(fm.getOnBlurJs().trim())) {
 			buffer.append(" onblur='").append(fm.getOnBlurJs()).append("' ");
 		}
@@ -100,12 +101,12 @@ public abstract class DOBaseForm implements DOIView {
 	}
 
 	protected static void appendDOAjaxJs(StringBuffer buffer, DOFormModel fm) {
-		// /////////²åÈëÓÃ»§×Ô¶¨ÒåµÄonclickÊÂ¼ş
+		// /////////æ’å…¥ç”¨æˆ·è‡ªå®šä¹‰çš„onclickäº‹ä»¶
 		if (fm.getDoClickJs() != null && !"".equals(fm.getDoClickJs().trim())) {
 			buffer.append(",doAjax.doClickJs='")
 					.append(fm.getEscapeDOClickJs()).append("'");
 		}
-		// /////////²åÈëÓÃ»§×Ô¶¨ÒåµÄvalidJsÊÂ¼ş
+		// /////////æ’å…¥ç”¨æˆ·è‡ªå®šä¹‰çš„validJsäº‹ä»¶
 		if (fm.getValidJs() != null && !"".equals(fm.getValidJs().trim())) {
 			buffer.append(",doAjax.validJs='").append(fm.getValidJs()).append(
 					"'");
@@ -120,8 +121,8 @@ public abstract class DOBaseForm implements DOIView {
 			buffer.append(" exedo_notnull='NotNull'");
 		}
 		/**
-		 * * ¿Í»§¶ËÑéÖ¤ÅäÖÃ£¬·ÖÎª£³²¿·Ö£¬ÒÔ;¸ô¿ª £±£¬ÀàĞÍ£ºInteger RealNumber EMail Text Others 2, ³¤¶È
-		 * £³, ÆäËûScript Ô¼Êø
+		 * * å®¢æˆ·ç«¯éªŒè¯é…ç½®ï¼Œåˆ†ä¸ºï¼“éƒ¨åˆ†ï¼Œä»¥;éš”å¼€ ï¼‘ï¼Œç±»å‹ï¼šInteger RealNumber EMail Text Others 2, é•¿åº¦
+		 * ï¼“, å…¶ä»–Script çº¦æŸ
 		 * 
 		 */
 
@@ -166,7 +167,7 @@ public abstract class DOBaseForm implements DOIView {
 			return bi.getName();
 		}
 
-		// /È¨ÏŞÏÂÒ»²½Òª¼ÓÉÏµÄ
+		// /æƒé™ä¸‹ä¸€æ­¥è¦åŠ ä¸Šçš„
 		// || !this.bo.getMainPaneModel().isAccess()
 		if (bi.getBo().getMainPaneModel() == null) {
 			return bi.getName();
@@ -210,6 +211,11 @@ public abstract class DOBaseForm implements DOIView {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		DOFormModel aFm = DOFormModel.getFormModelByID("4028802328945c580128945c5ef30005");
+//		System.out.println("FM:::" + aFm.getController().getHtmlCode(aFm));
+		
+		DOGridModel gm = DOGridModel.getGridModelByName("GM_DO_UI_FormModel_Update");
+		System.out.println("GM:::" + gm.getHtmlCode());
 
 	}
 

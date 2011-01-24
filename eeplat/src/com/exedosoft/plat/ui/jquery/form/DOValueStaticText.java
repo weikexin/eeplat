@@ -4,8 +4,8 @@ import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 
 /*
- * �б�����£����һ���ֶ�ͼƬ��ʽ��ʾɾ��������ͨ��Static��Textʵ��.
- * Input Config������ͼƬ�����ӣ�
+ * 列表情况下，最后一个字段图片形式表示删除，可以通过Static　Text实现.
+ * Input Config中配置图片的链接．
  * 
  */
 

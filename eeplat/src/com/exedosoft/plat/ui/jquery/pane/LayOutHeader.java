@@ -2,7 +2,7 @@ package com.exedosoft.plat.ui.jquery.pane;
 
 
 /**
- *	Í·Ãæ°åµÄÑùÊ½¿ØÖÆÆ÷
+ *	å¤´é¢æ¿çš„æ ·å¼æ§åˆ¶å™¨
  */
 public class LayOutHeader extends TPaneTemplate {
 

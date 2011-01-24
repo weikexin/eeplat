@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public class DateToChinese {
 
-	static String[] chinese={"Áã","Ò»","¶ş","Èı","ËÄ","Îå","Áù","Æß","°Ë","¾Å"};
-	static String[] len={"Ê®"};
-	static String[] ydm={"Äê","ÔÂ","ÈÕ"};
+	static String[] chinese={"é›¶","ä¸€","äºŒ","ä¸‰","å››","äº”","å…­","ä¸ƒ","å…«","ä¹"};
+	static String[] len={"å"};
+	static String[] ydm={"å¹´","æœˆ","æ—¥"};
 	
 	public static String getDateToChinese(String s)
 	{
@@ -32,9 +32,9 @@ public class DateToChinese {
 	private static SimpleDateFormat dateFormat = null; 
 	static 
 	{ 
-//	 Ö¸¶¨ÈÕÆÚ¸ñÊ½ÎªËÄÎ»Äê/Á½Î»ÔÂ·İ/Á½Î»ÈÕÆÚ£¬×¢Òâyyyy/MM/ddÇø·Ö´óĞ¡Ğ´£» 
+//	 æŒ‡å®šæ—¥æœŸæ ¼å¼ä¸ºå››ä½å¹´/ä¸¤ä½æœˆä»½/ä¸¤ä½æ—¥æœŸï¼Œæ³¨æ„yyyy/MM/ddåŒºåˆ†å¤§å°å†™ï¼› 
 	dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
-//	 ÉèÖÃlenientÎªfalse. ·ñÔòSimpleDateFormat»á±È½Ï¿íËÉµØÑéÖ¤ÈÕÆÚ£¬±ÈÈç2007/02/29»á±»½ÓÊÜ£¬²¢×ª»»³É2007/03/01 
+//	 è®¾ç½®lenientä¸ºfalse. å¦åˆ™SimpleDateFormatä¼šæ¯”è¾ƒå®½æ¾åœ°éªŒè¯æ—¥æœŸï¼Œæ¯”å¦‚2007/02/29ä¼šè¢«æ¥å—ï¼Œå¹¶è½¬æ¢æˆ2007/03/01 
 	dateFormat.setLenient(false); 
 	} 
 
@@ -47,18 +47,18 @@ public class DateToChinese {
 	} 
 	catch (Exception e) 
 	{ 
-//	 Èç¹ûthrow java.text.ParseException»òÕßNullPointerException£¬¾ÍËµÃ÷¸ñÊ½²»¶Ô 
+//	 å¦‚æœthrow java.text.ParseExceptionæˆ–è€…NullPointerExceptionï¼Œå°±è¯´æ˜æ ¼å¼ä¸å¯¹ 
 	return false; 
 	} 
 	} 
  
-//	 ÏÂÃæÕâ¸ö·½·¨Ôò¿ÉÒÔ½«Ò»¸öÈÕÆÚ°´ÕÕÄãÖ¸¶¨µÄ¸ñÊ½Êä³ö 
+//	 ä¸‹é¢è¿™ä¸ªæ–¹æ³•åˆ™å¯ä»¥å°†ä¸€ä¸ªæ—¥æœŸæŒ‰ç…§ä½ æŒ‡å®šçš„æ ¼å¼è¾“å‡º 
 	public static String formatDate(Date d) 
 	{ 
 	return dateFormat.format(d); 
 	} 
 
-	//Êä³ö×îÖÕµÄÈÕÆÚ½á¹û
+	//è¾“å‡ºæœ€ç»ˆçš„æ—¥æœŸç»“æœ
 	public static String baoDateToChinese(String s)
 	{
 		String toresult="";
@@ -76,12 +76,12 @@ public class DateToChinese {
 		}
 		else
 		{
-			toresult="ÄúÊäÈëµÄÈÕÆÚ¸ñÊ½²»ÕıÈ·,ÇëÈ·±£ÊäÈëµÄÈÕÆÚ¸ñÊ½Îªyyyy-mm-dd,Èç2008-02-26";
+			toresult="æ‚¨è¾“å…¥çš„æ—¥æœŸæ ¼å¼ä¸æ­£ç¡®,è¯·ç¡®ä¿è¾“å…¥çš„æ—¥æœŸæ ¼å¼ä¸ºyyyy-mm-dd,å¦‚2008-02-26";
 		}
 		return toresult;
 	}
 	
-	//Êä³ö×îÖÕµÄÈÕÆÚ½á¹û
+	//è¾“å‡ºæœ€ç»ˆçš„æ—¥æœŸç»“æœ
 	public static String DateToChineseWithNum(String s)
 	{
 		String toresult="";
@@ -99,7 +99,7 @@ public class DateToChinese {
 		}
 		else
 		{
-			toresult="ÄúÊäÈëµÄÈÕÆÚ¸ñÊ½²»ÕıÈ·,ÇëÈ·±£ÊäÈëµÄÈÕÆÚ¸ñÊ½Îªyyyy-mm-dd,Èç2008-02-26";
+			toresult="æ‚¨è¾“å…¥çš„æ—¥æœŸæ ¼å¼ä¸æ­£ç¡®,è¯·ç¡®ä¿è¾“å…¥çš„æ—¥æœŸæ ¼å¼ä¸ºyyyy-mm-dd,å¦‚2008-02-26";
 		}
 		return toresult;
 	}
@@ -131,11 +131,11 @@ public class DateToChinese {
 	 */
 	
 	public static void main(String[] args) {
-		// TODO ×Ô¶¯Éú³É·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆæ–¹æ³•å­˜æ ¹
 
 		//System.out.print(DateToChinese.getDateToChinese("174923"));
 		System.out.println(DateToChinese.baoDateToChinese("2008-12-23 "));
-		System.out.println("ÁíÒ»ÖÖ¸ñÊ½");
+		System.out.println("å¦ä¸€ç§æ ¼å¼");
 		System.out.println(DateToChinese.DateToChineseWithNum("2008-12-23 "));
 		Date date=new Date();
 		System.out.println(date.toLocaleString());

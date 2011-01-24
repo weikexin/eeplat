@@ -63,7 +63,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 
 		// this.getServletConfig(), this
 		// .getServletContext(),
-		// //////////////////////////³õÊ¼»¯È«¾ÖÉÏÏÂÎÄ
+		// //////////////////////////åˆå§‹åŒ–å…¨å±€ä¸Šä¸‹æ–‡
 		DOGlobals.getInstance().refreshContext(
 				new DOServletContext(request, response));
 
@@ -91,7 +91,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				treeModel.setDropDownID(dropDownID);
 			}
 
-			// //////////////³õÊ¼»¯µ±Ç°ÉÏÏÂÎÄ»·¾³1
+			// //////////////åˆå§‹åŒ–å½“å‰ä¸Šä¸‹æ–‡ç¯å¢ƒ1
 			if (instanceUid != null) {
 				if (treeModel.getParent() != null) {
 					DOService parentService = null;
@@ -111,7 +111,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				log.info("instanceUid::" + instanceUid);
 				log.info("treeModelUid::" + treeModelUid);
 				/**
-				 * Èç¹ûÊÇ³õÊ¼»¯ÉÏÏÂÎÄ»·¾³£¬Ö´ĞĞµ½Õâ¶ù¾Í·µ»Ø¡£
+				 * å¦‚æœæ˜¯åˆå§‹åŒ–ä¸Šä¸‹æ–‡ç¯å¢ƒï¼Œæ‰§è¡Œåˆ°è¿™å„¿å°±è¿”å›ã€‚
 				 */
 				return;
 			}
@@ -193,10 +193,10 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			List listChilds = treeModel.getService().invokeSelect(
 					instance.getUid());
 
-			// ////////Ö´ĞĞÏÂÃæµÄ´úÂë¿ÉÒÔÓĞÁ½¸öÌõ¼ş
-			if ((listChilds != null && listChilds.size() > 0) || // //////Èç¹ûÓĞÊı¾İ
+			// ////////æ‰§è¡Œä¸‹é¢çš„ä»£ç å¯ä»¥æœ‰ä¸¤ä¸ªæ¡ä»¶
+			if ((listChilds != null && listChilds.size() > 0) || // //////å¦‚æœæœ‰æ•°æ®
 					(treeModel.getChildren() != null && treeModel.getChildren()
-							.size() > 0) // ///ÏÂÃæ»¹ÓĞ²ã´Î
+							.size() > 0) // ///ä¸‹é¢è¿˜æœ‰å±‚æ¬¡
 			) {
 
 				appendSrc(treeModel.getObjUid(), treeModel, instance.getUid(),
@@ -204,7 +204,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			}
 
 			appendAction(treeModel, buffer, instance, instanceUid);
-			buffer.append("\"/>\n"); // / xml ¹Ø±Õ·ûºÅ
+			buffer.append("\"/>\n"); // / xml å…³é—­ç¬¦å·
 		}
 
 	}
@@ -226,15 +226,15 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 	}
 
 	/**
-	 * ´¦ÀíÒ»¸ö½ÚµãÓµÓĞ¶à¸ö×Ó½ÚµãµÄÇé¿ö
+	 * å¤„ç†ä¸€ä¸ªèŠ‚ç‚¹æ‹¥æœ‰å¤šä¸ªå­èŠ‚ç‚¹çš„æƒ…å†µ
 	 * 
 	 * @param treeModel
 	 * @return
 	 */
 	private String dealChildMult(DOTreeModel treeModel, String instanceUid) {
 
-		// ////Èç¹ûÃ»ÓĞÅäÖÃService,Õ¹¿ªÊ±Ã»ÓĞÏà¹ØÊı¾İ¿âÊı¾İ
-		// ////////½ö½ö×÷Îª·ÖÀàÊ¹ÓÃ
+		// ////å¦‚æœæ²¡æœ‰é…ç½®Service,å±•å¼€æ—¶æ²¡æœ‰ç›¸å…³æ•°æ®åº“æ•°æ®
+		// ////////ä»…ä»…ä½œä¸ºåˆ†ç±»ä½¿ç”¨
 		if (treeModel.getService() == null) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("\n<tree>\n");
@@ -243,11 +243,11 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			return buffer.toString();
 		}
 
-		// ///////////µ±Ç°µÄ²éÑ¯
+		// ///////////å½“å‰çš„æŸ¥è¯¢
 		List list = treeModel.getService().invokeSelect(instanceUid);
 
-		// ///////////ÅĞ¶ÏÈç¹ûÓĞÁ½¸öchild,²¢ÇÒÓĞÒ»¸öchildÊÇ×ÓÁ¬½Ó£¬²¢ÇÒÕâ¸öchild¶ÔÓ¦µÄ²éÑ¯Ã»ÓĞÖµ£¬
-		// ÄÇÃ´¿ÉÒÔ×÷ÎªSTATUS_CHILD_ONE´¦Àí
+		// ///////////åˆ¤æ–­å¦‚æœæœ‰ä¸¤ä¸ªchild,å¹¶ä¸”æœ‰ä¸€ä¸ªchildæ˜¯å­è¿æ¥ï¼Œå¹¶ä¸”è¿™ä¸ªchildå¯¹åº”çš„æŸ¥è¯¢æ²¡æœ‰å€¼ï¼Œ
+		// é‚£ä¹ˆå¯ä»¥ä½œä¸ºSTATUS_CHILD_ONEå¤„ç†
 		List children = treeModel.getChildren();
 		if (children.size() == 2) {
 
@@ -280,7 +280,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			}
 		}
 
-		// ///////////////////end ÅĞ¶Ï
+		// ///////////////////end åˆ¤æ–­
 
 		int i = 0;
 
@@ -292,7 +292,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		buffer.append("<tree>\n");
 		for (Iterator it = list.iterator(); it.hasNext();) {
 
-			// //ÆäÖĞÒ»¸ö×Ó½Úµã
+			// //å…¶ä¸­ä¸€ä¸ªå­èŠ‚ç‚¹
 			BOInstance instance = (BOInstance) it.next();
 
 			buffer.append("\n<tree text=\"");
@@ -336,7 +336,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 
 					appendSrc(childModel.getObjUid(), treeModel, instanceUid,
 							buffer);
-					buffer.append("\"/>\n"); // / xml ¹Ø±Õ·ûºÅ
+					buffer.append("\"/>\n"); // / xml å…³é—­ç¬¦å·
 
 				} else {
 
@@ -351,7 +351,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 
 						appendSrc(childModel.getObjUid(), treeModel,
 								instanceUid, buffer);
-						buffer.append("\"/>\n"); // / xml ¹Ø±Õ·ûºÅ
+						buffer.append("\"/>\n"); // / xml å…³é—­ç¬¦å·
 					}
 
 				}
@@ -392,7 +392,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			buffer.append(instance.getName());
 			this.appendIconXML(treeModel, buffer);
 			appendAction(treeModel, buffer, instance, instanceUid);
-			buffer.append("\"/>\n"); // / xml ¹Ø±Õ·ûºÅ
+			buffer.append("\"/>\n"); // / xml å…³é—­ç¬¦å·
 		}
 		buffer.append("</tree>\n");
 		return buffer.toString();
@@ -425,7 +425,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			buffer.append(instance.getName());
 			this.appendIconXML(treeModel, buffer);
 
-			///Õâ¸öµØ·½¿ÉÒÔ·Å¿ª£¬µ«ÊÇ·Å¿ªºó£¬Èç¹ûÊı¾İÁ¿´óÁË£¬Ğ§ÂÊ»á¼±¾ç½µµÍ
+			///è¿™ä¸ªåœ°æ–¹å¯ä»¥æ”¾å¼€ï¼Œä½†æ˜¯æ”¾å¼€åï¼Œå¦‚æœæ•°æ®é‡å¤§äº†ï¼Œæ•ˆç‡ä¼šæ€¥å‰§é™ä½
 			
 //			List listChilds = childModel.getService().invokeSelect(
 //					instance.getUid());
@@ -436,7 +436,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 //			}
 
 			appendAction(treeModel, buffer, instance, instanceUid);
-			buffer.append("\"/>\n"); // / xml ¹Ø±Õ·ûºÅ
+			buffer.append("\"/>\n"); // / xml å…³é—­ç¬¦å·
 		}
 	}
 
@@ -575,13 +575,13 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				String initUrl = treeModel.getInitPane().getFullCorrHref(
 						instance, null);
 				initUrl = initUrl.replaceAll("&", "&amp;");
-				// /////////////////////È·¶¨targetPaneID
+				// /////////////////////ç¡®å®štargetPaneID
 				String targetPaneId = treeModel.getInitPane().getName();
 				if (treeModel.getInitPane().getTargetPane() != null) {
 					targetPaneId = treeModel.getInitPane().getTargetPane()
 							.getName();
 				}
-				// //////////////////////È·¶¨targetPaneID
+				// //////////////////////ç¡®å®štargetPaneID
 				// $("#divMain").load();
 				// loadPml({
 				// 'pml':'${model.linkPaneModel.name}',
@@ -620,7 +620,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 	}
 
 	/**
-	 * µ±µã»÷Ê÷½ÚµãÊ±£¬´¥·¢µÄAction's URL
+	 * å½“ç‚¹å‡»æ ‘èŠ‚ç‚¹æ—¶ï¼Œè§¦å‘çš„Action's URL
 	 * 
 	 * @param treeModel
 	 * @param buffer
@@ -636,7 +636,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				&& instance.getUid().equals("tree.new.record")) {
 			actionUrl = treeModel.getNoRecordPane().getFullCorrHref(instance,
 					null);
-			// /////////////////////È·¶¨targetPaneID
+			// /////////////////////ç¡®å®štargetPaneID
 			targetPaneId = treeModel.getNoRecordPane().getName();
 			if (treeModel.getNoRecordPane().getTargetPane() != null) {
 				targetPaneId = treeModel.getNoRecordPane().getTargetPane()
@@ -646,11 +646,11 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		} else {
 			actionUrl = treeModel.getActionPane().getFullCorrHref(instance,
 					null);
-			// /////////////////////È·¶¨targetPaneID
+			// /////////////////////ç¡®å®štargetPaneID
 			targetPaneId = treeModel.getTargetPaneID();
 		}
 
-		if (treeModel.getParent() != null && !treeModel.isSelf()) {///¸üĞÂÉÏÒ»²ãµÄÖ÷¼ü£¬ÀíÂÛÉÏ½²Ó¦¸ÃÒ»Ö±¸üĞÂµ½×îÉÏ²ã(ĞèÒª½çÃæ²ã´¦Àí£¬¸üĞÂxtree2.jsÏÂÒ»²½£¬Ö»ÓĞ½çÃæ²ã²ÅÇå³şµÄÖªµÀÉÏ²ã½ÚµãµÄ¶ÔÓ¦£¬²¢ÇÒ¿ÉÒÔÎªÊ÷½Úµã¼ÓÊôĞÔ)
+		if (treeModel.getParent() != null && !treeModel.isSelf()) {///æ›´æ–°ä¸Šä¸€å±‚çš„ä¸»é”®ï¼Œç†è®ºä¸Šè®²åº”è¯¥ä¸€ç›´æ›´æ–°åˆ°æœ€ä¸Šå±‚(éœ€è¦ç•Œé¢å±‚å¤„ç†ï¼Œæ›´æ–°xtree2.jsä¸‹ä¸€æ­¥ï¼Œåªæœ‰ç•Œé¢å±‚æ‰æ¸…æ¥šçš„çŸ¥é“ä¸Šå±‚èŠ‚ç‚¹çš„å¯¹åº”ï¼Œå¹¶ä¸”å¯ä»¥ä¸ºæ ‘èŠ‚ç‚¹åŠ å±æ€§)
 			actionUrl = new StringBuffer(actionUrl).append(
 					"&dataBus=setContext&contextKey=").append(
 					treeModel.getParent().getService().getBo().getName())
@@ -702,7 +702,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		BOInstance instance = new BOInstance();
 		instance.setUid("tree.new.record");
 		instance.setBo(service.getBo());
-		instance.putValue(service.getBo().getValueCol(), "ĞÂÔö");
+		instance.putValue(service.getBo().getValueCol(), "æ–°å¢");
 		list.add(instance);
 
 	}

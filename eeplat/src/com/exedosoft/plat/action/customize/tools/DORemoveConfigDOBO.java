@@ -75,7 +75,7 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 
 			
 			deleteRubbish(instance,"DO_BO_Delete");
-			///Çå³þ»º´æ
+			///æ¸…æ¥šç¼“å­˜
 			CacheFactory.getCacheData().put(instance.getUid(), null);
 		
 		} catch (ExedoException e) {

@@ -21,7 +21,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 	private static Log log = LogFactory.getLog(DOGeneConfigTable.class);
 
 	/**
-	 * Save µÄÇé¿ö£¬ËùÒÔParameter È¡ÖµÊ±²»¿¼ÂÇauto_condition£¨²éÑ¯£© µÄÇé¿ö
+	 * Save çš„æƒ…å†µï¼Œæ‰€ä»¥Parameter å–å€¼æ—¶ä¸è€ƒè™‘auto_conditionï¼ˆæŸ¥è¯¢ï¼‰ çš„æƒ…å†µ
 	 */
 
 	public String excute() {
@@ -50,12 +50,12 @@ public class DOGeneConfigTable extends DOAbstractAction {
 							aIns.putValue("valuecol", valueCols[i]);
 							allCheckInstances.add(aIns);
 						} else {
-							echo.append("±í::" + aHiddenTable
-									+ "Ã»ÓĞ¶¨ÒåÖ÷¼ü£¬ÎŞ·¨½øĞĞ³õÊ¼»¯!");
+							echo.append("è¡¨::" + aHiddenTable
+									+ "æ²¡æœ‰å®šä¹‰ä¸»é”®ï¼Œæ— æ³•è¿›è¡Œåˆå§‹åŒ–!");
 						}
 					} else {
 
-						this.setEchoValue("ä¯ÀÀÆ÷ÄÚ²¿´íÎó£¬ÇëÖØÊÔ»òÑ¡ÓÃfirefox!");
+						this.setEchoValue("æµè§ˆå™¨å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•æˆ–é€‰ç”¨firefox!");
 						return NO_FORWARD;
 					}
 				}
@@ -63,13 +63,13 @@ public class DOGeneConfigTable extends DOAbstractAction {
 		}
 
 		if (allCheckInstances.size() == 0) {
-			this.setEchoValue("Ã»ÓĞÑ¡ÖĞÊı¾İ±í»òÃ»ÓĞ¶¨ÒåÖ÷¼ü!");
+			this.setEchoValue("æ²¡æœ‰é€‰ä¸­æ•°æ®è¡¨æˆ–æ²¡æœ‰å®šä¹‰ä¸»é”®!");
 			return NO_FORWARD;
 		}
 
 		log.info("echo::" + echo);
 
-		// ////////////////Çå³ş»º´æ
+		// ////////////////æ¸…æ¥šç¼“å­˜
 		try {
 
 			for (java.util.Iterator<BOInstance> it = allCheckInstances
@@ -90,7 +90,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 			return NO_FORWARD;
 
 		}
-		this.setEchoValue("³õÊ¼»¯³É¹¦!");
+		this.setEchoValue("åˆå§‹åŒ–æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 	}
 

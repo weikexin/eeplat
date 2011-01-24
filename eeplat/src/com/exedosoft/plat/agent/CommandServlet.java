@@ -1,8 +1,8 @@
 package com.exedosoft.plat.agent;
 
 /**
- * ÚóCommand??—ˆ“IÁ‘§B
- * ›ó‰ğÍÁ‘§C“¾“?Command??“IJob.
+ * æ„™åº´Command??æ£ƒæ‘å¾šæ‡…ä¸…
+ * æ¶¹å¤æ„…å¾šæ‡…ä¸†æ‘¼æ‘“?Command??æ‘Job.
  * @author Administrator
  *
  */

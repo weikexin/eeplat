@@ -55,11 +55,12 @@
 				 ,'pmlWidth':'${model.linkPaneModel.paneWidth?if_exists}'
 	   			 ,'pmlHeight':'${model.linkPaneModel.paneHeight?if_exists}'
 		        <#else>
-		         ,'target':'${model.gridModel.containerPane.name}'	
 		         ,'pml':'${model.gridModel.containerPane.name}'
 				</#if>
-				<#if (model.targetPaneModel)?exists>	         
-		         		,'target':'${model.targetPaneModel.name}'
+			    <#if (model.targetPaneModel)?exists>	         
+		         	,'target':'${model.targetPaneModel.name}'
+		        <#else>
+		        	,'target':'${model.gridModel.containerPane.name}'	 	
 				</#if>
 				<#if (model.echoJs)?exists>	         
 		         ,'echoJs':'${model.echoJs}'

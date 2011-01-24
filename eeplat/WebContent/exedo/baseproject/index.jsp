@@ -1,5 +1,6 @@
 ﻿<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
+<%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -7,6 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>欢迎登录业务系统</title>
+<script language="javascript">
+  globalURL = "/<%=DOGlobals.URL%>/";
+</script>  
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
@@ -30,6 +34,7 @@ body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px}
 -->
 </style>
 <script language="javascript">
+
 //开启遮罩
 function loading(){
 	showMainMsg("body",90,14,"center","loading","","n");

@@ -48,12 +48,12 @@ public class LoginActionLDAP extends DOAbstractAction {
 			DOService findDeptByUserId = DOService.getService("findDeptByUserId"); 
 			deptuid = findDeptByUserId.invokeSelectGetAValue(sc.getUser().getUid());
 			sc.getUser().putValue("deptuid", deptuid);
-			//±£´æÓÃ»§ÃûºÍÃÜÂë
+			//ä¿å­˜ç”¨æˆ·åå’Œå¯†ç 
 			sc.getUser().putValue("username_email", userName);
 			sc.getUser().putValue("password_email", pwd);
 			return "success";
 		} else {
-			this.setEchoValue("ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÊÔ!");
+			this.setEchoValue("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼Œè¯·é‡è¯•!");
 			return "notpass";
 		}
 	}
@@ -73,7 +73,7 @@ public class LoginActionLDAP extends DOAbstractAction {
 					+ dss.getUserName());
 			envi.put(Context.SECURITY_CREDENTIALS, pwd);
 			iCnt = new InitialContext(envi);
-			System.out.println("ÈÏÖ¤Í¨¹ý!");
+			System.out.println("è®¤è¯é€šè¿‡!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,15 +99,15 @@ public class LoginActionLDAP extends DOAbstractAction {
 
 
 
-// ///////////º£Ñó¾Ö×¨ÓÃ
+// ///////////æµ·æ´‹å±€ä¸“ç”¨
 //
 // if (this.actionForm.getValue("inner_user") != null
 // && Integer.parseInt(maxDegree) < 6) {
-// this.setEchoValue("¶Ô²»Æð£¬ÄúÖ»ÄÜÒÔÃ½ÌåÓÃ»§½øÈë!");
+// this.setEchoValue("å¯¹ä¸èµ·ï¼Œæ‚¨åªèƒ½ä»¥åª’ä½“ç”¨æˆ·è¿›å…¥!");
 // return "notpass";
 // }
 
-// ////////////º£Ñó¾Ö×¨ÓÃ
+// ////////////æµ·æ´‹å±€ä¸“ç”¨
 
 // BOInstance aDegreeIns = new BOInstance();
 // aDegreeIns.putValue("secret_name", user.getName());
@@ -116,4 +116,4 @@ public class LoginActionLDAP extends DOAbstractAction {
 // DOBO aDegreeBO = DOBO.getDOBOByName("sea.docsecret");
 // DOGlobals.getInstance().getSessoinContext().putCorrInstance(
 // aDegreeBO, aDegreeIns);
-// //////////////////º£Ñó¾ÖÎÄµµÏµÍ³
+// //////////////////æµ·æ´‹å±€æ–‡æ¡£ç³»ç»Ÿ

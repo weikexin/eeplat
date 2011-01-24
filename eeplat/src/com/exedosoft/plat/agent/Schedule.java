@@ -1,7 +1,7 @@
 package com.exedosoft.plat.agent;
 
 /**
- * Agent “IŠjS?“x?B
+ * Agent æ‘å¦€æ€±?æ™?ä¸…
  * @author Administrator
  *
  */

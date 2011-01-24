@@ -12,8 +12,8 @@ public class SimpleTask implements Task {
 	public Message perform(Message aMessage) {
 		
 		
-		System.out.println("³İ?s”C?BBBBBBBBBBB");
-		System.out.println("”C?–¼Ì::" + this.getClass().getName());
+		System.out.println("æƒ“åµ¼?å³´æ“Ÿ?ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…ä¸…");
+		System.out.println("æ“Ÿ?æŸ¤å¾§::" + this.getClass().getName());
 		System.out.println("Hello word!!!!!!!!!!!!");
 		
 		SimpleMessage sm = SimpleMessage.wrapperSimpeMessage();

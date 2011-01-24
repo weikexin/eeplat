@@ -19,9 +19,9 @@ import com.exedosoft.plat.gene.jquery.SqlCol;
 /**
  * 
  * 
- * ×öÔö¼Ó£¬²»×öĞŞ¸ÄºÍÉ¾³ı
+ * åšå¢åŠ ï¼Œä¸åšä¿®æ”¹å’Œåˆ é™¤
  * 
- * ¿ÉÒÔ¶ÔÔö¼Ó×öÉ¨Ãè
+ * å¯ä»¥å¯¹å¢åŠ åšæ‰«æ
  * 
  * @author anolesoft
  * 
@@ -54,8 +54,8 @@ public class DOTableList extends DOAbstractAction {
 			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
 			while (rs.next()) {
 				String tableName = rs.getString("TABLE_NAME");
-				// ////////////ÔöÇ¿¸üĞÂ¹¦ÄÜ
-				// //////Ê×ÏÈÒª¸úÏÖÓĞµÄtableName±È½Ï
+				// ////////////å¢å¼ºæ›´æ–°åŠŸèƒ½
+				// //////é¦–å…ˆè¦è·Ÿç°æœ‰çš„tableNameæ¯”è¾ƒ
 
 				// ////////////////
 

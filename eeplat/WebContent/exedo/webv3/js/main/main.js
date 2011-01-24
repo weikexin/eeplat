@@ -1,7 +1,6 @@
 ﻿/*****************************************主页面框架代码******************************************/
 var position = "first"; //tab页显示顺序，first是显示在前面，last是显示在后面
 var isHome = 1; //是否有首页   有是1   没有是0
-var globalURL = "/yiyi/";
 var globalService = globalURL + 'servicecontroller';
 var globalPml= globalURL + 'mvccontroller';
 

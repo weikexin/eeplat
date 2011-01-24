@@ -10,14 +10,14 @@ public class ReporterCache {
 
 	public static Map<String, BOInstance> dataCache = new HashMap<String, BOInstance>();
 	/**
-	 * 由于在多线程环境下，转化为同步的方式
+	 * 鐢变簬鍦ㄥ绾跨▼鐜涓嬶紝杞寲涓哄悓姝ョ殑鏂瑰紡
 	 */
 	static {
 		dataCache = Collections.synchronizedMap(dataCache);
 	}
 
 	/**
-	 * 获取一个DataCache
+	 * 鑾峰彇涓�涓狣ataCache
 	 * 
 	 * @param cacheKey
 	 * @return

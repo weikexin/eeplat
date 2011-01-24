@@ -51,7 +51,7 @@ public class UpgradeHSqlScript {
 			List<String> newBaseFileLines = getStrList(newBaseFile);
 			StringBuilder finalLines = new StringBuilder();
 
-			// ////////ÕûÀínew_base/mydb.script,°ÑÒÑ¾­ĞŞ¸Ä»òÕßÉ¾³ıµÄÈ±Ê¡ÊµÏÖÊı¾İÈ¥µô
+			// ////////æ•´ç†new_base/mydb.script,æŠŠå·²ç»ä¿®æ”¹æˆ–è€…åˆ é™¤çš„ç¼ºçœå®ç°æ•°æ®å»æ‰
 			oldBaseFileLines.removeAll(oldFileLines);
 			for (Iterator<String> itNewBase = newBaseFileLines.iterator(); itNewBase
 					.hasNext();) {
@@ -84,7 +84,7 @@ public class UpgradeHSqlScript {
 				}
 			}
 
-			// ////¼ÓÉÏ¡°Ôö¼ÓµÄ¡± lines
+			// ////åŠ ä¸Šâ€œå¢åŠ çš„â€ lines
 			finalLines.append(addLines);
 
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(

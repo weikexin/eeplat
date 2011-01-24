@@ -30,7 +30,7 @@ public class OutGridExcelSelected implements DOIView {
 
 		List properties = gridModel.getNormalGridFormLinks();
 		/**
-		 * 处理表头
+		 * 澶勭悊琛ㄥご
 		 */
 		for (Iterator itCol = properties.iterator(); itCol.hasNext();) {
 			DOFormModel link = (DOFormModel) itCol.next();
@@ -49,7 +49,7 @@ public class OutGridExcelSelected implements DOIView {
 		
 		
 		/**
-		 * 处理内容
+		 * 澶勭悊鍐呭
 		 */
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			BOInstance ins = (BOInstance) it.next();

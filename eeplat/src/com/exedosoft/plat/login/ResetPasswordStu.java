@@ -20,12 +20,12 @@ public class ResetPasswordStu extends DOAbstractAction {
 		String new_password2 = this.actionForm.getValue("new_password2");
 		
 		if(old_password==null || "".equals(old_password.trim())){
-			this.setEchoValue("¾ÉÃÜÂë²»ÄÜÎª¿Õ");
+			this.setEchoValue("æ—§å¯†ç ä¸èƒ½ä¸ºç©º");
 			return NO_FORWARD;
 		}
 		
 		if(!new_password1.equals(new_password2)){
-		   this.setEchoValue("Á½´ÎÊäÈëµÄĞÂÃÜÂë²»Ò»ÖÂ");
+		   this.setEchoValue("ä¸¤æ¬¡è¾“å…¥çš„æ–°å¯†ç ä¸ä¸€è‡´");
 		   return NO_FORWARD;
 		   
 		}
@@ -36,7 +36,7 @@ public class ResetPasswordStu extends DOAbstractAction {
 		List users =  findUser.invokeSelect(userName,StringUtil.MD5(old_password));
 		
 		if(users==null || users.size()==0){
-			this.setEchoValue("ÄúÊäÈëµÄµÄ¾ÉÃÜÂë²»ÕıÈ·");
+			this.setEchoValue("æ‚¨è¾“å…¥çš„çš„æ—§å¯†ç ä¸æ­£ç¡®");
 			return NO_FORWARD;
 		}else{
 			

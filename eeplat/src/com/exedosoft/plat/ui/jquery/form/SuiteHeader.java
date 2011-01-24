@@ -12,8 +12,8 @@ import com.exedosoft.plat.SessionContext;
 
 
 /**
- * Ö§³ÖµÄÒ»ÖÖ½çÃæ·ç¸ñ£¬°ÑĞŞ¸Ä¡¢É¾³ıµÈ²Ù×÷Ö±½Ó·Åµ½ÁĞ±íµÄÃ¿Ìõ¼ÇÂ¼µÄºóÃæ¡£
- * DOOPerationÊÇÒ»zhon
+ * æ”¯æŒçš„ä¸€ç§ç•Œé¢é£æ ¼ï¼ŒæŠŠä¿®æ”¹ã€åˆ é™¤ç­‰æ“ä½œç›´æ¥æ”¾åˆ°åˆ—è¡¨çš„æ¯æ¡è®°å½•çš„åé¢ã€‚
+ * DOOPerationæ˜¯ä¸€zhon
  * 
  * @author aa
  * 
@@ -44,7 +44,7 @@ public class SuiteHeader implements DOIView {
                
 					if (rform.isAccess(property.getData())) {
 
-						// ////put É¾³ı,ĞŞ¸Ä,µÈ²Ù×÷
+						// ////put åˆ é™¤,ä¿®æ”¹,ç­‰æ“ä½œ
 						String rename = rform.getRename();
 						if (rename == null || "".equals(rename.trim())) {
 							rename = String.valueOf(rform

@@ -17,7 +17,7 @@ public class DOGeneConfigApplication extends DOAbstractAction {
 	private static Log log = LogFactory.getLog(DOGeneConfigApplication.class);
 
 	/**
-	 * Save µÄÇé¿ö£¬ËùÒÔParameter È¡ÖµÊ±²»¿¼ÂÇauto_condition£¨²éÑ¯£© µÄÇé¿ö
+	 * Save çš„æƒ…å†µï¼Œæ‰€ä»¥Parameter å–å€¼æ—¶ä¸è€ƒè™‘auto_conditionï¼ˆæŸ¥è¯¢ï¼‰ çš„æƒ…å†µ
 	 */
 
 	public String excute() {
@@ -25,13 +25,13 @@ public class DOGeneConfigApplication extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_application");
 		String applicationUid = bo.getCorrInstance().getUid();
 		if(applicationUid==null){
-			this.setEchoValue("Ã»ÓĞÕÒµ½ĞèÒª³õÊ¼»¯µÄÓ¦ÓÃ!");
+			this.setEchoValue("æ²¡æœ‰æ‰¾åˆ°éœ€è¦åˆå§‹åŒ–çš„åº”ç”¨!");
 			return NO_FORWARD;
 		}
 
 		AProjectForwarderJquery  af = new AProjectForwarderJquery();
 		af.forwardBaseUI(applicationUid);
-		this.setEchoValue("³õÊ¼»¯³É¹¦!");
+		this.setEchoValue("åˆå§‹åŒ–æˆåŠŸ!");
 		return DEFAULT_FORWARD;
 	}
 

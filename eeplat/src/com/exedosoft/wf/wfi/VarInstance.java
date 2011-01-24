@@ -76,7 +76,7 @@ public class VarInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * 根据名称和模板ID或节点ID获取模板变量
+	 * 鏍规嵁鍚嶇О鍜屾ā鏉縄D鎴栬妭鐐笽D鑾峰彇妯℃澘鍙橀噺
 	 * 
 	 * @param varName
 	 * @param relFk
@@ -101,7 +101,7 @@ public class VarInstance extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * 根据模板或NodeInstance uid 获取变量实例列表
+	 * 鏍规嵁妯℃澘鎴朜odeInstance uid 鑾峰彇鍙橀噺瀹炰緥鍒楄〃
 	 * @throws DAOException
 	 */
 	public static Collection getVarInstances(String pi_uid) {

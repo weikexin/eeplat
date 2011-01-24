@@ -16,10 +16,10 @@ public class DOInputPassword extends DOBaseForm {
 		buffer.append("<input type='password' name='").append(fm.getFullColName())
 				.append("' id='").append(fm.getFullColName()).append("'");
 
-		// ////增加装饰
+		// ////澧炲姞瑁呴グ
 		buffer.append(getDecoration(fm));
 
-		// ///////end 增加装饰
+		// ///////end 澧炲姞瑁呴グ
 		buffer.append(" title='").append(fm.getL10n().trim()).append("'");
 
 		// buffer.append(" dojoType='");

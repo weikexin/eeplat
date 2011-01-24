@@ -39,6 +39,13 @@
 <head>
 <title><%=paneModelTitle %></title>
 
+
+<script language="javascript">
+
+globalURL = "/<%=DOGlobals.URL%>/";
+
+</script>
+
 <!-- 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/button.css"  type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
@@ -91,7 +98,7 @@
 
 <script language="javascript">
 
-
+globalURL = "/<%=DOGlobals.URL%>/";
 
             
 //窗口大小改变的时候，重新给div限制高度

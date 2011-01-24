@@ -8,7 +8,7 @@ import com.exedosoft.wf.wfi.ProcessInstance;
 import java.util.Collection;
 
 /**
- * Òª×öµ½Á÷³ÌºÍ½çÃæ·ÖÀë
+ * è¦åšåˆ°æµç¨‹å’Œç•Œé¢åˆ†ç¦»
  * @author Administrator
  *
  */
@@ -16,16 +16,16 @@ import java.util.Collection;
 public interface WFEngine {
 
   /**
-   * ¸ù¾İ¹ı³ÌÄ£°åºÍ²ÎÊıÆô¶¯Ò»¸ö¹¤×÷Á÷ÊµÀı¡£
-   * @param pt ¹¤×÷Á÷Ä£°å
-   * @param wfiParameters Æô¶¯¹¤×÷Á÷»úËùĞèÒªµÄ²ÎÊı
-   * @return ¹¤×÷Á÷ÊµÀı
+   * æ ¹æ®è¿‡ç¨‹æ¨¡æ¿å’Œå‚æ•°å¯åŠ¨ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
+   * @param pt å·¥ä½œæµæ¨¡æ¿
+   * @param wfiParameters å¯åŠ¨å·¥ä½œæµæœºæ‰€éœ€è¦çš„å‚æ•°
+   * @return å·¥ä½œæµå®ä¾‹
    */
   ProcessInstance startProcess(ProcessTemplate pt) throws WFException;
   
   
   /**
-   * Æô¶¯¹¤×÷Á÷ÊµÀı£¬µ«ÊÇµÚÒ»¸ö½Úµã²¢²»Ìá½»
+   * å¯åŠ¨å·¥ä½œæµå®ä¾‹ï¼Œä½†æ˜¯ç¬¬ä¸€ä¸ªèŠ‚ç‚¹å¹¶ä¸æäº¤
    * @param pt
    * @return
    * @throws WFException
@@ -34,7 +34,7 @@ public interface WFEngine {
   
 
   /**
-   * ¿ÉÒÔ·¢ÆğµÄÁ÷³Ì
+   * å¯ä»¥å‘èµ·çš„æµç¨‹
    * @param pi
    * @return
    * @throws WFException
@@ -42,70 +42,70 @@ public interface WFEngine {
   Collection getProcesses() throws WFException;
 
   /**
-   * »Ö¸´¹ÒÆğ/ÖØĞÂÖ´ĞĞ¸ÃÁ÷³Ì¡£
-   * @param pi Á÷³ÌÊµÀı
+   * æ¢å¤æŒ‚èµ·/é‡æ–°æ‰§è¡Œè¯¥æµç¨‹ã€‚
+   * @param pi æµç¨‹å®ä¾‹
    * @return
    * @throws WFException
    */
   ProcessInstance reStartProcess(ProcessInstance pi) throws WFException;
 
   /**
-   * ¸ù¾İ¹¤×÷Á÷Ä£°å·µ»ØÓÉ¸ÃÄ£°åÉú³ÉµÄËùÓĞÊµÀı
-   * @param pt ¹¤×÷Á÷Ä£°å
-   * @return ÊµÀı¼¯ºÏ
+   * æ ¹æ®å·¥ä½œæµæ¨¡æ¿è¿”å›ç”±è¯¥æ¨¡æ¿ç”Ÿæˆçš„æ‰€æœ‰å®ä¾‹
+   * @param pt å·¥ä½œæµæ¨¡æ¿
+   * @return å®ä¾‹é›†åˆ
    */
   Collection getProcessInstances(ProcessTemplate pt) throws WFException;
 
   /**
-   * ¸ù¾İ¹¤×÷Á÷Ä£°åÎ¨Ò»Ö÷¼ü¼ÓÔØ¹¤×÷Á÷Ä£°å
-   * @param processUID  ¹¤×÷Á÷Ä£°åÎ¨Ò»Ö÷¼ü
-   * @return ¹¤×÷Á÷Ä£°å
+   * æ ¹æ®å·¥ä½œæµæ¨¡æ¿å”¯ä¸€ä¸»é”®åŠ è½½å·¥ä½œæµæ¨¡æ¿
+   * @param processUID  å·¥ä½œæµæ¨¡æ¿å”¯ä¸€ä¸»é”®
+   * @return å·¥ä½œæµæ¨¡æ¿
    */
   ProcessTemplate loadProcessTemplate(String ptUID) throws WFException;
 
 
   /**
-   * ¸ù¾İ¹¤×÷Á÷ÊµÀıÎ¨Ò»Ö÷¼ü¼ÓÔØ¹¤×÷Á÷ÊµÀı
+   * æ ¹æ®å·¥ä½œæµå®ä¾‹å”¯ä¸€ä¸»é”®åŠ è½½å·¥ä½œæµå®ä¾‹
    * @param piUID
    * @return
    */
   ProcessInstance loadProcessInstance(String piUID) throws WFException;
 
   /**
-   * ÎŞÌõ¼şÉ±ËÀÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
-   * @param piUID ¹¤×÷Á÷ÊµÀıÎ¨Ò»±êÊ¾¡£
+   * æ— æ¡ä»¶æ€æ­»ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
+   * @param piUID å·¥ä½œæµå®ä¾‹å”¯ä¸€æ ‡ç¤ºã€‚
    * @throws WFException
    */
   void killProcessInstance(String piUID) throws WFException;
 
   /**
-   * ¹ÒÆğÒ»¸ö¹¤×÷Á÷ÊµÀı¡£
-   * @param piUID  ¹¤×÷Á÷ÊµÀıÎ¨Ò»±êÊ¾
+   * æŒ‚èµ·ä¸€ä¸ªå·¥ä½œæµå®ä¾‹ã€‚
+   * @param piUID  å·¥ä½œæµå®ä¾‹å”¯ä¸€æ ‡ç¤º
    * @throws WFException
    */
   ProcessInstance hangUpProcessInstance(String piUID) throws WFException;
 
-//  /** Èç¹û¶à¸ö·ÖÖ§??
-//   * »ñµÃ¸ø¶¨¹¤×÷Á÷ÊµÀıµÄ×îºóÒ»¸öÎ´Ö´ĞĞµÄNode
-//   * @param piUID ¹¤×÷Á÷ÊµÀıUID
-//   * @return ¹¤×÷Á÷ÊµÀı
-//   * @throws WFException ¹¤×÷Á÷Òì³£
+//  /** å¦‚æœå¤šä¸ªåˆ†æ”¯??
+//   * è·å¾—ç»™å®šå·¥ä½œæµå®ä¾‹çš„æœ€åä¸€ä¸ªæœªæ‰§è¡Œçš„Node
+//   * @param piUID å·¥ä½œæµå®ä¾‹UID
+//   * @return å·¥ä½œæµå®ä¾‹
+//   * @throws WFException å·¥ä½œæµå¼‚å¸¸
 //   */
 //  NodeInstance  getLastFreeNodeInstance(Long piUID) throws WFException;
 //
 //
 //  /**
-//   * »ñµÃ¸ø¶¨¹¤×÷Á÷ÊµÀıµÄ×îºóÒ»¸öÎ´Ö´ĞĞµÄNode
-//   * @param piUID ¹¤×÷Á÷ÊµÀıUID
-//   * @return ¹¤×÷Á÷ÊµÀı
-//   * @throws WFException ¹¤×÷Á÷Òì³£
+//   * è·å¾—ç»™å®šå·¥ä½œæµå®ä¾‹çš„æœ€åä¸€ä¸ªæœªæ‰§è¡Œçš„Node
+//   * @param piUID å·¥ä½œæµå®ä¾‹UID
+//   * @return å·¥ä½œæµå®ä¾‹
+//   * @throws WFException å·¥ä½œæµå¼‚å¸¸
 //   */
 //  ActionInstance  getLastFreeNodeInstance(Long piUID) throws WFException;
 //
 
 
   /**
-   * ´ÓÄ³¸öNodeInstance ÖØĞÂ¿ªÊ¼Ö´ĞĞ
+   * ä»æŸä¸ªNodeInstance é‡æ–°å¼€å§‹æ‰§è¡Œ
    * @param nodeUID
    * @return
    * @throws WFException
@@ -114,7 +114,7 @@ public interface WFEngine {
 
 
   /**
-   * ¹ÒÆğÄ³¸önodeInstance
+   * æŒ‚èµ·æŸä¸ªnodeInstance
    * @param piUID
    * @return
    * @throws WFException
@@ -123,14 +123,14 @@ public interface WFEngine {
 
 
   /**
-   * ÔÚ¸ø¶¨½ÚµãÊµÀıniÇ°Ãæ²åÈëÒ»¸öNodeInstance
+   * åœ¨ç»™å®šèŠ‚ç‚¹å®ä¾‹niå‰é¢æ’å…¥ä¸€ä¸ªNodeInstance
    * @throws WFException
    */
   NodeInstance insertBeforNodeInstance(NodeInstance ni, NodeInstance insertNi) throws
       WFException;
 
   /**
-   * ÔÚ¸ø¶¨½ÚµãÊµÀıniºóÃæ²åÈëÒ»¸öNodeInstance
+   * åœ¨ç»™å®šèŠ‚ç‚¹å®ä¾‹niåé¢æ’å…¥ä¸€ä¸ªNodeInstance
    * @throws WFException
    */
   NodeInstance insertAfterNodeInstance(NodeInstance ni, NodeInstance insertNi) throws
@@ -138,7 +138,7 @@ public interface WFEngine {
 
 
   /**
-   *É¾³ı¸ø¶¨µÄ¶¯×÷ÊµÀı
+   *åˆ é™¤ç»™å®šçš„åŠ¨ä½œå®ä¾‹
    * @throws WFException
    */
   void deleteNodeInstance(NodeInstance ni) throws WFException;
@@ -146,15 +146,15 @@ public interface WFEngine {
   
 
   /**
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾£¬»ñÈ¡¸ÃÔ±¹¤½«ÒªÍê³É¹¤×÷µÄ¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºï¼Œè·å–è¯¥å‘˜å·¥å°†è¦å®Œæˆå·¥ä½œçš„é›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
    */
   Collection getMyPending() throws WFException;
 
   /**
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾ºÍ¹¤×÷Á÷Ä£°å£¬»ñÈ¡¸ÃÔ±¹¤ÔÚ¸ÃÁ÷³ÌÖĞ½«ÒªÍê³É¹¤×÷µÄ¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
-   * @param ¹¤×÷Á÷Ä£°åÎ¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºå’Œå·¥ä½œæµæ¨¡æ¿ï¼Œè·å–è¯¥å‘˜å·¥åœ¨è¯¥æµç¨‹ä¸­å°†è¦å®Œæˆå·¥ä½œçš„é›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
+   * @param å·¥ä½œæµæ¨¡æ¿å”¯ä¸€æ ‡ç¤º
    */
   Collection getMyPending(String processTemplateUID) throws
       WFException;
@@ -162,29 +162,29 @@ public interface WFEngine {
 
 
   /*
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾£¬»ñÈ¡¸ÃÔ±¹¤ÒÑÍê³É¹¤×÷µÄ¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºï¼Œè·å–è¯¥å‘˜å·¥å·²å®Œæˆå·¥ä½œçš„é›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
    */
   Collection getHaveDone() throws WFException;
 
   /**
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾ºÍ¹¤×÷Á÷Ä£°å£¬»ñÈ¡¸ÃÔ±¹¤ÔÚ¸Ã¹¤×÷Á÷³ÌÖĞÒÑÍê³É¹¤×÷µÄ¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
-   * @param ¹ı³ÌÄ£°åÎ¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºå’Œå·¥ä½œæµæ¨¡æ¿ï¼Œè·å–è¯¥å‘˜å·¥åœ¨è¯¥å·¥ä½œæµç¨‹ä¸­å·²å®Œæˆå·¥ä½œçš„é›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
+   * @param è¿‡ç¨‹æ¨¡æ¿å”¯ä¸€æ ‡ç¤º
    */
   Collection getHaveDone(String processTemplateUID) throws
       WFException;
 
 
   /**
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾£¬»ñÈ¡¸ÃÔ±¹¤Ìá½»ÈÎÎñµÄ´¦Àí½á¹û¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºï¼Œè·å–è¯¥å‘˜å·¥æäº¤ä»»åŠ¡çš„å¤„ç†ç»“æœé›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
    */
   Collection getMyResult() throws WFException;
 
   /**
-   * ¸ù¾İÔ±¹¤Î¨Ò»±êÊ¾ºÍ¹¤×÷Á÷Ä£°åÎ¨Ò»±êÊ¾£¬»ñÈ¡¸ÃÔ±¹¤ÔÚ¸Ã¹¤×÷Á÷³ÌÖĞÌá½»ÈÎÎñµÄ´¦Àí½á¹û¼¯ºÏ
-   * @param Ô±¹¤Î¨Ò»±êÊ¾
+   * æ ¹æ®å‘˜å·¥å”¯ä¸€æ ‡ç¤ºå’Œå·¥ä½œæµæ¨¡æ¿å”¯ä¸€æ ‡ç¤ºï¼Œè·å–è¯¥å‘˜å·¥åœ¨è¯¥å·¥ä½œæµç¨‹ä¸­æäº¤ä»»åŠ¡çš„å¤„ç†ç»“æœé›†åˆ
+   * @param å‘˜å·¥å”¯ä¸€æ ‡ç¤º
    */
   Collection getMyResult(String processTemplateUID) throws
       WFException;

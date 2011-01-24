@@ -11,11 +11,11 @@ import java.util.List;
 import com.exedosoft.plat.bo.DOService;
 
 /**
- * ¶Ô·şÎñ½øĞĞÅú´¦Àí
+ * å¯¹æœåŠ¡è¿›è¡Œæ‰¹å¤„ç†
  * @author aa
- * ÔÚÅúÁ¿É¾³ı£¬ĞŞ¸ÄÊ±ĞèÒª¡£
+ * åœ¨æ‰¹é‡åˆ é™¤ï¼Œä¿®æ”¹æ—¶éœ€è¦ã€‚
  * 
- * Ôö¼ÓÊÇ·ñÅúÁ¿ĞèÒª¿¼ÂÇ
+ * å¢åŠ æ˜¯å¦æ‰¹é‡éœ€è¦è€ƒè™‘
  *
  */
 public class DOServiceBatch {
@@ -30,7 +30,7 @@ public class DOServiceBatch {
 	}
 	
 	/**
-	 * batchÖ»½ÓÊÜÔöÉ¾¸ÄµÄservice ²éÑ¯service ²»½ÓÊÜ
+	 * batchåªæ¥å—å¢åˆ æ”¹çš„service æŸ¥è¯¢service ä¸æ¥å—
 	 * @param aService
 	 */
 	public void addService(DOService aService){
@@ -46,7 +46,7 @@ public class DOServiceBatch {
 	}
 
 	/**
-	 * sqlÅú´¦Àí  Ã¿¸öÈÎÎñ½ÓÊÜ²»Í¬µÄ²ÎÊı ¿ÉÒÔ
+	 * sqlæ‰¹å¤„ç†  æ¯ä¸ªä»»åŠ¡æ¥å—ä¸åŒçš„å‚æ•° å¯ä»¥
 
 	 *
 	 */

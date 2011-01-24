@@ -23,12 +23,12 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 
 	public String excute() {
 
-		// Ä£°åºÍÉú³ÉÎÄ¼şÂ·¾¶
+		// æ¨¡æ¿å’Œç”Ÿæˆæ–‡ä»¶è·¯å¾„
 		String templateName = null;
 		String templatePath = null;
 		String template = null;
 		String createExlPath = null;
-		// Ïà¹ØÀà
+		// ç›¸å…³ç±»
 		BaoxiaoMessages bxms = null;
 		BXTranfee bxtf = null;
 		BXFixfee bxff = null;
@@ -36,7 +36,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 		List<BXTranfee> lptranf = new ArrayList<BXTranfee>();
 		List<BXFixfee> lpfixf = new ArrayList<BXFixfee>();
 		List<BXOtherfee> lpotherf = new ArrayList<BXOtherfee>();
-		// ´ÓÊı¾İ¿âÈ¡µ½µÄÊı¾İ
+		// ä»æ•°æ®åº“å–åˆ°çš„æ•°æ®
 		String baoxiaouid = null;
 		String baoxiaoempuid = null;
 		String baoxiaotype = null;
@@ -55,14 +55,14 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 			try {
 				users = service.invokeSelect();
 			} catch (Exception e) {
-				return "µ¼³ö±¨Ïúµ¥ExcelÎÄ¼şÊ§°Ü£¡1";
+				return "å¯¼å‡ºæŠ¥é”€å•Excelæ–‡ä»¶å¤±è´¥ï¼1";
 			}
 
 			if (users != null && users.size() > 0) {
 				String s = users.get(0).toString();
 				String st = s.substring(s.indexOf("{") + 1, s.lastIndexOf("}"));
 				String[] sarray = st.split(",");
-				// ¶ÔÃ¿ÌõÊı¾İ½øĞĞ´¦Àí£¬È¡µÃÓĞĞ§ÊôĞÔ£»
+				// å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±æ€§ï¼›
 				for (int i = 0; i < sarray.length; i++) {
 					String temp = sarray[i];
 					String[] nv = temp.split("=");
@@ -104,11 +104,11 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 				
 				
 				/**
-				 * ¶ÔÊı¾İÕûÀíºóÉú³ÉExcelÎÄ¼ş
+				 * å¯¹æ•°æ®æ•´ç†åç”ŸæˆExcelæ–‡ä»¶
 				 */
 				
 				Connection conn = MySqlOperation.getConnection();
-				// È¡µÃcw_bxfixfeedetail, ÕûÀí³öBXFixf, ²¢´æÈëlpfixf
+				// å–å¾—cw_bxfixfeedetail, æ•´ç†å‡ºBXFixf, å¹¶å­˜å…¥lpfixf
 				try {
 					ResultSet rs = MySqlOperation.BXfixfee(conn, baoxiaouid);
 					while (rs.next()) {
@@ -156,8 +156,8 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 						lpfixf.add(bxff);
 					}
 
-					// È¡µÃfrom cw_bxusefeedetail,
-					// ÕûÀí³öBXTranfºÍBXOtherf, ²¢·Ö±ğ´æÈëlptranf¡¢lpother;
+					// å–å¾—from cw_bxusefeedetail,
+					// æ•´ç†å‡ºBXTranfå’ŒBXOtherf, å¹¶åˆ†åˆ«å­˜å…¥lptranfã€lpother;
 					ResultSet r = MySqlOperation.BXusefee(conn, baoxiaouid);
 					while (r.next()) {
 
@@ -192,13 +192,13 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 						}
 
 						if (itemtype != null
-								&& ("·É»úÆ±".equals(itemtype.trim()) || "»ğ³µÆ±"
+								&& ("é£æœºç¥¨".equals(itemtype.trim()) || "ç«è½¦ç¥¨"
 										.equals(itemtype.trim()))) {
 							String trans = null;
-							if ("·É»úÆ±".equals(itemtype.trim()))
-								trans = "·É»ú";
-							else if ("»ğ³µÆ±".equals(itemtype.trim()))
-								trans = "»ğ³µ";
+							if ("é£æœºç¥¨".equals(itemtype.trim()))
+								trans = "é£æœº";
+							else if ("ç«è½¦ç¥¨".equals(itemtype.trim()))
+								trans = "ç«è½¦";
 
 							bxtf = new BXTranfee();
 							bxtf.setBeginDate(begintime);
@@ -229,13 +229,13 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 					e.printStackTrace();
 				}
 
-				// ÕûÀí³öBaoxiaoMessages
+				// æ•´ç†å‡ºBaoxiaoMessages
 				bxms = new BaoxiaoMessages();
 				try {
 					Connection conii = MySqlOperationII.getConnection();
 					String dept = MySqlOperationII.getDeptByUser(conii,
 							baoxiaoempuid);
-//					//³Ğµ£²¿ÃÅ£¬ÔİÊ±Ã»ÓÃ
+//					//æ‰¿æ‹…éƒ¨é—¨ï¼Œæš‚æ—¶æ²¡ç”¨
 //					String mgrdept = MySqlOperationII.getDeptByUid(conii,
 //							mgrdeptuid);
 
@@ -301,12 +301,12 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 							totalfee = otherfee;
 						else
 							totalfee = totalfee + otherfee;
-//					//LDAP sn È¡µÃcn	
+//					//LDAP sn å–å¾—cn	
 //					String baoxiaoemp =  LDAPPeopleUtil.getLDAPCNBySN(baoxiaoempuid);
 //					String totalmgr = LDAPPeopleUtil.getLDAPCNBySN(totalmgruid);
 //					String deptmgr = LDAPPeopleUtil.getLDAPCNBySN(deptmgruid);
 //					String caiwumgr = LDAPPeopleUtil.getLDAPCNBySN(caiwumgruid);					
-					//do_org_user_link user_uid È¡µÃuser_cn				
+					//do_org_user_link user_uid å–å¾—user_cn				
 					String baoxiaoemp =  MySqlOperationII.getUserCNByUserUid(conii, baoxiaoempuid);
 					String totalmgr = MySqlOperationII.getUserCNByUserUid(conii, totalmgruid);
 					String deptmgr = MySqlOperationII.getUserCNByUserUid(conii, deptmgruid);
@@ -328,7 +328,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 					bxms.setMgrcaiwu(caiwumgr);
 					bxms.setMgrtotal(totalmgr);
 					bxms.setShenhe(baoxiaostate);
-					//¹Ø±ÕÊı¾İ¿âÁ¬½Ó
+					//å…³é—­æ•°æ®åº“è¿æ¥
 					conii.close();
 					
 				} catch (SQLException e) {
@@ -336,12 +336,12 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 					e.printStackTrace();
 				}
 
-				// /ÉèÖÃÉú³ÉÎÄ¼şÂ·¾¶
+				// /è®¾ç½®ç”Ÿæˆæ–‡ä»¶è·¯å¾„
 				templatePath = DOGlobals.getInstance().getValue("uploadfiletemp");
 				templateName = "zifengbxdetail_template.xls";
 				template = templatePath + templateName;
 				createExlPath = "D:\\upload\\" + baoxiaoempuid + "_zfbxdetail.xls";
-				// Éú³É±¨Ïúµ¥ExcelÎÄ¼ş
+				// ç”ŸæˆæŠ¥é”€å•Excelæ–‡ä»¶
 				try {
 					System.out.println("++++++++++++THREE++++++++++++++");
 					System.out.println(templatePath);
@@ -356,7 +356,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 					System.out.println(createExlPath);
 					System.out.println("+++++++++++++Four+++++++++++++++++");
 					e.printStackTrace();
-					return "µ¼³ö±¨Ïúµ¥ExcelÎÄ¼şÊ§°Ü£¡3";
+					return "å¯¼å‡ºæŠ¥é”€å•Excelæ–‡ä»¶å¤±è´¥ï¼3";
 				}
 
 				if (conn != null) {
@@ -387,7 +387,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 				return this.DEFAULT_FORWARD;
 				
 			} else {				
-				return "Éú³É±¨Ïúµ¥ExcelÎÄ¼şÊ§°Ü£¡2";
+				return "ç”ŸæˆæŠ¥é”€å•Excelæ–‡ä»¶å¤±è´¥ï¼2";
 			}
 
 			
@@ -395,7 +395,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 			
 	}
 
-	// ÓÉ³ÇÊĞ±àºÅÈ¡µÃ³ÇÊĞÃû
+	// ç”±åŸå¸‚ç¼–å·å–å¾—åŸå¸‚å
 	private String getCityname(Connection conn, String citycode)
 			throws SQLException {
 		ResultSet rscity = MySqlOperation.cityBasic(conn, citycode);
@@ -406,7 +406,7 @@ public class BaoxiaoExcelJXLS extends DOAbstractAction {
 		return address;
 	}
 
-	// Éú³É±¨Ïúµ¥Excel
+	// ç”ŸæˆæŠ¥é”€å•Excel
 	private void createExcel(String templateFileName, String targetFileName,
 			BaoxiaoMessages bms) throws Exception {
 		List<BaoxiaoMessages> departments = new ArrayList<BaoxiaoMessages>();
