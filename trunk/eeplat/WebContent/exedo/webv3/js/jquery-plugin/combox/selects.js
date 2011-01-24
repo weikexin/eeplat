@@ -23,6 +23,35 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 	  }
 	}
 	var aService = serviceName;
+	
+	
+	var inputconfig = $(obj).attr('inputconfig');
+	var linkformid = $(obj).attr('linkformid');	
+	
+	if(inputconfig!=null && linkformid!=null){
+		
+		var theValue = $("#" + linkformid).val();
+		
+
+		if(theValue!=null && inputconfig.indexOf(";")>0){
+			var pairs = inputconfig.split(";");
+			if(pairs!=null && pairs.length >0){
+				for(var i = 0; i < pairs.length; i++){
+					var aPair = pairs[i];
+					if(aPair.indexOf(",")>0){
+						var a = aPair.split(",");
+						if(theValue==a[0]){
+							aService = a[1];
+						}
+					}
+				}
+			}
+	   }
+	
+		
+	}
+	
+	
 	if(pageNo!=null){
 		sc_page_no = pageNo;
 	}
