@@ -4,25 +4,22 @@
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
 		 <!--jdbc:hsqldb:file:/c:/db/mydb-->
+		 
+		 
 
         <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="connection.url">mydb</property>
         
-        
-    <!--  
-		<property name="connection.url">mydb</property>
-		-->     
+
         <property name="connection.username">sa</property>
         <property name="connection.password">1111</property>
 
-        
-            	<!--
+    <!--
 		<property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-        <property name="connection.url">jdbc:jtds:sqlserver://127.0.0.1:1433/conf_init</property>
+        <property name="connection.url">jdbc:jtds:sqlserver://127.0.0.1:1433/conf_archive</property>
         <property name="connection.username">test</property>
         <property name="connection.password">test</property>
-   	            -->
-
+		--> 
 		<!--Servlet 初始化类  -->
 		<property name="servlet.init.class"></property>
 		<!-- 权限相关class -->
