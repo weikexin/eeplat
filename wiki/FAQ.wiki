@@ -7,6 +7,10 @@
 
   把webmodule 名称改为你需要的。
 
+  较老的版本还需要修改exedo/webv3/js/main/main.js 
+ {{{
+    var globalURL = "/eeplat/";
+  }}}
 
 == 如何使用DOValueResultList控制器？ ==
 
