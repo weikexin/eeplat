@@ -9,6 +9,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.ui.DOIView;
 import com.exedosoft.plat.ui.DOMenuModel;
+import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.DOUIDecoration;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -22,33 +23,40 @@ public abstract class DOBaseMenu implements DOIView {
 	 */
 	protected void appendLink(StringBuffer buffer, DOMenuModel aMenu,
 			String echoStr) {
-		
+
 		// //如果拥有LinkPane
-		
 
 		if (aMenu.getMenuType() != null
 				&& aMenu.getMenuType().intValue() == DOMenuModel.MENUTYPE_LINK) {
 
-			buffer
-					.append("window.open('")
+			buffer.append("window.open('")
 					.append(aMenu.getNote())
-					.append(
-							"','','height=760,   width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')");
+					.append("','','height=760,   width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')");
 
 			// window.open("/abp/guotu/gt_digiboard.jsp","login","height=760,   width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no")
 		} else if (aMenu.getLinkPane() != null) {
-			
-			String targetname =  "_opener_tab";
-			if(aMenu.getTargetPane()!=null){
+
+			String targetname = "_opener_tab";
+			if (aMenu.getTargetPane() != null) {
 				aMenu.getTargetPane().getName();
 			}
-			buffer.append("loadPml({'pml':'").append(
-					aMenu.getLinkPane().getName()).append("','pmlName':'")
+			DOPaneModel doPm = aMenu.getLinkPane();
+			String pml = doPm.getName();
+			if (doPm.getResource() != null) {
+				String resPath = doPm.getResource().getResourcePath();
+				if (resPath.indexOf(".htm") != -1) {
+					pml = new StringBuilder("/").append(DOGlobals.URL)
+							.append("/")
+							.append(doPm.getResource().getResourcePath())
+							.toString();
+				}
+			}
+
+			buffer.append("loadPml({'pml':'").append(pml)
+					.append("','pmlName':'")
 					.append(aMenu.getLinkPane().getName())
-					.append("','title':'").append(
-							aMenu.getL10n()).append(
-							"','target':'").append(
-							targetname).append("'} );");
+					.append("','title':'").append(aMenu.getL10n())
+					.append("','target':'").append(targetname).append("'} );");
 
 		} else if (aMenu.getLinkService() != null) {
 			// ////下一步支持
