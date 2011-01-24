@@ -1,7 +1,7 @@
-/*****************************************主页面框架代码******************************************/
+﻿/*****************************************主页面框架代码******************************************/
 var position = "first"; //tab页显示顺序，first是显示在前面，last是显示在后面
 var isHome = 1; //是否有首页   有是1   没有是0
-var globalURL = "/eeplat/";
+var globalURL = "/yiyi/";
 var globalService = globalURL + 'servicecontroller';
 var globalPml= globalURL + 'mvccontroller';
 
@@ -189,10 +189,23 @@ function selectTabCss(tabSelector){
 		resscrEvt();
 	}else{
 	  	$("#mRight").clone().attr("id",'tab_' + tabId).insertAfter("#mRight");
+	  	
+	 
+		if(paneUrl.indexOf(".htm")!=-1){
+			$('#tab_' + tabId).append( "<iframe  id='if" + tabId + "'  frameborder='0'  />" );
+			
+			$('#if' + tabId).height( $('#tab_' + tabId).height() )
+		              .width( $('#tab_' + tabId).width() )
+		              .attr('src',paneUrl);
+			resscrEvt();          
+		}else{
+			$('#tab_' + tabId).load(paneUrl,function(){
+				resscrEvt();
+			});
+		}
+	  	
+
 		
-		$('#tab_' + tabId).load(paneUrl,function(){
-			resscrEvt();
-		});
 		$('#tab_' + tabId).show();
 	}
 	//closeWin();
