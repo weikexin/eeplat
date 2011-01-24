@@ -1,3 +1,13 @@
+== 如何修改web module 的名称？ ==
+  平台缺省的web module名称为 eeplat，如果需要改成其它名称请修改 web-inf/classes 下面globals.xml文件
+
+  {{{
+    <property name="webmodule">eeplat</property>
+  }}}
+
+  把webmodule 名称改为你需要的。
+
+
 == 如何使用DOValueResultList控制器？ ==
 
    平台缺省提供的DOValueResultList 可以快速把关联表的主键列翻译成特征值列。但是这种翻译是牺牲效率为前提的，会造成n+1查询问题（只有启用缓存，并且缓存命中的情况下才不会反复查询数据库）。
