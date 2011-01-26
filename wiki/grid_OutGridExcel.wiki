@@ -2,7 +2,7 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.grid.OUtGridExcel
 
 ==适用场景==
 
