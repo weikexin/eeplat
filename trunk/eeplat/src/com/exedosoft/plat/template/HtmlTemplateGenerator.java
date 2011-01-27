@@ -42,7 +42,7 @@ public class HtmlTemplateGenerator {
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
 			aPath = aPath.replaceAll("/[.]/", "/");
-			String OUT_TEMPLATE = aPath.substring(0, aPath.indexOf("web-inf"))
+			String OUT_TEMPLATE = url.getPath().substring(0, aPath.indexOf("web-inf"))
 					+ "/exedo/" + templateFolder + "/template/";
 			cfg.setDefaultEncoding("UTF-8");
 			FileTemplateLoader loaderFile = new FileTemplateLoader(new File(
