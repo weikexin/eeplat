@@ -13,7 +13,31 @@
   sessionparter.class的核心方法说明：
   
  # getParterAuths()   并不是所有的Parter都参与权限验证，这里可以定义参与验证的Parter
- # getMenuAuthConfigByAccount()   根据登陆者账号获取所有有权限的菜单，实现这个接口后可以提高首页的加载速度
+ # getMenuAuthConfigByAccount()   根据登陆者账号获取所有有权限的菜单，实现这个接口后可以提高首页的加载速度。  这个方法的实现一般已经包含了getMenuAuthConfigByRole()的实现，所以只实现这个方法即可。
+
+  一个实现的例子：
+{{{
+ 
+  	       ///定义返回的授权菜单列表 
+		List authMenuUids = new ArrayList();
+		////定义服务，该服务可以根据用户查找所有授权的菜单
+		//该服务基于平台的缺省实现，即菜单只对角色授权，服务对应的SQL语句
+		// SELECT a.objUID, a.whatUid
+		// FROM do_authorization a INNER JOIN
+		// do_org_user_role ur ON a.ouUid = ur.ROLE_UID
+		// WHERE (a.whatType = 16) AND (ur.USER_UID = ?)
+		DOService rfService = DOService.getService("s_menu_byuserid");
+		//////////执行服务，并组装到authMenuUids
+		List rfList = rfService.invokeSelect(accountUid);
+		for (Iterator it = rfList.iterator(); it.hasNext();) {
+			BOInstance bi = (BOInstance) it.next();
+			authMenuUids.add(bi.getValue("whatuid"));
+		}
+
+}}}
+ 
+
+
  # getMenuAuthConfigByRole()   根据登陆者角色获取所有有权限的菜单，实现这个接口后可以提高首页的加载速度
 
 
