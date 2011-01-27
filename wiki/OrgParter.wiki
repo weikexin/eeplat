@@ -14,7 +14,6 @@
   
  # getParterAuths()   并不是所有的Parter都参与权限验证，这里可以定义参与验证的Parter
  # getMenuAuthConfigByAccount()   根据登陆者账号获取所有有权限的菜单，实现这个接口后可以提高首页的加载速度。  这个方法的实现一般已经包含了getMenuAuthConfigByRole()，所以只实现这个方法即可。
-
   一个实现的例子：
 {{{
  
@@ -35,9 +34,6 @@
 		}
 
 }}}
- 
-
-
  # getMenuAuthConfigByRole()   根据登陆者角色获取所有有权限的菜单，实现这个接口后可以提高首页的加载速度
 
 
