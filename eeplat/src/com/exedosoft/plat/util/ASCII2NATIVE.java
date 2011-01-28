@@ -28,9 +28,9 @@ public class ASCII2NATIVE {
 
 	public static void main(String[] args) {
 		File f = new File(
-				"c:\\a.sql");
+				"c:\\mydb.script");
 		File f2 = new File(
-		"c:\\a2.sql");
+		"c:\\mydb3.script");
 		if (f.exists() && f.isFile()) {
 			// convert param-file
 			BufferedReader br = null;
@@ -42,8 +42,8 @@ public class ASCII2NATIVE {
 						new FileInputStream(f), "JISAutoDetect"));
 
 				while ((line = br.readLine()) != null) {
-					System.out.println(native2Ascii(line));
-					sb.append(native2Ascii(line)).append(";\n\r");
+					System.out.println(ascii2Native(line));
+					sb.append(ascii2Native(line)).append("\n");//.append(";\n\r")
 				}
 				
 				

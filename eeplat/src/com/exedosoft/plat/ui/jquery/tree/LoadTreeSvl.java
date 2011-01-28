@@ -431,8 +431,14 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 //					instance.getUid());
 //			if (listChilds != null && listChilds.size() > 0) {
 
+			List listChilds = childModel.getService().invokeSelect(
+			instance.getUid());
+	if (listChilds != null && listChilds.size() > 0) {
+
 				appendSrc(childModel.getObjUid(), treeModel, instance.getUid(),
 						buffer);
+				}
+
 //			}
 
 			appendAction(treeModel, buffer, instance, instanceUid);
