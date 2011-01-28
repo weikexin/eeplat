@@ -13,6 +13,7 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.DOUIDecoration;
 import com.exedosoft.plat.util.DOGlobals;
 
+
 public abstract class DOBaseMenu implements DOIView {
 
 	/**
@@ -51,11 +52,17 @@ public abstract class DOBaseMenu implements DOIView {
 							.toString();
 				}
 			}
+			
+			
+			String title = aMenu.getLinkPane().getTitle();
+			if(title==null || title.trim().equals("")){
+				title =  aMenu.getLinkPane().getName();
+			}
 
 			buffer.append("loadPml({'pml':'").append(pml)
 					.append("','pmlName':'")
 					.append(aMenu.getLinkPane().getName())
-					.append("','title':'").append(aMenu.getL10n())
+					.append("','title':'").append(title)
 					.append("','target':'").append(targetname).append("'} );");
 
 		} else if (aMenu.getLinkService() != null) {

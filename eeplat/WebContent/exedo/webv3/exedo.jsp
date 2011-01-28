@@ -138,6 +138,8 @@ $(function(){
 		  );
 
 	 });
+
+	  resscrEvt();
 });
 
 
