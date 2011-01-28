@@ -59,16 +59,16 @@ public class DOResultListPopup extends DOBaseForm {
 
 		BOInstance data = null;
 
-		// if(fm.getL10n().equals("连接内容")){
-		//			
-		// System.out.println("isDyn:::::::::::" + isDyn );
-		// System.out.println("连接内容:::::::::::" + fm.getLinkForms() );
-		// System.out.println("fm.getInputConfig():::::::::::" +
-		// fm.getInputConfig() );
-		//	
-		//			
-		//			
-		// }
+		 if(fm.getL10n().equals("连接内容")){
+					
+		 System.out.println("isDyn:::::::::::" + isDyn );
+		 System.out.println("连接内容:::::::::::" + fm.getLinkForms() );
+		 System.out.println("fm.getInputConfig():::::::::::" +
+		 fm.getInputConfig() );
+			
+					
+					
+		 }
 
 		if (theValue != null && !"".equals(theValue.trim())) {
 

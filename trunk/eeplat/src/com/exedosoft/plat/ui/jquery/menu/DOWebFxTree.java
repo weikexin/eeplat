@@ -21,7 +21,10 @@ public class DOWebFxTree extends DOBaseMenu{
 	 */
 	public String drawStaticTree(DOMenuModel menuModel) {
 		
-		String sysTreeRoot = sysTreeRoot =  menuModel.getL10n(); 
+		if(menuModel==null){
+			return null;
+		}
+		String sysTreeRoot =  menuModel.getL10n(); 
 		if(menuModel.getMenuType()!=null 
 				&& menuModel.getMenuType().intValue() == DOMenuModel.MENUTYPE_NAVIGATION
 				&& DOGlobals.getInstance().getSessoinContext().getSysTreeRoot()!=null){
@@ -51,7 +54,7 @@ public class DOWebFxTree extends DOBaseMenu{
 		buffer.append("$('#")
 		.append(menuModel.getObjUid())
 		.append("').append(tree11.toHtml());");
-		//buffer.append("tree11.expandAll();");
+//		buffer.append("tree11.expandAll();");
 		buffer.append("resscrEvt();\n</script>");
 		return buffer.toString();
 	}
@@ -77,6 +80,24 @@ public class DOWebFxTree extends DOBaseMenu{
 			buffer.append(",\"javascript:");
 			this.appendLink(buffer,item,  item.getEchoJs());
 			buffer.append("\"");
+		}
+		
+		if(item.getIcon()!=null){
+			
+			if(item.getLinkPane()==null   &&  item.getLinkService()==null){
+				buffer.append(",null");
+			}
+
+			buffer.append(",null,'");
+			buffer.append(item.getIcon());
+			buffer.append("'");
+			
+			if(item.getTemplate()!=null){
+				buffer.append(",'");
+				buffer.append(item.getTemplate());
+				buffer.append("'");
+				
+			}
 		}
 		
 		buffer.append(");\n");

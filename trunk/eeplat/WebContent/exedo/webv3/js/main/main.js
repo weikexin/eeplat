@@ -4,31 +4,32 @@ var isHome = 1; //是否有首页   有是1   没有是0
 var globalService = globalURL + 'servicecontroller';
 var globalPml= globalURL + 'mvccontroller';
 
-
 //得到浏览器可用高度，赋给菜单  以及右边区域总div
 function resscrEvt(height,width){
 	if(height==undefined||width==undefined){
 		height = $(window).height();
 		width = $(window).width();
 	}
-	var mRightOffSet = $(".mRight:visible").offset();
+	var top = $(".gMain").offset().top;
+	var left = $(".gFpage:eq(0)").width() + 1;
 
 
 ///左边索引菜单
-	$(".gFpage:eq(0)").css("height",height-mRightOffSet.top );
+	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
-	$(".mRight:visible").css("height",height-mRightOffSet.top);
-	$(".mRight:visible").css("width",width-mRightOffSet.left);
+	$(".mRight:visible").css("height",height-top);
+	$(".mRight:visible").css("width",width-left);
 ///树	 
-	$(".tree").css("height",height-mRightOffSet.top);
+	$(".tree").css("height",height-top);
 //tab-pane
-    $(".ui-tabs-panel").css("height",height-mRightOffSet.top-25);  
-    $(".mRight:visible .ui-tabs-panel").css("width",width-mRightOffSet.left-$(".mRight:visible .lrschidren").width());   
+    $(".ui-tabs-panel").css("height",height-top-25);  
+    $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width());   
   
     $(".mRight:visible").css("overflow","hidden");
-    
 
 }
+
+
 //让菜单能伸展   如果这个方法放到类里执行 就会非常慢  所以没有放到类里，在这里判断如果有outlook菜单 则执行
 $(function(){
 	if($(".mHi").length>0){
