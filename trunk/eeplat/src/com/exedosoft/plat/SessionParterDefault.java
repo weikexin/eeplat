@@ -22,9 +22,10 @@ public class SessionParterDefault implements SessionParter {
 
 		String accountUid = DOGlobals.getInstance().getSessoinContext()
 				.getUser().getUid();
-		
-		if(DOGlobals.getInstance().getSessoinContext().getDeleGate()!=null){
-			accountUid = DOGlobals.getInstance().getSessoinContext().getDeleGate().getUid();
+
+		if (DOGlobals.getInstance().getSessoinContext().getDeleGate() != null) {
+			accountUid = DOGlobals.getInstance().getSessoinContext()
+					.getDeleGate().getUid();
 		}
 		return this.getParterAuths(accountUid);
 	}
@@ -87,36 +88,28 @@ public class SessionParterDefault implements SessionParter {
 
 	public List getMenuAuthConfigByAccount(String accountUid) {
 
-		// //////////先获取角色菜单的权限
+		// /定义返回的授权菜单列表
+		List authMenuUids = new ArrayList();
+		// //定义服务，该服务可以根据用户查找所有授权的菜单
+		// 该服务基于平台的缺省实现，即菜单只对角色授权，服务对应的SQL语句
+		// SELECT a.objUID, a.whatUid
+		// FROM do_authorization a INNER JOIN
+		// do_org_user_role ur ON a.ouUid = ur.ROLE_UID
+		// WHERE (a.whatType = 16) AND (ur.USER_UID = ?)
+		DOService rfService = DOService.getService("s_menu_byuserid");
+		// ////////执行服务，并组装到authMenuUids
+		if (rfService != null) {
+			log.info("定义有s_menu_byuserid服务！");
 
-		// / remove 2010
-		// List pureMenuUids = new ArrayList();
-		// DOService rfService = DOService
-		// .getService("do.bx.role.findbyuserid.xes.ids_xes");
-		// List rfList = rfService.invokeSelect(accountUid);
-		//
-		// for (Iterator it = rfList.iterator(); it.hasNext();) {
-		// BOInstance bi = (BOInstance) it.next();
-		// pureMenuUids.add(bi.getValue("whatuid"));
-		// }
+			List rfList = rfService.invokeSelect(accountUid);
+			for (Iterator it = rfList.iterator(); it.hasNext();) {
+				BOInstance bi = (BOInstance) it.next();
+				authMenuUids.add(bi.getValue("whatuid"));
+			}
+		}
 
-		// /remove long long ago
-		// ////////////////用户反向授权需要移除的权限
-		// DOService fxService = DOService
-		// .getService("auth.menu.user.access.0.xes");
-		// List fxList = fxService.invokeSelect(accountUid);
-		// for (Iterator it = fxList.iterator(); it.hasNext();) {
-		// BOInstance bi = (BOInstance) it.next();
-		// pureMenuUids.remove(bi.getValue("whatuid"));
-		// }
-		// //////////////再加上用户正向授权的权限
-		// DOService aService = DOService
-		// .getService("auth.menu.user.access.1.xes");
-		// List list = aService.invokeSelect(accountUid);
-		// for (Iterator it = list.iterator(); it.hasNext();) {
-		// BOInstance bi = (BOInstance) it.next();
-		// pureMenuUids.add(bi.getValue("whatuid"));
-		// }
+		// return authMenuUids;
+		// 开发阶段 ，可以实时看到新增的菜单
 		return null;
 	}
 
