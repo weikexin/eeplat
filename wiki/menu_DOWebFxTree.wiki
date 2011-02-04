@@ -1,16 +1,13 @@
 #sidebar controller_index
 
+
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.menu.DOWebFxTree
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
-
-==说明==
-
-该控制器为特殊控制器，用于缺省的界面布局。
+该控制器用于显示树形菜单。
 
 ==运行示例==
 
