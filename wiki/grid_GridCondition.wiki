@@ -6,11 +6,11 @@ com.exedosoft.plat.ui.jquery.grid.GridCondition
 
 ==适用场景==
 
-  表单视图，显示查询条件。查询条件的排列没有使用td分割。换行是根据表格元素的“是否换行”进行的。
+表单视图，显示查询条件。查询条件的排列没有使用td分割。换行是根据表格元素的“是否换行”进行的。
 
 ==说明==
  
-  和grid_ConditionAutoTr的区别在于“换行”的区别上 
+和grid_ConditionAutoTr的区别在于“换行”的区别上 
 
 
 ==运行示例==
