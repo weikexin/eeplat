@@ -67,8 +67,6 @@
 			* [form_DOInputTextOnlyInteger       form.DOInputTextOnlyInteger       ]
 			* [form_DOInputCheckBoxList          form.DOInputCheckBoxList          ]
 			* [form_DOInputFileHD                form.DOInputFileHD                ]
-			* [form_DOSelectData form.DOSelectData]
-			* [form_DOSelectInvoke form.DOSelectInvoke]     
  	* 下拉列表相关	
 			* [form_DOValueResultListService               form.DOValueResultListService             ]
 			* [form_DOStaticListNoEmpty                    form.DOStaticListNoEmpty                  ]
