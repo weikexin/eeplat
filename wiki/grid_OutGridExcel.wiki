@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.grid.OutGridExcel
 
 ==说明==
 
-具体
+具体参加[HowToUseExcelReport     使用EXCEL报表]。
 
 ==运行示例==
 
