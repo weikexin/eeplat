@@ -19,8 +19,7 @@
  	* [grid_OutGridExcelSelected	grid.OutGridExcelSelected]	
  	* [grid_OutGridExcel	grid.OutGridExcel]
  * 表格元素控制器	
- 	* 常用按钮
-          
+ 	* 常用按钮         
 			* [form_TPaneSelectedParasForm  form.TPaneSelectedParasForm     ]      
 			* [form_TServiceSelectedParasForm form.TServiceSelectedParasForm   ]      
 			* [form_TServiceSelectedParasFormUf  form.TServiceSelectedParasFormUf ]    
@@ -42,7 +41,9 @@
 			* [form_DOSelectInvokeWithReset      form.DOSelectInvokeWithReset     ]    
 			* [form_DOSelectInvokeWithSubmit     form.DOSelectInvokeWithSubmit    ]    
 			* [form_DODownLoadExcel              form.DODownLoadExcel             ]    
-			* [form_DODownLoadCommon             form.DODownLoadCommon            ]    
+			* [form_DODownLoadCommon             form.DODownLoadCommon            ]
+                        * [form_DOSelectData form.DOSelectData]
+			* [form_DOSelectInvoke form.DOSelectInvoke]        
  	* 日期相关
 			* [form_DOValueDate             form.DOValueDate             ]
 			* [form_DOValueDateTime         form.DOValueDateTime         ]
