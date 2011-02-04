@@ -8,6 +8,10 @@ com.exedosoft.plat.ui.jquery.tree.JquerySimpleTree
 
 该控制器用于显示动态树。
 
+==说明==
+
+具体详见[ConifigTree     树]。
+
 ==运行示例==
 
 
