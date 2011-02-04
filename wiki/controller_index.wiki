@@ -20,8 +20,7 @@
  	* [grid_OutGridExcel	grid.OutGridExcel]
  * 表格元素控制器	
  	* 常用按钮
-			* [form_DOSelectData form.DOSelectData]
-			* [form_DOSelectInvoke form.DOSelectInvoke]                
+          
 			* [form_TPaneSelectedParasForm  form.TPaneSelectedParasForm     ]      
 			* [form_TServiceSelectedParasForm form.TServiceSelectedParasForm   ]      
 			* [form_TServiceSelectedParasFormUf  form.TServiceSelectedParasFormUf ]    
@@ -68,6 +67,8 @@
 			* [form_DOInputTextOnlyInteger       form.DOInputTextOnlyInteger       ]
 			* [form_DOInputCheckBoxList          form.DOInputCheckBoxList          ]
 			* [form_DOInputFileHD                form.DOInputFileHD                ]
+			* [form_DOSelectData form.DOSelectData]
+			* [form_DOSelectInvoke form.DOSelectInvoke]     
  	* 下拉列表相关	
 			* [form_DOValueResultListService               form.DOValueResultListService             ]
 			* [form_DOStaticListNoEmpty                    form.DOStaticListNoEmpty                  ]
