@@ -12,7 +12,7 @@ com.exedosoft.plat.ui.jquery.grid.GridList
 
 ==说明==
 
-该控制器必须定义服务、必须定义表格元素。
+该控制器对应的表格必须定义服务、必须定义表格元素。
 
 ==运行示例==
 
