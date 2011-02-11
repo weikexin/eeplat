@@ -15,6 +15,6 @@ com.exedosoft.plat.ui.jquery.pane.LayOutHeader
 ==运行示例==
 
 
-如下图，该控制器控制显示的部分为“这儿可以换成项目的LOGO”。该控制器一般为连接资源（JSP页面）。
+如下图，该控制器控制显示的部分为“这儿可以换成项目的LOGO”。该控制器一般连接资源（JSP页面）。
 
 http://eeplat.googlecode.com/files/structure_index.png
