@@ -15,4 +15,4 @@ com.exedosoft.plat.ui.jquery.pane.Tab
 ==运行示例==
 
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/p_tab.jpg"/>
