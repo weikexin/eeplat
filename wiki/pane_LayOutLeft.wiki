@@ -14,5 +14,6 @@ com.exedosoft.plat.ui.jquery.pane.LayoutLeft
 
 ==运行示例==
 
+该控制器控制显示的部分为“”
 
 http://eeplat.googlecode.com/files/structure_index.png
