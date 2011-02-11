@@ -15,4 +15,7 @@ com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
 ==运行示例==
 
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+
+如下图，该控制器控制显示的部分为“这儿可以换成项目的LOGO”下面左右分割的部分，包含的子面板分别由pane.LayOutHeader 及 pane.MainPage 控制。
+
+http://eeplat.googlecode.com/files/structure_index.png
