@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.bo.DOBO"%>
 <%@ page import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 <%
   		DOBO bo = DOBO.getDOBOByName("do_pt_processtemplate");
 		BOInstance curPt = bo.getCorrInstance();
@@ -26,8 +27,11 @@
 <script type="text/javascript" src="jquery.svg.js"></script>
 <script type="text/javascript" src="jquery.svgdom.js"></script>
 
-<script type="text/javascript" src="../../exedo/webv3/js/main/main.js"></script>
-<script type="text/javascript" src="../../exedo/webv3/js/main/platAjax.js"  ></script>
+<script language="javascript">
+  globalURL = "/<%=DOGlobals.URL%>/";
+</script>  
+<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
 
 <script type="text/javascript">
 
