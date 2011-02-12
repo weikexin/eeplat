@@ -10,5 +10,6 @@ com.exedosoft.plat.ui.menu.JqueryMenuXP
 
 ==运行示例==
 
+如下图左侧菜单部分。
 
 <img  src="http://eeplat.googlecode.com/files/menu_xp.png"/>
