@@ -18,5 +18,6 @@ com.exedosoft.plat.ui.jquery.grid.OutGridExcelSelected
 
 <img  src="http://eeplat.googlecode.com/files/grid_outgridexcelsele.png"/>
 
-导出结果可以被EXCEL打开，为选中的数据。
+导出结果可以被EXCEL打开，为选中的数据：
+
 <img  src="http://eeplat.googlecode.com/files/grid_excel_sele.png"/>
