@@ -14,5 +14,6 @@ com.exedosoft.plat.ui.jquery.pane.ContentPane
 
 ==运行示例==
 
+作为最通用的控制器，包含的内容可以是表格、树、菜单、资源，下图是一个包含表格的控制器显示的界面。
 
 <img  src="http://eeplat.googlecode.com/files/p_content.png"/>
