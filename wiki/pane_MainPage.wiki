@@ -15,6 +15,6 @@ com.exedosoft.plat.ui.jquery.pane.MainPage
 ==运行示例==
 
 
-如下图，该控制器控制显示的部分为“首页”显示的内容，为主体区域。
+如下图，该控制器控制显示的部分为“首页”显示的内容,包括基础设置、常用工具、编码生成器等，为主体区域。
 
 http://eeplat.googlecode.com/files/structure_index.png
