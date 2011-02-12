@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.grid.GridConditionAutoTr
 
 ==说明==
  
-和grid_ConditionAutoTr的区别在于“换行”的区别上。
+和grid_Condition的区别在于“换行”的区别上，比grid_Condition的应用更广泛。
 
 
 ==运行示例==
