@@ -2,15 +2,16 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.TAService
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+和form.TService相同。区别是TService是按钮形式，TAService是超连接形式。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+同form.TService。
+
 
 ==运行示例==
 
