@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.TServiceSelected
 
 ==适用场景==
 
-和form.TService基本相同。区别是form.TServiceSelected执行的服务是针对当前选择的记录。如果没有选择的记录，系统会给与提示。
+和form.TService基本相同。区别是form.TServiceSelected执行的服务是针对当前选择的记录。如果没有选择的记录，系统会提示。
 
 ==说明==
 
