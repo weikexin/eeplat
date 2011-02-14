@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DODownLoadExcel
 
 ==适用场景==
 
-定义一个按钮，该按钮用来下载EXCEL，该按钮连接的面板中表格的控制器为[grid.OutGridExcelSelected] 或 [grid.OutGridExcel]。
+定义一个按钮，该按钮用来下载EXCEL，该按钮连接的面板中表格的控制器为[grid_OutGridExcelSelected grid.OutGridExcelSelected] 或 [grid_OutGridExcel grid.OutGridExcel]。
 
 ==运行示例==
 
