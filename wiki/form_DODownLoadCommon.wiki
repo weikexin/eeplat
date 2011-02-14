@@ -2,17 +2,16 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DODownLoadCommon
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+定义一个按钮，该按钮用来下载各类文件。
 
-==说明==
+文件名为当前记录的名称；扩展名在“相关配置”中定义（如.txt，.zip等），如果未定义默认为.xml。
 
-该控制器为特殊控制器，用于缺省的界面布局。
+文件内容是按钮所定义服务的自定义动作产生的。
 
 ==运行示例==
 
-
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/grid_outgridexcel.png"/>
