@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.TServiceSelected
 
 ==说明==
 
-同form.TServiceSelected。
+同form.TService。
 
 
 ==运行示例==
