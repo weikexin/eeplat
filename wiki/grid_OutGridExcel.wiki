@@ -11,11 +11,12 @@ com.exedosoft.plat.ui.jquery.grid.OutGridExcel
 ==说明==
 
 具体参见[HowToUseExcelReport     使用EXCEL报表]。
+和[form_DODownLoadExcel form.DODownLoadExcel]配合使用。
 
 ==运行示例==
 
+激发位置在于下图的“导出”按钮([form_DODownLoadExcel form.DODownLoadExcel])：
 
-激发位置在于下图的“导出”按钮：
 
 <img  src="http://eeplat.googlecode.com/files/grid_outgridexcel.png"/>
 
