@@ -2,15 +2,15 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOValueFileMult
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+下载多个文件。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+表格元素对应的值是多个文件路径，以空格分割。
 
 ==运行示例==
 
