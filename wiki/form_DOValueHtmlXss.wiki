@@ -2,15 +2,11 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOValueHtmlXss
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
-
-==说明==
-
-该控制器为特殊控制器，用于缺省的界面布局。
+安全显示数据库的值，避免Xss攻击，会把html中的< > & " '等符号转义。
 
 ==运行示例==
 
