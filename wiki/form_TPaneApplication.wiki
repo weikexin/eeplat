@@ -2,15 +2,15 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.TPaneApplication
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+特殊控制器， 定义一个按钮，在配置器中打开当前配置的工程。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+特殊控制器，可以参考其实现，一般只能应用于特殊场景。
 
 ==运行示例==
 
