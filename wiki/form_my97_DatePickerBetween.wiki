@@ -12,7 +12,7 @@ com.exedosoft.plat.ui.jquery.form.my97.DatePickerBetween
  
 和form.my97.DatePicker相同。
 
-由于使用复杂，一般会使用form.myp7.DatePickerBetweenSuite代替它。
+由于使用复杂，一般会使用form.my97.DatePickerBetweenSuite代替它。
 
 该控制器会直接显示两个文本录入框，每个录入框是一个my97日期控件，两个录入框之间由“至”相连。
 
