@@ -2,15 +2,15 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOValueImage
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+显示一个图片。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+在“相关配置”中可以设置图片的高度和宽度，以分号（;）分割。
 
 ==运行示例==
 
