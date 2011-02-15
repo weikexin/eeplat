@@ -85,7 +85,6 @@
 			* [form_DOValueInputFileHD         form.DOValueInputFileHD    ]
 			* [form_DOValueTextArea            form.DOValueTextArea       ]
 			* [form_DOValueSimpleLoginMan      form.DOValueSimpleLoginMan ]
-			* [form_DOLabel                    form.DOLabel               ]
  * 面板控制器	
  	* [pane_LayOutLeft pane.LayOutLeft]	
  	* [pane_LayOutHeader pane.LayOutHeader]
