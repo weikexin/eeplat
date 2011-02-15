@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.DOValueLink
 
 ==说明==
 
-超链接之间用逗号（，）分割。
+多个超链接之间用逗号（，）分割。
 
 
 ==运行示例==
