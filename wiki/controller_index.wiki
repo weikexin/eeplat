@@ -79,7 +79,6 @@
 			* [form_DOValueImage               form.DOValueImage          ]
 			* [form_DOValueLink                form.DOValueLink           ]
 			* [form_DOValueStaticText          form.DOValueStaticText     ]
-			* [form_DOValueCatalog             form.DOValueCatalog        ]
 			* [form_DOValueInputHidden         form.DOValueInputHidden    ]
 			* [form_DOValueInputFileHD         form.DOValueInputFileHD    ]
 			* [form_DOValueTextArea            form.DOValueTextArea       ]
