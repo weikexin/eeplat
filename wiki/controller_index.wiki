@@ -34,6 +34,7 @@
 			* [form_DOValueDateTime         form.DOValueDateTime         ]
 			* [form_my97_DatePicker         form.my97.DatePicker         ]
 			* [form_my97_DatePickerBetween	 form.my97.DatePickerBetween	] 
+			* [form_my97_DatePickerBetweenTSuit	 form.my97.DatePickerBetweenTSuit] 
  	* 录入相关	
 			* [form_DOInputText                  form.DOInputText                  ]
 			* [form_DOTextArea                   form.DOTextArea                   ]
