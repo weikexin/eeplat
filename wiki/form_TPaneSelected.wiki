@@ -2,15 +2,17 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.TPaneSelected
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+定义一个按钮，用来打开“连接的面板”。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+如果定义有“目标面板”，“连接的面板”替代的位置是目标面板，否则替代的位置为按钮所在的面板。
+
+和form.TPane的不同在于
 
 ==运行示例==
 
