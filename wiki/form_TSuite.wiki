@@ -2,15 +2,19 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.TSuit
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+录入一个时间段。
 
 ==说明==
+ 
+和form.my97.DatePicker相同。
 
-该控制器为特殊控制器，用于缺省的界面布局。
+该控制器所在表格元素需要关联两个表格元素，每个表格元素的控制器都是form.my97.DatePicker。
+
+
 
 ==运行示例==
 
