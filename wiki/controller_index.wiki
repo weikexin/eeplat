@@ -81,7 +81,6 @@
 			* [form_DOValueStaticText          form.DOValueStaticText     ]
 			* [form_DOValueCatalog             form.DOValueCatalog        ]
 			* [form_DOValueInputHidden         form.DOValueInputHidden    ]
-			* [form_DOValueSimpleNew           form.DOValueSimpleNew      ]
 			* [form_DOValueInputFileHD         form.DOValueInputFileHD    ]
 			* [form_DOValueTextArea            form.DOValueTextArea       ]
 			* [form_DOValueSimpleLoginMan      form.DOValueSimpleLoginMan ]
