@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.TSuit
 
 ==适用场景==
 
-集成
+集成1个或多个表格元素。
 
 ==说明==
  
