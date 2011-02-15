@@ -68,7 +68,7 @@
 			* [form_DOResultListPopupNoSplitPageNoDefault  form.DOResultListPopupNoSplitPageNoDefault]
 			* [form_DOResultListPopupNoSplitPage           form.DOResultListPopupNoSplitPage         ]
  	* 组合	
-			* [form_SuiteRight form.SuiteRight] 
+			* [form_my97_DatePickerBetweenTSuit	 form.my97.DatePickerBetweenTSuit] 
 			* [form_TSuite     form.TSuite   ]  
  	* 显示相关	
 			* [form_DOValueSimple              form.DOValueSimple         ]
