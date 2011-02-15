@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.DOValueSimplePlain
 
 ==说明==
 
-即使表格元素定义了样式，也不会根据样式显示。
+CSS风格定义无效。
 
 ==运行示例==
 
