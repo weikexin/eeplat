@@ -2,15 +2,16 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOValueLink
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+显示一个或多个超链接。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+超链接之间用逗号（，）分割。
+
 
 ==运行示例==
 
