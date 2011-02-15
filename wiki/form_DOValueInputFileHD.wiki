@@ -2,15 +2,15 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOValueStaticText
+com.exedosoft.plat.ui.jquery.form.DOValueInputFileHD
 
 ==适用场景==
 
-显示静态文本。
+下载一个文件。
 
 ==说明==
 
-静态文本在“相关配置”中填写。静态文本也可以写成{{{<a href="">test</a>}}} 这种方式。
+用于下载form.DOInputFileHD或TUploadify上传的文件。
 
 ==运行示例==
 
