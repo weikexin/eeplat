@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.DOValueStaticText
 
 ==说明==
 
-静态文本在“相关配置”中填写。静态文本也可以写成<a href="">test</a> 这种方式。
+静态文本在“相关配置”中填写。静态文本也可以写成{{{<a href="">test</a>}}} 这种方式。
 
 ==运行示例==
 
