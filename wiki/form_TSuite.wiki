@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.TSuit
 
 ==适用场景==
 
-录入一个时间段。
+集成
 
 ==说明==
  
