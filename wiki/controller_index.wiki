@@ -47,8 +47,6 @@
 			* [form_DOInputFileHD                form.DOInputFileHD                ]
 			* [form_TUploadify                   form.TUploadify                   ]
 			* [form_DOInputHidden                form.DOInputHidden                ]
-			* [form_DOInputTextBetweenOnlyInteger form.DOInputTextBetweenOnlyInteger]
-			* [form_DOInputTextOnlyInteger       form.DOInputTextOnlyInteger       ]
 			* [pane_TDBEditArea                  pane.TDBEditArea                  ]
  	* 下拉列表相关	
 			* [form_DOValueStaticList                      form.DOValueStaticList                    ]
