@@ -2,15 +2,19 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOFCKEditor
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+文本域（也称多行文本框）录入形式。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+
+在“相关配置”中可以设置文本域的列数和行数，以分号（;）分割，默认是50;5。
+
+更多设置参见[ConfigGridItem     表格元素]。
+
 
 ==运行示例==
 
