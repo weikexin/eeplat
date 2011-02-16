@@ -6,12 +6,11 @@ com.exedosoft.plat.ui.jquery.form.DOFCKEditor
 
 ==适用场景==
 
-文本域（也称多行文本框）录入形式。
+所见即所得HTML编辑器。
 
 ==说明==
 
-
-在“相关配置”中可以设置文本域的列数和行数，以分号（;）分割，默认是50;5。
+集成FCKeditor编辑器（http://ckeditor.com/）。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
