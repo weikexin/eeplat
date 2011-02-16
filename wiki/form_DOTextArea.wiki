@@ -13,7 +13,7 @@ com.exedosoft.plat.ui.jquery.form.DOTextArea
 
 在“相关配置”中可以设置文本域的列数和行数，以分号（;）分割，默认是50;5。
 
-
+更多设置参见[ConfigGridItem     表格元素]。
 
 
 ==运行示例==
