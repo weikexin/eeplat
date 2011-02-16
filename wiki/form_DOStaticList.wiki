@@ -2,11 +2,11 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOValueStaticList
+com.exedosoft.plat.ui.jquery.form.DOStaticList
 
 ==适用场景==
 
-用于显示form.DOStaticList录入的值。
+
 
 
 ==说明==
