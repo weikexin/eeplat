@@ -2,16 +2,15 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOValueStaticList
+com.exedosoft.plat.ui.jquery.form.DOResultListPopup
 
 ==适用场景==
 
-用于显示form.DOStaticList录入的值。
-
+Html表单元素-下拉列表。数据来自“连接的服务”。
 
 ==说明==
 
-在“相关配置”中设置 如1,男;2,女” 这种格式的键值对的字符串，分别用于存储和显示。例如数据库中存储的是1，通过这个控制器在界面上显示“男”。
+必须配置服务，服务返回的每个BOInstance 的 主健作为下拉项的值，值列作为下拉项的显示。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
