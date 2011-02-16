@@ -2,11 +2,11 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOResultListPopup
+com.exedosoft.plat.ui.jquery.form.DOResultListPopupNoSplitPage   
 
 ==适用场景==
 
-下拉列表，但是不标准的HTML表单元素，用层（div）模拟实现，数据不分页。默认会显示服务的业务对象在总线上的当前值。
+下拉列表，但是不标准的HTML表单元素，用层（div）模拟实现，数据不分页。如没有值则默认会显示服务的业务对象在总线上的当前值。
 
 数据来自“连接的服务”。
 
