@@ -15,12 +15,7 @@ com.exedosoft.plat.ui.jquery.form.DOInputText
 
 可以在备注中设置录入提示。
 
-
-
-
-
-
-
+更多设置参见[ConfigGridItem     表格元素]。
 
 
 ==运行示例==
