@@ -2,15 +2,18 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOInputRadio
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+定义一个Html表单元素单选框。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+表格元素要设置是否隐藏域为“是”。
+
+如果数据表中没有对应值，那么“相关配置”的值作为第一缺省默认值。“缺省值”作为第二缺省默认值。
+
 
 ==运行示例==
 
