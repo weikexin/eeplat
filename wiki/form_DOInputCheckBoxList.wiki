@@ -20,8 +20,7 @@ com.exedosoft.plat.ui.jquery.form.DOInputCheckBoxList
 
 #静态配置
 
-   在“相关配置”中设置格式如1,男;2,
-
+   在“相关配置”中设置“1,男;2,女” 这种格式的键值对的字符串，分别用于存储和显示。
 
 
 更多设置参见[ConfigGridItem     表格元素]。
