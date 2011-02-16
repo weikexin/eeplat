@@ -49,7 +49,6 @@
 			* [pane_TDBEditArea                  pane.TDBEditArea                  ]
  	* 下拉列表相关	
 			* [form_DOValueStaticList                      form.DOValueStaticList                    ]
-			* [form_DOValueStaticListHidden                form.DOValueStaticListHidden              ]
 			* [form_DOValueResultList                      form.DOValueResultList                    ]
 			* [form_DOValueResultListPlain                 form.DOValueResultListPlain               ]
 			* [form_DOValueResultListService               form.DOValueResultListService             ]
