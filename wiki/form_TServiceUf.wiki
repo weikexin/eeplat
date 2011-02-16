@@ -21,5 +21,6 @@ form.TServiceUf比form.TService的用途更广泛，只有特定环境需要使�
 
 ==运行示例==
 
+如下图红点位置：
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/c_TService.png "/>
