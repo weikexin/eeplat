@@ -40,7 +40,6 @@
 			* [form_DOTextArea                   form.DOTextArea                   ]
 			* [form_DOFCKEditor                  form.DOFCKEditor                  ]
 			* [form_DOInputPassword              form.DOInputPassword              ]
-			* [form_DOInputTextBetween           form.DOInputTextBetween           ]
 			* [form_DOInputCheckBox              form.DOInputCheckBox              ]
 			* [form_DOInputCheckBoxList          form.DOInputCheckBoxList          ]
 			* [form_DOInputRadio                 form.DOInputRadio                 ]
