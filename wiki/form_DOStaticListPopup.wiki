@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOStaticListPopup
 
 ==适用场景==
 
-下拉列表，但是不标准的HTML表单元素，用层（div）模拟实现。
+下拉列表，但是不标准的HTML表单元素，用层（div）模拟实现。数据来自“相关配置”。
 
 ==说明==
 
