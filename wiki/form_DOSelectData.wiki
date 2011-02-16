@@ -13,6 +13,3 @@ com.exedosoft.plat.ui.jquery.form.DOSelectData
 form.DOSelectData选择的数据被放入，form.DOSelectInvoke的前部的文本框。
 
 ==运行示例==
-
-
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
