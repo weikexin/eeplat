@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOInputRadio
 
 ==适用场景==
 
-定义一个Html表单元素单选框。
+Html表单元素-单选框。
 
 ==说明==
 
