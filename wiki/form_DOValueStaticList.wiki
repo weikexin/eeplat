@@ -2,15 +2,16 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.DOValueStaticList
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+用于显示form.DOStaticList录入的值。
+
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+显示的值一般有对“连接的面板”的超链接。
 
 ==运行示例==
 
