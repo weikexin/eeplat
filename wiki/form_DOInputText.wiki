@@ -11,7 +11,14 @@ com.exedosoft.plat.ui.jquery.form.DOInputText
 ==说明==
 
 
-在“相关配置”中可以设置文本域的列数和行数，以分号（;）分割，默认是50;5。
+在“相关配置”中可以设置文本框的长度（input 的 size）。
+
+可以在备注中设置录入提示。
+
+
+
+
+
 
 
 
