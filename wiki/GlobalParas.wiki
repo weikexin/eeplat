@@ -65,11 +65,3 @@
 	<!-- 上传文件路径 -->
 		<property name="uploadfiletemp">E:\\eclipse\\workspace\\yiyi_dev\\WebContent\\upload\\</property>
 }}}
-
-
-= MAIN.JS =
- main.js 位于 \exedo\webv3\js\main 下。配置参数：
-{{{
-  var globalURL = "/yiyi/";
-}}}
-  当webmodule的名称改变时，需要更改这个地方。
