@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOStaticListNoEmpty
 
 ==适用场景==
 
-Html表单元素-下拉列表。
+Html表单元素-下拉列表。数据来自“相关配置”。
 
 ==说明==
 
