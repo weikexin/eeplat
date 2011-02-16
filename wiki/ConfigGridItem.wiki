@@ -105,6 +105,8 @@
 
  有效性验证JS：表格元素录入完后，或表单提交时，需要验证表格元素的有效性的JS。
 
+备注：一般作为录入提示。
+
 
   
  http://eeplat.googlecode.com/files/form_modi1.png 
