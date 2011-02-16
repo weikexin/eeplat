@@ -10,4 +10,6 @@ com.exedosoft.plat.ui.jquery.form.DODownLoadExcel
 
 ==运行示例==
 
+如下图红点位置：
+
 <img  src="http://eeplat.googlecode.com/files/grid_outgridexcel.png"/>
