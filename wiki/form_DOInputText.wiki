@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOInputText
 
 ==适用场景==
 
-文本框录入形式。
+定义一个Html表单元素-文本录入框。
 
 ==说明==
 
