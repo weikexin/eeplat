@@ -15,6 +15,9 @@ com.exedosoft.plat.ui.jquery.form.DOInputCheckBox
 
 
 
+更多设置参见[ConfigGridItem     表格元素]。
+
+
 ==运行示例==
 
 
