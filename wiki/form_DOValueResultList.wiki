@@ -2,16 +2,20 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOValueStaticList
+com.exedosoft.plat.ui.jquery.form.DOValueResultList
 
 ==适用场景==
 
-用于显示form.DOStaticList录入的值。
+用于显示以form.DOResultList 开头的控制器录入的值。
 
 
 ==说明==
 
-在“相关配置”中设置 如1,男;2,女” 这种格式的键值对的字符串，分别用于存储和显示。例如数据库中存储的是1，通过这个控制器在界面上显示“男”。
+
+会把一条记录的主健列翻译为值列。
+
+默认为有超链接。如果表格元素配置有“连接的面板”，则连接“连接的面板”；否则链接 该记录所在业务对象的主面板。
+
 
 更多设置参见[ConfigGridItem     表格元素]。
 
