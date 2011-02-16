@@ -43,7 +43,6 @@
 			* [form_DOInputCheckBox              form.DOInputCheckBox              ]
 			* [form_DOInputCheckBoxList          form.DOInputCheckBoxList          ]
 			* [form_DOInputRadio                 form.DOInputRadio                 ]
-			* [form_DOInputFile                  form.DOInputFile                  ]
 			* [form_DOInputFileHD                form.DOInputFileHD                ]
 			* [form_TUploadify                   form.TUploadify                   ]
 			* [form_DOInputHidden                form.DOInputHidden                ]
