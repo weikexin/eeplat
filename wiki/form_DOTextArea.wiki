@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOTextArea
 
 ==适用场景==
 
-文本域（也称多行文本框）录入形式。
+Html表单元素-文本域（也称多行文本框）。
 
 ==说明==
 
