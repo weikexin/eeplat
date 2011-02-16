@@ -56,12 +56,11 @@
 			* [form_DOStaticList                           form.DOStaticList                         ]
 			* [form_DOStaticListNoEmpty                    form.DOStaticListNoEmpty                  ]
 			* [form_DOStaticListPopup                      form.DOStaticListPopup                    ]
-			* [form_DOStaticListInputConfigFromValue       form.DOStaticListInputConfigFromValue     ]
 			* [form_DOResultList                           form.DOResultList                         ]
 			* [form_DOResultListPopup                      form.DOResultListPopup                    ]
 			* [form_DOResultListPopupReadOnly              form.DOResultListPopupReadOnly            ]
-			* [form_DOResultListPopupNoSplitPageNoDefault  form.DOResultListPopupNoSplitPageNoDefault]
 			* [form_DOResultListPopupNoSplitPage           form.DOResultListPopupNoSplitPage         ]
+			* [form_DOResultListPopupNoSplitPageNoDefault  form.DOResultListPopupNoSplitPageNoDefault]
  	* 组合	
 			* [form_my97_DatePickerBetweenTSuit	 form.my97.DatePickerBetweenTSuit] 
 			* [form_TSuite     form.TSuite   ]  
