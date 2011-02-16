@@ -14,4 +14,8 @@ com.exedosoft.plat.ui.jquery.form.DODownLoadCommon
 
 ==运行示例==
 
-<img  src="http://eeplat.googlecode.com/files/grid_outgridexcel.png"/>
+
+
+如下图红点位置：
+
+<img  src="http://eeplat.googlecode.com/files/c_TDownloadComm.png "/>
