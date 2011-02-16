@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.DOFCKEditor
 
 ==说明==
 
-集成FCKeditor编辑器（http://ckeditor.com/）。
+集成FCKeditor编辑器（http://ckeditor.com ）。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
