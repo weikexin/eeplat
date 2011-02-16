@@ -14,7 +14,12 @@ com.exedosoft.plat.ui.jquery.form.TUploadify
 
 用于上传文件至硬盘路径（在global.xml文件中设置）。负责上传的jsp为exedo/webv3/upload.jsp  。
 
-“相关配置”可以
+“相关配置”可以设置过滤提示，默认是  只能选择图像类文件(*.jpg;*.gif;*.bmp)。
+“相关约束”可以设置上传过滤类型，默认是 *.jpg;*.gif;*.bmp。
+
+ 上传由exedo/webv3/js/main/platAjax.js中的 uploadify 函数完成。
+
+如有特殊要求可以参考这个控制器的实现重写。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
