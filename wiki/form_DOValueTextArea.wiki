@@ -12,6 +12,10 @@ com.exedosoft.plat.ui.jquery.form.DOValueTextArea
 
 DOValueTextArea的只读形式。
 
+在“相关配置”中可以设置文本域的列数和行数，以分号（;）分割，默认是50;5。
+
+
+
 
 ==运行示例==
 
