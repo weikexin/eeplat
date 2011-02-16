@@ -13,6 +13,3 @@ com.exedosoft.plat.ui.jquery.form.DOSelectInvoke
 form.DOSelectInvoke弹出的“查询选择面板”中需含有form.DOSelectData控制器的按钮。
 
 ==运行示例==
-
-
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
