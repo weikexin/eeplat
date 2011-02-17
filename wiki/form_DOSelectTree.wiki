@@ -20,4 +20,4 @@ Html表单元素-下拉列表。选择的是递归结构的数据，递归数据
 ==运行示例==
 
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/c_selecttree.png"/>
