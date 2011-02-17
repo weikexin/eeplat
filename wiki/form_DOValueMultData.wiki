@@ -2,16 +2,16 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.form.DOValueStaticList
+com.exedosoft.plat.ui.jquery.form.DOValueMultData
 
 ==适用场景==
 
-用于显示form.DOStaticList录入的值。
+用于显示多条记录的（值列）值。
 
 
 ==说明==
 
-在“相关配置”中设置 如1,男;2,女” 这种格式的键值对的字符串，分别用于存储和显示。例如数据库中存储的是1，通过这个控制器在界面上显示“男”。
+每条记录以换行分割。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
