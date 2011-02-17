@@ -2,17 +2,17 @@
 
 ==英文名称==
 
-com.exedosoft.plat.ui.jquery.pane.LayOutSplitPane
+com.exedosoft.plat.ui.jquery.form.TDBEditArea
 
 ==适用场景==
 
-该控制器只用于界面布局中下部主面板
+代码编辑器。
 
 ==说明==
 
-该控制器为特殊控制器，用于缺省的界面布局。
+集成的CodePress代码编辑器，支持关键字变色，方便html,js在线编写。
 
 ==运行示例==
 
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/t_codeprocess"/>
