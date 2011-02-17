@@ -56,6 +56,7 @@
 			* [form_DOStaticList                           form.DOStaticList                         ]
 			* [form_DOStaticListNoEmpty                    form.DOStaticListNoEmpty                  ]
 			* [form_DOStaticListPopup                      form.DOStaticListPopup                    ]
+			* [form_DOSelectTree                      form.DOSelectTree                    ]
 			* [form_DOResultList                           form.DOResultList                         ]
 			* [form_DOResultListPopup                      form.DOResultListPopup                    ]
 			* [form_DOResultListPopupNoSplitPage           form.DOResultListPopupNoSplitPage         ]
