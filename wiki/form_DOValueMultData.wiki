@@ -16,6 +16,3 @@ com.exedosoft.plat.ui.jquery.form.DOValueMultData
 更多设置参见[ConfigGridItem     表格元素]。
 
 ==运行示例==
-
-
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
