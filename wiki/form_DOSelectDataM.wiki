@@ -13,3 +13,7 @@ com.exedosoft.plat.ui.jquery.form.DOSelectDataM
 form.DOSelectDataM继承自form.DOSelectData，和form.DOSelectData不同的地方是form.DOSelectDataM可以选择多条记录。
 
 ==运行示例==
+
+如下图红点位置：
+
+<img  src="http://eeplat.googlecode.com/files/c_selectdata.png"/>
