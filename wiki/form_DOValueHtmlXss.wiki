@@ -12,5 +12,10 @@ com.exedosoft.plat.ui.jquery.form.DOValueHtmlXss
 
 ==运行示例==
 
+没有使用form.DOValueHtmlXss控制器：
 
-<img  src="http://eeplat.googlecode.com/files/controller_ui.png"/>
+<img  src="http://eeplat.googlecode.com/files/c_valuehtmlxss_2.png "/>
+
+使用form.DOValueHtmlXss控制器：
+
+<img  src="http://eeplat.googlecode.com/files/c_valuehtmlxss.png "/>
