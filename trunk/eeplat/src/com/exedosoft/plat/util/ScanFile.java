@@ -117,7 +117,7 @@ public class ScanFile {
 	public static void main(String[] args) {
 
 		ScanFile scanFile = new ScanFile();
-		List list = scanFile.parse("F:/google/eeplat/src", new String[] { ".java" });
+		List list = scanFile.parse("F:/google/eeplat/src/com/exedosoft/plat/cms", new String[] { ".java" });
 		for(Iterator   it = list.iterator();it.hasNext();){
 			String aFile = (String)it.next();
 			System.out.println("正在转换:::" + aFile);
