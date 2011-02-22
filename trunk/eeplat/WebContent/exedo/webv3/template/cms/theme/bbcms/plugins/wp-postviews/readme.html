@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>WP-PostViews 1.30 Readme</title>
+	<style type="text/css" media="screen">
+		/* Default Style */
+		BODY {
+			font-family: Verdana, Arial;
+			font-size: 12px;
+			color: #000000;
+			background: #FFFFFF;
+		}
+		P {
+			padding-left: 10px;
+		}
+		BLOCKQUOTE {
+			margin: 10px 20px 0px 20px;
+			padding: 10px;
+			border: 1px solid #8d8d8d;
+			background-color: #f5f5f5;
+		}
+		LI {
+			margin-top: 20px;
+		}
+		UL LI UL LI {
+			margin-top: 10px;
+		}
+		A, A:active, A:link, A:visited {
+			color: #2d3a4c;
+			text-decoration: none;
+		}
+		A:hover {
+			color: #5577a5;
+			text-decoration: underline;
+		}
+		/* Place Holder Style */
+		#Container {
+			width: 780px;
+			margin-left: auto;
+			margin-right: auto; 
+		}
+		#Content {
+			background-color: #fafafa;
+			border: 1px solid #a2b6cb;
+			padding: 10px;
+			margin-top: -13px;
+		}
+		/* Title Style */
+		#Title {
+			font-family: Verdana, Arial;
+			font-size: 22px;
+			font-weight: bold;
+			color: #389aff;
+			border-bottom: 1px solid #389aff;
+			margin-bottom: 10px;
+		}
+		.SubTitle {
+			font-family: Verdana, Arial;
+			font-size: 18px;
+			font-weight: bold;
+			color: #5b87b4;
+		}
+		.SubSubTitle {
+			font-family: Verdana, Arial;
+			font-size: 14px;
+			font-weight: bold;
+			color: #73a4d6;
+		}
+		/* Tabs */
+		UL#Tabs {
+			font-family: Verdana, Arial;
+			font-size: 12px;
+			font-weight: bold;
+			list-style-type: none;
+			padding-bottom: 28px;
+			border-bottom: 1px solid #a2b6cb;
+			margin-bottom: 12px;
+			z-index: 1;
+		}
+		#Tabs LI.Tab {
+			float: right;
+			height: 25px;
+			background-color: #deedfb;
+			margin: 2px 0px 0px 5px;
+			border: 1px solid #a2b6cb;
+		}
+		#Tabs LI.Tab A {
+			float: left;
+			display: block;
+			color: #666666;
+			text-decoration: none;
+			padding: 5px;
+		}
+		#Tabs LI.Tab A:hover {
+			background-color: #bfe0fe;
+			border-bottom: 1px solid #bfe0fe;
+		}
+		/* Selected Tab */
+		#Tabs LI.SelectedTab {
+			float: right;
+			height: 25px;
+			background-color: #fafafa;
+			margin: 2px 0px 0px 5px;
+			border-top: 1px solid #a2b6cb;
+			border-right: 1px solid #a2b6cb;
+			border-bottom: 1px solid #fafafa;
+			border-left: 1px solid #a2b6cb;
+		}
+		#Tabs LI.SelectedTab A {
+			float: left;
+			display: block;
+			color: #666666;
+			text-decoration: none;
+			padding: 5px;
+			cursor: default;
+		}
+		/* Copyright */
+		#Copyright {
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+	/* <![CDATA[*/
+		// Index Page
+		function index() {
+			// Tab
+			document.getElementById('IndexTab').className = 'SelectedTab';
+			document.getElementById('ChangelogTab').className = 'Tab';
+			document.getElementById('InstallTab').className = 'Tab';
+			document.getElementById('UpgradeTab').className = 'Tab';
+			document.getElementById('UsageTab').className = 'Tab';
+			// Page
+			document.getElementById('Index').style.display= 'block';
+			document.getElementById('Changelog').style.display = 'none';
+			document.getElementById('Install').style.display = 'none';
+			document.getElementById('Upgrade').style.display = 'none';
+			document.getElementById('Usage').style.display = 'none';
+		}
+		// Changelog Page
+		function changelog() {
+			// Tab
+			document.getElementById('IndexTab').className = 'Tab';
+			document.getElementById('ChangelogTab').className = 'SelectedTab';
+			document.getElementById('InstallTab').className = 'Tab';
+			document.getElementById('UpgradeTab').className = 'Tab';
+			document.getElementById('UsageTab').className = 'Tab';
+			// Page
+			document.getElementById('Index').style.display = 'none';
+			document.getElementById('Changelog').style.display = 'block';
+			document.getElementById('Install').style.display = 'none';
+			document.getElementById('Upgrade').style.display = 'none';
+			document.getElementById('Usage').style.display = 'none';
+		}
+		// Installation Page
+		function install() {
+			// Tab
+			document.getElementById('IndexTab').className = 'Tab';
+			document.getElementById('ChangelogTab').className = 'Tab';
+			document.getElementById('InstallTab').className = 'SelectedTab';
+			document.getElementById('UpgradeTab').className = 'Tab';
+			document.getElementById('UsageTab').className = 'Tab';
+			// Page
+			document.getElementById('Index').style.display= 'none';
+			document.getElementById('Changelog').style.display = 'none';
+			document.getElementById('Install').style.display = 'block';
+			document.getElementById('Upgrade').style.display = 'none';
+			document.getElementById('Usage').style.display = 'none';
+		}
+		// Upgrade Page
+		function upgrade() {
+			// Tab
+			document.getElementById('IndexTab').className = 'Tab';
+			document.getElementById('ChangelogTab').className = 'Tab';
+			document.getElementById('InstallTab').className = 'Tab';
+			document.getElementById('UpgradeTab').className = 'SelectedTab';
+			document.getElementById('UsageTab').className = 'Tab';
+			// Page
+			document.getElementById('Index').style.display= 'none';
+			document.getElementById('Changelog').style.display = 'none';
+			document.getElementById('Install').style.display = 'none';
+			document.getElementById('Upgrade').style.display = 'block';
+			document.getElementById('Usage').style.display = 'none';
+		}
+		// Usage Page
+		function usage() {
+			// Tab
+			document.getElementById('IndexTab').className = 'Tab';
+			document.getElementById('ChangelogTab').className = 'Tab';
+			document.getElementById('InstallTab').className = 'Tab';
+			document.getElementById('UpgradeTab').className = 'Tab';
+			document.getElementById('UsageTab').className = 'SelectedTab';
+			// Page
+			document.getElementById('Index').style.display= 'none';
+			document.getElementById('Changelog').style.display = 'none';
+			document.getElementById('Install').style.display = 'none';
+			document.getElementById('Upgrade').style.display = 'none';
+			document.getElementById('Usage').style.display = 'block';
+		}
+	/* ]]> */
+	</script>
+</head>
+<body>
+<div id="Container">
+	<!-- Title -->
+	<div id="Title">WP-PostViews 1.30&nbsp;&nbsp;&nbsp;<span style="color: #aaaaaa;">Readme</span></div>
+
+	<!-- Tabs -->
+	<ul id="Tabs">
+		<li id="UsageTab" class="Tab"><a href="#Usage" onclick="usage(); return false;" title="Usage Instructions">Usage</a></li>
+		<li id="UpgradeTab" class="Tab"><a href="#Upgrade" onclick="upgrade(); return false;" title="Upgrade Instructions">Upgrade</a></li>
+		<li id="InstallTab" class="Tab"><a href="#Installation" onclick="install(); return false;" title="Installation Instructions">Installation</a></li>
+		<li id="ChangelogTab" class="Tab"><a href="#Changelog" onclick="changelog(); return false;" title="Changelog">Changelog</a></li>
+		<li id="IndexTab" class="SelectedTab"><a href="#Index" onclick="index(); return false;" title="Index Instructions">Index</a></li>
+	</ul>
+
+	<!-- Content -->
+	<div id="Content">
+		<!-- Index -->
+		<div id="Index">
+			<div class="SubTitle">&raquo; Index</div>
+			<div class="SubSubTitle">Plugin Information</div>
+			<p>
+				<strong>Author:</strong><br />
+				<strong>&raquo;</strong> Lester 'GaMerZ' Chan
+			</p>
+			<p>
+				<strong>Website:</strong><br />
+				<strong>&raquo;</strong> <a href="http://lesterchan.net/" title="http://lesterchan.net/">http://lesterchan.net/</a>
+			</p>
+			<p>
+				<strong>Features:</strong><br />
+				<strong>&raquo;</strong> Enables you to display how many times a post/page had been viewed.
+			</p>
+			<p>
+				<strong>Download:</strong><br />
+				<strong>&raquo;</strong> <a href="http://lesterchan.net/others/downloads.php?id=19" title="http://lesterchan.net/others/downloads.php?id=19">WP-PostViews 1.30 For WordPress 2.3.x And 2.5.x</a><br />
+				<strong>&raquo;</strong> <a href="http://lesterchan.net/others/downloads/wp-postviews111.zip" title="http://lesterchan.net/others/downloads/wp-postviews111.zip">WP-PostViews 1.11 For WordPress 2.1.x And 2.2.x</a><br />
+				<strong>&raquo;</strong> <a href="http://lesterchan.net/others/downloads/wp-postviews102.zip" title="http://lesterchan.net/others/downloads/wp-postviews102.zip">WP-PostViews 1.02 For WordPress 2.0.x</a><br />
+			</p>
+			<p>
+				<strong>Screenshots:</strong><br />
+				<strong>&raquo;</strong> <a href="http://lesterchan.net/wordpress/screenshots/browse/wp-postviews/" title="http://lesterchan.net/wordpress/screenshots/browse/wp-postviews/">http://lesterchan.net/wordpress/screenshots/browse/wp-postviews/</a>
+			</p>
+			<p>
+				<strong>Demo:</strong><br /><strong>&raquo;</strong> <a href="http://lesterchan.net/wordpress/" title="http://lesterchan.net/wordpress/">http://lesterchan.net/wordpress/</a>
+			</p>
+			<p>
+				<strong>Development:</strong><br />
+				<strong>&raquo;</strong> <a href="http://dev.wp-plugins.org/browser/wp-postviews/" title="http://dev.wp-plugins.org/browser/wp-postviews/">http://dev.wp-plugins.org/browser/wp-postviews/</a>
+			</p>
+			<p>
+				<strong>Translations:</strong><br />
+				<strong>&raquo;</strong> <a href="http://dev.wp-plugins.org/browser/wp-postviews/i18n/" title="http://dev.wp-plugins.org/browser/wp-postviews/i18n/">http://dev.wp-plugins.org/browser/wp-postviews/i18n/</a>
+			</p>
+			<p>
+				<strong>Support Forums:</strong><br />
+				<strong>&raquo;</strong> <a href="http://forums.lesterchan.net/index.php?board=16.0" title="http://forums.lesterchan.net/index.php?board=16.0">http://forums.lesterchan.net/index.php?board=16.0</a>
+			</p>
+			<p>
+				<strong>Credits:</strong><br />
+				<strong>&raquo;</strong> WP-Cache/WP-SuperCache Compatibility By <a href="http://omninoggin.com/">Thaya Kareeson</a>.
+			</p>
+			<p>
+				<strong>Note:</strong><br />
+				<strong>&raquo;</strong> The <strong>Changelog</strong>, <strong>Installation</strong>, <strong>Upgrade</strong>, <strong>Usage</strong> Tab at the top of the page.
+			</p>
+			<p>
+				<strong>Donations:</strong><br />
+				<strong>&raquo;</strong> I spent most of my free time creating, updating, maintaining and supporting these plugins, if you really love my plugins and could spare me a couple of bucks as my school allowance, I will really appericiate it. If not feel free to use it without any obligations. Thank You. My Paypal account is 
+				<script type="text/javascript">
+					/* <![CDATA[*/
+					document.write(' <strong>lesterchan@gmail.com</strong>.');
+					/* ]]> */
+				</script>
+			</p>
+		</div>
+
+		<!-- Changelog -->
+		<div id="Changelog" style="display: none;">
+			<div class="SubTitle">&raquo; Changelog</div>
+			<ul>
+			<li>
+					<strong>Version 1.30 (01-06-2008)</strong>
+					<ul>
+						<li>NEW: Uses /wp-postviews/ Folder Instead Of /postviews/</li>
+						<li>NEW: Uses wp-postviews.php Instead Of postviews.php</li>
+						<li>NEW: Uses wp-postviews-widget.php Instead Of postviews-widget.php</li>
+						<li>NEW: Uses number_format_i18n() Instead Of number_format()</li>
+						<li>NEW: Option To Exclude Bots Views In 'WP-Admin -> Settings -> Post Views'</li>
+						<li>NEW: Added Most Viewed Template</li>
+						<li>NEW: Change The Way WP-PostViews Count Views</li>
+						<li>NEW: Should Work With WP-Cache Or WP-SuperCache</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.20 (01-10-2007)</strong>
+					<ul>
+						<li>NEW: Works For WordPress 2.3 Only</li>
+						<li>NEW: Most Viewed Widget Added</li>
+						<li>NEW: Ability To Uninstall WP-PostViews</li>
+						<li>NEW: Uses WP-Stats Filter To Add Stats Into WP-Stats Page</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.11 (01-06-2007)</strong>
+					<ul>
+						<li>FIXED: Wrong URL For Page Under Most Viewed Posts Listing</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.10 (01-02-2007)</strong>
+					<ul>
+						<li>NEW: Works For WordPress 2.1 Only</li>
+						<li>NEW: Localization WP-PostViews</li>
+						<li>NEW: Added Function To Get Most Viewed Post By Category ID</li>
+						<li>FIXED: Views Not Counting In Some Cases</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.02 (01-10-2006)</strong>
+					<ul>
+						<li>NEW: Change In get_most_viewed() To Accommodate Latest Version Of WP-Stats</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.01 (01-07-2006)</strong>
+					<ul>
+						<li>NEW: Added Get Total Views Function</li>
+						<li>FIXED: Modified Get Most Viewed Post Function</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Version 1.00 (01-03-2006)</strong>
+					<ul>
+						<li>NEW: Initial Release</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Installation Instructions -->
+		<div id="Install" style="display: none;">
+			<div class="SubTitle">&raquo; Installation Instructions</div>
+			<ol>
+				<li>
+					Open <strong>wp-content/plugins</strong> Folder
+				</li>
+				<li>
+					Put:
+					<blockquote>Folder: wp-postviews</blockquote>
+				</li>
+				<li>
+					<strong>Activate</strong> WP-PostViews Plugin
+				</li>
+				<li>
+					Refer To <strong>Usage</strong> For Further Instructions
+				</li>
+			</ol>
+		</div>
+
+		<!-- Upgrade Instructions -->	
+		<div id="Upgrade" style="display: none;">
+			<div class="SubTitle">&raquo; Upgrade Instructions</div>
+			<div class="SubSubTitle">From v1.0x To v1.30</div>
+			<ol>
+				<li>
+					<strong>Deactivate</strong> WP-PostViews Plugin
+				</li>
+				<li>
+					Open <strong>wp-content/plugins</strong> Folder
+				</li>
+				<li>
+					Put/Overwrite:
+					<blockquote>Folder: wp-postviews</blockquote>
+				</li>
+				<li>
+					Delete this folder if exists:
+					<blockquote>
+						Folder: postviews
+					</blockquote>
+				</li>
+				<li>
+					<strong>Activate</strong> WP-PostViews Plugin
+				</li>
+				<li>
+					Refer To <strong>Usage</strong> For Further Instructions
+				</li>
+			</ol>
+		</div>
+
+		<!-- Usage Instructions -->	
+		<div id="Usage" style="display: none;">
+			<div class="SubTitle">&raquo; Usage Instructions</div>
+			<div class="SubSubTitle">General Usage</div>
+			<ol>
+				<li>
+					Open <strong>wp-content/themes/&lt;YOUR THEME NAME&gt;/index.php</strong>
+					<p>You may place it in <strong>single.php</strong>, <strong>post.php</strong> or <strong>page.php</strong> also.</p>
+				</li>
+				<li>
+					Find:
+					<blockquote>
+						&lt;?php while (have_posts()) : the_post(); ?&gt;
+					</blockquote>
+				</li>
+				<li>
+					Add Anywhere Below It:
+					<blockquote>
+						&lt;?php if(function_exists('the_views')) { the_views(); } ?&gt;
+					</blockquote>
+				</li>
+				<li>
+					Go to <strong>'WP-Admin -> Settings -> Post Views'</strong> to configure the plugin.
+				</li>
+			</ol>
+			<div class="SubSubTitle">View Stats (With Widgets)</div>
+			<ol>
+				<li>
+					<strong>Activate</strong> WP-PostViews Widget Plugin
+				</li>
+				<li>
+					Go to '<strong>WP-Admin -> Design -> Widgets</strong>'
+				</li>
+				<li>
+					To Display <strong>Most Viewed Post</strong>
+				</li>
+				<li>
+					You can <strong>add</strong> the Most Viewed Widget by clicking on the 'Add' link besides it.
+				</li>
+				<li>
+					After adding, you can <strong>configure</strong> the Most Viewed Widget by clicking on the 'Edit' link besides it.
+				</li>
+				<li>
+					Click 'Save Changes'
+				</li>
+			</ol>
+			<div class="SubSubTitle">View Stats (Outside WP Loop)</div>
+			<ul>
+				<li>
+					To Display <strong>Most Viewed Post</strong>
+				</li>
+				<li>
+					Use:
+					<blockquote>
+						&lt;?php if (function_exists('get_most_viewed')): ?&gt;<br />
+						&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;?php get_most_viewed(); ?&gt;<br />
+						&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br />
+						&lt;?php endif; ?&gt;
+					</blockquote>
+					<p>
+						The <strong>first value</strong> you pass in is what you want to get, 'post', 'page' or 'both'.<br />
+						The <strong>second value</strong> you pass in is the maximum number of post you want to get.
+					</p>
+					<p>Default: get_most_viewed('both', 10);</p>
+				</li>
+				<li>
+					To Display <strong>Most Viewed Post For A Category</strong>
+				</li>
+				<li>
+					Use:
+					<blockquote>
+						&lt;?php if (function_exists('get_most_viewed_category')): ?&gt;<br />
+						&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;?php get_most_viewed_category(); ?&gt;<br />
+						&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br />
+						&lt;?php endif; ?&gt;
+					</blockquote>
+					<p>
+						The <strong>first value</strong> you pass in is the category id.<br />
+						The <strong>second value</strong> you pass in is what you want to get, 'post', 'page' or 'both'.<br />
+						The <strong>third value</strong> you pass in is the maximum number of post you want to get.</p>
+					<p>Default: get_most_viewed_category(1, 'both', 10);</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<p id="Copyright">WP-PostViews 1.30<br />Copyright &copy; 2008 Lester 'GaMerZ' Chan. All Rights Reserved.</p>
+</body>
+</html>
