@@ -1,5 +1,7 @@
 package com.exedosoft.plat.ui.jquery.grid;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Iterator;
@@ -24,6 +26,14 @@ import com.exedosoft.plat.util.StringUtil;
  * @author aa
  * 
  */
+/**
+ * @author lenovo
+ *  
+ *  ×î³õÊÇ×÷ÎªÑéÓ¡ÉóºËµÄ¿Ø¼ş£¬ÏÖ¸ÄÎªCMSÖ÷ÌâÍ¼Æ¬Õ¹Ê¾¿Ø¼ş
+ *  Õ¹Ê¾Ô­Àí£º
+ *  ËÑË÷exedo/webv3/template/cms/themeÄ¿Â¼ÏÂµÄÎÄ¼ş¼Ğ£¬Ã»¸öÎÄ¼ş¼ĞÎªÒ»¸öÖ÷Ìâ
+ *
+ */
 public class GridListImage extends DOViewTemplate {
 
 	private static Log log = LogFactory.getLog(GridListImage.class);
@@ -32,21 +42,35 @@ public class GridListImage extends DOViewTemplate {
 		this.templateFile = "grid/GridListImage.ftl";
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> putData(DOIModel doimodel) {
-
-		DOGridModel gm = (DOGridModel) doimodel;
-		if (gm.getService() == null) {
-			return null;
-		}
+		int pageNo = 1;
+		int pageNum = 0;
+		//»ñÈ¡Ö÷ÌâÄ¿Â¼
+		List ztl = getThemesDir();
 		Map<String, Object> data = new HashMap<String, Object>();
+		DOGridModel gm = (DOGridModel) doimodel;
+		
+		if (gm.getRowSize() != null) {
+			pageNum = gm.getRowSize().intValue();
+		}
+
+		data.put("rowSize", pageNum);
+		int resultSize = ztl.size(); //gridModel.getService().getResultSize();
+		int pageSize = StringUtil.getPageSize(resultSize, pageNum);
+		data.put("pageSize", pageSize);
+		data.put("resultSize", resultSize);
+		data.put("pageNo", pageNo);
+
+
+		data.put("cms", ztl);
 		data.put("model", gm);
-		data.put("data", getListData(gm, data));
 		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
 		if(gm.getContainerPane()!=null){
 			data.put("pmlName", gm.getContainerPane().getName());
 		}
 		data.put("formName", "a" + gm.getObjUid());
-		//æ¯è¡Œæ˜¾ç¤ºçš„åˆ—æ•°ã€‚å¦‚æœç•Œé¢æ²¡è¾“å…¥ï¼Œé»˜è®¤ä¸º3
+		//Ã¿ĞĞÏÔÊ¾µÄÁĞÊı¡£Èç¹û½çÃæÃ»ÊäÈë£¬Ä¬ÈÏÎª3
 		int datarowSize ;
 		String rowTmp = DOGlobals.getInstance().getSessoinContext().getFormInstance().getValue("rowSize");
 		if ( rowTmp != null && ! "".equals(rowTmp)){
@@ -54,12 +78,12 @@ public class GridListImage extends DOViewTemplate {
 		}else {
 			datarowSize = 3;
 		}
-		//è·å–æ˜¾ç¤ºå›¾åƒæŒ‰é’®
+		//»ñÈ¡ÏÔÊ¾Í¼Ïñ°´Å¥
 		List  list = gm.getAllGridFormLinks();
 		DOFormModel fm ;
 		for ( int i = 0 ; i < list.size(); i++ ){
 			fm = (DOFormModel) list.get(i);
-			if ( fm.getL10n().equals("æ˜¾ç¤ºå›¾åƒ")){
+			if ( fm.getL10n().equals("startusing")){
 				data.put("fm", fm);
 				break ;
 			}else{
@@ -70,66 +94,106 @@ public class GridListImage extends DOViewTemplate {
 	
 		return data;
 	}
-
-	public static List<BOInstance> getListData(DOGridModel gridModel,
-			Map<String, Object> data) {
-		List<BOInstance> list;
-		int pageNo = 1;
-		int pageNum = 0;
-
-		if (DOGlobals.getInstance().getSessoinContext().getFormInstance()
-				.getValue("pageNo") != null) {
-			try {
-				pageNo = Integer.parseInt(DOGlobals.getInstance()
-						.getSessoinContext().getFormInstance().getValue("pageNo"));
-			} catch (Exception e) {
-
-			}
-		}
-		// pageNo = DOGlobals.getInstance().getSessoinContext().splitPageContext
-		// .getPageNo(gridModel.getService());
-		// log.info("SplitPage Filter Table Get PageNO:::" + pageNo);
-
-		if (gridModel.getRowSize() != null) {
-			pageNum = gridModel.getRowSize().intValue();
-		}
-
-		if (pageNum <= 0) {
-			list = gridModel.getService().invokeSelect();
-		} else {
-			data.put("rowSize", pageNum);
-			int resultSize = gridModel.getService().getResultSize();
-			int pageSize = StringUtil.getPageSize(resultSize, pageNum);
-			data.put("pageSize", pageSize);
-			data.put("resultSize", resultSize);
-			data.put("pageNo", pageNo);
-
-			list = gridModel.getService().invokeSelect(pageNo, pageNum);
-
-		}
-		
-		/////å¤„ç†ç¬¬äºŒæœåŠ¡ï¼ˆç»Ÿè®¡ç”¨ï¼‰
-		DOService secondService = gridModel.getSecondService();
-		if(secondService!=null){
-			List secondResult = secondService.invokeSelect();
-			if(secondResult.size() > 0){
-				BOInstance statistics = (BOInstance)secondResult.get(0);
-				data.put("statistics", statistics.getMap());
-				StringBuilder sb = new StringBuilder();
-				List<DOFormModel> listFm = gridModel.getStatisticOutGridFormLinks();
-				if(listFm!=null && listFm.size()>0){
-					for(Iterator<DOFormModel> it = listFm.iterator();it.hasNext();){
-						DOFormModel aFm = it.next();
-						aFm.setData(statistics);
-						sb.append("&nbsp;&nbsp;&nbsp;&nbsp;").append(aFm.getL10n()).append(":").append(aFm.getValue()).append("&nbsp;&nbsp;&nbsp;&nbsp;");
-					}
+	
+	@SuppressWarnings("unchecked")
+	public List  getThemesDir(){
+		//classesÄ¿Â¼
+		String path = this.getClass().getResource("/").getPath();
+		File current_dir = new File(path);
+		//»ñÈ¡WEB-INFOÄ¿Â¼µÄ¸¸Ä¿Â¼
+		File root_dir = new File(new File(current_dir.getParent()).getParent() + "/exedo/webv3/template/cms/theme/");
+		File[] listDirs = root_dir.listFiles();
+		DOService service = DOService .getService("cms_options_list");
+		BOInstance bo = new BOInstance();
+		List<BOInstance> l = service.invokeSelect(bo);
+		String current_theme = "";
+		if ( !l.isEmpty()){
+			for(BOInstance b : l){
+				System.out.println(b.getValue("opt_key"));
+				if(b.getValue("opt_key").equals("themes_dir")){
+					
+					current_theme = b.getValue("opt_value");
 				}
-				data.put("statistics_details", sb.toString());
 				
 			}
 		}
 		
-		return list;
+		List cl = new ArrayList();
+		for(File f : listDirs){
+			if (f.isDirectory()){
+				Map map = new HashMap();
+				map.put("theme_dir", f.getName());
+				if (f.getName() .equals(current_theme)){
+					map.put("current_theme",current_theme) ;
+				}
+				cl.add(map);
+			}
+		}
+		
+		return cl ;
 	}
+
+//	public static List<BOInstance> getListData(DOGridModel gridModel,
+//			Map<String, Object> data) {
+//		List<BOInstance> list;
+//		int pageNo = 1;
+//		int pageNum = 0;
+//	 
+//		File rootPath = new File("/yiyi/exedo/webv3/template/cms/theme");
+//		File[] fileList = rootPath.listFiles();
+//		if (DOGlobals.getInstance().getSessoinContext().getFormInstance()
+//				.getValue("pageNo") != null) {
+//			try {
+//				pageNo = Integer.parseInt(DOGlobals.getInstance()
+//						.getSessoinContext().getFormInstance().getValue("pageNo"));
+//			} catch (Exception e) {
+//
+//			}
+//		}
+//		// pageNo = DOGlobals.getInstance().getSessoinContext().splitPageContext
+//		// .getPageNo(gridModel.getService());
+//		// log.info("SplitPage Filter Table Get PageNO:::" + pageNo);
+//
+//		if (gridModel.getRowSize() != null) {
+//			pageNum = gridModel.getRowSize().intValue();
+//		}
+//
+//		if (pageNum <= 0) {
+//			list = gridModel.getService().invokeSelect();
+//		} else {
+//			data.put("rowSize", pageNum);
+//			int resultSize = 3; //gridModel.getService().getResultSize();
+//			int pageSize = StringUtil.getPageSize(resultSize, pageNum);
+//			data.put("pageSize", pageSize);
+//			data.put("resultSize", resultSize);
+//			data.put("pageNo", pageNo);
+//
+//			list = gridModel.getService().invokeSelect(pageNo, pageNum);
+//
+//		}
+//		
+//		/////´¦ÀíµÚ¶ş·şÎñ£¨Í³¼ÆÓÃ£©
+//		DOService secondService = gridModel.getSecondService();
+//		if(secondService!=null){
+//			List secondResult = secondService.invokeSelect();
+//			if(secondResult.size() > 0){
+//				BOInstance statistics = (BOInstance)secondResult.get(0);
+//				data.put("statistics", statistics.getMap());
+//				StringBuilder sb = new StringBuilder();
+//				List<DOFormModel> listFm = gridModel.getStatisticOutGridFormLinks();
+//				if(listFm!=null && listFm.size()>0){
+//					for(Iterator<DOFormModel> it = listFm.iterator();it.hasNext();){
+//						DOFormModel aFm = it.next();
+//						aFm.setData(statistics);
+//						sb.append("&nbsp;&nbsp;&nbsp;&nbsp;").append(aFm.getL10n()).append(":").append(aFm.getValue()).append("&nbsp;&nbsp;&nbsp;&nbsp;");
+//					}
+//				}
+//				data.put("statistics_details", sb.toString());
+//				
+//			}
+//		}
+//		
+//		return list;
+//	}
 
 }
