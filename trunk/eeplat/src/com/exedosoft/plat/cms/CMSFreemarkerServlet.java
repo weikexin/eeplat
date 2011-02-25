@@ -41,7 +41,7 @@ public class CMSFreemarkerServlet extends FreemarkerServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Map map = new HashMap();
-		map.put("redirect_url", "http://127.0.0.1:8080/yiyi/exedo/webv3/template/cms/index.ftl");
+		map.put("redirect_url", "/" + DOGlobals.URL + "/exedo/webv3/template/cms/index.ftl");
 		request.getSession().setAttribute("optionsMap", map);
 		super.doGet(request, response);
 		
