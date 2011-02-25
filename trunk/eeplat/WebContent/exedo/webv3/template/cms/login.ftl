@@ -25,7 +25,7 @@
 		<p class="message">	${get_user_info().userinfo.login_result}</p>
 	</#if>
 </#if>
-<form name="loginform" id="loginform" action="http://127.0.0.1:8080/yiyi/exedo/webv3/template/cms/login.ftl?action=login" method="post">
+<form name="loginform" id="loginform" action="./exedo/webv3/template/cms/login.ftl?action=login" method="post">
 	<p>
 		<label>用户名<br />
 		<input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="10" /></label>

@@ -78,7 +78,7 @@
 		<#assign rowSize = '${datarowSize}' />
 	   <#list cms as ins>
 				<td id='${ins_index}${model.objUid}' >
-					<center><img id='${ins.theme_dir}' value='${ins.theme_dir}' class="imgzoon" src="/yiyi/exedo/webv3/template/cms/theme/${ins.theme_dir}/screenshot.jpg"  /></center>
+					<center><img id='${ins.theme_dir}' value='${ins.theme_dir}' class="imgzoon" src="./exedo/webv3/template/cms/theme/${ins.theme_dir}/screenshot.jpg"  /></center>
 					<p><center><h1><a  id='${model.objUid}${ins.theme_dir}' ><#if (ins.current_theme?exists)>当前使用主题<#else>启用</#if></a></h1></center></p>
 
 				<#-- 图片单击选中 -->

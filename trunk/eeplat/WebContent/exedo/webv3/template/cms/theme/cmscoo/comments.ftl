@@ -38,12 +38,12 @@
 		<small></small>
      </div>
 	<#if !is_userlogin()>
-		<p>你必须 <a href="http://localhost:8080/yiyi/exedo/webv3/template/cms/login.ftl">登录后</a> 才能对文章进行评论!</p>
+		<p>你必须 <a href="./exedo/webv3/template/cms/login.ftl">登录后</a> 才能对文章进行评论!</p>
     <#else>
-	<form action="http://localhost:8080/yiyi/exedo/webv3/template/cms/cms-comments-post.ftl" method="get" id="commentform">
+	<form action="./exedo/webv3/template/cms/cms-comments-post.ftl" method="get" id="commentform">
 
 	<div class="author_avatar"></div>
-	<div class="author">欢迎你， ${get_user_info().userinfo.user_nicename}.<a href="http://127.0.0.1:8080/yiyi/exedo/webv3/template/cms/theme/test/index.ftl?action=logoff" title="Log out of this account"> 点击退出系统 &raquo;</a></div>
+	<div class="author">欢迎你， ${get_user_info().userinfo.user_nicename}.<a href="./exedo/webv3/template/cms/theme/test/index.ftl?action=logoff" title="Log out of this account"> 点击退出系统 &raquo;</a></div>
 	
 
       <!--<p><small><strong>XHTML:</strong> You can use these tags: <code><?php echo allowed_tags(); ?></code></small></p>-->

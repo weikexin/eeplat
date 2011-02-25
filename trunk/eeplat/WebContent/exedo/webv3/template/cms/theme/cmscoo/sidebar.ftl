@@ -9,7 +9,7 @@
     </div>
       <!---AD-->
   <div class="p_right">
-        <img src="<?php bloginfo('template_directory'); ?>/images/AD.gif" width="300" height="150" />
+        <img src="${bloginfo('current_path')}images/AD.gif" width="300" height="150" />
         
     </div>
   <!--AD END-->
