@@ -35,7 +35,7 @@ public class SessionAttribute {
 		if (!l.isEmpty()){
 			bo = (BOInstance) l.get(0);
 			map = bo.getMap();
-			map.put("comment_redirect_url", "http://localhost:8080/yiyi/exedo/webv3/template/cms/index.ftl");
+			map.put("comment_redirect_url", "./exedo/webv3/template/cms/index.ftl");
 		}
 		return map ;
 	}
