@@ -12,14 +12,13 @@ public class ChageThemesAction extends DOAbstractAction{
 
 	private static final String DEFAULT_THEMES_KEY = "themes_dir" ;
 	private static final String DEFAULT_THEMES_VALUE = "default" ;
-	@SuppressWarnings({ "unchecked", "static-access" })
-	@Override
+
 	public String excute() throws ExedoException {
 
 		String param = DOGlobals.getInstance().getSessoinContext().getFormInstance().getValue("theme_dir");
 		DOService service = DOService.getService("cms_options_browse_by_key");
 		BOInstance bo = new BOInstance();
-		bo.putValue("opt_key", this.DEFAULT_THEMES_KEY);
+		bo.putValue("opt_key", DEFAULT_THEMES_KEY);
 		List l = service.invokeSelect(bo);
 		if (l.isEmpty()){
 			service = DOService.getService("cms_options_insert");

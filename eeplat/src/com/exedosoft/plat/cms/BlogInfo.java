@@ -16,7 +16,7 @@ public class BlogInfo implements TemplateMethodModel{
 		String param = (String) arg0.get(0);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("name", "whl cms test site");
-		map.put("site_url", "http://127.0.0.1:8080/yiyi/exedo/webv3/template/cms");
+		map.put("site_url", "/" + DOGlobals.URL + "/exedo/webv3/template/cms");
 		map.put("html_type", "html/text");
 		map.put("charset", "UTF-8");
 		map.put("root_path", DOGlobals.PRE_FULL_FOLDER);
