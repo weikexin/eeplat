@@ -26,9 +26,9 @@
                     <li><a href="http://localhost:8080/zwiki/templates/test/edit.ftl">发表文章</a></li>                    
                     <li><a href="http://localhost/wordpress/wp-admin/">站点管理</a></li> 
                     <#if is_userlogin()>
-                    	 <li><a href="./exedo/webv3/template/cms/theme/test/index.ftl?action=logoff">登出</a></li>
+                    	 <li><a href="${bloginfo('site_url')}/theme/test/index.ftl?action=logoff">登出</a></li>
                   	<#else>       
-                    	<li><a href="./exedo/webv3/template/cms/login.ftl">登录</a></li>
+                    	<li><a href="${bloginfo('site_url')}/login.ftl">登录</a></li>
                     </#if>  
                    </ul>
             </li>

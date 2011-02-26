@@ -35,14 +35,14 @@
 <h3 id="respond">发表评论</h3>
 <div id="editcomment">
 <#if !is_userlogin()>
-<p>你必须 <a href="./exedo/webv3/template/cms/login.ftl">登录后</a> 才能对文章进行评论！</p>
+<p>你必须 <a href="${bloginfo('site_url')}/login.ftl">登录后</a> 才能对文章进行评论！</p>
 <#else>
 
-<form action="./exedo/webv3/template/cms/cms-comments-post.ftl" method="get" id="commentform">
+<form action="${bloginfo('site_url')}/cms-comments-post.ftl" method="get" id="commentform">
 
 
 
-<p>您现在是以 ${get_user_info().userinfo.user_nicename} 的身份登录,<a href="./exedo/webv3/template/cms/theme/test/index.ftl?action=logoff" title="Log out of this account"> 点击退出系统 &raquo;</a></p>
+<p>您现在是以 ${get_user_info().userinfo.user_nicename} 的身份登录,<a href="${bloginfo('site_url')}/theme/test/index.ftl?action=logoff" title="Log out of this account"> 点击退出系统 &raquo;</a></p>
 
 
 
