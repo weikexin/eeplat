@@ -10,7 +10,7 @@ DOService 是Java API的核心实现类，单独作说明；Javascript API也仅
 
 
 =  DOService =
-DOService是易元平台Java API最重要的一个类。DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
+DOService是云鹤平台Java API最重要的一个类。DOService 主要方法有 invokeSelect，invokeSelectGetAValue，invokeUpdate，invokeAll，getInstance。下文的aService 已经被实例化，具体见“实例化DOService”。
 
 
 == 实例化DOService == 
