@@ -1,1 +1,4 @@
-<a href="http://eeplat.googlecode.com/files/eeplat.war" target="_blank">下载</a>
+
+源代码下载只支持SVN方式，具体参见。
+
+这里是<a href="http://eeplat.googlecode.com/files/eeplat.war" target="_blank">WAR包下载</a>。
