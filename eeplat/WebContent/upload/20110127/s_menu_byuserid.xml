@@ -1,0 +1,10 @@
+<export>
+<service><li>{&quot;order_num&quot;:&quot;0&quot;,&quot;l10n&quot;:&quot;s_menu_byuserid&quot;,&quot;bouid&quot;:&quot;402880312793120d01279313fd740136&quot;,&quot;objuid&quot;:&quot;402880402dc586a2012dc58dab200001&quot;,&quot;name&quot;:&quot;s_menu_byuserid&quot;,&quot;mainsql&quot;:&quot;SELECT a.objUID, a.whatUid \tFROM do_authorization a INNER JOIN\t do_org_user_role ur ON a.ouUid = ur.ROLE_UID  WHERE (a.whatType = 16) AND (ur.USER_UID = ?)&quot;}</li></service>
+<parameter_service><li>{&quot;order_num&quot;:&quot;5&quot;,&quot;type&quot;:&quot;5&quot;,&quot;parameteruid&quot;:&quot;402880312788b836012788b97d7000a4&quot;,&quot;objuid&quot;:&quot;402880402dc586a2012dc58dabbc0002&quot;,&quot;serviceuid&quot;:&quot;402880402dc586a2012dc58dab200001&quot;,&quot;parabouid&quot;:&quot;402880312788b836012788b97d610098&quot;}</li>
+</parameter_service>
+<parameter><li>{&quot;type&quot;:&quot;5&quot;,&quot;l10n&quot;:&quot;objuid&quot;,&quot;objuid&quot;:&quot;402880312788b836012788b97d7000a4&quot;,&quot;parapropertyuid&quot;:&quot;402880312788b836012788b97d610099&quot;,&quot;name&quot;:&quot;objuid&quot;,&quot;parabouid&quot;:&quot;402880312788b836012788b97d610098&quot;}</li>
+</parameter>
+<rule_service></rule_service>
+<rule></rule></export>
+
+
