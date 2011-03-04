@@ -104,7 +104,7 @@ $(function() {
 
 })
 </script>
-<div algin="left" id='logoPic' style='z-index:1; height: 0; left: 0px; position: absolute; top: 1px; width: 0;'><img name='logoImg' height="40" src='<%=request.getContextPath()%>/exedo/webv3/images/logo_small_l.gif' border='0'></div> 
+<div algin="left" id='logoPic' style='z-index:1; height: 0; left: 0px; position: absolute; top: 1px; width: 0;'><img name='logoImg' height="40" src='<%=request.getContextPath()%>/exedo/webv3/images/logo_small_l.png' border='0'></div> 
 
 <div class="formHeader">
 	<img src="exedo/webv3/images/main/formHeader/user.png"/>

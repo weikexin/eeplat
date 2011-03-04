@@ -19,3 +19,8 @@
 
   out.println(Escape.unescape(DOGlobals.getInstance().getRuleContext().getEchoValue()));%>
 
+//downloadfile_common.jsp 文件中提到的方法 _jspService() 包含未经验证的数据，
+//这些数据位于 HTTP 响应头文件的第 18 行。这会招致各种形式的攻击，包括
+//：cache-poisoning、cross-site scripting、cross-user defacement、page hijacking、
+//cookie manipulation 或 open redirect。
+//

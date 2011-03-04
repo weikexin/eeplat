@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>易一工作流建模工具</title>
+<title>云鹤平台工作流建模工具</title>
 <style type="text/css">
 @import "jquery.svg.css";
 
@@ -1292,7 +1292,7 @@ function getFCount(svg)//获得before为none的节点数
 </script>
 </head>
 <body  >
-<h2>易一工作流建模工具</h2>
+<h2>云鹤平台工作流建模工具</h2>
 
 <div id="svgbasics"></div>
 
