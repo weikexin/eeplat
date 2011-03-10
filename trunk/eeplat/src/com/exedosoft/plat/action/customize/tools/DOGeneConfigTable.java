@@ -54,6 +54,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 									+ "没有定义主键，无法进行初始化!");
 						}
 					} else {
+						/////////////造成这个问题，有可能是 key 值没有选择。要注意一下
 
 						this.setEchoValue("浏览器内部错误，请重试或选用firefox!");
 						return NO_FORWARD;
