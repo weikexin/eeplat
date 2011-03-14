@@ -442,9 +442,11 @@ function loadPml(p){
 				if(p.title){
 					title = p.title;
 				}
-
+				
 				popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
+				
 			}else{
+				
 				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras));
 				$("#" + pmlName).data('paras',urlCodeDeal(paras));
 			}
@@ -462,12 +464,11 @@ function loadPml(p){
 					if(p.title){
 						title = p.title;
 					}
+					var thisPml = p.pml;
+					if(paras!="" && urlCodeDeal(paras)!=""){
+						thisPml = p.pml + "&" +  urlCodeDeal(paras);
+					}
 					if(p.target=='_opener_tab'){
-						var thisPml = p.pml;
-						if(urlCodeDeal(paras)!=""){
-							thisPml = p.pml + "&" +  urlCodeDeal(paras);
-						}
-						
 						createNewTab(pmlName,title,thisPml);
 					}else{
 						popupDialog(pmlName,title,thisPml,p.pmlWidth,p.pmlHeight);

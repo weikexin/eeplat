@@ -40,11 +40,8 @@ public class TAPaneWF extends DOViewTemplate {
 		if(bi!=null && bi.getValue("paneuid")!=null){
 			DOPaneModel paneModel = DOPaneModel.getPaneModelByID(bi.getValue("paneuid"));
 			data.put("paneModel", paneModel);
-			System.out.println("PaneModel::" + paneModel);
 		}else if(aFm.getLinkPaneModel()!=null){ 
 			data.put("paneModel", aFm.getLinkPaneModel());
-			System.out.println("PaneModel2222222222::");
-
 		}
 		return data;
 	}
