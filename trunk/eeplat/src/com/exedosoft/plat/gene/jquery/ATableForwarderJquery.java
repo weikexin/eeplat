@@ -759,7 +759,7 @@ public class ATableForwarderJquery {
 			try {
 				DODataSource dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
 						DODataSource.class, this.dataSourceUid);
-				if(dds.isOracle() || dds.isDB2()){
+				if(dds.isOracle() || dds.isDB2() || "h2".equals( dds.getDialect() )){
 
 					aTable = aTable.toUpperCase();
 				}
@@ -785,6 +785,7 @@ public class ATableForwarderJquery {
 				qc.setSize(rs.getInt("COLUMN_SIZE"));
 				cc.add(qc);
 			}
+			log.info("All Cols::" + cc);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {

@@ -58,8 +58,15 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		}
 		else if ("db2".equalsIgnoreCase(dss.getDialect())){
 			fileName = prefix + "/exedo/initsql/db2.sql";
-		}else{
-			this.setEchoValue("现在只支持mysql、oracle、sqlserver、db2和gae默认初始化!");
+		}
+		else if ("h2".equalsIgnoreCase(dss.getDialect())){
+			fileName = prefix + "/exedo/initsql/h2.sql";
+		}
+		else if ("hsqldb".equalsIgnoreCase(dss.getDialect())){
+			fileName = prefix + "/exedo/initsql/hsqldb.sql";
+		}
+		else{
+			this.setEchoValue("现在只支持mysql、oracle、sqlserver、db2、hsqldb、h2和gae等数据库初始化!");
 			return NO_FORWARD;
 		}
 

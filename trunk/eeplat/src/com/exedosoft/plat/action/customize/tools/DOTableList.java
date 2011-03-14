@@ -39,6 +39,15 @@ public class DOTableList extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_datasource");
 		DODataSource dss = DODataSource.getDataSourceByL10n(bo
 				.getCorrInstance().getValue("l10n"));
+		
+//        if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") && dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
+//        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
+//        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
+//            StringBuilder  driverUrl =
+//            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
+//            
+//            dss.setDriverUrl(driverUrl.toString());
+//        }
 
 		List list = new ArrayList();
 		Connection con = null;
@@ -170,6 +179,15 @@ public class DOTableList extends DOAbstractAction {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+
+        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
+        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
+            StringBuilder  driverUrl =
+            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append("test/test");
+            
+            System.out.println("DriverUrl:::" + driverUrl);
+        	
 
 	}
 

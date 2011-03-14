@@ -1,9 +1,10 @@
 <#include "TFormBase.ftl">
 <a  id='${model.objUid}${model.data.uid}'  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
 <#if (paneModel?exists) >
-<script>
+<script  type="text/javascript">
 
   $('#${model.objUid}${model.data.uid}').bind('click',function(){
+
 	    loadPml({
 		   		  <#if ((paneModel.linkType?exists) && (paneModel.linkType==5))>
 	   			 	'pml':'${paneModel.resource.resourcePath}',
