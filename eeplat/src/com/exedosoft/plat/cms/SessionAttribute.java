@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.util.DOGlobals;
 
 public class SessionAttribute {
 	
