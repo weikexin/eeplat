@@ -143,6 +143,12 @@
 		<extension>xml</extension>
 		<mime-type>text/xml</mime-type>
 	</mime-mapping>
+	
+	<mime-mapping>
+	    <extension>ico</extension>
+	    <mime-type>image/x-icon</mime-type>
+	</mime-mapping> 
+	
 	<env-entry>
 		<env-entry-name>global.config</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>
