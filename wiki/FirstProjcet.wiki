@@ -62,7 +62,7 @@
 
 ==初始化自己的业务表==
 
-  <b>注意：在提供的EC2示例中，请利用平台提供的简易的数据库管理工具[OnlineDBManager 在线创建和维护表]</b>
+  <b>注意：在提供的GAE或EC2示例中，请利用平台提供的简易的表结构管理工具 [OnlineDBManager 在线创建和维护表]</b>
    根据[AboutSQL  附录示例表的SQL]中的SQL语句来创建项目表（PM_ProjectInfor）和人员表（PM_CustomInfor）。
 	进入配置界面，数据源管理，选择MySql数据源，点击“初始化数据表”，进入如下界面：
 
