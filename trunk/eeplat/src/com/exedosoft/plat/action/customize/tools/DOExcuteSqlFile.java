@@ -129,6 +129,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		changeDataSource("do_org_role",dss);
 		changeDataSource("do_org_user",dss);
 		changeDataSource("do_org_user_role",dss);
+		changeDataSource("do_org_user_delegate",dss);
 		changeDataSource("do_auth_owner",dss);
 		changeDataSource("do_auth_suite",dss);
 		changeDataSource("do_authorization",dss);
