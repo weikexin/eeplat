@@ -17,7 +17,7 @@
 
  
 ===初始化工程===
-点击工程页面的“初始化工程”按钮。
+   点击工程页面的“初始化工程”按钮。
 
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_init.png"/>
  
@@ -25,23 +25,23 @@
 
 ==修改数据源==
 
-<b>注意：在提供的EC2示例中，可以使用的数据源方言为h2的数据源，不需要修改；在提供的GAE示例中，可以使用的数据源方言为gae的数据源，不需要修改。</b>
+   <b>注意：在提供的EC2示例中，可以使用的数据源方言为h2的数据源，不需要修改；在提供的GAE示例中，可以使用的数据源方言为gae的数据源，不需要修改。</b>
 
-点击首页>>基础设施管理>>数据源管理，进入下面的界面：
+   点击首页>>基础设施管理>>数据源管理，进入下面的界面：
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_list.png"/>
 
-系统默认建立了五个示例数据源，可以直接修改或复制。
+   系统默认建立了五个示例数据源，可以直接修改或复制。
 
-选择工程使用的数据库类型，并进行相应的配置。
+   选择工程使用的数据库类型，并进行相应的配置。
 
-在这里我们以MySql数据库为例子进行介绍，本地MySql数据库名称为test。
+   在这里我们以MySql数据库为例子进行介绍，本地MySql数据库名称为test。
 
-选择MySql，点击修改，修改配置信息，如下图：
+   选择MySql，点击修改，修改配置信息，如下图：
   <img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_modify.png"/>
  
-修改相应的信息，如MySql数据库的地址、用户名、密码等，进行保存。
+   修改相应的信息，如MySql数据库的地址、用户名、密码等，进行保存。
 
-由于TOMCAT启动时会初始化数据库连接池，所以修改后需要重新启动tomcat，并重新登陆系统。
+   由于TOMCAT启动时会初始化数据库连接池，所以修改后需要重新启动tomcat，并重新登陆系统。
 
 
 ==初始化组织权限==
@@ -50,15 +50,15 @@
 
   <img height="222" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_init.png"/>
 
-        初始化默认的权限相关的数据对象的数据源，同时创建权限相关表。
+   初始化默认的权限相关的数据对象的数据源，同时创建权限相关表。
  
-	初始化完成后，不可再进行初始化。
+   初始化完成后，不可再进行初始化。
  
-	打开数据库可以看到，系统自动创建了相关表。如下：
+   打开数据库可以看到，系统自动创建了相关表。如下：
 
   <img height="410" width="508" src="http://eeplat.googlecode.com/files/yiyi_db_table_list.png"/>
  
-	至此，系统初始化工作基本完成。
+   至此，系统初始化工作基本完成。
 
 ==初始化自己的业务表==
 
@@ -70,28 +70,28 @@
 
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_table_init.png"/>
  
-    选择主键列（关键字），特征值列（名称列），然后选择业务包（可以创建一个新的），点击“初始化业务表”
+   选择主键列（关键字），特征值列（名称列），然后选择业务包（可以创建一个新的），点击“初始化业务表”
  
-    请*耐心等待…初始化的过程根据所选择表的数量可能要持续几十秒至几分钟不等*. 直到如下界面：
+   请*耐心等待…初始化的过程根据所选择表的数量可能要持续几十秒至几分钟不等*. 直到如下界面：
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_table_init_finish.png"/>
  
-    双击左边的树节点即可刷新该节点下面的数据，可以看到已经初始化完成；初始化成功的一个简单特点是每个业务对象下面包含6个服务和7个面板。如下图：
+   双击左边的树节点即可刷新该节点下面的数据，可以看到已经初始化完成；初始化成功的一个简单特点是每个业务对象下面包含6个服务和7个面板。如下图：
   <img height="500" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_table_to_bo.png"/> 
 
 ==初始化表间关联==
 
-	在此需要设置表间关联，选择业务对象pm_projectinfor，点击右侧“处理表关联”，填写相应对应信息，在这里通过pm_projectinfor表中的custuid字段关联项目负责人，进入如下界面：
+   在此需要设置表间关联，选择业务对象pm_projectinfor，点击右侧“处理表关联”，填写相应对应信息，在这里通过pm_projectinfor表中的custuid字段关联项目负责人，进入如下界面：
  
    <img height="120" width="600" src="http://eeplat.googlecode.com/files/yiyi_bo_link.png"/>
 
-	点击“初始化”，完成表关联处理。
+   点击“初始化”，完成表关联处理。
  
 ==界面翻译==
 
  进入配置界面，首页-->常用工具-->导入字典翻译，把[Translating 附本地化代码]中的代码拷贝到文本域，如下图：
    <img height="500" width="500" src="http://eeplat.googlecode.com/files/yiyi_translate.png"/>
 
-    点击确定按钮，完成翻译工作。
+   点击确定按钮，完成翻译工作。
 
 
 ==系统测试==
