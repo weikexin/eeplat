@@ -25,6 +25,8 @@
 
 ==修改数据源==
 
+<b>注意：在提供的EC2示例中，可以使用的数据源为H2的数据源，不需要修改。</b>
+
 点击首页>>基础设施管理>>数据源管理，进入下面的界面：
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_db_list.png"/>
 
