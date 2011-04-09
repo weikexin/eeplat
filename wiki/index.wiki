@@ -5,6 +5,7 @@
     * [Video 视频及讨论群]
     * [Translating 附本地化代码]
     * [AboutSQL  附示例SQL]
+    * [OnlineDBManager 在线创建和维护表]
   * 开发文档
           *  [Introduce 平台简介]
           *  [TechArchive 技术架构]
