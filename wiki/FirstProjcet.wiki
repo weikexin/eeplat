@@ -62,7 +62,7 @@
 
 ==初始化自己的业务表==
 
-  <b>注意：在提供的GAE或EC2示例中，请利用平台提供的简易的表结构管理工具 [OnlineDBManager 在线创建和维护表]</b>。
+  <b>注意：在提供的GAE或EC2示例中，请利用平台提供的简易的表结构管理工具 [ManagerTable   在线创建和维护表]</b>。
 
   利用数据库的管理工具，根据[AboutSQL  附录示例表的SQL]中的SQL语句来创建项目表（PM_ProjectInfor）和人员表（PM_CustomInfor）。
 
