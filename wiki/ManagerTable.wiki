@@ -16,12 +16,12 @@
 
  ===创建新表===  
  
-  创建新表配置入口，首页==>基础设施管理==>数据源管理 ,点击弹出TAB页，选中数据源，点击创建新表
+  创建新表配置入口，首页==>基础设施管理==>数据源管理 ,点击弹出数据源管理TAB页面，在列表中选中数据源，点击在该数据源下创建新表，如下图：
 
  http://eeplat.googlecode.com/files/datasource_createtable.png
 
  ===修改表结构===  
 
-  修改表结构入口， 选中业务对象，选择右侧的“表结构管理”
+  修改表结构入口， 选中业务对象，选择右侧的“表结构管理”，如下图：
 
   http://eeplat.googlecode.com/files/datasource_moditable.png
