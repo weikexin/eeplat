@@ -35,7 +35,7 @@ String parameterValue = form.getValue(参数的名称)。
 
 如果parameterValue得到的是null，参数会查看是否配置了默认值，如果配置了默认值则取默认值，否则直接返回null。
 
- <b> 当使用API时，在程序的任何地方都可以通过SessionContext.getInstance().getFormInstance()获取Form 节点</b>
+ <b> 当使用API时，可以通过SessionContext.getInstance().getFormInstance()获取Form 节点</b>
  
 ==USER节点==
 
@@ -84,7 +84,7 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
       获取用户的岗位uid。USER在构建过程中必须添加stationuid的值才可以获取到,否则返回null。
   # TYPE_LOGIN_KEY:
       根据缺省值里面的配置返回USER在构建过程中对应的值，可以得到USER里面的所有的值。可以用这种类型得到前四种类型的值，前四种类型其实是这种类型的特例,如TYPE_LOGIN_MAIN_STATION 这个类型可以用TYPE_LOGIN_KEY 代替，只要在缺省值里面配置字符串’stationuid’;并且还要更灵活，如果表达岗位不用stationuid, 我们只要在缺省值里面配置相应的字符串。
-     <b>  当使用API时，在程序的任何地方都可以通过SessionContext.getInstance().getUser()获取User节点</b>
+     <b>  当使用API时，可以通过SessionContext.getInstance().getUser()获取User节点</b>
 				
 ==GLOBAL_UID节点==
 
