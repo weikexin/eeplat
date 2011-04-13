@@ -95,7 +95,7 @@ public class WFEngineImpl implements WFEngine {
 			pi.setPtName(pt.getPtName());
 			pi.setWfiDesc(pt.getPtDesc());
 
-			pi.setExeStatus(new Integer(ProcessInstance.STATUS_INIT));
+			pi.setExeStatus(Integer.valueOf(ProcessInstance.STATUS_INIT));
 			pi.setPtUid(pt.getObjUid());
 			String ptName = pt.getPtName();
 			BOInstance bi = pt.getDoBO().getCorrInstance();
@@ -129,10 +129,12 @@ public class WFEngineImpl implements WFEngine {
 
 			SessionContext us = DOGlobals.getInstance().getSessoinContext();
 
-			pi.setStartUser(us.getUser().getUid());
+			if(us.getUser()!=null){
+				pi.setStartUser(us.getUser().getUid());
+			}
 
 			if (isRun) {
-				pi.setExeStatus(new Integer(ProcessInstance.STATUS_RUN));
+				pi.setExeStatus(Integer.valueOf(ProcessInstance.STATUS_RUN));
 			}
 
 			DAOUtil.BUSI().store(pi); // /////保存工作流实例
@@ -168,7 +170,7 @@ public class WFEngineImpl implements WFEngine {
 			// ///////////end copy vars
 
 			// ////////////把控制权交给 Start NodeInstance.
-			niStart.setExeStatus(new Integer(NodeInstance.STATUS_INIT));
+			niStart.setExeStatus(Integer.valueOf(NodeInstance.STATUS_INIT));
 
 			// niStart.perform();
 		} catch (Exception ex) {
@@ -328,7 +330,7 @@ public class WFEngineImpl implements WFEngine {
 					// ///如果它的前置节点是空闲状态
 					if (niPre.getExeStatus().intValue() == NodeInstance.STATUS_FREE
 							|| niPre.getExeStatus().intValue() == NodeInstance.STATUS_RUN) {
-						ni.setExeStatus(new Integer(NodeInstance.STATUS_FREE)); // //设置为空闲状态
+						ni.setExeStatus(Integer.valueOf(NodeInstance.STATUS_FREE)); // //设置为空闲状态
 						DAOUtil.BUSI().store(ni);
 						return ni;
 					}
@@ -342,7 +344,7 @@ public class WFEngineImpl implements WFEngine {
 		// finally {
 		// dao.closeSession();
 		// }
-		ni.setExeStatus(new Integer(NodeInstance.STATUS_INIT)); // //设置为初始化状态
+		ni.setExeStatus(Integer.valueOf(NodeInstance.STATUS_INIT)); // //设置为初始化状态
 		ni.execute();
 		return ni;
 	}
@@ -359,7 +361,7 @@ public class WFEngineImpl implements WFEngine {
 							.getNodeType().intValue() == PTNode.TYPE_OR_CONJUNCTION)) {
 				throw new WFException("Conjunction类型的节点无法挂起");
 			}
-			ni.setExeStatus(new Integer(NodeInstance.STATUS_HANGUP));
+			ni.setExeStatus(Integer.valueOf(NodeInstance.STATUS_HANGUP));
 			DAOUtil.BUSI().store(ni);
 			return ni;
 		} catch (Exception ex) {

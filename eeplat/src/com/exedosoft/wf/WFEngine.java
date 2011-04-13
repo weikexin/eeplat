@@ -146,13 +146,13 @@ public interface WFEngine {
   
 
   /**
-   * 根据员工唯一标示，获取该员工将要完成工作的集合
+   * 待办，根据员工唯一标示，获取该员工将待办工作的集合
    * @param 员工唯一标示
    */
   Collection getMyPending() throws WFException;
 
   /**
-   * 根据员工唯一标示和工作流模板，获取该员工在该流程中将要完成工作的集合
+   * 待办，根据员工唯一标示，获取该员工将待办工作的集合
    * @param 员工唯一标示
    * @param 工作流模板唯一标示
    */
@@ -162,13 +162,13 @@ public interface WFEngine {
 
 
   /*
-   * 根据员工唯一标示，获取该员工已完成工作的集合
+   * 已办，根据员工唯一标示，获取该员工已办工作的集合
    * @param 员工唯一标示
    */
   Collection getHaveDone() throws WFException;
 
   /**
-   * 根据员工唯一标示和工作流模板，获取该员工在该工作流程中已完成工作的集合
+   * 已办，根据员工唯一标示和工作流模板，获取该员工在该工作流程中已办工作的集合
    * @param 员工唯一标示
    * @param 过程模板唯一标示
    */
@@ -177,13 +177,13 @@ public interface WFEngine {
 
 
   /**
-   * 根据员工唯一标示，获取该员工提交任务的处理结果集合
+   * 办结 ，根据员工唯一标示，获取该员工办结工作集合
    * @param 员工唯一标示
    */
   Collection getMyResult() throws WFException;
 
   /**
-   * 根据员工唯一标示和工作流模板唯一标示，获取该员工在该工作流程中提交任务的处理结果集合
+   * 办结，根据员工唯一标示和工作流模板唯一标示，获取该员工办结工作的集合
    * @param 员工唯一标示
    */
   Collection getMyResult(String processTemplateUID) throws
