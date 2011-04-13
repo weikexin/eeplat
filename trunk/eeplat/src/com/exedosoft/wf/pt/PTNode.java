@@ -147,6 +147,12 @@ public class PTNode extends BaseObject {
 	 * 指定角色
 	 */
 	public final static int AUTH_TYPE_SCHEDULE_ROLE = 16;
+	
+	/**
+	 * 通过运行类指定用户
+	 */
+	public final static int AUTH_TYPE_SCHEDULE_CLASS = 16;
+	
 
 	private String nodeName;
 

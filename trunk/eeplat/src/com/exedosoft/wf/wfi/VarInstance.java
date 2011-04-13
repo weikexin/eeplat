@@ -13,6 +13,7 @@ import com.exedosoft.wf.pt.PTVar;
 
 
 import com.exedosoft.plat.DAOUtil;
+import com.exedosoft.plat.ExedoException;
 /**
  * @author   IBM
  */
@@ -143,6 +144,19 @@ public class VarInstance extends BaseObject implements Serializable {
 //		
 //		return ptVar;
 	}
+	
+	
+	public VarInstance store() {
+		
+		try {
+			return (VarInstance)DAOUtil.INSTANCE().store(this);
+		} catch (ExedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 
 	/**
 	 * @return
@@ -160,4 +174,12 @@ public class VarInstance extends BaseObject implements Serializable {
 		this.ptVarUid = ptVarUid;
 	}
 
+	
+	public boolean equals(Object o){
+		return super.equals(o);
+	}
+	
+	public int hashCode(){
+		return super.hashCode();
+	}
 }
