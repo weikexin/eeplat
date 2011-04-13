@@ -153,15 +153,17 @@
 						<tr id="trAuthType">
 							<td  width='35%'>权限验证类型：</td>
 							<td   align='left'>
-							<select
-							name="authType" id="authType" title='权限验证类型'>
+							<select	name="authType" id="authType" title='权限验证类型'>
 	
-								<option value="0">权限表</option>
-								<option value="1">使用脚本</option>
-								<option value="2">使用JAVA类</option>
-								<option value="3">数据拥有着</option>
+								<option value="0">标准权限表</option>
+								<option value="0">==以下类型不适合通用的VIEW==</option>
+								<option value="3">数据拥有者</option>
 								<option value="8">运行时指定用户</option>
-								<option value="16">运行时指定角色</option> 
+								<option value="16">运行时指定角色</option>
+								<option value="18">运行时通过类指定于工作流权限表</option>
+								<option value="0">==以下类型只能通过API获取个人工作列表==</option>
+								<option value="1">使用脚本</option>
+								<option value="2">使用JAVA类</option> 
 							</select>	
 		
 						</tr>
