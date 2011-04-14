@@ -51,7 +51,12 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
  -->
   
+  
+ 
+<link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <!-- Jquery插件的css -->
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/core.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.css" type="text/css"  media="print, projection, screen"/>

@@ -100,9 +100,13 @@
 			function (data, textStatus){
 			   var retValue = unescape(data.returnValue);
 			
-			   if('success'==retValue){
-			        window.location= globalURL + "pane_firstprj.pml?isApp=true";
-			   }else{
+
+			   if('success'==retValue){
+			        window.location= globalURL + "pane_aaa.pml?isApp=true";
+			   }else if('delegate'==retValue){
+			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_aaa";
+			   }else{
+
 			   		
 				   	alert(retValue);
 				   	imgChange($("#numImg"));
