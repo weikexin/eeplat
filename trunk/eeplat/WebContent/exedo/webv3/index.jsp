@@ -38,11 +38,11 @@
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label>用户名 </label> <br />
-		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" /></label>
+		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" />
 	</p>
 	<p>
 		<label>密码 </label><br />
-		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" /></label>
+		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" />
 	</p>
 	<p class="forgetmenot">
 	
