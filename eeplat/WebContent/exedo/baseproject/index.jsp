@@ -11,6 +11,8 @@
 <script language="javascript">
   globalURL = "/<%=DOGlobals.URL%>/";
 </script>  
+<link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>

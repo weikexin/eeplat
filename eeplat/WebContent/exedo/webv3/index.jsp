@@ -16,6 +16,8 @@
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
 
+<link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/login.css" type="text/css" />
 
 <style type="text/css">
@@ -38,11 +40,11 @@
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label>用户名 </label> <br />
-		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" />
+		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" /></label>
 	</p>
 	<p>
 		<label>密码 </label><br />
-		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" />
+		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" /></label>
 	</p>
 	<p class="forgetmenot">
 	
