@@ -90,7 +90,7 @@ public class DOMAXIDBuilderIndi implements SequenceBuilder {
 		PreparedStatement stmt = null;
 		int retId = 1;// //////////返回的值
 
-		DOBO bo = DOBO.getDOBOByName("DO_CODE_MAXSEQUENCE");
+		DOBO bo = DOBO.getDOBOByName("do_authorization");
 		DODataSource dss =  bo.getDataBase();
 
 		try {

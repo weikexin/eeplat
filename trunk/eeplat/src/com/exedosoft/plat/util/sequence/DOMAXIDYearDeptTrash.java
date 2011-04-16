@@ -74,7 +74,7 @@ public class DOMAXIDYearDeptTrash {
 		StringBuffer insertSql = new StringBuffer(
 				"insert into DO_Code_Sequence_Trash values(")
 				.append("?,?,?,?,?,?)");
-		DOBO bo = DOBO.getDOBOByName("DO_CODE_MAXSEQUENCE");
+		DOBO bo = DOBO.getDOBOByName("do_authorization");
 		DODataSource dss =  bo.getDataBase();
 		Connection con = null;
 		PreparedStatement stmt = null;
