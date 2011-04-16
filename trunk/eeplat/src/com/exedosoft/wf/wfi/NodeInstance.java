@@ -275,7 +275,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 * @uml.property name="processInstance"
 	 */
 	public ProcessInstance getProcessInstance() {
-		if (processInstance.getExeStatus() == null  || processInstance.getInstanceUid()==null) {
+		if (processInstance.getExeStatus() == null
+				|| processInstance.getInstanceUid() == null) {
 			processInstance = DAOUtil.BUSI().getByObjUid(ProcessInstance.class,
 					processInstance.getObjUid());
 		}
@@ -864,11 +865,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 * @return
 	 */
 	public static NodeInstance getNodeInstanceByPTNodeID(String aWfiUid,
-			String aPTNodeUid,String exeStatus) {
+			String aPTNodeUid, String exeStatus) {
 
 		String hql = "select ni.* from do_wfi_nodeinstance ni where ni.PI_UID = ? and  ni.NODE_UID = ?  and  ni.exeStatus = ?";
 		return DAOUtil.BUSI().getBySql(NodeInstance.class, hql, aWfiUid,
-				aPTNodeUid,exeStatus);
+				aPTNodeUid, exeStatus);
 
 		//
 		// WFDAO dao = new WFDAO();
@@ -953,14 +954,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 	public NodeInstance returnBack(int type) throws WFException {
 
-
 		// if (preNodes == null || preNodes.size() != 1) {
 		// throw new WFException("不符合回退条件！");
 		// }
 		// /普通人工活动节点的前后，只有有一个节点。decition后面可以有多个，conjunction前面可以有多个。
-		
+
 		List prePTNodes = this.getNode().getPreNodes();
-		
+
 		PTNode preNode = (PTNode) prePTNodes.get(0);
 		NodeInstance theNewBackNI = null;
 		if (preNode.getNodeType() != null
@@ -1014,17 +1014,17 @@ public class NodeInstance extends BaseObject implements Serializable {
 	private NodeInstance buildNewRelation(PTNode forwardNode,
 			String scheduleOUUid, int backType) {
 
-		NodeInstance theRet = initNodeInstance(this.getProcessInstance(),
+		NodeInstance theForward = initNodeInstance(this.getProcessInstance(),
 				forwardNode, NodeInstance.STATUS_RUN);
 
 		// //用处于活动状态的节点名称 替换未流程的状态
 
 		String state = "回退";
 		if (backType == -1) {
-			state = theRet.getNodeStateShow();
-		} else if (theRet.getNodeStateShowBack() != null
-				&& !theRet.getNodeStateShowBack().trim().equals("")) {
-			state = theRet.getNodeStateShowBack();
+			state = theForward.getNodeStateShow();
+		} else if (theForward.getNodeStateShowBack() != null
+				&& !theForward.getNodeStateShowBack().trim().equals("")) {
+			state = theForward.getNodeStateShowBack();
 		}
 
 		if (backType != -1) {
@@ -1034,7 +1034,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			System.out.println("formI=====" + formI);
 			PTNode node = this.getNode();
 			System.out.println("node=====" + node);
-			if(formI != null && node != null) {
+			if (formI != null && node != null) {
 				if (node.getRejectTxt() != null
 						&& !"".equals(node.getRejectTxt().trim())) {
 					rTxt = formI.getValue(node.getRejectTxt());
@@ -1044,38 +1044,38 @@ public class NodeInstance extends BaseObject implements Serializable {
 					rTxt = formI.getValue("rejecttxt");
 				}
 
-				state = state + "（" + rTxt + "）";				
+				state = state + "（" + rTxt + "）";
 			}
 		}
 		dealProcessState(state);
 
 		if (scheduleOUUid != null && scheduleOUUid.trim().length() > 0) {
-			theRet.setAuthType(PTNode.AUTH_TYPE_SCHEDULE_USER);
-			theRet.setScheduleOUUid(scheduleOUUid);
+			theForward.setAuthType(PTNode.AUTH_TYPE_SCHEDULE_USER);
+			theForward.setScheduleOUUid(scheduleOUUid);
 		}
-		
 
 		if (backType != -1) {
-			theRet.setBackType(NodeInstance.BACK_RETURN);
+			theForward.setBackType(NodeInstance.BACK_RETURN);
 		}
 
 		if (backType == NodeInstance.BACK_FOWARD_HISTORY) {
-			theRet.setRetNodeUID(this.getObjUid());
+			theForward.setRetNodeUID(this.getObjUid());
 		}
 		try {
-			DAOUtil.BUSI().store(theRet);
+			DAOUtil.BUSI().store(theForward);
 
 			NIDependency nid = new NIDependency(); // ///实例的关联类
 			nid.setPreNodeInstance(this);
-			nid.setPostNodeInstance(theRet);
+			nid.setPostNodeInstance(theForward);
 			DAOUtil.BUSI().store(nid);
+
 		} catch (ExedoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// //创建后面的关系
 		// returnInitPostNodes(dao, theRet);
-		return theRet;
+		return theForward;
 	}
 
 	/**
@@ -1103,7 +1103,19 @@ public class NodeInstance extends BaseObject implements Serializable {
 			newInstance = buildNewRelation(aNode, scheduleOUUid, forwardType);
 			setExeStatus(Integer.valueOf(STATUS_FINISH));
 			storePropertyValues();
-			//DAOUtil.BUSI().store(this);
+			// DAOUtil.BUSI().store(this);
+
+			if (newInstance != null && newInstance.getNodeType() != null
+					&& newInstance.getNodeType().intValue() == PTNode.TYPE_END) {
+				// WFDAO dao = new WFDAO();
+				// //如果还有未完成的节点则流程不能结束
+				try {
+					newInstance.execute();
+				} catch (WFException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
 		} catch (Exception e) {
 			throw new WFException("自由转向时出错:" + this, e);
@@ -1198,20 +1210,20 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// dao.setAutoClose(false);
 		SessionContext us = DOGlobals.getInstance().getSessoinContext();
 
-		if(us.getUser()!=null){
+		if (us.getUser() != null) {
 			setPerformer(us.getUser().getUid());
-	     }
+		}
 
 		setNodeDate(new java.sql.Timestamp(System.currentTimeMillis()));
 
 		BOInstance formI = us.getFormInstance();
-		
+
 		System.out.println("formI==-===" + formI);
 		System.out.println("formI==-===" + formI);
 		System.out.println("formI==-===" + formI);
 		System.out.println("formI==-===" + formI);
 		System.out.println("formI==-===" + formI);
-		
+
 		// //////////////从界面获取用户的录入，更新变量对应的值
 		try {
 			if (formI != null) {
@@ -1234,8 +1246,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// }
 
 	}
-
-
 
 	private void dealPropetyValues(BOInstance formI) {
 
@@ -1303,11 +1313,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 		 * 处理流程状态 用本节点的状态改变流程的状态
 		 */
 		dealProcessState(this.nodeStateShow);
-		
-		if(this.getNodeType() == PTNode.TYPE_START){
-			
+
+		if (this.getNodeType() == PTNode.TYPE_START) {
+
 			System.out.println(this);
-			
+
 		}
 
 		try {
@@ -1474,15 +1484,15 @@ public class NodeInstance extends BaseObject implements Serializable {
 						&& this.getNodeType().intValue() == PTNode.TYPE_XOR_DECISION) {
 
 					// /////////返回结果判断结果
-					
+
 					String decision = getNodeDecision();
 					String condition = nid.getCondition();
-					
-					if(condition.indexOf("#value#")!=-1){
+
+					if (condition.indexOf("#value#") != -1) {
 						condition = condition.replace("#value#", decision);
 					}
 					String exps = decision + condition;
-					
+
 					String result = calculate(exps);
 					if (!"true".equals(result)) {
 						continue;
@@ -1497,7 +1507,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 									.getPostNodeInstance().getExeStatus()
 									.intValue() == NodeInstance.STATUS_FINISH)) {
 						nid.getPostNodeInstance().setExeStatus(
-								 Integer.valueOf(STATUS_INIT));
+								Integer.valueOf(STATUS_INIT));
 					}
 
 					// ///////////////////下一个节点的权限设定//
@@ -1518,89 +1528,88 @@ public class NodeInstance extends BaseObject implements Serializable {
 					&& this.getNodeType().intValue() == PTNode.TYPE_END
 					&& processInstance.getRunNodes().size() == 0) {
 				// WFDAO dao = new WFDAO();
-
 				// //如果还有未完成的节点则流程不能结束
-				List<NodeInstance> list = processInstance
-						.retrieveNodeInstances();
-				// for(Iterator<NodeInstance> it = list.iterator();
-				// it.hasNext();){
-				// NodeInstance ni = it.next();
-				// if(ni.getExeStatus().intValue() == NodeInstance.STATUS_RUN){
-				// return;
-				// }
-				// }
-
-				processInstance = getProcessInstance();
-				processInstance.setExeStatus(Integer.valueOf(
-						ProcessInstance.STATUS_FINISH));
-
-				DOBO auth = DOBO.getDOBOByName("do_authorization");
-				DODataSource dss = auth.getDataBase();
-				Transaction ts = dss.getTransaction();
-				ts.begin();
-
-				try {
-					DAOUtil.BUSI().store(processInstance);
-
-					// /数据表转移到历史表中
-					DOService dosPi = DOService
-							.getService("do_wfi_his_processinstance_insert");
-					DOService dosNi = DOService
-							.getService("do_wfi_his_nodeinstance_insert");
-					DOService dosVi = DOService
-							.getService("do_wfi_his_varinstance_insert");
-					DOService dosNid = DOService
-							.getService("do_wfi_his_ni_dependency_insert");
-
-					List<NodeInstance> nis = processInstance
-							.retrieveNodeInstances();
-					DAOUtil.BUSI().store(processInstance, dosPi);
-					for (Iterator<NodeInstance> it = nis.iterator(); it
-							.hasNext();) {
-						NodeInstance ni = (NodeInstance) it.next();
-						DAOUtil.BUSI().store(ni, dosNi);
-						List<NIDependency> nidepes = ni.getPostNodeDepes();
-						for (Iterator<NIDependency> itNi = nidepes.iterator(); itNi
-								.hasNext();) {
-							NIDependency niD = itNi.next();
-							DAOUtil.BUSI().store(niD, dosNid);
-						}
-					}
-					List<VarInstance> piVals = processInstance
-							.retrieveVarInstances();
-					for (Iterator<VarInstance> it = piVals.iterator(); it
-							.hasNext();) {
-						VarInstance vi = it.next();
-						DAOUtil.BUSI().store(vi, dosVi);
-					}
-					// ////删除运行时表
-					DOService deletePI = DOService
-							.getService("do_wfi_processinstance_delete");
-					deletePI.invokeUpdate(processInstance.getObjUid());
-
-					DOService deleteVars = DOService
-							.getService("do_wfi_varinstance_deletebypiuid");
-					deleteVars.invokeUpdate(processInstance.getObjUid());
-
-					DOService deleteNIs = DOService
-							.getService("do_wfi_nodeinstance_deletebypiuid");
-					deleteNIs.invokeUpdate(processInstance.getObjUid());
-
-					DOService deleteNIRels = DOService
-							.getService("do_wfi_ni_dependency_deleterubbish");
-					deleteNIRels.invokeUpdate();
-
-				} catch (Exception ex1) {
-					ts.rollback();
-					ex1.printStackTrace();
-					throw new WFException("流程结束,保存结束状态出错::" + ex1.toString(),
-							ex1);
-				}
-				ts.end();
+				finishFlow();
 			} else {
 				dealFailure("该节点未找到后置节点执行:");
 			}
 		}
+
+	}
+
+	private void finishFlow() throws WFException {
+
+		// List<NodeInstance> list = processInstance.retrieveNodeInstances();
+		// for(Iterator<NodeInstance> it = list.iterator();
+		// it.hasNext();){
+		// NodeInstance ni = it.next();
+		// if(ni.getExeStatus().intValue() == NodeInstance.STATUS_RUN){
+		// return;
+		// }
+		// }
+
+		processInstance = getProcessInstance();
+		processInstance.setExeStatus(Integer
+				.valueOf(ProcessInstance.STATUS_FINISH));
+
+		DOBO auth = DOBO.getDOBOByName("do_authorization");
+		DODataSource dss = auth.getDataBase();
+		Transaction ts = dss.getTransaction();
+		ts.begin();
+
+		try {
+			DAOUtil.BUSI().store(processInstance);
+
+			// /数据表转移到历史表中
+			DOService dosPi = DOService
+					.getService("do_wfi_his_processinstance_insert");
+			DOService dosNi = DOService
+					.getService("do_wfi_his_nodeinstance_insert");
+			DOService dosVi = DOService
+					.getService("do_wfi_his_varinstance_insert");
+			DOService dosNid = DOService
+					.getService("do_wfi_his_ni_dependency_insert");
+
+			List<NodeInstance> nis = processInstance.retrieveNodeInstances();
+			DAOUtil.BUSI().store(processInstance, dosPi);
+			for (Iterator<NodeInstance> it = nis.iterator(); it.hasNext();) {
+				NodeInstance ni = (NodeInstance) it.next();
+				DAOUtil.BUSI().store(ni, dosNi);
+				List<NIDependency> nidepes = ni.getPostNodeDepes();
+				for (Iterator<NIDependency> itNi = nidepes.iterator(); itNi
+						.hasNext();) {
+					NIDependency niD = itNi.next();
+					DAOUtil.BUSI().store(niD, dosNid);
+				}
+			}
+			List<VarInstance> piVals = processInstance.retrieveVarInstances();
+			for (Iterator<VarInstance> it = piVals.iterator(); it.hasNext();) {
+				VarInstance vi = it.next();
+				DAOUtil.BUSI().store(vi, dosVi);
+			}
+			// ////删除运行时表
+			DOService deletePI = DOService
+					.getService("do_wfi_processinstance_delete");
+			deletePI.invokeUpdate(processInstance.getObjUid());
+
+			DOService deleteVars = DOService
+					.getService("do_wfi_varinstance_deletebypiuid");
+			deleteVars.invokeUpdate(processInstance.getObjUid());
+
+			DOService deleteNIs = DOService
+					.getService("do_wfi_nodeinstance_deletebypiuid");
+			deleteNIs.invokeUpdate(processInstance.getObjUid());
+
+			DOService deleteNIRels = DOService
+					.getService("do_wfi_ni_dependency_deleterubbish");
+			deleteNIRels.invokeUpdate();
+
+		} catch (Exception ex1) {
+			ts.rollback();
+			ex1.printStackTrace();
+			throw new WFException("流程结束,保存结束状态出错::" + ex1.toString(), ex1);
+		}
+		ts.end();
 
 	}
 
@@ -1647,7 +1656,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 	private void dealFailure(String error) throws WFException {
 		// WFDAO dao = new WFDAO();
 		getProcessInstance().setExeStatus(
-				 Integer.valueOf(ProcessInstance.STATUS_FAILURE));
+				Integer.valueOf(ProcessInstance.STATUS_FAILURE));
 		try {
 			DAOUtil.BUSI().store(getProcessInstance());
 		} catch (Exception ex1) {
@@ -1705,8 +1714,11 @@ public class NodeInstance extends BaseObject implements Serializable {
 						&& niPre.getExeStatus().intValue() == NodeInstance.STATUS_FINISH) {
 					if (backFinish) {
 						// WFDAO dao = new WFDAO();
-						this.getProcessInstance().setExeStatus(
-								Integer.valueOf(ProcessInstance.STATUS_FAILURE));
+						this
+								.getProcessInstance()
+								.setExeStatus(
+										Integer
+												.valueOf(ProcessInstance.STATUS_FAILURE));
 						try {
 							DAOUtil.BUSI().store(this.getProcessInstance());
 						} catch (Exception ex) {
@@ -1972,8 +1984,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		return this.equals(this.processInstance.getFirstActivityNode());
 
 	}
-	
-	
+
 	// /////////////////////上一个节点决定下一个节点的执行，把决定对象的权限写入权限表
 	private void storeNextNodeAuthorization(NodeInstance nextNodeInstance) {
 
@@ -1994,7 +2005,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		if (nextNodeInstance.getAuthType() != null
 				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_USER || nextNodeInstance
 						.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_ROLE)) {
-////通过从界面上取值，上一个节点的SpecName决定下一个节点的使用者
+			// //通过从界面上取值，上一个节点的SpecName决定下一个节点的使用者
 			String nextPerformerUid = formI.getValue(this.getSpecName());
 
 			// if (nextNodeInstance.isFirstActivityNode()) {
@@ -2011,7 +2022,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 				ex.printStackTrace();
 			}
 		}
-		
+
 		/**
 		 * 计划执行的人员有自定义的动作来完成，这个方法并不是由上个节点决定的
 		 * 
@@ -2021,22 +2032,22 @@ public class NodeInstance extends BaseObject implements Serializable {
 		 * 
 		 */
 		if (nextNodeInstance.getAuthType() != null
-				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_CLASS ) ){
-			
-			
-			  DOAction doa =  ActionFactory.getAction(nextNodeInstance.getNode().getAccessClass());
-			  BOInstance para = new BOInstance();
-			  para.putValue("corr_nodeinstance", nextNodeInstance);
-			  doa.setInstance(para);
-			  if(doa!=null){
-				  try {
+				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_CLASS)) {
+
+			DOAction doa = ActionFactory.getAction(nextNodeInstance.getNode()
+					.getAccessClass());
+			BOInstance para = new BOInstance();
+			para.putValue("corr_nodeinstance", nextNodeInstance);
+			doa.setInstance(para);
+			if (doa != null) {
+				try {
 					doa.excute();
 				} catch (ExedoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			  }
-			
+			}
+
 		}
 		// else {
 		//
@@ -2056,17 +2067,19 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 */
 
 	public static void storePersionAuth(String nodeInstanceUid,
-			String personUid,boolean isAccess) {
+			String personUid, boolean isAccess) {
 
 		// WFDAO dao = new WFDAO();
 		DOAuthorization daNew = new DOAuthorization();
 		daNew.setAuthority(Boolean.FALSE);
-	
+
 		// daNew.setIsInherit(Boolean.TRUE);
 		daNew.setOuUid(personUid);
 		daNew.setParterUid(OrgParter.getDefaultEmployee().getObjUid());
 
-		daNew.setWhatType(Integer.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE));
+		daNew
+				.setWhatType(Integer
+						.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE));
 		daNew.setWhatUid(nodeInstanceUid);
 		try {
 			DAOUtil.BUSI().store(daNew);
@@ -2092,13 +2105,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// /////////////PTNode.AUTH_TYPE_AUTHTABLE_INSTANCE的情况 实例级别
 		if (this.getAuthType() != null
 				&& this.getAuthType().intValue() == PTNode.AUTH_TYPE_AUTHTABLE_INSTANCE) {
-			return DOAuthorization.isAccess(Integer.valueOf(
-					DOAuthorization.WHAT_WF_NODEINSTANCE), this.getObjUid(),
-					null, null);
+			return DOAuthorization.isAccess(Integer
+					.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE), this
+					.getObjUid(), null, null);
 		}
 
 		PTNode tNode = this.getNode();
-		if(tNode==null){
+		if (tNode == null) {
 			return true;
 		}
 		String accessClass = tNode.getAccessClass();
@@ -2343,12 +2356,12 @@ public class NodeInstance extends BaseObject implements Serializable {
 	public void setSpecName(String specName) {
 		this.specName = specName;
 	}
-	
-	public boolean equals(Object o){
+
+	public boolean equals(Object o) {
 		return super.equals(o);
 	}
-	
-	public int hashCode(){
+
+	public int hashCode() {
 		return super.hashCode();
 	}
 
