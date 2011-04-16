@@ -43,7 +43,7 @@ public class ASCII2NATIVE {
 
 				while ((line = br.readLine()) != null) {
 					System.out.println(ascii2Native(line));
-					sb.append(ascii2Native(line)).append("\n");//.append(";\n\r")
+					sb.append(ascii2Native(line)).append(";\n");//.append(";\n\r")
 				}
 				
 				
