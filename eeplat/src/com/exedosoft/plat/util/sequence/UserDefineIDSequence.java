@@ -85,7 +85,7 @@ public class UserDefineIDSequence implements SequenceBuilder {
 	private int getIDHelper(String codeItemID, String sql, StringBuffer sqlUpdate) {
 		Connection con = null;
 		PreparedStatement stmt = null;
-		DOBO bo = DOBO.getDOBOByName("DO_CODE_MAXSEQUENCE");
+		DOBO bo = DOBO.getDOBOByName("do_authorization");
 		DODataSource dss =  bo.getDataBase();
 		try {
 			// query
