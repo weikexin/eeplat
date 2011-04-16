@@ -42,6 +42,35 @@
   分支节点和汇合节点的作用可以处理会签的情况。比如三个副院长都审完了，才能到院长那审批，这三个副院长没有先后之分。但是，比如副院长这如果人数不确定，有可能三个人有可能4个人，需要根据角色查询，这样就不要用分支和汇合节点了。
   使用普通的人工节点，做一个自定义动作， 只要按条件执行完，才执行该节点的 perform方法。使用自定义动作可以处理更复杂的业务，比如，还可以设置个百分数，5个人中有4个人提交了就可以了。
 
+== 如何固定死左侧菜单？  ==
+
+  现在平台缺省提供两种风格的左侧菜单：OutLook风格和树形风格。并且用户可以自由扩展。当使用OutLook风格的菜单时，往往不需要左右拖动，这时候可以删掉相关代码，exedo中的代码:
+{{{
+
+	//初始化左右拖动
+	  $(".resizeTd").mousedown(function(e){
+		  var oldPageX = e.pageX;
+		  var old_gLeW = $(".gLe").width();
+		  var old_gRiW = $(".gRi").width();
+		  $(document).bind('mousemove',function(e){
+//////////////不能太小
+			  if(e.pageX > 10){
+				  $(".gLe").width(old_gLeW + e.pageX - oldPageX);
+				  $(".gRi").width(old_gRiW - e.pageX + oldPageX);
+				  $(".gFpage").width(old_gLeW + e.pageX - oldPageX-1);
+				  resscrEvt();
+			  }
+			  window.status = e.pageX;	   
+		  }).bind('mouseup',function(e){
+			  $(document).unbind('mousemove');
+			  $(document).unbind('mouseup');	
+			  }
+		  );
+
+	 });
+
+}}}
+
 
 == 系统是否完全开源？ ==
 
