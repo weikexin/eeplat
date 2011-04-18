@@ -47,6 +47,7 @@ public class DOMAXIDBuilder implements SequenceBuilder {
 	private DOMAXIDBuilder() {
 	}
 
+	
 	/**
 	 * Gets only one TableIdBuidler object
 	 * 
