@@ -144,7 +144,7 @@ public class SSOController extends HttpServlet {
 					echoStr = "delegate";
 				}
 			}
-			if (!formBI.getValue("randcode").equals(
+			if (formBI.getValue("mobileclient")==null && !formBI.getValue("randcode").equals(
 					request.getSession().getAttribute("rand"))) {
 				echoStr = "验证码错误！";
 			}

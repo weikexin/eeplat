@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.Transaction;
+import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.bo.DODataSource;
@@ -69,6 +70,10 @@ public class PropertyManager {
 					updateService.removeMetaParameter(aPara);
 					DAOUtil.INSTANCE().delete(aPara);
 				}
+//////////////////////////////	DO_Parameter_Service_deleterubbish 这个 sql需要改写	
+				DOService deletes = DOService.getService("DO_Parameter_Service_deleterubbish");
+				deletes.invokeUpdate();
+			
 				
 //////////////////////表格元素
 				for(int i = 0 ;i < 10;i++){
