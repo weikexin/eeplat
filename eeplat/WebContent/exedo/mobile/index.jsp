@@ -11,15 +11,14 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
     </head>
-	 <title>Login</title>
+	 <title>云鹤平台应用登录/title>
 	</head>
 	<body>
 	    
 	<div data-role="page" data-theme="b">
 	 
 	    <div data-role="header" data-position="inline"  data-nobackbtn="true">
-	        <h1>Sign up</h1>
-	        <a href="/m/" class="ui-btn-right">Cancel</a>
+	        <h1>云鹤平台应用登录</h1>
 	    </div>
 	 
 	    <div data-role="content" data-theme="c" data-inset="true">
@@ -28,28 +27,17 @@
 	             
 	            <fieldset>
 	                 
-	                <label for="username">Username:</label>
+	                <label for="username">用户名:</label>
 	                <input type="text" name="username" id="username" value=""  />
 	 
-	                <label for="email">Email:</label>
-	                <input type="email" name="email" id="email" value=""  />
 	 
-	                <label for="password">Password:</label>
+	                <label for="password">密码:</label>
 	                <input type="password" name="password" id="password" value="" />
+
 	 
-	                <label for="firstName">First name:</label>
-	                <input type="text" name="firstName" id="firstName" value=""  />
+	                 <a href="index.html" data-role="button" data-inline="true" data-theme="b">确定</a>
 	 
-	                <label for="firstName">Last name:</label>
-	                <input type="text" name="lastName" id="lastName" value=""  />
-	 
-	                <p>By submitting this information, I acknowledge that I have
-	                read and agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></p>
-	 
-	                <a href="index.html" data-role="button" data-inline="true" data-theme="b">Login</a>
-	 
-	                <p>Already have an account? <a data-rel="dialog" href="login.aspx">Login</a></p>
-	 
+	  	 
 	            </fieldset>
 	             
 	        </form>
