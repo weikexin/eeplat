@@ -1,7 +1,7 @@
 <config>
 
-		<property name="application">eeplat</property>
-		<property name="webmodule">eeplat</property>
+		<property name="application">eedoc</property>
+		<property name="webmodule">eedoc</property>
 		<property name="transaction.isolation">2</property>
 		 <!--jdbc:hsqldb:file:/c:/db/mydb-->
 
