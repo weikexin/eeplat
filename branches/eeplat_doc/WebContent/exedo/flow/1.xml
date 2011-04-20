@@ -1,0 +1,36 @@
+﻿<wf>	<processtemplate name='tt2'><nodes><node id='tt2_n10' nodeType='xorDecision' nodeName='判断报销金额' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='expense_money' decisionType='' nodeDesc='' x='373' y='116'/>
+<node id='tt2_n11' nodeType='activity' nodeName='副总经理审批' nodeStateShow='副总经理审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='489' y='250'/>
+<node id='tt2_n12' nodeType='activity' nodeName='总经理审批' nodeStateShow='总经理审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='310' y='242'/>
+<node id='tt2_n13' nodeType='activity' nodeName='财务人员' nodeStateShow='财务人员审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='389' y='349'/>
+<node id='tt2_n15' nodeType='end' nodeName='结束节点' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='393' y='461'/>
+<node id='tt2_n3' nodeType='start' nodeName='提交保险单' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='266' y='55'/>
+<node id='tt2_n10' nodeType='xorDecision' nodeName='判断报销金额' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='expense_money' decisionType='' nodeDesc='' x='373' y='116'/>
+<node id='tt2_n11' nodeType='activity' nodeName='副总经理审批' nodeStateShow='副总经理审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='489' y='250'/>
+<node id='tt2_n12' nodeType='activity' nodeName='总经理审批' nodeStateShow='总经理审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='310' y='242'/>
+<node id='tt2_n13' nodeType='activity' nodeName='财务人员' nodeStateShow='财务人员审批' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='389' y='349'/>
+<node id='tt2_n15' nodeType='end' nodeName='结束节点' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='393' y='461'/>
+</nodes><transitions><transition id='tt2_n10tt2_n11' from='tt2_n10' to='tt2_n11' condition='&lt;=1000' showvalue='小于1000元'/>
+<transition id='tt2_n10tt2_n11' from='tt2_n10' to='tt2_n11' condition='&lt;=1000' showvalue='小于1000元'/>
+<transition id='tt2_n10tt2_n12' from='tt2_n10' to='tt2_n12' condition='&gt;1000' showvalue='大于1000元'/>
+<transition id='tt2_n10tt2_n12' from='tt2_n10' to='tt2_n12' condition='&gt;1000' showvalue='大于1000元'/>
+<transition id='tt2_n11tt2_n13' from='tt2_n11' to='tt2_n13'/>
+<transition id='tt2_n11tt2_n13' from='tt2_n11' to='tt2_n13'/>
+<transition id='tt2_n12tt2_n13' from='tt2_n12' to='tt2_n13'/>
+<transition id='tt2_n12tt2_n13' from='tt2_n12' to='tt2_n13'/>
+<transition id='tt2_n13tt2_n15' from='tt2_n13' to='tt2_n15'/>
+<transition id='tt2_n13tt2_n15' from='tt2_n13' to='tt2_n15'/>
+<transition id='tt2_n3tt2_n10' from='tt2_n3' to='tt2_n10'/>
+<transition id='tt2_n3tt2_n10' from='tt2_n3' to='tt2_n10'/>
+<transition id='tt2_n10tt2_n11' from='tt2_n10' to='tt2_n11' condition='&lt;=1000' showvalue='小于1000元'/>
+<transition id='tt2_n10tt2_n11' from='tt2_n10' to='tt2_n11' condition='&lt;=1000' showvalue='小于1000元'/>
+<transition id='tt2_n10tt2_n12' from='tt2_n10' to='tt2_n12' condition='&gt;1000' showvalue='大于1000元'/>
+<transition id='tt2_n10tt2_n12' from='tt2_n10' to='tt2_n12' condition='&gt;1000' showvalue='大于1000元'/>
+<transition id='tt2_n11tt2_n13' from='tt2_n11' to='tt2_n13'/>
+<transition id='tt2_n11tt2_n13' from='tt2_n11' to='tt2_n13'/>
+<transition id='tt2_n12tt2_n13' from='tt2_n12' to='tt2_n13'/>
+<transition id='tt2_n12tt2_n13' from='tt2_n12' to='tt2_n13'/>
+<transition id='tt2_n13tt2_n15' from='tt2_n13' to='tt2_n15'/>
+<transition id='tt2_n13tt2_n15' from='tt2_n13' to='tt2_n15'/>
+<transition id='tt2_n3tt2_n10' from='tt2_n3' to='tt2_n10'/>
+<transition id='tt2_n3tt2_n10' from='tt2_n3' to='tt2_n10'/>
+</transitions></processtemplate></wf>

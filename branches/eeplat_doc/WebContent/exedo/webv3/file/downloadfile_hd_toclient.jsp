@@ -1,0 +1,1 @@
+<%@ page pageEncoding="UTF-8" contentType="application/octet-stream"%><%@ page import="com.exedosoft.plat.ui.DODownLoadFile"%><%@ page import="com.exedosoft.plat.util.StringUtil"%><%String filePath =  request.getParameter("filePath");     String fileName = request.getParameter("fileName");DODownLoadFile.outStreamFromHDEscape(filePath,fileName,response);%>

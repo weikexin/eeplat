@@ -1,0 +1,406 @@
+html{
+	height:100%;
+	overflow:hidden
+}
+body{
+	 height:100%;
+	 SCROLLBAR-FACE-COLOR:#fcfcfc;
+	 SCROLLBAR-HIGHLIGHT-COLOR: #999999;
+	 SCROLLBAR-SHADOW-COLOR: #fcfcfc;
+	 SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	 SCROLLBAR-ARROW-COLOR: #999999;
+	 SCROLLBAR-TRACK-COLOR: #fcfcfc;
+	 SCROLLBAR-DARKSHADOW-COLOR: #999999;
+	 SCROLLBAR-BASE-COLOR: #999999
+}
+
+
+html,body,td,p,select,input,div,table,h1,h2,h3,span{font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"宋体"}
+body,div,span,h1,h2,h3,h4,img,p,b,textarea,input,select,form,a,table,tr,td,th
+{margin:0;padding:0;font-family:verdana,Arial, Helvetica, sans-serif,;list-style-type:none;font-size:inherit;color:inherit;z-index:inherit}
+img,.gTab table,.gMain,#dvTab table{border:0;border-collapse:collapse}
+body.gPage,.gTab table td.tLe,.gTab table td.tRi,.gTab table a.TabCls,.sysWin h2 .fLe,.sysWin h2 .fRi,.sysWin div.bdy,.sysWin .icoSw,.JQsysWin h2 .fLe,.JQsysWin h2 .fRi,.JQsysWin .icoSw
+,.gTabTab table td.tLe,.gTabTab table td.tRi,.gTabTab table a.TabCls,.sysWinTab h2 .fLe,.sysWinTab h2 .fRi,.sysWinTab div.bdy,.sysWinTab  .icoSw
+{ background-image:url(../../images/main/ru/f1.gif); background-repeat:no-repeat}
+.gTopTab,.gTabTab table td,.gTabTab table.on,.sysWinTab h2,.gTop,.gTab table td,.gTab table.on,.sysWin h2,.btnFnt,.btnFntOn,.gTlBar,.JQsysWin h2
+{ background-image:url(../../images/main/ru/f2.gif);background-repeat:repeat-x}
+a.btnCls,.bLe,.bRi,.gTlBar .on{ background-image:url(../../images/main/ru/f3.gif)}
+
+.gTlBar .bIco{ background-image:url(../../images/main/ru/ico.gif); background-repeat:no-repeat}
+
+a.btnCls{ float:right; margin-top:7px;width:18px;height:18px; background-position:-156px -98px}
+body.gPage{
+	min-width:680px;background-position:-1139px 0;background-repeat:repeat-y!important;overflow:hidden
+}
+
+.gTop{ height:70px;background-position:0 9px;position:relative; background-color:#FFF}
+.gTab{height:28px;padding-left:160px; position:absolute; top:41px; overflow:hidden}
+*:lang(zh) .gTab{ overflow-x:visible; width:100%}
+.gTab table{height:26px; float:left;table-layout:fixed; cursor:pointer}
+.gTab table tr{ vertical-align:middle}
+.gTab table td{background-position:0 -142px}
+.gTab table td.bdy{padding:0 5px;overflow:hidden;text-overflow:ellipsis;font-weight:bold; padding-top:3px; text-align:center}
+.gTab table td.btn{width:15px; padding-top:3px}
+.gTab table td.tLe{width:6px; font-size:0;background-position:-456px -19px}
+.gTab table td.tRi{width:6px; font-size:0;background-position:-472px -19px}
+.gTab table a.TabCls{width:15px;height:15px; background-position:-520px -28px}
+
+.gTab table.on{background-position:0 -184px; margin:0 0 0 0}
+.gTab table.on td{background-position:0 -184px}
+.gTab table.on td.tLe{background-position:-457px -61px}
+.gTab table.on td.tRi{background-position:-470px -61px}
+.gTab table.on td.bdy NOBR{ color:#FFFFFF}
+.gTab table.on a.TabCls{width:15px;height:15px; background-position:-520px -71px}
+
+.gMain{width:100%}
+.gMain tr{vertical-align:top;}
+.gLe{width:161px;padding-bottom:15px}
+.gFpage{width:160px;overflow-x:hidden;overflow-y:auto}
+.gFd{ margin-top:0px;margin-bottom:0px}
+.gMPage{overflow-x:hidden;overflow-y:auto}
+a{
+	text-decoration:none;
+}
+.mTitle a,NOBR{
+	color:#2E6F15;
+}
+#mRight{
+	margin-left:1px;
+	margin-top:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+}
+.mTitle{
+	height:30px;
+	width:100%;
+	line-height:30px;
+	vertical-align:middle;
+	background-image:url(../../images/main/ru/menu_tit_s.jpg);
+	cursor:pointer
+}
+.mTitle a{
+	padding-left:30px;
+	font-weight:bold;
+}
+.mTitle-hover{
+	color:#fff;
+	background-image:url(../../images/main/ru/menu_tit_x.jpg)
+}
+.mMenu{
+	padding-left:28px;
+	margin-left:10px;
+	height:23px;
+	width:100%;
+	margin-top:5px;
+	line-height:23px;
+	background-image:url(../../images/main/menu_out.gif);
+	cursor:pointer
+}
+.mMenu-hover{
+	background-image:url(../../images/main/menu_hover.gif)
+}
+.mMenu-hover2{
+	background-image:url(../../images/main/menu_hover.gif)
+}
+.mMenu a{
+}
+
+
+.sysWin {
+	WIDTH: 100%
+}
+.sysWin H2 {
+	BACKGROUND-POSITION: 0px -494px; HEIGHT: 29px
+}
+.sysWin H2 .fLe {
+	BACKGROUND-POSITION: -1072px -54px; WIDTH: 6px; HEIGHT: 29px;
+	float:left
+}
+.sysWin H2 .fRi {
+	BACKGROUND-POSITION: -1092px -54px;WIDTH: 6px; HEIGHT: 29px;float:right
+}
+.sysWin .icoSw {
+	BACKGROUND-POSITION: -1079px -61px; DISPLAY: block; FLOAT: left; MARGIN: 7px 4px 0px 2px; WIDTH: 14px; HEIGHT: 14px
+}
+.sysWin H2 SPAN {
+	FONT-WEIGHT: normal; FLOAT: left; cursor:pointer; COLOR: #fff; PADDING-TOP: 8px
+}
+.sysContent{
+	background-color:#FFFFFF
+}
+.sysContentWin{
+	border-bottom:1px; border-left:1px; border-right:1px; border-top:0px;
+	border-style:solid; border-left-color:#58CB21; border-right-color:#58CB21; border-bottom-color:#58CB21; 
+ 	width:100%;background-color:#FFFFFF
+}
+
+.sysMain{
+	margin:0px; top:70px; position:absolute
+}
+
+.sysMain .sysContentWin tr td div{
+	 min-height:50px; max-height:500px;margin:0px;overflow-x:auto;overflow-y:auto
+}
+#clsDiv{
+	float:right;height:29px;width:20px;cursor:pointer
+}
+/*button*/
+.btnFnt,.btnFntOn{border-width:1px;border-style:solid}
+.btnFnt{height:20px; font-family:"宋体"; color:#333;cursor:pointer!important;cursor:hand;padding-top:4px;padding-top/**/:2px; padding-left:7px; padding-right:7px; background-position:0 -399px}
+*:lang(zh) .btnFnt{ padding:0 15px;background-position:0 -397px}
+.btnFntOn{height:20px; font-family:"宋体"; color:#333;cursor:pointer!important;cursor:hand;padding-top:4px;padding-top/**/:2px; padding-left:7px; padding-right:7px; background-position:0 -418px}
+*:lang(zh) .btnFntOn{ padding:0 15px;background-position:0 -417px}
+.btnFnt{background-color:#F8FFF0; border-color:#84A567}
+.btnFntOn{background-color:#FFF; border-color:#BE950B}
+/***********************************控制台jsp样式*************************************/
+   .titLeft{
+	   background-position: left top;
+	   position:absolute; 
+	   float:left; 
+	   width:22px; 
+	   height:31px;
+	   background-image:url(../../images/container/ru/lhimgzt_06.gif)
+   }
+   .titRight{
+	   background-position: right top;
+	   width:100%; 
+	   height:31px; 
+	   background-image:url(../../images/container/ru/lhimgzt_07.gif)
+   }
+   .conLeft{
+	   position:absolute; 
+	   float:left; 
+	   width:22px;  
+	   height:255px;
+	   background-image:url(../../images/container/ru/lhimgzt_10.gif)
+   }
+   .conRight{
+	   width:100%; 
+	   height:255px;
+	   background-position: right top;
+	   background-image:url(../../images/container/ru/lhimgzt_11.gif);
+	   white-space:normal; 
+	   word-break:break-all;
+	   overflow:hidden;
+   }
+   .content{ 
+       margin-left:24px; 
+	   margin-top:4px; 
+	   margin-right:24px;
+	   width:91%;
+   	   white-space:normal; 
+	   word-break:break-all;
+	   font-size:12px;
+	   overflow-x:hidden;
+	   overflow-y:auto;
+   }
+   .bomLeft{
+	   position:absolute; 
+	   float:left;
+	   width:22px; 
+	   height:14px;
+	   background-position: left top;
+	   background-image:url(../../images/container/ru/lhimgzt_18.gif)
+   }
+   .bomRight{
+	   width:100%;
+	   height:14px;
+	   float:inherit; 
+	   background-position: right top;
+	   background-image:url(../../images/container/ru/lhimgzt_19.gif)
+   }
+/****************************************input************************************************/
+input[type="text"]{ height:16px;}
+input[type="text"],textarea{BORDER-TOP: #D8D8D8 1px solid; BORDER-LEFT: #D8D8D8 1px solid; BORDER-right: #D8D8D8 1px solid; BORDER-BOTTOM: #D8D8D8 1px solid}
+/***************************************树样式*******************************************************/
+.treeLine{	width:1px; background-color:#72B766}
+.tree{	overflow-x:hidden;overflow-y:auto}
+/*条件表格的样式设置*/
+.condMain{ margin-top:2px;margin-right:2px;margin-left:2px;}
+.condDiv {
+	WIDTH: 100%
+}
+.condDiv h2 .fLe,.condDiv h2 .fRi,.condDiv div.bdy,.condDiv .icoSw
+{ background-image:url(../../images/main/ru/f1.gif); background-repeat:no-repeat}
+.condDiv h2
+{ background-image:url(../../images/main/ru/f2.gif);background-repeat:repeat-x}
+
+.condDiv H2 {
+	BACKGROUND-POSITION: 0px -494px; HEIGHT: 29px
+}
+.condDiv H2 .fLe {
+	BACKGROUND-POSITION: -1072px -54px; WIDTH: 6px; HEIGHT: 29px;
+	float:left
+}
+.condDiv H2 .fRi {
+	BACKGROUND-POSITION: -1092px -54px;WIDTH: 6px; HEIGHT: 29px;float:right
+}
+.condDiv .icoSw {
+	BACKGROUND-POSITION: -1079px -61px; DISPLAY: block; FLOAT: left; MARGIN: 7px 4px 0px 2px; WIDTH: 14px; HEIGHT: 14px
+}
+.condDiv H2 SPAN {
+	FONT-WEIGHT: normal; FLOAT: left; cursor:pointer; COLOR: #fff; PADDING-TOP: 8px
+}
+.condGridStyle{
+	width:100%;background-color:#FFFFFF; 
+}
+.condGridStyle td {
+	border:1px solid #58CB21; border-top:0px; 
+}
+
+/*结果表格采用的样式*/
+.fiterMain{ margin-top:2px;margin-right:2px;margin-left:2px;}
+.fiterDiv {
+	WIDTH: 100%;
+}
+.fiterDiv .fLe,.fiterDiv .fRi,.fiterDiv div.bdy,.fiterDiv .icoSw
+{ background-image:url(../../images/main/ru/f1.gif); background-repeat:no-repeat}
+.fiterDiv .fMiddle
+{ background-image:url(../../images/main/ru/f2.gif);background-repeat:repeat-x}
+.fiterDiv .fMiddle {
+	BACKGROUND-POSITION: 0px -494px; HEIGHT: 29px
+}
+.fiterDiv .fLe {
+	BACKGROUND-POSITION: -1072px -54px; WIDTH: 6px; HEIGHT: 29px;float:left
+}
+.fiterDiv .fRi {
+	BACKGROUND-POSITION: -1092px -54px;WIDTH: 6px; HEIGHT: 29px;float:right
+}
+.fiterDiv .icoSw {
+	BACKGROUND-POSITION: -1079px -61px; DISPLAY: block; FLOAT: left; MARGIN: 7px 4px 0px 2px; WIDTH: 14px; HEIGHT: 14px
+}
+.fiterDiv  SPAN {
+	FONT-WEIGHT: normal; FLOAT: left; cursor:pointer; COLOR: #fff; PADDING-TOP: 8px
+}
+/********************************************* filterTable *************************************/
+table.tablesorter {
+	font-size:12px;
+	background-color: #E6F5CE;
+	margin:0px 0px 0px;
+	font-size: 12px;
+	width: 100%;
+	text-align: left;
+}
+
+table.tablesorter thead tr th{
+		background-color:#E6F5CE;
+		border: 1px solid #FFF;
+		font-size: 12px;
+		padding: 4px;
+}
+table.tablesorter tfoot tr th {
+ 		background-color:#E6F5CE;
+		border: 1px solid #FFF;
+		font-size: 12px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+.firstPage,.prevPage,.pagedisplay,.nextPage,.lastPage{
+	margin-bottom:-4px;
+}
+.table_checkbox{width:12px; height:12px}
+/*******************************************按钮表格控制器用的样式********************************/
+.gTlBar{height:38px;background-position:0 -225px;padding:0px 2px 0 4px}
+.on .gTlBar{height:38px;background-position:0 -225px;padding:4px 2px 0 4px}
+*:lang(zh) .gTlBar{ height:34px}
+.gTlBar div{ font-size:0}
+.gTlBar div,.gTlBar div b,.gTlBar div span{cursor:pointer!important; cursor:hand}	
+.bIco{float:left;margin:6px 0 0 2px;width:18px;height:24px;display:block;font-size:0}
+.tlBtn2,.tlBtn2 .on{margin-top:5px;  }
+.tlBtn2{ height:29px;position:relative;background-position:0 0;float:left}
+.btnSet{background-position:-2356px -34px;width:22px;margin:3px 0 0 3px} 
+.bTxt{margin:7px 0 0 5px;color:#333;float:left}
+
+.gTlBar .on{background-position:-13px -92px} 
+.gTlBar .on .bLe{background-position:-9px -92px} 
+.gTlBar .on .bRi{background-position:-141px -92px;margin-right:-1px} 
+
+.bLe,.bRi{width:4px;height:29px;position:absolute;top:0;}
+.bLe{left:0;background-position:0 0}
+.bRi{right:0;background-position:0 0}
+/*******************************************不弹出表格样式***************************************/
+.JQsysWin {	WIDTH: 100%;height:29px}
+.JQsysWin H2 {BACKGROUND-POSITION: 0px -494px; HEIGHT: 29px}
+.JQsysWin H2 .fLe {	BACKGROUND-POSITION: -1072px -54px; WIDTH: 6px; HEIGHT: 29px;float:left}
+.JQsysWin H2 .fRi {	BACKGROUND-POSITION: -1092px -54px;WIDTH: 6px; HEIGHT: 29px;float:right}
+.JQsysWin .icoSw {BACKGROUND-POSITION: -1079px -61px; DISPLAY: block; FLOAT: left; MARGIN: 7px 4px 0px 2px; WIDTH: 14px; HEIGHT: 14px}
+.JQsysWin H2 SPAN {	FONT-WEIGHT: normal; FLOAT: left; cursor:pointer; COLOR: #fff; PADDING-TOP: 8px}
+.JQsysContent{	background-color:#FFFFFF}
+.JQsysContentWin{
+	border-bottom:1px; border-left:1px; border-right:1px; border-top:0px;
+	border-style:solid; border-left-color:#58CB21; border-right-color:#58CB21; border-bottom-color:#58CB21; 
+ 	width:100%;background-color:#FFFFFF
+}
+.JQsysMain{ margin-right:2px; margin-left:2px;margin-top:2px}
+.JQsysMain .JQsysContentWin tr td div{overflow-x:auto;overflow-y:auto}
+/**动态弹出框 上下页  选中后样式*/
+.dmLayerBorderCss{
+	border: 1px solid #58CB21;
+}
+.dmLayerMouseOverCss{
+	background-color:#58CB21;
+}
+.dmLayerMouseOutCss{
+	background-color:#FFF;
+}
+.dmLayerUpPageCss{
+	background-color:#58CB21;
+	color:white;
+	font-weight:bold;
+}
+/********************************************tab页***********************************************/
+.gTopTab{ height:70px;position:relative; background-color:#FFF;height:25px;  background-position: -20 -40px;HEIGHT: 23px; top:7px}
+.gTabTab{height:28px;  position:absolute;  overflow:hidden;padding-left:0px; top:-8px;}
+.gTabTab table{height:26px; float:left;table-layout:fixed; cursor:pointer}
+.gTabTab table tr{ vertical-align:middle}
+.gTabTab table td{background-position:0 -142px}
+.gTabTab table td.bdy{padding:0 5px;overflow:hidden;text-overflow:ellipsis;font-weight:bold; padding-top:3px; text-align:center}
+.gTabTab table td.btn{width:15px; padding-top:3px}
+.gTabTab table td.tLe{width:6px; font-size:0;background-position:-456px -19px}
+.gTabTab table td.tRi{width:6px; font-size:0;background-position:-472px -19px}
+.gTabTab table a.TabCls{width:15px;height:15px; background-position:-520px -28px}
+
+.gTabTab table.on{background-position:0 -184px; margin:0 0 0 0}
+.gTabTab table.on td{background-position:0 -184px}
+.gTabTab table.on td.tLe{background-position:-457px -61px}
+.gTabTab table.on td.tRi{background-position:-470px -61px}
+.gTabTab table.on td.bdy NOBR{ color:#FFFFFF}
+.gTabTab table.on a.TabCls{width:15px;height:15px; background-position:-520px -71px}
+
+.sysWinTab {
+	WIDTH: 100%; 
+}
+.sysWinTab H2 {
+	BACKGROUND-POSITION: 0px -494px; HEIGHT: 29px
+}
+.sysWinTab H2 .fLe {
+	BACKGROUND-POSITION: -1072px -54px; WIDTH: 6px; HEIGHT: 29px;
+	float:left
+}
+.sysWinTab H2 .fRi {
+	BACKGROUND-POSITION: -1092px -54px;WIDTH: 6px; HEIGHT: 29px;float:right
+}
+.sysWinTab .icoSw {
+	BACKGROUND-POSITION: -1079px -61px; DISPLAY: block; FLOAT: left; MARGIN: 7px 4px 0px 2px; WIDTH: 14px; HEIGHT: 14px
+}
+.sysWinTab H2 SPAN {
+	FONT-WEIGHT: normal; FLOAT: left; cursor:pointer; COLOR: #fff; PADDING-TOP: 8px
+}
+.sysContentWinTab{
+	border-bottom:1px; border-left:1px; border-right:1px; border-top:0px;
+	border-style:solid; border-left-color:#58CB21; border-right-color:#58CB21; border-bottom-color:#58CB21; 
+ 	width:100%; height:100%; background-color:#FFFFFF;
+}
+.getOutTabDiv{
+	overflow:auto;
+}

@@ -1,0 +1,232 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-PostViews 1.30\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-30 14:42+0800\n"
+"PO-Revision-Date: 2008-05-30 14:42+0800\n"
+"Last-Translator: Lester Chan <lesterchan@gmail.com>\n"
+"Language-Team: Lester Chan <lesterchan@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: SINGAPORE\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: postviews-options.php:40
+#: postviews-options.php:132
+msgid "Post Views Options"
+msgstr ""
+
+#: postviews-options.php:45
+msgid "Updated"
+msgstr ""
+
+#: postviews-options.php:50
+msgid "No Post Views Option Updated"
+msgstr ""
+
+#: postviews-options.php:57
+#: postviews-options.php:232
+msgid "UNINSTALL WP-PostViews"
+msgstr ""
+
+#: postviews-options.php:65
+#, php-format
+msgid "Setting Key '%s' has been deleted."
+msgstr ""
+
+#: postviews-options.php:69
+#, php-format
+msgid "Error deleting Setting Key '%s'."
+msgstr ""
+
+#: postviews-options.php:79
+#, php-format
+msgid "Post Meta Key '%s' has been deleted."
+msgstr ""
+
+#: postviews-options.php:83
+#, php-format
+msgid "Error deleting Post Meta Key '%s'."
+msgstr ""
+
+#: postviews-options.php:105
+#: postviews-options.php:190
+msgid "Uninstall WP-PostViews"
+msgstr ""
+
+#: postviews-options.php:106
+#, php-format
+msgid "<a href=\"%s\">Click Here</a> To Finish The Uninstallation And WP-PostViews Will Be Deactivated Automatically."
+msgstr ""
+
+#: postviews-options.php:119
+#: wp-postviews.php:381
+msgid "%VIEW_COUNT% views"
+msgstr ""
+
+#: postviews-options.php:122
+#: wp-postviews.php:149
+#: wp-postviews.php:198
+#: wp-postviews.php:382
+msgid "views"
+msgstr ""
+
+#: postviews-options.php:135
+msgid "Count Views From:"
+msgstr ""
+
+#: postviews-options.php:138
+msgid "Everyone"
+msgstr ""
+
+#: postviews-options.php:139
+msgid "Guests Only"
+msgstr ""
+
+#: postviews-options.php:140
+msgid "Registered Users Only"
+msgstr ""
+
+#: postviews-options.php:145
+msgid "Exclude Bot Views:"
+msgstr ""
+
+#: postviews-options.php:148
+msgid "No"
+msgstr ""
+
+#: postviews-options.php:149
+#: postviews-options.php:231
+msgid "Yes"
+msgstr ""
+
+#: postviews-options.php:155
+msgid "Views Template:"
+msgstr ""
+
+#: postviews-options.php:156
+#: postviews-options.php:167
+msgid "Allowed Variables:"
+msgstr ""
+
+#: postviews-options.php:158
+#: postviews-options.php:173
+msgid "Restore Default Template"
+msgstr ""
+
+#: postviews-options.php:166
+msgid "Most Viewed Template:"
+msgstr ""
+
+#: postviews-options.php:181
+msgid "Save Changes"
+msgstr ""
+
+#: postviews-options.php:192
+msgid "Deactivating WP-PostViews plugin does not remove any data that may have been created, such as the views data. To completely remove this plugin, you can uninstall it here."
+msgstr ""
+
+#: postviews-options.php:195
+msgid "WARNING:"
+msgstr ""
+
+#: postviews-options.php:196
+msgid "Once uninstalled, this cannot be undone. You should use a Database Backup plugin of WordPress to back up all the data first."
+msgstr ""
+
+#: postviews-options.php:199
+msgid "The following WordPress Options/PostMetas will be DELETED:"
+msgstr ""
+
+#: postviews-options.php:204
+msgid "WordPress Options"
+msgstr ""
+
+#: postviews-options.php:205
+msgid "WordPress PostMetas"
+msgstr ""
+
+#: postviews-options.php:232
+msgid ""
+"You Are About To Uninstall WP-PostViews From WordPress.\\n"
+"This Action Is Not Reversible.\\n"
+"\\n"
+" Choose [Cancel] To Stop, [OK] To Uninstall."
+msgstr ""
+
+#: wp-postviews-widget.php:55
+msgid "Most Viewed"
+msgstr ""
+
+#: wp-postviews-widget.php:65
+msgid "Title"
+msgstr ""
+
+#: wp-postviews-widget.php:68
+msgid "Show Views For: "
+msgstr ""
+
+#: wp-postviews-widget.php:74
+msgid "Post &amp Page"
+msgstr ""
+
+#: wp-postviews-widget.php:79
+msgid "Post"
+msgstr ""
+
+#: wp-postviews-widget.php:84
+msgid "Page"
+msgstr ""
+
+#: wp-postviews-widget.php:87
+msgid "Only"
+msgstr ""
+
+#: wp-postviews-widget.php:90
+msgid "Limit"
+msgstr ""
+
+#: wp-postviews-widget.php:93
+msgid "Post Title Length (Characters)"
+msgstr ""
+
+#: wp-postviews-widget.php:95
+msgid "(<strong>0</strong> to disable)"
+msgstr ""
+
+#: wp-postviews.php:48
+msgid "Post Views"
+msgstr ""
+
+#: wp-postviews.php:161
+#: wp-postviews.php:210
+msgid "N/A"
+msgstr ""
+
+#: wp-postviews.php:252
+msgid "There is no excerpt because this is a protected post."
+msgstr ""
+
+#: wp-postviews.php:311
+#: wp-postviews.php:313
+#: wp-postviews.php:336
+msgid "WP-PostViews"
+msgstr ""
+
+#: wp-postviews.php:324
+#: wp-postviews.php:326
+msgid "Most Viewed Posts"
+msgstr ""
+
+#: wp-postviews.php:338
+msgid "views were generated."
+msgstr ""
+
+#: wp-postviews.php:350
+msgid "Most Viewed Post"
+msgstr ""
+
