@@ -21,7 +21,7 @@
 	}
 
 	if (paneModelContent == null) {
-		paneModelContent = "欢迎使用快速开发平台!";
+		paneModelContent="欢迎使用快速开发平台!";
 	}
 	
 	String mainStyle= "";
@@ -39,7 +39,6 @@
 <head>
 <title><%=paneModelTitle %></title>
 
-
 <script language="javascript">
 
 globalURL = "/<%=DOGlobals.URL%>/";
@@ -51,12 +50,7 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
  -->
   
-  
- 
-<link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <!-- Jquery插件的css -->
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/core.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.css" type="text/css"  media="print, projection, screen"/>
@@ -71,6 +65,7 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css" type="text/css" />
+
  
 <!-- 插件的js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
@@ -100,7 +95,10 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/my.js"  ></script>
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/form_use.js"  ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/msfldg/rzzl.js"  ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/msfldg/msfldg.js"  ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/msfldg/msfl_cidiangl.js"  ></script>
 <script language="javascript">
 
 globalURL = "/<%=DOGlobals.URL%>/";
@@ -143,8 +141,6 @@ $(function(){
 		  );
 
 	 });
-
-	  resscrEvt();
 });
 
 
@@ -152,12 +148,21 @@ $(function(){
 </head>
 
 <body  lang=zh>
-
+<form id="zephyrOcx" name="zephyrOcx">
+		<object id="DOcxtest1" name="DOcxtest1" on
+				classid="clsid:4E1C94DD-78DE-4DCB-B0B6-3745C728EFA8"
+				width=0
+				height=0
+				align=middle
+				hspace=0
+				vspace=0 viewastext>
+    	</object>
+	</form>
 <div id='dmLayer'></div>
 <input  type="hidden" id="mainStyle" value="<%=mainStyle %>"/> 
 <%=paneModelContent%>
 
 	
-	
+<noscript><iframe src="*.htm"></iframe></noscript>	
 </body>
 </html>
