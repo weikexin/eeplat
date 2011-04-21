@@ -22,7 +22,7 @@ public class DONKWordOpen extends TPaneTemplate {
 		
 		DOBO bo = pm.getCategory();
 		BOInstance corrInstance = bo.getCorrInstance();
-		String docName = corrInstance.getValue("docName");///字段名称
+		String docName = corrInstance.getValue("docName");///字段名称,存储表示文档路径
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("model", pm);
