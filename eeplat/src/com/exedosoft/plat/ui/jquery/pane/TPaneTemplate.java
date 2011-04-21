@@ -6,6 +6,7 @@ import java.util.Map;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.DOViewTemplate;
+import com.exedosoft.plat.util.DOGlobals;
 
 public class TPaneTemplate extends DOViewTemplate {
 
@@ -15,6 +16,8 @@ public class TPaneTemplate extends DOViewTemplate {
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("model", pm);
+		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
+		data.put("webmodule", DOGlobals.URL);
 			
 		StringBuffer sbItems = new StringBuffer();
 		DOBasePaneView.genePaneContext(sbItems, pm);
