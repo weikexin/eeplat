@@ -6,6 +6,7 @@
 %>
 <%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ page import="com.exedosoft.plat.util.Escape"%>
+<%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 <%@ page import="com.exedosoft.plat.bo.DOBO"%>
 <%@page import="com.exedosoft.plat.util.Escape"%>
 <%@ page import="com.exedosoft.plat.bo.DOService"%>
@@ -29,7 +30,11 @@
 <HTML>
 <HEAD>
 
+<script language="javascript">
 
+globalURL = "/<%=DOGlobals.URL%>/";
+
+</script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
