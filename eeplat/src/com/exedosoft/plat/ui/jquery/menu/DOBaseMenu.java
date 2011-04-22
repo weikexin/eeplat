@@ -45,12 +45,10 @@ public abstract class DOBaseMenu implements DOIView {
 			String pml = doPm.getName();
 			if (doPm.getResource() != null) {
 				String resPath = doPm.getResource().getResourcePath();
-				if (resPath.indexOf(".htm") != -1) {
-					pml = new StringBuilder("/").append(DOGlobals.URL)
+				pml = new StringBuilder("/").append(DOGlobals.URL)
 							.append("/")
 							.append(doPm.getResource().getResourcePath())
 							.toString();
-				}
 			}
 			
 			
