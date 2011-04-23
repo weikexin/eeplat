@@ -15,9 +15,7 @@ package com.exedosoft.plat.login;
  import java.lang.*;
  import java.text.*;
  import java.util.Iterator;
- import java.net.URLEncoder;
-
-import com.exedosoft.plat.util.DOGlobals;
+ import com.exedosoft.plat.util.DOGlobals;
  import com.exedosoft.plat.util.StringUtil;
   import com.exedosoft.plat.SessionContext;
 

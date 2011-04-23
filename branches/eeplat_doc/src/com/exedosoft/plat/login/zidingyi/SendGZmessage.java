@@ -9,17 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import com.exedosoft.plat.action.DOAbstractAction;
+import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.zidingyi.excel.LDAPPeopleUtil;
 import com.exedosoft.plat.login.zidingyi.excel.MySqlOperation;
+import com.lowagie.text.Table;
 
 public class SendGZmessage extends DOAbstractAction {
 
@@ -27,18 +35,18 @@ public class SendGZmessage extends DOAbstractAction {
 
 	public String excute() {
 		
-		// ä»¥ç®¡ç†å‘˜èº«ä»½å‘é€é‚®ç®±
-		String manager_email = "uii2008@sohu.com";// ç®¡ç†å‘˜é‚®ç®±åœ°å€;
-		String emailTo = null;// æ”¶ä¿¡äººåœ°å€ ;
-		StringBuffer noEmail = new StringBuffer();// æ²¡æœ‰é‚®ç®±çš„å‘˜å·¥;
-		String name = null; // å®é™…å‘˜å·¥å§“å;
-		String emailName = null; // ä»£æ”¶äººå§“å;
-		String eamilSelf = null;//å‘˜å·¥è‡ªå®šä¹‰é‚®ç®±;
+		// ÒÔ¹ÜÀíÔ±Éí·İ·¢ËÍÓÊÏä
+		String manager_email = "yxxts_zep@163.com";// ¹ÜÀíÔ±ÓÊÏäµØÖ·;
+		String emailTo = null;// ÊÕĞÅÈËµØÖ· ;
+		StringBuffer noEmail = new StringBuffer();// Ã»ÓĞÓÊÏäµÄÔ±¹¤;
+		String name = null; // Êµ¼ÊÔ±¹¤ĞÕÃû;
+		String emailName = null; // ´úÊÕÈËĞÕÃû;
+		String eamilSelf = null;//Ô±¹¤×Ô¶¨ÒåÓÊÏä;
 		int countAll = 0;
 		int countSend = 0;
 		int countFail = 0;
-		// æ¥æ”¶çš„å‚æ•°
-		Date resmonth = null;
+		// ½ÓÊÕµÄ²ÎÊı
+		String resmonth = null;
 		String resname = null;
 		
 		Connection conn = MySqlOperation.getConnection();
@@ -50,11 +58,11 @@ public class SendGZmessage extends DOAbstractAction {
 			// users.add(user);
 
 		} catch (Exception e) {
-			this.setEchoValue("æ¥æ”¶å·¥èµ„æ¡ä¿¡æ¯å¤±è´¥ï¼error" + e.toString());
+			this.setEchoValue("½ÓÊÕ¹¤×ÊÌõĞÅÏ¢Ê§°Ü£¡error" + e.toString());
 			return "notpass";
 		}
 
-		// å†éæ‰€æœ‰çš„æ•°æ®ï¼›
+		// Àú±éËùÓĞµÄÊı¾İ£»
 		if (users != null && users.size() > 0) {
 			String s = users.get(0).toString();
 
@@ -62,13 +70,12 @@ public class SendGZmessage extends DOAbstractAction {
 			String[] sarray = st.split(",");
 			ResultSet rs = null;
 
-			// å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±æ€§ï¼›
+			// ¶ÔÃ¿ÌõÊı¾İ½øĞĞ´¦Àí£¬È¡µÃÓĞĞ§ÊôĞÔ£»
 			for (int i = 0; i < sarray.length; i++) {
 				String temp = sarray[i];
 				String[] nv = temp.split("=");
 				if (nv.length == 2 && "month".equals(nv[0].trim())) {
-					Date month = Date.valueOf(nv[1]);
-					resmonth = month;
+					resmonth = nv[1];
 				}
 				if (nv.length == 2 && "name".equals(nv[0].trim())) {
 					resname = nv[1];
@@ -76,12 +83,12 @@ public class SendGZmessage extends DOAbstractAction {
 
 			}
 			
-			System.out.println("resmonth===================="
-					+ resmonth);
-			System.out.println("resname===================="
-					+ resname);
+//			System.out.println("resmonth===================="
+//					+ resmonth);
+//			System.out.println("resname===================="
+//					+ resname);
 
-			// æŸ¥è¯¢ç»“æœ
+			// ²éÑ¯½á¹û
 			try {
 				if (resmonth != null && (resname == null || resname.length() <= 0)) {
 					rs = MySqlOperation.SMfindByDate(conn, resmonth);
@@ -94,11 +101,11 @@ public class SendGZmessage extends DOAbstractAction {
 							resmonth);
 				} else if (resmonth == null
 						&& (resname == null || resname.length() <= 0)) {
-					this.setEchoValue("è¯·é€‰æ‹©æ¡ä»¶ã€‚");
+					this.setEchoValue("ÇëÑ¡ÔñÌõ¼ş¡£");
 					return "notpass";
 				}
 
-				// å–å‡ºæ¯æ¡è®°å½•ä¿¡æ¯
+				// È¡³öÃ¿Ìõ¼ÇÂ¼ĞÅÏ¢
 				if (rs != null) {
 					// month, name, basesalary, buckshee, rentdeduct,
 					// leavededuct, 6
@@ -112,7 +119,7 @@ public class SendGZmessage extends DOAbstractAction {
 
 						SalaryMessage sm = new SalaryMessage();
 						sm.setObjuid(rs.getString("objuid"));
-						sm.setMonth(rs.getDate("month"));
+						sm.setMonth(rs.getString("month"));
 						sm.setName(rs.getString("name"));
 						sm.setBasesalary(rs.getDouble("basesalary"));
 						sm.setBuckshee(rs.getDouble("buckshee"));
@@ -137,71 +144,81 @@ public class SendGZmessage extends DOAbstractAction {
 						sm.setRemark(rs.getString("remark"));
 
 						/**
-						 * å–å¾—å‘é€å†…å®¹
+						 * È¡µÃ·¢ËÍÄÚÈİ
 						 */
 						
 						
-						// é‚®ä»¶ä¸»é¢˜
+						// ÓÊ¼şÖ÷Ìâ
 						StringBuffer content = new StringBuffer();
-						SimpleDateFormat format = new SimpleDateFormat(
-								"yyyyå¹´MMæœˆ");
-						String stMonth = format.format(sm.getMonth());
+						String stMonth = sm.getMonth() + " ÔÂ·İ";
 						
-						String title = sm.getName()+ " " + stMonth + " çš„å·¥èµ„ä¿¡æ¯";
-						// é‚®ä»¶å†…å®¹
+						String title = sm.getName()+ " " + stMonth + " µÄ¹¤×ÊĞÅÏ¢";
+						// ÓÊ¼şÄÚÈİ
+						content.append("<center><h3>" + title + "</h3></center>");
+						content.append("<table align='center' border='0' bordercolor='gray' cellspacing='5' cellpadding='5'  bgcolor='oldlace'>");
+						content.append("<tr align='center' bgcolor='wheat'>");
+						content.append("<th>ĞÕÃû</th><th>ÔÂ¹¤×Ê</th><th>ÆäËû</th><th>×â·¿¿Û¼õ</th><th>²¡(ÊÂ)¼Ù¿Û¼õ</th><th>Ó¦·¢¶î</th></tr>");
+						content.append("<tr  align='center' bgcolor='floralwhite'>");
+						content.append("<td>"+ sm.getName() +"</td><td>" + sm.getBasesalary() +"</td>");
+						content.append("<td>"+ sm.getBuckshee() +"</td><td>" + sm.getRentdeduct() +"</td>");
+						content.append("<td>"+ sm.getLeavededuct() +"</td><td>" + sm.getFactsalary() +"</td>");
+						content.append("</tr><tr align='center' bgcolor='wheat'>");
+						content.append("<th>´ú½É¸öÈËÑøÀÏ±£ÏÕ</th><th>´ú½É¸öÈËÊ§Òµ±£ÏÕ</th><th>´ú½É¸öÈËÒ½ÁÆ±£ÏÕ</th><th>¸öÈËÓ¦½ÉÉç±£Ğ¡¼Æ</th>" +
+								"<th>´ú½É¸öÈË×¡·¿¹«»ı½ğ</th><th>Ë°Ç°Ó¦·¢</th></tr><tr  align='center' bgcolor='floralwhite'>");
+						content.append("<td>"+ sm.getPayyanglaoinsure() +"</td>");
+						content.append("<td>"+ sm.getPayshiyeinsure() +"</td><td>" + sm.getPayyilaioinsure() +"</td>");
+						content.append("<td>"+ sm.getPayshebaofee() +"</td><td>" + sm.getPayhousingsurplus() +"</td>");
+						content.append("<td>"+ sm.getTaxbefore() +"</td>");
 						
-						content.append("æœˆä»½:\t\t\t" + stMonth + "\nå§“å:\t\t\t"
-								+ sm.getName() + "\n");
-						content.append("æœˆå·¥èµ„:\t\t" + sm.getBasesalary()
-								+ "\nå…¶ä»–:\t\t\t" + sm.getBuckshee() + "\n");
-						content.append("ç§Ÿæˆ¿æ‰£å‡:\t\t" + sm.getRentdeduct()
-								+ "\nç—…ï¼ˆäº‹ï¼‰å‡æ‰£å‡:\t" + sm.getLeavededuct() + "\n");
-						content.append("åº”å‘é¢:\t\t" + sm.getFactsalary()
-								+ "\nä»£ç¼´ä¸ªäººå…»è€ä¿é™©:\t" + sm.getPayyanglaoinsure()
-								+ "\n");
-						content.append("ä»£ç¼´ä¸ªäººå¤±ä¸šä¿é™©:\t" + sm.getPayshiyeinsure()
-								+ "\nä»£ç¼´ä¸ªäººåŒ»ç–—ä¿é™©:\t" + sm.getPayyilaioinsure()
-								+ "\n");
-						content.append("ä¸ªäººåº”ç¼´ç¤¾ä¿å°è®¡:\t" + sm.getPayshebaofee()
-								+ "\nä»£ç¼´ä¸ªäººä½æˆ¿å…¬ç§¯é‡‘:\t" + sm.getPayhousingsurplus()
-								+ "\n");
-						content.append("ç¨å‰åº”å‘:\t\t" + sm.getTaxbefore()
-								+ "\nåº”ç¨æ‰€å¾—G=F-2000:\t" + sm.getTaxget() + "\n");
+						content.append("</tr><tr align='center' bgcolor='wheat'>");
+						content.append("<th>Ó¦Ë°ËùµÃG=F-2000</th><th>Ë°ÂÊH</th><th>ËÙËã¿Û³ı</th><th>Ë°</th>" +
+								"<th>Ë°ºóÊµ·¢</th><th>±¸×¢</th></tr><tr  align='center' bgcolor='floralwhite'>");
+						content.append("<td>"+ sm.getTaxget() +"</td>");
+						content.append("<td>"+ sm.getTaxlv() +"</td><td>" + sm.getTaxrm() +"</td>");
+						content.append("<td>"+ sm.getTax() +"</td><td>" + sm.getTaxafter() +"</td>");
+						content.append("<td>"+ sm.getRemark() +"</td>");
+						content.append("</tr></table>");
 						
-						content.append("ç¨ç‡H:\t\t" + sm.getTaxlv()
-								+ "\né€Ÿç®—æ‰£é™¤\t\t" + sm.getTaxrm()
-								+ "\nç¨:\t\t\t" + sm.getTax() + "\n");
-						
-						
-						content.append("ç¨åå®å‘:\t\t" + sm.getTaxafter()
-								+ "\nå¤‡æ³¨:\t\t\t" + sm.getRemark() + "\n");
 
-						content
-								.append("\n\tæŸ¥è¯¢æ‰€æœ‰å·¥ä½œä¿¡æ¯(è¯·é“¾æ¥ä¸€ä¸‹åœ°å€)ï¼š\nhttp://127.0.0.1:8080/yiyi/allsm?uid="
-										+ sm.getObjuid());
+						content.append("<br><a href='http://192.168.0.3:8880/yiyi/allsm?uid="+ sm.getObjuid()
+										+"'><h4 align='center'>²é¿´ËùÓĞ¹¤×ÊĞÅÏ¢</h4></a>");
 						String contentText = content.toString();
-						System.out.println(contentText);
+//						System.out.println(contentText);
+						
+						
 						/**
-						 * // å–å¾—é‚®ç®±åœ°å€;
+						 * // È¡µÃÓÊÏäµØÖ·;
 						 */
 
-						// å–å¾—ä»£æ”¶äººå§“åï¼Œå†å–å…¶é‚®ç®±åœ°å€
+						// È¡µÃ´úÊÕÈËĞÕÃû£¬ÔÙÈ¡ÆäÓÊÏäµØÖ·
 						name = sm.getName();
 						
 						try {
 							eamilSelf = MySqlOperation.findEmailByName(conn, name);
 							
-							//ä½¿ç”¨è‡ªå®šä¹‰é‚®ç®±
+							//Ê¹ÓÃ×Ô¶¨ÒåÓÊÏä
 							if (eamilSelf != null && eamilSelf.length() > 0) {
 								emailTo = eamilSelf.trim();
-							} else {//ä½¿ç”¨ä»£æ”¶äººé‚®ç®±åœ°å€
+							} else {//Ê¹ÓÃ´úÊÕÈËÓÊÏäµØÖ·
+								
 								emailName = MySqlOperation.findTonameByName(conn, name);
 								if (emailName != null && emailName.length() > 0) {
-									emailTo = LDAPPeopleUtil
-											.getLDAPEmailBySN(emailName);
+									DOService empser = DOService.getService("zf_employee_browse_by_sn");
+									List<BOInstance> emp = new ArrayList<BOInstance>();
+									emp = empser.invokeSelect(emailName); 
+									if(emp.size()>0) {
+										BOInstance empBi = emp.get(0);
+										emailTo = empBi.getValue("mail");
+									}
 								} else {
-									//ä½¿ç”¨æœ¬äººé‚®ç®±åœ°å€
-									emailTo = LDAPPeopleUtil.getLDAPEmailByCN(name);
+									//Ê¹ÓÃ±¾ÈËÓÊÏäµØÖ·
+									DOService empser = DOService.getService("zf_employee_browse_by_cn");
+									List<BOInstance> emp = new ArrayList<BOInstance>();
+									emp = empser.invokeSelect(name); 
+									if(emp.size()>0) {
+										BOInstance empBi = emp.get(0);
+										emailTo = empBi.getValue("mail");
+									}
 								}
 							}
 							
@@ -215,7 +232,7 @@ public class SendGZmessage extends DOAbstractAction {
 						// payyilaioinsure, 4
 						// payshebaofee, payhousingsurplus, taxbefore, tax,
 						// taxafter, remark 6
-						// /å‘é€é‚®ä»¶
+						// /·¢ËÍÓÊ¼ş
 						countAll++;
 						if (emailTo == null || emailTo.trim().length() <= 0) {
 							countFail++;
@@ -224,30 +241,30 @@ public class SendGZmessage extends DOAbstractAction {
 							if(noEmail != null)
 								tsname = noEmail.toString();
 							if(tsname.contains(addname)){
-								//å·²å­˜åœ¨ï¼Œåˆ™ä¸åŠ äºº
+								//ÒÑ´æÔÚ£¬Ôò²»¼ÓÈË
 							}else if(noEmail == null || noEmail.length() <= 0)
-								noEmail.append("å‘˜å·¥[" + name + "], ");
+								noEmail.append("Ô±¹¤[" + name + "], ");
 							 else
 								noEmail.append("[" + name + "],");
 						} else {
 							try {
-								String password = "yyfxyxx2008";
-								System.out.println("$$$$$å‘é€é‚®ä»¶å‚æ•°ä¿¡æ¯æŸ¥çœ‹$$$$$$");
-								System.out.println("å‘é€é‚®ä»¶======================"
-										+ manager_email);
-								System.out.println("å®é™…æ¥æ”¶äºº===================="
-										+ name);
-								System.out.println("ä»£æ”¶æ¥æ”¶äºº===================="
-										+ emailName);
-								System.out.println("æ¥æ”¶é‚®ç®±======================"
-										+ emailTo);
-								System.out.println("å®é™…æ¥æ”¶é‚®ç®±=================="
-										+ "yuanxx@zephyr.com.cn");
-								System.out
-										.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+								String password = "1234567890";
+//								System.out.println("$$$$$·¢ËÍÓÊ¼ş²ÎÊıĞÅÏ¢²é¿´$$$$$$");
+//								System.out.println("·¢ËÍÓÊ¼ş======================"
+//										+ manager_email);
+//								System.out.println("Êµ¼Ê½ÓÊÕÈË===================="
+//										+ name);
+//								System.out.println("´úÊÕ½ÓÊÕÈË===================="
+//										+ emailName);
+//								System.out.println("½ÓÊÕÓÊÏä======================"
+//										+ emailTo);
+//								System.out.println("Êµ¼Ê½ÓÊÕÓÊÏä=================="
+//										+ "yuanxx@zephyr.com.cn");
+//								System.out
+//										.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 								countSend++;
 								sendEmail(manager_email, password,
-										"yuanxx@zephyr.com.cn", title,
+										emailTo, title,
 										contentText);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -261,7 +278,7 @@ public class SendGZmessage extends DOAbstractAction {
 			}
 
 		} else {
-			this.setEchoValue("å‘é€é‚®ä»¶å¤±è´¥");
+			this.setEchoValue("·¢ËÍÓÊ¼şÊ§°Ü");
 			return "notpass";
 		}
 
@@ -272,65 +289,70 @@ public class SendGZmessage extends DOAbstractAction {
 			e.printStackTrace();
 		}
 		if (noEmail != null && noEmail.length() > 0) {
-			noEmail.append("æ²¡æœ‰å¯¹åº”çš„é‚®ç®±åœ°å€ï¼Œè¯·ä¸ç®¡ç†å‘˜è”ç³»ã€‚");
+			noEmail.append("Ã»ÓĞ¶ÔÓ¦µÄÓÊÏäµØÖ·£¬ÇëÓë¹ÜÀíÔ±ÁªÏµ¡£");
 			if(countSend > 0)
-				this.setEchoValue("å‘é€é‚®ä»¶æˆåŠŸï¼Œå…±å‘é€" + countSend + "å°é‚®ä»¶ï¼\n" + "ä½™ä¸‹" + countFail + "ä¸ª" + noEmail);
+				this.setEchoValue("·¢ËÍÓÊ¼ş³É¹¦£¬¹²·¢ËÍ" + countSend + "·âÓÊ¼ş£¡\n" + "ÓàÏÂ" + countFail + "¸ö" + noEmail);
 			else
-				this.setEchoValue("å‘é€é‚®ä»¶å¤±è´¥ï¼\n" + "å…±" + countFail + "ä¸ª" + noEmail);
+				this.setEchoValue("·¢ËÍÓÊ¼şÊ§°Ü£¡\n" + "¹²" + countFail + "¸ö" + noEmail);
 			
 			return "notpass";
 		} else {
-			this.setEchoValue("å‘é€é‚®ä»¶æˆåŠŸï¼Œå…±å‘é€" + countSend + "å°é‚®ä»¶ï¼\n");
+			this.setEchoValue("·¢ËÍÓÊ¼ş³É¹¦£¬¹²·¢ËÍ" + countSend + "·âÓÊ¼ş£¡\n");
 			return "notpass";
 		}
 	}
 
-	// å‘é€é‚®ä»¶
-	public static void sendEmail(String from, String password, String to,
+	// ·¢ËÍÓÊ¼ş
+	private void sendEmail(String from, String password, String to,
 			String title, String text) throws AddressException,
 			MessagingException {
 
 		// **************************************************8
-		// æµ‹è¯•ç”¨
-		//to = "yuanxx@zephyr.com.cn";
-		// *****************************************************8
+//		// ²âÊÔÓÃ
+//		if(!"yuanxx@zephyr.com".equals(to))
+//			to = "yuanxx@zephyr.com.cn";
+//		// *****************************************************8
 
 		String smtpHost = "smtp." + from.substring(from.lastIndexOf("@") + 1);
 
-		// System.out.println("$$$$$$$$$$LoginActionLDAP()$$$$$$$$$$$$" + from +
-		// "===" + password + "$$$$$$$$$$$$$$$$$$$$$$$4");
-		// System.out.println("$$$$$$$$$$$$$$$å‘é€é‚®ä»¶ä¿¡æ¯æŸ¥çœ‹$$$$$$$$$$$$$$4");
-		// System.out.println("å‘é€äººé‚®ç®±åœ°å€==========================" + from);
-		// System.out.println("æ¥æ”¶äººé‚®ç®±åœ°å€==========================" + to);
-		// System.out.println("ç®€å•é‚®ä»¶ä¼ é€åè®®æœåŠ¡å™¨==========================" +
-		// smtpHost);
-		// System.out.println("é‚®ä»¶ä¸»é¢˜==========================" + title);
-		// System.out.println("é‚®ä»¶å†…å®¹==========================" + text);
-		// System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4");
+//		 System.out.println("$$$$$$$$$$LoginActionLDAP()$$$$$$$$$$$$" + from +
+//		 "===" + password + "$$$$$$$$$$$$$$$$$$$$$$$4");
+//		 System.out.println("$$$$$$$$$$$$$$$·¢ËÍÓÊ¼şĞÅÏ¢²é¿´$$$$$$$$$$$$$$4");
+//		 System.out.println("·¢ËÍÈËÓÊÏäµØÖ·==========================" + from);
+//		 System.out.println("½ÓÊÕÈËÓÊÏäµØÖ·==========================" + to);
+//		 System.out.println("¼òµ¥ÓÊ¼ş´«ËÍĞ­Òé·şÎñÆ÷==========================" +
+//		 smtpHost);
+//		 System.out.println("ÓÊ¼şÖ÷Ìâ==========================" + title);
+//		 System.out.println("ÓÊ¼şÄÚÈİ==========================" + text);
+//		 System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4");
 
 		final Properties props = new Properties();
 		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.auth", "true");
 
 		Session myMailSession = Session.getInstance(props);
-		myMailSession.setDebug(true); // æ‰“å¼€DEBUGæ¨¡å¼
+		myMailSession.setDebug(true); // ´ò¿ªDEBUGÄ£Ê½
 		Message msg = new MimeMessage(myMailSession);
 		msg.setFrom(new InternetAddress(from));
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		msg.setContent("I have a email!", "text/plain");
 		msg.setSentDate(new java.util.Date());
 		msg.setSubject(title);
-		msg.setText(text);
-		System.out.println("1.Please wait for sending two...");
+		Multipart mp = new MimeMultipart("related");// relatedÒâÎ¶×Å¿ÉÒÔ·¢ËÍhtml¸ñÊ½µÄÓÊ¼ş 
+		BodyPart bodyPart = new MimeBodyPart();// ÕıÎÄ
+		bodyPart.setDataHandler(new DataHandler(text, "text/html;charset=UTF-8"));// ÍøÒ³¸ñÊ½ 
+		mp.addBodyPart(bodyPart); 
+		msg.setContent(mp);
+//		System.out.println("1.Please wait for sending two...");
 
-		// å‘é€é‚®ä»¶
+		// ·¢ËÍÓÊ¼ş
 		Transport myTransport = myMailSession.getTransport("smtp");
 		myTransport.connect(smtpHost, from, password);
 		myTransport.sendMessage(msg, msg
 				.getRecipients(Message.RecipientType.TO));
 		myTransport.close();
-		// javax.mail.Transport.send(msg); // è¿™è¡Œä¸èƒ½ä½¿ç”¨ã€‚
-		System.out.println("2.Your message had send!");
+		// javax.mail.Transport.send(msg); // ÕâĞĞ²»ÄÜÊ¹ÓÃ¡£
+//		System.out.println("2.Your message had send!");
 	}
 
 	public static Double castDouble(String value) {
@@ -339,21 +361,11 @@ public class SendGZmessage extends DOAbstractAction {
 				&& value.matches("^\\d+.\\d+|\\d+$")) {
 			number = Double.parseDouble(value);
 		}
-		System.out.println(number);
+//		System.out.println(number);
 		return number;
 	}
 
 	public static void main(String[] args) {
-		SendGZmessage sg = new SendGZmessage();
-		try {
-			sg.sendEmail("uii2008@sohu.com", "yyfxyxx2008", "yuanxxasdfasdf@zephyr.com.cn", "test", "testast");
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

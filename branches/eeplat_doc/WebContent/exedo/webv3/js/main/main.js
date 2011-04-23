@@ -191,7 +191,7 @@ function selectTabCss(tabSelector){
 	  	$("#mRight").clone().attr("id",'tab_' + tabId).insertAfter("#mRight");
 	  	
 	 
-		if(paneUrl.indexOf(".htm")!=-1){
+		if(paneUrl.indexOf(".htm")!=-1 ||  paneUrl.indexOf('.jsp')!=-1){
 			$('#tab_' + tabId).append( "<iframe  id='if" + tabId + "'  frameborder='0'  />" );
 			
 			$('#if' + tabId).height( $('#tab_' + tabId).height() )

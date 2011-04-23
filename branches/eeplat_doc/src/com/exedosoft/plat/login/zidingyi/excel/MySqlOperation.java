@@ -1,37 +1,34 @@
 package com.exedosoft.plat.login.zidingyi.excel;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.login.zidingyi.SalaryMessage;
 
 public class MySqlOperation {
-//	private static String driverName = "com.mysql.jdbc.Driver";
-//	private static String url = "jdbc:mysql://192.168.0.3:3306/zfbx_system?useUnicode=true&characterEncoding=utf-8";
-//	private static String user = "eunit";
-//	private static String password = "eunit123";
+	
+	// private static String driverName = "com.mysql.jdbc.Driver";
+	// private static String url =
+	// "jdbc:mysql://192.168.0.3:3306/zfbx_system?useUnicode=true&characterEncoding=utf-8";
+	// private static String user = "eunit";
+	// private static String password = "eunit123";
 
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-//			Class.forName(driverName);
-//			conn = DriverManager.getConnection(url, user, password);
-			 DODataSource dss = DODataSource.getDataSourceByL10n("Á¥´Êû´Êä•ÈîÄÊï∞ÊçÆÂ∫ìII");
-			 conn = dss.getConnection();
+			// Class.forName(driverName);
+			// conn = DriverManager.getConnection(url, user, password);
+			DODataSource dss = DODataSource.getDataSourceByL10n("◊œ∑„±®œ˙ ˝æ›ø‚I");
+			conn = dss.getConnection();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -44,7 +41,7 @@ public class MySqlOperation {
 	// ============================gz_salarymessage============================
 	public static void insert(Connection conn, SalaryMessage sm, long objuid)
 			throws SQLException {
-		// 5+4+3+4=16‰∏™ÂèÇÊï∞
+		// 5+4+3+4=16∏ˆ≤Œ ˝
 		String sql = "insert into gz_salarymessage"
 				+ "(objuid,month,name,basesalary,buckshee,rentdeduct," + // 6
 				"leavededuct,factsalary,payyanglaoinsure,payshiyeinsure," + // 4
@@ -57,7 +54,7 @@ public class MySqlOperation {
 		if (name != null)
 			name = name.trim();
 		ps.setString(1, HexToStr(objuid).trim());
-		ps.setDate(2, sm.getMonth());
+		ps.setString(2, sm.getMonth());
 		ps.setString(3, name);
 		ps.setDouble(4, sm.getBasesalary());
 		ps.setDouble(5, sm.getBuckshee());
@@ -79,9 +76,25 @@ public class MySqlOperation {
 		ps.executeUpdate();
 	}
 
+	public static void insertLiShi(Connection conn, String name, long objuid,
+			String nowdate, String month) throws SQLException {
+		// 5+4+3+4=16∏ˆ≤Œ ˝
+		String sql = "insert into gz_salarymessage"
+				+ "(objuid,month,name,taxlv,remark) " + // 7
+				"values(?,?,?,?,?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		String guid = HexToStr(objuid).trim();
+		ps.setString(1, guid);
+		ps.setString(2, month);
+		ps.setString(3, name);
+		ps.setString(4, "1234567890987654321");
+		ps.setString(5, nowdate);
+		ps.executeUpdate();
+	}
+
 	public static void update(Connection conn, SalaryMessage sm, String objuid)
 			throws SQLException {
-		// 5+4+3+4=16‰∏™ÂèÇÊï∞
+		// 5+4+3+4=16∏ˆ≤Œ ˝
 		String sql = "update gz_salarymessage set "
 				+ "month=?,name=?,basesalary=?,buckshee=?,rentdeduct=?,"
 				+ // 5
@@ -97,7 +110,7 @@ public class MySqlOperation {
 		String name = sm.getName();
 		if (name != null)
 			name = name.trim();
-		ps.setDate(1, sm.getMonth());
+		ps.setString(1, sm.getMonth());
 		ps.setString(2, name);
 		ps.setDouble(3, sm.getBasesalary());
 		ps.setDouble(4, sm.getBuckshee());
@@ -122,76 +135,120 @@ public class MySqlOperation {
 
 	public static ResultSet SMfindByName(Connection conn, String name)
 			throws SQLException {
-		System.out.println("like========================" + name
-				+ "==============================like");
-		String sql = "select * from gz_salarymessage where name like '%" + name
-				+ "%' order by month";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		// System.out.println("like========================" + name
+		// + "==============================like");
+		String sql = "select * from gz_salarymessage where taxlv != '1234567890987654321' and name like ? order by month";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+name+"%");
+		ResultSet rs = ps.executeQuery();
 		return rs;
+	}
+
+	public static ResultSet SMfindByFileName(Connection conn, String sqlDate,
+			String sqlFile) throws SQLException {
+
+		String sql = "select * from gz_salarymessage where taxlv = '1234567890987654321' and name like ? ";
+		// System.out.println("sqlsqlsqlsqlsql========================" + sql
+		// + "==============================like");
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+sqlDate+"%"+sqlFile+"%");
+		ResultSet rs = ps.executeQuery();
+
+		return rs;
+	}
+
+	public static int SMRemoveByName(Connection conn, String name)
+			throws SQLException {
+		String sql = "delete from gz_salarymessage where taxlv != '1234567890987654321' and name like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+name+"%");
+		return ps.executeUpdate();
+	}
+
+	public static int SMRemoveByObjuid(Connection conn, String objuid)
+			throws SQLException {
+		String sql = "delete from gz_salarymessage where objuid like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+objuid+"%");
+		return ps.executeUpdate();
 	}
 
 	public static ResultSet SMfindByNameAndDate(Connection conn, String name,
-			Date date) throws SQLException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String sd = format.format(date);
-		String sql = "select * from gz_salarymessage where name like '%" + name
-				+ "%' and YEAR(month) = YEAR('" + sd
-				+ "') and MONTH(month) = MONTH('" + sd + "')";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+			String date) throws SQLException {
+		String sql = "select * from gz_salarymessage where taxlv != '1234567890987654321' and name like ? and month like ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+name+"%");
+		ps.setString(2, "%"+date+"%");
+		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
 
-	public static ResultSet SMfindBySQL(Connection conn, String sql)
+	public static int SMRemoveByNameAndDate(Connection conn, String name,
+			String date) throws SQLException {
+
+		String sql = "delete from gz_salarymessage where taxlv != '1234567890987654321' and name like ? and month like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+name+"%");
+		ps.setString(2, "%"+date+"%");
+		return ps.executeUpdate();
+	}
+
+	public static ResultSet SMfindBySQL(Connection conn, String sql, List<String[]> paras)
 			throws SQLException {
-		System.out.println("sql========================\n" + sql
-				+ "\n==============================sql");
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		PreparedStatement ps = conn.prepareStatement(sql);
+		if(paras != null) {
+			for(int n = 0; n < paras.size(); n ++) {
+				String[] strPara = paras.get(n);
+				if(strPara.length == 2 && strPara[0] != null && strPara[1] != null) {
+					if("like".equals(strPara[0])) {
+						ps.setString((n+1), "%"+strPara[1]+"%");
+					} else if("string".equals(strPara[0])) {
+						ps.setString((n+1), strPara[1]);
+					} 
+				}
+			}
+		}
+		
+		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
 
-	public static ResultSet SMfindByDate(Connection conn, Date date)
+	public static ResultSet SMfindByDate(Connection conn, String date)
 			throws SQLException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String sd = format.format(date);
-		String sql = "select * from gz_salarymessage where YEAR(month) = YEAR('"
-				+ sd + "') and MONTH(month) = MONTH('" + sd + "')";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+
+		String sql = "select * from gz_salarymessage where taxlv != '1234567890987654321' and month like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+date+"%");
+		ResultSet rs = ps.executeQuery();
 		return rs;
+	}
+
+	public static int SMRemoveByDate(Connection conn, String date)
+			throws SQLException {
+
+		String sql = "delete from gz_salarymessage where taxlv != '1234567890987654321' and month like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+date+"%");
+		return ps.executeUpdate();
 	}
 
 	public static void SMDeleteByNameAndDate(Connection conn, String name,
-			Date date) throws SQLException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String sd = format.format(date);
-		String sql = "delete from gz_salarymessage where name='" + name
-				+ "' and YEAR(month) = YEAR('" + sd
-				+ "') and MONTH(month) = MONTH('" + sd + "')";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.executeUpdate(sql);
+			String date) throws SQLException {
+
+		String sql = "delete from gz_salarymessage where taxlv != '1234567890987654321' and name= ? and month like ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, "%"+name+"%");
+		ps.setString(2, "%"+date+"%");
+		ps.executeUpdate();
 	}
 
 	public static String SMfindNameByObjuid(Connection conn, String objuid)
 			throws SQLException {
 		String name = null;
-		String sql = "select name from gz_salarymessage where objuid='"
-				+ objuid + "'";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		String sql = "select name from gz_salarymessage where objuid = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, objuid);
+		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			String st = rs.getString("name");
 			name = st;
@@ -204,12 +261,10 @@ public class MySqlOperation {
 	public static String findTonameByName(Connection conn, String name)
 			throws SQLException {
 		String toname = null;
-		String sql = "select toname from gz_sendemail where name='" + name
-				+ "'";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		String sql = "select toname from gz_sendemail where name = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, name);
+		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			String st = rs.getString("toname");
 			toname = st;
@@ -220,12 +275,10 @@ public class MySqlOperation {
 	public static String findEmailByName(Connection conn, String name)
 			throws SQLException {
 		String email = null;
-		String sql = "select emailself from gz_sendemail where name='" + name
-				+ "'";
-		Statement stm = null;
-		stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		String sql = "select emailself from gz_sendemail where name= ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, name);
+		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			String st = rs.getString("emailself");
 			email = st;
@@ -233,25 +286,34 @@ public class MySqlOperation {
 		return email;
 	}
 
-	// ============================Êä•ÈîÄÂçïÁõ∏ÂÖ≥ËØçÂÖ∏Ë°®============================
-	// ============================Êä•ÈîÄÂçïÁõ∏ÂÖ≥ËØçÂÖ∏Ë°®============================
-	public static ResultSet BXusefee(Connection conn, String baoxiaouid)
+	// ============================cw_worklog============================
+	// ============================cw_worklog============================
+	public static ResultSet wLogBySql(Connection conn, String sql)
 			throws SQLException {
-		String sql = "select * from cw_bxusefeedetail where baoxiaouid='"
-				+ baoxiaouid + "'";
-		Statement stm = conn.createStatement();
+		Statement stm = null;
+		stm = conn.createStatement();
 		stm.execute(sql);
 		ResultSet rs = stm.getResultSet();
 		return rs;
 	}
 
+	// ============================±®œ˙µ•œ‡πÿ¥ µ‰±Ì============================
+	// ============================±®œ˙µ•œ‡πÿ¥ µ‰±Ì============================
+	public static ResultSet BXusefee(Connection conn, String baoxiaouid)
+			throws SQLException {
+		String sql = "select * from cw_bxusefeedetail where baoxiaouid = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, baoxiaouid);
+		ResultSet rs = ps.executeQuery();
+		return rs;
+	}
+
 	public static ResultSet cityBasic(Connection conn, String citycode)
 			throws SQLException {
-		String sql = "select * from zd_cityfixstand where citycode='"
-				+ citycode + "'";
-		Statement stm = conn.createStatement();
-		stm.execute(sql);
-		ResultSet rs = stm.getResultSet();
+		String sql = "select * from zd_cityfixstand where citycode = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, citycode);
+		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
 
@@ -313,9 +375,38 @@ public class MySqlOperation {
 		return name;
 	}
 
-	// ++++++++++++++++++++++++++++ÈúÄÁî®Âà∞ÁöÑÂáΩÊï∞++++++++++++++++++++++++++++
-	// ++++++++++++++++++++++++++++ÈúÄÁî®Âà∞ÁöÑÂáΩÊï∞++++++++++++++++++++++++++++
-	// ‰∏ªÈîÆËÆæÂÆöÔºå ÂçÅÂÖ≠ËøõÂà∂
+	// ============================cw_holidays============================
+	// ============================cw_holidays============================
+	public static void insertVacation(Connection conn, String type,
+			String date, long objuid) throws SQLException {
+		// 5+4+3+4=16∏ˆ≤Œ ˝
+		String sql = "insert into cw_holidays(objuid,daytype,holiday) values(?,?,?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setString(1, HexToStr(objuid).trim());
+		ps.setString(2, type);
+		ps.setString(3, date);
+		ps.executeUpdate();
+	}
+
+	public static ResultSet findVacationByDate(Connection conn,String date) throws SQLException {
+		String sql = "select * from cw_holidays where holiday = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, date);
+		ResultSet rs = ps.executeQuery();
+		return rs;
+	}
+	
+	public static int deleteVacationByDate(Connection conn,String date) throws SQLException {
+		String sql = "delete from cw_holidays where holiday = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, date);
+		return ps.executeUpdate();
+	}
+
+	// ++++++++++++++++++++++++++++–Ë”√µΩµƒ∫Ø ˝++++++++++++++++++++++++++++
+	// ++++++++++++++++++++++++++++–Ë”√µΩµƒ∫Ø ˝++++++++++++++++++++++++++++
+	// ÷˜º¸…Ë∂®£¨  Æ¡˘Ω¯÷∆
 	private static String HexToStr(long i) {
 		String s = "0123456789abcdef";
 		i = i + 16 * 3732000000000L;
@@ -339,20 +430,30 @@ public class MySqlOperation {
 	}
 
 	public static void main(String[] args) {
-		Connection conn = MySqlOperation.getConnection();
-		// Date date = Date.valueOf("2009-01-28");
+		// Connection conn = MySqlOperation.getConnection();
+		// Date date = Date.valueOf("2008-02-01");
 		// try {
-		// ResultSet rs = MySqlOperation.SMfindByNameAndDate(conn, "ÂÆãÂíåÂπ≥	"
+		// ResultSet rs = MySqlOperation.SMfindByNameAndDate(conn, "ÀŒ∫Õ∆Ω	"
 		// .trim(), date);
 		// while (rs.next()) {
 		// System.out.println("delete");
-		// MySqlOperation.SMDeleteByNameAndDate(conn, " ÂÆãÂíåÂπ≥".trim(), date);
+		// MySqlOperation.SMDeleteByNameAndDate(conn, " ÀŒ∫Õ∆Ω".trim(), date);
 		// }
 		// } catch (SQLException e) {
 		// // TODO Auto-generated catch block
 		// e.printStackTrace();
 		// }
-		
+		// try {
+		// int i = MySqlOperation.SMRemoveByDate(conn, date);
+		// System.out.println(i);
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+
+		long time = new java.util.Date().getTime();
+		String hx = MySqlOperation.HexToStr(time);
+		System.out.println(hx);
 	}
 
 }

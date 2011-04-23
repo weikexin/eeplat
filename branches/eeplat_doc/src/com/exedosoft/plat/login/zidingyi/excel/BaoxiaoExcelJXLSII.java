@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
 
@@ -24,12 +26,12 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 
 	public String excute() {
 
-		// 模板和生成文件路径
+		// ģ�������ļ�·��
 		String templateName = null;
 		String templatePath = null;
 		String template = null;
 		String createExlPath = null;
-		// 相关类
+		// �����
 		BaoxiaoMessagesII bxmsii = null;
 		List<BXMessages> bxlist = new ArrayList<BXMessages>();
 		BXMessages bxms = null;
@@ -39,7 +41,7 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 		List<BXTranfee> lptranf = new ArrayList<BXTranfee>();
 		List<BXFixfee> lpfixf = new ArrayList<BXFixfee>();
 		List<BXOtherfee> lpotherf = new ArrayList<BXOtherfee>();
-		// 从数据库取到的数据
+		// ����ݿ�ȡ�������
 		String baoxiaouid = null;
 		String baoxiaoempuid = null;
 		String baoxiaotype = null;
@@ -58,14 +60,14 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 			try {
 				users = service.invokeSelect();
 			} catch (Exception e) {
-				return "导出报销单Excel文件失败！1";
+				return "��������Excel�ļ�ʧ�ܣ�1";
 			}
 
 			if (users != null && users.size() > 0) {
 				String s = users.get(0).toString();
 				String st = s.substring(s.indexOf("{") + 1, s.lastIndexOf("}"));
 				String[] sarray = st.split(",");
-				// 对每条数据进行处理，取得有效属性；
+				// ��ÿ����ݽ��д��?ȡ����Ч���ԣ�
 				for (int i = 0; i < sarray.length; i++) {
 					String temp = sarray[i];
 					String[] nv = temp.split("=");
@@ -89,27 +91,16 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 					if (nv.length == 2 && "totalmgruid".equals(nv[0].trim()))
 						totalmgruid = nv[1];
 				}
-				System.out.println("++++++++++++ONE++++++++++++++");
-				System.out.println(baoxiaouid);
-				System.out.println(baoxiaoempuid);
-				System.out.println(baoxiaotype);
-				System.out.println(baoxiaodesc);
-				System.out.println(projectuid);
-				System.out.println(mgrdeptuid);
-				System.out.println(deptmgruid);
-				System.out.println(caiwumgruid);
-				System.out.println(totalmgruid);
-				System.out.println("+++++++++++++ONE+++++++++++++++++");
 			} else {				
-				return "生成报销单Excel文件失败！2";
+				return "��ɱ���Excel�ļ�ʧ�ܣ�2";
 			}
 			
 			/**
-			 * 对数据整理后生成Excel文件
+			 * �������������Excel�ļ�
 			 */
 			
 			Connection conn = MySqlOperation.getConnection();
-			// 取得cw_bxfixfeedetail, 整理出BXFixf, 并存入lpfixf
+			// ȡ��cw_bxfixfeedetail, �����BXFixf, ������lpfixf
 			try {
 				ResultSet rs = MySqlOperation.BXfixfee(conn, baoxiaouid);
 				while (rs.next()) {
@@ -157,8 +148,8 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 					lpfixf.add(bxff);
 				}
 
-				// 取得from cw_bxusefeedetail,
-				// 整理出BXTranf和BXOtherf, 并分别存入lptranf、lpother;
+				// ȡ��from cw_bxusefeedetail,
+				// �����BXTranf��BXOtherf, ���ֱ����lptranf��lpother;
 				ResultSet r = MySqlOperation.BXusefee(conn, baoxiaouid);
 				while (r.next()) {
 
@@ -193,13 +184,13 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 					}
 
 					if (itemtype != null
-							&& ("飞机票".equals(itemtype.trim()) || "火车票"
+							&& ("�ɻ�Ʊ".equals(itemtype.trim()) || "��Ʊ"
 									.equals(itemtype.trim()))) {
 						String trans = null;
-						if ("飞机票".equals(itemtype.trim()))
-							trans = "飞机";
-						else if ("火车票".equals(itemtype.trim()))
-							trans = "火车";
+						if ("�ɻ�Ʊ".equals(itemtype.trim()))
+							trans = "�ɻ�";
+						else if ("��Ʊ".equals(itemtype.trim()))
+							trans = "��";
 
 						bxtf = new BXTranfee();
 						bxtf.setBeginDate(begintime);
@@ -230,15 +221,15 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 				e.printStackTrace();
 			}
 
-			// 整理出BaoxiaoMessages
+			// �����BaoxiaoMessages
 			bxmsii = new BaoxiaoMessagesII();
 			try {
 				Connection conii = MySqlOperationII.getConnection();
-				String dept = MySqlOperationII.getDeptByUser(conii,
-						baoxiaoempuid);
-//				承担部门，暂时用不到
-//				String mgrdept = MySqlOperationII.getDeptByUid(conii,
-//						mgrdeptuid);
+//				String dept = MySqlOperationII.getDeptByUser(conii,
+//						baoxiaoempuid);
+//				�е����ţ���ʱ�ò���
+				String mgrdept = MySqlOperationII.getDeptByUid(conii,
+						mgrdeptuid);
 
 				String project = MySqlOperation.getProject(conn, projectuid);
 
@@ -305,27 +296,27 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 
 				Date date = baoxiaotime;
 				if(date != null) {
-					SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+					SimpleDateFormat format = new SimpleDateFormat("yyyy��MM��dd��");
 					String sd = format.format(date);
-					bxmsii.setYear(sd.substring(0, sd.indexOf("年") + 1));
-					bxmsii.setMonth(sd.substring(sd.indexOf("年") + 1, sd.indexOf("月") + 1));
-					bxmsii.setDay(sd.substring(sd.indexOf("月") + 1));
+					bxmsii.setYear(sd.substring(0, sd.indexOf("��") + 1));
+					bxmsii.setMonth(sd.substring(sd.indexOf("��") + 1, sd.indexOf("��") + 1));
+					bxmsii.setDay(sd.substring(sd.indexOf("��") + 1));
 				}
 				
-//				//LDAP sn 取得cn				
+//				//LDAP sn ȡ��cn				
 //				String baoxiaoemp =  LDAPPeopleUtil.getLDAPCNBySN(baoxiaoempuid);
 //				String totalmgr = LDAPPeopleUtil.getLDAPCNBySN(totalmgruid);
 //				String deptmgr = LDAPPeopleUtil.getLDAPCNBySN(deptmgruid);
 //				String caiwumgr = LDAPPeopleUtil.getLDAPCNBySN(caiwumgruid);
 				
-				//do_org_user_link user_uid 取得user_cn				
+				//do_org_user_link user_uid ȡ��user_cn				
 				String baoxiaoemp =  MySqlOperationII.getUserCNByUserUid(conii, baoxiaoempuid);
 				String totalmgr = MySqlOperationII.getUserCNByUserUid(conii, totalmgruid);
 				String deptmgr = MySqlOperationII.getUserCNByUserUid(conii, deptmgruid);
 				String caiwumgr = MySqlOperationII.getUserCNByUserUid(conii, caiwumgruid);
 				
 				
-				bxmsii.setDept(dept);
+				bxmsii.setDept(mgrdept);
 				bxmsii.setBx_people(baoxiaoemp);
 				bxmsii.setAction(project);
 				
@@ -357,9 +348,9 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 					for(; j < lpfixf.size();) {
 						bxff = lpfixf.get(j);
 						bxms.setFdays(bxff.getDays());
-						//出差补贴类别， 可能更改
+						//�������� ���ܸ��
 						if(bxff.getFixBasic() > 0) {
-							bxms.setFtype(bxff.getFixBasic()+"/天");
+							bxms.setFtype(bxff.getFixBasic()+"/��");
 						}
 						bxms.setFmoney(bxff.getFee());
 						j++;
@@ -379,7 +370,7 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 						break;
 				}
 				bxmsii.setBxmsg(bxlist);
-				//关闭数据库连接
+				//�ر���ݿ�����
 				conii.close();
 				
 			} catch (SQLException e) {
@@ -387,18 +378,18 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 				e.printStackTrace();
 			}
 
-			// 生成报销单Excel文件
+			// ��ɱ���Excel�ļ�
 			try {
-				// /设置生成文件路径
+				// /��������ļ�·��
 				templatePath = DOGlobals.getInstance().getValue("uploadfiletemp");
 				templateName = "zifengbxdan_template.xls";
 			    template = templatePath + templateName;
-				createExlPath = "D:\\upload\\" + baoxiaoempuid + "_zfbxdan.xls";
+				createExlPath = templatePath + baoxiaoempuid + "_zfbxdan.xls";
 				
 				
 				createExcel(template, createExlPath, bxmsii);
 			} catch (Exception e) {
-				return "导出报销单Excel文件失败！3";
+				return "��������Excel�ļ�ʧ�ܣ�3";
 			}
 
 			if (conn != null) {
@@ -409,21 +400,6 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("++++++++++++TWO++++++++++++++");
-			System.out.println(baoxiaouid);
-			System.out.println(baoxiaoempuid);
-			System.out.println(baoxiaotype);
-			System.out.println(baoxiaodesc);
-			System.out.println(projectuid);
-			System.out.println(mgrdeptuid);
-			System.out.println(deptmgruid);
-			System.out.println(caiwumgruid);
-			System.out.println(totalmgruid);
-			System.out.println("-----------");
-			System.out.println(template);
-			System.out.println(createExlPath);
-			System.out.println("+++++++++++++TWO+++++++++++++++++");
-			
 			BOInstance bi = new BOInstance();
 			bi.putValue("exlfile", createExlPath);
 			this.setInstance(bi);
@@ -431,7 +407,7 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 		
 	}
 
-	// 由城市编号取得城市名
+	// �ɳ��б��ȡ�ó�����
 	private String getCityname(Connection conn, String citycode)
 			throws SQLException {
 		ResultSet rscity = MySqlOperation.cityBasic(conn, citycode);
@@ -442,9 +418,9 @@ public class BaoxiaoExcelJXLSII extends DOAbstractAction {
 		return address;
 	}
 
-	// 生成报销单Excel
+	// ��ɱ���Excel
 	private void createExcel(String templateFileName, String targetFileName,
-			BaoxiaoMessagesII bms) throws Exception {
+			BaoxiaoMessagesII bms) throws ParsePropertyException, IOException, InvalidFormatException {
 		List<BaoxiaoMessagesII> departments = new ArrayList<BaoxiaoMessagesII>();
 		departments.add(bms);
 		Map<String, List<BaoxiaoMessagesII>> beans = new HashMap<String, List<BaoxiaoMessagesII>>();
