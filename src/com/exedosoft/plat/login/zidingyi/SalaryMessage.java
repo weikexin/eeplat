@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class SalaryMessage {
 	private String objuid;
-	private Date month; 
+	private String month; 
 	private String name; 
 	private double basesalary;
 	private double buckshee;
@@ -24,10 +24,10 @@ public class SalaryMessage {
 	private double taxafter;
 	private String remark;
 	
-	public Date getMonth() {
+	public String getMonth() {
 		return month;
 	}
-	public void setMonth(Date month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 	public String getName() {

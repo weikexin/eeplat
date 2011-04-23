@@ -1,24 +1,13 @@
 package com.exedosoft.plat.login.zidingyi;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import com.exedosoft.plat.action.DOAbstractAction;
-import com.exedosoft.plat.login.zidingyi.excel.LDAPPeopleUtil;
 import com.exedosoft.plat.login.zidingyi.excel.MySqlOperation;
 
 public class SaveUpdateGZmessage extends DOAbstractAction {
@@ -36,16 +25,16 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 			return this.DEFAULT_FORWARD;
 		}
 
-		// å†éæ‰€æœ‰çš„æ•°æ®ï¼›
+		// Àú±éËùÓĞµÄÊı¾İ£»
 		if (users != null && users.size() > 0) {
 			String s = users.get(0).toString();
 			String st = s.substring(s.indexOf("{") + 1, s.lastIndexOf("}"));
 			String[] sarray = st.split(",");
-			System.out.println("++++++++++++++++++++++++++++++++++++++");
-			System.out.println(s + "\n" + st + "\n" + sarray);
-			System.out.println("++++++++++++++++++++++++++++++++++++++");
+//			System.out.println("++++++++++++++++++++++++++++++++++++++");
+//			System.out.println(s + "\n" + st + "\n" + sarray);
+//			System.out.println("++++++++++++++++++++++++++++++++++++++");
 			SalaryMessage sm = new SalaryMessage();
-			// å¯¹æ¯æ¡æ•°æ®è¿›è¡Œå¤„ç†ï¼Œå–å¾—æœ‰æ•ˆå±æ€§ï¼›
+			// ¶ÔÃ¿ÌõÊı¾İ½øĞĞ´¦Àí£¬È¡µÃÓĞĞ§ÊôĞÔ£»
 			for (int i = 0; i < sarray.length; i++) {
 				String temp = sarray[i];
 				String[] nv = temp.split("=");
@@ -53,11 +42,8 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				if (nv.length == 2 && "objuid".equals(nv[0].trim()))
 					sm.setObjuid(nv[1]);
 
-				if (nv.length == 2 && "month".equals(nv[0].trim())) {
-					Date month = Date.valueOf(nv[1]);
-					System.out.println(month);
-					sm.setMonth(month);
-				}
+				if (nv.length == 2 && "month".equals(nv[0].trim())) 
+					sm.setMonth(nv[1]);
 				if (nv.length == 2 && "name".equals(nv[0].trim()))
 					sm.setName(nv[1]);
 				if (nv.length == 2 && "basesalary".equals(nv[0].trim()))
@@ -80,15 +66,15 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 					sm.setRemark(nv[1]);
 			}
 			
-			System.out.println("++++++++++++++++++++++++++++++++++++++");
-			System.out.println(sm.getObjuid() + "=objuid\n" + sm.getMonth() + "=month\n"
-					+ sm.getName() + "=name\n" + sm.getBasesalary() + "=base\n"
-					+ sm.getBuckshee() + "=buck\n" + sm.getRentdeduct() + "=rent\n"
-					+ sm.getLeavededuct() + "=leave\n" + sm.getRemark() + "remark\n"
-					);
-			System.out.println("++++++++++++++++++++++++++++++++++++++");
+//			System.out.println("++++++++++++++++++++++++++++++++++++++");
+//			System.out.println(sm.getObjuid() + "=objuid\n" + sm.getMonth() + "=month\n"
+//					+ sm.getName() + "=name\n" + sm.getBasesalary() + "=base\n"
+//					+ sm.getBuckshee() + "=buck\n" + sm.getRentdeduct() + "=rent\n"
+//					+ sm.getLeavededuct() + "=leave\n" + sm.getRemark() + "remark\n"
+//					);
+//			System.out.println("++++++++++++++++++++++++++++++++++++++");
 
-			// åº”å‘å·¥èµ„
+			// Ó¦·¢¹¤×Ê
 			double base = sm.getBasesalary();
 			double buck = sm.getBuckshee();
 			double rent = sm.getRentdeduct();
@@ -99,27 +85,27 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 			else
 				sm.setFactsalary(0D);
 
-			// ç¤¾ä¿å°è®¡
+			// Éç±£Ğ¡¼Æ
 			double yanglao = sm.getPayyanglaoinsure();
 			double shiye = sm.getPayshiyeinsure();
 			double yiliao = sm.getPayyilaioinsure();
 			double shebao = yanglao + shiye + yiliao;
 			sm.setPayshebaofee(shebao);
 
-			// ç¨å‰åº”å‘
+			// Ë°Ç°Ó¦·¢
 			double housing = sm.getPayhousingsurplus();
 			double before = fact - shebao - housing;
 			if(before > 0)
 				sm.setTaxbefore(before);
 			else 
 				sm.setTaxbefore(0D);
-			// åº”ç¨æ‰€å¾—G=F-2000
+			// Ó¦Ë°ËùµÃG=F-2000
 			double taxget = before - 2000;
 			if(taxget >= 0)
 				sm.setTaxget(taxget);
 			else
 				sm.setTaxget(0D);
-			// ç¨ç‡Hå’Œé€Ÿç®—æ‰£é™¤
+			// Ë°ÂÊHºÍËÙËã¿Û³ı
 			double taxlv = 0D;
 			double taxrm = 0D;
 			if (taxget <= 0) {
@@ -145,10 +131,10 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				sm.setTaxlv("20%");
 				sm.setTaxrm(375D);
 			} else {
-				sm.setTaxlv("å…¶ä»–æƒ…å†µ");
+				sm.setTaxlv("ÆäËûÇé¿ö");
 				sm.setTaxrm(0D);
 			}
-			// ç¨
+			// Ë°
 			double tax = 0D;
 			if (taxget <= 0)
 				sm.setTax(0D);
@@ -159,7 +145,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				if (tax >= 0)
 					sm.setTax(tax);
 			}
-			// ç¨åå®å‘
+			// Ë°ºóÊµ·¢
 			double after = before - tax;
 			if (after > 0)
 				sm.setTaxafter(after);
@@ -171,8 +157,23 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 						&& sm.getObjuid().trim().length() > 0)
 					MySqlOperation.update(conn, sm, sm.getObjuid().trim());
 				else {
-					long time = new java.util.Date().getTime();
-					MySqlOperation.insert(conn, sm, time);
+					
+					//²é¿´ÊÇ·ñÒÑ´æÔÚ
+					boolean flag = false;
+					ResultSet rs = MySqlOperation.SMfindByNameAndDate(conn, sm.getName(), sm
+							.getMonth());
+					while (rs != null && rs.next()) {
+						flag = true;
+					}
+					if(flag) {
+						this.setEchoValue(sm.getName()+"  " + sm.getMonth() + "  µÄ¹¤×ÊÌõÒÑ´æÔÚ£¬²»ÄÜÌí¼Ó¡£");
+						return this.DEFAULT_FORWARD;
+					} else {
+						long time = new java.util.Date().getTime();
+						MySqlOperation.insert(conn, sm, time);
+					}
+					
+					
 				}
 
 			} catch (SQLException e) {
@@ -192,7 +193,7 @@ public class SaveUpdateGZmessage extends DOAbstractAction {
 				&& value.matches("^\\d+.\\d+|\\d+$")) {
 			number = Double.parseDouble(value);
 		}
-		System.out.println(number);
+//		System.out.println(number);
 		return number;
 	}
 

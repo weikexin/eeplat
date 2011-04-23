@@ -1,13 +1,12 @@
 package com.exedosoft.plat.login.zidingyi.excel;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import com.exedosoft.plat.bo.DODataSource;
 
@@ -22,7 +21,7 @@ public class MySqlOperationII {
 		try {
 //			Class.forName(driverName);
 //			conn = DriverManager.getConnection(url, user, password);
-			DODataSource dss = DODataSource.getDataSourceByL10n("ç´«æ«æŠ¥é”€æ•°æ®åº“I");
+			DODataSource dss = DODataSource.getDataSourceByL10n("×Ï·ã±¨ÏúÊı¾İ¿âI");
 			 conn = dss.getConnection();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -65,11 +64,11 @@ public class MySqlOperationII {
 	// ============================do_org_user_link============================
 	// ============================do_org_user_link============================
 	public static void insertDeptLink(Connection conn, String objuid,
-			String deptuid, String useruid, String userName)
+			String deptuid, String useruid)
 			throws SQLException {
 		String sql = "insert into do_org_user_link"
-				+ "(objuid, dept_uid, user_uid, user_cn) " + // 4
-				"values(?,?,?,?)";
+				+ "(objuid, dept_uid, user_uid) " + // 4
+				"values(?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		if (objuid != null)
 			objuid = objuid.trim();
@@ -77,12 +76,9 @@ public class MySqlOperationII {
 			deptuid = deptuid.trim();
 		if (useruid != null)
 			useruid = useruid.trim();
-		if (userName != null)
-			userName = userName.trim();
 		ps.setString(1, objuid);
 		ps.setString(2, deptuid);
 		ps.setString(3, useruid);
-		ps.setString(4, userName);
 		ps.executeUpdate();
 	}
 
@@ -114,13 +110,9 @@ public class MySqlOperationII {
 	}
 
 	public static void main(String[] args) {
-		Connection conn = MySqlOperationII.getConnection();
-		// try {
-		// MySqlOperation.findByName(conn, "å¾æ™¯è¾‰");
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+//		String cn = LDAPPeopleUtil.getLDAPCNBySN("yuanxx");
+//		System.out.println("cn=" + cn);
+		
 	}
 
 }
