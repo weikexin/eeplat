@@ -71,7 +71,7 @@ import com.exedosoft.plat.ui.jquery.pane.TPaneTemplate;
 public class ContentPane extends TPaneTemplate {
 
 	public ContentPane() {
-		this.templateFile = "moblie/panel/ContentPane.ftl";
+		this.templateFile = "mobile/panel/ContentPane.ftl";
 	}
 	
 
