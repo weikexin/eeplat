@@ -137,7 +137,6 @@ public class SSOController extends HttpServlet {
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
 
-			echoStr = echoStr.trim();
 			if (echoStr == null || echoStr.trim().equals("")) {
 				echoStr = "success";
 				if(isDelegate){
