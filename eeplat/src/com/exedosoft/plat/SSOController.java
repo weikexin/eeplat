@@ -17,6 +17,8 @@ import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
+import com.exedosoft.plat.ui.DOController;
+
 public class SSOController extends HttpServlet {
 
 	/**
@@ -126,8 +128,7 @@ public class SSOController extends HttpServlet {
 
 		StringBuffer outHtml = new StringBuffer();
 
-		System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
-
+	
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
@@ -181,7 +182,9 @@ public class SSOController extends HttpServlet {
 
 		////改变所用的jslib
 		if("true".equals(formBI.getValue("mobileclient"))){
-			DOGlobals.globalConfigs.put("jslib", "ext");
+			DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
+
 		}
 		out.println(outHtml);
 
@@ -226,6 +229,14 @@ public class SSOController extends HttpServlet {
 			String aValue = values[i];
 			values[i] = Escape.unescape(aValue);
 		}
+
+	}
+	
+	public static void main(String[] args){
+		
+		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
+		System.out.println("Corr Controller::" + cc.getCorrByConfig());
 
 	}
 }
