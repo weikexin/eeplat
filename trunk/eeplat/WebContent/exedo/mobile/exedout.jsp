@@ -14,7 +14,6 @@
 			SessionContext context = (SessionContext)session.getAttribute("userInfo");
 			if(null==session.getAttribute("userInfo") ||  context.getUser()==null){
 			 response.sendRedirect(request.getContextPath() + "/exedo/webv3/logoff.jsp");
-			
 			}
 	
 %>
