@@ -78,16 +78,13 @@ public class ContextListener implements ServletContextListener {
 			String sql = "select * from do_ui_controller";
 			List list = DAOUtil.INSTANCE()
 					.select(DOController.class, sql);
-			ArrayList localArrayList = new ArrayList();
+
 			Iterator localIterator = list.iterator();
 			while (localIterator.hasNext()) {
 				BaseObject localBaseObject = (BaseObject) localIterator.next();
-				localArrayList.add(localBaseObject.getObjUid());
 				CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
 						localBaseObject);
 			}
-			CacheFactory.getCacheRelation().getData()
-					.put("com.exedosoft.plat.ui.DOController", localArrayList);
 
 		}
 

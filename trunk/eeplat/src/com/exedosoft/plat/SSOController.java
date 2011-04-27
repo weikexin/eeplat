@@ -14,13 +14,9 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.LoginDelegateList;
+import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
-
-import com.exedosoft.plat.dao.ObjectTableMapper;
-
-import com.exedosoft.plat.ui.DOController;
-import com.exedosoft.plat.ui.DOPaneModel;
 
 public class SSOController extends HttpServlet {
 
@@ -184,7 +180,7 @@ public class SSOController extends HttpServlet {
 
 		////改变所用的jslib
 		if("true".equals(formBI.getValue("mobileclient"))){
-			DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+			DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
 			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
 		out.println(outHtml);
