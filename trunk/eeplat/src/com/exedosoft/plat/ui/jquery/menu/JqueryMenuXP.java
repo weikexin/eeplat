@@ -1,6 +1,10 @@
 package com.exedosoft.plat.ui.jquery.menu;
 
 import java.util.Iterator;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOMenuModel;
 import com.exedosoft.plat.bo.BOInstance;
@@ -10,6 +14,9 @@ import com.exedosoft.plat.util.DOGlobals;
  *菜单风格的控制器
  */
 public class JqueryMenuXP extends DOBaseMenu {
+	
+	private static Log log = LogFactory.getLog(JqueryMenuXP.class);
+
 
 	public String getHtmlCode(DOIModel aModel) {
 
@@ -18,7 +25,12 @@ public class JqueryMenuXP extends DOBaseMenu {
 
 		for (Iterator it = rootMenu.retrieveChildren().iterator(); it.hasNext();) {
 			DOMenuModel aMenu = (DOMenuModel) it.next();
+			
+			log.info("===========================" +  DOGlobals.getValue("jslib"));
+			log.info("==========================" + aMenu.getController());
+			log.info("==========================" + aMenu.getController().getCorrByConfig());
 
+			
 			buffer.append("<DIV class=mTitle id=").append(aMenu.getObjUid())
 					.append(" name=").append(aMenu.getL10n()).append("><a>");
 			buffer.append(aMenu.getL10n()).append("</a></div>");

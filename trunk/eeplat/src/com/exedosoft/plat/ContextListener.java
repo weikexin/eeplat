@@ -2,6 +2,7 @@ package com.exedosoft.plat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
+import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.util.DOGlobals;
 
 public class ContextListener implements ServletContextListener {
@@ -71,8 +74,20 @@ public class ContextListener implements ServletContextListener {
 
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 			CacheFactory.getCacheData().fromSerialObject();
-
-			// //应该可以从里从两个文件中加载
+			// /控制器需要重新注册
+			String sql = "select * from do_ui_controller";
+			List list = DAOUtil.INSTANCE()
+					.select(DOController.class, sql);
+			ArrayList localArrayList = new ArrayList();
+			Iterator localIterator = list.iterator();
+			while (localIterator.hasNext()) {
+				BaseObject localBaseObject = (BaseObject) localIterator.next();
+				localArrayList.add(localBaseObject.getObjUid());
+				CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
+						localBaseObject);
+			}
+			CacheFactory.getCacheRelation().getData()
+					.put("com.exedosoft.plat.ui.DOController", localArrayList);
 
 		}
 
@@ -96,8 +111,8 @@ public class ContextListener implements ServletContextListener {
 
 				if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
 					log.info("...和初始化连接池相同，使用初始化连接池::" + dss.getDriverUrl());
-					DODataSource.pools.put(dss, DODataSource.pools
-							.get(defaultDs));
+					DODataSource.pools.put(dss,
+							DODataSource.pools.get(defaultDs));
 					continue;
 				}
 
@@ -115,8 +130,8 @@ public class ContextListener implements ServletContextListener {
 		// ////////////////////////////////////////////////////////////////////////
 		// 根据配置文件
 		if (dss.getOtherparas() != null && dss.getOtherparas().endsWith(".xml")) {
-			dss = DODataSource.parseConfigHelper(dss.getOtherparas(), dss
-					.getObjUid());
+			dss = DODataSource.parseConfigHelper(dss.getOtherparas(),
+					dss.getObjUid());
 		}
 		// /////////////////////////////////////////////////////
 
