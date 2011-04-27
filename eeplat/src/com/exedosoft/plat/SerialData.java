@@ -3,6 +3,8 @@
  */
 package com.exedosoft.plat;
 
+import com.exedosoft.plat.dao.ObjectTableMapper;
+
 /**
  * @author Administrator
  *

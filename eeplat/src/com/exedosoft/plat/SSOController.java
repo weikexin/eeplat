@@ -17,7 +17,10 @@ import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
+import com.exedosoft.plat.dao.ObjectTableMapper;
+
 import com.exedosoft.plat.ui.DOController;
+import com.exedosoft.plat.ui.DOPaneModel;
 
 public class SSOController extends HttpServlet {
 
@@ -151,7 +154,6 @@ public class SSOController extends HttpServlet {
 				echoStr = "验证码错误！";
 			}
 
-
 			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
 
 //		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
@@ -169,7 +171,7 @@ public class SSOController extends HttpServlet {
 
 		} else {
 			// ////为了保留结构，没有实际意义  缺省时使用dojo的包
-			outHtml.append("{returnPath:'").append("',targetPane:'");
+			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
@@ -177,14 +179,13 @@ public class SSOController extends HttpServlet {
 				echoStr = "";
 			}
 			echoStr = echoStr.trim();
-			outHtml.append("',returnValue:'").append(echoStr).append("'}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
 		}
 
 		////改变所用的jslib
 		if("true".equals(formBI.getValue("mobileclient"))){
 			DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
 			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
-
 		}
 		out.println(outHtml);
 
@@ -234,9 +235,19 @@ public class SSOController extends HttpServlet {
 	
 	public static void main(String[] args){
 		
-		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
-		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
-		System.out.println("Corr Controller::" + cc.getCorrByConfig());
+		CacheFactory.getCacheData().fromSerialObject();
+
+//		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+//		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
+//		System.out.println("Corr Controller::" + cc.getCorrByConfig());
+		
+		
+		
+		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
+		
+		System.out.println("pm::::" + pm.getController());
+
+		
 
 	}
 }
