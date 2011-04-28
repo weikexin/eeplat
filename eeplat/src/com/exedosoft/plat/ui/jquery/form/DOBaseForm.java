@@ -8,6 +8,24 @@ import com.exedosoft.plat.ui.DOIView;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.Escape;
 
+/**
+ *
+ * Form的类型有： 
+c_form_button	  
+c_form_date	    
+c_form_input	  
+c_form_list	    
+c_form_other	  
+c_form_pane	    
+c_form_service	  
+c_form_suite	  
+c_form_value
+
+针对Mobile优化，特殊的 控制器名称：
+form.DOInputRadio
+form.DOInputCheckBoxList
+
+ */
 public abstract class DOBaseForm implements DOIView {
 
 	public DOBaseForm() {

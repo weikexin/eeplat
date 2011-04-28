@@ -167,7 +167,7 @@ public class DOStaticList extends DOBaseForm {
 	 *            TODO
 	 * @return
 	 */
-	String getDefaultListValue(DOFormModel property) {
+	protected String getDefaultListValue(DOFormModel property) {
 
 		if (property.getInputConfig() != null) {
 			if (property.getInputConfig().indexOf("@") != -1) {
@@ -223,6 +223,13 @@ public class DOStaticList extends DOBaseForm {
 		}
 
 		String[] strs = values.split(";");
+		for (int i = 0; i < strs.length; i++) {
+			if (strs[i].equals(aValue)) {
+				return true;
+			}
+		}
+		
+		strs = values.split(",");
 		for (int i = 0; i < strs.length; i++) {
 			if (strs[i].equals(aValue)) {
 				return true;

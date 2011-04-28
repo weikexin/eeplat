@@ -1,33 +1,24 @@
-<div width="100%" height="100%">
 <form  method='post' id='a${model.objUid}' name ='a${model.objUid}'>
-
-	<table id='g${model.objUid}' class='tablesorter' border="0" cellpadding="1" cellspacing="1" >
-		<thead>
-		<#if model.caption?exists>
-			<#assign icon = (model.icon)?default("MyRightArrow.jpg")/>
-			<tr> 
-				<td class='title'> <img src='${contextPath}images/${icon}'/> <b> ${model.caption} </b> </td>
-			</tr>
-		</#if> 
-		</thead>	
-		<tbody>
-			<tr><td>
 			<#list model.normalGridFormLinks as item> 
-				 <#if  item.newLine>
-			</tr></td>
-			<tr><td>
-				 </#if>
-		         ${item.l10n}    ${item.htmlValue} &nbsp; 
+   			<div data-role="fieldcontain">
+   			   <#if model.controller.category.objUid == 'c_form_list' >
+   			      <label for="${item.fullColID}" class="select">${item.l10n} :</label>
+   			      ${item.htmlValue} 
+   			   <#elseif  (model.controller.l10n == 'form.DOInputRadio') || (model.controller.l10n == 'form.DOInputCheckBoxList') >
+  						${item.htmlValue} 	   
+     			 <#else>
+	           <label for="${item.fullColID}">${item.l10n} :</label>
+             ${item.htmlValue} 
+	         </#if>  
+        </div>   
 			</#list>
-			<#list model.allOutGridFormLinks as item> 
-				 <#if  item.newLine>
-			</tr></td>
-			<tr><td>
-				 </#if>
-		          ${item.htmlValue} &nbsp; 
-			</#list>
-			</td></tr>
-		</tbody>
-	</table>
+			
+       <fieldset class="ui-grid-a">
+					<#list model.allOutGridFormLinks as item> 
+										<div class="ui-block-b">
+				               ${item.htmlValue} 
+				            </div>   
+		 			</#list>
+        </fieldset>
+
 </form>	
-</div>	

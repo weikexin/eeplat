@@ -26,11 +26,6 @@ public class JqueryMenuXP extends DOBaseMenu {
 		for (Iterator it = rootMenu.retrieveChildren().iterator(); it.hasNext();) {
 			DOMenuModel aMenu = (DOMenuModel) it.next();
 			
-			log.info("===========================" +  DOGlobals.getValue("jslib"));
-			log.info("==========================" + aMenu.getController());
-			log.info("==========================" + aMenu.getController().getCorrByConfig());
-
-			
 			buffer.append("<DIV class=mTitle id=").append(aMenu.getObjUid())
 					.append(" name=").append(aMenu.getL10n()).append("><a>");
 			buffer.append(aMenu.getL10n()).append("</a></div>");
