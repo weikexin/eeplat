@@ -1,44 +1,18 @@
 <#--定义dataBinding-->
 <#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
 
-<div width="100%" height="100%">
-<#if model.caption?exists>
-	 <div style="margin:0px 0px 0px 5px;border-top:1px solid #8db2e3;border-left:1px solid #8db2e3;border-right:1px solid #8db2e3;align:left;text-align:left;vertical-align: middle;background-color:#e6EEEE;width:98%;height:22px" >
-			
-							<#assign icon = (model.icon)?default("MyRightArrow.jpg")/>
-		 					<img src='${contextPath}images/${icon}'/> <b> ${model.caption} </b> 
-		
-	 </div>
-</#if> 		
+<div data-role="controlgroup" data-type="horizontal">
+
 <#if (model.topOutGridFormLinks?size > 0) > 
-	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
-		<DIV align="left"><!--布局用-->
-			<TABLE>
-				<TBODY>
-					<TR>
-						<TD style="WIDTH: 2px"></TD><!--左缩进-->
-						<#list model.topOutGridFormLinks as item>
-							<TD>
-								<TABLE  cellSpacing='0' cellPadding='0'>
-									<TBODY>
-										<TR>
-											<TD class="b_left"></TD>
-											<TD class="b_center">${item.htmlValue}</TD>
-											<TD class="b_right"></TD>
-										</TR>
-									</TBODY>
-								</TABLE>
-							</TD>
-							<#if ((item_index+1)!=(model.topOutGridFormLinks?size))>
-							<TD><SPAN class="spacer"></SPAN></TD><!--分隔条-->
-							</#if>
-						</#list>
-					</TR>
-				</TBODY>
-			</TABLE>
-		</DIV>
-	</DIV>
-</#if>
+
+
+		<#list model.topOutGridFormLinks as item> 
+	               ${item.htmlValue} 
+		</#list>
+ </fieldset>
+</#if> 
+</div>
+
 
 <form  method='post' id='a${model.objUid}' name ='a${model.objUid}'>
 
@@ -107,10 +81,6 @@
 		   <#assign cols =  (model.normalGridFormLinks?size+2)/>
 		    <td  colspan="${cols}" >
 		   &nbsp;&nbsp;
-		    <img src='${contextPath}images/grid/first.png'  class='firstPage' title="第一页"/>&nbsp;&nbsp;
-		    <img src='${contextPath}images/grid/prev.png'  class='prevPage'  title="上一页"/>&nbsp;&nbsp;
-		    <img src='${contextPath}images/grid/next.png'  class='nextPage' title="下一页"/>&nbsp;&nbsp;
-		    <img src='${contextPath}images/grid/last.png'  class='lastPage' title="最后一页"/>&nbsp;&nbsp;
 		    	第<span class='pageNo'>${pageNo}</span>页&nbsp;
 		    	 每页<span class='rowSize'>${rowSize}</span>条&nbsp;
 		    	 共<span class='pageSize'>${pageSize}</span>页 &nbsp; 
@@ -122,6 +92,14 @@
 	   		
 		
 	</table>
+	
+	<div data-role="controlgroup" data-type="horizontal">
+	    <a   class='firstPage' data-role="button" data-theme="a" data-icon="arrow-l" data-inline="true">第一页</a>
+		  <a   class='prevPage' data-role="button" data-theme="a" data-icon="arrow-l" data-inline="true">上页</a>
+		  <a   class='nextPage' data-role="button" data-theme="a" data-icon="arrow-r" data-inline="true">下页</a>
+		  <a   class='lastPage' data-role="button" data-theme="a" data-icon="arrow-r" data-inline="true">最后 </a>
+	</div>	  
+		  
 	
 	<#if (model.bottomOutGridFormLinks?size > 0) > 
 	    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="text-align:center" >
@@ -135,8 +113,6 @@
 		
 </form>	
 
-
-</div>	
 
 <script language="javascript">
 

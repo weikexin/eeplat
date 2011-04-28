@@ -30,9 +30,11 @@ public class JqueryMenu extends DOBaseMenu {
 							.hasNext();) {
 						DOMenuModel aChildMenu = (DOMenuModel) itChild.next();
 						// 自定义属性paneid
-						if (aChildMenu.getIntEnvType() != DOMenuModel.MENU_ENV_PC) {
+						if (aChildMenu.getIntEnvType() != DOMenuModel.MENU_ENV_PC && aChildMenu.getLinkPane()!=null) {
 							buffer.append(
-									"<li><a href='docs/about/accessibility.html'>")
+									"<li><a href='")
+									.append(aChildMenu.getLinkPane().getCorrHref())
+									.append("'>")
 									.append(aChildMenu.getL10n())
 									.append("</a></li>");
 						}

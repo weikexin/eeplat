@@ -1,6 +1,6 @@
 <#include "TFormBase.ftl">
 <#--参数通过formName传递-->
-<button type="button"  style="${model.style?if_exists}"  id='${model.objUid}'  <#compress><@JudgeStyle model/></#compress> >${model.l10n}</button>
+<button type="button"  style="${model.style?if_exists}"  data-theme='a'  id='${model.objUid}'  <#compress><@JudgeStyle model/></#compress> >${model.l10n}</button>
 <script>
 
  function fnCB${model.objUid}(){
