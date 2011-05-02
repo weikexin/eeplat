@@ -56,31 +56,38 @@ function bindMenuHoverCss(){
 
 //点击菜单
 function bindClickMenu() {
- $(".mMenu").bind("click",function(event){
- 		//设置center总区域有滚动条
-		//$(".mRight:eq(0)").css("overflow-y","auto");
-		//$(".mRight:eq(0)").css("overflow-x","auto");
-		
-		$(".mMenu").removeClass("mMenu-hover2");
-		$(".mMenu").removeClass("mMenu-hover");
-		$(this).addClass("mMenu-hover2");
-		
-		
-		//菜单id和tab  id有关联的
-		var menuId = $(this).attr("id");
-		//菜单title 等于 tab的 title
-		var menuName = $(this).attr("name");
-		//属性选择器   选择table 属性 tabId  值为 menuId的
-		var paneId = $(this).attr("paneid");
-		if(paneId==null || paneId.indexOf('mvccontroller')!=-1){
-			createTab(menuId,menuName,paneId,'isMenu');
-		}else{
-			window.open(paneId);
-		}	
-		event.stopPropagation();
+	 $(".mMenu").bind("click",function(event){
+	 		//设置center总区域有滚动条
+			//$(".mRight:eq(0)").css("overflow-y","auto");
+			//$(".mRight:eq(0)").css("overflow-x","auto");
+			$(".mMenu").removeClass("mMenu-hover2");
+			$(".mMenu").removeClass("mMenu-hover");
+			$(this).addClass("mMenu-hover2");
+			
+			
+			//菜单id和tab  id有关联的
+			var menuId = $(this).attr("id");
+			//菜单title 等于 tab的 title
+			var menuName = $(this).attr("name");
+			//属性选择器   选择table 属性 tabId  值为 menuId的
+			var paneId = $(this).attr("paneid");
+			var clickJs =  $(this).attr("clickjs");
 
-  })
-};
+			if(clickJs==null){
+				if( paneId==null || paneId.indexOf('mvccontroller')!=-1){
+					createTab(menuId,menuName,paneId,'isMenu');
+				}else{
+					window.open(paneId);
+				}
+			}else{
+
+				eval(clickJs);
+			}
+			event.stopPropagation();
+
+	  })
+	};
+
 
 
 
