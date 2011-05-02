@@ -1,22 +1,15 @@
 package com.exedosoft.plat.ui.jquery.menu;
 
 import java.util.Iterator;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOMenuModel;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.util.DOGlobals;
 
 /**
- *鑿滃崟椋庢牸鐨勬帶鍒跺櫒
+ *菜单风格的控制器
  */
 public class JqueryMenuXP extends DOBaseMenu {
-	
-	private static Log log = LogFactory.getLog(JqueryMenuXP.class);
-
 
 	public String getHtmlCode(DOIModel aModel) {
 
@@ -25,7 +18,7 @@ public class JqueryMenuXP extends DOBaseMenu {
 
 		for (Iterator it = rootMenu.retrieveChildren().iterator(); it.hasNext();) {
 			DOMenuModel aMenu = (DOMenuModel) it.next();
-			
+
 			buffer.append("<DIV class=mTitle id=").append(aMenu.getObjUid())
 					.append(" name=").append(aMenu.getL10n()).append("><a>");
 			buffer.append(aMenu.getL10n()).append("</a></div>");
@@ -38,7 +31,7 @@ public class JqueryMenuXP extends DOBaseMenu {
 					buffer.append("<div class=mMenu id=\""
 							+ aChildMenu.getObjUid() + "\" name =\""
 							+ aChildMenu.getL10n() + "\"");
-					// 鑷畾涔夊睘鎬aneid
+					// 自定义属性paneid
 					if (aChildMenu.getMenuType() != null
 							&& aChildMenu.getMenuType().intValue() == DOMenuModel.MENUTYPE_LINK) {
 						buffer.append(" paneid=\"")
@@ -52,6 +45,12 @@ public class JqueryMenuXP extends DOBaseMenu {
 								aChildMenu.getLinkPane().getFullCorrHref(bi,
 										null)).append("\"");
 					}
+					if(aChildMenu.getDoClickJs()!=null){
+						buffer.append(" clickjs=\"")
+						.append(aChildMenu.getDoClickJs())
+						.append("\" ");
+					}
+					
 					buffer.append(">").append("<A>").append(
 							aChildMenu.getL10n()).append("</A></div>");
 				}
