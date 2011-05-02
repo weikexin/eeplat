@@ -41,10 +41,11 @@ public class JqueryMenu extends DOBaseMenu {
 					}
 
 				}
+				buffer.append("</ul>");
+
 			}
 		}
 
-		buffer.append("</ul>");
 
 		return buffer.toString();
 	}
