@@ -13,8 +13,6 @@
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 		<title>云鹤平台应用</title>
 		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/main.css" />
-		
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
