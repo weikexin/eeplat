@@ -36,8 +36,25 @@ public class GridList extends DOViewTemplate {
 		if (gm.getService() == null) {
 			return null;
 		}
+		String linkPaneName = "#";
+		List topForms = gm.getTopOutGridFormLinks();
+		if(topForms!=null && topForms.size()>0){
+			DOFormModel aFm = (DOFormModel)topForms.get(0);
+		    if(aFm.getLinkPaneModel()!=null){
+		    	linkPaneName = aFm.getLinkPaneModel().getName();
+		    }
+		}
+		if(linkPaneName.equals("#")){
+			DOPaneModel browseModel = DOPaneModel.getPaneModelByName("pm_" + gm.getCategory().getName() + "_browse");
+			if(browseModel!=null){
+				linkPaneName = browseModel.getName();
+			}
+		}
+		
+		
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("model", gm);
+		data.put("linkPaneName", linkPaneName);
 		data.put("data", getListData(gm, data));
 		data.put("webmodule", DOGlobals.URL);
 		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
