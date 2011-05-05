@@ -92,7 +92,7 @@ function callAction(p){
 		   		try{
  		   			$.mobile.changePage({
 	 		   			url: p.pml, 
-	 		   			type: "get", 
+	 		   			type: "post", 
 	 		   			data: urlCodeDeal(paras)
 	 		   		});	
 	 		   	}catch(e){
@@ -262,7 +262,7 @@ function callService(p){
    				        && target!=null && target!=""){
 	   				     	$.mobile.changePage({
 			 		   			url: aPath, 
-			 		   			type: "get", 
+			 		   			type: "post", 
 			 		   			data: urlCodeDeal(paras)
 			 		   		});	
    			        	}
@@ -273,7 +273,7 @@ function callService(p){
 		 		   		try{
 		 		   			$.mobile.changePage({
 			 		   			url: p.pml, 
-			 		   			type: "get", 
+			 		   			type: "post", 
 			 		   			data: urlCodeDeal(paras)
 			 		   		});	
 			 		   	}catch(e){
@@ -367,11 +367,30 @@ function loadPml(p){
 	}
 
 	try{
+		//$.mobile.activePage = $.mobile.urlHistory.getActive().page;
+		if( $.mobile.activePage!= null){
+			var curId = $.mobile.activePage.attr("id");
+			if(curId == pmlName){
+				$.mobile.activePage.remove();
+				$.mobile.urlHistory.stack.pop();
+			}
+	   }
+		///如果存在则删除
+	   $("#" + pmlName).remove();
+	   if(p.noreverse){
+	    	$.mobile.changePage({
+				url: p.pml, 
+				type: "post", 
+				data: urlCodeDeal(paras)},"slide" ,false, false
+			);
+		   
+	   }else{
     	$.mobile.changePage({
 			url: p.pml, 
-			type: "get", 
-			data: urlCodeDeal(paras)
-		});	
+			type: "post", 
+			data: urlCodeDeal(paras)}
+		);
+	   }	
 	}catch(e){
 		
 	}
@@ -708,51 +727,48 @@ function checkNotTelphone(value){
 
 function pageSplit(dataKey,pmlName,formName){
 	
-    alert("1111111111:::" + $(document.body).jqmData(dataKey));
-			if($(document.body).jqmData(dataKey)==null){
-				$(document.body).jqmData(dataKey,1);
+			if($.data(document.body,dataKey)==null){
+				$.data(document.body,dataKey,1);
 			}
 
-			$("#"+dataKey+" .firstPage").bind('click',function(){
-				    if($(document.body).jqmData(dataKey)=="1"){
+			$(" .firstPage").bind('click',function(){
+				    if($.data(document.body,dataKey)=="1"){
 				    	return;
 				    }
-			  		$(document.body).jqmData(dataKey,"1");
+			  		$.data(document.body,dataKey,"1");
 				    var pmlUrl = getPmlUrl(pmlName,1,$("#"+dataKey+" .rowSize").text() );
-				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
+				    loadPml({'pml':pmlUrl,'pmlName':pmlName,'target':pmlName,'formName':formName});
 			});
 			
-			$("#"+dataKey+" .prevPage").bind('click',function(){
-				    if($(document.body).jqmData(dataKey)=="1"){
+			$(" .prevPage").bind('click',function(){
+				    if($.data(document.body,dataKey)=="1"){
 				    	return;
 				    }
-				    var curPageNo = parseInt($(document.body).jqmData(dataKey)) - 1;
-				    $(document.body).jqmData(dataKey,"" + curPageNo);
+				    var curPageNo = parseInt($.data(document.body,dataKey)) - 1;
+				    $.data(document.body,dataKey,"" + curPageNo);
 				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
-				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
+				    loadPml({'pml':pmlUrl,'pmlName':pmlName,'target':pmlName,'formName':formName});
 			});
 			
-			$("#"+dataKey+" .nextPage").bind('click',function(){
+			$(" .nextPage").bind('click',function(){
 
 				    if(parseInt($("#"+dataKey+" .pageNo").text())>=parseInt(($("#"+dataKey+" .pageSize").text())) ){
 				    	return;
 				    }
 				    var curPageNo = parseInt($("#"+dataKey+" .pageNo").text()) + 1;
-				    
-				    alert("curPageNo::" + curPageNo);
-				    
-				    $(document.body).jqmData(dataKey,"" + curPageNo);
+					    
+				    $.data(document.body,dataKey,"" + curPageNo);
 				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
-				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
+				    loadPml({'pml':pmlUrl,'pmlName':pmlName, 'formName':formName});
 			});
 			
-			$("#"+dataKey+" .lastPage").bind('click',function(){
+			$(" .lastPage").bind('click',function(){
 				    if(parseInt($("#"+dataKey+" .pageNo").text())==$("#"+dataKey+" .pageSize").text()){
 				    	return;
 				    }
-				    $(document.body).jqmData(dataKey,$("#"+dataKey+" .pageSize").text());
+				    $.data(document.body,dataKey,$("#"+dataKey+" .pageSize").text());
 				    var pmlUrl = getPmlUrl(pmlName,$("#"+dataKey+" .pageSize").text(),$("#"+dataKey+" .rowSize").text() );
-				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
+				    loadPml({'pml':pmlUrl,'pmlName':pmlName,'target':pmlName,'formName':formName});//noreverse
 			});
 
 	}

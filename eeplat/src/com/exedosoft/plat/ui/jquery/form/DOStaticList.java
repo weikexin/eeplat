@@ -6,12 +6,14 @@ import java.util.List;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 /**
  * 静态列表应该单独作为一个表
+ * 
  * @author IBM
- *
+ * 
  */
 public class DOStaticList extends DOBaseForm {
 
@@ -50,29 +52,33 @@ public class DOStaticList extends DOBaseForm {
 		// }
 
 		buffer.append("<select   style='");
-		if(property.getStyle()!=null)
-		{
-			if("100".equals(property.getStyle()))
-			{
+		if (property.getStyle() != null) {
+			if ("100".equals(property.getStyle())) {
 				buffer.append(" ");
-			}else
-			{
+			} else {
 				buffer.append(property.getStyle());
 			}
-		}else
-		{
-			buffer.append("width:100px");
+		} else {
+			try {
+				if (!"jquery_mobile".equals(DOGlobals.getInstance()
+						.getSessoinContext().getUser().getValue("jslib"))) {
+					buffer.append("width:100px");
+				}
+			} catch (Exception e) {
+				buffer.append("width:100px");
+			}
+
 		}
 		buffer.append("'");
 		if (property.getInputConstraint() != null
 				&& property.getInputConstraint().startsWith("@multi@")) {
 			buffer.append(" size='10' multiple='multiple' ");
-		} 
+		}
 
 		buffer.append(" id=\"").append(property.getFullColID()).append("\" ");
 
-		buffer.append(" name=\"").append(property.getFullColName()).append(
-				"\" ");
+		buffer.append(" name=\"").append(property.getFullColName())
+				.append("\" ");
 
 		buffer.append(" title='").append(property.getL10n().trim()).append("'");
 
@@ -81,7 +87,7 @@ public class DOStaticList extends DOBaseForm {
 		}
 
 		this.appendHtmlJs(buffer, property);
-		
+
 		buffer.append(this.appendValidateConfig(property));
 
 		buffer.append(getDecoration(property));
@@ -123,12 +129,12 @@ public class DOStaticList extends DOBaseForm {
 						String instanceName = "ins_"
 								+ StringUtil.get_Name(property.getGridModel()
 										.getService().getName());
-						buffer.append("<% String theValue =").append(
-								instanceName).append(".getValue(\"").append(
-								property.getColName()).append("\");\n");
+						buffer.append("<% String theValue =")
+								.append(instanceName).append(".getValue(\"")
+								.append(property.getColName()).append("\");\n");
 
-						buffer.append("if(DOStaticList.isChecked.(\"").append(
-								half[0]).append("\",theValue))\n{");
+						buffer.append("if(DOStaticList.isChecked.(\"")
+								.append(half[0]).append("\",theValue))\n{");
 						buffer.append(" out.print(selected=\"selected\"); }\n");
 
 						buffer.append("%>");
@@ -199,9 +205,9 @@ public class DOStaticList extends DOBaseForm {
 				return halfs[1];
 			}
 		}
-//		if (value != null) {
-//			return value;
-//		}
+		// if (value != null) {
+		// return value;
+		// }
 		return "&nbsp;";
 	}
 
@@ -228,7 +234,7 @@ public class DOStaticList extends DOBaseForm {
 				return true;
 			}
 		}
-		
+
 		strs = values.split(",");
 		for (int i = 0; i < strs.length; i++) {
 			if (strs[i].equals(aValue)) {
