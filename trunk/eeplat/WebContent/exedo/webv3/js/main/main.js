@@ -397,15 +397,19 @@ function popupDialog(id,title,href,width,height){
 	     if(height!=null && height>0){
 	    	 $('#F' + id).height(parseInt(height));
 	     }
+	     
+	     if($(".jqmDialog").length >= 1){
+	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 290 - $(".jqmDialog").height()/2 );
+			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 970 - $(".jqmDialog").width()/2);
+		 }
 		
 	     $('#F' + id).jqmShow();
-
-
-	     
-		 if($(".jqmDialog").length > 1){
-	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
-			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
-		 }
+//
+//	     
+//		 if($(".jqmDialog").length > 1){
+//	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
+//			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
+//		 }
 }
 function createFloatDiv(id,title) {
 	     var htmlStr = "<div id='F" + id  + "' class='jqmDialog'> \n"

@@ -3,13 +3,9 @@
   <ul data-role='listview' >
   <#list data as ins>
       <li>
-	       <a href="${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
-			   <#list model.normalGridFormLinks as item> 
-				 <#if (item_index > 2)>
-						  <#break/>
-				 </#if>
-				${item.l10n}:&nbsp; <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue}  </#if> <br/>
-	
+	       <a onclick="$('#${linkPaneName}').remove()" href="${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
+			   <#list showCols as item> 
+						${item.l10n}:&nbsp; <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue}  </#if> <br/>
 		    </#list>
 			  </a>   
 	  </li> 
