@@ -372,7 +372,7 @@ function loadPml(p){
 	    	$.mobile.changePage({
 				url: p.pml, 
 				type: "post", 
-				data: urlCodeDeal(paras)},"slide" ,false, false
+				data: urlCodeDeal(paras)},"",false, false
 			);
 		   
 	   }else{

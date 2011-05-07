@@ -180,7 +180,9 @@ public class SSOController extends HttpServlet {
 
 		////改变所用的jslib
 		if("true".equals(formBI.getValue("mobileclient"))){
-			DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+			if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+			}
 			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
 		out.println(outHtml);
