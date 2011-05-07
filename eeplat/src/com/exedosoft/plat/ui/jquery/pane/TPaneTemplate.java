@@ -30,7 +30,7 @@ public class TPaneTemplate extends DOViewTemplate {
 			if ("jquery_mobile".equals(DOGlobals.getInstance()
 					.getSessoinContext().getUser().getValue("jslib"))) {
 				isMobile = true;
-				data.put("app_index", pm.getCategory().getPakage()
+				data.put("app_index", "/" + DOGlobals.URL + "/" + pm.getCategory().getPakage()
 						.getApplication().getName()
 						+ "_mobile_pane.pml");
 			}
@@ -42,25 +42,37 @@ public class TPaneTemplate extends DOViewTemplate {
 		if (isMobile && children != null && children.size() > 0) {
 			DOBasePaneView.genePaneContext(sbItems,
 					(DOPaneModel) children.get(0));
-			///直接把第一个作为总面板的替代
-			data.put("model",  children.get(0));
+			// /直接把第一个作为总面板的替代
+			data.put("model", children.get(0));
+			String firstName = ((DOPaneModel) children.get(0)).getName();
 			java.util.Iterator it = children.iterator();
 			it.next();
 			if (it.hasNext()) {
 				StringBuffer footer = new StringBuffer();
+				int i = 0;
 				for (; it.hasNext();) {
 					DOPaneModel onePm = (DOPaneModel) it.next();
-					footer.append("<li><a href='")
-							.append(onePm.getName())
-							.append(".pml' data-theme='b' data-icon='forward'>")
-							.append(onePm.getTitle()).append("</a></li>\n");
+					if (!(i == 0 && firstName.endsWith("_Condition") && onePm
+							.getName().endsWith("_Result"))) {
+						footer.append("<li><a href='/")
+								.append(DOGlobals.URL)
+								.append("/")
+								.append(onePm.getName())
+								.append(".pml' data-theme='b' data-icon='forward'>")
+								.append(onePm.getTitle()).append("</a></li>\n");
+					}
+					i++;
 				}
-				data.put("footer", footer.toString());
+				if (footer.length() > 0) {
+					data.put("footer", footer.toString());
+				}
 			}
 			// ////需要追加，后面面板的链接
 			// ///第一个很容易添加，如果多个，需要找parent 然后再查找兄弟
 
 		} else {
+			String firstName = pm.getName();
+
 			DOPaneModel parent = pm.getParent();
 			if (isMobile && parent != null) {
 				StringBuffer footer = new StringBuffer();
@@ -78,15 +90,21 @@ public class TPaneTemplate extends DOViewTemplate {
 					} else if (i > cur) {
 						dataIcon = "forward";
 					}
-					if (cur != i) {
-						footer.append("<li><a href='").append(onePm.getName())
+					if (cur != i
+							&& (!(i == (cur + 1)
+									&& firstName.endsWith("_Condition") && onePm
+									.getName().endsWith("_Result")))) {
+						footer.append("<li><a href='/").append(DOGlobals.URL)
+								.append("/").append(onePm.getName())
 								.append(".pml' data-theme='b' data-icon='")
 								.append(dataIcon).append("'>")
 								.append(onePm.getTitle()).append("</a></li>\n");
 					}
 					i++;
 				}
-				data.put("footer", footer.toString());
+				if (footer.length() > 0) {
+					data.put("footer", footer.toString());
+				}
 			}
 			DOBasePaneView.genePaneContext(sbItems, pm);
 		}
