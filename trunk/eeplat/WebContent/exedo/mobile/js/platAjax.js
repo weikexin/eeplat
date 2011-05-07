@@ -367,16 +367,7 @@ function loadPml(p){
 	}
 
 	try{
-		//$.mobile.activePage = $.mobile.urlHistory.getActive().page;
-		if( $.mobile.activePage!= null){
-			var curId = $.mobile.activePage.attr("id");
-			if(curId == pmlName){
-				$.mobile.activePage.remove();
-				$.mobile.urlHistory.stack.pop();
-			}
-	   }
-		///如果存在则删除
-	   $("#" + pmlName).remove();
+
 	   if(p.noreverse){
 	    	$.mobile.changePage({
 				url: p.pml, 

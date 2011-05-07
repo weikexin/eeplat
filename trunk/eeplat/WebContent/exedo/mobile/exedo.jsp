@@ -22,8 +22,6 @@
    		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"  ></script>
    			
     </head>
-	 <title>云鹤平台应用登录/title>
-	</head>
 <body>
 
  <%=paneModelContent%>
