@@ -353,10 +353,7 @@ function validateBuzhuTj(formName) {
 	if(/^\d+$/.test(data) && data > 0) {
 		alert(wdate+"的日志已经存在，请选择其他日期。");
 		return false;
-	} else {
-		alert("判断错误：：："+data);
-		return false;
-	}
+	} 
 	if(wdate == "" || /^[+]+$/.test(wdate)) {
 		alert("工作日期不能为空。");
 		return false;
