@@ -7,7 +7,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.util.DOGlobals;
 
 /**
- *鑿滃崟椋庢牸鐨勬帶鍒跺櫒
+ *菜单风格的控制器
  */
 public class JqueryMenuXP extends DOBaseMenu {
 
@@ -31,7 +31,7 @@ public class JqueryMenuXP extends DOBaseMenu {
 					buffer.append("<div class=mMenu id=\""
 							+ aChildMenu.getObjUid() + "\" name =\""
 							+ aChildMenu.getL10n() + "\"");
-					// 鑷畾涔夊睘鎬aneid
+					// 自定义属性paneid
 					if (aChildMenu.getMenuType() != null
 							&& aChildMenu.getMenuType().intValue() == DOMenuModel.MENUTYPE_LINK) {
 						buffer.append(" paneid=\"")
@@ -45,6 +45,12 @@ public class JqueryMenuXP extends DOBaseMenu {
 								aChildMenu.getLinkPane().getFullCorrHref(bi,
 										null)).append("\"");
 					}
+					if(aChildMenu.getDoClickJs()!=null){
+						buffer.append(" clickjs=\"")
+						.append(aChildMenu.getDoClickJs())
+						.append("\" ");
+					}
+					
 					buffer.append(">").append("<A>").append(
 							aChildMenu.getL10n()).append("</A></div>");
 				}

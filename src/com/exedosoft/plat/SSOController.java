@@ -14,6 +14,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.LoginDelegateList;
+import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
@@ -123,50 +124,50 @@ public class SSOController extends HttpServlet {
 		}
 
 
-		System.out.println("ResultValue is :" + returnValue);
 
 		StringBuffer outHtml = new StringBuffer();
 
-		System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
-
+	
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
-			outHtml.append("{returnPath:'").append("',targetPane:'");
+			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
 
-			echoStr = echoStr.trim();
 			if (echoStr == null || echoStr.trim().equals("")) {
 				echoStr = "success";
 				if(isDelegate){
 					echoStr = "delegate";
 				}
 			}
+			echoStr = echoStr.trim();
+			System.out.println("echoStr is :" + echoStr);
+
 			if (formBI.getValue("mobileclient")==null && !formBI.getValue("randcode").equals(
 					request.getSession().getAttribute("rand"))) {
 				echoStr = "验证码错误！";
 			}
 
-			outHtml.append("',returnValue:'").append(echoStr).append("'}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
 
-		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
-
-			if (!"success".equals(returnValue)) {
-				returnValue = "用户名/密码错误,请重试!";
-			} else {
-
-				System.out.println(formBI.getValue("randcode"));
-				System.out.println(request.getSession().getAttribute("rand"));
-
-			}
-			outHtml.append("{success:true,msg:\'").append(returnValue).append(
-					"\'}");
+//		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
+//
+//			if (!"success".equals(returnValue)) {
+//				returnValue = "用户名/密码错误,请重试!";
+//			} else {
+//
+//				System.out.println(formBI.getValue("randcode"));
+//				System.out.println(request.getSession().getAttribute("rand"));
+//
+//			}
+//			outHtml.append("{success:true,msg:\'").append(returnValue).append(
+//					"\'}");
 
 		} else {
-			// ////为了保留结构，没有实际意义
-			outHtml.append("{returnPath:'").append("',targetPane:'");
+			// ////为了保留结构，没有实际意义  缺省时使用dojo的包
+			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
@@ -174,9 +175,16 @@ public class SSOController extends HttpServlet {
 				echoStr = "";
 			}
 			echoStr = echoStr.trim();
-			outHtml.append("',returnValue:'").append(echoStr).append("'}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
 		}
 
+		////改变所用的jslib
+		if("true".equals(formBI.getValue("mobileclient"))){
+			if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+			}
+			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
+		}
 		out.println(outHtml);
 
 	}
@@ -220,6 +228,24 @@ public class SSOController extends HttpServlet {
 			String aValue = values[i];
 			values[i] = Escape.unescape(aValue);
 		}
+
+	}
+	
+	public static void main(String[] args){
+		
+		CacheFactory.getCacheData().fromSerialObject();
+
+//		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+//		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
+//		System.out.println("Corr Controller::" + cc.getCorrByConfig());
+		
+		
+		
+		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
+		
+		System.out.println("pm::::" + pm.getController());
+
+		
 
 	}
 }

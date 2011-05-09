@@ -7,6 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>欢迎登录业务系统</title>
+
+<script language="javascript">
+
+globalURL = "/<%=DOGlobals.URL%>/";
+
+</script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
@@ -30,11 +36,7 @@
 -->
 </style>
 
-<script language="javascript">
 
-globalURL = "/<%=DOGlobals.URL%>/";
-
-</script>
 <script language="javascript">
 //开启遮罩
 function loading(){

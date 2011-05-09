@@ -6,13 +6,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-		<title>jQuery Mobile: Demos and Documentation</title>
-		<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
-		<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+        <title>云鹤平台应用登录</title>
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
+		<script language="javascript">
+		  globalURL = "/<%=DOGlobals.URL%>/";
+		</script>  
+		<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery-1.5.2.min.js" ></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.js" ></script>	
     </head>
-	 <title>云鹤平台应用登录/title>
-	</head>
 	<body>
 	    
 	<div data-role="page" data-theme="b">
@@ -23,20 +24,19 @@
 	 
 	    <div data-role="content" data-theme="c" data-inset="true">
 	 
-	        <form  method="get">
+	        <form  id="loginform" method="get">
 	             
 	            <fieldset>
 	                 
 	                <label for="username">用户名:</label>
-	                <input type="text" name="username" id="username" value=""  />
+	                <input type="text" name="name" id="name" value=""  />
 	 
 	 
 	                <label for="password">密码:</label>
 	                <input type="password" name="password" id="password" value="" />
 
 	 
-	                 <a href="index.html" data-role="button" data-inline="true" data-theme="b">确定</a>
-	 
+	                 <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b">确定</a>
 	  	 
 	            </fieldset>
 	             
@@ -46,4 +46,46 @@
 	 
 	</div>
 	</body>
+	<script language="javascript">
+	
+	  $(function(){
+	  	  $("#asub").bind("click",function(){
+	  	  		var userName = $("input:eq(0)").val();
+	  	  		var passWord = $("input:eq(1)").val();
+				if(userName==""){
+					alert("请填写用户名!");
+					return;
+				}
+				if(passWord==""){
+					alert("请填写密码!");
+					return;
+				}
+	  	  		submitForm();
+	  	  })
+	  });
+	
+	  //登录
+	  function submitForm(){
+		   var paras =  $('#loginform').serialize();
+		   paras = paras + "&contextServiceName=do_org_employee_findbynameandpwd&mobileclient=true";
+
+
+
+		   $.ajax({
+			   url: globalURL + "ssocontroller",
+			   data: paras,
+			   dataType:"json",
+			   success: function(data){
+				   var retValue = unescape(data.returnValue);
+				   if('success'==retValue){
+				        window.location= globalURL + "bx_manager_mobile.pml";
+				   }else{
+					   	alert(retValue);
+				   }
+				 }
+			 });
+		   
+
+	  }
+</script>
 	</html>

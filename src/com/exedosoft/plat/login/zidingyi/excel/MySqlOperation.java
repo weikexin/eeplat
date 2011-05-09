@@ -27,7 +27,7 @@ public class MySqlOperation {
 		try {
 			// Class.forName(driverName);
 			// conn = DriverManager.getConnection(url, user, password);
-			DODataSource dss = DODataSource.getDataSourceByL10n("紫枫报销数据库I");
+			DODataSource dss = DODataSource.getDataSourceByL10n("报销数据库I");
 			conn = dss.getConnection();
 
 		} catch (Exception e) {

@@ -15,8 +15,8 @@ public class DOInputHidden extends DOBaseForm {
 		DOFormModel property = (DOFormModel) aModel;
 		StringBuffer buffer = new StringBuffer();
 
-		buffer.append("<input name=\"").append(property.getFullColName()).append(
-				"\" type=\"hidden\"");
+		buffer.append("<input name=\"").append(property.getColName()).append(
+				"\" type=\"hidden\" id=\"").append(property.getFullColID()).append("\" ");
 		
 		String value = null;
 		if (property.getValue() != null
