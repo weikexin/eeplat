@@ -1230,7 +1230,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 				for (Iterator it = this.getProcessInstance()
 						.retrieveVarInstances().iterator(); it.hasNext();) {
 					VarInstance vi = (VarInstance) it.next();
-					vi.setVarValue(formI.getValue(vi.getVarName()));
+					if(formI.getValue(vi.getVarName())!=null){
+						vi.setVarValue(formI.getValue(vi.getVarName()));
+					}
 					DAOUtil.BUSI().store(vi);
 				}
 				dealPropetyValues(formI);

@@ -654,6 +654,9 @@ function validate(formName){
     var aFName = ay[ii];
     var formJquery = $("#"+aFName);
     var form = formJquery[0];
+    if(form==null){
+    	continue;
+    }
     for (var i = 0; i < form.elements.length;i++)
     {
         el = form.elements[i];
