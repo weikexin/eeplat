@@ -15,6 +15,7 @@ public class DatePickerBetweenTSuit extends DOBaseForm {
 		DOFormModel property = (DOFormModel) aModel;
 		
 		List list = property.getLinkForms();
+		
 		DOFormModel fm1 = (DOFormModel)list.get(0);
 		fm1.setData(property.getData());
 		DOFormModel fm2 = (DOFormModel)list.get(1);
@@ -23,7 +24,7 @@ public class DatePickerBetweenTSuit extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer();
 
 		getAInputTimeStr(fm1, buffer, "");
-		buffer.append("&nbsp;ÖÁ &nbsp;");
+		buffer.append("&nbsp;è‡³ &nbsp;");
 		getAInputTimeStr(fm2, buffer, "");
 		
 		return buffer.toString();
@@ -51,6 +52,12 @@ public class DatePickerBetweenTSuit extends DOBaseForm {
 		
 
 		DOPaneModel cPaneModel = null;
+		
+		System.out.println("================");
+		System.out.println("readonly========" + isReadOnly(fm));
+		System.out.println("readonly========" + isReadOnly(fm));
+		System.out.println("================");
+		
 		
 		if (fm.getGridModel() != null) {
 			cPaneModel = fm.getGridModel().getContainerPane();

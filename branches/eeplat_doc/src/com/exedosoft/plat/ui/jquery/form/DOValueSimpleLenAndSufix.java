@@ -7,7 +7,6 @@ import com.exedosoft.plat.ui.DOIView;
 public class DOValueSimpleLenAndSufix implements DOIView {
 	
 
-	@Override
 	public String getHtmlCode(DOIModel aModel) {
 
 		DOFormModel fm = (DOFormModel) aModel;

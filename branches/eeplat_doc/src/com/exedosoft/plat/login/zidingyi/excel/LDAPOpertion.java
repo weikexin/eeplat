@@ -20,7 +20,7 @@ public class LDAPOpertion {
 		return ret;
 	}
 	    public static void main(String args[]) {
-	    	String pwd = LDAPOpertion.passwordKey("yyfxyxx2008");
+	    	String pwd = LDAPOpertion.passwordKey("123");
 	        System.out.println(pwd);
 	    }
 }

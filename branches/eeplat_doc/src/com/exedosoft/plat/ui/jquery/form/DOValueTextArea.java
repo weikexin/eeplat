@@ -30,8 +30,8 @@ public class DOValueTextArea extends DOBaseForm {
 			}
 		}
 		
-		buffer.append("<textarea  name=\"").append(property.getFullColName()).append("\"");
-		buffer.append(" readonly=\"readonly\" ");
+		buffer.append("<textarea  name=\"").append(property.getColName()).append("\"");
+		buffer.append(" readonly=\"readonly\" id=\"").append(property.getFullColID()).append("\" ");
 //		buffer	.append("\" dojoType=\"");
 //		if (property.getExedojoType() != null
 //				&& !"".equals(property.getExedojoType().trim())) {

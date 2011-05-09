@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+table.tablesorter {
+	word-break:break-all; 
+	word-wrap:break-word;
+	font-size:15px;
+	width: 100%;
+	text-align: left;
+	border-collapse:collapse; 
+}
+table.tablesorter tr{
+	height:30px;
+}
+table.tablesorter thead tr th,table.tablesorter tr td.title{
+		background-color:#e6EEEE;
+		padding: 1px;
+		vertical-align: middle; 
+}
+table.tablesorter tfoot tr th {
+ 		background-color:#e6EEEE;
+}
+table.tablesorter thead tr .header {
+	cursor: pointer;
+	vertical-align: middle; 
+}
+table.tablesorter td {
+	word-break:break-all; 
+	word-wrap:break-word;
+	padding: 1px;
+	padding-left:1px;
+	text-align: left;
+	vertical-align: middle; 
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #8dbdd8;
+}
+table.tablesorter tbody tr.selected td{
+    background-color:yellow;
+}
+table.tablesorter tbody tr.mover td{
+	background-color: #a6c2e7;
+}
+table.tablesorter tfoot tr td {
+		background-color:#e6EEEE;
+		border: 1px solid #FFF;
+}
+table.tablesorter tbody tr.zebra td{
+	background-color: #ECF5FF;
+}
+table.tablesorter tbody tr.selected:hover td{
+	background-color:#ff9;
+}
+table.tablesorter td,table.tablesorter th{ border:#ccc solid 1px; }
