@@ -96,8 +96,6 @@ public class DOTableList extends DOAbstractAction {
 				}
 			} catch (SQLException ex1) {
 				this.setEchoValue(ex1.getMessage());
-				return NO_FORWARD;
-
 			}
 
 		}
