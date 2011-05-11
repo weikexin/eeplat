@@ -21,7 +21,7 @@ public class DOInputTextWithRandom extends DOBaseForm {
 		buffer.append(getDecoration(fm));
 
 
-		buffer.append(" title='").append(fm.getL10n().trim()).append("'");
+		buffer.append(" title='").append(fm.getFullColID().trim()).append("'");
 
 		// buffer.append(" dojoType='");
 		// if (fm.getExedojoType() != null

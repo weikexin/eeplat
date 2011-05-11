@@ -16,7 +16,7 @@ public class DOValueSimpleScriptValue implements DOIView {
 		
 		//exp=/1000000&type=int&suffix=M
 		/**
-		 * paras:exp:ï¿½ï¿½ï¿½Ê½(+?, -?, *?, /?, %?);type:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½int,float(n),double(n);suffix:ï¿½ï¿½×ºï¿½ï¿½Î»	
+		 * paras:exp:±í´ïÊ½(+?, -?, *?, /?, %?);type:½á¹ûÀàÐÍ£ºint,float(n),double(n);suffix:ºó×ºµ¥Î»	
 		 * 
 		 * */
 		String exp = null;
@@ -24,7 +24,7 @@ public class DOValueSimpleScriptValue implements DOIView {
 		String suffix = null;
 
 		String tempValue = null;
-		if(value!=null && value.matches("^\\d+$")) {
+		if(value.matches("^\\d+$")) {
 			String scriptValue = fm.getScriptValue();
 			if(scriptValue != null && !scriptValue.trim().equals("")) {
 				String[] paras = scriptValue.split("&");

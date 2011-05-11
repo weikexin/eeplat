@@ -14,7 +14,7 @@ public class DOInputTextLong extends DOBaseForm {
 		buffer.append("<input type='text' name='")
 				.append(property.getFullColName())
 				.append("' id='")
-				.append(property.getFullColName()).append("' dojoType='");
+				.append(property.getFullColID()).append("' dojoType='");
 		if (property.getExedojoType() != null
 				&& !"".equals(property.getExedojoType().trim())) {
 			buffer.append(property.getExedojoType()).append("'");

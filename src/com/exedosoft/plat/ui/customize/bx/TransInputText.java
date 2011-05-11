@@ -17,7 +17,7 @@ public class TransInputText extends DOBaseForm {
 				.append(
 						"<input  style='border:#B3B3B3 1px solid;'   onclick=\"this.style.borderColor='#406B9B'\" onmouseover=\"this.style.borderColor='#99E300'\" onmouseout=\"this.style.borderColor='#A1BCA3'\"  type='text' name='")
 				.append(fm.getColName()).append("' id='").append(
-						fm.getColName()).append("'");
+						fm.getFullColID()).append("'");
 		buffer.append(getDecoration(fm));
 
 		buffer.append(" title='").append(fm.getL10n().trim()).append("'");
