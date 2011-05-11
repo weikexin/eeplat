@@ -6,6 +6,7 @@ import java.util.List;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 /**
@@ -59,9 +60,16 @@ public class DOStaticListNoEmpty extends DOBaseForm {
 			{
 				buffer.append(property.getStyle());
 			}
-		}else
-		{
-			buffer.append("width:100px");
+		} else {
+			try {
+				if (!"jquery_mobile".equals(DOGlobals.getInstance()
+						.getSessoinContext().getUser().getValue("jslib"))) {
+					buffer.append("width:100px");
+				}
+			} catch (Exception e) {
+				buffer.append("width:100px");
+			}
+
 		}
 		buffer.append("'");
 		if (property.getInputConstraint() != null

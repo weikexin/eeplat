@@ -14,7 +14,9 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
+import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.util.DOGlobals;
 
 public class ContextListener implements ServletContextListener {
@@ -73,7 +75,19 @@ public class ContextListener implements ServletContextListener {
 			CacheFactory.getCacheData().fromSerialObject();
 
 			// //应该可以从里从两个文件中加载
+			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite'";
+			List list = DAOUtil.INSTANCE()
+					.select(DOController.class, sql);
 
+			Iterator localIterator = list.iterator();
+			System.out.println("=============================================1111111");
+
+			while (localIterator.hasNext()) {
+				BaseObject localBaseObject = (BaseObject) localIterator.next();
+				System.out.println("=============================================2222222222" + localBaseObject);
+				CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
+						localBaseObject);
+			}
 		}
 
 		DODataSource defaultDs = DODataSource.parseGlobals();

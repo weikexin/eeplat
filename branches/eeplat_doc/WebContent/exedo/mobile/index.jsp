@@ -22,23 +22,18 @@
 	        <h1>云鹤平台应用登录</h1>
 	    </div>
 	 
-	    <div data-role="content" data-theme="c" data-inset="true">
-	 
+	    <div data-role="content" data-theme="c">
 	        <form  id="loginform" method="get">
-	             
-	            <fieldset>
-	                 
-	                <label for="username">用户名:</label>
-	                <input type="text" name="name" id="name" value=""  />
-	 
-	 
-	                <label for="password">密码:</label>
-	                <input type="password" name="password" id="password" value="" />
-
-	 
-	                 <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b">确定</a>
-	  	 
-	            </fieldset>
+	           <div data-role="fieldcontain">
+		            <label for="username">用户名:</label>
+	                <input type="text" name="name" id="username" value=""  />
+               </div>
+				<div data-role="fieldcontain">
+				    <label for="password">密码:</label>
+				    <input type="password" name="password" id="password" value="" />
+				</div>	
+   
+	            <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b">确定</a>
 	             
 	        </form>
 	 
@@ -78,7 +73,7 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "bx_manager_mobile.pml";
+				        window.location= globalURL + "zfbx_manager_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }
