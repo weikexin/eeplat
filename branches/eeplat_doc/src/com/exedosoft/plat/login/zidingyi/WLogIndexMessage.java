@@ -32,6 +32,7 @@ public class WLogIndexMessage {
 		// 查询是否有出差记录。
 		String sql = "select cw_type, wdate, wseladdress from cw_worklog where wdate = (select max(l.wdate) from cw_worklog l where l.emp_uid = '"
 				+ loginEmp + "' and l.cw_type like '%cc%')";
+		System.out.println("sql::::::::::"+sql);
 		Connection conn = MySqlOperation.getConnection();
 		try {
 

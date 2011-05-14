@@ -26,7 +26,17 @@
     	<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jQuery.ui.datepicker.js" ></script>
     	<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.js" ></script>
    		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"  ></script>
- 		<script language="javascript">
+   		<!--start 自己定义的JS -->
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/gztiaojs.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/mysimpleconfirm.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxdetail.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxdan.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxzhusufei.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/empjs.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/modifycity.js"></script>
+		<!--end 自己定义的JS -->
+		
+	 		<script language="javascript">
   			jQuery(function($){
  			     $.datepicker.regional['zh-CN'] = {
  			        clearText: '清除',
