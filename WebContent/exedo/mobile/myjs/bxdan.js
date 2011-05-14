@@ -182,9 +182,7 @@ function callServiceBuzhuTj(p){
 		return;
 	}
 
-	//初始化FckEditor值 
-	updateEditorFormValue();
-	//只要设置了formName，就从表单中获取
+
 	
 	
 	var paras = "";
@@ -223,25 +221,15 @@ function callServiceBuzhuTj(p){
 			 
  		   	   if(p.pml!=null) {
  		   		   
-  		   		   if(p.target &&  $.trim(p.target)!=""){
-  		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,p.pml + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
-  		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
-  		   			  }  
-  		   			  else if(p.target=='_opener_tab'){
-  							createNewTab(pmlName,title,p.pml);
-  					  }else if(p.target=='_opener'){
-  							popupDialog(pmlName,title,p.pml,p.pmlWidth,p.pmlHeight);
-  					  }else{
-  	 		   			 $("#" + p.target).empty().load(p.pml);  
-  					  }	
- 		   		   }else if(pmlName!=""){
- 		   		     $("#" + pmlName).empty().load(p.pml);  
- 		   		   }
- 		   		   else{
-					 alert("没有定义目标面板,请检查相关配置!");
- 		   		   }	 
+ 			   		try{
+ 	 		   			$.mobile.changePage({
+ 		 		   			url: p.pml, 
+ 		 		   			type: "post", 
+ 		 		   			data: urlCodeDeal(paras)
+ 		 		   		});	
+ 		 		   	}catch(e){
+ 		 		   		
+ 		 		   	}
 			   }
  		   	   if(p.callback){
  		   		   p.callback(data);
