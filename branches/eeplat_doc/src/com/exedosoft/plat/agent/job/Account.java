@@ -32,16 +32,7 @@ public class  Account{
 	}
 	
 	public static void main(String[] args){
-//		
-//		Map account = new HashMap();
-//		account.put("accountNo","1234567890123456");
-//		account.put("accountName","紫枫科技");
-//		account.put("buildDate", new Date());
-//		account.put("accountMoney", "1000000000000");
-//		
-//		
-//		Account a = new Account("1234567890123456","紫枫科技",new Date(),1000000000000f);
-//
+
 		
 		DOPaneModel pm = DOPaneModel.getPaneModelByID("0220575e5565477a9f9f4ead5af20212");
 		System.out.println("PaneModel::" + pm.getGridModel());

@@ -8,11 +8,11 @@
 <% 
 	 //补助信息
 	String[] messages = WLogIndexMessage.getBZMessage();
-	String days = messages[0];
-	String money = messages[1];
-	String address = messages[2];
-	String xiujiaDays = messages[3];
-	String xinjiaDays = messages[4];
+	String days = messages[0]==null?"0":messages[0];
+	String money = messages[1]==null?"0":messages[1];
+	String address = messages[2]==null?"0":messages[2];
+	String xiujiaDays = messages[3]==null?"0":messages[3];
+	String xinjiaDays = messages[4]==null?"0":messages[4];
 	boolean isChuchai = false;
 	if(!"0.00".equals(days) && !"0.0".equals(days) && !"0".equals(days) ) {
 		isChuchai = true;

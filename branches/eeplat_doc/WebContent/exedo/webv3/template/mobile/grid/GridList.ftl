@@ -1,5 +1,6 @@
 <#--定义dataBinding-->
 <#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
+
   <ul data-role='listview' >
   
    <#if (data?size > 0)>
@@ -43,8 +44,9 @@
 		<a   class='lastPage' data-role="button" data-theme="a"  data-inline="true">尾</a>
     </div>
    </#if> 
+
    <fieldset class="ui-grid-a">
-					<#list model.bottomOutGridFormLinks as item> 
+					<#list bottomForms as item> 
 										<div class="ui-block-b">
 										      <#if (item.controller.name!="com.exedosoft.plat.ui.jquery.form.TClose") >
 				                      <#if '${dataBind(null,item)}' ==''> ${item.htmlValue}  </#if>

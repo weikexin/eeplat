@@ -91,10 +91,22 @@ public class GridList extends DOViewTemplate {
 			splitCols(showCols, controCols, (DOFormModel)cols.get(0));
 			splitCols(showCols, controCols, (DOFormModel)cols.get(1));
 			splitCols(showCols, controCols, (DOFormModel)cols.get(cols.size() - 1));
+			/////如果最后一列是控制列，则再显示一列
+			if(controCols.size() >0 ){
+				splitCols(showCols, controCols, (DOFormModel)cols.get(2));
+			}
 		} else {
 			for(Iterator it = cols.iterator(); it.hasNext();){
 				DOFormModel aFm = (DOFormModel)it.next();
 				splitCols(showCols, controCols, aFm);
+			}
+		}
+		
+		List bottomForms =  gm.getBottomOutGridFormLinks();
+		for(Iterator it = topForms.iterator(); it.hasNext();){
+			DOFormModel aFm = (DOFormModel)it.next();
+			if(!aFm.getController().getName().toLowerCase().contains("selected")){
+				bottomForms.add(aFm);
 			}
 		}
 
@@ -102,6 +114,7 @@ public class GridList extends DOViewTemplate {
 		data.put("model", gm);
 		data.put("showCols", showCols);
 		data.put("controCols", controCols);
+		data.put("bottomForms", bottomForms);
 		data.put("linkPaneName", linkPaneName);
 		data.put("data", getListData(gm, data));
 		data.put("webmodule", DOGlobals.URL);

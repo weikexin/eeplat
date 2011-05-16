@@ -75,7 +75,7 @@ public class ContextListener implements ServletContextListener {
 			CacheFactory.getCacheData().fromSerialObject();
 
 			// //应该可以从里从两个文件中加载
-			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite'";
+			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
 			List list = DAOUtil.INSTANCE()
 					.select(DOController.class, sql);
 
