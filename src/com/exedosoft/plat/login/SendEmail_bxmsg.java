@@ -129,7 +129,7 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			String emailText_success = "报销单编号: " + baoxiaoid + "。\n报销人: "
 					+ baoxiaoemp + "。\n报销单状态： " + baoxiaostate + "。";// 邮件内容;
 			//链接网址
-			String webaddress = "\n\n\t登录紫枫报销系统：\nhttp://127.0.0.1:8080/yiyi/zfbx_manager";
+			String webaddress = "\n\n\t登录报销系统：\nhttp://127.0.0.1:8080/yiyi/zfbx_manager";
 			
 
 			// //根据报销单状态，发送邮件；

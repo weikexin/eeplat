@@ -258,7 +258,7 @@ function callService(p){
 	   				     	$.mobile.changePage({
 			 		   			url: aPath, 
 			 		   			type: "post", 
-			 		   			data: urlCodeDeal(paras)
+			 		   			data: paras
 			 		   		});	
    			        	}
    			         }
@@ -269,7 +269,7 @@ function callService(p){
 		 		   			$.mobile.changePage({
 			 		   			url: p.pml, 
 			 		   			type: "post", 
-			 		   			data: urlCodeDeal(paras)
+			 		   			data: paras
 			 		   		});	
 			 		   	}catch(e){
 			 		   		

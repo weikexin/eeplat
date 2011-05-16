@@ -27,6 +27,7 @@ public class LoginActionLDAP extends DOAbstractAction {
 
 	private static Log log = LogFactory.getLog(LoginActionLDAP.class);
 	public String excute() {
+		
 
 		String userName = this.actionForm.getValue("name");
 		String pwd = this.actionForm.getValue("password");
