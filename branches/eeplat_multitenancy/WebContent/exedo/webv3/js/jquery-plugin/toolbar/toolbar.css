@@ -1,0 +1,219 @@
+@charset "utf-8";
+
+.toolbar {
+  background-color: #D6E3F3;
+  width: 98%;
+  align:center;
+  margin:0px 5px;
+  white-space: nowrap;
+  background: url(image/Toolbar/bg.gif) repeat-x;
+
+}
+
+.toolbar td {
+  vertical-align: middle;
+}
+
+.toolbar .spacer {
+  height: 17px;
+  font-size: 1px;
+  border-left: solid 1px #9AC6FF;
+  border-right: solid 1px white;
+  display: block;
+  margin: 0 2px;
+  padding: 0;
+}
+
+.toolbar .textfield {
+  padding: 2px 3px 1px 3px;
+  background: #FFFFFF url(image/text-bg.gif) repeat-x 0 0;
+  border: 1px solid #B5B8C8;
+  width: 140px;
+}
+
+.toolbar .b_left,.b_right,.b_center {
+  cursor: pointer;
+}
+
+.toolbar .b_left {
+  width: 3px;
+}
+
+.toolbar .b_right {
+  width: 3px;
+}
+
+.toolbar .b_center {
+	border-bottom: solid 1px #D0DEF0;
+}
+
+.toolbar .over .b_left {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 0;
+  width: 3px;
+}
+
+.toolbar .over .b_right {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 -21px;
+  width: 3px;
+}
+
+.toolbar .over .b_center {
+  background: url(image/Toolbar/tb_border.gif) repeat-x 0 -42px;
+  border-bottom: solid 1px #9EBAE1;
+}
+
+.toolbar .b_center button {
+  border: 0 none;
+  background: transparent;
+  height: 20px;
+  font: normal 12px tahoma, verdana, helvetica;
+  padding: 0 3px;
+  cursor: pointer;
+  margin: 0;
+  overflow: visible;
+  width: auto;
+  min-width: 20px;
+  -moz-outline: 0 none;
+  outline: 0 none;
+  *width:20px; /* Hack for IE6&7 */
+}
+
+.toolbar .down .b_left {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 -63px;
+}
+
+.toolbar .down .b_right {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 -84px;
+}
+
+.toolbar .down .b_center {
+  background: url(image/Toolbar/tb_border.gif) repeat-x 0 -105px;
+  border-bottom: solid 1px #9EBAE1;
+}
+
+
+.toolbar .selected .b_left {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 -63px;
+}
+
+.toolbar .selected .b_right {
+  background: url(image/Toolbar/tb_border.gif) no-repeat 0 -84px;
+}
+
+.toolbar .selected .b_center {
+  background: url(image/Toolbar/tb_border.gif) repeat-x 0 -105px;
+  border-bottom: solid 1px #9EBAE1;
+}
+
+
+.toolbar .filterTable {
+	position: absolute;
+	right:2px;
+	top:2px;
+}
+
+.toolbar .filter-spacer {
+  height: 21px;
+  font-size: 1px;
+  border-left: solid 1px #84A4CE;
+  border-right: solid 1px white;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.toolbar .border-center-active {
+	background: url(image/Toolbar/filter-down-bg.gif) repeat-x 0 0 !important;
+}
+
+.toolbar .border-left-active {
+  background: url(image/Toolbar/filter-down-border.gif) no-repeat 0 0 !important;
+}
+
+.toolbar .border-right-active {
+  background: url(image/Toolbar/filter-down-border.gif) no-repeat 0 -21px !important;
+}
+
+.az {
+	display: none;
+	height: 26px;
+	line-height: 26px;
+	width: 100%;
+	background: url(image/Toolbar/bg.gif) repeat-x;
+	background-color: #D6E3F3;
+	position: absolute;
+	left: 0;
+	z-index: 2;
+}
+
+.az table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.az table tr td {
+  text-align: center;
+  font-size: 11px;
+  padding:0;
+  margin:0;
+	color: #444444;
+	cursor: pointer;
+}
+.az table tr td.tdover {
+  font-weight: bold;
+  color: #23508E;
+}
+.az table tr td.tdovered {
+  font-weight: bold;
+  color: red;
+}
+
+.az-fix {
+	position: absolute;
+	display: none;
+	z-index: 3;
+}
+
+.az-fix td {
+	font-size: 1px;
+	height: 6px;
+}
+
+.az-fix .left {
+	width: 4px;
+	background: url(image/Toolbar/fix_border.gif) no-repeat 0 0;
+}
+
+.az-fix .right {
+	width: 4px;
+	background: url(image/Toolbar/fix_border.gif) no-repeat -5px 0;
+}
+
+.az-fix .center {
+	background: url(image/Toolbar/fix_bg.gif) repeat-x;
+}
+
+.az-fix-2 {
+	position: absolute;
+	display: none;
+	z-index: 3;
+}
+
+.az-fix-2 td {
+	font-size: 1px;
+	height: 5px;
+}
+
+.az-fix-2 .left {
+	width: 4px;
+	background: url(image/Toolbar/fix_border_2.gif) no-repeat 0 0;
+}
+
+.az-fix-2 .right {
+	width: 4px;
+	background: url(image/Toolbar/fix_border_2.gif) no-repeat -5px 0;
+}
+
+.az-fix-2 .center {
+	background: url(image/Toolbar/fix_bg_2.gif) repeat-x;
+}

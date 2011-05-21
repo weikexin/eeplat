@@ -1,0 +1,26 @@
+.headercontainer{
+    border:0;
+	float:left;
+	width:100%;
+}
+
+.headertitle{
+	
+	height:30px;
+	width:100%;
+	margin-bottom:1px;
+	padding:0px;
+	border:0px;
+	display:block;
+	float:left;
+}
+.headerbanner{
+
+	text-align:right;
+	height:20px;
+	padding-right:0px;
+	width:100%;
+	float:left;
+	font-size:18px;
+
+}

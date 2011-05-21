@@ -1,0 +1,113 @@
+html{
+  filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+body{
+	scrollbar-face-color: #9EBFE8; 
+	scrollbar-shadow-color: #FFFFFF; 
+	scrollbar-highlight-color: #FFFFFF; 
+	scrollbar-3dlight-color: #9EBFE8; 
+	scrollbar-darkshadow-color: #9EBFE8; 
+	scrollbar-track-color: #FFFFFF; 
+	scrollbar-arrow-color: #FFFFFF
+}
+body,td,p,li,select,input,div,table,ul,li,h1,h2,h3{font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"宋体"}
+/*===========初始化容器样式 start===================*/
+body,div,span,h1,h2,h3,h4,ul,li,img,p,b,textarea,input,select,form,a,table,tr,td,th
+{margin:0;padding:0;font-family:verdana,Arial, Helvetica, sans-serif,;list-style-type:none;font-size:inherit;color:inherit;z-index:inherit}
+img,table{border:0;border-collapse:collapse}
+/*===========初始化容器样式 end===================*/
+
+/*----背景图 start----*/
+/*框架1 主色系非横向平铺*/
+.bgF1,body.gPage,a.srhBtn,a.AdsrhBtn,a.gCmBtn,a.gWmBtn,a.btnCls2,a.clsFd,a.opnFd,a.addFd,a.addFd2,.gFdBdy li.on,.gTab table td.tLe,.gTab table td.tRi,a.TabCls,.btnDrop,a.addfile,a.addfile0,.sysWin h2 .fLe,.sysWin h2 .fRi,.sysWin div.bdy,.sysWin .bot .fLe,.sysWin .bot .fRi,.sysWin .icoSw,.CtrlBtn,.CtrlBtn2,.clsBar,.expBar,li.barLine,.addLine,a.EptFd,.icoClear,.icoOK,.lo1,.lo2,.btnCls4,.btnExp3,.closeCmpLst,.gMenuOpt .opt1,.cmLogo,.cmp_lst_page h2 a,.stnLst .page a.pre,.stnLst .page a.nxt
+{ background-image:url(../images/jquery/lan/f1.gif); background-repeat:no-repeat}
+
+/*框架2 主色系横向平铺*/
+.bgF2,.gTop,.tLnk,.gSipt,.gTab table td,.gTab table.on,.gTlBar,.btnFnt,.btnFntOn,.cmp_lst_page h2,.sysWin h2,.sysWin div.bot,.ibxListH,.fol_top,.fol_title_tr td,.fol_rate_all,.rmMsgtbTop,.addTitleN,.addTitleN2,.addSearchInp,.gWel_table,.addViewHover,.addCntTitle,.addCntTitle2,.addFooter,.addPage,.ibxTagBG,.ibxTagBG2,.gOpt_gTitle .Tp,.gOpt_mTitle,.gOpt_Ctrl,.mT_Idx,.gWel_TopRit,.ibxInfo,.gIframe4,.fol_title_tr td,.cmp_main,.addGroupLT,.addEnd,.sysWin2 .inner,.ibxTagD,.icoDrag,.gfTit,.cmp_lst_page h2,.vip_wel_box_tbg
+{ background-image:url(../images/jquery/lan/f2.gif);background-repeat:repeat-x}
+
+/*框架3 非主色系*/
+.bgF3,a.btnCls,.addFd,.gFdBdy li.on,.bLe,.bRi,.gTab table.on a.TabCls,.gTlBar .on,a.TabCls:hover,.gTlBar .click,a.btnCls3,.fol_rate_ready,.rmsTip,.addGroupList2,.gMenuOpt .sub, .lii-mouseover,.TabCls-hover
+{ background-image:url(../images/jquery/lan/f3.gif)}
+
+/*图标标识背景*/
+.icos,.btnS,.gTlBar.bIco,td.icoNdf,td.icoLcf,.icoEditCnt,.icoDelCnt,.btnSent,.icoPhone,b.mbm,a.mbm,.btnCntOpen,.btnCntCls,.ibxTagOpen,.ibxTagCls,.ibxAddCnt,.ibxNewWin,.rmAddCnt,.rmAddRef,.gOpt_mTitle .Ico,.ibxAddRef,.ibxRe,.ibxFw,.btnNxt,.btnPre,.icoSearch,.icoAG,.icoAU,.addDown,.addUp,.icoMailC,.icoIfo,.icoIfo
+,.gOpt_Ico{ background-image:url(../images/jquery/lan/ico.gif); background-repeat:no-repeat}
+
+/*数据加载中gif*/
+.gSLoading,.dictLoading,.C_Instr_Impo_Info .Ico
+{ background-image:url(../images/jquery/lan/loading_16x16.gif); background-repeat:no-repeat;}
+.dictLoading{background-color:#FFFFE1; border:1px solid #98b1c8}
+
+/*loading*/
+.loading,.ld_head,.ld_head b,.ld_mian{background-image:url(red/loading_body_theme.gif)}
+.ld_mian h3{background-image:url(../images/jquery/lan/loading.gif)}
+.loading_botAd{background-image:url(../images/jquery/lan/loading_bottxt.gif)}
+
+
+/*附件文件类型背景*/
+.fileIcos{ background-image:url(../images/jquery/lan/file_icon.gif); background-repeat:no-repeat}
+
+/*欢迎页面 积分等图标*/
+.Wel_rl,.Wel_rl_0,.w_jf_bg,b.jf_0,b.jf_1,b.jf_2,b.jf_3,b.jf_4,b.jf_5,b.jf_6,.if4_sev_Main,.if4Ico,.wel_Ma460x110img,.wel_Mtab_head,.wel_Mt_0,.wel_Mt_2,.wel_Mt_1,.Wel_rl,.Wel_rl_0,.iconInbox,.unlim_wel_logo,.unlim_folder_logo,b.wel188Ico_1,b.wel188Ico_2,b.wel188Ico_3,b.wel188Ico_4,b.wel188Ico_5,b.wel188Ico_6,.wel_ifvip_B ul li b,.btn_ok,.wel_TOL,a.wel_TOR,b.vipkj_icon1,b.vipkj_icon2,b.vipkj_icon3,b.vipkj_icon4,.vipb_up
+{background-image:url(../images/jquery/lan/wel_2.gif); background-repeat:no-repeat}
+
+body.gPage{
+	min-width:680px;background-position:-1109px 0;background-repeat:repeat-y!important;overflow:hidden
+}
+body,div,span,h1,h2,h3,h4,ul,li,img,p,b,textarea,input,select,form,a,table,tr,td,th{
+	margin:0;padding:0;font-family:verdana,Arial, Helvetica, sans-serif,;list-style-type:none;font-size:inherit;color:inherit;z-index:inherit
+}
+.gTop{ height:70px;background-position:0 9px;position:relative; background-color:#FFF}
+.gTab{height:28px;padding-left:190px; position:absolute; top:41px; overflow:hidden}
+*:lang(zh) .gTab{ overflow-x:visible; width:100%}
+.gTab table.tabWel{ width:50px}	
+.gTab table{height:26px; float:left;table-layout:fixed; cursor:pointer}
+.gTab table tr{ vertical-align:middle}
+.gTab table td{background-position:0 -142px}
+.gTab table td.bdy{padding:0 5px;overflow:hidden;text-overflow:ellipsis;font-weight:bold; padding-top:3px; text-align:center}
+.gTab table td.btn{width:15px; padding-top:3px}
+.gTab table td.tLe{width:6px; font-size:0;background-position:-456px -19px}
+.gTab table td.tRi{width:6px; font-size:0;background-position:-472px -19px}
+a.TabCls{width:15px;height:15px; background-position:-520px -28px}
+.TabCls-hover{ width:15px;height:15px;background-position:-156px -140px}
+.gTab table.on NOBR{ color:#FFFFFF;padding:0 5px;overflow:hidden;text-overflow:ellipsis;font-weight:bold; padding-top:3px; text-align:center}
+.gTab table.on{background-position:0 -184px; margin:0 0 0 0}
+.gTab table.on td{background-position:0 -184px}
+.gTab table.on td.tLe{background-position:-457px -61px}
+.gTab table.on td.tRi{background-position:-470px -61px}
+.gTab table.on a.TabCls{ background-position:-156px -98px}
+
+.gMain{width:100%}
+.gMain tr{vertical-align:top;}
+.gLe{width:191px;padding-bottom:15px}
+.gFpage{width:190px;overflow-x:hidden;overflow-y:auto; height:629px;}
+.gFd{ margin-bottom:2px}
+.gfTit{height:30px;position:relative;background-position:0 -1668px;width:100%}
+.gFdBdy li.on/*可在后面追加自己的class*/
+.gFdBdy{padding-top:2px;cursor:pointer}
+.gFdBdy li{height:23px;width:100%;position:relative}
+.gFdBdy li b.icos{position:absolute;top:6px;left:19px;display:block;width:18px;height:18px;font-size:1px}
+/*左边列表的小图标*/
+.icoIbx{background-position:-9px -7px}/*收件箱*/
+a.clsFd,a.opnFd{display:block;width:16px;height:16px}
+a.clsFd{background-position:-251px -109px}
+a.clsFd-hover{background-position:-228px -109px}
+.gfTit a.clsFd,.gfTit a.opnFd{position:absolute;top:10px;left:12px;}
+a.gfName{position:absolute;top:8px;left:29px}
+*:lang(zh) a.gfName{top:6px}
+a.gfName:hover{text-decoration:none}
+a.gfNm,span.gfNm{position:absolute;top:7px;left:40px;color:#000;font-family:"宋体"}
+a.gfNm{width:120px;height:17px;white-space:nowrap;display:block;overflow:hidden}
+
+ a.gFNm,*:lang(zh) a.gFNm{left:43px}
+.gMPage{ position:relative; overflow:auto}
+
+a,NOBR{
+	color:#3C74A6
+}/*邮箱框架内的链接统一深绿色*/
+
+.lii{}
+.lii-mouseover{
+	position:relative;background-position:-2 -9px;
+}

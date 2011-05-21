@@ -1,0 +1,5 @@
+#topnav li a, #topnav li a:link, #topnav li a:visited {display:block;width:70px; text-align:center;filter:shadow(color=#ffffff,direction:135,strength:1);}
+#topnav  {font: 13px '宋体','Arial','Lucida Grande','Tahoma',Verdana,sans-serif;}
+#comments_input label{
+	top:-4px;
+	}
