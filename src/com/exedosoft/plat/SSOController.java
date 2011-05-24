@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.ui.DOPaneModel;
@@ -114,20 +115,16 @@ public class SSOController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
 		boolean isDelegate = false;
 		try {
 			isDelegate = LoginDelegateList.isDelegate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
-
-
 
 		StringBuffer outHtml = new StringBuffer();
 
-	
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
@@ -138,35 +135,37 @@ public class SSOController extends HttpServlet {
 
 			if (echoStr == null || echoStr.trim().equals("")) {
 				echoStr = "success";
-				if(isDelegate){
+				if (isDelegate) {
 					echoStr = "delegate";
 				}
 			}
 			echoStr = echoStr.trim();
 			System.out.println("echoStr is :" + echoStr);
 
-			if (formBI.getValue("mobileclient")==null && !formBI.getValue("randcode").equals(
-					request.getSession().getAttribute("rand"))) {
+			if (formBI.getValue("mobileclient") == null
+					&& !formBI.getValue("randcode").equals(
+							request.getSession().getAttribute("rand"))) {
 				echoStr = "验证码错误！";
 			}
 
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr).append(
+					"\"}");
 
-//		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
-//
-//			if (!"success".equals(returnValue)) {
-//				returnValue = "用户名/密码错误,请重试!";
-//			} else {
-//
-//				System.out.println(formBI.getValue("randcode"));
-//				System.out.println(request.getSession().getAttribute("rand"));
-//
-//			}
-//			outHtml.append("{success:true,msg:\'").append(returnValue).append(
-//					"\'}");
+			// } else if ("ext".equals(DOGlobals.getValue("jslib"))) {
+			//
+			// if (!"success".equals(returnValue)) {
+			// returnValue = "用户名/密码错误,请重试!";
+			// } else {
+			//
+			// System.out.println(formBI.getValue("randcode"));
+			// System.out.println(request.getSession().getAttribute("rand"));
+			//
+			// }
+			// outHtml.append("{success:true,msg:\'").append(returnValue).append(
+			// "\'}");
 
 		} else {
-			// ////为了保留结构，没有实际意义  缺省时使用dojo的包
+			// ////为了保留结构，没有实际意义 缺省时使用dojo的包
 			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
@@ -175,24 +174,48 @@ public class SSOController extends HttpServlet {
 				echoStr = "";
 			}
 			echoStr = echoStr.trim();
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
-		}
-		
-		if(formBI.getValue("company")!=null){
-			
+			outHtml.append("\",\"returnValue\":\"").append(echoStr).append(
+					"\"}");
 		}
 
-		////改变所用的jslib
-		if("true".equals(formBI.getValue("mobileclient"))){
-			if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
-				DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+		if (formBI.getValue("tenancy_uid") != null) {
+			System.out.println("当前登录的租户为::" + formBI.getValue("tenancy_uid"));
+			DOService aService = DOService.getService("multi_tenancy_browse");
+			BOInstance aBI = aService.getInstance(formBI
+					.getValue("tenancy_uid"));
+			if (aBI != null && aBI.getName() != null) {
+				DODataSource dds = new DODataSource();
+				dds.setDialect("hsqldb");
+				dds.setDriverClass("org.hsqldb.jdbcDriver");
+
+				String path = this.getClass().getResource("/globals.xml")
+						.getPath();
+				path = path.substring(0, path.toLowerCase().indexOf("classes"));
+
+				dds.setDriverUrl((new StringBuilder("jdbc:hsqldb:file:"))
+						.append(path).append("db/tenancy/").append(
+								aBI.getValue("name")).append("/mydb")
+						.toString());
+
+				dds.setUserName("sa");
+				dds.setPassword("1111");
+				///globals 应该放到session中
+				DODataSource.refreshDsGlobals(dds);
+				System.out.println("当前缺省的配置库:::" + DODataSource.parseGlobals());
+			}
+		}
+
+		// //改变所用的jslib
+		if ("true".equals(formBI.getValue("mobileclient"))) {
+			if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue(
+						"jslib", "jquery_mobile");
 			}
 			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
 		out.println(outHtml);
 
 	}
-
 
 	/*
 	 * (non-Java-doc)
@@ -234,22 +257,19 @@ public class SSOController extends HttpServlet {
 		}
 
 	}
-	
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 		CacheFactory.getCacheData().fromSerialObject();
 
-//		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
-//		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
-//		System.out.println("Corr Controller::" + cc.getCorrByConfig());
-		
-		
-		
-		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
-		
-		System.out.println("pm::::" + pm.getController());
+		// DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
+		// DOController cc =
+		// DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
+		// System.out.println("Corr Controller::" + cc.getCorrByConfig());
 
-		
+		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
+
+		System.out.println("pm::::" + pm.getController());
 
 	}
 }

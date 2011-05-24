@@ -48,8 +48,10 @@
 <body class="login">
 <div id="login">
 
-<h1><a  title="云鹤平台"></a></h1>
+<h1 style="margin-left:20px"><a  title="云鹤平台"><img border=0 height=61px width=284px src="<%=request.getContextPath()%>/exedo/webv3/images/eeplat.png"/></a></h1>
 
+
+<br/>
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label>企业（公司）</label> <br />
@@ -66,11 +68,11 @@
 	</p>
 	<p>
 		<label>用户名 </label> <br />
-		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" />
+		<input type="text" name="name" id="name" class="input" value="" size="20" tabindex="10" />
 	</p>
 	<p>
 		<label>密码 </label><br />
-		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" />
+		<input type="password" name="password" id="password" class="input" value="" size="20" tabindex="20" />
 	</p>
 	<p class="forgetmenot">
 	
