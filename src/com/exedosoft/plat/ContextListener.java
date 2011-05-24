@@ -80,11 +80,9 @@ public class ContextListener implements ServletContextListener {
 					.select(DOController.class, sql);
 
 			Iterator localIterator = list.iterator();
-			System.out.println("=============================================1111111");
 
 			while (localIterator.hasNext()) {
 				BaseObject localBaseObject = (BaseObject) localIterator.next();
-				System.out.println("=============================================2222222222" + localBaseObject);
 				CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
 						localBaseObject);
 			}
