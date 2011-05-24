@@ -177,6 +177,10 @@ public class SSOController extends HttpServlet {
 			echoStr = echoStr.trim();
 			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
 		}
+		
+		if(formBI.getValue("company")!=null){
+			
+		}
 
 		////改变所用的jslib
 		if("true".equals(formBI.getValue("mobileclient"))){
