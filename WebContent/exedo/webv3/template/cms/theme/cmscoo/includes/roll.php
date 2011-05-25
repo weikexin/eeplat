@@ -1,1 +1,0 @@
-<div id="roll"><div id="roll_top"><a href="http://zmingcx.com/" title="网站地图" target="_blank ">相关链接</a></div><div id="ct"></div><div id="fall"></div></div>
