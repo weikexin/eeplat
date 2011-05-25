@@ -37,6 +37,14 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 		
 		PropertyManager pm = new PropertyManager();
 		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
+		
+		////处理租户表字段
+		////处理后根据表地段创建View
+		
+		///修改View
+		
+
+		
 
 		return DEFAULT_FORWARD;
 	}

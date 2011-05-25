@@ -11,6 +11,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 public class DOExport extends DOAbstractAction {
@@ -19,13 +20,14 @@ public class DOExport extends DOAbstractAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 568992871873045123L;
-//
-//	冠软小肖 2011-3-10 16:41:05
-//	在吗，魏总
-//	冠软小肖 2011-3-10 16:47:08
-//	就业务对象导出，服务中绑定的规则为什么不能一起导出呀
-//	
-	
+
+	//
+	// 冠软小肖 2011-3-10 16:41:05
+	// 在吗，魏总
+	// 冠软小肖 2011-3-10 16:47:08
+	// 就业务对象导出，服务中绑定的规则为什么不能一起导出呀
+	//	
+
 	@Override
 	public String excute() throws ExedoException {
 
@@ -46,6 +48,38 @@ public class DOExport extends DOAbstractAction {
 		List<String> allIDs = new ArrayList<String>();
 		try {
 			t.begin();
+
+			if (selectBI.getValue("type")!=null && 
+					(Integer.parseInt(selectBI.getValue("type")) == DOBO.TYPE_TENANCY_TABLE)) {
+				if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
+					BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
+							.getSessoinContext().getUser().getObjectValue(
+									"tenancy");
+					if (biTenancy != null) {
+						DOService findTenancy = DOService
+								.getService("multi_tenancy_table_findrealtable");
+						BOInstance biTenancyTable = findTenancy
+								.getInstance(selectBI.getValue("sqlstr"),
+										biTenancy.getUid());
+						sb.append("\n<tenancy>").append(biTenancy.getValue("name"))
+								.append("</tenancy>\n");
+						if (biTenancyTable != null) {
+							sb.append("\n<tenancy_table>").append(
+									biTenancyTable.toJSONString()).append(
+									"</tenancy_table>\n");
+							DOService findTenacyCols = DOService
+									.getService("multi_tenancy_column_findbytableid");
+
+							sb.append("\n<tenancy_columns>");
+							List tenancyCols = findTenacyCols
+									.invokeSelect(biTenancyTable.getUid());
+							appendLi(sb, tenancyCols);
+							sb.append("</tenancy_columns>");
+
+						}
+					}
+				}
+			}
 
 			// /属性
 			DOService servProperties = DOService
@@ -97,8 +131,10 @@ public class DOExport extends DOAbstractAction {
 			List<BOInstance> listGridOfPane = new ArrayList();
 			for (Iterator it = panes.iterator(); it.hasNext();) {
 				BOInstance aPane = (BOInstance) it.next();
-				if (aPane!=null && aPane.getValue("linkType")!=null && aPane.getValue("linkType").equals(
-						DOPaneModel.LINKTYPE_GRIDMODEL)) {
+				if (aPane != null
+						&& aPane.getValue("linkType") != null
+						&& aPane.getValue("linkType").equals(
+								DOPaneModel.LINKTYPE_GRIDMODEL)) {
 					BOInstance aGrid = boGrid.getInstance(aPane
 							.getValue("linkUID"));
 					if (aGrid != null) {
@@ -203,7 +239,8 @@ public class DOExport extends DOAbstractAction {
 
 	}
 
-	protected void getChildBIs(List menus, BOInstance parent, DOService servChild) {
+	protected void getChildBIs(List menus, BOInstance parent,
+			DOService servChild) {
 
 		if (parent == null) {
 			return;
@@ -225,12 +262,13 @@ public class DOExport extends DOAbstractAction {
 		return list;
 	}
 
-	protected  void appendLi(StringBuilder sb, List list) {
-		
-		/// toJSONSTring 需要进行转义
+	protected void appendLi(StringBuilder sb, List list) {
+
+		// / toJSONSTring 需要进行转义
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			BOInstance bi = (BOInstance) it.next();
-			sb.append("<li>").append(StringUtil.filter(bi.toJSONString())).append("</li>\n");
+			sb.append("<li>").append(StringUtil.filter(bi.toJSONString()))
+					.append("</li>\n");
 		}
 	}
 
