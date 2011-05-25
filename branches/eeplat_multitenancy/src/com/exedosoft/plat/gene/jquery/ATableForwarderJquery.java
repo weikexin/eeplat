@@ -117,7 +117,7 @@ public class ATableForwarderJquery {
 			log.info("当前添加的业务对象ID:" + boUid);
 
 			if (boUid == null) { // ////如果配置中没有当前view 的配置
-				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1,1)";
+				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1,2)";
 
 				PreparedStatement pstmt = con.prepareStatement(insertTable);
 				boUid = UUIDHex.getInstance().generate();
@@ -416,13 +416,19 @@ public class ATableForwarderJquery {
 
 			// ///////根据props 定位parameter ，然后service 和 parameter 进行关联
 			this.setParaLinkBatch(props, stmt2, serviceUid, isNew);
+			
+			String serviceType = "null";
+			if(isNew){
+				serviceType = "8";
+			}
 
 			StringBuffer aSql = new StringBuffer(
-					"insert into DO_Service(objuid,l10n,name,bouid,mainSql) values(")
+					"insert into DO_Service(objuid,l10n,name,bouid,mainSql,type) values(")
 					.append("'").append(serviceUid).append("','").append(l10n)
 					.append("','").append(name).append("','").append(
 							this.getDOBOUid(table)).append("','").append(
-							mainSql).append("')");
+							mainSql).append("',").append(
+									serviceType).append(")");
 
 			log.info("Servcice's Sql:" + aSql.toString());
 			stmt.executeUpdate(aSql.toString());
@@ -622,7 +628,7 @@ public class ATableForwarderJquery {
 		Connection con = null;
 		try {
 			con = DODataSource.getDefaultCon();
-			String sql = "select objUID from DO_BO where type = '1' and sqlStr = ? ";
+			String sql = "select objUID from DO_BO where type = '2' and sqlStr = ? ";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boName);
 			ResultSet rs = pstmt.executeQuery();

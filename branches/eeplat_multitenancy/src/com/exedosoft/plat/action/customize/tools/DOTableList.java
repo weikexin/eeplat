@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import java.util.Iterator;
+
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.SqlCol;
+import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
@@ -39,52 +43,86 @@ public class DOTableList extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_datasource");
 		DODataSource dss = DODataSource.getDataSourceByL10n(bo
 				.getCorrInstance().getValue("l10n"));
-		
-//        if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") && dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
-//        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
-//        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
-//            StringBuilder  driverUrl =
-//            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
-//            
-//            dss.setDriverUrl(driverUrl.toString());
-//        }
+
+		// if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") &&
+		// dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
+		// String path =
+		// DODataSource.class.getResource("/globals.xml").getPath();
+		// path = path.substring(0, path.toLowerCase().indexOf("classes"));
+		// StringBuilder driverUrl =
+		// new
+		// StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
+		//            
+		// dss.setDriverUrl(driverUrl.toString());
+		// }
 
 		List list = new ArrayList();
 		Connection con = null;
 		try {
 			con = dss.getConnection();
 			DatabaseMetaData meta = con.getMetaData();
-			String[] tblTypes = new String[] { "TABLE" };
+			String[] tblTypes = new String[] { "TABLE", "VIEW" };
 
 			String schema = null;
 			if (dss.isOracle()) {
 				schema = dss.getUserName().trim().toUpperCase();
 			}
-			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
-			while (rs.next()) {
-				String tableName = rs.getString("TABLE_NAME");
-				// ////////////增强更新功能
-				// //////首先要跟现有的tableName比较
 
-				// ////////////////
+			DOService aService = DOService
+					.getService("multi_tenancy_table_findtablesbytenancyuid");
 
-				if (this.judgeExists(tableName)) {
-					continue;
+			String tenancyUid = DOGlobals.getInstance().getSessoinContext()
+					.getUser().getValue("tenancy_uid");
+
+			List<String> authTableStrs = new ArrayList<String>();
+			if (tenancyUid != null) {
+				List<BOInstance> hisTables = aService.invokeSelect(tenancyUid);
+				for (Iterator<BOInstance> it = hisTables.iterator(); it
+						.hasNext();) {
+					BOInstance bi = it.next();
+					authTableStrs.add(bi.getValue("table_name"));
 				}
-				if (!"dtproperties".equals(tableName)) {
-					BOInstance bi = new BOInstance();
-					InputConfigCols icc = this.getCols(con, tableName, dss);
-					String aTable = rs.getString("TABLE_NAME").toLowerCase();
-					if (!aTable.startsWith("bin$")) {
-						bi.putValue(this.service.getBo().getKeyCol(), aTable);
-						bi.putValue("tablename", aTable);
-						bi.putValue("keyCol", icc.getKeyCols());
-						bi.putValue("valueCol", icc.getValueCols());
-						bi.setUid(aTable);
-						list.add(bi);
+			}
+
+			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
+
+			while (rs.next()) {
+				String aTable = rs.getString("TABLE_NAME");
+
+				String tableType = rs.getString("TABLE_TYPE");
+				for (Iterator<String> it = authTableStrs.iterator(); it
+						.hasNext();) {
+					String hisTable = it.next();
+
+					// ////////////增强更新功能
+					// //////首先要跟现有的tableName比较
+
+					// ////////////////
+
+					if (this.judgeExists(aTable)) {
+						continue;
+					}
+					if (!"dtproperties".equals(aTable)) {
+						BOInstance bi = new BOInstance();
+						InputConfigCols icc = this.getCols(con, aTable, dss);
+
+						if (hisTable.equalsIgnoreCase(aTable)) {
+							if (!aTable.startsWith("bin$")) {
+								bi.putValue(this.service.getBo().getKeyCol(),
+										aTable);
+								bi.putValue("tablename", aTable);
+								bi.putValue("keyCol", icc.getKeyCols());
+								bi.putValue("valueCol", icc.getValueCols());
+								bi.putValue("tableType", tableType);
+								bi.setUid(aTable);
+								list.add(bi);
+							}
+						}
 					}
 				}
 			}
+			// ///end get tables
+
 		} catch (SQLException ex) {
 			this.setEchoValue(ex.getMessage());
 			return NO_FORWARD;
@@ -177,15 +215,13 @@ public class DOTableList extends DOAbstractAction {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
 
-        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
-        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
-            StringBuilder  driverUrl =
-            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append("test/test");
-            
-            System.out.println("DriverUrl:::" + driverUrl);
-        	
+		String path = DODataSource.class.getResource("/globals.xml").getPath();
+		path = path.substring(0, path.toLowerCase().indexOf("classes"));
+		StringBuilder driverUrl = new StringBuilder("jdbc:hsqldb:file:")
+				.append(path).append("db/").append("test/test");
+
+		System.out.println("DriverUrl:::" + driverUrl);
 
 	}
 

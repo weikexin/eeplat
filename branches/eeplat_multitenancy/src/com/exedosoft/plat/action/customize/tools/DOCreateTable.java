@@ -41,8 +41,18 @@ public class DOCreateTable extends DOAbstractAction {
 
 		BOInstance form = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance();
+		String tenancyUid = DOGlobals.getInstance().getSessoinContext()
+		.getUser().getValue("tenancy_uid");
+		
+		DOService service = DOService
+		.getService("multi_tenancy_browse");
+		BOInstance theTenancy = service
+				.getInstance(tenancyUid);
 
 		String tableName = form.getValue("tableName");
+		if(theTenancy!=null){
+			tableName = theTenancy.getValue("name") + "_" + tableName;
+		}
 		String[] colNames = form.getValueArray("col_name");
 		String[] colL10ns = form.getValueArray("col_l10n");
 		String[] dbtypes = form.getValueArray("dbtype");
@@ -76,6 +86,9 @@ public class DOCreateTable extends DOAbstractAction {
 		int decimal1 = 851; // max 855
 		int decimal3 = 871; // max 875
 		int clob = 901; // max 910
+
+		mapCols.put("id", "id");
+		mapTypes.put("id", "varchar32");
 
 		for (int i = 0; i < colNames.length; i++) {
 
@@ -219,6 +232,7 @@ public class DOCreateTable extends DOAbstractAction {
 		try {
 			paras.put("table_name", tableName);
 			paras.put("corr_view", tableName);
+			paras.put("real_table", "t001");
 			BOInstance tBI = multi_table_insert.invokeUpdate(paras);
 
 			for (Iterator<Map.Entry<String, String>> it = mapCols.entrySet()
@@ -246,7 +260,10 @@ public class DOCreateTable extends DOAbstractAction {
 				}
 				i++;
 			}
-			sb.append("  from  t001");
+
+			sb.append("  from  t001 where tenancyId='").append(tenancyUid)
+					.append("' and tenancyTableId='").append(tableName).append(
+							"'");
 			log.info(" the View::::" + sb);
 
 			// ///更新另外一个库

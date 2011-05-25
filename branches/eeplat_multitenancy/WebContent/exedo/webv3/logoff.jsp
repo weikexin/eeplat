@@ -11,9 +11,8 @@
   if(!request.getSession().isNew()){
 	  request.getSession().invalidate();
   }
-  //response.sendRedirect("/wh/exedo/webv3/");
  
 %>
 <script>
-	  window.top.location="<%=request.getContextPath()%>/exedo/webv3/"  ;
+	  window.top.location="<%=request.getContextPath()%>/"  ;
 </script>

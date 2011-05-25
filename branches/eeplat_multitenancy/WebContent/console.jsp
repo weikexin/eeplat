@@ -48,6 +48,7 @@
 <body class="login">
 <div id="login">
 
+<h1 style="margin-left:20px"><a  title="云鹤平台"><img border=0 height=61px width=284px src="<%=request.getContextPath()%>/exedo/webv3/images/eeplat.png"/></a></h1>
 
 
 <br/>
@@ -152,7 +153,7 @@ $(function(){
 			   var retValue = unescape(data.returnValue);
 			
 			   if('success'==retValue){
-			        window.location= globalURL + "pane_yfkxt.pml?isApp=true";
+			        window.location= globalURL + "abp_base_pane.pml?isApp=true";
 			   }else{
 			   		
 				   	alert(retValue);

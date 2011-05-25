@@ -19,6 +19,8 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
+///多租户可以使用使用“多租户表”，也可以使用实际表
+
 public class SSOController extends HttpServlet {
 
 	/**
@@ -178,7 +180,7 @@ public class SSOController extends HttpServlet {
 					"\"}");
 		}
 
-		if (formBI.getValue("tenancy_uid") != null) {
+		if (formBI.getValue("tenancy_uid") != null && DOGlobals.getInstance().getSessoinContext().getUser()!=null) {
 			System.out.println("当前登录的租户为::" + formBI.getValue("tenancy_uid"));
 			DOService aService = DOService.getService("multi_tenancy_browse");
 			BOInstance aBI = aService.getInstance(formBI
@@ -199,9 +201,14 @@ public class SSOController extends HttpServlet {
 
 				dds.setUserName("sa");
 				dds.setPassword("1111");
-				///globals 应该放到session中
-				DODataSource.refreshDsGlobals(dds);
+				///globals 放到session中
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue("config_db", dds);
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue("tenancy", aBI);
 				System.out.println("当前缺省的配置库:::" + DODataSource.parseGlobals());
+				////清除缓存
+				CacheFactory.getCacheData().clear();
+				CacheFactory.getCacheRelation().getData().clear();
+				CacheFactory.getCacheData().fromSerialObject();
 			}
 		}
 
