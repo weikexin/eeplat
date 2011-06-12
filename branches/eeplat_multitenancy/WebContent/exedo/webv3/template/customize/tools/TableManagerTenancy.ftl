@@ -1,4 +1,14 @@
-<!--在多租户情况下，不考虑实际表的创建，但考虑对shji-->
+<#--定义dataBinding-->
+<#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
+<#--定义宏 判断输出什么类型的align-->
+<#macro JudgeAlign item>
+		   <#if item.align?exists>
+		    	align='${item.align}'
+		   <#else>
+		        align='center' 
+		   </#if>
+</#macro>
+
 <div id="PM_DO_BO_Property_DBManager"  style="overflow:auto;width:100%;height:100%;">
  	    
 	<br/>
@@ -6,17 +16,11 @@
 
 <form  method='post' id='a402880242a65aabd012a65aabd0a0000' name ='a402880242a65aabd012a65aabd0a0000'>
 
-<div style="margin-bottom:10px" >
-  
-&nbsp;&nbsp;&nbsp;&nbsp;  表名称:<input  style='border:#B3B3B3 1px solid;'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='tableName' id='tableName'  title='表名称'  size="50"/>  
-
-</div> 
- 
 
 <div width="100%" height="100%">
 	 <div style="margin:0px 0px 0px 5px;border-top:1px solid #8db2e3;border-left:1px solid #8db2e3;border-right:1px solid #8db2e3;align:left;text-align:left;vertical-align: middle;background-color:#e6EEEE;width:98%;height:25px" >
 			
-		 					<img src='${contextPath}images/MyRightArrow.jpg'/> <b> 数据表结构 </b> 
+		 					<img src='/${webmodule}/exedo/webv3/images/MyRightArrow.jpg'/> <b> 数据表结构 </b> 
 		
 	 </div>
 	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
@@ -73,7 +77,11 @@
 	      }
        }
        if(confirm('你确定要删除吗')){
+         if($('#g402880242a65aabd012a65aabd0a0000 tbody  tr.selected').attr('value')=='id'){
+             alert("ID不能删除！");
+         }else{
         	$('#g402880242a65aabd012a65aabd0a0000 tbody  tr.selected').remove();
+         }
        }
   })
  </script></TD>
@@ -91,20 +99,24 @@
 	<table id='g402880242a65aabd012a65aabd0a0000' class='tablesorter' border="0" cellpadding="1" cellspacing="1" >
 		<thead>
 		  <tr>
-			<th  style='display:none' class="{sorter: false}" ></th>
+			<#if model.checkBox><#--定义CheckBox-->
+				<th style="align: center"  width='5%' nowrap='nowrap' class="{sorter: false}">
+					
+				</th>
+			</#if>
             <th id='col_name'    nowrap='nowrap' align='center'>列名 </th> 
-            <th id='col_l10n'    nowrap='nowrap' align='center'>中文名 </th> 
             <th id='dbtype'    nowrap='nowrap' align='center'>数据库类型 </th> 
-            
+
 		</tr>
 		</thead>
 		<tbody>
 		
 		
 		<tr id="tr0"  style="display:none">
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'    onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  size="25"/>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'    onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_l10n'  title='中文名'  size="25"/>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px'  exedo_notnull='NotNull'  name="dbtype"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
+					<td style="align: center" >&nbsp;&nbsp;<input type ='checkbox' checked=true class='list_check'  name='checkinstance'/> <input type ='hidden' name='checkinstance_hidden'/> </td>
+		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;'  exedo_notnull='NotNull'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  size="25"/>  </td> 
+		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px'  exedo_notnull='NotNull'  name="type"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
+							<option/>
 							<option value="VARCHAR32">VARCHAR(32)</option>
 							<option value="VARCHAR64">VARCHAR(64)</option>
 							<option value="VARCHAR128">VARCHAR(128)</option>
@@ -123,12 +135,12 @@
 							<option value="CLOB">CLOB</option>
 							</select>  </td> 
 			</tr>
-		
-		
-			<tr id="tr1">
+			
+					
+		    <tr id="tr1" value="id">
+		    		<td style="align: center" >&nbsp;&nbsp; <input type ='hidden' name='checkinstance_hidden' value='id'/> </td>
 		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull' readonly='readonly'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  value="id" size="25"/>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'   readonly='readonly'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_l10n'  title='中文名'  size="25"/>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px' exedo_notnull='NotNull'   name="dbtype"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
+		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px' exedo_notnull='NotNull'   name="type"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
 							<option value="VARCHAR32" selected>VARCHAR(32)</option>
 							<option value="VARCHAR64">VARCHAR(64)</option>
 							<option value="VARCHAR128">VARCHAR(128)</option>
@@ -146,7 +158,27 @@
 							<option value="TIMESTAMP">TIMESTAMP</option>
 							<option value="CLOB">CLOB</option>
 							</select>  </td> 
-			</tr>
+			 </tr>
+		
+		
+		 <#list data as ins>
+		        <#if ins.name!="id" >
+					<tr  value='${ins.uid?if_exists}'  title='${ins.name?if_exists}'>
+					<#if model.NO><#--是否有数字序列-->
+						<td align='center'>#{ins_index+1}</td>
+					</#if>
+					<#if model.checkBox><#--定义CheckBox-->
+						<td style="align: center" >&nbsp;&nbsp;<input type ='checkbox' value='${ins.uid}' class='list_check'  name='checkinstance'/> <input type ='hidden' value='${ins.uid}' name='checkinstance_hidden'/> </td>
+					<#elseif model.radio>
+						<td align='center'><input type ='radio' value='${ins.uid}'  name='checkinstance'/>   <input type ='hidden' value='${ins.uid}' name='checkinstance_hidden'/>  </td>
+					</#if>
+					<#--输出其它的头标题 ins:{'l10n':'中国','name':'china','location':'a'}    item:{'key':'l10n'}--> 
+					<#list model.normalGridFormLinks as item> 
+				            <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#compress> <@JudgeAlign item/></#compress> >   <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue} </#if> </td> 
+					</#list>
+					</tr>
+				</#if>
+	     </#list>
 		     
 		  
 		</tbody>
@@ -157,25 +189,33 @@
 			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >保存</button>
 					<script>
 					
-				
+					 function fnCB3ba35f69a6084e76bfed4c89e41c2f65(){
+							try{
+								if($('#F' + 'PM_DO_UI_Controller_Update').size()>0){
+						  			$('#F' + 'PM_DO_UI_Controller_Update').jqmHide();
+						  		}else{
+						  			$('#' + 'PM_DO_UI_Controller_Update').parents(".jqmDialog").jqmHide();
+							  	}  	
+						  	}catch(e){
+						  	}	
+						  
+					  		reloadTree();     
+					  	
+					 }
+					
 					$('#3ba35f69a6084e76bfed4c89e41c2f65').bind('click',function(){
 					
 					  var isValid = true;
 					  
-					  if($('#tableName').val()==''){
-					    alert("表名不能为空!");
-					    $('#tableName').get(0).focus();
-					    return;
-					  }
 					
 					  $("input[name='col_name']").each(
 					   function(index,o){
-					     if(index >0){
+						 if($(o).parent().parent().attr('id')!='tr0'){
 					       var value = $(o).val(); 
 					       if(value==''){
 					       	 o.focus();
 					       	 isValid = false;
-					       	 alert("列名不能为空!");
+					       	 alert("列名不能为空!"+index);
 					       	 return;
 					       }
 					     }
@@ -186,7 +226,7 @@
 					  var type = $("select[name='dbtype']").size(); 
 						$("select[name='dbtype']").each(
 						   function(index,o){
-						     if(index >0){
+						     if($(o).parent().parent().attr('id')!='tr0'){
 						       var value = $(o).val(); 
 						       if(value==''){
 						       	 o.focus();
@@ -198,14 +238,30 @@
 						 });
 					}
 					
+					if(isValid){	 
+						 $("input[name='dbsize']").each(
+						   function(index,o){
+						       if((value=='') && isValid){
+						       	 o.focus();
+						         isValid = false;
+						       	 alert("字段长度不能为空!");
+						       	 return;
+						       }else   if(!checkErrNum(value) && isValid){
+						          o.focus();
+						          isValid = false;
+						       	  alert("字段长度只能为数字!");
+						          return;
+						       }
 
+						   });
+					 }
 ////////////////////////////////////////////////有效性判断结束
 
 ////////////////////界面参数传递到后台
                      if(isValid){
 			           	   var paras =  $('#a402880242a65aabd012a65aabd0a0000').formSerialize();
 			           	  	callAction({ 'btn':$('#3ba35f69a6084e76bfed4c89e41c2f65')[0],
-				   			   'actionName':"com.exedosoft.plat.action.customize.tools.DOCreateTable",
+				   			   'actionName':"com.exedosoft.plat.action.customize.tools.DOAlterTable",
 				   			   'callback':forwardPml,
 				   			   'paras':paras});
 				   	  }		   
@@ -215,9 +271,8 @@
 					);
 					
 					function  forwardPml(){
-							loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'获取数据库中的数据表'});
+							loadPml({'pml':'PM_DO_BO_Property_DBManager','target':'_opener_tab','title':'表结构管理'});
 					}
-					
 					</script>  &nbsp; 
 				</td></tr>
 					     <tfoot>
@@ -270,6 +325,10 @@
 			$(this).addClass("mover");
 		}).bind('mouseout',function(){
 			$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').removeClass("mover");
+		});
+		
+		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr input').bind('change',function(){
+		   $(this).parents("tr").children().eq(0).children(".list_check").attr("checked",true);
 		});
 
 </script>
