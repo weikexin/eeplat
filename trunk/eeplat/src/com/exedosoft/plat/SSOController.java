@@ -109,7 +109,7 @@ public class SSOController extends HttpServlet {
 		String returnValue = null;
 		try {
 			returnValue = curService.invokeAll();
-		} catch (ExedoException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

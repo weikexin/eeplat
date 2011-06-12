@@ -22,13 +22,11 @@ public abstract class DOViewTemplate implements DOIViewTemplate {
 
 		String s = "";
 		try {
-			log.info("TemplateFile:::" + templateFile);
 			s = HtmlTemplateGenerator.getContentFromTemplate(this.templateFile,
 					data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		log.info("Get Html Code Finish!" );
 
 		return s;
 	}

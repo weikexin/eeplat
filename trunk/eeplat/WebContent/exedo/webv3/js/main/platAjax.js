@@ -91,9 +91,9 @@ function callAction(p){
 	   		   
 	   		   if(p.target &&  $.trim(p.target)!=""){
 	   			  if(p.target=='_opener_window'){
-	   				  	window.open(title,p.pml + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 	   			  }else  if(p.target=='_opener_location'){
-	   				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
+	   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
 	   			  }  
 	   			  else if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,p.pml);
@@ -303,9 +303,9 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aTitle,aPath + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aTitle,aPath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
    		  		   			  }else  if(target=='_opener_location'){
-   		  		   				  	window.location = aPath + "&"  + urlCodeDeal(paras) + "&isApp=true";
+   		  		   				  	window.location = aPath + "&"  + paras + "&isApp=true";
    		  		   			  }  
    		  		   			  else if(target=='_opener_tab'){
    		  							createNewTab(pmlName,aTitle,aPath);
@@ -326,9 +326,9 @@ function callService(p){
  		   		   
   		   		   if(p.target &&  $.trim(p.target)!=""){
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,p.pml + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
+  		   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
   		   			  }  
   		   			  else if(p.target=='_opener_tab'){
   							createNewTab(pmlName,title,p.pml);
@@ -401,7 +401,7 @@ function callPlatBus(p){
  * p.target
  * p.pml
  * p.pmlName
- * 
+ * urlCodeDeal(paras)  改写可以加快速度
  * @param p
  * @return
  */

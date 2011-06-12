@@ -678,7 +678,7 @@ public class StringUtil {
 
 	public static String getCurrentDayStr() {
 
-		return String.format("%1$tY%1$tm%1$td", Calendar.getInstance());
+		return String.format("%1$tY-%1$tm-%1$td", Calendar.getInstance());
 	}
 
 	public static boolean isLong(String str) {
