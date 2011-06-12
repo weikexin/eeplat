@@ -81,32 +81,6 @@
 
 
 
-
-	<servlet>
-		<servlet-name>IceDaemonHttpServlet</servlet-name>
-		<servlet-class>com.zephyr.ice.IceDaemonHttpServlet
-		</servlet-class>
-		<init-param>
-			<param-name>endpoint</param-name>
-			<param-value>default -p 11000 -h 127.0.0.1</param-value>
-		</init-param>
-		<init-param>
-			<param-name>args</param-name>
-			<param-value>--Ice.MessageSizeMax=10240</param-value>
-		</init-param>
-		<init-param>
-			<param-name>servants</param-name>
-			<param-value>/WEB-INF/classes/servants-list.properties</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-
-
-
-
-
-
-
 	<servlet-mapping>
 		<servlet-name>mvccontroller</servlet-name>
 		<url-pattern>/mvccontroller</url-pattern>
