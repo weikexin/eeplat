@@ -148,6 +148,15 @@ $(function(){
 });
 
 
+$(window).unload(function(){
+	///关闭id 即清楚缓存
+	    if((window.screenLeft>=10000 && window.screenTop>=10000) || event.altkey) 
+	    { 
+	  		    window.location = "<%=request.getContextPath()%>/exedo/webv3/logoff.jsp";   
+	    } 
+});
+
+
 </script>
 </head>
 

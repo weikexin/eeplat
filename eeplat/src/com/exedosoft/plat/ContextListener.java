@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -17,6 +18,7 @@ import org.apache.log4j.Priority;
 
 import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.login.CheckOnlineTask;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -71,6 +73,12 @@ public class ContextListener implements ServletContextListener {
 
 		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
 		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
+		
+		/////////////////////////////////////Online Timer
+		Timer t = new Timer();
+		CheckOnlineTask  cot = new CheckOnlineTask();
+		t.schedule(cot,0, 2 * 60 * 1000);
+		////////////////////////////////Online Timer
 
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 			CacheFactory.getCacheData().fromSerialObject();

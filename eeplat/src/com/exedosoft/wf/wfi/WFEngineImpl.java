@@ -91,6 +91,10 @@ public class WFEngineImpl implements WFEngine {
 		NodeInstance niStart = null; // ///开始节点
 		t.begin();
 		try {
+			
+		    if(pt.getPtName()==null){
+		    	pt = ProcessTemplate.getPTByID(pt.getObjUid());
+		    }
 
 			pi.setPtName(pt.getPtName());
 			pi.setWfiDesc(pt.getPtDesc());

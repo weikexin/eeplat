@@ -38,6 +38,7 @@ public class LoginMain {
 //	private static DOService findRoleService = DOService.getService("do_bx_role_findbyuserid_xes");
 	
 	public static Map<String, HttpSession> globalSessions = new HashMap<String, HttpSession>();
+	
 
 	static {
 		globalSessions = Collections.synchronizedMap(globalSessions);
@@ -56,6 +57,8 @@ public class LoginMain {
 		// /注册全局session 用户
 		// /只能有一个用户登陆系统。
 		HttpSession session = globalSessions.get(user.getUid());
+		////这个策略是踢出原登陆者
+		////另外的策略是不可登陆
 		if (session != null && !session.equals(request.getSession())) {
 			session.invalidate();
 			session = null;
@@ -66,7 +69,7 @@ public class LoginMain {
 			globalSessions.put(user.getUid(), request.getSession());
 		}
 
-	
+		
 		SessionContext us = (SessionContext) request.getSession().getAttribute(
 				USERINFO);
 		if(us == null){
@@ -105,7 +108,10 @@ public class LoginMain {
 		try {
 			// synchronized(lockObj){
 			if(insertLoginLog!=null){
-				insertLoginLog.invokeUpdate(aInsertLog);
+				BOInstance biLog = insertLoginLog.invokeUpdate(aInsertLog);
+				if(biLog!=null){
+					user.putValue("loginlogid", biLog.getUid());
+				}
 			}
 			// }
 		} catch (Exception e) {

@@ -1,9 +1,8 @@
-/*
+﻿/*
 SQLyog Ultimate v8.32 
 MySQL - 5.0.67-community-nt : Database - cms_db
 *********************************************************************
-*/
-
+*/
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
