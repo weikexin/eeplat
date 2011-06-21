@@ -4,6 +4,16 @@ var isHome = 1; //是否有首页   有是1   没有是0
 var globalService = globalURL + 'servicecontroller';
 var globalPml= globalURL + 'mvccontroller';
 
+/**
+ * 调用 , websphere 
+ */
+setInterval('regOnline()',1650*60*1);
+
+function regOnline(){
+
+	$.get(globalURL + "exedo/webv3/regOnline.jsp?"+ Math.random());
+}
+
 //得到浏览器可用高度，赋给菜单  以及右边区域总div
 function resscrEvt(height,width){
 	if(height==undefined||width==undefined){
@@ -80,7 +90,6 @@ function bindClickMenu() {
 					window.open(paneId);
 				}
 			}else{
-
 				eval(clickJs);
 			}
 			event.stopPropagation();
