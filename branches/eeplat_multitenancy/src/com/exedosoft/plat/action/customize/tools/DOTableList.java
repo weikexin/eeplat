@@ -69,14 +69,15 @@ public class DOTableList extends DOAbstractAction {
 			}
 
 			DOService aService = DOService
-					.getService("multi_tenancy_table_findtablesbytenancyuid");
+					.getService("multi_tenancy_table_findtablesbytenancyid");
 
-			String tenancyUid = DOGlobals.getInstance().getSessoinContext()
-					.getUser().getValue("tenancy_uid");
+			BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
+					.getSessoinContext().getUser().getObjectValue("tenancy");
 
 			List<String> authTableStrs = new ArrayList<String>();
-			if (tenancyUid != null) {
-				List<BOInstance> hisTables = aService.invokeSelect(tenancyUid);
+			if (biTenancy != null && biTenancy.getValue("name") != null) {
+				List<BOInstance> hisTables = aService.invokeSelect(biTenancy
+						.getValue("name"));
 				for (Iterator<BOInstance> it = hisTables.iterator(); it
 						.hasNext();) {
 					BOInstance bi = it.next();
@@ -97,24 +98,28 @@ public class DOTableList extends DOAbstractAction {
 					// ////////////增强更新功能
 					// //////首先要跟现有的tableName比较
 
-					// ////////////////
-
-					if (this.judgeExists(aTable)) {
+					if (this.judgeExists(hisTable)) {
 						continue;
 					}
 					if (!"dtproperties".equals(aTable)) {
-						BOInstance bi = new BOInstance();
-						InputConfigCols icc = this.getCols(con, aTable, dss);
+						if ((biTenancy.getValue("name") + "_" + hisTable)
+								.equalsIgnoreCase(aTable)) {
 
-						if (hisTable.equalsIgnoreCase(aTable)) {
+							BOInstance bi = new BOInstance();
+							InputConfigCols icc = this
+									.getCols(con, aTable, dss);
 							if (!aTable.startsWith("bin$")) {
 								bi.putValue(this.service.getBo().getKeyCol(),
 										aTable);
-								bi.putValue("tablename", aTable);
+								bi.putValue("tablename", hisTable);
 								bi.putValue("keyCol", icc.getKeyCols());
 								bi.putValue("valueCol", icc.getValueCols());
 								bi.putValue("tableType", tableType);
-								bi.setUid(aTable);
+								if(biTenancy!=null && tableType.equalsIgnoreCase("view")){
+									bi.setUid("tenancy;" + hisTable);
+								}else{
+									bi.setUid(aTable);
+								}
 								list.add(bi);
 							}
 						}

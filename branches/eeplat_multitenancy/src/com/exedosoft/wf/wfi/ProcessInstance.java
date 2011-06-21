@@ -1,23 +1,18 @@
 package com.exedosoft.wf.wfi;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
-
-import com.exedosoft.plat.bo.BOInstance;
-import com.exedosoft.plat.bo.BaseObject;
-import com.exedosoft.plat.bo.DOBO;
-//import com.exedosoft.plat.dao.DAOException;
-//import com.exedosoft.plat.dao.HbmDAO;
-//import com.exedosoft.plat.dao.WFDAO;
-import com.exedosoft.wf.*;
-import com.exedosoft.wf.pt.PTNode;
-import com.exedosoft.wf.pt.ProcessTemplate;
+import java.util.List;
 
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
+import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.BaseObject;
+import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.wf.WFException;
+import com.exedosoft.wf.pt.PTNode;
+import com.exedosoft.wf.pt.ProcessTemplate;
 
 
 /**
@@ -92,6 +87,8 @@ public class ProcessInstance extends BaseObject{
 
 
 	private String instanceUid3;
+	
+	private String tenancyId;
 
 	/** default constructor */
 	public ProcessInstance() {
@@ -688,6 +685,14 @@ public class ProcessInstance extends BaseObject{
 		this.rejectTxt = rejectTxt;
 	}
 	
+	public String getTenancyId() {
+		return tenancyId;
+	}
+
+	public void setTenancyId(String tenancyId) {
+		this.tenancyId = tenancyId;
+	}
+
 	public static void main(String[] args) throws ExedoException{
 		
 //		ProcessInstance pi = new ProcessInstance();

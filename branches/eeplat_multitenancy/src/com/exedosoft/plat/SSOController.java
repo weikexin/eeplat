@@ -202,13 +202,17 @@ public class SSOController extends HttpServlet {
 				dds.setUserName("sa");
 				dds.setPassword("1111");
 				///globals 放到session中
+				
+				////需要更改多租户表中，租户数据库中的数据源
+				//////每个租户为定位到某个物理数据库中
+				
+				/////租户数据库分配
+				
+				
+				
 				DOGlobals.getInstance().getSessoinContext().getUser().putValue("config_db", dds);
 				DOGlobals.getInstance().getSessoinContext().getUser().putValue("tenancy", aBI);
 				System.out.println("当前缺省的配置库:::" + DODataSource.parseGlobals());
-				////清除缓存
-				CacheFactory.getCacheData().clear();
-				CacheFactory.getCacheRelation().getData().clear();
-				CacheFactory.getCacheData().fromSerialObject();
 			}
 		}
 

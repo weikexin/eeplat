@@ -36,6 +36,8 @@ public class ATableForwarderJquery {
 	private String valueCol;
 
 	private String BOUid;
+	
+	private String tenancyId =""; 
 
 	public ATableForwarderJquery(String aDataSourceUid) {
 
@@ -43,12 +45,13 @@ public class ATableForwarderJquery {
 	}
 
 	public ATableForwarderJquery(String aTable, String keyCol,String valueCol, String aDataSourceUid,
-			String aBusiPackageUid) {
+			String aBusiPackageUid, String tenancyId) {
 		this.keyCol = keyCol.toLowerCase();
 		this.valueCol = valueCol.toLowerCase();
 		table = aTable;
 		dataSourceUid = aDataSourceUid;
 		busiPackageUid = aBusiPackageUid;
+		this.tenancyId = tenancyId;
 	}
 
 	public Connection getConnection() {
@@ -117,7 +120,7 @@ public class ATableForwarderJquery {
 			log.info("当前添加的业务对象ID:" + boUid);
 
 			if (boUid == null) { // ////如果配置中没有当前view 的配置
-				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1,2)";
+				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1," + getType()+ ")";
 
 				PreparedStatement pstmt = con.prepareStatement(insertTable);
 				boUid = UUIDHex.getInstance().generate();
@@ -362,7 +365,7 @@ public class ATableForwarderJquery {
 			String l10n = "";
 			String prefix = table;
 
-			Boolean isNew = null;
+			String serviceType = "null";
 
 			switch (type) {
 			case 1:
@@ -370,14 +373,14 @@ public class ATableForwarderJquery {
 				l10n = name;
 				props = bo.retrieveProperties();
 				mainSql = getInsertSql(props, table);
-				isNew = Boolean.TRUE;
+				serviceType = "8";
 				break;
 			case 2:
 				name = prefix + "_update";
 				l10n = name;
 				props = bo.retrieveProperties();
 				mainSql = this.getModiSql(props, table);
-				isNew = Boolean.FALSE;
+				serviceType = "7";
 				break;
 
 			case 3:
@@ -393,6 +396,7 @@ public class ATableForwarderJquery {
 						.append(" where ")
 						.append(this.keyCol)
 						.append(" = ?");
+				serviceType = "5";
 				break;
 			case 4:
 				property = DOBOProperty.getDOBOPropertyByName(bo.getName(),
@@ -407,20 +411,19 @@ public class ATableForwarderJquery {
 						.append(" where ")
 						.append(this.keyCol)
 						.append(" = ?");
+				serviceType = "10";
 				break;
 			case 5:
+				serviceType = "2";
 				name = prefix + "_list";
 				l10n = name;
 				mainSql = new StringBuffer("select * from ").append(table);
 			}
 
 			// ///////根据props 定位parameter ，然后service 和 parameter 进行关联
-			this.setParaLinkBatch(props, stmt2, serviceUid, isNew);
+			this.setParaLinkBatch(props, stmt2, serviceUid, serviceType.equals("8"));
 			
-			String serviceType = "null";
-			if(isNew){
-				serviceType = "8";
-			}
+
 
 			StringBuffer aSql = new StringBuffer(
 					"insert into DO_Service(objuid,l10n,name,bouid,mainSql,type) values(")
@@ -628,7 +631,7 @@ public class ATableForwarderJquery {
 		Connection con = null;
 		try {
 			con = DODataSource.getDefaultCon();
-			String sql = "select objUID from DO_BO where type = '2' and sqlStr = ? ";
+			String sql = "select objUID from DO_BO where type = '" +getType() + "' and sqlStr = ? ";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boName);
 			ResultSet rs = pstmt.executeQuery();
@@ -649,6 +652,14 @@ public class ATableForwarderJquery {
 			}
 		}
 		return null;
+	}
+
+	private String getType() {
+		String type = "1";
+		if(this.tenancyId.length() > 0){
+			type = "2";
+		}
+		return type;
 	}
 
 	protected boolean isModify(String colName, String boUid) {
@@ -776,6 +787,10 @@ public class ATableForwarderJquery {
 			}
 		}
 
+		if(this.tenancyId.length() > 0){
+			aTable = this.tenancyId + "_" + aTable;
+		}
+		
 		Collection cc = new ArrayList();
 		Connection con = null;
 		try {

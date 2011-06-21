@@ -21,12 +21,6 @@ public class DOExport extends DOAbstractAction {
 	 */
 	private static final long serialVersionUID = 568992871873045123L;
 
-	//
-	// 冠软小肖 2011-3-10 16:41:05
-	// 在吗，魏总
-	// 冠软小肖 2011-3-10 16:47:08
-	// 就业务对象导出，服务中绑定的规则为什么不能一起导出呀
-	//	
 
 	@Override
 	public String excute() throws ExedoException {
@@ -60,7 +54,7 @@ public class DOExport extends DOAbstractAction {
 								.getService("multi_tenancy_table_findrealtable");
 						BOInstance biTenancyTable = findTenancy
 								.getInstance(selectBI.getValue("sqlstr"),
-										biTenancy.getUid());
+										biTenancy.getValue("name"));
 						sb.append("\n<tenancy>").append(biTenancy.getValue("name"))
 								.append("</tenancy>\n");
 						if (biTenancyTable != null) {
