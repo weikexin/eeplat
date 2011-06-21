@@ -45,7 +45,9 @@
 	    <property name="aop.parameter.check.class"></property>
 	
 		<property name="jslib">jquery</property>
-		
+
+		<property name="cache.type">tenancy</property>	
+
 		<!-- 两种:serial no -->
 		<property name="useSerial">serial</property>
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>

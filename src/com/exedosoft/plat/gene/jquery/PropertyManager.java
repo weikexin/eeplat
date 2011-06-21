@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.CacheFactory;
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.Transaction;
@@ -65,9 +66,13 @@ public class PropertyManager {
 					DOParameter aPara = it.next();
 					DOService insertService = aDOBO.getDInsertService();
 					insertService.removeMetaParameter(aPara);
+					CacheFactory.getCacheRelation().getData().remove(insertService.getObjUid()
+							+ CacheFactory.TYPE_PARASERVICE);
 					
 					DOService updateService = aDOBO.getDUpdateService();
 					updateService.removeMetaParameter(aPara);
+					CacheFactory.getCacheRelation().getData().remove(updateService.getObjUid()
+							+ CacheFactory.TYPE_PARASERVICE);
 					DAOUtil.INSTANCE().delete(aPara);
 				}
 //////////////////////////////	DO_Parameter_Service_deleterubbish 这个 sql需要改写	
@@ -130,6 +135,8 @@ public class PropertyManager {
 				log.error("Insert Error:::" + aDOBO.getName() + "__colName::"
 						+ colName);
 			}
+			CacheFactory.getCacheRelation().getData().remove(insertService.getObjUid()
+					+ CacheFactory.TYPE_PARASERVICE);
 
 			DOService updateService = aDOBO.getDUpdateService();
 			if (updateService != null) {
@@ -138,6 +145,8 @@ public class PropertyManager {
 				log.error("Update Error:::" + aDOBO.getName() + "__colName::"
 						+ colName);
 			}
+			CacheFactory.getCacheRelation().getData().remove(updateService.getObjUid()
+					+ CacheFactory.TYPE_PARASERVICE);
 			
 			
 			DOGridModel gmBrowse = DOGridModel.getGridModelByName("GM_" + aDOBO.getName()+"_browse");

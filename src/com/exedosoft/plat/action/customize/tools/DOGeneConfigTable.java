@@ -10,6 +10,7 @@ import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.gene.jquery.ATableForwarderJquery;
+import com.exedosoft.plat.util.DOGlobals;
 
 public class DOGeneConfigTable extends DOAbstractAction {
 
@@ -73,15 +74,23 @@ public class DOGeneConfigTable extends DOAbstractAction {
 		// ////////////////清楚缓存
 		try {
 
+			BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
+			.getSessoinContext().getUser().getObjectValue("tenancy");
+
 			for (java.util.Iterator<BOInstance> it = allCheckInstances
 					.iterator(); it.hasNext();) {
+				String tenancyId = "";
 				BOInstance bi = it.next();
 				String aTable = bi.getValue("tableName");
+				if(aTable.startsWith("tenancy;")){
+					aTable = aTable.substring(8);
+					tenancyId = biTenancy.getValue("name");
+				}
 				String keycol = bi.getValue("keycol");
 				String valuecol = bi.getValue("valuecol");
 
 				ATableForwarderJquery af = new ATableForwarderJquery(aTable,
-						keycol, valuecol, dataSourceUid, bpUid);
+						keycol, valuecol, dataSourceUid, bpUid, tenancyId);
 				af.forwardAll();
 			}
 

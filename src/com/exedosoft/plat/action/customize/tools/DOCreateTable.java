@@ -41,17 +41,15 @@ public class DOCreateTable extends DOAbstractAction {
 
 		BOInstance form = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance();
-		String tenancyUid = DOGlobals.getInstance().getSessoinContext()
-		.getUser().getValue("tenancy_uid");
-		
-		DOService service = DOService
-		.getService("multi_tenancy_browse");
-		BOInstance theTenancy = service
-				.getInstance(tenancyUid);
+
+
+		BOInstance theTenancy =  (BOInstance)DOGlobals.getInstance().getSessoinContext()
+		.getUser().getObjectValue("tenancy");
 
 		String tableName = form.getValue("tableName");
+		String viewName = "";
 		if(theTenancy!=null){
-			tableName = theTenancy.getValue("name") + "_" + tableName;
+			viewName = theTenancy.getValue("name") + "_" + tableName;
 		}
 		String[] colNames = form.getValueArray("col_name");
 		String[] colL10ns = form.getValueArray("col_l10n");
@@ -88,13 +86,13 @@ public class DOCreateTable extends DOAbstractAction {
 		int clob = 901; // max 910
 
 		mapCols.put("id", "id");
-		mapTypes.put("id", "varchar32");
+		mapTypes.put("id", "VARCHAR32");
 
 		for (int i = 0; i < colNames.length; i++) {
 
 			String colName = colNames[i];
 
-			if (!colName.equals("")) {
+			if (!colName.equals("") && !colName.equalsIgnoreCase("id")) {
 				// 建立字段名和本地化翻译的对应
 				mapL10ns.put(colName, colL10ns[i]);
 				mapTypes.put(colName, dbtypes[i]);
@@ -231,7 +229,8 @@ public class DOCreateTable extends DOAbstractAction {
 		Map<String, String> paras = new HashMap<String, String>();
 		try {
 			paras.put("table_name", tableName);
-			paras.put("corr_view", tableName);
+			paras.put("tenancy_name", theTenancy.getValue("name"));
+			paras.put("corr_view", viewName);
 			paras.put("real_table", "t001");
 			BOInstance tBI = multi_table_insert.invokeUpdate(paras);
 
@@ -246,7 +245,7 @@ public class DOCreateTable extends DOAbstractAction {
 			}
 
 			StringBuffer sb = new StringBuffer("create view  ");
-			sb.append(tableName).append(" as select ");
+			sb.append(viewName).append(" as select ");
 
 			int i = 0;
 			for (Iterator<Map.Entry<String, String>> it = mapCols.entrySet()
@@ -261,7 +260,7 @@ public class DOCreateTable extends DOAbstractAction {
 				i++;
 			}
 
-			sb.append("  from  t001 where tenancyId='").append(tenancyUid)
+			sb.append("  from  t001 where tenancyId='").append(theTenancy.getValue("name"))
 					.append("' and tenancyTableId='").append(tableName).append(
 							"'");
 			log.info(" the View::::" + sb);

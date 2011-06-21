@@ -17,7 +17,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.exedosoft.plat.action.DOAbstractAction;
-import com.exedosoft.plat.login.zidingyi.excel.MySqlOperationII;
 import com.novell.ldap.LDAPAttribute;
 import com.novell.ldap.LDAPAttributeSet;
 import com.novell.ldap.LDAPConnection;
@@ -103,8 +102,8 @@ public class SendEmail_bxmsg extends DOAbstractAction {
 			//do_org_user_link user_uid 取得user_cn		
 			String baoxiaoemp = null;
 			try {
-				Connection conii = MySqlOperationII.getConnection();
-				baoxiaoemp =  MySqlOperationII.getUserCNByUserUid(conii, baoxiaoempuid);
+				Connection conii = null;
+				baoxiaoemp =  null;
 				conii.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

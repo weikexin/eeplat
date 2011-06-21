@@ -30,7 +30,6 @@ public class ExcuteSqlFile {
 	public static List<String> readSqlFile(String fileName) {
 
 		List<String> sqlList = new ArrayList<String>();
-
 		try {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName),"utf-8"));   

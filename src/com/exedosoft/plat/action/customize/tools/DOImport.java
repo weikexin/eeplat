@@ -54,13 +54,13 @@ public class DOImport extends DOAbstractAction {
 
 			String fileName = this.actionForm.getValue("fileName");
 
-			if (fileName == null) {
+			if (fileName == null  || fileName.trim().equals("")) {
 				this.setEchoValue("你还没有选择文件！");
 				return NO_FORWARD;
 			}
-			
-			if(datasourceuid==null){
-				this.setEchoValue("你没有选择数据源！");
+
+			if (datasourceuid == null || datasourceuid.trim().equals("")) {
+				this.setEchoValue("你没有选择数据源！ ");
 				return NO_FORWARD;
 			}
 
@@ -164,19 +164,17 @@ public class DOImport extends DOAbstractAction {
 									.fromJSONString(tenancyTableJson);
 							// 新的tennacyTable表
 							tenancyTable.putValue("id", null);
-							tenancyTable.putValue("table_name", tenancyTable
-									.getValue("table_name").replace(tenancy,
-											curTenancy));
+
 							tenancyTable.putValue("corr_view", tenancyTable
-									.getValue("table_name").replace(tenancy,
+									.getValue("corr_view").replace(tenancy,
 											curTenancy));
-							tenancyTable.putValue("tenancy_uid", biTenancy
-									.getUid());
+							tenancyTable.putValue("tenancy_name", biTenancy
+									.getValue("name"));
 							DOService findTenancyByTable = DOService
-									.getService("multi_tenancy_table_findbytablename");
+									.getService("multi_tenancy_table_findrealtable");
 							List finded = findTenancyByTable
 									.invokeSelect(tenancyTable
-											.getValue("table_name"));
+											.getValue("table_name"),biTenancy.getValue("name"));
 							if (finded.size() == 0) {
 								needImport = true;
 								DOService insertTenancyTable = DOService
@@ -189,7 +187,9 @@ public class DOImport extends DOAbstractAction {
 
 								StringBuffer sb = new StringBuffer(
 										"create view  ");
-								sb.append(tenancyTable.getValue("table_name"))
+								sb.append(biTenancy.getValue("name")).append(
+										"_").append(
+										tenancyTable.getValue("table_name"))
 										.append(" as select ");
 								int i = 0;
 
@@ -218,7 +218,7 @@ public class DOImport extends DOAbstractAction {
 								sb
 										.append(
 												"  from  t001 where tenancyId='")
-										.append(biTenancy.getUid())
+										.append(biTenancy.getValue("name"))
 										.append("' and tenancyTableId='")
 										.append(
 												tenancyTable
@@ -228,7 +228,8 @@ public class DOImport extends DOAbstractAction {
 
 								// ///更新另外一个库
 								DOBO bo = DOBO.getDOBOByName("do_datasource");
-								DODataSource dss = DODataSource.getDataSourceByID(datasourceuid);
+								DODataSource dss = DODataSource
+										.getDataSourceByID(datasourceuid);
 								Connection con = dss.getConnection();
 								PreparedStatement pstmt = con
 										.prepareStatement(sb.toString());
@@ -240,6 +241,8 @@ public class DOImport extends DOAbstractAction {
 							}
 						}
 					}
+				} else {
+					needImport = true;
 				}
 
 				// ////////////////////////////////////////////////////////////////////////
@@ -256,8 +259,6 @@ public class DOImport extends DOAbstractAction {
 									if (aNode instanceof Element) {
 										String aJson = aNode.getFirstChild()
 												.getNodeValue();
-										aJson = aJson.replace(tenancy,
-												curTenancy);
 										BOInstance bi = BOInstance
 												.fromJSONString(aJson);
 
@@ -280,57 +281,43 @@ public class DOImport extends DOAbstractAction {
 								}
 
 							} else if (aNode.getNodeName().equals("property")) {
-								insertANode(propertyInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(propertyInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("parameter")) {
-								insertANode(parameterInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(parameterInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("rule")) {
-								insertANode(doRuleInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(doRuleInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("service")) {
-								insertANode(serviceInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(serviceInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals(
 									"parameter_service")) {
-								insertANode(paraServiceInsert, aNode, tenancy,
+								insertANode(paraServiceInsert, aNode,
 										curTenancy);
 							} else if (aNode.getNodeName().equals(
 									"rule_service")) {
-								insertANode(serviceRuleInsert, aNode, tenancy,
+								insertANode(serviceRuleInsert, aNode,
 										curTenancy);
 							} else if (aNode.getNodeName().equals("pane")) {
-								insertANode(paneModelInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(paneModelInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("pane_links")) {
-								insertANode(paneLinksInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(paneLinksInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("grid")) {
-								insertANode(gridInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(gridInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("form")) {
-								insertANode(formInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(formInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals(
 									"form_relation")) {
-								insertANode(formLinksInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(formLinksInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName()
 									.equals("form_target")) {
-								insertANode(formTargetInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(formTargetInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("menu")) {
-								insertANode(menuModelInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(menuModelInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("tree")) {
-								insertANode(treeModelInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(treeModelInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("controller")) {
-								insertANode(controllerInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(controllerInsert, aNode, curTenancy);
 							} else if (aNode.getNodeName().equals("action")) {
-								insertANode(actionInsert, aNode, tenancy,
-										curTenancy);
+								insertANode(actionInsert, aNode, curTenancy);
 							}
 						}
 					}
@@ -401,14 +388,12 @@ public class DOImport extends DOAbstractAction {
 	}
 
 	private static void insertANode(DOService insertService, Node aNode,
-			String tenancy, String curTenancy) throws JSONException,
-			ExedoException {
+			String curTenancy) throws JSONException, ExedoException {
 		NodeList lis = aNode.getChildNodes();
 		for (int lii = 0; lii < lis.getLength(); lii++) {
 			Node aLi = lis.item(lii);
 			if (aLi instanceof Element) {
 				String aJson = aLi.getFirstChild().getNodeValue();
-				aJson = aJson.replace(tenancy, curTenancy);
 				if (aJson != null && !aJson.trim().equals("")) {
 					BOInstance bi = BOInstance.fromJSONString(aJson);
 					if (insertService.getBo()

@@ -16,6 +16,8 @@ import org.apache.log4j.Priority;
 
 import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.dao.EnhanceObject;
+import com.exedosoft.plat.dao.ObjectTableMapper;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -72,12 +74,12 @@ public class ContextListener implements ServletContextListener {
 		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
 
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
-			CacheFactory.getCacheData().fromSerialObject();
 
-			// //应该可以从里从两个文件中加载
+			// /多租户
+			CacheFactory.getCacheData().fromSerialObject();
+			// 应该可以从里从两个文件中加载
 			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
-			List list = DAOUtil.INSTANCE()
-					.select(DOController.class, sql);
+			List list = DAOUtil.INSTANCE().select(DOController.class, sql);
 
 			Iterator localIterator = list.iterator();
 
