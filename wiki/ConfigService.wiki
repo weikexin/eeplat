@@ -19,10 +19,12 @@
        # 新增  定义的SQL语句完成的是insert 操作
        # 保存  是新增或者是修改
        # 删除  定义的SQL语句完成的是delete 操作
-       # 自动条件查询 定义的SQL语句含有通配符/`*`condition`*`/，运行时可以根据用户的输入自动匹配查询条件；如果需要排序，通配符为--orderby-- defaultcols desc@#， 一个例子(democo1为默认的排序字段)，改变排序字段和排序方式需要通过表单传递，在查询表单上加两个下列列表，EXEDO_ORDER表示排序字段，EXEDO_ORDER_TYPE表示排序方式：
+       # 自动条件查询 定义的SQL语句含有通配符/`*`condition`*`/，运行时可以根据用户的输入自动匹配查询条件；如果需要排序，通配符为--orderby-- defaultcols desc@#， 一个例子(democo1为默认的排序字段)：
 {{{
         select * from demo /*condition*/ --orderby-- democol1 desc@#
 }}}
+改变排序字段和排序方式需要通过表单传递，在查询表单上加两个下列列表，EXEDO_ORDER表示排序字段，EXEDO_ORDER_TYPE表示排序方式，这两个下列列表的控制器均为form.DOStaticList或form.DOStaticListPopup，前者的相关配置为 排序字段名称,排序字段中文名; 排序字段名称,排序字段中文名; 排序字段名称,排序字段中文名; 后者为: desc,降序;asc,升序。
+
        # 自动条件修改 修改的一种特殊形式，update语句必须按照类似系统生成的严格格式编写，执行时系统会自动重新组装sql语句，用户录入的才修改，没有录入的不是置为null，而是不作修改。
        # 自由查询    和自动条件查询的功能类似。可以适用更复杂的情况，一个例子：
 {{{
