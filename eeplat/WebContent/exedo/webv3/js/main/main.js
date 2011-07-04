@@ -6,8 +6,9 @@ var globalPml= globalURL + 'mvccontroller';
 
 /**
  * 调用 , websphere 
+ * setInterval('regOnline()',1650*60*1);
  */
-setInterval('regOnline()',1650*60*1);
+
 
 function regOnline(){
 
@@ -75,7 +76,7 @@ function bindClickMenu() {
 			$(this).addClass("mMenu-hover2");
 			
 			
-			//菜单id和tab  id有关联的
+			//菜单id和tab  id有关联
 			var menuId = $(this).attr("id");
 			//菜单title 等于 tab的 title
 			var menuName = $(this).attr("name");
