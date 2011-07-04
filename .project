@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>eeplat</name>
+	<name>eeplat_multitenancy</name>
 	<comment>@key 32303037303533312D3130303020796979695F6465762F49424D </comment>
 	<projects>
 	</projects>
@@ -11,8 +11,13 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.wst.validation.validationbuilder</name>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/org.eclipse.wst.validation.validationbuilder (1).launch</value>
+				</dictionary>
 			</arguments>
 		</buildCommand>
 	</buildSpec>

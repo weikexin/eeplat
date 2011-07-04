@@ -1,8 +1,9 @@
 package com.exedosoft.plat.multitenancy;
 
 import com.exedosoft.plat.bo.BaseObject;
+import com.exedosoft.plat.bo.DODataSource;
 
-public class Tenancy extends BaseObject {
+public class Tenant extends BaseObject {
 	
 	/**
 	 * 
@@ -138,6 +139,12 @@ public class Tenancy extends BaseObject {
 
 	public void setStartDate(java.sql.Date startDate) {
 		this.startDate = startDate;
+	}
+	
+	public static DODataSource getTenantDataSource(){
+		
+		
+		return null;
 	}
 
 

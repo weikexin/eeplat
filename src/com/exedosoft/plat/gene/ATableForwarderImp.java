@@ -14,14 +14,12 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOParameter;
 import com.exedosoft.plat.gene.jquery.SqlCol;
-import com.exedosoft.plat.DAOUtil;
-import com.exedosoft.plat.ExedoException;
-import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.plat.util.id.UUIDHex;
 
@@ -64,7 +62,9 @@ public class ATableForwarderImp implements ATableForwarder {
 				return null;
 			}
 		} else {
-			return DODataSource.getDefaultCon();
+			
+			DODataSource dss = DODataSource.getDataSourceByID("mysqlexample");
+			return dss.getConnection();
 		}
 
 	}
@@ -759,7 +759,7 @@ public class ATableForwarderImp implements ATableForwarder {
 		
 		ATableForwarderImp  ai = new ATableForwarderImp("mysqlexample");
 		
-		System.out.println("CCCCCCCCCC:::" + ai.getCols("student"));
+		System.out.println("CCCCCCCCCC:::" + ai.getCols("do_log"));
 
 		// String[] aa = {"-database.0","mydb","-dbname.0","mydb"};
 		// org.hsqldb.Server.main(aa);

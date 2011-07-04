@@ -45,10 +45,9 @@ public class DOExport extends DOAbstractAction {
 
 			if (selectBI.getValue("type")!=null && 
 					(Integer.parseInt(selectBI.getValue("type")) == DOBO.TYPE_TENANCY_TABLE)) {
-				if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
+				if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
 					BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-							.getSessoinContext().getUser().getObjectValue(
-									"tenancy");
+							.getSessoinContext().getTenancyValues().getTenant();
 					if (biTenancy != null) {
 						DOService findTenancy = DOService
 								.getService("multi_tenancy_table_findrealtable");

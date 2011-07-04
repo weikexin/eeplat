@@ -42,8 +42,7 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 			if ("2".equals(instance.getValue("type"))) {
 
 				BOInstance theTenancy = (BOInstance) DOGlobals.getInstance()
-						.getSessoinContext().getUser()
-						.getObjectValue("tenancy");
+						.getSessoinContext().getTenancyValues().getTenant();
 
 				System.out.println("instance:::" + instance);
 				DOBO tenancyBO = DOBO.getDOBOByID(instance.getUid());

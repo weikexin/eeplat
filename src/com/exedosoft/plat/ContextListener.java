@@ -12,12 +12,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 
 import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
-import com.exedosoft.plat.dao.EnhanceObject;
-import com.exedosoft.plat.dao.ObjectTableMapper;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -90,8 +87,8 @@ public class ContextListener implements ServletContextListener {
 			}
 		}
 
-		DODataSource defaultDs = DODataSource.parseGlobals();
-		poolASource(defaultDs);
+//		DODataSource defaultDs = DODataSource.parseGlobals();
+//		poolASource(defaultDs);
 
 		// String sql =
 		// "select dds.* from DO_DataSource dds,DO_Application da where dds.applicationUID = da.objuid and da.name = ?";
@@ -108,12 +105,12 @@ public class ContextListener implements ServletContextListener {
 				DODataSource dss = (DODataSource) it.next();
 				log.info("初始化数据库连接池::" + dss.getDriverUrl());
 
-				if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
-					log.info("...和初始化连接池相同，使用初始化连接池::" + dss.getDriverUrl());
-					DODataSource.pools.put(dss, DODataSource.pools
-							.get(defaultDs));
-					continue;
-				}
+//				if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
+//					log.info("...和初始化连接池相同，使用初始化连接池::" + dss.getDriverUrl());
+//					DODataSource.pools.put(dss, DODataSource.pools
+//							.get(defaultDs));
+//					continue;
+//				}
 
 				poolASource(dss);
 			}
@@ -126,47 +123,51 @@ public class ContextListener implements ServletContextListener {
 	}
 
 	private BasicDataSource poolASource(DODataSource dss) {
-		// ////////////////////////////////////////////////////////////////////////
-		// 根据配置文件
-		if (dss.getOtherparas() != null && dss.getOtherparas().endsWith(".xml")) {
-			dss = DODataSource.parseConfigHelper(dss.getOtherparas(), dss
-					.getObjUid());
-		}
-		// /////////////////////////////////////////////////////
-
-		BasicDataSource bds = new BasicDataSource();
-
-		bds.setDriverClassName(dss.getDriverClass());
-		bds.setUrl(dss.getDriverUrl());
-		bds.setUsername(dss.getUserName());
-		bds.setPassword(dss.getPassword());
-		// 最小空闲连接
-		// bds.setMinIdle(5);
-		// 最大空闲连接
-		bds.setMaxIdle(5);
-		// 超时回收时间(以毫秒为单位)
-		// //等待30秒
-		bds.setMaxWait(30000);
-		// /////////初始化连接池
-		bds.setInitialSize(10);
-
-		bds.setRemoveAbandoned(true);
-		bds.setRemoveAbandonedTimeout(60);
-
-		// //////////最大连接数
-		if (dss.getPoolsize() != null) {
-			bds.setMaxActive(dss.getPoolsize().intValue());
-		} else {
-			bds.setMaxActive(100);
-		}
-		DODataSource.pools.put(dss, bds);
-		return bds;
+		
+		return DODataSource.poolASource(dss);
+//		// ////////////////////////////////////////////////////////////////////////
+//		// 根据配置文件
+//		if (dss.getOtherparas() != null && dss.getOtherparas().endsWith(".xml")) {
+//			dss = DODataSource.parseConfigHelper(dss.getOtherparas(), dss
+//					.getObjUid());
+//		}
+//		// /////////////////////////////////////////////////////
+//
+//		BasicDataSource bds = new BasicDataSource();
+//
+//		bds.setDriverClassName(dss.getDriverClass());
+//		bds.setUrl(dss.getDriverUrl());
+//		bds.setUsername(dss.getUserName());
+//		bds.setPassword(dss.getPassword());
+//		// 最小空闲连接
+//		// bds.setMinIdle(5);
+//		// 最大空闲连接
+//		bds.setMaxIdle(5);
+//		// 超时回收时间(以毫秒为单位)
+//		// //等待30秒
+//		bds.setMaxWait(30000);
+//		// /////////初始化连接池
+//		bds.setInitialSize(10);
+//
+//		bds.setRemoveAbandoned(true);
+//		bds.setRemoveAbandonedTimeout(60);
+//
+//		// //////////最大连接数
+//		if (dss.getPoolsize() != null) {
+//			bds.setMaxActive(dss.getPoolsize().intValue());
+//		} else {
+//			bds.setMaxActive(100);
+//		}
+//		DODataSource.pools.put(dss, bds);
+//		return bds;
 	}
 
 	public static void main(String[] args) {
 
-		Logger logger = Logger.getLogger("SystemOutPrint");
-		logger.info("test");
+		CacheFactory.getCacheData().fromSerialObject();
+		
+		System.out.println(CacheFactory.getCacheData().getDOBOByName("multi_tenancy"));
+
 
 		System.out.println(new java.util.Date(1238647760783L).toLocaleString());
 	}

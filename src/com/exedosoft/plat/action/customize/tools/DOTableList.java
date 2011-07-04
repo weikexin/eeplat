@@ -70,18 +70,21 @@ public class DOTableList extends DOAbstractAction {
 
 			DOService aService = DOService
 					.getService("multi_tenancy_table_findtablesbytenancyid");
-
-			BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-					.getSessoinContext().getUser().getObjectValue("tenancy");
-
 			List<String> authTableStrs = new ArrayList<String>();
-			if (biTenancy != null && biTenancy.getValue("name") != null) {
-				List<BOInstance> hisTables = aService.invokeSelect(biTenancy
-						.getValue("name"));
-				for (Iterator<BOInstance> it = hisTables.iterator(); it
-						.hasNext();) {
-					BOInstance bi = it.next();
-					authTableStrs.add(bi.getValue("table_name"));
+
+			BOInstance biTenancy = null;
+			if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
+				biTenancy = (BOInstance) DOGlobals.getInstance()
+						.getSessoinContext().getTenancyValues().getTenant();
+
+				if (biTenancy != null && biTenancy.getValue("name") != null) {
+					List<BOInstance> hisTables = aService
+							.invokeSelect(biTenancy.getValue("name"));
+					for (Iterator<BOInstance> it = hisTables.iterator(); it
+							.hasNext();) {
+						BOInstance bi = it.next();
+						authTableStrs.add(bi.getValue("table_name"));
+					}
 				}
 			}
 
@@ -102,8 +105,9 @@ public class DOTableList extends DOAbstractAction {
 						continue;
 					}
 					if (!"dtproperties".equals(aTable)) {
-						if ((biTenancy.getValue("name") + "_" + hisTable)
-								.equalsIgnoreCase(aTable)) {
+						if (biTenancy != null
+								&& (biTenancy.getValue("name") + "_" + hisTable)
+										.equalsIgnoreCase(aTable)) {
 
 							BOInstance bi = new BOInstance();
 							InputConfigCols icc = this
@@ -115,9 +119,10 @@ public class DOTableList extends DOAbstractAction {
 								bi.putValue("keyCol", icc.getKeyCols());
 								bi.putValue("valueCol", icc.getValueCols());
 								bi.putValue("tableType", tableType);
-								if(biTenancy!=null && tableType.equalsIgnoreCase("view")){
+								if (biTenancy != null
+										&& tableType.equalsIgnoreCase("view")) {
 									bi.setUid("tenancy;" + hisTable);
-								}else{
+								} else {
 									bi.setUid(aTable);
 								}
 								list.add(bi);
