@@ -25,6 +25,7 @@ import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.PropertyManager;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.safe.TenancyValues;
 
 /**
  * 
@@ -99,17 +100,16 @@ public class DOAlterTable extends DOAbstractAction {
 
 		DOBO dobo = DOBO.getDOBOByName("do_bo");
 
-		BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-				.getSessoinContext().getUser().getObjectValue("tenancy");
-
+		TenancyValues tv = (TenancyValues) DOGlobals.getInstance()
+				.getSessoinContext().getTenancyValues();
 		BOInstance biTenancyTable = null;
 
-		if (biTenancy != null && dobo.getCorrInstance() != null
+		if (tv != null && tv.getTenant()!=null && dobo.getCorrInstance() != null
 				&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
 			DOBO theBO = DOBO.getDOBOByID(dobo.getCorrInstance().getUid());
 			DOService findTable = DOService
 					.getService("multi_tenancy_table_findrealtable");
-			biTenancyTable = findTable.getInstance(theBO.getSqlStr(), biTenancy
+			biTenancyTable = findTable.getInstance(theBO.getSqlStr(), tv.getTenant()
 					.getValue("name"));
 
 		}
@@ -143,7 +143,7 @@ public class DOAlterTable extends DOAbstractAction {
 		List propCols = new ArrayList();
 
 		// ////////////多租户
-		if (biTenancy != null && biTenancyTable != null) {
+		if (tv != null && tv.getTenant()!=null && biTenancyTable != null) {
 
 			dbtypes = form.getValueArray("type");
 
@@ -188,18 +188,18 @@ public class DOAlterTable extends DOAbstractAction {
 
 		try {
 			for (int i = 0; i < removeCols.size(); i++) {
-				
+
 				String colObjuid = (String) removeCols.get(i);
 
 				DOBOProperty dop = DOBOProperty.getDOBOPropertyByID(colObjuid);
 				// /多租户
-				if (dop == null && (biTenancy != null)) {
+				if (dop == null && (tv.getTenant() != null)) {
 					BOInstance bi = getCol.getInstance(colObjuid);
 					dop = DOBOProperty.getDOBOPropertyByName(
 							selected.getName(), bi.getValue("col_name"));
 				}
 
-				if (biTenancy != null && biTenancyTable != null) {
+				if (tv.getTenant() != null && biTenancyTable != null) {
 					removeCol.invokeUpdate(colObjuid);
 				} else {
 					StringBuffer sb = new StringBuffer("alter table ");
@@ -218,7 +218,7 @@ public class DOAlterTable extends DOAbstractAction {
 
 		// ///////////////放到删除之后
 		// ////////////////////确定每种类型最大值
-		if (biTenancy != null && dobo.getCorrInstance() != null
+		if (tv.getTenant() != null && dobo.getCorrInstance() != null
 				&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
 
 			DOService findTenacyCols = DOService
@@ -333,8 +333,8 @@ public class DOAlterTable extends DOAbstractAction {
 		for (int len = 0; len < key_hiddens.length; len++) {
 
 			String keyHidden = key_hiddens[len];
-			
-			if("id".equals(keyHidden)){
+
+			if ("id".equals(keyHidden)) {
 				continue;
 			}
 
@@ -346,7 +346,7 @@ public class DOAlterTable extends DOAbstractAction {
 				if (dopExists == null || dopExists.getColName() == null) {
 					if (colNames[len] != null && !colNames[len].equals("")) {
 						// multi_tenancy_column_insert
-						if (biTenancy != null && biTenancyTable != null) {
+						if (tv.getTenant() != null && biTenancyTable != null) {
 							int i = len;
 							Map paras = new HashMap();
 							String colName = colNames[len];
@@ -499,13 +499,13 @@ public class DOAlterTable extends DOAbstractAction {
 						// ///////////执行新增
 						int iType = 12;
 						int dbsize = 63355;
-						if(dbsizes!=null && dbsizes.length > 0){
-							dbsize = Integer
-							.parseInt(dbsizes[len]);
-						}else{
-							if (dbtypes[len].startsWith("VARCHAR") && dbtypes[len].length() > 7){
-								dbsize = Integer
-								.parseInt( dbtypes[len].substring(7));								
+						if (dbsizes != null && dbsizes.length > 0) {
+							dbsize = Integer.parseInt(dbsizes[len]);
+						} else {
+							if (dbtypes[len].startsWith("VARCHAR")
+									&& dbtypes[len].length() > 7) {
+								dbsize = Integer.parseInt(dbtypes[len]
+										.substring(7));
 							}
 						}
 						try {
@@ -526,8 +526,7 @@ public class DOAlterTable extends DOAbstractAction {
 					}
 				}
 			} else {
-				System.out.println("已经存在ColName::"
-						+ colNames[len]);
+				System.out.println("已经存在ColName::" + colNames[len]);
 			}
 
 		}
@@ -535,7 +534,7 @@ public class DOAlterTable extends DOAbstractAction {
 
 		// ////////////正式新增
 
-		if (biTenancy != null && biTenancyTable != null) {
+		if (tv.getTenant() != null && biTenancyTable != null) {
 
 			DOService multi_col_insert = DOService
 					.getService("multi_tenancy_column_insert");
@@ -565,8 +564,6 @@ public class DOAlterTable extends DOAbstractAction {
 			sb.append(biTenancyTable.getValue("corr_view")).append(
 					" as select ");
 
-
-
 			DOService findTenacyCols = DOService
 					.getService("multi_tenancy_column_findbytableid");
 
@@ -586,7 +583,7 @@ public class DOAlterTable extends DOAbstractAction {
 			}
 
 			sb.append("  from  t001 where tenancyId='").append(
-					biTenancy.getValue("name"))
+					tv.getTenant().getValue("name"))
 					.append("' and tenancyTableId='").append(
 							biTenancyTable.getValue("table_name")).append("'");
 			log.info(" the View::::" + sb);

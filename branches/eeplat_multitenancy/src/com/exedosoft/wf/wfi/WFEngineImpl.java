@@ -96,9 +96,9 @@ public class WFEngineImpl implements WFEngine {
 			pi.setWfiDesc(pt.getPtDesc());
 			
             if(DOGlobals.getInstance()
-					.getSessoinContext().getUser()!=null){
+					.getSessoinContext().getTenancyValues()!=null){
 				BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-						.getSessoinContext().getUser().getObjectValue("tenancy");
+						.getSessoinContext().getTenancyValues().getTenant();
 				pi.setTenancyId(biTenancy.getValue("name"));
             }
 			pi.setExeStatus(Integer.valueOf(ProcessInstance.STATUS_INIT));

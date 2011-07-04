@@ -154,8 +154,7 @@ public class DOImport extends DOAbstractAction {
 				if (tenancy != null && tenancyTableJson != null) {
 					if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
 						BOInstance biTenancy = (BOInstance) DOGlobals
-								.getInstance().getSessoinContext().getUser()
-								.getObjectValue("tenancy");
+								.getInstance().getSessoinContext().getTenancyValues().getTenant();
 						curTenancy = biTenancy.getValue("name");
 
 						if (biTenancy != null && curTenancy != null) {

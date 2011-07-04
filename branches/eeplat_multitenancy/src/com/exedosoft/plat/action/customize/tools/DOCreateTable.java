@@ -43,8 +43,7 @@ public class DOCreateTable extends DOAbstractAction {
 				.getFormInstance();
 
 
-		BOInstance theTenancy =  (BOInstance)DOGlobals.getInstance().getSessoinContext()
-		.getUser().getObjectValue("tenancy");
+		BOInstance theTenancy =  (BOInstance)DOGlobals.getInstance().getSessoinContext().getTenancyValues().getTenant();
 
 		String tableName = form.getValue("tableName");
 		String viewName = "";

@@ -15,9 +15,12 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.LoginDelegateList;
+import com.exedosoft.plat.login.LoginMain;
+import com.exedosoft.plat.multitenancy.MultiAccount;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
+import com.exedosoft.safe.TenancyValues;
 
 ///多租户可以使用使用“多租户表”，也可以使用实际表
 
@@ -74,56 +77,128 @@ public class SSOController extends HttpServlet {
 
 		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
 
-		String serviceUid = request.getParameter("contextServiceUid"); // /////////业务对象服务uid
-		DOService curService = null;
-		if (serviceUid != null && !serviceUid.trim().equals("")) {
-			curService = DOService.getServiceByID(serviceUid);
-		} else {
-			String serviceName = request.getParameter("contextServiceName");
-			System.out.println("use contextServiceName::" + serviceName);
-			if (serviceName != null && !serviceName.trim().equals("")) {
-				curService = DOService.getService(serviceName);
+		// 处理登录
+
+		String echoStr = "";
+
+		if (formBI.getValue("randcode").equals(
+						request.getSession().getAttribute("rand"))) {////验证码正确
+			MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
+					formBI.getValue("password"));
+			if (ma != null) {
+
+				BOInstance user = new BOInstance();
+				user.fromObject(ma);
+
+				if (user != null && user.getValue("tenancyId") != null) {
+					/**
+					 * tenancyId 相当于 multi_tenancy表中的name
+					 */
+					System.out.println("当前登录的租户为::"
+							+ user.getValue("tenancyId"));
+					DOService aService = DOService
+							.getService("multi_tenancy_browse_byname");
+					BOInstance tenant = aService.getInstance(user
+							.getValue("tenancyId"));
+					if (tenant != null && tenant.getName() != null) {
+						DODataSource dds = new DODataSource();
+						dds.setDialect("h2");
+						dds.setDriverClass("org.h2.Driver");
+
+						String path = this.getClass().getResource(
+								"/globals.xml").getPath();
+						path = path.substring(0, path.toLowerCase().indexOf(
+								"classes"));
+
+						dds.setDriverUrl((new StringBuilder("jdbc:h2:"))
+								.append(path).append("db/tenancy/").append(
+										tenant.getValue("name")).append(
+										"/config").toString());
+
+						dds.setUserName("sa");
+						dds.setPassword("");
+
+						// tenant data datastore url
+						String dataStoreUrl = tenant.getValue("");
+
+						// /globals 放到session中
+
+						// //需要更改多租户表中，租户数据库中的数据源
+						// ////每个租户为定位到某个物理数据库中
+						// ///租户数据库分配
+						TenancyValues tv = new TenancyValues(dds, tenant);
+						DOGlobals.getInstance().getSessoinContext()
+								.setTenancyValues(tv);
+
+						System.out.println("当前缺省的配置库:::"
+								+ DODataSource.parseGlobals());
+
+						// //处理登录日志==========================
+						LoginMain.makeLogin(user, request);
+					}
+				}
+
+			} else {
+
+				echoStr = "用户名/密码出错，请重试！";
 			}
 		}
 
-		if (curService == null) {
-			out.println("{error:noservice}");
-			return;
-		}
-
-		String contextInstanceUid = formBI.getValue("contextInstanceUid");
-		if (contextInstanceUid != null && !contextInstanceUid.trim().equals("")) {
-
-			String contextClassUid = formBI.getValue("contextClassUid");
-			BOInstance bi = null;
-			if (contextClassUid != null && !contextClassUid.trim().equals("")) {
-				DOBO bo = DOBO.getDOBOByID(contextClassUid);
-				bi = bo.refreshContext(contextInstanceUid);
-			} else if (curService.getBo() != null) {
-				System.out.println("RefreshContextInstance:::::::::"
-						+ contextInstanceUid);
-				bi = curService.getBo().refreshContext(contextInstanceUid);
-			}
-		}
-
-		/**
-		 * 执行用户定义的特定登录Action 如 LoginAction2 LoginAction等。
-		 */
-		String returnValue = null;
-		try {
-			returnValue = curService.invokeAll();
-		} catch (ExedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		// String serviceUid = request.getParameter("contextServiceUid"); //
+		// /////////业务对象服务uid
+		// DOService curService = null;
+		// if (serviceUid != null && !serviceUid.trim().equals("")) {
+		// curService = DOService.getServiceByID(serviceUid);
+		// } else {
+		// String serviceName = request.getParameter("contextServiceName");
+		// System.out.println("use contextServiceName::" + serviceName);
+		// if (serviceName != null && !serviceName.trim().equals("")) {
+		// curService = DOService.getService(serviceName);
+		// }
+		// }
+		//
+		// if (curService == null) {
+		// out.println("{\"error\":\"noservice\"}");
+		// return;
+		// }
+		//
+		// String contextInstanceUid = formBI.getValue("contextInstanceUid");
+		// if (contextInstanceUid != null &&
+		// !contextInstanceUid.trim().equals("")) {
+		//
+		// String contextClassUid = formBI.getValue("contextClassUid");
+		// BOInstance bi = null;
+		// if (contextClassUid != null && !contextClassUid.trim().equals("")) {
+		// DOBO bo = DOBO.getDOBOByID(contextClassUid);
+		// bi = bo.refreshContext(contextInstanceUid);
+		// } else if (curService.getBo() != null) {
+		// System.out.println("RefreshContextInstance:::::::::"
+		// + contextInstanceUid);
+		// bi = curService.getBo().refreshContext(contextInstanceUid);
+		// }
+		// }
+		//
+		// /**
+		// * 执行用户定义的特定登录Action 如 LoginAction2 LoginAction等。
+		// */
+		// String returnValue = null;
+		// try {
+		// returnValue = curService.invokeAll();
+		// } catch (ExedoException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//		
+		//
+		//		
+		//
 		boolean isDelegate = false;
-		try {
-			isDelegate = LoginDelegateList.isDelegate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		}
+		// try {
+		// isDelegate = LoginDelegateList.isDelegate();
+		// } catch (Exception e) {
+		// // TODO Auto-generated catch block
+		// // e.printStackTrace();
+		// }
 
 		StringBuffer outHtml = new StringBuffer();
 
@@ -132,8 +207,6 @@ public class SSOController extends HttpServlet {
 			// ////为了保留结构，没有实际意义
 			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
-			String echoStr = DOGlobals.getInstance().getRuleContext()
-					.getEchoValue();
 
 			if (echoStr == null || echoStr.trim().equals("")) {
 				echoStr = "success";
@@ -170,50 +243,12 @@ public class SSOController extends HttpServlet {
 			// ////为了保留结构，没有实际意义 缺省时使用dojo的包
 			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
 			// /////////value
-			String echoStr = DOGlobals.getInstance().getRuleContext()
-					.getEchoValue();
 			if (echoStr == null) {
 				echoStr = "";
 			}
 			echoStr = echoStr.trim();
 			outHtml.append("\",\"returnValue\":\"").append(echoStr).append(
 					"\"}");
-		}
-
-		if (formBI.getValue("tenancy_uid") != null && DOGlobals.getInstance().getSessoinContext().getUser()!=null) {
-			System.out.println("当前登录的租户为::" + formBI.getValue("tenancy_uid"));
-			DOService aService = DOService.getService("multi_tenancy_browse");
-			BOInstance aBI = aService.getInstance(formBI
-					.getValue("tenancy_uid"));
-			if (aBI != null && aBI.getName() != null) {
-				DODataSource dds = new DODataSource();
-				dds.setDialect("hsqldb");
-				dds.setDriverClass("org.hsqldb.jdbcDriver");
-
-				String path = this.getClass().getResource("/globals.xml")
-						.getPath();
-				path = path.substring(0, path.toLowerCase().indexOf("classes"));
-
-				dds.setDriverUrl((new StringBuilder("jdbc:hsqldb:file:"))
-						.append(path).append("db/tenancy/").append(
-								aBI.getValue("name")).append("/mydb")
-						.toString());
-
-				dds.setUserName("sa");
-				dds.setPassword("1111");
-				///globals 放到session中
-				
-				////需要更改多租户表中，租户数据库中的数据源
-				//////每个租户为定位到某个物理数据库中
-				
-				/////租户数据库分配
-				
-				
-				
-				DOGlobals.getInstance().getSessoinContext().getUser().putValue("config_db", dds);
-				DOGlobals.getInstance().getSessoinContext().getUser().putValue("tenancy", aBI);
-				System.out.println("当前缺省的配置库:::" + DODataSource.parseGlobals());
-			}
 		}
 
 		// //改变所用的jslib
@@ -278,9 +313,12 @@ public class SSOController extends HttpServlet {
 		// DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
 		// System.out.println("Corr Controller::" + cc.getCorrByConfig());
 
-		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
+		DOService aService = DOService
+				.getService("multi_tenancy_browse_byname");
 
-		System.out.println("pm::::" + pm.getController());
+		BOInstance aBI = aService.getInstance("carrefour");
+
+		System.out.println("aBI::::" + aBI);
 
 	}
 }

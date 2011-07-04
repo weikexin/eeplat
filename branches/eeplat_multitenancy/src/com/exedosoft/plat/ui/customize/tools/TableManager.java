@@ -21,24 +21,27 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.jquery.grid.GridList;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
+import com.exedosoft.safe.TenancyValues;
 
 public class TableManager extends GridList {
-	
+
 	private static Log log = LogFactory.getLog(TableManager.class);
 
 	public TableManager() {
 
 		this.templateFile = "customize/tools/TableManager.ftl";
 
-		BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-				.getSessoinContext().getUser().getObjectValue("tenancy");
-		if (biTenancy != null) {
-            
-			DOBO dobo = DOBO.getDOBOByName("do_bo");
-			BOInstance biTenancyTable = null;
-			if (biTenancy != null && dobo.getCorrInstance() != null
-					&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
-				this.templateFile = "customize/tools/TableManagerTenancy.ftl";
+		if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
+			BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
+					.getSessoinContext().getTenancyValues().getTenant();
+			if (biTenancy != null) {
+
+				DOBO dobo = DOBO.getDOBOByName("do_bo");
+				BOInstance biTenancyTable = null;
+				if (biTenancy != null && dobo.getCorrInstance() != null
+						&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
+					this.templateFile = "customize/tools/TableManagerTenancy.ftl";
+				}
 			}
 		}
 
@@ -51,21 +54,25 @@ public class TableManager extends GridList {
 
 		Map<String, Object> data = new HashMap<String, Object>();
 
-		BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-				.getSessoinContext().getUser().getObjectValue("tenancy");
+		TenancyValues tv = DOGlobals.getInstance().getSessoinContext()
+				.getTenancyValues();
 		// //当多租户情况下，更换表格元素
 
-		if (biTenancy != null) {
-			DOController.flushController(gm.getController().getObjUid());
+		if (tv != null) {
+			BOInstance biTenancy = tv.getTenant();
+
+			if (biTenancy != null) {
+				DOController.flushController(gm.getController().getObjUid());
+			}
 		}
 
 		data.put("model", gm);
 
-		if (biTenancy != null) {
+		if (tv != null) {
 			DOBO dobo = DOBO.getDOBOByName("do_bo");
 
 			BOInstance biTenancyTable = null;
-			if (biTenancy != null && dobo.getCorrInstance() != null
+			if (tv.getTenant() != null && dobo.getCorrInstance() != null
 					&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
 				DOGridModel gmTenancy = DOGridModel
 						.getGridModelByName("GM_multi_tenancy_column_oftable");
@@ -120,10 +127,10 @@ public class TableManager extends GridList {
 
 		DOBO dobo = DOBO.getDOBOByName("do_bo");
 
-		BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-				.getSessoinContext().getUser().getObjectValue("tenancy");
+		TenancyValues tv =  DOGlobals.getInstance()
+				.getSessoinContext().getTenancyValues();
 
-		if (biTenancy != null && dobo.getCorrInstance() != null
+		if (tv != null && tv.getTenant()!=null && dobo.getCorrInstance() != null
 				&& "2".equals(dobo.getCorrInstance().getValue("type"))) {
 			DOBO theBO = DOBO.getDOBOByID(dobo.getCorrInstance().getUid());
 			DOService findColumns = DOService
@@ -135,7 +142,7 @@ public class TableManager extends GridList {
 			// multi_tenancy_column_insert
 
 			BOInstance theTable = findTable.getInstance(theBO.getSqlStr(),
-					biTenancy.getValue("name"));
+					tv.getTenant().getValue("name"));
 			if (theTable != null) {
 				List list = findColumns.invokeSelect(theTable.getUid());
 				return list;

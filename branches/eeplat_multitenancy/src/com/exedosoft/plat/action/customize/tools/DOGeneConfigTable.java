@@ -75,7 +75,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 		try {
 
 			BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
-			.getSessoinContext().getUser().getObjectValue("tenancy");
+			.getSessoinContext().getTenancyValues().getTenant();
 
 			for (java.util.Iterator<BOInstance> it = allCheckInstances
 					.iterator(); it.hasNext();) {

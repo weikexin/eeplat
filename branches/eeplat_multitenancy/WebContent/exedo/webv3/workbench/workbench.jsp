@@ -6,17 +6,15 @@
 	<div class="gzmid"><div class="midleft"></div>
 		<div class="midcon">
 		   <ul style="overflow:hidden">  	 	 
-		    <li><a  href="javascript:loadPml({'pml':'PM_DO_Application_Insert','target':'_opener_tab','title':'新建工程'})">新建工程</a></li>
-		    <br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_ui_controller_Main','target':'_opener_tab','title':'控制器管理'})">控制器管理</a></li>
 		    <br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_actionconfig_Main','target':'_opener_tab','title':'自定义动作管理'})">自定义动作管理</a></li>
 			<br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_resource_Main','target':'_opener_tab','title':'资源管理'})">资源管理</a></li>
 		    <br/>
-			<li><a  href="javascript:loadPml({'pml':'PM_do_datasource_Result','target':'_opener_tab','title':'数据源管理'})">数据源管理</a></li>
+			<li><a  href="javascript:loadPml({'pml':'PM_do_datasource_Result','target':'_opener_tab','title':'创建表'})">创建表</a></li>
 			<br/>
-			<li><a  href="javascript:loadPml({'pml':'PM_do_org_part_Result','target':'_opener_tab','title':'组织定义'})">组织定义</a></li>
+			<li><a  href="javascript:loadPml({'pml':'PM_do_org_part_Result','target':'_opener_tab','title':'初始化表'})">初始化表</a></li>
 			</ul>
 		</div>
 	</div>
@@ -33,6 +31,9 @@
 			<li><a  href="javascript:loadPml({'pml':'PM_DO_BO_Export_Select','target':'_opener_tab','title':'导入业务对象'})">导入业务对象</a></li>
 		    <br/>
 	    	<li><a  href="javascript:loadPml({'pml':'PM_do_pt_processtemplate_Main','target':'_opener_tab','title':'工作流建模'})">工作流建模</a></li>
+	    	<br/>
+			<li><a  href="javascript:loadPml({'pml':'PM_do_org_part_Result','target':'_opener_tab','title':'组织定义'})">组织定义</a></li>
+	    	
 		</ul>		
 	</div></div>
 	<div class="gztfoot"><div class="footleft"></div></div>
