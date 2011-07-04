@@ -15,5 +15,6 @@
 	  aFileName = aService.getBo().getCorrInstance().getName() + ".xml";
   }
  // aFileName = URLEncoder.encode(aFileName, "UTF-8");
+  out.println(Escape.unescape(DOGlobals.getInstance().getRuleContext().getEchoValue()));   
   aFileName = StringUtil.filter(aFileName);
-  response.addHeader("Content-Disposition", "attachment;filename="+aFileName);
+  response.addHeader("Content-Disposition", "attachment;filename="+aFileName); %>
