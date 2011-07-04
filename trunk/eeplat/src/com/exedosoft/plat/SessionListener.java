@@ -26,28 +26,30 @@ public class SessionListener implements HttpSessionListener {
 		LoginMain.globalSessions.values().remove(se.getSession());
 
 		// /删除过期数据
-//		DOService dellogService = DOService
-//				.getService("do_log_delete_guoqi");
-//		try {
-//			dellogService.invokeUpdate();
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			// e1.printStackTrace();
-//		}
+		// DOService dellogService = DOService
+		// .getService("do_log_delete_guoqi");
+		// try {
+		// dellogService.invokeUpdate();
+		// } catch (Exception e1) {
+		// // TODO Auto-generated catch block
+		// // e1.printStackTrace();
+		// }
 
 		DOService updateService = DOService
 				.getService("do_log_update_by_sessionid");
 
-		try {
-			BOInstance aInstance = new BOInstance();
-			aInstance.putValue("logoffTime", new Timestamp(System
-					.currentTimeMillis()));
-			aInstance.putValue("sessionid", se.getSession().getId());
-			updateService.invokeUpdate(aInstance);
-			// aInstance.invokeUpdate();
-		} catch (ExedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (updateService != null) {
+			try {
+				BOInstance aInstance = new BOInstance();
+				aInstance.putValue("logoffTime", new Timestamp(System
+						.currentTimeMillis()));
+				aInstance.putValue("sessionid", se.getSession().getId());
+				updateService.invokeUpdate(aInstance);
+				// aInstance.invokeUpdate();
+			} catch (ExedoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
