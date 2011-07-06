@@ -102,6 +102,7 @@ public class SSOController extends HttpServlet {
 							.getValue("tenancyId"));
 					if (tenant != null && tenant.getName() != null) {
 						DODataSource dds = new DODataSource();
+						dds.setObjUid(user.getValue("tenancyId"));
 						dds.setDialect("h2");
 						dds.setDriverClass("org.h2.Driver");
 
