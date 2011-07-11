@@ -130,9 +130,9 @@ public class GridList extends DOViewTemplate {
 			data.put("rowSize", pageNum);
 			int resultSize = gridModel.getService().getResultSize();
 			int pageSize = StringUtil.getPageSize(resultSize, pageNum);
-			data.put("pageSize", pageSize);
-			data.put("resultSize", resultSize);
-			data.put("pageNo", pageNo);
+			data.put("pageSize", String.valueOf(pageSize).replace(",", ""));
+			data.put("resultSize", String.valueOf(resultSize).replace(",", ""));
+			data.put("pageNo", String.valueOf(pageNo).replace(",", ""));
 
 			if ("0".equals(gridModel.getTemplate()) && !isDirectLink) {
 				list = new ArrayList();
