@@ -169,5 +169,11 @@ public class GridList extends DOViewTemplate {
 
 		return list;
 	}
+	
+	public static void main(String[] args){
+		
+
+		System.out.println("1,100,000".replace(",", ""));
+	}
 
 }
