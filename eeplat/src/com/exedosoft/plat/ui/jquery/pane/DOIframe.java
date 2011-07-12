@@ -17,6 +17,9 @@ public class DOIframe extends TPaneTemplate {
 	}
 	
 	public Map<String, Object> putData(DOIModel doimodel) {
+		
+		
+		System.out.println("111111111111111111111111111111111111111111");
 
 		DOPaneModel pm = (DOPaneModel) doimodel;
 		String resPath = "";
@@ -29,8 +32,19 @@ public class DOIframe extends TPaneTemplate {
 		data.put("model", pm);
 		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
 		data.put("webmodule", DOGlobals.URL);
-		data.put("resPath", resPath);
+		if(resPath.startsWith("http")){
+			data.put("resPath", resPath);
+		}else{
+			data.put("resPath",new StringBuilder("/").append(DOGlobals.URL).append("/").append(resPath).toString());
+		}
 		
 		return data;
+	}
+	
+	public static void main(String[] args){
+		DOPaneModel aPm = DOPaneModel.getPaneModelByID("402881e93107a32d013107a4f5920002");
+		
+		System.out.println(aPm.getHtmlCode());
+		
 	}
 }

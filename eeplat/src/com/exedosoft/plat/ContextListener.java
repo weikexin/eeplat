@@ -131,7 +131,7 @@ public class ContextListener implements ServletContextListener {
 		}
 	}
 
-	private BasicDataSource poolASource(DODataSource dss) {
+	public BasicDataSource poolASource(DODataSource dss) {
 		// ////////////////////////////////////////////////////////////////////////
 		// 根据配置文件
 		if (dss.getOtherparas() != null && dss.getOtherparas().endsWith(".xml")) {

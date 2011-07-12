@@ -17,6 +17,7 @@ import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.PropertyManager;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -194,7 +195,18 @@ public class DOAlterTable extends DOAbstractAction {
 
 	public static void main(String[] args) {
 
-		System.out.println(DOBOProperty.getDOBOPropertyByName("DO_BO",				"cc")==null);
+		
+		CacheFactory.getCacheData().fromSerialObject();
+
+		DOService aService = DOService.getService("DO_BO_Property_findbybouid_keyiscolName");
+		
+		System.out.println(aService);
+		if(aService!=null){
+		List l = aService.invokeSelect("2c90b186301b0aac01301b0aac390000");
+		
+		System.out.println(l);
+		}
+
 
 	}
 
