@@ -34,7 +34,9 @@
 </html>
 </textarea></form>
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent"});
+    	
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"),
+       {mode: "text/html", tabMode: "indent",lineNumbers: true,  matchBrackets: true});
     </script>
 
     <p>The HTML mixed mode depends on the XML, JavaScript, and CSS modes.</p>
