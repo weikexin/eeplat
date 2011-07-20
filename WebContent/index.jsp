@@ -10,7 +10,7 @@
   globalURL = "/<%=DOGlobals.URL%>/";
 </script>  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>欢迎登录KPI管理系统</title>
+<title>欢迎登录客户关系管理系统</title>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
@@ -103,9 +103,9 @@
 			
 
 			   if('success'==retValue){
-			        window.location= globalURL + "pane_KPI.pml?isApp=true";
+			        window.location= globalURL + "pane_CRM.pml?isApp=true";
 			   }else if('delegate'==retValue){
-			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_KPI";
+			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_CRM";
 			   }else{
 				   	alert(retValue);
 				   	imgChange($("#numImg"));

@@ -1,7 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.bo.DOService"%>
+<%@ page import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
 <html>
 
 <%
@@ -38,6 +42,8 @@
 %>
 <head>
 <title><%=paneModelTitle %></title>
+
+
 <script language="javascript">
 
 globalURL = "/<%=DOGlobals.URL%>/";
@@ -48,114 +54,67 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/button.css"  type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
  -->
-
+  
+  
+ 
+<link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <!-- Jquery插件的css -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/core.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.css"
-	type="text/css" media="print, projection, screen" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/dialog.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/uploadify.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.css"
-	type="text/css" />
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/core.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.css" type="text/css"  media="print, projection, screen"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/dialog.css"     type="text/css"  />  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.css"    type="text/css" />  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/uploadify.css"    type="text/css" />  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.css" type="text/css" /> 
 
-<!-- 平台主体及其它集成的css -->
+ 
+ <!-- 平台主体及其它集成的css -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/xtree2.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css" type="text/css" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/css/xtree2.css"
-	type="text/css" />
+	href="<%=request.getContextPath()%>/CodeMirror/codemirror.css"
+	type="text/css" />	
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/webv3/mycss/myconfirm.css"
-	type="text/css" />
+	href="<%=request.getContextPath()%>/CodeMirror/default.css"
+	type="text/css" />	
 
+ 
 <!-- 插件的js -->
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/ui.core.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqDnR.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.tablesorter.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.metadata.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects_static.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js"></script>
-
-
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/ui.core.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.js"></script> 
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqDnR.js" ></script> 
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.metadata.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects_static.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>	
 <!-- 平台主体及其他集成的js -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xloadtree2.js" ></script> 
+<script type="text/javascript" src="<%=request.getContextPath() %>/FCKeditor/fckeditor.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/codepress/codepress.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/FusionChartsFree/FusionCharts.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/my.js"  ></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/My97DatePicker/WdatePicker.js"></script>
+	src="<%=request.getContextPath() %>/CodeMirror/codemirror-compressed.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xloadtree2.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath() %>/FCKeditor/fckeditor.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/gztiaojs.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/mysimpleconfirm.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/bxdetail.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/bxdan.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/bxzhusufei.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/empjs.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/webv3/myjs/modifycity.js"></script>
-	
-<style type="text/css">
-@import "<%=request.getContextPath()%>/exedo/webv3/myjs/dojo/dijit/themes/tundra/tundra.css";
-</style>
+	src="<%=request.getContextPath() %>/CodeMirror/complete.js"></script>
 <script language="javascript">
 
-
+globalURL = "/<%=DOGlobals.URL%>/";
 
             
 //窗口大小改变的时候，重新给div限制高度
@@ -195,30 +154,31 @@ $(function(){
 		  );
 
 	 });
+
+	  resscrEvt();
 });
-
-
-
-$(window).unload(function(){
-	///关闭id 即清楚缓存
-	    if((window.screenLeft>=10000 && window.screenTop>=10000) || event.altkey) 
-	    { 
-	  		    window.location = "<%=request.getContextPath()%>/exedo/webv3/logoff.jsp";   
-	    } 
-});
-
+<%
+  DOService aService = DOService.getService("DO_BO_Icon_List");
+  if(aService!=null){
+	  List list = aService.invokeSelect();
+	  for(Iterator it = list.iterator(); it.hasNext();){
+		   BOInstance bi = (BOInstance)it.next();
+		   if(bi!=null && bi.getValue("	formulaScript")!=null)
+		   out.println(bi.getValue("	formulaScript"));
+	  }
+  }
+%>
 </script>
 </head>
 
-<body lang=zh>
-<form id="zephyrOcx" name="zephyrOcx"><object id="DOcxtest1"
-	name="DOcxtest1" on
-	classid="clsid:4E1C94DD-78DE-4DCB-B0B6-3745C728EFA8" width=0 height=0
-	align=middle hspace=0 vspace=0 viewastext> </object></form>
+
+<body  lang=zh>
+
 <div id='dmLayer'></div>
-<input type="hidden" id="mainStyle" value="<%=mainStyle %>" />
+<input  type="hidden" id="mainStyle" value="<%=mainStyle %>"/> 
 <%=paneModelContent%>
 
-
+	
+	
 </body>
 </html>
