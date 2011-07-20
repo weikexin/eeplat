@@ -10,9 +10,11 @@
 		    <br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_actionconfig_Main','target':'_opener_tab','title':'自定义动作管理'})">自定义动作管理</a></li>
 			<br/>
+			<li><a  href="javascript:loadPml({'pml':'PM_do_icon_Main','target':'_opener_tab','title':'JavaScript管理'})">自定义JavaScript管理</a></li>
+			<br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_resource_Main','target':'_opener_tab','title':'资源管理'})">资源管理</a></li>
 		    <br/>
-			<li><a  href="javascript:loadPml({'pml':'PM_do_datasource_Result','target':'_opener_tab','title':'创建表'})">创建表</a></li>
+			<li><a  href="javascript:loadPml({'pml':'TabeCreator','target':'_opener_tab','title':'创建表'})">创建表</a></li>
 			<br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_org_part_Result','target':'_opener_tab','title':'初始化表'})">初始化表</a></li>
 			</ul>

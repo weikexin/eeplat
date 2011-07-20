@@ -119,6 +119,11 @@
 			</#if> 	
 		</tbody>
 	  </table>
+	<#if (model.hiddenGridFormLinks?size > 0) > 
+				<#list model.hiddenGridFormLinks as item> 
+				    ${item.htmlValue}  &nbsp; 
+				</#list>
+	</#if>
 </form>	
 </div>	
 <script>
@@ -129,9 +134,12 @@ function toggleMore(obj){
 	$(obj).html(html);
 
 }
+<#if  (model.name?contains("Browse")) >
  $('#g${model.objUid} tbody  tr').bind('click',function(){
 			$('#g${model.objUid} tbody  tr.selected').removeClass("selected");//去掉原来的选中selected
 			$(this).addClass("selected");
  });
+</#if>
+ 
 </script>
 

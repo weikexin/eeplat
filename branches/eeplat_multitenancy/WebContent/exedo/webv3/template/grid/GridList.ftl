@@ -141,7 +141,12 @@
 				</td></tr>
 		</table>
 	</#if>
-		
+	
+	<#if (model.hiddenGridFormLinks?size > 0) > 
+				<#list model.hiddenGridFormLinks as item> 
+				    ${item.htmlValue}  &nbsp; 
+				</#list>
+	</#if>
 </form>	
 
 

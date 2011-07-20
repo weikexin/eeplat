@@ -1,4 +1,6 @@
 var invokeDomId = "";
+var mirrorEditor ;
+var mirrorEditor2 ;
 
 //在js里面直接调用action类
 /**
@@ -22,6 +24,13 @@ function callAction(p){
     	}
     	return;
      }
+    
+	var async = true;
+	
+	if(p.async == false){
+		async = false;
+	}
+
 
     //表单验证
 	if(!validate(p.formName)){
@@ -54,74 +63,80 @@ function callAction(p){
 		paras = "callType=as&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
 	}
 	
-    $.post(globalService,paras,
-			function (data, textStatus){
+	$.ajax({
+		type: "post",
+		url: globalService,
+		data: paras,
+		async: async,
+		success: function (data, textStatus){
     	
-			   if(data!=null && data.echo_msg!=null  && $.trim(data.echo_msg)!=''){
-			   		var echo_msg = unescape(data.echo_msg);
-			   		if(data.success  && 
-			   				(data.success=='success'  || data.success=='true')){///成功也有可能含有提示
-			   			if(echo_msg!='success'  && echo_msg!='null' && echo_msg!='undefined'){
-				   			alert(echo_msg);
-			   			}
-			   		}else{
-				   		if(echo_msg!='success'  && echo_msg!='null' && echo_msg!='undefined'){
-				   			alert(echo_msg);
-				   		}
- 		   	    		if(p.btn.nodeName=='A'){
- 		   	    			p.btn.flag = false;
- 		   	    		}else{
- 		   	    			p.btn.disabled = false;
- 		   	    		}		 				   		
-		   				return;
+		   if(data!=null && data.echo_msg!=null  && $.trim(data.echo_msg)!=''){
+		   		var echo_msg = unescape(data.echo_msg);
+		   		if(data.success  && 
+		   				(data.success=='success'  || data.success=='true')){///成功也有可能含有提示
+		   			if(echo_msg!='success'  && echo_msg!='null' && echo_msg!='undefined'){
+			   			alert(echo_msg);
+		   			}
+		   		}else{
+			   		if(echo_msg!='success'  && echo_msg!='null' && echo_msg!='undefined'){
+			   			alert(echo_msg);
 			   		}
-			   }
- 		   	   if(p.pml!=null) {
- 		   		   
-  		   		   if(p.target &&  $.trim(p.target)!=""){
-  		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,p.pml + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
-  		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
-  		   			  }  
-  		   			  else if(p.target=='_opener_tab'){
-  							createNewTab(pmlName,title,p.pml);
-  					  }else if(p.target=='_opener'){
-  							popupDialog(pmlName,title,p.pml,p.pmlWidth,p.pmlHeight);
-  					  }else{
-  						  if($("#" + p.target).size() > 0 && (pmlName == p.target) ){
-  							  
-  	  						  var pageNo = $("#"+pmlName+" .pageNo").text();
-  	  						  var pageSize = $("#"+pmlName+" .pageSize").text();
-  	  						  var dataParas = $("#" + p.target).data('paras');
-  	  						  
-  	  						  if(pageNo!=null && pageSize!=null){
-  	  							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
-  	  						  }
-  	  						  $("#" + p.target).empty().load(p.pml,dataParas);
-  						  }else{
-  							  $("#" + p.target).empty().load(p.pml);
-  						  }
-  					  }	
- 		   		   }else if(pmlName!=""){
- 		   		     $("#" + pmlName).empty().load(p.pml);  
- 		   		   }
- 		   		   else{
-					 alert("没有定义目标面板,请检查相关配置!");
- 		   		   }	 
-			   }
- 		   	   if(p.callback){
- 		   		   p.callback(data);
- 		   	   }
-			   if(p.btn){
 	   	    		if(p.btn.nodeName=='A'){
-		   	    			p.btn.flag = false;
-		   	    	}else{
-		   	    			p.btn.disabled = false;
-		   	    	}	
-		   	   }
-	  },"json");
-}
+	   	    			p.btn.flag = false;
+	   	    		}else{
+	   	    			p.btn.disabled = false;
+	   	    		}		 				   		
+	   				return;
+		   		}
+		   }
+	   	   if(p.pml!=null) {
+	   		   
+	   		   if(p.target &&  $.trim(p.target)!=""){
+	   			  if(p.target=='_opener_window'){
+	   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   			  }else  if(p.target=='_opener_location'){
+	   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
+	   			  }  
+	   			  else if(p.target=='_opener_tab'){
+						createNewTab(pmlName,title,p.pml);
+				  }else if(p.target=='_opener'){
+						popupDialog(pmlName,title,p.pml,p.pmlWidth,p.pmlHeight);
+				  }else{
+					  if($("#" + p.target).size() > 0 && (pmlName == p.target) ){
+						  
+ 						  var pageNo = $("#"+pmlName+" .pageNo").text();
+ 						  var pageSize = $("#"+pmlName+" .pageSize").text();
+ 						  var dataParas = $("#" + p.target).data('paras');
+ 						  
+ 						  if(pageNo!=null && pageSize!=null){
+ 							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
+ 						  }
+ 						  $("#" + p.target).empty().load(p.pml,dataParas);
+					  }else{
+						  $("#" + p.target).empty().load(p.pml);
+					  }
+				  }	
+	   		   }else if(pmlName!=""){
+	   		     $("#" + pmlName).empty().load(p.pml);  
+	   		   }
+	   		   else{
+				 alert("没有定义目标面板,请检查相关配置!");
+	   		   }	 
+		   }
+	   	   if(p.callback){
+	   		   p.callback(data);
+	   	   }
+		   if(p.btn){
+	    		if(p.btn.nodeName=='A'){
+	   	    			p.btn.flag = false;
+	   	    	}else{
+	   	    			p.btn.disabled = false;
+	   	    	}	
+	   	   }
+        },
+		dataType: "json"});
+ }
+
 
 //在js里面直接调用action类
 /**
@@ -137,6 +152,7 @@ function callAction(p){
  * p.pmlWidth
  * p.target
  * p.echoJs
+ * p.async 缺省 true
  * p.callType  //触发类别 default: us  ; others: uf
  * p.callback //回调函数  
 
@@ -159,6 +175,11 @@ function callService(p){
 		}
 	}	
 
+	var async = true;
+	
+	if(p.async == false){
+		async = false;
+	}
 
 
     if(p.serviceUid==null && p.serviceName==null){
@@ -242,9 +263,12 @@ function callService(p){
 
 	paras = callServStr + "&callType=" + callType  + "&" + urlCodeDeal(paras);
 	
-	
-    $.post(globalService,paras,
-			function (data, textStatus){
+	$.ajax({
+		type: "post",
+		url: globalService,
+		data: paras,
+		async:async,
+		success: function (data, textStatus){
 
 				   if(data!=null && data.echo_msg!=null && $.trim(data.echo_msg)!=''){
 				   		var errmsg = unescape(data.echo_msg);
@@ -281,9 +305,9 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aTitle,aPath + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aTitle,aPath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
    		  		   			  }else  if(target=='_opener_location'){
-   		  		   				  	window.location = aPath + "&"  + urlCodeDeal(paras) + "&isApp=true";
+   		  		   				  	window.location = aPath + "&"  + paras + "&isApp=true";
    		  		   			  }  
    		  		   			  else if(target=='_opener_tab'){
    		  							createNewTab(pmlName,aTitle,aPath);
@@ -304,9 +328,9 @@ function callService(p){
  		   		   
   		   		   if(p.target &&  $.trim(p.target)!=""){
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,p.pml + "&"  + urlCodeDeal(paras),'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
+  		   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
   		   			  }  
   		   			  else if(p.target=='_opener_tab'){
   							createNewTab(pmlName,title,p.pml);
@@ -347,8 +371,8 @@ function callService(p){
 	 					p.btn.disabled = false;
 	 				}
  		   	   }
-	  },"json");
-	  
+	  },
+	  dataType: "json" });
 }
 
 /**
@@ -379,7 +403,7 @@ function callPlatBus(p){
  * p.target
  * p.pml
  * p.pmlName
- * 
+ * urlCodeDeal(paras)  改写可以加快速度
  * @param p
  * @return
  */
@@ -511,13 +535,19 @@ function  getParasOfForms(targetForms){
 
 
 function updateEditorFormValue()
-{
-	 try {
+{	 try {
+    ////codemirror
+	    if(mirrorEditor){
+		    mirrorEditor.save();
+	    }
+	    if(mirrorEditor2){
+	    	mirrorEditor2.save();
+	    }
+		 ///fckeditor
                 for ( i = 0; i < parent.frames.length; ++i )
                         if ( parent.frames[i].FCK )
                                 parent.frames[i].FCK.UpdateLinkedField();
-	 }catch(e){
-		 
+	}catch(e){
 	 }          
 }
 
@@ -632,6 +662,9 @@ function validate(formName){
     var aFName = ay[ii];
     var formJquery = $("#"+aFName);
     var form = formJquery[0];
+    if(form==null){
+    	continue;
+    }
     for (var i = 0; i < form.elements.length;i++)
     {
         el = form.elements[i];
