@@ -351,7 +351,7 @@ public class ATableForwarderImp implements ATableForwarder {
 				System.out.println("BOBOBO::::::" + bo);
 				System.out.println("Property::::::" + property);
 
-				if (property == null) {
+				if (property == null || property.getColName()==null) {
 					return;
 				}
 				name = prefix + ".delete";
@@ -362,7 +362,7 @@ public class ATableForwarderImp implements ATableForwarder {
 				break;
 			case 4:
 				property = DOBOProperty.getDOBOPropertyByName(bo.getName(),"objuid");
-				if (property == null) {
+				if (property == null || property.getColName()==null) {
 					return;
 				}
 				name = prefix + ".browse";

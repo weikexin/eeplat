@@ -8,9 +8,9 @@ import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.util.StringUtil;
 
-public class DOInputCheckBoxListNoLink extends DOStaticList {
+public class DOInputCheckBoxListDiv extends DOStaticList {
 
-	public DOInputCheckBoxListNoLink() {
+	public DOInputCheckBoxListDiv() {
 		super();
 	}
 
@@ -21,6 +21,14 @@ public class DOInputCheckBoxListNoLink extends DOStaticList {
 		StringBuffer buffer = new StringBuffer();
 
 		if (property.getLinkService() != null) {
+			buffer.append("<div  style=\"overflow-x:auto;overflow-y:scroll;width:100%;");
+			if (property.getWidth() != null && !"".equals(property.getWidth())) {
+				buffer.append("overflow-y:scroll;height:").append(property.getWidth()).append(";");
+			} else {
+				buffer.append("overflow-y:auto;");
+			}
+			buffer.append("\">");
+
 			for (Iterator it = property.getLinkService().invokeSelect()
 					.iterator(); it.hasNext();) {
 
@@ -28,11 +36,24 @@ public class DOInputCheckBoxListNoLink extends DOStaticList {
 
 				buffer.append("<input name=\"").append(
 						property.getFullColName());
-
+				
+//				buffer.append("\"  id=\"").append(
+//						property.getFullColName());
+				
 				buffer.append("\" value=\"").append(instance.getUid());
 
 				buffer.append("\"  type=\"checkbox\"");
 
+				if (property.getDoClickJs() != null && !"".equals(property.getDoClickJs().trim())) {
+					String doclick = property.getDoClickJs().trim();
+					if(doclick.endsWith(")")){
+						buffer.append("  onclick='").append(property.getDoClickJs()).append("'");
+					} else {
+						buffer.append("  onclick=\"").append(property.getDoClickJs()).append("('").append(instance.getUid()).append("');\"");
+					}
+					
+				}
+				
 				buffer.append(getDecoration(property));
 
 				if (DOStaticList.isChecked(instance.getUid(), property
@@ -42,11 +63,14 @@ public class DOInputCheckBoxListNoLink extends DOStaticList {
 				 if (isReadOnly(property)) {
 					 buffer.append(" DISABLED  ");
 				 }
-				buffer.append("/>");
+				buffer.append("/>&nbsp;");
 				//buffer.append(instance.getAjaxLink("_opener", null));
 				buffer.append(instance.getName());
 
+				buffer.append("<br>");
+
 			}
+			buffer.append("</div>");  
 		} else if(property.getInputConfig()!=null){
 
 			List list = StringUtil.getStaticList(property.getInputConfig());
@@ -63,11 +87,12 @@ public class DOInputCheckBoxListNoLink extends DOStaticList {
 				if (DOStaticList.isChecked(half[0], property.getValue())) {
 					buffer.append(" checked ");
 				}
-				// if (isReadOnly(property)) {
-				// buffer.append(" disable ");
-				// }
+				 if (isReadOnly(property)) {
+					 buffer.append(" DISABLED  ");
+				 }
 				buffer.append("/>");
 				buffer.append(half[1]);
+				buffer.append("<br>");
 			}
 		}
 		return buffer.toString();

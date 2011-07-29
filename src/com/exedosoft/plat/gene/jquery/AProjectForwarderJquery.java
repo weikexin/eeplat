@@ -121,34 +121,34 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(aBO);
 			
 			///////关联组织权限相关的业务包到初始化的工程下面
-
-			DOService updateBPService = DOService.getService("DO_BusiPackage_Update_copy");
-			BusiPackage bporg = BusiPackage.getPackageByName("dorgauth");
-			bporg.setApplication(project);
-			DAOUtil.INSTANCE().store(bporg,updateBPService);
-			
-
-			BusiPackage bpAuthSys = BusiPackage.getPackageByName("auth_system_imp");
-			bpAuthSys.setApplication(project);
-			DAOUtil.INSTANCE().store(bpAuthSys,updateBPService);
-
-			
-			BusiPackage bpLog = BusiPackage.getPackageByName("log_default_imp");
-			bpLog.setApplication(project);
-			DAOUtil.INSTANCE().store(bpLog,updateBPService);
-			
-
-			BusiPackage liuchengceshi = BusiPackage.getPackageByName("liuchengceshi");
-			liuchengceshi.setApplication(project);
-			DAOUtil.INSTANCE().store(liuchengceshi,updateBPService);
-			
-			BusiPackage gongzuoliu = BusiPackage.getPackageByName("gongzuoliu");
-			gongzuoliu.setApplication(project);
-			DAOUtil.INSTANCE().store(gongzuoliu,updateBPService);
-			
-			BusiPackage wf_history = BusiPackage.getPackageByName("wf_history");
-			wf_history.setApplication(project);
-			DAOUtil.INSTANCE().store(wf_history,updateBPService);
+//
+//			DOService updateBPService = DOService.getService("DO_BusiPackage_Update_copy");
+//			BusiPackage bporg = BusiPackage.getPackageByName("dorgauth");
+//			bporg.setApplication(project);
+//			DAOUtil.INSTANCE().store(bporg,updateBPService);
+//			
+//
+//			BusiPackage bpAuthSys = BusiPackage.getPackageByName("auth_system_imp");
+//			bpAuthSys.setApplication(project);
+//			DAOUtil.INSTANCE().store(bpAuthSys,updateBPService);
+//
+//			
+//			BusiPackage bpLog = BusiPackage.getPackageByName("log_default_imp");
+//			bpLog.setApplication(project);
+//			DAOUtil.INSTANCE().store(bpLog,updateBPService);
+//			
+//
+//			BusiPackage liuchengceshi = BusiPackage.getPackageByName("liuchengceshi");
+//			liuchengceshi.setApplication(project);
+//			DAOUtil.INSTANCE().store(liuchengceshi,updateBPService);
+//			
+//			BusiPackage gongzuoliu = BusiPackage.getPackageByName("gongzuoliu");
+//			gongzuoliu.setApplication(project);
+//			DAOUtil.INSTANCE().store(gongzuoliu,updateBPService);
+//			
+//			BusiPackage wf_history = BusiPackage.getPackageByName("wf_history");
+//			wf_history.setApplication(project);
+//			DAOUtil.INSTANCE().store(wf_history,updateBPService);
 
 			/**
 			 * 存储应用的根面板
@@ -163,17 +163,21 @@ public class AProjectForwarderJquery {
 			pmRoot.setController(contentPane);
 
 			DAOUtil.INSTANCE().store(pmRoot);
+			
+			////根面板
+			aBO.setMainPaneModel(pmRoot);
+			DAOUtil.INSTANCE().store(aBO);
 
 			// ///////业务对象发布为一个应用
 			project.setDobo(aBO);
 			DAOUtil.INSTANCE().store(project);
 			
 			////头部jsp
-			DOResource rs = new DOResource();
-			rs.setResourceName("jspheader_" + project.getName());
-			rs.setResourcePath(project.getName() + "/FormHeader.jsp");
-			rs.setResourceType(1);
-			DAOUtil.INSTANCE().store(rs);
+//			DOResource rs = new DOResource();
+//			rs.setResourceName("jspheader_" + project.getName());
+//			rs.setResourcePath(project.getName() + "/FormHeader.jsp");
+//			rs.setResourceType(1);
+//			DAOUtil.INSTANCE().store(rs);
 																	
 			/**
 			 * 建立新的头面板
@@ -182,7 +186,7 @@ public class AProjectForwarderJquery {
 
 			pmTop.setController(layOutHeader);
 			pmTop.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
-			pmTop.setLinkUID(rs.getObjUid());
+			pmTop.setLinkUID("ff80808131275dcc0131275e3b490005");                       ///固定的CRM的头面部ID 11111111111111
 			pmTop.setLayoutAlign("top");
 			pmTop.setCategory(aBO);
 			pmTop.setL10n(project.getL10n() + "_头面板");
@@ -229,10 +233,10 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(dmRoot);
 			
 			
-			////更新菜单获取的sql语句
-		 	DOService menuService = DOService.getService("s_menumodel_byName");
-		 	menuService.setMainSql("select * from do_ui_menumodel where name = '" + dmRoot.getName() + "'");
-		 	DAOUtil.INSTANCE().store(menuService);
+//			////更新菜单获取的sql语句
+//		 	DOService menuService = DOService.getService("s_menumodel_byName");
+//		 	menuService.setMainSql("select * from do_ui_menumodel where name = '" + dmRoot.getName() + "'");
+//		 	DAOUtil.INSTANCE().store(menuService);
 		 	 
 
 			DOMenuModel dmBP = new DOMenuModel();
@@ -245,32 +249,32 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(dmBP);
 			
 			
-			///////组织权限相关的菜单 初始化到工程根菜单下面
-			DOMenuModel dmmAuth = DOMenuModel.getMenuModelByName("dorgauth_bp");
-			dmmAuth.setParentMenu(dmRoot);
-			DAOUtil.INSTANCE().store(dmmAuth);
-						
-			///把工作流相关的菜单初始化到工程根菜单下面
-			DOMenuModel dorgauth_flow_test  = DOMenuModel.getMenuModelByName("dorgauth_flow_test");
-			dorgauth_flow_test .setParentMenu(dmRoot);
-			DAOUtil.INSTANCE().store(dorgauth_flow_test );
+//			///////组织权限相关的菜单 初始化到工程根菜单下面
+//			DOMenuModel dmmAuth = DOMenuModel.getMenuModelByName("dorgauth_bp");
+//			dmmAuth.setParentMenu(dmRoot);
+//			DAOUtil.INSTANCE().store(dmmAuth);
+//						
+//			///把工作流相关的菜单初始化到工程根菜单下面
+//			DOMenuModel dorgauth_flow_test  = DOMenuModel.getMenuModelByName("dorgauth_flow_test");
+//			dorgauth_flow_test .setParentMenu(dmRoot);
+//			DAOUtil.INSTANCE().store(dorgauth_flow_test );
 						
 			
 			
 			////工作台jsp
-			rs = new DOResource();
-			rs.setResourceName("workbenchjsp_" + project.getName());
-			rs.setResourcePath(project.getName() + "/workbench.jsp");
-			rs.setResourceType(1);
-			DAOUtil.INSTANCE().store(rs);
-			
+//			rs = new DOResource();
+//			rs.setResourceName("workbenchjsp_" + project.getName());
+//			rs.setResourcePath(project.getName() + "/workbench.jsp");
+//			rs.setResourceType(1);
+//			DAOUtil.INSTANCE().store(rs);
+//			
 			DOPaneModel pmContent = new DOPaneModel();// ///主内容显示区。
 			pmContent.setCategory(aBO);
 			pmContent.setName(project.getName() + "_MainContent");
 			pmContent.setL10n(project.getL10n() + "基本内容显示");
 			pmContent.setController(mainPage);
 			pmContent.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
-			pmContent.setLinkUID(rs.getObjUid());
+			pmContent.setLinkUID("ff80808131275dcc0131275e3fdd000c");  /// workbench UId   11111111111111
 			DAOUtil.INSTANCE().store(pmContent);
 
 			DOPaneLinks pmContentLink = new DOPaneLinks();
@@ -300,7 +304,7 @@ public class AProjectForwarderJquery {
 			DAOUtil.INSTANCE().store(pmLeftLink, aService);
 			
 ////最后copy
-			this.copyDir(project);
+//			this.copyDir(project);
 
 		} catch (Exception e) {
 
@@ -313,27 +317,26 @@ public class AProjectForwarderJquery {
 		// /执行目录copy工作
 	}
 
-	void copyDir(DOApplication dop) {
-
-
-		URL url = DOGlobals.class.getResource("/globals.xml");
-		String fullFilePath = url.getPath();
-		String prefix = fullFilePath.substring(0, fullFilePath.toLowerCase()
-				.indexOf("web-inf"));
-
-		try {
-			StringUtil.copyDirectiory(prefix + dop.getName(), prefix
-					+ "exedo/baseproject/");
-
-			dealAFile(prefix + dop.getName() +"/index.jsp","pane_dorgauth","pane_" + dop.getName());
-			dealAFile(prefix + dop.getName() +"/FormHeader.jsp","baseproject/logoff.jsp",dop.getName() + "/logoff.jsp");
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+//	void copyDir(DOApplication dop) {
+//
+//
+//		URL url = DOGlobals.class.getResource("/globals.xml");
+//		String fullFilePath = url.getPath();
+//		String prefix = fullFilePath.substring(0, fullFilePath.toLowerCase()
+//				.indexOf("web-inf"));
+//
+//		try {
+//			StringUtil.copyDirectiory(prefix + dop.getName(), prefix
+//					+ "exedo/baseproject/");
+//
+//			dealAFile(prefix + dop.getName() +"/index.jsp","pane_dorgauth","pane_" + dop.getName());
+//			dealAFile(prefix + dop.getName() +"/FormHeader.jsp","baseproject/logoff.jsp",dop.getName() + "/logoff.jsp");
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	private void dealAFile(String theFile,String theSrc, String theRepla)
 			throws UnsupportedEncodingException, FileNotFoundException,

@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.gene.jquery.ATableForwarderJquery;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -27,8 +28,8 @@ public class DOGeneConfigTable extends DOAbstractAction {
 
 	public String excute() {
 
-		DOBO bo = DOBO.getDOBOByName("do_datasource");
-		String dataSourceUid = bo.getCorrInstance().getUid();
+		DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
+		String dataSourceUid = dss.getObjUid();
 
 		String[] tables = this.actionForm.getValueArray("checkinstance");
 		String bpUid = this.actionForm.getValue("bpUid");

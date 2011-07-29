@@ -49,25 +49,25 @@ public class DatePickerBetween extends DOBaseForm {
 		}
 
 		/**
-		 *  WdatePicker({maxDate:'#F{$dp.$D(\'��id\');}'}
-		 * WdatePicker({minDate:'#F{$dp.$D(\'ǰid\');}'}
+		 * 前面日期小于或等于后面的日期 WdatePicker({maxDate:'#F{$dp.$D(\'后id\');}'}
+		 * WdatePicker({minDate:'#F{$dp.$D(\'前id\');}'}
 		 * */
 		buffer.append(" onClick=\"WdatePicker({");
 		if (fm.getInputConstraint() != null) {
 			String cons = fm.getInputConstraint().trim();
-			if(cons.indexOf("{") != -1) {
+			if (cons.indexOf("{") != -1) {
 				cons = cons.substring(1, cons.indexOf("}"));
 			}
 			buffer.append(cons);
 			buffer.append(",");
 		}
-		if("".equals(aNext)) {
-			String id = fm.getFullColName()+"2";
-			String cons = "maxDate:'#F{$dp.$D(\\'"+id+"\\')}'";
+		if ("".equals(aNext)) {
+			String id = fm.getFullColName() + "2";
+			String cons = "maxDate:'#F{$dp.$D(\\'" + id + "\\',{d:-1})}'";
 			buffer.append(cons);
 		} else {
 			String id = fm.getFullColName();
-			String cons = "minDate:'#F{$dp.$D(\\'"+id+"\\')}'";
+			String cons = "minDate:'#F{$dp.$D(\\'" + id + "\\',{d:+1})}'";
 			buffer.append(cons);
 		}
 		

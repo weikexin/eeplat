@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.SessionContext;
 import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
@@ -231,12 +232,14 @@ public class DOCreateTable extends DOAbstractAction {
 			paras.put("tenancy_name", theTenancy.getValue("name"));
 			paras.put("corr_view", viewName);
 			paras.put("real_table", "t001");
+			paras.put("application_uid", SessionContext.getInstance().getUser().getValue("default_app_uid"));
 			BOInstance tBI = multi_table_insert.invokeUpdate(paras);
 
 			for (Iterator<Map.Entry<String, String>> it = mapCols.entrySet()
 					.iterator(); it.hasNext();) {
 				Map.Entry<String, String> e = it.next();
 				paras.put("col_name", e.getKey());
+				paras.put("l10n", mapL10ns.get(e.getKey()));
 				paras.put("tenancy_table_uid", tBI.getUid());
 				paras.put("type", mapTypes.get(e.getKey()));
 				paras.put("real_col", e.getValue());
@@ -265,9 +268,9 @@ public class DOCreateTable extends DOAbstractAction {
 			log.info(" the View::::" + sb);
 
 			// ///更新另外一个库
-			DOBO bo = DOBO.getDOBOByName("do_datasource");
-			DODataSource dss = DODataSource.getDataSourceByL10n(bo
-					.getCorrInstance().getValue("l10n"));
+		
+			DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
+
 			Connection con = dss.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sb.toString());
 			pstmt.executeUpdate();

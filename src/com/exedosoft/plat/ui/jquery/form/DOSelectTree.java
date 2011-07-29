@@ -27,7 +27,12 @@ public class DOSelectTree extends DOBaseForm {
 		StringBuffer buffer = new StringBuffer();
 
 		buffer.append("<select  ");
-		buffer.append("  style='width:200px;' ");
+		if(aFm.getWidth() != null && !"".equals(aFm.getWidth().trim())) {
+			buffer.append("  style='").append(aFm.getWidth()).append("' ");
+		} else {
+			buffer.append("  style='width:166px;' ");
+		}
+		
 
 		buffer.append(" id=\"").append(aFm.getFullColID()).append("\" ");
 
@@ -43,7 +48,9 @@ public class DOSelectTree extends DOBaseForm {
 		buffer.append(this.appendValidateConfig(aFm));
 
 		buffer.append(getDecoration(aFm));
-
+		//添加事件触发
+		appendHtmlJs(buffer, aFm);
+		//
 		buffer.append(" >\n");
 		List parentFolders = parentFolder.invokeSelect();
 		buffer.append("<option/>\n");

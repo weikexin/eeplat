@@ -193,7 +193,7 @@ public class DOAlterTable extends DOAbstractAction {
 
 				DOBOProperty dop = DOBOProperty.getDOBOPropertyByID(colObjuid);
 				// /多租户
-				if (dop == null && (tv.getTenant() != null)) {
+				if ((dop == null || dop.getColName()==null) && (tv.getTenant() != null)) {
 					BOInstance bi = getCol.getInstance(colObjuid);
 					dop = DOBOProperty.getDOBOPropertyByName(
 							selected.getName(), bi.getValue("col_name"));
@@ -794,7 +794,15 @@ public class DOAlterTable extends DOAbstractAction {
 
 	public static void main(String[] args) {
 
-		System.out.println(Integer.parseInt("c0001"));
+		
+		DOService aService = DOService.getService("DO_BO_Property_findbybouid_keyiscolName");
+		
+		System.out.println(aService);
+		if(aService!=null){
+		List l = aService.invokeSelect("2c90b186301b0aac01301b0aac390000");
+		
+		System.out.println(l);
+		}
 
 	}
 

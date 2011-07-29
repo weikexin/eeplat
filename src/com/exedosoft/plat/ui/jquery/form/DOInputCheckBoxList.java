@@ -39,9 +39,9 @@ public class DOInputCheckBoxList extends DOStaticList {
 						.getValue())) {
 					buffer.append(" checked ");
 				}
-				// if (isReadOnly(property)) {
-				// buffer.append(" disable ");
-				// }
+				 if (isReadOnly(property)) {
+					 buffer.append(" DISABLED  ");
+				 }
 				buffer.append("/>");
 				buffer.append(instance.getThisLink());
 				//buffer.append(instance.getName());

@@ -40,10 +40,7 @@ public class DOTableList extends DOAbstractAction {
 
 	public String excute() {
 
-		DOBO bo = DOBO.getDOBOByName("do_datasource");
-		DODataSource dss = DODataSource.getDataSourceByL10n(bo
-				.getCorrInstance().getValue("l10n"));
-
+		DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
 		// if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") &&
 		// dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
 		// String path =
@@ -116,7 +113,8 @@ public class DOTableList extends DOAbstractAction {
 								bi.putValue(this.service.getBo().getKeyCol(),
 										aTable);
 								bi.putValue("tablename", hisTable);
-								bi.putValue("keyCol", icc.getKeyCols());
+								///多租户情况下，只能采用ID作为主键
+								bi.putValue("keyCol", "id,id");
 								bi.putValue("valueCol", icc.getValueCols());
 								bi.putValue("tableType", tableType);
 								if (biTenancy != null
