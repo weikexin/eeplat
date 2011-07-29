@@ -19,6 +19,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOParameter;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.id.UUIDHex;
 
 public class ATableForwarderJquery {
@@ -30,22 +31,22 @@ public class ATableForwarderJquery {
 	private String dataSourceUid;
 
 	private String busiPackageUid;
-	
+
 	private String keyCol;
-	
+
 	private String valueCol;
 
 	private String BOUid;
-	
-	private String tenancyId =""; 
+
+	private String tenancyId = "";
 
 	public ATableForwarderJquery(String aDataSourceUid) {
 
 		this.dataSourceUid = aDataSourceUid;
 	}
 
-	public ATableForwarderJquery(String aTable, String keyCol,String valueCol, String aDataSourceUid,
-			String aBusiPackageUid, String tenancyId) {
+	public ATableForwarderJquery(String aTable, String keyCol, String valueCol,
+			String aDataSourceUid, String aBusiPackageUid, String tenancyId) {
 		this.keyCol = keyCol.toLowerCase();
 		this.valueCol = valueCol.toLowerCase();
 		table = aTable;
@@ -59,9 +60,16 @@ public class ATableForwarderJquery {
 		if (this.dataSourceUid != null) {
 
 			try {
-				DODataSource dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
-						DODataSource.class, this.dataSourceUid);
-
+				DODataSource dds = null;
+				if (DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues() != null) {
+					dds = DOGlobals.getInstance().getSessoinContext()
+							.getTenancyValues().getDataDDS();
+				}
+				if (dds == null) {
+					dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
+							DODataSource.class, this.dataSourceUid);
+				}
 				return dds.getConnection();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -120,7 +128,12 @@ public class ATableForwarderJquery {
 			log.info("当前添加的业务对象ID:" + boUid);
 
 			if (boUid == null) { // ////如果配置中没有当前view 的配置
-				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'" + this.keyCol + "','" + this.valueCol + "',1," + getType()+ ")";
+				String insertTable = "insert into DO_BO(objUid,name,l10n,sqlstr,dataSourceUid,bpUID, keycol,valueCol,iscache,type)  values(?,?,?,?,?,?,'"
+						+ this.keyCol
+						+ "','"
+						+ this.valueCol
+						+ "',1,"
+						+ getType() + ")";
 
 				PreparedStatement pstmt = con.prepareStatement(insertTable);
 				boUid = UUIDHex.getInstance().generate();
@@ -238,7 +251,7 @@ public class ATableForwarderJquery {
 
 					int paraType = DOParameter.TYPE_FORM;
 					insertParameterSql(prop, paraType, stmt2);
-					
+
 					if (prop.getString("col_name") != null) {
 						if (this.keyCol.equals(prop.getString("col_name")
 								.toLowerCase())) {
@@ -366,7 +379,7 @@ public class ATableForwarderJquery {
 			String prefix = table;
 
 			String serviceType = "null";
-
+			Boolean isNew = null;
 			switch (type) {
 			case 1:
 				name = prefix + "_insert";
@@ -374,6 +387,7 @@ public class ATableForwarderJquery {
 				props = bo.retrieveProperties();
 				mainSql = getInsertSql(props, table);
 				serviceType = "8";
+				isNew = Boolean.TRUE;
 				break;
 			case 2:
 				name = prefix + "_update";
@@ -381,36 +395,33 @@ public class ATableForwarderJquery {
 				props = bo.retrieveProperties();
 				mainSql = this.getModiSql(props, table);
 				serviceType = "7";
+				isNew = Boolean.FALSE;
 				break;
 
 			case 3:
 				DOBOProperty property = DOBOProperty.getDOBOPropertyByName(bo
 						.getName(), this.keyCol);
-				if (property == null) {
+				if (property == null || property.getColName() == null) {
 					return;
 				}
 				name = prefix + "_delete";
 				l10n = name;
 				props.add(property);
 				mainSql = new StringBuffer("delete from ").append(table)
-						.append(" where ")
-						.append(this.keyCol)
-						.append(" = ?");
+						.append(" where ").append(this.keyCol).append(" = ?");
 				serviceType = "5";
 				break;
 			case 4:
 				property = DOBOProperty.getDOBOPropertyByName(bo.getName(),
 						this.keyCol);
-				if (property == null) {
+				if (property == null || property.getColName() == null) {
 					return;
 				}
 				name = prefix + "_browse";
 				l10n = name;
 				props.add(property);
 				mainSql = new StringBuffer("select * from ").append(table)
-						.append(" where ")
-						.append(this.keyCol)
-						.append(" = ?");
+						.append(" where ").append(this.keyCol).append(" = ?");
 				serviceType = "10";
 				break;
 			case 5:
@@ -421,17 +432,15 @@ public class ATableForwarderJquery {
 			}
 
 			// ///////根据props 定位parameter ，然后service 和 parameter 进行关联
-			this.setParaLinkBatch(props, stmt2, serviceUid, serviceType.equals("8"));
-			
-
+			this.setParaLinkBatch(props, stmt2, serviceUid, isNew);
 
 			StringBuffer aSql = new StringBuffer(
 					"insert into DO_Service(objuid,l10n,name,bouid,mainSql,type) values(")
 					.append("'").append(serviceUid).append("','").append(l10n)
 					.append("','").append(name).append("','").append(
 							this.getDOBOUid(table)).append("','").append(
-							mainSql).append("',").append(
-									serviceType).append(")");
+							mainSql).append("',").append(serviceType).append(
+							")");
 
 			log.info("Servcice's Sql:" + aSql.toString());
 			stmt.executeUpdate(aSql.toString());
@@ -497,18 +506,26 @@ public class ATableForwarderJquery {
 				list.add(property.getColName());
 			}
 		}
-		
+
+		boolean hasEversion = false;
 		for (Iterator<String> itCol = list.iterator(); itCol.hasNext();) {
 
 			String property = itCol.next();
 			modiSql.append(property); // /colname
-			modiSql.append("=?");
+			if (property.equalsIgnoreCase("eversion")) {
+				hasEversion = true;
+				modiSql.append("=eversion+1");
+			} else {
+				modiSql.append("=?");
+			}
 			if (itCol.hasNext()) {
 				modiSql.append(",");
 			} else {
-				modiSql.append(" where ")
-				.append(this.keyCol)
-				.append(" = ?");
+				modiSql.append(" where ");
+				if (hasEversion) {
+					modiSql.append("eversion =? and ");
+				}
+				modiSql.append(this.keyCol).append(" = ?");
 			}
 		}
 		return modiSql;
@@ -519,10 +536,12 @@ public class ATableForwarderJquery {
 
 		int order = 1;
 		String modiParaUid = null;
+		String eversionUid = null;
 		for (Iterator itCol = allProps.iterator(); itCol.hasNext();) {
 			DOBOProperty property = (DOBOProperty) itCol.next();
 
-			if (this.keyCol.equals(property.getColName().toLowerCase()) && (isNew == null)) {// ///察看情况
+			if (this.keyCol.equals(property.getColName().toLowerCase())
+					&& (isNew == null)) {// ///察看情况
 
 				String paraUid = this.getParaUidByProp(property.getObjUid(),
 						DOParameter.TYPE_CURRENT);
@@ -539,6 +558,11 @@ public class ATableForwarderJquery {
 				String paraUid = this.getParaUidByProp(property.getObjUid(),
 						DOParameter.TYPE_KEY);
 				addParaRelationStr(stmt2, serviceUid, order, paraUid);
+			} else if (property.getColName().equalsIgnoreCase("eversion")
+					&& (isNew != null) && !isNew.booleanValue()) {
+				eversionUid = this.getParaUidByProp(property.getObjUid(),
+						DOParameter.TYPE_FORM);
+				continue;
 			} else {
 
 				String paraUid = this.getParaUidByProp(property.getObjUid(),
@@ -548,6 +572,11 @@ public class ATableForwarderJquery {
 			}
 			order++;
 		}
+
+		if (eversionUid != null) {
+			addParaRelationStr(stmt2, serviceUid, order++, eversionUid);
+		}
+
 		if (modiParaUid != null) {
 			addParaRelationStr(stmt2, serviceUid, order++, modiParaUid);
 		}
@@ -631,7 +660,8 @@ public class ATableForwarderJquery {
 		Connection con = null;
 		try {
 			con = DODataSource.getDefaultCon();
-			String sql = "select objUID from DO_BO where type = '" +getType() + "' and sqlStr = ? ";
+			String sql = "select objUID from DO_BO where type = '" + getType()
+					+ "' and sqlStr = ? ";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boName);
 			ResultSet rs = pstmt.executeQuery();
@@ -656,7 +686,7 @@ public class ATableForwarderJquery {
 
 	private String getType() {
 		String type = "1";
-		if(this.tenancyId.length() > 0){
+		if (this.tenancyId.length() > 0) {
 			type = "2";
 		}
 		return type;
@@ -769,14 +799,22 @@ public class ATableForwarderJquery {
 	}
 
 	public Collection getCols(String aTable) {
-		
-		
+
 		if (this.dataSourceUid != null) {
 
 			try {
-				DODataSource dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
-						DODataSource.class, this.dataSourceUid);
-				if(dds.isOracle() || dds.isDB2() || "h2".equals( dds.getDialect() )){
+				DODataSource dds = null;
+				if (DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues() != null) {
+					dds = DOGlobals.getInstance().getSessoinContext()
+							.getTenancyValues().getDataDDS();
+				}
+				if (dds == null) {
+					dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
+							DODataSource.class, this.dataSourceUid);
+				}
+				if (dds.isOracle() || dds.isDB2()
+						|| "h2".equals(dds.getDialect())) {
 
 					aTable = aTable.toUpperCase();
 				}
@@ -787,10 +825,10 @@ public class ATableForwarderJquery {
 			}
 		}
 
-		if(this.tenancyId.length() > 0){
+		if (this.tenancyId.length() > 0) {
 			aTable = this.tenancyId + "_" + aTable;
 		}
-		
+
 		Collection cc = new ArrayList();
 		Connection con = null;
 		try {

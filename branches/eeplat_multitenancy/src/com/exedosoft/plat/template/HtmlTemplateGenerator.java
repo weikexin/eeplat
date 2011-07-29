@@ -9,6 +9,13 @@ import java.io.Writer;
 import java.net.URL;
 import java.util.Map;
 
+import com.exedosoft.plat.ui.DOFormModel;
+import com.exedosoft.plat.ui.DOGridModel;
+import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.ui.jquery.form.TService;
+import com.exedosoft.plat.ui.jquery.grid.GridList;
+import com.exedosoft.plat.ui.jquery.grid.GridSupportMore;
+import com.exedosoft.plat.ui.jquery.pane.TPaneTemplate;
 import com.exedosoft.plat.util.DOGlobals;
 
 import freemarker.cache.FileTemplateLoader;
@@ -42,7 +49,8 @@ public class HtmlTemplateGenerator {
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
 			aPath = aPath.replaceAll("/[.]/", "/");
-			String OUT_TEMPLATE = url.getPath().substring(0, aPath.indexOf("web-inf"))
+			String OUT_TEMPLATE = url.getPath().substring(0,
+					aPath.indexOf("web-inf"))
 					+ "/exedo/" + templateFolder + "/template/";
 			cfg.setDefaultEncoding("UTF-8");
 			FileTemplateLoader loaderFile = new FileTemplateLoader(new File(
@@ -136,10 +144,90 @@ public class HtmlTemplateGenerator {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String getContentFromDBTemplate(String tempUId, Map contents)
+	public static String getContentFromDBTemplate( String tempUId, Map contents)
 			throws IOException {
 		Template temp = cfgDB.getTemplate(tempUId, "utf-8");
 		/* Merge data model with template */
+		StringWriter sw = new StringWriter();
+		try {
+			temp.process(contents, sw);
+		} catch (TemplateException e) {
+			throw new IOException(e.getMessage());
+		}
+		return sw.toString();
+	}
+	
+	public static String getHtml4GridDetail(DOGridModel model, 
+			Map contents) throws IOException {
+		Template temp = cfgDB.getTemplate(model.getController().getObjUid(), "utf-8");
+		GridSupportMore gsm = new GridSupportMore();
+		if(contents==null){
+			contents = gsm.putData(model);
+		}else{
+			contents.putAll(gsm.putData(model));
+		}
+		/* Merge data model with template */
+		StringWriter sw = new StringWriter();
+		try {
+			temp.process(contents, sw);
+		} catch (TemplateException e) {
+			throw new IOException(e.getMessage());
+		}
+		return sw.toString();
+	}
+
+
+	public static String getHtml4GridList(DOGridModel model, 
+			Map contents) throws IOException {
+		Template temp = cfgDB.getTemplate(model.getController().getObjUid(), "utf-8");
+		GridList list = new GridList();
+		if(contents==null){
+			contents = list.putData(model);
+		}else{
+			contents.putAll(list.putData(model));
+		}
+		/* Merge data model with template */
+		StringWriter sw = new StringWriter();
+		try {
+			temp.process(contents, sw);
+		} catch (TemplateException e) {
+			throw new IOException(e.getMessage());
+		}
+		return sw.toString();
+	}
+	
+	public static String getHtml4Form(DOFormModel model, String tempUId,
+			Map contents) throws IOException {
+		Template temp = cfgDB.getTemplate(model.getController().getObjUid(), "utf-8");
+		/* Merge data model with template */
+		TService tService = new TService();
+		if(contents==null){
+			contents = tService.putData(model);
+		}else{
+			contents.putAll(tService.putData(model));
+		}
+		
+		StringWriter sw = new StringWriter();
+		try {
+			temp.process(contents, sw);
+		} catch (TemplateException e) {
+			throw new IOException(e.getMessage());
+		}
+		return sw.toString();
+	}
+	
+	public static String getHtml4Pane(DOPaneModel model,String tempUId,
+			Map contents) throws IOException {
+		Template temp = cfgDB.getTemplate(model.getController().getObjUid(), "utf-8");
+		/* Merge data model with template */
+		
+		TPaneTemplate tpt = new TPaneTemplate();
+		if(contents==null){
+			contents = tpt.putData(model);
+		}else{
+			contents.putAll(tpt.putData(model));
+		}
+		
 		StringWriter sw = new StringWriter();
 		try {
 			temp.process(contents, sw);

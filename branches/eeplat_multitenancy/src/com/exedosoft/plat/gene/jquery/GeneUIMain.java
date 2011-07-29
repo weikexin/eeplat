@@ -431,6 +431,7 @@ public class GeneUIMain {
 		DOService aService = DOService.getService(this.geneATable + "_delete");
 		fm.setLinkService(aService);
 		fm.setL10n("删除");
+		fm.setStyle("delete");
 		fm.setGridModel(gmResult);
 		fm.setLinkPaneModel(pmResult);
 		fm.setTargetPaneModel(pmResult);
@@ -439,6 +440,7 @@ public class GeneUIMain {
 		i = i + 5;
 		DAOUtil.INSTANCE().store(fm);
 
+		/////新增
 		fm = new DOFormModel();
 		fm.setController(formPane);
 		fm.setL10n("新增");
@@ -462,6 +464,36 @@ public class GeneUIMain {
 		fm.setOrderNum(Integer.valueOf(i));
 		i = i + 5;
 		DAOUtil.INSTANCE().store(fm);
+		
+
+		/////复制
+		fm = new DOFormModel();
+		fm.setController(formItemPane);
+		fm.setL10n("复制");
+		fm.setStyle("copy");
+
+		DOPaneModel pmDulplicate = DOPaneModel.getPaneModelByName("PM_"
+				+ geneATable + "_dulplicate");
+		
+		gm = DOGridModel.getGridModelByName("GM_" + geneATable + "_dulplicate");
+		fms = gm.getBottomOutGridFormLinks();
+
+		if(fms.size() > 0){
+			DOFormModel aFm = fms.get(0);
+			
+			aFm.setLinkPaneModel(pmResult);
+			aFm.setTargetPaneModel(pmResult);
+			DAOUtil.INSTANCE().store(aFm);
+		}
+		fm.setLinkPaneModel(pmDulplicate);
+		fm.setTargetPaneModel(_opener);
+		fm.setIsOutGridAction(DOFormModel.OUTGRID_TOP);
+
+		fm.setGridModel(gmResult);
+		fm.setOrderNum(Integer.valueOf(i));
+		i = i + 5;
+		DAOUtil.INSTANCE().store(fm);
+
 		
 		return pmResult;
 	}

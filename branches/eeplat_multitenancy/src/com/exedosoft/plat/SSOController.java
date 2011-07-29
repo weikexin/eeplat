@@ -2,7 +2,9 @@ package com.exedosoft.plat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
@@ -79,10 +82,11 @@ public class SSOController extends HttpServlet {
 
 		// 处理登录
 
+		String returnPath = "";
 		String echoStr = "";
 
 		if (formBI.getValue("randcode").equals(
-						request.getSession().getAttribute("rand"))) {////验证码正确
+				request.getSession().getAttribute("rand"))) {// //验证码正确
 			MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
 					formBI.getValue("password"));
 			if (ma != null) {
@@ -101,6 +105,10 @@ public class SSOController extends HttpServlet {
 					BOInstance tenant = aService.getInstance(user
 							.getValue("tenancyId"));
 					if (tenant != null && tenant.getName() != null) {
+						
+						///设置公司名称
+						user.putValue("company", tenant.getValue("l10n"));
+						
 						DODataSource dds = new DODataSource();
 						dds.setObjUid(user.getValue("tenancyId"));
 						dds.setDialect("h2");
@@ -120,22 +128,81 @@ public class SSOController extends HttpServlet {
 						dds.setPassword("");
 
 						// tenant data datastore url
-						String dataStoreUrl = tenant.getValue("");
+						String multi_datasource_uid = tenant
+								.getValue("multi_datasource_uid");
 
+						DODataSource dataDds = null;
+						if (multi_datasource_uid != null) {
+							DOService findDataSource = DOService
+									.getService("multi_datasource_browse");
+							BOInstance aBI = findDataSource
+									.getInstance(multi_datasource_uid);
+							if (aBI != null) {
+								dataDds = (DODataSource) aBI
+										.toObject(DODataSource.class);
+							}
+						}
 						// /globals 放到session中
 
 						// //需要更改多租户表中，租户数据库中的数据源
 						// ////每个租户为定位到某个物理数据库中
 						// ///租户数据库分配
 						TenancyValues tv = new TenancyValues(dds, tenant);
+						if (dataDds != null) {
+							tv.setDataDDS(dataDds);
+						}
 						DOGlobals.getInstance().getSessoinContext()
 								.setTenancyValues(tv);
+						DOService findUserService = DOService
+								.getService("do_org_user_browse");
+						List corrUsers = findUserService.invokeSelect(ma
+								.getObjUid());
+						try {
+							if (corrUsers == null || corrUsers.size() == 0) {
+								// user.putValue("objuid", ma.getObjUid());
+								DOService storeUser = DOService
+										.getService("do_org_user_full_copy");
+								// /建立用户间的对应关系
+								storeUser.store(user);
+////由于数据隔离的原因屏蔽								
+//								// /如果是创建者赋予管理员角色
+//								if ("2".equals(user.getValue("asrole"))) {
+//									DOService storeUserRole = DOService
+//											.getService("do_org_user_role_insert");
+//									Map paras = new HashMap();
+//									paras.put("user_uid", user.getUid());
+//									paras.put("role_uid",
+//											"40288031288a2b8501288a3d009d000d");
+//									storeUserRole.store(paras);
+//								}
+							}
+						} catch (ExedoException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
-						System.out.println("当前缺省的配置库:::"
-								+ DODataSource.parseGlobals());
+						// ///获取缺省工程的URL
+						String default_app_uid = user
+								.getValue("default_app_uid");
+						if (default_app_uid != null) {
+							DOApplication dao = DOApplication
+									.getApplicationByID(default_app_uid);
+							if (dao != null
+									&& dao.getOuterLinkPaneStr() != null) {
+								returnPath = dao.getOuterLinkPaneStr();
+							}
+						}
 
 						// //处理登录日志==========================
 						LoginMain.makeLogin(user, request);
+
+						System.out.println("当前业务库:::"
+								+ DOGlobals.getInstance().getSessoinContext()
+										.getTenancyValues().getDataDDS());
+						System.out.println("当前缺省的配置库:::"
+								+ DODataSource.parseGlobals());
+
+
 					}
 				}
 
@@ -206,7 +273,8 @@ public class SSOController extends HttpServlet {
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
-			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
+			outHtml.append("{\"returnPath\":\"").append(returnPath).append(
+					"\",\"targetPane\":\"");
 			// /////////value
 
 			if (echoStr == null || echoStr.trim().equals("")) {
@@ -314,12 +382,22 @@ public class SSOController extends HttpServlet {
 		// DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
 		// System.out.println("Corr Controller::" + cc.getCorrByConfig());
 
-		DOService aService = DOService
-				.getService("multi_tenancy_browse_byname");
+		DOApplication.clearAppCache();
 
-		BOInstance aBI = aService.getInstance("carrefour");
+		// System.out.println(CacheFactory.getCacheRelation().get(DOApplication.class.getCanonicalName()));
 
-		System.out.println("aBI::::" + aBI);
+		List<DOApplication> apps = DOApplication.getApplications();
+
+		System.out.println(DAOUtil.INSTANCE().getDataSource());
+
+		System.out.println("apps::::" + apps);
+
+		// DOService aService = DOService
+		// .getService("multi_tenancy_browse_byname");
+		//
+		// BOInstance aBI = aService.getInstance("carrefour");
+
+		// System.out.println("aBI::::" + aBI);
 
 	}
 }

@@ -1,4 +1,4 @@
-package com.exedosoft.plat.ui.jquery.grid;
+package com.exedosoft.plat.ui.jquery.mygrid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,12 +22,12 @@ import com.exedosoft.plat.util.StringUtil;
 /**
  * @author aa
  */
-public class GridList extends DOViewTemplate {
+public class GridListNoHead extends DOViewTemplate {
 
-	private static Log log = LogFactory.getLog(GridList.class);
+	private static Log log = LogFactory.getLog(GridListNoHead.class);
 
-	public GridList() {
-		this.templateFile = "grid/GridList.ftl";
+	public GridListNoHead() {
+		this.templateFile = "mygrid/GridListNoHead.ftl";
 	}
 
 	public Map<String, Object> putData(DOIModel doimodel) {
@@ -44,8 +44,7 @@ public class GridList extends DOViewTemplate {
 		if (gm.getContainerPane() != null) {
 			data.put("pmlName", gm.getContainerPane().getName());
 		}
-		String formName =  "a" + gm.getObjUid(); 
-
+		data.put("formName", "a" + gm.getObjUid());
 
 		if (gm.getContainerPane() != null
 				&& gm.getContainerPane().getParent() != null) {
@@ -59,8 +58,9 @@ public class GridList extends DOViewTemplate {
 				DOPaneModel resultModel = (DOPaneModel) children.get(1);
 				if (conditionPane != null) {
 					if (conditionPane.getDOGridModel() != null) {
-						formName = "a"
+						String formName = "a"
 								+ conditionPane.getDOGridModel().getObjUid();
+						data.put("formName", formName);
 					}
 				}
 
@@ -70,18 +70,12 @@ public class GridList extends DOViewTemplate {
 			DOPaneModel hpm = gm.getContainerPane().getHiddenPane();
 			if (hpm != null) {
 				if (hpm.getDOGridModel() != null) {
-					formName = "a" + hpm.getDOGridModel().getObjUid();
+					String formName = "a" + hpm.getDOGridModel().getObjUid();
+					data.put("formName", formName);
 				}
 			}
 
 		}
-		if(gm.getBottomOutGridFormLinks().size()>0){
-			DOFormModel firstFm = (DOFormModel)gm.getBottomOutGridFormLinks().get(0);
-			if(firstFm.isHidden()){
-				formName = firstFm.getTargetForms();
-			}
-		}
-		data.put("formName",formName);
 
 		return data;
 	}

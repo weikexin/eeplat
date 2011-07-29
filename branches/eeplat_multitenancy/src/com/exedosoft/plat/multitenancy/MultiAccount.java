@@ -3,9 +3,12 @@ package com.exedosoft.plat.multitenancy;
 import java.util.List;
 
 import com.exedosoft.plat.DAOUtil;
+import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.BaseObject;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
+import com.exedosoft.safe.TenancyValues;
 
 public class MultiAccount extends BaseObject {
 
@@ -16,6 +19,8 @@ public class MultiAccount extends BaseObject {
 	private String name;
 	private String tenancyId;
 	private String password;
+	private String asrole;
+	private String default_app_uid;
 	private String creator;
 	private String modifier;
 	private String modifyDate;
@@ -77,8 +82,25 @@ public class MultiAccount extends BaseObject {
 		this.mVersion = mVersion;
 	}
 	
+	public String getDefault_app_uid() {
+		return default_app_uid;
+	}
+
+	public void setDefault_app_uid(String defaultAppUid) {
+		default_app_uid = defaultAppUid;
+	}
+
 	
 	
+	
+	public String getAsrole() {
+		return asrole;
+	}
+
+	public void setAsrole(String asrole) {
+		this.asrole = asrole;
+	}
+
 	public static BOInstance findBIUser(String userName,String pwd){
 		
 		MultiAccount ma = findUser(userName,pwd);
@@ -106,10 +128,61 @@ public class MultiAccount extends BaseObject {
 		return null;
 		
 	} 
+	
+	
+	public static void deleteUser(String accountUid){
+
+		System.out.println("Delete multi_account :::" + accountUid);
+		try {
+			DAOUtil.currentDataSource("/ds_multi.xml")
+			.delete("delete from  multi_account where objuid = ?",
+					accountUid
+					);
+		} catch (ExedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void storeUser(BOInstance paraInstance){
+
+		
+		String objuid = paraInstance.getUid();
+		String name = paraInstance.getValue("user_code");
+		TenancyValues tv = DOGlobals.getInstance().getSessoinContext()
+		.getTenancyValues();
+		String tenancyId = paraInstance.getValue("tenancyId");
+		if(tenancyId==null){
+			tenancyId = tv.getTenant().getValue("name");
+		}
+		String password = paraInstance.getValue("password");
+		password = StringUtil.MD5(password);
+
+		String asrole = "0";
+		String default_app_uid = "ff80808131275dcc0131275e2fdf0001";
+		
+		
+		try {
+			DAOUtil.currentDataSource("/ds_multi.xml")
+			.store("insert into multi_account(objuid,name,tenancyid,password,asrole,default_app_uid) values(?,?,?,?,?,?)",
+					objuid,
+					name,
+					tenancyId,
+					password,
+					asrole,
+					default_app_uid
+					);
+		} catch (ExedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public static void main(String[] args) {
 
-		MultiAccount ma = MultiAccount.findUser("jlf@google.com", "2");
+		MultiAccount ma = MultiAccount.findUser("jlf@jlf.com", "1");
 		
 		System.out.println("MultiAccount:::" + ma);
 		

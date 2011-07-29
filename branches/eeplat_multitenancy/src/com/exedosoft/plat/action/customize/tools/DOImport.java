@@ -226,9 +226,7 @@ public class DOImport extends DOAbstractAction {
 								log.info(" the View::::" + sb);
 
 								// ///更新另外一个库
-								DOBO bo = DOBO.getDOBOByName("do_datasource");
-								DODataSource dss = DODataSource
-										.getDataSourceByID(datasourceuid);
+								DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
 								Connection con = dss.getConnection();
 								PreparedStatement pstmt = con
 										.prepareStatement(sb.toString());

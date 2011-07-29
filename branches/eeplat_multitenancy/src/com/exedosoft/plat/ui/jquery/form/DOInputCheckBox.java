@@ -45,9 +45,9 @@ public class DOInputCheckBox extends DOStaticList {
 		if (property.getValue() != null || isDefaultChecked) {
 			buffer.append(" checked ");
 		}
-//		if (isReadOnly(property)) {
-//			buffer.append(" disable ");
-//		}
+		if (isReadOnly(property)) {
+			buffer.append(" DISABLED  ");
+		}
 		if (property.getDoClickJs() != null
 				&& !"".equals(property.getDoClickJs().trim())) {
 			buffer.append(" onclick='").append(
