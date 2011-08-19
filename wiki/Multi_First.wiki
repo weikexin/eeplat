@@ -1,10 +1,10 @@
-  我们通过一个简单的例子，来通过EEPlat PaaS来完成登陆研究CRM、创建工程、分享工程到AppShare、通过AppShare安装工程、手机访问。
+  我们通过一个简单的例子，来通过EEPlat PaaS来完成登陆使用CRM、创建工程、分享工程到AppShare、通过AppShare安装工程、手机访问。
   前提：你已经进行注册，并成功激活账号。
 
-==登陆研究CRM==   
+==登陆使用CRM==   
    
    云鹤平台(EEPlat)多租户版的在线试用地址为www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]类似。界面如下：
-   <img src="http://eeplat.googlecode.com/files/multi_first_page.png "/>
+<img src="http://eeplat.googlecode.com/files/multi_first_page.png "/>
 
 	填写名称，如firstprj，注意名称必须为英文数字，为小写，不支持中文！
 	填写中文名，如我的第一个工程
