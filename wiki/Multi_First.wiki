@@ -25,34 +25,50 @@
 
    <img src="http://eeplat.googlecode.com/files/tree_readme.png"/>
 
+   点击下图的“创建表”，即可创建新的表（业务对象）：  
+
    <img src="http://eeplat.googlecode.com/files/table_create.png"/>
+
+   我们创建一张学生信息表：  
 
    <img src="http://eeplat.googlecode.com/files/student_table_create.png"/>
 
+   还需要对这张表进行初始化：  
+
    <img src="http://eeplat.googlecode.com/files/student_table_init.png"/>
+
+   初始化后，我们可以看到有student的菜单了：  
 
    <img src="http://eeplat.googlecode.com/files/student_menu.png"/>
 
+    把菜单改为中文：  
 
    <img src="http://eeplat.googlecode.com/files/student_menu_update.png"/>
-
-
+    切换回业务界面，重新加载，在工程选择的下拉框中我们可以看到新建的工程：
+ 
    <img src="http://eeplat.googlecode.com/files/App_change_student.png"/>
-
+ 
+    选择这个工程，我们可以看到，配置的结果：  
 
    <img src="http://eeplat.googlecode.com/files/App_student_show.png"/>
 
+==增加其它用户==
+
+    首先选择工程“基础功能”：
 
    <img src="http://eeplat.googlecode.com/files/adduser_changeapp.png"/>
 
+    增加一个新的部门：
+
+   <img src="http://eeplat.googlecode.com/files/adduser_adddept.png"/>
+
+    增加一个新的部门：
 
    <img src="http://eeplat.googlecode.com/files/	adduser_selectMenu.png"/>
 
 
    <img src="http://eeplat.googlecode.com/files/adduser_clickadd.png"/>
 
-
-   <img src="http://eeplat.googlecode.com/files/adduser_adddept.png"/>
 
 	
 
