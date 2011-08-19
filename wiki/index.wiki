@@ -38,5 +38,11 @@
           *  [JavaScriptAPI     JAVASCRIPT API]    
           *  [JavaAPI     JAVA API]
           *  [GlobalParas     全局配置参数]
+  * 多租户
+    * [Multi_First 一个简单的例子]
+    * [Multi_Sep 数据隔离]
+    * [Multi_Code 语言的沙箱]
+    * [Multi_Mobile 手机支持]
+    * [Multi_AppShare AppShare]
   * [FAQ  常见问题解答]
  
