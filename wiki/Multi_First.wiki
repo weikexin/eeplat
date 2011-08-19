@@ -4,7 +4,7 @@
 
 ==登陆使用CRM==   
    
-   云鹤平台(EEPlat)多租户版的在线试用地址为www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]类似。界面如下：
+   云鹤平台(EEPlat)多租户版的在线试用地址为http://www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]类似。界面如下：
 <img src="http://eeplat.googlecode.com/files/multi_first_page.png"/>
 
    点击左边的索引菜单可以使用CRM的功能，该CRM我们只配置开发了半个人月，所以稍显简单。
