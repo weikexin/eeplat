@@ -60,14 +60,16 @@
    <img src="http://eeplat.googlecode.com/files/adduser_login.png"/>
    <img src="http://eeplat.googlecode.com/files/adduser_no_auth.png"/>
 
-==分享到AppShare==
+==分享工程到AppShare==
 
    <img src="http://eeplat.googlecode.com/files/App_student_shareto.png"/>
 
    <img src="http://eeplat.googlecode.com/files/App_student_Result.png"/>
 
-==通过AppShare安装==
+==通过AppShare安装工程==
    <img src="http://eeplat.googlecode.com/files/AppShare_setup.png"/>
+
+==手机访问截图==
 
 
 
