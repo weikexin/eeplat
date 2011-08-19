@@ -17,6 +17,6 @@
    创建工程可以参考[FirstProjcet 第一个工程]中的相关说明，只不过多租户版的创建工程的入口位于右上角，如下图：
 <img src="http://eeplat.googlecode.com/files/App_create.png"/>
 
-<img src="http://eeplat.googlecode.com/files/App_Init.png"/>
+   <img src="http://eeplat.googlecode.com/files/App_Init.png"/>
 
    
