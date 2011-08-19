@@ -18,9 +18,11 @@
    <img src="http://eeplat.googlecode.com/files/App_create.png"/>
 
    创建成功后需要初始化工程，如下图：
+
    <img src="http://eeplat.googlecode.com/files/App_Init.png"/>
    
    请注意一个配置的细节，双击树节点可以加载下级：
+
    <img src="http://eeplat.googlecode.com/files/tree_readme.png"/>
 
 
