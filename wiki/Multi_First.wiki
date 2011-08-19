@@ -1,9 +1,11 @@
-  我们通过一个简单的例子，来通过EEPlat PaaS 来完成创建工程、分享工程到AppShare、通过AppShare安装工程、手机访问。
+  我们通过一个简单的例子，来通过EEPlat PaaS来完成登陆研究CRM、创建工程、分享工程到AppShare、通过AppShare安装工程、手机访问。
   前提：你已经进行注册，并成功激活账号。
 
+==登陆研究CRM==   
+   
+   云鹤平台(EEPlat)多租户版的在线试用地址为www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]。登陆后的界面如下：
+   
 
-==建立工程==   
-  首先建立一个工程，点击“所有工程”下“新建”菜单或右边工作区域里面基础设施管理的“新建工程”，进入新建工程页面：
 
    <img height="240" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_new.png"/>
 
