@@ -62,23 +62,34 @@
 
    <img src="http://eeplat.googlecode.com/files/adduser_adddept.png"/>
 
-    增加一个新的部门：
+    点击“用户维护”，进入用户维护界面：
 
    <img src="http://eeplat.googlecode.com/files/	adduser_selectMenu.png"/>
 
 
+    点击用户维护界面的“新增”按钮：
+
    <img src="http://eeplat.googlecode.com/files/adduser_clickadd.png"/>
 
-
-	
+    进入用户新增界面：
 
    <img src="http://eeplat.googlecode.com/files/adduser_adduser.png"/>
+
+    用新增的用户登录：
+   
    <img src="http://eeplat.googlecode.com/files/adduser_login.png"/>
+
+    新增的用户没有后台设置以及从AppShare安装的权限：
+
    <img src="http://eeplat.googlecode.com/files/adduser_no_auth.png"/>
 
 ==分享工程到AppShare==
+  
+   点击“分享到AppShare”可以把工程发布到云鹤AppShare:
 
    <img src="http://eeplat.googlecode.com/files/App_student_shareto.png"/>
+
+   我们可以看到分享后的结果:
 
    <img src="http://eeplat.googlecode.com/files/App_student_Result.png"/>
 
