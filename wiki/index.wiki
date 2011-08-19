@@ -41,7 +41,7 @@
   * 多租户
     * [Multi_First 一个简单的例子]
     * [Multi_Sep 数据隔离]
-    * [Multi_Code 语言的沙箱]
+    * [Multi_Code 开发语言的沙箱]
     * [Multi_Mobile 手机支持]
     * [AppShare AppShare]
   * [FAQ  常见问题解答]
