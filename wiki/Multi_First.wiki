@@ -25,6 +25,50 @@
 
    <img src="http://eeplat.googlecode.com/files/tree_readme.png"/>
 
+   <img src="http://eeplat.googlecode.com/files/table_create.png"/>
+
+   <img src="http://eeplat.googlecode.com/files/student_table_create.png"/>
+
+   <img src="http://eeplat.googlecode.com/files/student_table_init.png"/>
+
+   <img src="http://eeplat.googlecode.com/files/student_menu.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/student_menu_update.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/App_change_student.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/App_student_show.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/adduser_changeapp.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/	adduser_selectMenu.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/adduser_clickadd.png"/>
+
+
+   <img src="http://eeplat.googlecode.com/files/adduser_adddept.png"/>
+
+	
+
+   <img src="http://eeplat.googlecode.com/files/adduser_adduser.png"/>
+   <img src="http://eeplat.googlecode.com/files/adduser_login.png"/>
+   <img src="http://eeplat.googlecode.com/files/adduser_no_auth.png"/>
+
+==分享到AppShare==
+
+   <img src="http://eeplat.googlecode.com/files/App_student_shareto.png"/>
+
+   <img src="http://eeplat.googlecode.com/files/App_student_Result.png"/>
+
+==通过AppShare安装==
+   <img src="http://eeplat.googlecode.com/files/AppShare_setup.png"/>
+
 
 
 
