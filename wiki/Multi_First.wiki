@@ -100,6 +100,8 @@
    
    完成配置后，界面不仅支持PC访问，也支持手机访问，上文配置的学生信息系统的部分截图如下：
 
+   <img width="320" height="480" src="http://eeplat.googlecode.com/files/IMG_0026.png"/>
+
 
    
 
