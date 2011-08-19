@@ -3,11 +3,8 @@
 
 ==登陆研究CRM==   
    
-   云鹤平台(EEPlat)多租户版的在线试用地址为www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]。登陆后的界面如下：
-   
-
-
-   <img height="240" width="600" src="http://eeplat.googlecode.com/files/yiyi_addproject_new.png"/>
+   云鹤平台(EEPlat)多租户版的在线试用地址为www.eeplat.com，用激活后的用户名/密码登陆，登陆后的界面和[ConfigTools EEPlat企业开发版]类似。界面如下：
+   <img src="http://eeplat.googlecode.com/files/multi_first_page.png "/>
 
 	填写名称，如firstprj，注意名称必须为英文数字，为小写，不支持中文！
 	填写中文名，如我的第一个工程
