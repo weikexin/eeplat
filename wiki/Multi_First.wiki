@@ -97,6 +97,11 @@
    <img src="http://eeplat.googlecode.com/files/AppShare_setup.png"/>
 
 ==手机访问截图==
+   
+   完成配置后，界面不仅支持PC访问，也支持手机访问，上文配置的学生信息系统的部分截图如下：
+
+
+   
 
 
 
