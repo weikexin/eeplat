@@ -2,6 +2,10 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.bo.DOService"%>
+<%@ page import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
 <html>
 
 <%
@@ -71,6 +75,13 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css" type="text/css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/CodeMirror/codemirror.css"
+	type="text/css" />	
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/CodeMirror/default.css"
+	type="text/css" />	
+
  
 <!-- 插件的js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
@@ -79,7 +90,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.js"></script> 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqDnR.js" ></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js" ></script>	
@@ -87,9 +97,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>	
-
-
-
 <!-- 平台主体及其他集成的js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js" ></script>
@@ -100,7 +107,10 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/my.js"  ></script>
-
+<script type="text/javascript"
+	src="<%=request.getContextPath() %>/CodeMirror/codemirror-compressed.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath() %>/CodeMirror/complete.js"></script>
 <script language="javascript">
 
 globalURL = "/<%=DOGlobals.URL%>/";
@@ -146,19 +156,20 @@ $(function(){
 
 	  resscrEvt();
 });
-
-
-$(window).unload(function(){
-	///关闭id 即清楚缓存
-	    if((window.screenLeft>=10000 && window.screenTop>=10000) || event.altkey) 
-	    { 
-	  		    window.location = "<%=request.getContextPath()%>/exedo/webv3/logoff.jsp";   
-	    } 
-});
-
-
+<%
+  DOService aService = DOService.getService("DO_BO_Icon_List");
+  if(aService!=null){
+	  List list = aService.invokeSelect();
+	  for(Iterator it = list.iterator(); it.hasNext();){
+		   BOInstance bi = (BOInstance)it.next();
+		   if(bi!=null && bi.getValue("	formulaScript")!=null)
+		   out.println(bi.getValue("	formulaScript"));
+	  }
+  }
+%>
 </script>
 </head>
+
 
 <body  lang=zh>
 

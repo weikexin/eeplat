@@ -5,8 +5,8 @@
 %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
-
 <%
+
 			String paneModelContent = (String) request
 			.getAttribute("paneModelContent");
 	
@@ -16,7 +16,6 @@
 			 response.sendRedirect(request.getContextPath() + "/exedo/webv3/logoff.jsp");
 			
 			}
-	
 %>
 
 <%=paneModelContent%>

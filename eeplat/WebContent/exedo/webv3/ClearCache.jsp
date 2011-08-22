@@ -5,9 +5,11 @@
 	response.setDateHeader("Expires", 0);
 %>
 <%@page import="com.exedosoft.plat.CacheFactory"%>
+<%@page import="com.exedosoft.plat.cache.busi.BusiCache"%>
 <% 
 CacheFactory.getCacheData().clear();
 CacheFactory.getCacheRelation().getData().clear();
-CacheFactory.getCacheData().fromSerialObject();
+BusiCache.flushAll();
+//CacheFactory.getCacheData().fromSerialObject();
 out.println("清除缓存成功！");
 %>

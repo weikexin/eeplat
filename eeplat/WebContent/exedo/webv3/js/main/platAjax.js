@@ -1,4 +1,6 @@
 var invokeDomId = "";
+var mirrorEditor ;
+var mirrorEditor2 ;
 
 //在js里面直接调用action类
 /**
@@ -519,13 +521,13 @@ function  getParasOfForms(targetForms){
 		for(var i = 0; i < forms.length; i++ ){
 			var aForm = forms[i];
 			if(paras==""){
-				paras = $("#"+aForm).formSerialize();
+				paras = $("#"+aForm).serialize();
 			}else{
-				paras = paras + "&" +  $("#"+aForm).formSerialize();
+				paras = paras + "&" +  $("#"+aForm).serialize();
 			}	
 		}	
 	}else{
-		paras = $("#"+targetForms).formSerialize();
+		paras = $("#"+targetForms).serialize();
 	}
 	return paras;
 }
@@ -533,13 +535,19 @@ function  getParasOfForms(targetForms){
 
 
 function updateEditorFormValue()
-{
-	 try {
+{	 try {
+    ////codemirror
+	    if(mirrorEditor){
+		    mirrorEditor.save();
+	    }
+	    if(mirrorEditor2){
+	    	mirrorEditor2.save();
+	    }
+		 ///fckeditor
                 for ( i = 0; i < parent.frames.length; ++i )
                         if ( parent.frames[i].FCK )
                                 parent.frames[i].FCK.UpdateLinkedField();
-	 }catch(e){
-		 
+	}catch(e){
 	 }          
 }
 
