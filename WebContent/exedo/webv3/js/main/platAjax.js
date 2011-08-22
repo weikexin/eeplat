@@ -30,8 +30,10 @@ function callAction(p){
 	if(p.async == false){
 		async = false;
 	}
-
-
+	var aMsg = "后台处理,请稍后......";
+	if(p.msg){
+		aMsg = p.msg;
+	}
     //表单验证
 	if(!validate(p.formName)){
 		if(p.btn){
@@ -63,12 +65,15 @@ function callAction(p){
 		paras = "callType=as&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
 	}
 	
+	loading(aMsg);
 	$.ajax({
 		type: "post",
 		url: globalService,
 		data: paras,
 		async: async,
 		success: function (data, textStatus){
+		
+		   closeWin();
     	
 		   if(data!=null && data.echo_msg!=null  && $.trim(data.echo_msg)!=''){
 		   		var echo_msg = unescape(data.echo_msg);
@@ -147,6 +152,7 @@ function callAction(p){
  * p.serviceName
  * p.formName
  * p.paras
+ * p.title
  * p.pml
  * p.pmlHeight
  * p.pmlWidth
@@ -163,6 +169,12 @@ function callService(p){
 	if(p==null){
 		return;
 	}
+	
+	var aMsg = "后台处理,请稍后......";
+	if(p.msg){
+		aMsg = p.msg;
+	}
+	
 	if(p.btn){
 		if(p.btn.nodeName=='A'){
 			if(p.btn.flag){
@@ -174,14 +186,11 @@ function callService(p){
 			p.btn.disabled = true;
 		}
 	}	
-
 	var async = true;
 	
 	if(p.async == false){
 		async = false;
 	}
-
-
     if(p.serviceUid==null && p.serviceName==null){
     	if(p.btn){
     		if(p.btn.nodeName=='A'){
@@ -192,8 +201,6 @@ function callService(p){
     	}	
     	return;
     }
-
-
 
 	//表单验证
 	if(!validate(p.formName)){
@@ -206,11 +213,6 @@ function callService(p){
 		}	
 		return;
 	}
-
-
-
-
-	
 	///支持pml的两种形式 
 	var pmlName = "";
 	if(p.pml!=null &&  p.pml.indexOf('mvccontroller')==-1 && p.pml.indexOf('.pml')==-1){
@@ -229,17 +231,9 @@ function callService(p){
     	}
 		return;
 	}
-	
-
-
-
-
 	//初始化FckEditor值 
 	updateEditorFormValue();
 	//只要设置了formName，就从表单中获取
-	
-	
-	
 	var paras = "";
 	if(p.paras){
 		paras = p.paras;
@@ -263,6 +257,7 @@ function callService(p){
 
 	paras = callServStr + "&callType=" + callType  + "&" + urlCodeDeal(paras);
 	
+	loading(aMsg);
 	$.ajax({
 		type: "post",
 		url: globalService,
@@ -270,6 +265,7 @@ function callService(p){
 		async:async,
 		success: function (data, textStatus){
 
+				   closeWin();
 				   if(data!=null && data.echo_msg!=null && $.trim(data.echo_msg)!=''){
 				   		var errmsg = unescape(data.echo_msg);
 				   		
@@ -319,10 +315,9 @@ function callService(p){
    			        	}
    			         }
    				   }
-            	   
-    			   
                    var title = "新窗口"
-                	   	   
+                   if(p.title != null && p.title != "")
+                	  title = p.title;
 			 
  		   	   if(p.pml!=null) {
  		   		   
@@ -470,8 +465,10 @@ function loadPml(p){
 				popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
 				
 			}else{
-				
-				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras));
+				loading();
+				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras),function(){
+					closeWin();
+				});
 				$("#" + pmlName).data('paras',urlCodeDeal(paras));
 			}
 		}else{
@@ -481,7 +478,10 @@ function loadPml(p){
 		
 				////如果采用简化配置的情况 
 				if(p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
-					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras));
+					loading();
+					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras),function(){
+						closeWin();
+					});
 					$("#" + pmlName).data('paras',urlCodeDeal(paras));
 				}else{
 					var title = "";
@@ -521,13 +521,13 @@ function  getParasOfForms(targetForms){
 		for(var i = 0; i < forms.length; i++ ){
 			var aForm = forms[i];
 			if(paras==""){
-				paras = $("#"+aForm).formSerialize();
+				paras = $("#"+aForm).serialize();
 			}else{
-				paras = paras + "&" +  $("#"+aForm).formSerialize();
+				paras = paras + "&" +  $("#"+aForm).serialize();
 			}	
 		}	
 	}else{
-		paras = $("#"+targetForms).formSerialize();
+		paras = $("#"+targetForms).serialize();
 	}
 	return paras;
 }

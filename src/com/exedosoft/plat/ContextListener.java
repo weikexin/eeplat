@@ -173,7 +173,11 @@ public class ContextListener implements ServletContextListener {
 	}
 
 }
-
+/**
+ * 把日志写入数据库中，每个租户都可以看到自己的后台日志
+ * @author IBM
+ *
+ */
 class LoggerPrintStream extends PrintStream {
 
 	Logger logger;

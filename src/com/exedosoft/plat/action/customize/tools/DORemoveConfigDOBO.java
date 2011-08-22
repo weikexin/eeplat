@@ -15,6 +15,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.cache.busi.BusiCache;
 import com.exedosoft.plat.util.DOGlobals;
 
 public class DORemoveConfigDOBO extends DOAbstractAction {
@@ -50,8 +51,7 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 				DOService findTenancyTable = DOService
 						.getService("multi_tenancy_table_findrealtable");
 				BOInstance biTenancyTable = findTenancyTable.getInstance(
-						instance.getValue("sqlstr"), theTenancy
-								.getValue("name"));
+						instance.getValue("sqlstr"));
 
 				if (biTenancyTable != null) {
 					DOService delTenancyTable = DOService
@@ -124,6 +124,8 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 			deleteRubbish(instance, "DO_BO_Delete");
 			// /清楚缓存
 			CacheFactory.getCacheData().put(instance.getUid(), null);
+			///清楚缓存
+			BusiCache.flushAll();
 
 		} catch (ExedoException e) {
 			t.rollback();

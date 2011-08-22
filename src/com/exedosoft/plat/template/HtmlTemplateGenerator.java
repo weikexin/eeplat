@@ -9,6 +9,10 @@ import java.io.Writer;
 import java.net.URL;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOPaneModel;
@@ -33,6 +37,9 @@ public class HtmlTemplateGenerator {
 	static Configuration cfgDB = null;
 
 	static String templateFolder = "webv3";
+	
+
+	private static Log log = LogFactory.getLog(HtmlTemplateGenerator.class);
 
 	static {
 
@@ -45,7 +52,7 @@ public class HtmlTemplateGenerator {
 			// cfg.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);
 			// cfg.setSharedVariable("dataBind", new BindData2FormModel());
 			// /缓存的设置，发布后应该加大，开发时可以是实时
-			cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(20, 250));
+			cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(1000, 2500));
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
 			aPath = aPath.replaceAll("/[.]/", "/");
@@ -125,6 +132,9 @@ public class HtmlTemplateGenerator {
 	 */
 	public static String getContentFromTemplate(String ftlTemplate, Map contents)
 			throws IOException {
+		
+//		log.info("Template Start::" + System.currentTimeMillis());
+		
 		Template temp = cfg.getTemplate(ftlTemplate, "utf-8");
 		/* Merge data model with template */
 		StringWriter sw = new StringWriter();

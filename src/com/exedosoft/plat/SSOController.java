@@ -1,5 +1,6 @@
 package com.exedosoft.plat;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -58,6 +59,7 @@ public class SSOController extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType(CONTENT_TYPE);
+
 		PrintWriter out = response.getWriter();
 
 		/**
@@ -85,130 +87,153 @@ public class SSOController extends HttpServlet {
 		String returnPath = "";
 		String echoStr = "";
 
-		if (formBI.getValue("randcode").equals(
-				request.getSession().getAttribute("rand"))) {// //验证码正确
+		if ("true".equals(formBI.getValue("mobileclient"))
+				|| formBI.getValue("randcode").equals(
+						request.getSession().getAttribute("rand"))) {// //验证码正确
 			MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
 					formBI.getValue("password"));
+
 			if (ma != null) {
 
 				BOInstance user = new BOInstance();
 				user.fromObject(ma);
 
-				if (user != null && user.getValue("tenancyId") != null) {
-					/**
-					 * tenancyId 相当于 multi_tenancy表中的name
-					 */
-					System.out.println("当前登录的租户为::"
-							+ user.getValue("tenancyId"));
-					DOService aService = DOService
-							.getService("multi_tenancy_browse_byname");
-					BOInstance tenant = aService.getInstance(user
-							.getValue("tenancyId"));
-					if (tenant != null && tenant.getName() != null) {
-						
-						///设置公司名称
-						user.putValue("company", tenant.getValue("l10n"));
-						
-						DODataSource dds = new DODataSource();
-						dds.setObjUid(user.getValue("tenancyId"));
-						dds.setDialect("h2");
-						dds.setDriverClass("org.h2.Driver");
+				DOService aService = DOService
+						.getService("multi_tenancy_browse_byname");
+				BOInstance tenant = aService.getInstance(user
+						.getValue("tenancyId"));
+				if (tenant != null && tenant.getName() != null) {
 
-						String path = this.getClass().getResource(
-								"/globals.xml").getPath();
-						path = path.substring(0, path.toLowerCase().indexOf(
-								"classes"));
+					String path = this.getClass().getResource("/globals.xml")
+							.getPath();
+					path = path.substring(0, path.toLowerCase().indexOf(
+							"classes"));
 
-						dds.setDriverUrl((new StringBuilder("jdbc:h2:"))
-								.append(path).append("db/tenancy/").append(
-										tenant.getValue("name")).append(
-										"/config").toString());
+					StringBuffer modelDBPath = new StringBuffer();
+					modelDBPath.append(path).append("db/tenancy/").append(
+							tenant.getValue("name"));
 
-						dds.setUserName("sa");
-						dds.setPassword("");
+					File modeDBFile = new File(modelDBPath.toString());
+					if (modeDBFile.exists()) {
 
-						// tenant data datastore url
-						String multi_datasource_uid = tenant
-								.getValue("multi_datasource_uid");
+						if (user != null && user.getValue("tenancyId") != null) {
+							/**
+							 * tenancyId 相当于 multi_tenancy表中的name
+							 */
+							System.out.println("当前登录的租户为::"
+									+ user.getValue("tenancyId"));
 
-						DODataSource dataDds = null;
-						if (multi_datasource_uid != null) {
-							DOService findDataSource = DOService
-									.getService("multi_datasource_browse");
-							BOInstance aBI = findDataSource
-									.getInstance(multi_datasource_uid);
-							if (aBI != null) {
-								dataDds = (DODataSource) aBI
-										.toObject(DODataSource.class);
+							if (tenant != null && tenant.getName() != null) {
+
+								// /设置公司名称
+								user.putValue("company", tenant
+										.getValue("l10n"));
+
+								DODataSource dds = new DODataSource();
+								dds.setObjUid(user.getValue("tenancyId"));
+								dds.setDialect("h2");
+								dds.setDriverClass("org.h2.Driver");
+
+								dds
+										.setDriverUrl((new StringBuilder(
+												"jdbc:h2:"))
+												.append(modelDBPath).append("/config").toString());
+
+								dds.setUserName("sa");
+								dds.setPassword("");
+
+								// tenant data datastore url
+								String multi_datasource_uid = tenant
+										.getValue("multi_datasource_uid");
+
+								DODataSource dataDds = null;
+								if (multi_datasource_uid != null) {
+									DOService findDataSource = DOService
+											.getService("multi_datasource_browse");
+									BOInstance aBI = findDataSource
+											.getInstance(multi_datasource_uid);
+									if (aBI != null) {
+										dataDds = (DODataSource) aBI
+												.toObject(DODataSource.class);
+									}
+								}
+								// /globals 放到session中
+
+								// //需要更改多租户表中，租户数据库中的数据源
+								// ////每个租户为定位到某个物理数据库中
+								// ///租户数据库分配
+								TenancyValues tv = new TenancyValues(dds,
+										tenant);
+								if (dataDds != null) {
+									tv.setDataDDS(dataDds);
+								}
+								DOGlobals.getInstance().getSessoinContext()
+										.setTenancyValues(tv);
+								DOService findUserService = DOService
+										.getService("do_org_user_browse");
+								List corrUsers = findUserService
+										.invokeSelect(ma.getObjUid());
+								try {
+									if (corrUsers == null
+											|| corrUsers.size() == 0) {
+										// user.putValue("objuid",
+										// ma.getObjUid());
+										DOService storeUser = DOService
+												.getService("do_org_user_insert");
+										// /建立用户间的对应关系
+										storeUser.store(user);
+										// //由于数据隔离的原因屏蔽
+										// // /如果是创建者赋予管理员角色
+										// if
+										// ("2".equals(user.getValue("asrole")))
+										// {
+										// DOService storeUserRole = DOService
+										// .getService("do_org_user_role_insert");
+										// Map paras = new HashMap();
+										// paras.put("user_uid", user.getUid());
+										// paras.put("role_uid",
+										// "40288031288a2b8501288a3d009d000d");
+										// storeUserRole.store(paras);
+										// }
+									}
+								} catch (ExedoException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+								// ///获取缺省工程的URL
+								String default_app_uid = user
+										.getValue("default_app_uid");
+								if (default_app_uid != null) {
+									DOApplication dao = DOApplication
+											.getApplicationByID(default_app_uid);
+									if (dao != null
+											&& dao.getOuterLinkPaneStr() != null) {
+										returnPath = dao.getOuterLinkPaneStr();
+									}
+								}
+
+								// //处理登录日志==========================
+								LoginMain.makeLogin(user, request);
+
+								System.out.println("当前业务库:::"
+										+ DOGlobals.getInstance()
+												.getSessoinContext()
+												.getTenancyValues()
+												.getDataDDS());
+								System.out.println("当前缺省的配置库:::"
+										+ DODataSource.parseGlobals());
+
 							}
 						}
-						// /globals 放到session中
-
-						// //需要更改多租户表中，租户数据库中的数据源
-						// ////每个租户为定位到某个物理数据库中
-						// ///租户数据库分配
-						TenancyValues tv = new TenancyValues(dds, tenant);
-						if (dataDds != null) {
-							tv.setDataDDS(dataDds);
-						}
-						DOGlobals.getInstance().getSessoinContext()
-								.setTenancyValues(tv);
-						DOService findUserService = DOService
-								.getService("do_org_user_browse");
-						List corrUsers = findUserService.invokeSelect(ma
-								.getObjUid());
-						try {
-							if (corrUsers == null || corrUsers.size() == 0) {
-								// user.putValue("objuid", ma.getObjUid());
-								DOService storeUser = DOService
-										.getService("do_org_user_full_copy");
-								// /建立用户间的对应关系
-								storeUser.store(user);
-////由于数据隔离的原因屏蔽								
-//								// /如果是创建者赋予管理员角色
-//								if ("2".equals(user.getValue("asrole"))) {
-//									DOService storeUserRole = DOService
-//											.getService("do_org_user_role_insert");
-//									Map paras = new HashMap();
-//									paras.put("user_uid", user.getUid());
-//									paras.put("role_uid",
-//											"40288031288a2b8501288a3d009d000d");
-//									storeUserRole.store(paras);
-//								}
-							}
-						} catch (ExedoException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-						// ///获取缺省工程的URL
-						String default_app_uid = user
-								.getValue("default_app_uid");
-						if (default_app_uid != null) {
-							DOApplication dao = DOApplication
-									.getApplicationByID(default_app_uid);
-							if (dao != null
-									&& dao.getOuterLinkPaneStr() != null) {
-								returnPath = dao.getOuterLinkPaneStr();
-							}
-						}
-
-						// //处理登录日志==========================
-						LoginMain.makeLogin(user, request);
-
-						System.out.println("当前业务库:::"
-								+ DOGlobals.getInstance().getSessoinContext()
-										.getTenancyValues().getDataDDS());
-						System.out.println("当前缺省的配置库:::"
-								+ DODataSource.parseGlobals());
-
-
+					}else{
+						echoStr = "该账号没有被激活！";
 					}
 				}
 
 			} else {
 
-				echoStr = "用户名/密码出错，请重试！";
+				echoStr = "账号/密码出错，请重试（8月20号注册的用户请重新注册）！";
 			}
 		}
 

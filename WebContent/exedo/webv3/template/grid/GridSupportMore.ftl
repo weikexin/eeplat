@@ -129,7 +129,10 @@
 <script>
 function toggleMore(obj){
 
-	$(obj).parent().parent().nextAll(":not(.buttonMore)").toggle();
+//this.css('display') == 'none'
+
+    var a = $(obj).parent().parent().nextAll(":not(.buttonMore)");
+	a.toggle(a.css('display') == 'none');
 	var html = $(obj).text()=='更多信息' ? '<b>更少信息</b>' : '<b>更多信息</b>';
 	$(obj).html(html);
 

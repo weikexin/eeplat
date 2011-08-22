@@ -3,8 +3,10 @@ package com.exedosoft.plat.action.customize.tools;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -43,12 +45,12 @@ public class DOCreateTable extends DOAbstractAction {
 		BOInstance form = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance();
 
-
-		BOInstance theTenancy =  (BOInstance)DOGlobals.getInstance().getSessoinContext().getTenancyValues().getTenant();
+		BOInstance theTenancy = (BOInstance) DOGlobals.getInstance()
+				.getSessoinContext().getTenancyValues().getTenant();
 
 		String tableName = form.getValue("tableName");
 		String viewName = "";
-		if(theTenancy!=null){
+		if (theTenancy != null) {
 			viewName = theTenancy.getValue("name") + "_" + tableName;
 		}
 		String[] colNames = form.getValueArray("col_name");
@@ -64,10 +66,11 @@ public class DOCreateTable extends DOAbstractAction {
 		DOService multi_col_insert = DOService
 				.getService("multi_tenancy_column_insert");
 
+		List<String> cols = new ArrayList<String>();
 		Map<String, String> mapCols = new HashMap<String, String>();
 		Map<String, String> mapL10ns = new HashMap<String, String>();
 		Map<String, String> mapTypes = new HashMap<String, String>();
-
+		Map<String, Integer> mapOrders = new HashMap<String, Integer>();
 		int char1 = 1;
 		int varchar32 = 11;
 		int varchar64 = 21;
@@ -87,6 +90,8 @@ public class DOCreateTable extends DOAbstractAction {
 
 		mapCols.put("id", "id");
 		mapTypes.put("id", "VARCHAR32");
+		mapOrders.put("id", 0);
+		cols.add("id");
 
 		for (int i = 0; i < colNames.length; i++) {
 
@@ -94,8 +99,11 @@ public class DOCreateTable extends DOAbstractAction {
 
 			if (!colName.equals("") && !colName.equalsIgnoreCase("id")) {
 				// 建立字段名和本地化翻译的对应
+				// /顺序
+				cols.add(colName);
 				mapL10ns.put(colName, colL10ns[i]);
 				mapTypes.put(colName, dbtypes[i]);
+				mapOrders.put(colName, i * 5);
 				log.info("dbtypes[i]::" + dbtypes[i]);
 
 				// //建立字段名和实际字段名之间的对应
@@ -232,17 +240,18 @@ public class DOCreateTable extends DOAbstractAction {
 			paras.put("tenancy_name", theTenancy.getValue("name"));
 			paras.put("corr_view", viewName);
 			paras.put("real_table", "t001");
-			paras.put("application_uid", SessionContext.getInstance().getUser().getValue("default_app_uid"));
+			paras.put("application_uid", SessionContext.getInstance().getUser()
+					.getValue("default_app_uid"));
 			BOInstance tBI = multi_table_insert.invokeUpdate(paras);
 
-			for (Iterator<Map.Entry<String, String>> it = mapCols.entrySet()
-					.iterator(); it.hasNext();) {
-				Map.Entry<String, String> e = it.next();
-				paras.put("col_name", e.getKey());
-				paras.put("l10n", mapL10ns.get(e.getKey()));
+			for (Iterator<String> it = cols.iterator(); it.hasNext();) {
+				String key = it.next();
+				paras.put("col_name", key);
+				paras.put("l10n", mapL10ns.get(key));
 				paras.put("tenancy_table_uid", tBI.getUid());
-				paras.put("type", mapTypes.get(e.getKey()));
-				paras.put("real_col", e.getValue());
+				paras.put("type", mapTypes.get(key));
+				paras.put("real_col", mapCols.get(key));
+				paras.put("order_num", String.valueOf(mapOrders.get(key)));
 				multi_col_insert.invokeUpdate(paras);
 			}
 
@@ -250,26 +259,26 @@ public class DOCreateTable extends DOAbstractAction {
 			sb.append(viewName).append(" as select ");
 
 			int i = 0;
-			for (Iterator<Map.Entry<String, String>> it = mapCols.entrySet()
-					.iterator(); it.hasNext();) {
-				Map.Entry<String, String> e = it.next();
+			for (Iterator<String> it = cols.iterator(); it.hasNext();) {
+				String key = it.next();
 
-				sb.append(e.getValue()).append(" as ").append(e.getKey());
+				sb.append(mapCols.get(key)).append(" as ").append(key);
 
-				if (i < (mapCols.size() - 1)) {
+				if (i < (cols.size() - 1)) {
 					sb.append(", ");
 				}
 				i++;
 			}
 
-			sb.append("  from  t001 where tenancyId='").append(theTenancy.getValue("name"))
-					.append("' and tenancyTableId='").append(tableName).append(
-							"'");
+			sb.append("  from  t001 where tenancyId='").append(
+					theTenancy.getValue("name")).append(
+					"' and tenancyTableId='").append(tableName).append("'");
 			log.info(" the View::::" + sb);
 
 			// ///更新另外一个库
-		
-			DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
+
+			DODataSource dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
 
 			Connection con = dss.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sb.toString());

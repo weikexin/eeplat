@@ -320,7 +320,9 @@ public class GeneUIMain {
 			dps.setDop(dop);
 			dps.setDos(rService);
 			dps.setOrderNum(Integer.valueOf(i));
-			dps.setPatterm("#col# like ?;%#value#%");
+			if(dop.getProperty().isString()){
+				dps.setPatterm("#col# like ?;%#value#%");
+			}
 			
 			DOService aService = DOService.getService("DO_Parameter_Service_Copy_Batch");
 			DAOUtil.INSTANCE().store(dps,aService);

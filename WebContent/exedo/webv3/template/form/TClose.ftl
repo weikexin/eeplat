@@ -22,6 +22,9 @@ $('#${model.objUid}').bind('click',function(){
 	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
 	  		}else{
 	  			$('#' + '${model.gridModel.containerPane.name}').parents(".jqmDialog").jqmHide();
+	  			<#if (model.gridModel.containerPane.parent)?exists>	
+	  				$('#F' + '${model.gridModel.containerPane.parent.name}').jqmHide();
+	  			</#if>
 		  	}  	
 	  	}catch(e){
 	  	}
@@ -29,6 +32,10 @@ $('#${model.objUid}').bind('click',function(){
 		try{
 			var tabBtnSelector = "#dvTab table[tabId='${model.gridModel.containerPane.name}'] .btn";
 			tabCloseWindow(tabBtnSelector);
+			<#if (model.gridModel.containerPane.parent)?exists>	 
+			    tabBtnSelector = "#dvTab table[tabId='${model.gridModel.containerPane.parent.name}'] .btn";
+			    tabCloseWindow(tabBtnSelector);
+		 	</#if>
 		}catch(e){
 				  	
 		}

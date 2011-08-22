@@ -31,12 +31,15 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 			this.setEchoValue("字段名称或者类型或者长度没有定义!");
 			return NO_FORWARD;
 		}
+		
+		this.service.invokeUpdate();
+		
 
 		
-		DOBO thisBO = DOBO.getDOBOByID(instance.getUid());
-		
-		PropertyManager pm = new PropertyManager();
-		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
+//		DOBO thisBO = DOBO.getDOBOByID(instance.getUid());
+//		
+//		PropertyManager pm = new PropertyManager();
+//		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
 		
 		////处理租户表字段
 		////处理后根据表地段创建View

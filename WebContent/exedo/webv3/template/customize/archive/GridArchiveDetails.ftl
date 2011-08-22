@@ -146,8 +146,8 @@ function saveArchiveDetails(btn){
 
 	   btn.disabled = true;
 
-	   var paras = $("#a6858baff72f04a3fbb78ecf62e99872d").formSerialize() + "&"
-	   + $("#archiveDetails").formSerialize();
+	   var paras = $("#a6858baff72f04a3fbb78ecf62e99872d").serialize() + "&"
+	   + $("#archiveDetails").serialize();
 
 	   callAction({'btn':btn,
 	   			   'actionName':"com.exedosoft.plat.action.customize.archive.SaveArchiveAndDetails",

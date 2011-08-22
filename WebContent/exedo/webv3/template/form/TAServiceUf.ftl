@@ -5,6 +5,9 @@
 
 $('#${model.objUid}${model.data.uid}').bind('click',function(){
         callService({'btn':this,
+          		 <#if (model.note)?exists>
+                 'msg':'${model.note}',
+                 </#if>
         		 'callType':'uf',
 		         'serviceUid':'${model.linkService.objUid}',
 		         'paras':'dataBus=setContext&contextKey=${model.data.bo.name}&contextValue=${model.data.uid}&invokeButtonUid=${model.objUid}&contextNIUid=${(model.data.map.contextniuid)?if_exists}&contextPIUid=${model.data.map.contextpiuid?if_exists}'
@@ -23,6 +26,5 @@ $('#${model.objUid}${model.data.uid}').bind('click',function(){
 		         ,'echoJs':'${model.echoJs}'
 		         </#if>
 		         });
-
 });
 </script>

@@ -227,6 +227,7 @@ public class AProjectForwarderJquery {
 			DOMenuModel dmRoot = new DOMenuModel();
 			dmRoot.setCategory(aBO);
 			dmRoot.setController(menuController); 
+			dmRoot.setParentMenu(null);
 			// ////////同名DOMenuModel
 			dmRoot.setName(project.getName() + "_root");
 			dmRoot.setL10n("欢迎使用" + project.getL10n());
@@ -296,6 +297,25 @@ public class AProjectForwarderJquery {
 			 */
 			pmLeft.setTargetPane(pmContent);
 			DAOUtil.INSTANCE().store(pmLeft);
+			
+			/**
+			 * 存储Mobile索引菜单的面包
+			 */
+			DOPaneModel pmMobile = new DOPaneModel();
+			pmMobile.setCategory(aBO);
+			pmMobile.setName( project.getName() + "_mobile_pane");
+			pmMobile.setL10n(project.getL10n() + "菜单");
+			pmMobile.setTitle(project.getDescription());
+			
+			pmMobile.setLinkType(DOPaneModel.LINKTYPE_MENU);
+			pmMobile.setLinkUID(dmRoot.getObjUid());
+			// //////////////ccLayOutPane
+			pmMobile.setController(contentPane);
+
+			DAOUtil.INSTANCE().store(pmMobile);
+			
+			
+			
 
 			DOPaneLinks pmLeftLink = new DOPaneLinks();
 			pmLeftLink.setParentPane(pmBottom);// //bottomPane为父亲

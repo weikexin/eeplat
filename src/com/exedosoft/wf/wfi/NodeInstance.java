@@ -1526,7 +1526,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 			// 如果是结束节点 并且流程中没有其它活动节点的话 流程可以结束 ，并且转移到历史表中
 			if (this.getNodeType() != null
 					&& this.getNodeType().intValue() == PTNode.TYPE_END
-					&& processInstance.getRunNodes().size() == 0) {
+					//&& processInstance.getRunNodes().size() == 0
+					) {
 				// WFDAO dao = new WFDAO();
 				// //如果还有未完成的节点则流程不能结束
 				finishFlow();
