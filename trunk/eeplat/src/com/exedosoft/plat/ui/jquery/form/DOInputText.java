@@ -30,27 +30,6 @@ public class DOInputText extends DOBaseForm {
 			cPaneModel = fm.getGridModel().getContainerPane();
 		}
 
-		//���ִ��js
-		if(fm.getDoClickJs() != null && !"".equals(Escape.unescape(fm.getDoClickJs().trim()))) {
-			buffer.append(" onClick='").append(Escape.unescape(fm.getDoClickJs())).append("'");
-		}
-		
-		
-		//ֵ�ı�,������ʱִ��js
-		if(fm.getOnChangeJs() != null && !"".equals(Escape.unescape(fm.getOnChangeJs().trim()))) {
-			buffer.append(" onchange='").append(Escape.unescape(fm.getOnChangeJs())).append("' oninput='").append(Escape.unescape(fm.getOnChangeJs())).append("' onpropertychange='").append(Escape.unescape(fm.getOnChangeJs())).append("'");
-		}
-		
-		//��ý���ִ��js
-		if(fm.getEscapeOnFocusJs() != null && !"".equals(Escape.unescape(fm.getEscapeOnFocusJs().trim()))) {
-			buffer.append(" onfocus='").append(Escape.unescape(fm.getEscapeOnFocusJs())).append("'");
-		}
-		
-		//ʧȥ����ִ��js
-		if(fm.getEscapeOnBlurJs() != null && !"".equals(Escape.unescape(fm.getEscapeOnBlurJs().trim()))) {
-			buffer.append(" onblur='").append(Escape.unescape(fm.getEscapeOnBlurJs())).append("'");
-		}
-
 		if (theValue != null) {
 
 			buffer.append(" value='").append(theValue).append("'");
@@ -63,7 +42,6 @@ public class DOInputText extends DOBaseForm {
 		//�����޳��ַ���ֻ�ʱ�������޳���
 		if(fm.getExedojoType() != null && fm.getExedojoType().trim().length()>0) {
 			String maxlen = fm.getExedojoType().trim();
-			System.out.println("fm.getExedojoType().trim()===="+ maxlen);
 			if(maxlen.startsWith(";")){
 				maxlen = maxlen.substring(1).trim();
 				if(maxlen.matches("^\\d+$")) {
@@ -80,8 +58,6 @@ public class DOInputText extends DOBaseForm {
 		buffer.append(" size=\"").append(getInputSize(fm)).append("\"/>");
 
 		if (fm.isNotNull()) {
-
-			
 			buffer.append("&nbsp;<font color='red'>*</font>");
 		}
 		if (fm.getNote() != null && !"".equals(fm.getNote())) {
@@ -90,7 +66,6 @@ public class DOInputText extends DOBaseForm {
 						fm.getStyle()).append("\">").append(fm.getNote())
 						.append("</span>");
 			} else {
-				
 				buffer.append(fm.getNote());
 			}
 		}

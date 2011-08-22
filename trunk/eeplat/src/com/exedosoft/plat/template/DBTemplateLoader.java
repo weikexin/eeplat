@@ -1,10 +1,6 @@
 package com.exedosoft.plat.template;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.sql.Connection;
@@ -15,8 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.exedosoft.plat.bo.DODataSource;
-import com.exedosoft.plat.ui.DODownLoadFile;
-import com.exedosoft.plat.util.DOGlobals;
 
 import freemarker.cache.TemplateLoader;
 

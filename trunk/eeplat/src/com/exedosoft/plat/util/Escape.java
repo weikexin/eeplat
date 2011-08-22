@@ -161,11 +161,11 @@ public class Escape {
 	
 	
 	public static void main(String[] args) {
-		String stest = "oracle倒入";
+		String stest = "oracle+/";
 //		System.out.println(stest);
 //		System.out.println(URLEncoder.encode(stest));
 		
-		System.out.println(Escape.unescape(stest));
+		System.out.println(Escape.escape(stest));
 //		System.out.println(URLEncoder.encode(Escape.escape(stest)));
 
 	//	System.out.println(unencapsewith__(stest));

@@ -2,7 +2,9 @@ package com.exedosoft.plat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
@@ -238,12 +242,32 @@ public class SSOController extends HttpServlet {
 //		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
 //		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
 //		System.out.println("Corr Controller::" + cc.getCorrByConfig());
+//		
+//		System.out.println("111111111111:::" +  OrgParter.getAllParters());
+//		OrgParter parter = OrgParter.getDefaultRole();
+//		DOBO aBO = parter.getDoBO();
+//		
+//		//DOBO aBO = DOBO.getDOBOByName("do_org_role");
+//		System.out.println(aBO);
+//		System.out.println(aBO.getDSeleAllService());
+		
+	
+//		
+		DOApplication.clearAppCache();
+		
+		//System.out.println(CacheFactory.getCacheRelation().get(DOApplication.class.getCanonicalName()));
+
+		List<DOApplication> apps  = DOApplication.getApplications();
 		
 		
 		
-		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
-		
-		System.out.println("pm::::" + pm.getController());
+
+
+		System.out.println("apps::::" + apps);
+
+//		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
+//		
+//		System.out.println("pm::::" + pm.getController());
 
 		
 

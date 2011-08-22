@@ -1,7 +1,10 @@
 package com.exedosoft.plat.gene.jquery;
 
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.text.AbstractDocument.Content;
 
@@ -23,7 +26,7 @@ import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.jquery.form.TPaneSelected;
 import com.exedosoft.plat.ui.jquery.form.TServiceSelected;
 import com.exedosoft.plat.ui.jquery.form.TPane;
-import com.exedosoft.plat.ui.jquery.form.TService;
+import com.exedosoft.plat.ui.jquery.form.DOInputHidden;
 import com.exedosoft.plat.ui.jquery.form.TClose;
 import com.exedosoft.plat.ui.jquery.form.TServiceSelectedUf;
 import com.exedosoft.plat.ui.jquery.form.TServiceUf;
@@ -84,6 +87,8 @@ public class GeneUICompByTableJquery  {
 
 	private static DOController formPane = DOController.getControllerByName(TPane.class.getName());
 
+	private static DOController formHidden = DOController.getControllerByName(DOInputHidden.class.getName()); 
+	
 	private static DOController formItemPane = DOController.getControllerByName(TPaneSelected.class.getName());
 	
 	private static DOController formItemServiceUf = DOController.getControllerByName(TServiceSelectedUf.class.getName());
@@ -96,6 +101,9 @@ public class GeneUICompByTableJquery  {
 	private String geneATable = "";
 
 	private String boUID;
+	
+	private static Hashtable<String,String> multiL10ns = new Hashtable<String,String>();
+	
 
 	public GeneUICompByTableJquery(String aTable, String aBOUID) {
 
@@ -127,6 +135,7 @@ public class GeneUICompByTableJquery  {
 			
 			genePaneAndGrid( aService, gridSupportMore,  geneATable + "_browse","浏览信息");
 			genePaneAndGrid( aService, gridSupportMore,   geneATable + "_update","修改信息");
+			genePaneAndGrid( aService, gridSupportMore,   geneATable + "_dulplicate","复制");
 			genePaneAndGrid( aService, gridSupportMore, geneATable +  "_insert","新增数据");
 
 
@@ -164,6 +173,22 @@ public class GeneUICompByTableJquery  {
 
 
 
+	private void dealMultiL10ns(){
+		
+		if(multiL10ns.size()==0){
+			///获取 对应的l10n
+			DOService  aService = DOService.getService("multi_tenancy_column_findbytableid");
+			List list = aService.invokeSelect();
+			
+			
+			
+			
+		} 
+		
+	}
+	
+	
+	
 	/**
 	 * @param dao
 	 * @param aService
@@ -201,6 +226,10 @@ public class GeneUICompByTableJquery  {
 			DOFormModel formM = new DOFormModel();
 			formM.setRelationProperty(prop);
 			
+			///// 这一块从,multi_tenancy_column 这个表中取
+			
+
+			formM.setL10n("");
 			
 			/**
 			 *  * 客户端验证配置，分为３部分，以;隔开 １，类型：Integer RealNumber EMail Text Others 2, 长度 ３,
@@ -216,7 +245,11 @@ public class GeneUICompByTableJquery  {
 				formM.setExedojoType(";"+ prop.getDbSize().intValue());
 			}
 
-			formM.setL10n(prop.getColName());
+			if(multiL10ns.get(prop.getColName())!=null){
+				formM.setL10n(multiL10ns.get(prop.getColName()));
+			}else{
+				formM.setL10n(prop.getColName());
+			}
 			formM.setGridModel(gridM);
 
 			
@@ -241,6 +274,14 @@ public class GeneUICompByTableJquery  {
 				}
 
 			}
+			
+			if(prop.getColName().equalsIgnoreCase("eversion")){
+				formM.setController(formHidden);
+			    formM.setIsHidden(DOFormModel.HIDDEN_YES);
+				formM.setDefaultValue("1");
+				formM.setIsOutGridAction(DOFormModel.OUTGRID_LEFT);
+			}
+				
 			DAOUtil.INSTANCE().store(formM);
 			i++;
 		}
@@ -248,7 +289,7 @@ public class GeneUICompByTableJquery  {
 		if (aName.endsWith("_browse")) {
 			geneCloseButtonForm(aService, gridM);
 
-		} else if (aName.endsWith("_update") || aName.endsWith("_insert")) {
+		} else if (aName.endsWith("_update") || aName.endsWith("_insert") || aName.endsWith("_dulplicate")) {
 			geneSaveButtonForm(aService, aName, gridM);
 		}
 
@@ -283,13 +324,10 @@ public class GeneUICompByTableJquery  {
 	private static void geneSaveButtonForm( DOService aService,
 			String aName, DOGridModel gridM) throws ExedoException  {
 
-		// ///装电话小灵通, 83747268
-		// //装电话公司电话, 61758100
-
 		DOFormModel formM = new DOFormModel();
 		formM.setL10n("保存");
 		String uName = "_update";
-		if(aName.endsWith("insert")){
+		if(aName.endsWith("insert") || aName.endsWith("_dulplicate")){
 			uName = "_insert";
 		}
 		
@@ -328,10 +366,6 @@ public class GeneUICompByTableJquery  {
 	 */
 	private static void geneCloseButtonForm( DOService aService,
 			DOGridModel gridM) throws ExedoException  {
-
-		// ///装电话小灵通, 83747268
-		// //装电话公司电话, 61758100
-
 		DOFormModel formM = new DOFormModel();
 		formM.setL10n("关闭");
 //		DOService linkService = DOService.getService(aService.getBo().getName()
@@ -355,8 +389,10 @@ public class GeneUICompByTableJquery  {
 
 
 	public static void main(String[] args) {
+		
+		System.out.println(gridSupportMore);
 
-
+		System.out.println(contentPane);
 
 	}
 

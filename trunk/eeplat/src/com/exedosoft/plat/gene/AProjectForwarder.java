@@ -1,11 +1,14 @@
 package com.exedosoft.plat.gene;
 
+import java.util.List;
+
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.bo.BusiPackage;
 import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.bo.org.DOAuthorization;
 
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.ui.DOMenuLinks;
@@ -276,8 +279,10 @@ public class AProjectForwarder {
 	}
 	
 	public static void main(String[] args){
-		AProjectForwarder  af = new AProjectForwarder();
-		af.forwardBaseUI("297e276a0d1f7763010d1f776e5f0001");
+//		AProjectForwarder  af = new AProjectForwarder();
+//		af.forwardBaseUI("297e276a0d1f7763010d1f776e5f0001");
+
+		
 		
 	}
 }
