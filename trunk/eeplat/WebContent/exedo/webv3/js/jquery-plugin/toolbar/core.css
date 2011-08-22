@@ -29,6 +29,11 @@
   background:transparent url(image/role-setup.gif) no-repeat 0 2px !important;
   padding-left:20px !important;
 }
+/*copy*/
+.copy {
+  background:transparent url(image/copy.png) no-repeat 0 2px !important;
+  padding-left:20px !important;
+}
 /*已关联*/
 .linked {
   background:transparent url(image/linked.gif) no-repeat 0 3px !important;

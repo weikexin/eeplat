@@ -1,5 +1,5 @@
-var dmLayerWidth  =150;//±íµÄ¿í¶È     Êó±êÒÆÉÏÊ±µÄ±³¾°É«¡¢ÉÏÏÂÒ³ÑùÊ½¶¼ÔÚ5¸öÑùÊ½±íÖÐ
-var dmLayerOutbg  ="#FFF";//Êó±êÒÆ³öÊ±µÄ±³¾°É«
+var dmLayerWidth  =150;//ï¿½ï¿½Ä¿ï¿½ï¿½     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä±ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+var dmLayerOutbg  ="#FFF";//ï¿½ï¿½ï¿½ï¿½Æ³ï¿½Ê±ï¿½Ä±ï¿½ï¿½ï¿½É«
 var times=0;
 function mOver(tableRow){
 		$(tableRow).siblings().removeClass("dmLayerMouseOutCss");
@@ -12,7 +12,7 @@ function mOver(tableRow){
 			var myEvent = event||window.event;
         	var keyCode = myEvent.keyCode;
         	if(keyCode==40){
-        		//ÏÂÒ»¸ö¿ò»ñµÃ,½¹µã
+        		//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½
 	        	$(this).unbind("keydown");
 	        	if($.browser.msie){//IE and FireFox  are different about nextSibling
 	        		if(tableRow.nextSibling!=null){
@@ -72,9 +72,9 @@ var objGlobals;
 function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,configClearOtherUid){
 
     objGlobals = obj;
-	// sc_page_size(Ã¿Ò³¶àÉÙÌõ),sc_page_no(µÚ¼¸Ò³)¡£
-	$("dmLayer").innerHTML = "<font color='red'>ÕýÔÚ¼ÓÔØ.............</font>";
-	/////Áª¶¯²Ëµ¥Çå³þÆäËüµÄ
+	// sc_page_size(Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½),sc_page_no(ï¿½Ú¼ï¿½Ò³)ï¿½ï¿½
+	$("dmLayer").innerHTML = "<font color='red'>ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½.............</font>";
+	/////ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(configClearOtherUid!=null){
 	  var clears = configClearOtherUid.split(",");
 	  for(i = 0; i < clears.length; i++){
@@ -99,7 +99,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 	}
 	
 	var Col_Value = encodeURIComponent(escape(objGlobals.value));
-	var paras = $("#"+aFormName).formSerialize();
+	var paras = $("#"+aFormName).serialize();
 	paras = urlCodeDeal(paras);
 	if(obj!=null && searchColName!=null && obj.value!=null){
 			eval("paras." + searchColName + "='" + escape(obj.value) + "'");
@@ -113,8 +113,8 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 			dmLayer = dmLayer + '<table width="'+dmLayerWidth+'" border="0" cellpadding="0" cellspacing="0" style="font-size:9pt;cursor:pointer">';
 			dmLayer = dmLayer + '<tr><td width="'+dmLayerWidth+'" align="center" class="dmLayerUpPageCss"><span onClick="pageUp(\''
 			+ serviceName + '\',\'' + searchColName + '\',\'' + sc_page_no + '\',\'' + sc_page_size 
-			+ '\')">ÉÏÒ»Ò³</span>&nbsp;&nbsp;<span onClick="clearSelect(' +
-			')">Çå³ý</span> ';//ÉÏÒ»Ò³
+			+ '\')">ï¿½ï¿½Ò»Ò³</span>&nbsp;&nbsp;<span onClick="clearSelect(' +
+			')">ï¿½ï¿½ï¿½</span> ';//ï¿½ï¿½Ò»Ò³
 			dmLayer = dmLayer + '</td> </tr></table>';
 			
 			dmLayer = dmLayer + '<table id="dmBody" width="'+dmLayerWidth+'" border="0" cellpadding="0" cellspacing="0" style="font-size:9pt;cursor:pointer">';
@@ -134,7 +134,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 				dmLayer = dmLayer + '<tr><td width="'+dmLayerWidth+'" colspan="2" align="center" class="dmLayerUpPageCss" onclick="pageDown(\''
 			+ serviceName + '\',\'' + searchColName + '\',\'' + sc_page_no + '\',\'' + sc_page_size 
 			+
-			'\')">ÏÂÒ»Ò³</td></tr> ';//ÏÂÒ»Ò³
+			'\')">ï¿½ï¿½Ò»Ò³</td></tr> ';//ï¿½ï¿½Ò»Ò³
 				dmLayer = dmLayer + '</table>';
 			}
 			dmLayer = dmLayer + '</div>';				
@@ -143,7 +143,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 			mOver($("#dmBody")[0].firstChild.firstChild);
 			
 	   }else{
-			$("#dmLayer").css("display","block").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;Ã»ÓÐ¼ÇÂ¼!");
+			$("#dmLayer").css("display","block").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;Ã»ï¿½Ð¼ï¿½Â¼!");
 	   }	                            
    });
    
@@ -181,15 +181,15 @@ function textInvokePopup(obj,aFormName,serviceName,searchColName,pageNo,pageSize
 
 function setTip(obj){
 
-	if (arguments.length >  2){alert("¶Ô²»Æð£¡´«Èë±¾¿Ø¼þµÄ²ÎÊýÌ«¶à£¡");return;}
-	if (arguments.length == 0){alert("¶Ô²»Æð£¡ÄúÃ»ÓÐ´«»Ø±¾¿Ø¼þÈÎºÎ²ÎÊý£¡");return;}
-	//´´½¨ÑùÊ½£¬ÒÔ¼°¶¨Î»
+	if (arguments.length >  2){alert("ï¿½Ô²ï¿½ï¿½ð£¡´ï¿½ï¿½ë±¾ï¿½Ø¼ï¿½ï¿½Ä²ï¿½ï¿½ï¿½Ì«ï¿½à£¡");return;}
+	if (arguments.length == 0){alert("ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½ï¿½Ø±ï¿½ï¿½Ø¼ï¿½ï¿½ÎºÎ²ï¿½ï¿½ï¿½");return;}
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Î»
 	var dads  = $("#dmLayer");
-	dads.attr("sname",obj.id);//sname´æ·Å¶ÔÓ¦µÄÎÄ±¾¿òµÄid£¬Ä¿µÄÊÇ·½±ãÒÔºó¸³Öµ
-	var ttop  = obj.offsetTop;     //TT¿Ø¼þµÄ¶¨Î»µã¸ß
-	var thei  = obj.clientHeight;  //TT¿Ø¼þ±¾ÉíµÄ¸ß
-	var twid  = obj.clientWidth;   //TT¿Ø¼þ±¾ÉíµÄ¿í
-	var tleft = obj.offsetLeft;    //TT¿Ø¼þµÄ¶¨Î»µã¿í
+	dads.attr("sname",obj.id);//snameï¿½ï¿½Å¶ï¿½Ó¦ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ôºï¿½Öµ
+	var ttop  = obj.offsetTop;     //TTï¿½Ø¼ï¿½ï¿½Ä¶ï¿½Î»ï¿½ï¿½ï¿½
+	var thei  = obj.clientHeight;  //TTï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½
+	var twid  = obj.clientWidth;   //TTï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½
+	var tleft = obj.offsetLeft;    //TTï¿½Ø¼ï¿½ï¿½Ä¶ï¿½Î»ï¿½ï¿½ï¿½
 	while (obj = obj.offsetParent){ttop=ttop + obj.offsetTop -obj.scrollTop; tleft=tleft + obj.offsetLeft-obj.scrollLeft;}
 	var height = ttop+thei+1;
 	if(height>=320){
@@ -206,23 +206,23 @@ function setTip(obj){
    }
 }
 function selInputValue(obj){
-	var objID = $("#dmLayer").attr("sname");//µÃµ½¶ÔÓ¦ÎÄ±¾¿òµÄid
+	var objID = $("#dmLayer").attr("sname");//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ä±ï¿½ï¿½ï¿½ï¿½id
 	 if(objID.length>0){
 	 	$("#"+objID).attr("value",$(obj).children().html());	//input chinese value
 	 	
 	 	$("#"+objID).unbind("keydown");
 		if($("#"+objID)[0].previousSibling!=null){
-			$("#"+objID)[0].previousSibling.value=$(obj).attr("codeID");//°ÑcodeID´æ·Åµ½¶ÔÓ¦µÄÒþ²ØÓòÖÐ
+			$("#"+objID)[0].previousSibling.value=$(obj).attr("codeID");//ï¿½ï¿½codeIDï¿½ï¿½Åµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}else{
-		 	alert("¸³ÖµÊ§°Ü£¬·¢Éú´íÎó!!!!!!");
+		 	alert("ï¿½ï¿½ÖµÊ§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!!!!!");
 		}
 	}else{
 		if(objGlobals!=null){
 			objGlobals.value = $(obj).children().html();
 			if(objGlobals.previousSibling!=null){
-				objGlobals.previousSibling.value= $(obj).attr("codeID");//°ÑcodeID´æ·Åµ½¶ÔÓ¦µÄÒþ²ØÓòÖÐ
+				objGlobals.previousSibling.value= $(obj).attr("codeID");//ï¿½ï¿½codeIDï¿½ï¿½Åµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}else{
-			  alert("¸³ÖµÊ§°Ü£¬·¢Éú´íÎó!!!!!!");
+			  alert("ï¿½ï¿½ÖµÊ§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!!!!!");
 			}
 		}
 	}
@@ -232,7 +232,7 @@ function pressInputValue(here){
 	alert("here");
 }
 
-//ÈÎÒâµã»÷Ê±¹Ø±Õ¸Ã¿Ø¼þ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ø±Õ¸Ã¿Ø¼ï¿½
 document.onclick=function(){
 	$("#dmLayer").css("display","none");	
 }
@@ -248,18 +248,18 @@ function pageDown(serviceName,searchColName,pageNo,pageSize){
 }
 
 function  clearSelect(obj){
-	var objID = $("#dmLayer").attr("sname");//µÃµ½¶ÔÓ¦ÎÄ±¾¿òµÄid
+	var objID = $("#dmLayer").attr("sname");//ï¿½Ãµï¿½ï¿½ï¿½Ó¦ï¿½Ä±ï¿½ï¿½ï¿½ï¿½id
  	 if(objID.length>0){
 		$("#"+objID).attr("value","");
 		if($("#"+objID)[0].previousSibling!=null){
-			$("#"+objID)[0].previousSibling.value=''; //°ÑcodeID´æ·Åµ½¶ÔÓ¦µÄÒþ²ØÓòÖÐ
+			$("#"+objID)[0].previousSibling.value=''; //ï¿½ï¿½codeIDï¿½ï¿½Åµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}else{
-		 	alert("¸³ÖµÊ§°Ü£¬·¢Éú´íÎó!!!!!!");
+		 	alert("ï¿½ï¿½ÖµÊ§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!!!!!");
 		}
 	}else{
 	  	objGlobals.value='';
 	   	if(objGlobals.previousSibling!=null){
-			objGlobals.previousSibling.value='';//°ÑcodeID´æ·Åµ½¶ÔÓ¦µÄÒþ²ØÓòÖÐ
+			objGlobals.previousSibling.value='';//ï¿½ï¿½codeIDï¿½ï¿½Åµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 }
