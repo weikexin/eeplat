@@ -18,9 +18,7 @@
 		 					<img src='${contextPath}images/${icon}'/> <b> ${model.caption} </b> 
 		
 	 </div>
-</#if> 
-
-<div  id='bar${model.objUid}'>		
+</#if> 		
 <#if (model.topOutGridFormLinks?size > 0) > 
 	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
 		<DIV align="left"><!--布局用-->
@@ -50,7 +48,6 @@
 		</DIV>
 	</DIV>
 </#if>
-</div>
 
 <form  method='post' id='a${model.objUid}' name ='a${model.objUid}'>
 
@@ -144,7 +141,12 @@
 				</td></tr>
 		</table>
 	</#if>
-		
+	
+	<#if (model.hiddenGridFormLinks?size > 0) > 
+				<#list model.hiddenGridFormLinks as item> 
+				    ${item.htmlValue}  &nbsp; 
+				</#list>
+	</#if>
 </form>	
 
 
@@ -176,6 +178,7 @@
 		$('#g${model.objUid} tbody  tr').bind('click',function(){
 			$('#g${model.objUid} tbody  tr.selected').removeClass("selected");//去掉原来的选中selected
 			$(this).addClass("selected");
+//			$(this).find(".list_check").attr("checked",true);//点击就选中，容易出现问题
 		});
 		<#if model.subscribeAll> 
 		$('#g${model.objUid} tbody  tr').bind('dblclick',function(){

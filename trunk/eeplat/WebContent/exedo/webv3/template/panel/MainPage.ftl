@@ -1,10 +1,8 @@
 <TD class=gRi vAlign=top> 
-	<DIV class=mRight id ="mRight"></div>
+	<DIV class=mRight id ="mRight">${items_html}</div>
  </TD>
 <script>
    <#if (model.resource)?exists >
 		loadWorkbench("${model.resource.resourcePath}");
-   <#else>
-     	loadWorkbench("exedo/webv3/workbench/workbench.jsp");
   </#if>	
 </script>

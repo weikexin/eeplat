@@ -119,19 +119,30 @@
 			</#if> 	
 		</tbody>
 	  </table>
+	<#if (model.hiddenGridFormLinks?size > 0) > 
+				<#list model.hiddenGridFormLinks as item> 
+				    ${item.htmlValue}  &nbsp; 
+				</#list>
+	</#if>
 </form>	
 </div>	
 <script>
 function toggleMore(obj){
 
-	$(obj).parent().parent().nextAll(":not(.buttonMore)").toggle();
+//this.css('display') == 'none'
+
+    var a = $(obj).parent().parent().nextAll(":not(.buttonMore)");
+	a.toggle(a.css('display') == 'none');
 	var html = $(obj).text()=='更多信息' ? '<b>更少信息</b>' : '<b>更多信息</b>';
 	$(obj).html(html);
 
 }
+<#if  (model.name?contains("Browse")) >
  $('#g${model.objUid} tbody  tr').bind('click',function(){
 			$('#g${model.objUid} tbody  tr.selected').removeClass("selected");//去掉原来的选中selected
 			$(this).addClass("selected");
  });
+</#if>
+ 
 </script>
 
