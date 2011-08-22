@@ -1,0 +1,102 @@
+#workbench_container {
+	position:relative;
+	width:expression(parentElement.clientWidth-10);
+	padding:0 0 5px 0;
+	margin:4px 0 0 5px;
+	z-index:1;
+}
+#workbench_container  .gztmodel
+{
+	float:left;
+	margin:2px;
+	width:49%;
+	height:250px;
+	
+}
+#workbench_container .title {
+	position:relative;
+	width:100%;
+	height:33px;
+	z-index:2;
+	background-image: url(images/lhimgzt_07.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+#workbench_container .icon
+{
+	background-image: url(images/lhimgzt_06.gif);
+	background-position: left top;
+	background-repeat: no-repeat;
+	z-index:3;
+	width:26px;
+	height:33px;
+	float:left;
+}
+#workbench_container .titcon
+{
+	float:left;
+	font-weight:bolder;
+	z-index:3;
+	margin:13px 2px 0 4px;
+}
+#workbench_container .gzmid
+{
+	position:relative;
+	width:100%;
+	height:210px;
+	z-index:4;
+	background-image: url(images/lhimgzt_11.gif);
+	background-repeat: repeat-y;
+	background-position: right top;
+}
+#workbench_container .midleft
+{
+	background-image: url(images/lhimgzt_10.gif);
+	background-position: left top;
+	background-repeat: repeat-y;
+	z-index:4;
+	width:26px;
+	height:210px;
+	float:left;
+}
+#workbench_container .gztfoot
+{
+	position:relative;
+	width:100%;
+	height:14px;
+	z-index:4;
+	background-image: url(images/lhimgzt_19.gif);
+	background-repeat:  no-repeat;
+	background-position: right top;
+}
+#workbench_container .footleft
+{
+	background-image: url(images/lhimgzt_18.gif);
+	background-position: left top;
+	background-repeat:  no-repeat;
+	z-index:4;
+	width:26px;
+	height:14px;
+	float:left;
+}
+#workbench_container .midcon
+{
+	float:left;
+	overflow:hidden;
+	width:expression(parentElement.clientWidth-38);
+	height:96%;
+	margin:5px 0 0 2px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	border:0px solid #000;
+	white-space:normal; 
+	word-break:break-all;
+	z-index:5;
+	scrollbar-face-color:#ffffff;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#ffffff;
+	scrollbar-darkshadow-color:#ffffff;
+	scrollbar-Shadow-color:#FFFFFF;
+	scrollbar-arrow-color:#ABD8FF;
+	scrollbar-track-color:#ffffff;
+}
