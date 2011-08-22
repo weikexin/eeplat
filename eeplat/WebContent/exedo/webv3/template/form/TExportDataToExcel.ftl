@@ -15,7 +15,7 @@ $('#${model.objUid}').bind('click',function(){
 	
 	var para = '';
 	<#if formID?exists><#-- 我在结果面板中 -->
-		para=$("#${formID}").formSerialize();
+		para=$("#${formID}").serialize();
 		alert(para);
 	<#else><#-- 我在条件面板中 不用传具体参数了，在action中直接调用获得表单所有参数的API-->
 		para='-100';//没有业务含义，用来在平台中做自身所处位置判断。
