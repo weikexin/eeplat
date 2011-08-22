@@ -22,6 +22,8 @@ import com.exedosoft.plat.bo.DOParameter;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.id.UUIDHex;
 
+import com.exedosoft.plat.cache.busi.BusiCache;
+
 public class ATableForwarderJquery {
 
 	private static Log log = LogFactory.getLog(ATableForwarderJquery.class);
@@ -884,6 +886,9 @@ public class ATableForwarderJquery {
 		this.forwardService();
 		// this.forwardRule();
 		this.forwardUI();
+		
+		///清楚缓存
+		BusiCache.flushAll();
 
 	}
 

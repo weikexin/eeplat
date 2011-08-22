@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-        <title>云鹤平台应用登录</title>
+        <title>云鹤PaaS应用平台登录</title>
 		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
@@ -19,7 +19,7 @@
 	<div data-role="page" data-theme="b">
 	 
 	    <div data-role="header" data-position="inline"  data-nobackbtn="true">
-	        <h1>云鹤平台应用登录</h1>
+	        <h1>云鹤PaaS应用平台登录</h1>
 	    </div>
 	 
 	    <div data-role="content" data-theme="c">
@@ -62,10 +62,7 @@
 	  //登录
 	  function submitForm(){
 		   var paras =  $('#loginform').serialize();
-		   paras = paras + "&contextServiceName=do_org_employee_findbynameandpwd&mobileclient=true";
-
-
-
+		   paras = paras + "&contextServiceName=do_org_user_findbynameandpwd&mobileclient=true";
 		   $.ajax({
 			   url: globalURL + "ssocontroller",
 			   data: paras,
@@ -73,7 +70,7 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "zfbx_manager_mobile_pane.pml";
+				        window.location= "AppList.jsp";
 				   }else{
 					   	alert(retValue);
 				   }

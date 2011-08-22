@@ -1,7 +1,7 @@
 <#--dataBinding-->
 <#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()>  
 <form  method='post' id='a${model.objUid}' name ='a${model.objUid}'>
-			<#list model.normalGridFormLinks as item> 
+			<#list formlinks as item> 
    			<div data-role="fieldcontain">
    			   <#if model.controller.category.objUid == 'c_form_list' >
    			      <label for="${item.fullColID}" class="select">${item.l10n} :</label>

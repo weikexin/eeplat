@@ -42,7 +42,6 @@ public class DOInputText extends DOBaseForm {
 		//�����޳��ַ���ֻ�ʱ�������޳���
 		if(fm.getExedojoType() != null && fm.getExedojoType().trim().length()>0) {
 			String maxlen = fm.getExedojoType().trim();
-			System.out.println("fm.getExedojoType().trim()===="+ maxlen);
 			if(maxlen.startsWith(";")){
 				maxlen = maxlen.substring(1).trim();
 				if(maxlen.matches("^\\d+$")) {

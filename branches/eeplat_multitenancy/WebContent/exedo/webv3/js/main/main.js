@@ -199,8 +199,10 @@ function selectTabCss(tabSelector){
 		              .attr('src',paneUrl);
 			resscrEvt();          
 		}else{
+			loading();
 			$('#tab_' + tabId).load(paneUrl,function(){
 				resscrEvt();
+				closeWin();
 			});
 		}
 	  	
@@ -287,8 +289,12 @@ function loadWorkbench(path){
 function closeWin(){
 //	$("#fullBg").css("display","none");
 //	$(".alertClose").parent("#msg").css("display","none");
-	$("#main_msg").remove();
-	$("#fullBg").remove();
+	try{
+		$("#main_msg").remove();
+		$("#fullBg").remove();
+	}catch(e){
+		
+	}	
 }
 /*****************************************遮罩层***************************************************/
 /*
@@ -301,10 +307,10 @@ content:弹出框里面得内容，自定义
 isClose:是否有关闭按钮
 */
 function showMainMsg(position,msgW,msgH,align,type,content,isClose){
-	$("body").prepend("<DIV id=fullBg></DIV><DIV id=main_msg></DIV>");
+	$("body").prepend("<DIV id=fullBg style='z-index: 199999'></DIV><DIV style='z-index: 299999' id=main_msg></DIV>");
 	
 	if(type=="loading"){
-		content="<div>&nbsp;&nbsp;请稍后......</div>";
+		content="<div >&nbsp;&nbsp;正在加载,请稍后......</div>";
 	}else if(type=="loadingImg"){
 		content= "<div class=index-loading></div>";
 	}
@@ -313,7 +319,7 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 	if(align=="left"){
 		$("#main_msg").css({top:$(position).offset().top,left:$(position).offset().left,width:msgW,height:msgH});
 	}else if(align=="center"){
-		$("#main_msg").css({top:$(position).offset().top+($(position).height()-msgH)/2,left:$(position).offset().left+($(position).width()-msgH)/2,width:msgW,height:msgH});
+		$("#main_msg").css({top:$(position).offset().top+($(position).height()-msgH)/2,left:$(position).offset().left+($(position).width()-msgW)/2,width:msgW,height:msgH});
 	}else if(align=="right"){
 		$("#main_msg").css({top:$(position).offset().top,left:$(position).offset().left+$(position).width()-msgW-5,width:msgW,height:msgH});
 	}
@@ -335,6 +341,29 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 		})
 	}
 }
+
+//开启遮罩
+
+function loading(aMsg,position){
+
+    var aPos = "body";
+    if(position){
+    	aPos = position;
+    }
+    var msgLen = 150;
+    if(aMsg){
+    	 msgLen = aMsg.length * 10 + 10;
+    }
+	if(aMsg!=null){
+		showMainMsg(aPos,msgLen,16,"center","sef_defined","<div>&nbsp;&nbsp;" +aMsg + "</div>","n");
+	}else{
+		showMainMsg(aPos,msgLen,16,"center","loading","","n");
+	}	
+
+}
+
+
+
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -374,6 +403,7 @@ function popupDialog(id,title,href,width,height){
 			ajax: href,
 			target: t,
 			modal: true, 
+			onLoad: function(){closeWin();},
 			onHide: function(h) { 
 						t.html('Please Wait...');  // Clear Content HTML on Hide.
 						h.o.remove(); // remove overlay
@@ -392,13 +422,11 @@ function popupDialog(id,title,href,width,height){
 	     }
 		
 	     $('#F' + id).jqmShow();
-
-
-	     
 		 if($(".jqmDialog").length > 1){
 	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
 			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
 		 }
+		 loading(null,'#F' + id);
 }
 function createFloatDiv(id,title) {
 	     var htmlStr = "<div id='F" + id  + "' class='jqmDialog'> \n"

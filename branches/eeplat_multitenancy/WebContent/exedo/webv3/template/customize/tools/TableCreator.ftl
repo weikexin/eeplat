@@ -203,7 +203,7 @@
 
 ////////////////////界面参数传递到后台
                      if(isValid){
-			           	   var paras =  $('#a402880242a65aabd012a65aabd0a0000').formSerialize();
+			           	   var paras =  $('#a402880242a65aabd012a65aabd0a0000').serialize();
 			           	  	callAction({ 'btn':$('#3ba35f69a6084e76bfed4c89e41c2f65')[0],
 				   			   'actionName':"com.exedosoft.plat.action.customize.tools.DOCreateTable",
 				   			   'callback':forwardPml,
@@ -258,14 +258,7 @@
 			$(this).addClass("selected");
 //			$(this).find(".list_check").attr("checked",true);//点击就选中，容易出现问题
 		});
-		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('dblclick',function(){
-			var selectedValue = $(this).attr('value');
-			var dealBus = "&dataBus=setContext&contextKey=DO_BO_Property" + "&contextValue=" + selectedValue;
-			$(".toolbar .selected").removeClass("selected");
-			$(this).addClass("selected");
-				popupDialog('PM_DO_BO_Property_Browse','查看信息','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
 
-		});
 		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('mouseover',function(){
 			$(this).addClass("mover");
 		}).bind('mouseout',function(){

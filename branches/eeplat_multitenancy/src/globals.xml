@@ -51,7 +51,13 @@
 
 		<!-- 两种:serial no -->
 		<property name="useSerial">serial</property>
+		
+				<!-- no simple all(further) -->
+		<property name="useCache">simple</property>
+		
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
+		<property name="tenant_db">E:/eclipse35/workspace/eeplat_multitenancy/WebContent/WEB-INF/db/tenancy/</property>
+		
 		<!--登陆是否启用绿色通道-->
 		<property name="login.greenchannel">1</property>
 

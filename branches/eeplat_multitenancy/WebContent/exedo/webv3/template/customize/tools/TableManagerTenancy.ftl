@@ -259,7 +259,7 @@
 
 ////////////////////界面参数传递到后台
                      if(isValid){
-			           	   var paras =  $('#a402880242a65aabd012a65aabd0a0000').formSerialize();
+			           	   var paras =  $('#a402880242a65aabd012a65aabd0a0000').serialize();
 			           	  	callAction({ 'btn':$('#3ba35f69a6084e76bfed4c89e41c2f65')[0],
 				   			   'actionName':"com.exedosoft.plat.action.customize.tools.DOAlterTable",
 				   			   'callback':forwardPml,

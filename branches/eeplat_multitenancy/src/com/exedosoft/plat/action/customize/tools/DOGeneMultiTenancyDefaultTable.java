@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,6 +25,7 @@ import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.SqlCol;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
+import com.lowagie.tools.concat_pdf;
 
 public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 
@@ -34,31 +36,34 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 
 	private static Log log = LogFactory
 			.getLog(DOGeneMultiTenancyDefaultTable.class);
-	
-	private static DODataSource dss = DODataSource.getDataSourceByID("mysqlexample");
- 	private static String tenantFileBase = DOGlobals.getValue("tenant_db");
+
+	private static DODataSource dss = DODataSource
+			.getDataSourceByID("mysqlexample");
+	private static String tenantFileBase = DOGlobals.getValue("tenant_db");
 
 	@Override
 	public String excute() throws ExedoException {
 
 		DOBO aBO = DOBO.getDOBOByName("multi_tenancy");
-		
-		if(aBO!=null){
+
+		if (aBO != null) {
 			BOInstance curTenant = aBO.getCorrInstance();
-			File aFile = new File( tenantFileBase + curTenant.getValue("name") );
-			if(aFile.exists()){
+			File aFile = new File(tenantFileBase + curTenant.getValue("name"));
+			if (aFile.exists()) {
 				this.setEchoValue("该租户已经创建!");
 				return this.NO_FORWARD;
 			}
-			if(curTenant!=null){
-				
-				String multi_datasource_uid = curTenant.getValue("multi_datasource_uid");
-				if(multi_datasource_uid!=null){
+			if (curTenant != null) {
+
+				String multi_datasource_uid = curTenant
+						.getValue("multi_datasource_uid");
+				if (multi_datasource_uid != null) {
 					DOService findDataSource = DOService
-					.getService("multi_datasource_browse");
-					BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
-					if(aBI!=null){
-						dss = (DODataSource)aBI.toObject(DODataSource.class);
+							.getService("multi_datasource_browse");
+					BOInstance aBI = findDataSource
+							.getInstance(multi_datasource_uid);
+					if (aBI != null) {
+						dss = (DODataSource) aBI.toObject(DODataSource.class);
 						createTenant(curTenant.getValue("name"));
 					}
 				}
@@ -68,8 +73,8 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 		return DEFAULT_FORWARD;
 
 	}
-	
-	private Collection getCols(String aTable) {
+
+	private Collection getBaseCols(String aTable) {
 
 		Collection cc = new ArrayList();
 		Connection con = null;
@@ -102,11 +107,9 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 		return cc;
 	}
 
+	public boolean createBaseTenancyTable(String tenant, String aTableName) {
 
-	public boolean createMultiTenancyTable(String tenant, String aTableName) {
-
-
-		Collection<SqlCol> cc = getCols(aTableName);
+		Collection<SqlCol> cc = getBaseCols(aTableName);
 		StringBuffer buffer = new StringBuffer("create view ").append(tenant)
 				.append("_").append(aTableName).append("  as select ");
 
@@ -147,7 +150,7 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 		return true;
 	}
 
-	public boolean createMultiTennacyTableOfWf(String tenant) {
+	public boolean createBaseTennacyTableOfWf(String tenant) {
 
 		StringBuffer wfBj = new StringBuffer(
 				"CREATE VIEW #TENANT#_wf_bj AS select distinct wpi.WFI_Desc AS wfi_desc,wpi.startUser AS")
@@ -165,8 +168,6 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 
 				.append(
 						" (wpi.ExeStatus = 3)   and ni.tenancyid='#TENANT#' and wpi.tenancyid='#TENANT#') ");
-		
-		
 
 		StringBuffer wfDb = new StringBuffer(
 				" CREATE VIEW #TENANT#_wf_db AS select distinct wpi.curState AS curstate,ni.node_uid AS   ")
@@ -211,7 +212,7 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 						" wpi on((ni.PI_UID = wpi.OBJUID))) where ((ni.ExeStatus = 3) and (wpi.ExeStatus = 2)  ")
 				.append(
 						" and ni.tenancyid='#TENANT#' and wpi.tenancyid='#TENANT#')  ");
-		
+
 		Connection con = dss.getConnection();
 		try {
 			Statement pstmt = con.createStatement();
@@ -228,49 +229,137 @@ public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 
 		return true;
 	}
-	
-	public static void createTenant(String tenent){
-		
+
+	public static void createTenant(String tenent) {
+
 		copyFiles(tenent);
 
 		DOGeneMultiTenancyDefaultTable gtd = new DOGeneMultiTenancyDefaultTable();
 
-		gtd.createMultiTenancyTable(tenent, "do_authorization");
-		gtd.createMultiTenancyTable(tenent, "do_code_maxsequence");
-		gtd.createMultiTenancyTable(tenent, "do_log");
-		gtd.createMultiTenancyTable(tenent, "do_log_data");
-		gtd.createMultiTenancyTable(tenent, "do_org_dept");
-		gtd.createMultiTenancyTable(tenent, "do_org_role");
-		gtd.createMultiTenancyTable(tenent, "do_org_user");
-		gtd.createMultiTenancyTable(tenent, "do_org_user_delegate");
-		gtd.createMultiTenancyTable(tenent, "do_org_user_role");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_his_ni_dependency");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_his_nodeinstance");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_his_processinstance");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_his_varinstance");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_ni_dependency");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_nodeinstance");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_processinstance");
-		gtd.createMultiTenancyTable(tenent, "do_wfi_varinstance");
-
-		gtd.createMultiTennacyTableOfWf(tenent);
+		gtd.createBaseTenancyTable(tenent, "do_authorization");
+		gtd.createBaseTenancyTable(tenent, "do_code_maxsequence");
+		gtd.createBaseTenancyTable(tenent, "do_log");
+		gtd.createBaseTenancyTable(tenent, "do_log_data");
+		gtd.createBaseTenancyTable(tenent, "do_org_dept");
+		gtd.createBaseTenancyTable(tenent, "do_org_role");
+		gtd.createBaseTenancyTable(tenent, "do_org_user");
+		gtd.createBaseTenancyTable(tenent, "do_org_user_delegate");
+		gtd.createBaseTenancyTable(tenent, "do_org_user_role");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_his_ni_dependency");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_his_nodeinstance");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_his_processinstance");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_his_varinstance");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_ni_dependency");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_nodeinstance");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_processinstance");
+		gtd.createBaseTenancyTable(tenent, "do_wfi_varinstance");
+		gtd.createBaseTenancyTable(tenent, "t_expense");
+		
+		gtd.createBaseTennacyTableOfWf(tenent);
+		
+		gtd.createCustTenancyTable(tenent);
 	}
-	
-	private static void copyFiles(String tenant){
+
+	private static void copyFiles(String tenant) {
 		try {
-			StringUtil.copyDirectiory(tenantFileBase + tenant,tenantFileBase + "base");
+			StringUtil.copyDirectiory(tenantFileBase + tenant, tenantFileBase
+					+ "base");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public static void main(String[] args) {
-		
-		DOGeneMultiTenancyDefaultTable.createTenant("tst");
-		
-		
+	public boolean createCustTenancyTable(String tenantName) {
 
+		DODataSource dds = new DODataSource();
+		dds.setObjUid("base_config");
+		dds.setDialect("h2");
+		dds.setDriverClass("org.h2.Driver");
+
+		dds.setDriverUrl((new StringBuilder("jdbc:h2:")).append(tenantFileBase)
+				.append("base/").append("/config").toString());
+
+		dds.setUserName("sa");
+		dds.setPassword("");
+		DOBO tBO = DOBO.getDOBOByName("multi_tenancy_table");
+		tBO.setDataBase(dds);
+
+		DOBO cBo = DOBO.getDOBOByName("multi_tenancy_column");
+		cBo.setDataBase(dds);
+
+		DOService findAllCustTables = DOService
+				.getService("multi_tenancy_table_findtablesbytenancyid");
+		findAllCustTables.setBo(tBO);
+
+		DOService findCustCols = DOService
+				.getService("multi_tenancy_column_findbytableid");
+		findCustCols.setBo(cBo);
+
+		List list = findAllCustTables.invokeSelect();
+		Connection con = dss.getConnection();
+
+		try {
+			con.setAutoCommit(false);
+			if (list != null) {
+				for (Iterator itTable = list.iterator(); itTable.hasNext();) {
+
+					BOInstance aTable = (BOInstance) itTable.next();
+					String aTableName = aTable.getValue("table_name");
+
+					StringBuffer buffer = new StringBuffer("create view ")
+							.append(tenantName).append("_").append(aTableName)
+							.append("  as select ");
+
+					List listCols = findCustCols.invokeSelect(aTable.getUid());
+					for (Iterator<BOInstance> itCols = listCols.iterator(); itCols
+							.hasNext();) {
+						BOInstance sc = itCols.next();
+						buffer.append(sc.getValue("real_col")).append(" as ").append(sc.getValue("col_name"))
+						.append(",");
+					}
+					/**
+					 * 删除多余的","
+					 */
+					buffer.deleteCharAt(buffer.length() - 1);
+
+					buffer.append("  from  t001 where tenancyId='").append(
+							tenantName).append("' and tenancyTableId='")
+							.append(aTableName).append("'");
+					log.info(" the View::::" + buffer);
+
+					// ///更新另外一个库
+
+					PreparedStatement pstmt = con.prepareStatement(buffer
+							.toString());
+					pstmt.executeUpdate();
+					pstmt.close();
+				}
+
+			}
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return true;
 	}
 
+	public static void main(String[] args) {
+
+		DOGeneMultiTenancyDefaultTable.createTenant("tst");
+	}
 }

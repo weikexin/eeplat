@@ -109,8 +109,7 @@ public class DOAlterTable extends DOAbstractAction {
 			DOBO theBO = DOBO.getDOBOByID(dobo.getCorrInstance().getUid());
 			DOService findTable = DOService
 					.getService("multi_tenancy_table_findrealtable");
-			biTenancyTable = findTable.getInstance(theBO.getSqlStr(), tv.getTenant()
-					.getValue("name"));
+			biTenancyTable = findTable.getInstance(theBO.getSqlStr());
 
 		}
 
@@ -542,6 +541,7 @@ public class DOAlterTable extends DOAbstractAction {
 					.getTransaction();
 			t2.begin();
 			try {
+				int i = 0;
 				for (Iterator<Map.Entry<String, String>> it = mapCols
 						.entrySet().iterator(); it.hasNext();) {
 					HashMap paras = new HashMap();
@@ -550,7 +550,9 @@ public class DOAlterTable extends DOAbstractAction {
 					paras.put("tenancy_table_uid", biTenancyTable.getUid());
 					paras.put("type", mapTypes.get(e.getKey()));
 					paras.put("real_col", e.getValue());
+					paras.put("order_num", (key_hiddens.length + i)  * 6);
 					multi_col_insert.invokeUpdate(paras);
+					i ++;
 				}
 			} catch (ExedoException e) {
 				// TODO Auto-generated catch block
@@ -561,7 +563,7 @@ public class DOAlterTable extends DOAbstractAction {
 			t2.end();
 
 			StringBuffer sb = new StringBuffer("alter view  ");
-			sb.append(biTenancyTable.getValue("corr_view")).append(
+			sb.append(tv.getTenant().getValue("name")  + "_" +  biTenancyTable.getValue("table_name")).append(
 					" as select ");
 
 			DOService findTenacyCols = DOService

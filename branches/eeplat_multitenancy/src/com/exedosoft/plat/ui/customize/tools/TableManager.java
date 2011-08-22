@@ -141,8 +141,7 @@ public class TableManager extends GridList {
 
 			// multi_tenancy_column_insert
 
-			BOInstance theTable = findTable.getInstance(theBO.getSqlStr(),
-					tv.getTenant().getValue("name"));
+			BOInstance theTable = findTable.getInstance(theBO.getSqlStr());
 			if (theTable != null) {
 				List list = findColumns.invokeSelect(theTable.getUid());
 				return list;

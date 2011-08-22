@@ -24,7 +24,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/java_memcached-release_2.0.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/js.jar"/>
-	<classpathentry kind="lib" path="E:/eclipse35/workspace/eeplat/WebContent/WEB-INF/lib/jtds-1.2.5.jar"/>
+	<classpathentry kind="lib" path="E:/eclipse35/workspace/eeplat_multitenancy/WebContent/WEB-INF/lib/jtds-1.2.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>

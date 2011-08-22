@@ -79,9 +79,6 @@ public class WFEngineImpl implements WFEngine {
 			boolean isRun) throws WFException {
 
 		System.out.println("正在启动工作流=====================");
-		// WFDAO dao = new WFDAO();
-		// dao.setAutoClose(false);
-		// dao.setIsTransaction(true);
 
 		DOBO wfBO = DOBO.getDOBOByName("do_wfi_processinstance");
 
@@ -110,7 +107,7 @@ public class WFEngineImpl implements WFEngine {
 				throw new WFException("启动工作流失败:没有与业务表关联！");
 			}
 			pi.setInstanceUid(bi.getUid());
-			if (bi.getName() != null && !bi.getName().equals("N/A")) {
+			if (bi.getName() != null && !bi.getName().equals("") ) {
 				ptName = bi.getName();
 			}
 
@@ -143,7 +140,9 @@ public class WFEngineImpl implements WFEngine {
 				pi.setExeStatus(Integer.valueOf(ProcessInstance.STATUS_RUN));
 			}
 
-			DAOUtil.BUSI().store(pi); // /////保存工作流实例
+			pi = DAOUtil.BUSI().store(pi); // /////保存工作流实例
+			
+			System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDD:::" + pi.getObjUid());
 
 			PTNode startNode = pt.getStartNode();
 			niStart = NodeInstance.initNodeInstance(pi, startNode,

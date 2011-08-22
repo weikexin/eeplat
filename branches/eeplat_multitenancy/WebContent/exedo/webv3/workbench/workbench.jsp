@@ -5,7 +5,11 @@
     <div class="titcon">基础设施管理</div></div>
 	<div class="gzmid"><div class="midleft"></div>
 		<div class="midcon">
-		   <ul style="overflow:hidden">  	 	 
+		   <ul style="overflow:hidden">  
+			<li><a  href="javascript:loadPml({'pml':'TabeCreator','target':'_opener_tab','title':'创建表'})">创建表</a></li>
+			<br/>
+			<li><a  href="javascript:loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'初始化表'})">初始化表</a></li>
+		    <br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_ui_controller_Main','target':'_opener_tab','title':'控制器管理'})">控制器管理</a></li>
 		    <br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_actionconfig_Main','target':'_opener_tab','title':'自定义动作管理'})">自定义动作管理</a></li>
@@ -13,10 +17,6 @@
 			<li><a  href="javascript:loadPml({'pml':'PM_do_icon_Main','target':'_opener_tab','title':'JavaScript管理'})">自定义JavaScript管理</a></li>
 			<br/>
 			<li><a  href="javascript:loadPml({'pml':'PM_do_resource_Main','target':'_opener_tab','title':'资源管理'})">资源管理</a></li>
-		    <br/>
-			<li><a  href="javascript:loadPml({'pml':'TabeCreator','target':'_opener_tab','title':'创建表'})">创建表</a></li>
-			<br/>
-			<li><a  href="javascript:loadPml({'pml':'PM_do_org_part_Result','target':'_opener_tab','title':'初始化表'})">初始化表</a></li>
 			</ul>
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 	    <ul>
 	    	<li><a  href="javascript:loadPml({'pml':'trans_formmodel_setl10n','target':'_opener_tab','title':'字典翻译'})">导入字典翻译</a></li>
 		    <br/>   	  
-			<li><a  href="javascript:loadPml({'pml':'PM_DO_BO_Export_Select','target':'_opener_tab','title':'导入业务对象'})">导入业务对象</a></li>
+			<li><a  href="javascript:loadPml({'pml':'PM_DO_BO_Export_Select','target':'_opener_tab','title':'导入配置'})">导入配置</a></li>
 		    <br/>
 	    	<li><a  href="javascript:loadPml({'pml':'PM_do_pt_processtemplate_Main','target':'_opener_tab','title':'工作流建模'})">工作流建模</a></li>
 	    	<br/>

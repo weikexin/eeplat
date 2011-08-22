@@ -61,7 +61,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 
 	
 	var Col_Value = encodeURIComponent(escape(objGlobals.value));
-	var paras = "";   //$("#"+aFormName).formSerialize();
+	var paras = "";   //$("#"+aFormName).serialize();
 	
 	//if(paras==null || paras==""){
 		

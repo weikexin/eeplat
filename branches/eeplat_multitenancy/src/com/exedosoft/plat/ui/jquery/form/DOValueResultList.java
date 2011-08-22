@@ -3,15 +3,23 @@ package com.exedosoft.plat.ui.jquery.form;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.template.HtmlTemplateGenerator;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.StringUtil;
 
 public class DOValueResultList extends DOBaseForm {
+	
+	
+
+	private static Log log = LogFactory.getLog(DOValueResultList.class);
 
 	public String getHtmlCode(DOIModel iModel) {
 
@@ -22,10 +30,14 @@ public class DOValueResultList extends DOBaseForm {
 		 */
 		boolean isDyn = false;
 
+//		log.info("Start::::" + System.currentTimeMillis());
+		
 		if (fm.getLinkForms() != null && !fm.getLinkForms().isEmpty()
 				&& fm.getInputConfig() != null) {
 			isDyn = true;
 		}
+
+//		log.info("End::::" + System.currentTimeMillis());
 
 		String theValue = fm.getValue();
 
@@ -116,7 +128,8 @@ public class DOValueResultList extends DOBaseForm {
 			}
 
 		}
-		if (theValue == null || "null".equals(theValue)) {
+		////如果相关约束中填写notdefined ，没有翻译成功的话则返回空
+		if (theValue == null || "null".equals(theValue) || "notdefined".equals(fm.getInputConstraint())) {
 			return "&nbsp;";
 		}
 

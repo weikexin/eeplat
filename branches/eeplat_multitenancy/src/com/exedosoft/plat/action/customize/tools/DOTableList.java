@@ -76,7 +76,7 @@ public class DOTableList extends DOAbstractAction {
 
 				if (biTenancy != null && biTenancy.getValue("name") != null) {
 					List<BOInstance> hisTables = aService
-							.invokeSelect(biTenancy.getValue("name"));
+							.invokeSelect();
 					for (Iterator<BOInstance> it = hisTables.iterator(); it
 							.hasNext();) {
 						BOInstance bi = it.next();

@@ -90,7 +90,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.js"></script> 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqDnR.js" ></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js" ></script>	
@@ -163,22 +162,17 @@ $(function(){
 	  List list = aService.invokeSelect();
 	  for(Iterator it = list.iterator(); it.hasNext();){
 		   BOInstance bi = (BOInstance)it.next();
-		   if(bi!=null && bi.getValue("	formulaScript")!=null)
-		   out.println(bi.getValue("	formulaScript"));
+		   if(bi!=null && bi.getValue("formulaScript")!=null)
+		   out.println(bi.getValue("formulaScript"));
 	  }
   }
 %>
 </script>
 </head>
 
-
 <body  lang=zh>
-
 <div id='dmLayer'></div>
 <input  type="hidden" id="mainStyle" value="<%=mainStyle %>"/> 
 <%=paneModelContent%>
-
-	
-	
 </body>
 </html>
