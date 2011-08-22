@@ -81,7 +81,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 				String valuecol = bi.getValue("valuecol");
 
 				ATableForwarderJquery af = new ATableForwarderJquery(aTable,
-						keycol, valuecol, dataSourceUid, bpUid);
+						keycol, valuecol, dataSourceUid, bpUid,"");
 				af.forwardAll();
 			}
 

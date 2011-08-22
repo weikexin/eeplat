@@ -11,9 +11,9 @@ import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
-public class DOResultListPopup extends DOBaseForm {
+public class DOResultListPopupPml extends DOBaseForm {
 
-	public DOResultListPopup() {
+	public DOResultListPopupPml() {
 		super();
 	}
 
@@ -108,12 +108,12 @@ public class DOResultListPopup extends DOBaseForm {
 
 		}
 
-		if (default_data && data == null && fm.getLinkService() != null) {
-			data = fm.getLinkService().getBo().getCorrInstance();
-			if (data != null) {
-				theValue = data.getUid();
-			}
-		}
+//		if (default_data && data == null && fm.getLinkService() != null) {
+//			data = fm.getLinkService().getBo().getCorrInstance();
+//			if (data != null) {
+//				theValue = data.getUid();
+//			}
+//		}
 
 		buffer.append("	<input type='hidden' class='resultlistpopup'  name='")
 				.append(fm.getColName()).append("' id='")
@@ -160,7 +160,6 @@ public class DOResultListPopup extends DOBaseForm {
 		 * 可变动态下拉列表， 根据连接的FORMMODEL，一般静态staticlist 确定使用的服务
 		 */
 		if (isDyn) {
-
 			DOFormModel linkFm = (DOFormModel) fm.getLinkForms().get(0);
 			buffer.append("linkformid='").append(linkFm.getFullColID())
 					.append("' inputconfig='").append(fm.getInputConfig())
@@ -168,19 +167,46 @@ public class DOResultListPopup extends DOBaseForm {
 		}
 
 		buffer.append("/>");
-		buffer.append(
-				"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-21px;' onclick=\"invokePopup(this")
-				.append(",'").append(fm.getTargetForms()).append("','");
-		buffer.append(fm.getLinkService().getBo().getValueCol()).append("',1,")
-				.append(max_pagesize);
 
-		if (fm.getInputConstraint() != null) {
-			buffer.append(",'").append(fm.getInputConstraint()).append("'");
+		// 若有连接面板，则可弹出面板
+		if (fm.getLinkPaneModel() != null) {
+			// 下拉列表
+			buffer.append(
+					"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-41px;' onclick=\"invokePopup(this")
+					.append(",'").append(fm.getTargetForms()).append("','");
+			buffer.append(fm.getLinkService().getBo().getValueCol())
+					.append("',1,").append(max_pagesize);
+
+			if (fm.getInputConstraint() != null) {
+				buffer.append(",'").append(fm.getInputConstraint()).append("'");
+			}
+			buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER)
+					.append("images/darraw.gif' align=absMiddle ");
+			buffer.append("/>");
+			// 连接面板
+			buffer.append(
+					"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:0px;' id=\"listpm_")
+					.append(fm.getFullColID()).append("\"");
+			buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER)
+					.append("images/darraw2.gif' align=absMiddle ");
+
+			buffer.append("/>");
+
+		} else {
+			buffer.append(
+					"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-21px;' onclick=\"invokePopup(this")
+					.append(",'").append(fm.getTargetForms()).append("','");
+			buffer.append(fm.getLinkService().getBo().getValueCol())
+					.append("',1,").append(max_pagesize);
+
+			if (fm.getInputConstraint() != null) {
+				buffer.append(",'").append(fm.getInputConstraint()).append("'");
+			}
+			buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER)
+					.append("images/darraw.gif' align=absMiddle ");
+			buffer.append("/>");
+
 		}
-		buffer.append(")\"  src='").append(DOGlobals.PRE_FULL_FOLDER)
-				.append("images/darraw.gif' align=absMiddle ");
-
-		buffer.append("/>");
 
 		if (fm.getNote() != null && !"".equals(fm.getNote())) {
 			buffer.append(fm.getNote());
@@ -192,7 +218,6 @@ public class DOResultListPopup extends DOBaseForm {
 
 		if (fm.getOnChangeJs() != null && !"".equals(fm.getOnChangeJs())) {
 			buffer.append("<script>");
-
 			buffer.append("if($.browser.mozilla) $('#")
 					.append(fm.getFullColID())
 					.append("')[0].addEventListener('DOMAttrModified',function(){")
@@ -200,8 +225,58 @@ public class DOResultListPopup extends DOBaseForm {
 			buffer.append("</script>");
 
 		}
+
+		if (fm.getLinkPaneModel() != null) {
+			buffer.append("<script>");
+			buffer.append("$('#listpm_").append(fm.getFullColID())
+					.append("').bind('click',function(){");
+			
+			//点击执行(确认js)，返回true,继续执行弹出面板，否则取消
+			if(fm.getEchoJs() != null &&  !"".equals(fm.getEchoJs().trim())) {
+				buffer.append("if(!").append(fm.getEchoJs())
+					.append("){");
+				buffer.append("return false;");
+				buffer.append("}");
+			}
+			buffer.append("loadPml({");
+			if (fm.getLinkPaneModel().getLinkType() == 5) {
+				buffer.append("'pml':'")
+						.append(fm.getLinkPaneModel().getResource()
+								.getResourcePath()).append("'");
+			} else {
+				buffer.append("'pml':'")
+						.append(fm.getLinkPaneModel().getName()).append("'");
+				if (fm.getLinkPaneModel().getPaneWidth() != null) {
+					buffer.append(",'pmlWidth':'")
+							.append(fm.getLinkPaneModel().getPaneWidth())
+							.append("'");
+				}
+				if (fm.getLinkPaneModel().getPaneHeight() != null) {
+					buffer.append(",'pmlHeight':'")
+							.append(fm.getLinkPaneModel().getPaneHeight())
+							.append("'");
+				}
+
+			}
+			if (fm.getLinkPaneModel().getTitle() != null) {
+				buffer.append(",'title':'")
+						.append(fm.getLinkPaneModel().getTitle()).append("'");
+			}
+			if (fm.getGridModel() != null) {
+				buffer.append(",'formName':'a")
+						.append(fm.getGridModel().getObjUid()).append("'");
+			}
+			if (fm.getTargetPaneModel() != null) {
+				buffer.append(",'target':'")
+						.append(fm.getTargetPaneModel().getName()).append("'");
+			}
+
+			buffer.append("});");
+			buffer.append("});");
+			buffer.append("</script>");
+		}
+
 		return buffer.toString();
 
 	}
-
 }

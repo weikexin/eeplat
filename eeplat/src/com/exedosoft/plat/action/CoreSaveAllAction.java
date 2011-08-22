@@ -165,6 +165,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 			this.setEchoValue(ex1.getMessage());
 			return NO_FORWARD;
 		} finally {
+		    this.service.clearCache();
 			try {
 				this.service.getBo().getDataBase().ifCloseConnection(con);
 			} catch (SQLException ex1) {

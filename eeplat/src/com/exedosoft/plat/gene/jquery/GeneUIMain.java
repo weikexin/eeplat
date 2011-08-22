@@ -47,68 +47,71 @@ public class GeneUIMain {
 	private static Log log = LogFactory.getLog(GeneUIMain.class);
 
 	private final String SQL_SELECT_SERVICE = "select service.* from DO_Service service,DO_BO bo where service.bouid = bo.objuid  bo.name = ?";
-	
-	private DOController gridList = DOController.getControllerByName(GridList.class.getName());
+
+	private DOController gridList = DOController
+			.getControllerByName(GridList.class.getName());
 
 	private DOController gridCondition = DOController
 			.getControllerByName(GridConditionAutoTr.class.getName());
 
-	private DOController gridSupportMore = DOController.getControllerByName(GridSupportMore.class
-			.getName());
+	private DOController gridSupportMore = DOController
+			.getControllerByName(GridSupportMore.class.getName());
 
-	private DOController formInputText = DOController.getControllerByName(DOInputText.class
-			.getName());
+	private DOController formInputText = DOController
+			.getControllerByName(DOInputText.class.getName());
 
-	private DOController formTextArea = DOController.getControllerByName(DOTextArea.class
-			.getName());
+	private DOController formTextArea = DOController
+			.getControllerByName(DOTextArea.class.getName());
 
-	private DOController formValueSimple = DOController.getControllerByName(DOValueSimple.class
-			.getName());
+	private DOController formValueSimple = DOController
+			.getControllerByName(DOValueSimple.class.getName());
 
-	private DOController formValueDate = DOController.getControllerByName(DOValueDate.class
-			.getName());
+	private DOController formValueDate = DOController
+			.getControllerByName(DOValueDate.class.getName());
 
 	private DOController formDateMy97 = DOController
 			.getControllerByName(DatePicker.class.getName());
 
-	private DOController contentPane= DOController.getControllerByName(ContentPane.class.getName());
+	private DOController contentPane = DOController
+			.getControllerByName(ContentPane.class.getName());
 
-	private DOController formServiceUf = DOController.getControllerByName(TServiceUf.class
-			.getName());
+	private DOController formServiceUf = DOController
+			.getControllerByName(TServiceUf.class.getName());
 
-	private DOController paneOverFlow = DOController.getControllerByName(ContentPaneScroll.class
-			.getName());
+	private DOController paneOverFlow = DOController
+			.getControllerByName(ContentPaneScroll.class.getName());
 
-	private DOController formCloseButton = DOController.getControllerByName(TClose.class
-			.getName());
+	private DOController formCloseButton = DOController
+			.getControllerByName(TClose.class.getName());
 
-//	private DOController formDelete = DOController.getControllerByName(TDelete.class.getName());
+	// private DOController formDelete =
+	// DOController.getControllerByName(TDelete.class.getName());
 
-	private DOController formPane = DOController.getControllerByName(TPane.class.getName());
+	private DOController formPane = DOController
+			.getControllerByName(TPane.class.getName());
 
-	private DOController formItemPane = DOController.getControllerByName(TPaneSelected.class.getName());
-	
-	private DOController formItemServiceUf = DOController.getControllerByName(TServiceSelectedUf.class.getName());
-	
+	private DOController formItemPane = DOController
+			.getControllerByName(TPaneSelected.class.getName());
+
+	private DOController formItemServiceUf = DOController
+			.getControllerByName(TServiceSelectedUf.class.getName());
 
 	private String geneATable = "";
 
 	private DOBO category = null;
 
-	
 	String mainPaneName = "";
 	String condtionPaneName = "";
 	String resultPaneName = "";
 
 	String condtionGridName = "";
 	String resultGridName = "";
-	
-	
+
 	public GeneUIMain(String aTable) {
 		aTable = StringUtil.get_Name(aTable);
 		this.geneATable = aTable;
 		category = DOBO.getDOBOByName(aTable);
-		
+
 		mainPaneName = "PM_" + geneATable + "_Main";
 		condtionPaneName = "PM_" + geneATable + "_Condition";
 		resultPaneName = "PM_" + geneATable + "_Result";
@@ -119,7 +122,6 @@ public class GeneUIMain {
 
 	public void geneConfig() {
 
-
 		// /面板命名方式:PM_DO_LOG_Insert PM_DO_Parameter_Service_Browse
 
 		// /表格命名方式 GM_DO_Application_List_List
@@ -127,9 +129,9 @@ public class GeneUIMain {
 		if (category == null) {
 			return;
 		}
-		
-		////需要用到的业务对象
-		DOBO bo  = DOBO.getDOBOByName("DO_BO");
+
+		// //需要用到的业务对象
+		DOBO bo = DOBO.getDOBOByName("DO_BO");
 		bo.refreshContext(category.getObjUid());
 
 		List properties = category.retrieveProperties();
@@ -144,14 +146,12 @@ public class GeneUIMain {
 
 		try {
 
-
 			if (DOPaneModel.getPaneModelByName(mainPaneName) != null) {
 				System.err.println("面板已经存在------------");
 				return;
 			}
 			t.begin();
-			
-			
+
 			/**
 			 * 生成总面板
 			 */
@@ -160,50 +160,46 @@ public class GeneUIMain {
 			pmTotal.setL10n(mainPaneName);
 			pmTotal.setCategory(category);
 			pmTotal.setController(paneOverFlow);
-			
+
 			DOService aService = DOService.getService("do_ui_panemodel_copy");
-			DAOUtil.INSTANCE().store(pmTotal,aService);
-			
+			DAOUtil.INSTANCE().store(pmTotal, aService);
+
 			DOPaneModel pmResult = geneResult(properties);
 			DOPaneModel pmCondition = geneCondition(properties, pmResult);
-			
-			
+
 			aService = DOService.getService("DO_UI_PaneLinks_copy");
 			DOPaneLinks link1 = new DOPaneLinks();
 			link1.setParentPane(pmTotal);
 			link1.setChildPane(pmCondition);
 			link1.setOrderNum(5);
-			DAOUtil.INSTANCE().store(link1,aService);
-			
+			DAOUtil.INSTANCE().store(link1, aService);
+
 			DOPaneLinks link2 = new DOPaneLinks();
 			link2.setParentPane(pmTotal);
 			link2.setChildPane(pmResult);
 			link2.setOrderNum(10);
-			DAOUtil.INSTANCE().store(link2,aService);
-			
-			
-			////搞一下菜单
-			
-			DOPaneModel _opener_tab = DOPaneModel.getPaneModelByName("_opener_tab");
-			
-		
+			DAOUtil.INSTANCE().store(link2, aService);
+
+			// //搞一下菜单
+
+			DOPaneModel _opener_tab = DOPaneModel
+					.getPaneModelByName("_opener_tab");
 
 			String menuName = "";
-			
-			
+
 			try {
-				String bpUid = DOGlobals.getInstance().getSessoinContext().getFormInstance().getValue("bpUid");
+				String bpUid = DOGlobals.getInstance().getSessoinContext()
+						.getFormInstance().getValue("bpUid");
 				BusiPackage dbp = BusiPackage.getPackageByID(bpUid);
-				menuName =  dbp.getApplication().getName() + "_bp" ;
+				menuName = dbp.getApplication().getName() + "_bp";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
+
 			DOMenuModel parentMenu = DOMenuModel.getMenuModelByName(menuName);
 			DOBO boMenu = DOBO.getDOBOByName("DO_UI_MenuModel");
-			if(parentMenu!=null){
+			if (parentMenu != null) {
 				boMenu.refreshContext(parentMenu.getObjUid());
 			}
 			DOMenuModel dmm = new DOMenuModel();
@@ -214,8 +210,7 @@ public class GeneUIMain {
 			dmm.setParentMenu(parentMenu);
 			dmm.setOrderNum(5);
 			DAOUtil.INSTANCE().store(dmm);
-			
-			
+
 			t.end();
 			// conditionGrid.setService(sService)
 
@@ -227,7 +222,8 @@ public class GeneUIMain {
 
 	}
 
-	private DOPaneModel geneCondition(List properties, DOPaneModel pmResult) throws ExedoException {
+	private DOPaneModel geneCondition(List properties, DOPaneModel pmResult)
+			throws ExedoException {
 		/**
 		 * 生成表格
 		 */
@@ -258,10 +254,11 @@ public class GeneUIMain {
 			DOBOProperty p = it.next();
 			if (!p.isKeyCol()) {
 				DOFormModel fm = new DOFormModel();
-				DOFormModel old = DOFormModel.getFormModelByProperty(p.getObjUid());
-				if(old!=null){
+				DOFormModel old = DOFormModel.getFormModelByProperty(p
+						.getObjUid());
+				if (old != null) {
 					fm.setL10n(old.getL10n());
-				}else{
+				} else {
 					fm.setL10n(p.getL10n());
 				}
 				fm.setRelationProperty(p);
@@ -291,7 +288,7 @@ public class GeneUIMain {
 		fm.setLinkPaneModel(pmResult);
 		fm.setIsOutGridAction(DOFormModel.OUTGRID_BOTTOM);
 		DAOUtil.INSTANCE().store(fm);
-		
+
 		return pmCondition;
 	}
 
@@ -301,7 +298,7 @@ public class GeneUIMain {
 		 * 相关服务生成
 		 */
 		DOService rService = new DOService();
-		rService.setName(geneATable + "_auto_condition")                                                                                                                                         ;
+		rService.setName(geneATable + "_auto_condition");
 		rService.setL10n(geneATable + "_auto_condition");
 		rService.setBo(category);
 		rService.setMainSql("select * from " + this.geneATable
@@ -320,10 +317,13 @@ public class GeneUIMain {
 			dps.setDop(dop);
 			dps.setDos(rService);
 			dps.setOrderNum(Integer.valueOf(i));
-			dps.setPatterm("#col# like ?;%#value#%");
-			
-			DOService aService = DOService.getService("DO_Parameter_Service_Copy_Batch");
-			DAOUtil.INSTANCE().store(dps,aService);
+			if (dop.getProperty().isString()) {
+				dps.setPatterm("#col# like ?;%#value#%");
+			}
+
+			DOService aService = DOService
+					.getService("DO_Parameter_Service_Copy_Batch");
+			DAOUtil.INSTANCE().store(dps, aService);
 		}
 		/**
 		 * END 相关服务生成
@@ -360,10 +360,11 @@ public class GeneUIMain {
 			DOBOProperty p = it.next();
 			if (!p.isKeyCol()) {
 				DOFormModel fm = new DOFormModel();
-				DOFormModel old = DOFormModel.getFormModelByProperty(p.getObjUid());
-				if(old!=null){
+				DOFormModel old = DOFormModel.getFormModelByProperty(p
+						.getObjUid());
+				if (old != null) {
 					fm.setL10n(old.getL10n());
-				}else{
+				} else {
 					fm.setL10n(p.getL10n());
 				}
 				fm.setRelationProperty(p);
@@ -380,11 +381,8 @@ public class GeneUIMain {
 			}
 		}
 
-		
-		
 		DOPaneModel _opener = DOPaneModel.getPaneModelByName("_opener");
 
-	
 		DOFormModel fm = new DOFormModel();
 		fm.setL10n("查看");
 
@@ -406,16 +404,17 @@ public class GeneUIMain {
 
 		DOPaneModel pmUpdate = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_update");
-		
-		DOGridModel gm = DOGridModel.getGridModelByName("GM_" + geneATable + "_update");
+
+		DOGridModel gm = DOGridModel.getGridModelByName("GM_" + geneATable
+				+ "_update");
 		List<DOFormModel> fms = gm.getBottomOutGridFormLinks();
-		if(fms.size() > 0){
+		if (fms.size() > 0) {
 			DOFormModel aFm = fms.get(0);
 			aFm.setLinkPaneModel(pmResult);
 			aFm.setTargetPaneModel(pmResult);
 			DAOUtil.INSTANCE().store(aFm);
 		}
-		
+
 		fm.setLinkPaneModel(pmUpdate);
 		fm.setTargetPaneModel(_opener);
 		fm.setIsOutGridAction(DOFormModel.OUTGRID_TOP);
@@ -427,10 +426,11 @@ public class GeneUIMain {
 
 		fm = new DOFormModel();
 		fm.setController(formItemServiceUf);
-        fm.setEchoJs("confirm(\"你确定要删除吗\")");		
+		fm.setEchoJs("confirm(\"你确定要删除吗\")");
 		DOService aService = DOService.getService(this.geneATable + "_delete");
 		fm.setLinkService(aService);
 		fm.setL10n("删除");
+		fm.setStyle("delete");
 		fm.setGridModel(gmResult);
 		fm.setLinkPaneModel(pmResult);
 		fm.setTargetPaneModel(pmResult);
@@ -439,16 +439,17 @@ public class GeneUIMain {
 		i = i + 5;
 		DAOUtil.INSTANCE().store(fm);
 
+		// ///新增
 		fm = new DOFormModel();
 		fm.setController(formPane);
 		fm.setL10n("新增");
 
 		DOPaneModel pmInsert = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_insert");
-		
+
 		gm = DOGridModel.getGridModelByName("GM_" + geneATable + "_insert");
 		fms = gm.getBottomOutGridFormLinks();
-		if(fms.size() > 0){
+		if (fms.size() > 0) {
 			DOFormModel aFm = fms.get(0);
 			aFm.setLinkPaneModel(pmResult);
 			aFm.setTargetPaneModel(pmResult);
@@ -462,47 +463,80 @@ public class GeneUIMain {
 		fm.setOrderNum(Integer.valueOf(i));
 		i = i + 5;
 		DAOUtil.INSTANCE().store(fm);
-		
+
+		// ///复制
+		fm = new DOFormModel();
+		fm.setController(formItemPane);
+		fm.setL10n("复制");
+		fm.setStyle("copy");
+
+		DOPaneModel pmDulplicate = DOPaneModel.getPaneModelByName("PM_"
+				+ geneATable + "_dulplicate");
+
+		gm = DOGridModel.getGridModelByName("GM_" + geneATable + "_dulplicate");
+		fms = gm.getBottomOutGridFormLinks();
+
+		if (fms.size() > 0) {
+			DOFormModel aFm = fms.get(0);
+
+			aFm.setLinkPaneModel(pmResult);
+			aFm.setTargetPaneModel(pmResult);
+			DAOUtil.INSTANCE().store(aFm);
+		}
+		fm.setLinkPaneModel(pmDulplicate);
+		fm.setTargetPaneModel(_opener);
+		fm.setIsOutGridAction(DOFormModel.OUTGRID_TOP);
+
+		fm.setGridModel(gmResult);
+		fm.setOrderNum(Integer.valueOf(i));
+		i = i + 5;
+		DAOUtil.INSTANCE().store(fm);
+
 		return pmResult;
 	}
-	
-	public void deletePanes(){
-		
-		DOPaneModel pm = DOPaneModel.getPaneModelByName(mainPaneName); 
+
+	public void deletePanes() {
+
+		DOPaneModel pm = DOPaneModel.getPaneModelByName(mainPaneName);
 		if (pm == null) {
 			System.err.println("面板已经存在------------");
 			return;
 		}
 		try {
-			
+
 			List children = pm.retrieveChildren();
-			for(Iterator<DOPaneModel> it = children.iterator(); it.hasNext();){
+			for (Iterator<DOPaneModel> it = children.iterator(); it.hasNext();) {
 				DOPaneModel pmChild = it.next();
 				DOGridModel gm = pmChild.getDOGridModel();
 
-				
-				for(Iterator<DOFormModel> itFm = gm.getAllGridFormLinks().iterator(); itFm.hasNext();){
+				for (Iterator<DOFormModel> itFm = gm.getAllGridFormLinks()
+						.iterator(); itFm.hasNext();) {
 					DOFormModel fm = itFm.next();
-					DAOUtil.INSTANCE().delete("delete form do_ui_formmodel where objuid = ?", fm.getObjUid());
+					DAOUtil.INSTANCE().delete(
+							"delete form do_ui_formmodel where objuid = ?",
+							fm.getObjUid());
 				}
-				DAOUtil.INSTANCE().delete("delete from do_ui_gridmodel where objuid = ?", gm.getObjUid());
-			//删除子面板 					
+				DAOUtil.INSTANCE().delete(
+						"delete from do_ui_gridmodel where objuid = ?",
+						gm.getObjUid());
+				// 删除子面板
 				removePane(pmChild);
 			}
-			
-			//删除总面板 
+
+			// 删除总面板
 			removePane(pm);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	private void removePane(DOPaneModel pm) throws ExedoException {
-		///////////////////删除面板 			
-		DAOUtil.INSTANCE().delete("delete * from do_ui_panemodel where objuid = ?", pm.getObjUid());
+		// /////////////////删除面板
+		DAOUtil.INSTANCE().delete(
+				"delete * from do_ui_panemodel where objuid = ?",
+				pm.getObjUid());
 	}
 
 	// private void geneForms(HbmDAO dao) {
@@ -646,8 +680,6 @@ public class GeneUIMain {
 	private void geneSaveButtonForm(DOService aService, String aName,
 			DOGridModel gridM) throws ExedoException {
 
-
-
 		DOFormModel formM = new DOFormModel();
 		formM.setL10n("保存");
 		DOService linkService = DOService.getService(aService.getBo().getName()
@@ -705,28 +737,29 @@ public class GeneUIMain {
 	}
 
 	public static void main(String[] args) {
-		
+
 		GeneUIMain gm = new GeneUIMain("DO_Service_Redirect");
 		gm.geneConfig();
-		
-//		CacheFactory.getCacheData().cacheAllConfigData();
-//		
-//		DOController paneOverFlow = DOController.getControllerByName(ContentPaneScroll.class
-//				.getName());
-//		
-//	    DOBO category = DOBO.getDOBOByName("DO_DataSource");
-//
-//		DOPaneModel pmTotal = new DOPaneModel();
-//		pmTotal.setName("aaa");
-//		pmTotal.setL10n("aaa");
-//		pmTotal.setCategory(category);
-//		pmTotal.setController(paneOverFlow);
-//		try {
-//			DAOUtil.INSTANCE().store(pmTotal);
-//		} catch (ExedoException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
+		// CacheFactory.getCacheData().cacheAllConfigData();
+		//		
+		// DOController paneOverFlow =
+		// DOController.getControllerByName(ContentPaneScroll.class
+		// .getName());
+		//		
+		// DOBO category = DOBO.getDOBOByName("DO_DataSource");
+		//
+		// DOPaneModel pmTotal = new DOPaneModel();
+		// pmTotal.setName("aaa");
+		// pmTotal.setL10n("aaa");
+		// pmTotal.setCategory(category);
+		// pmTotal.setController(paneOverFlow);
+		// try {
+		// DAOUtil.INSTANCE().store(pmTotal);
+		// } catch (ExedoException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 	}
 
 }

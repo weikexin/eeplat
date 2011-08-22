@@ -103,8 +103,7 @@ public class DOWebFxTree extends DOBaseMenu{
 		buffer.append(");\n");
 				
 		//////parent item and the child
-		
-		
+			
 		buffer.append(parentItemName).append(".add(").append(itemName)
 				.append(");\n");
 		

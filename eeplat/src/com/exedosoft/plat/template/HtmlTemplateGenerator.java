@@ -37,8 +37,7 @@ public class HtmlTemplateGenerator {
 			cfg = new Configuration();
 			// cfg.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);
 			// cfg.setSharedVariable("dataBind", new BindData2FormModel());
-			// /缓存的设置，发布后应该加大，开发时可以是实时
-			cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(20, 250));
+			cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(1000, 2500));
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
 			aPath = aPath.replaceAll("/[.]/", "/");
