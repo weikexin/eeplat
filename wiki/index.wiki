@@ -45,6 +45,6 @@
     * [Multi_Code 开发语言沙箱]
     * [Multi_Mobile 手机支持]
     * [Multi_dev 在线开发说明]
-    * [AppShare AppShare]
+    * [AppShare AppShare(应用商店)]
   * [FAQ  常见问题解答]
  
