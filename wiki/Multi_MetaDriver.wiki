@@ -1,0 +1,8 @@
+元模型
+
+    EEPlat元模型是声明式业务对象的模型，是对信息管理系统的合理抽象。在元模型体系下，声明式业务对象是通过元数据（配置数据）进行描述。
+    声明式业务对象在EEPlat执行引擎的引导下形成用户可用的界面、逻辑等构成的业务系统，本质上执行引擎对EEPlat元数据的解析。
+    对应于OMG提出的MOF，EEPlat只有三层：
+        信息层（information layer）：利用EEPlat开发的信息管理系统
+        模型层（model layer）：声明式业务对象
+        元模型层（metamodel layer）：EEplat元模型 
