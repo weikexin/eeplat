@@ -1,4 +1,1 @@
-  元数据驱动开发是EEPlat的核心和基础。EEPlat拥有世界领先的元模型体系，对应于OMG提出的MOF，EEPlat实现了上三层：
-      * 信息层（information layer）：EEPlat执行引擎驱动的信息管理系统
-      * 模型层（model layer）：声明式业务对象
-      * 元模型层（metamodel layer）：EEplat元模型
+  元数据驱动开发是EEPlat的核心和基础。所谓元数据（metadata）即描述数据的数据(data about data)，在EEPlat中，对于描述业务系统的元数据我们称之为模型（model），而在模型的基础上，EEPlat又进行了进一步的抽象，称之为元模型（metamodel）。我们 EEPlat拥有世界领先的元模型体系。
