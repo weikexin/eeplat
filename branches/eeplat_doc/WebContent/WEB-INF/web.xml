@@ -82,30 +82,49 @@
 
 
 
+
+	<!-- CMS系统配置  by 王宏亮 2011-01-11  -->
 	<servlet>
-		<servlet-name>IceDaemonHttpServlet</servlet-name>
-		<servlet-class>com.zephyr.ice.IceDaemonHttpServlet
+		<servlet-name>freemarker</servlet-name>
+		<servlet-class>com.exedosoft.plat.cms.CMSFreemarkerServlet
 		</servlet-class>
 		<init-param>
-			<param-name>endpoint</param-name>
-			<param-value>default -p 11000 -h 127.0.0.1</param-value>
+			<param-name>TemplatePath</param-name>
+			<param-value>/</param-value>
 		</init-param>
 		<init-param>
-			<param-name>args</param-name>
-			<param-value>--Ice.MessageSizeMax=10240</param-value>
+			<param-name>NoCache</param-name>
+			<param-value>true</param-value>
 		</init-param>
 		<init-param>
-			<param-name>servants</param-name>
-			<param-value>/WEB-INF/classes/servants-list.properties</param-value>
+			<param-name>ContentType</param-name>
+			<param-value>text/html; charset=UTF-8</param-value>
 		</init-param>
-		<load-on-startup>2</load-on-startup>
+		<init-param>
+			<param-name>template_update_delay</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default_encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>number_format</param-name>
+			<param-value>0.##########</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>freemarker</servlet-name>
+		<url-pattern>*.ftl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>freemarker</servlet-name>
+		<url-pattern>/cmsaction</url-pattern>
+	</servlet-mapping>
 
-
-
-
-
+	<!--  end of cms setting -->
 
 	<servlet-mapping>
 		<servlet-name>mvccontroller</servlet-name>
