@@ -53,7 +53,7 @@
 		<property name="useSerial">serial</property>
 		
 				<!-- no simple all(further) -->
-		<property name="useCache">simple</property>
+		<property name="useCache">no</property>
 		
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
 		<property name="tenant_db">E:/eclipse35/workspace/eeplat_multitenancy/WebContent/WEB-INF/db/tenancy/</property>
