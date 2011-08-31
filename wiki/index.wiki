@@ -40,7 +40,7 @@
           *  [GlobalParas     全局配置参数]
   * 多租户
     * [Multi_First 一个简单的例子]
-    * [Multi_MetaDriver 元数据驱动的开发模式]
+    * [Multi_MetaDriver 元数据PaaS基础架构]
     * [Multi_Sep 多租户数据架构及数据隔离]
     * [Multi_Code 开发语言沙箱]
     * [Multi_Mobile 手机支持]
