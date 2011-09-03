@@ -15,10 +15,12 @@
 
   <img src="http://eeplat.googlecode.com/files/EEPlat_metamodel_en.png"/>
 
+   同类也是最成功的PaaS产品为Salesforce的Force.com(Appforce)，下面是两者的对比列表，对比项包含Appforce的四项核心技术：多租户、元数据驱动、Web Service API、AppExchange。
 
 
-   和Salesforce 的比较的那个表。
+  <img src="http://eeplat.googlecode.com/files/eeplat_appforce.png"/>
 
-   待续。。。
+
+
 
    
