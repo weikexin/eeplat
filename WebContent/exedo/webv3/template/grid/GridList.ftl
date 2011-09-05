@@ -93,7 +93,7 @@
 			</#if>
 			<#--输出其它的头标题 ins:{'l10n':'中国','name':'china','location':'a'}    item:{'key':'l10n'}--> 
 			<#list model.normalGridFormLinks as item> 
-		            <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#compress> <@JudgeAlign item/></#compress> >   <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue} </#if> </td> 
+		            <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#compress>  <@JudgeAlign item/></#compress>  style="${item.style?if_exists}" > <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue} </#if> </td> 
 			</#list>
 			</tr>
 	     </#list>
