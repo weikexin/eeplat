@@ -10,6 +10,6 @@
 CacheFactory.getCacheData().clear();
 CacheFactory.getCacheRelation().getData().clear();
 BusiCache.flushAll();
-//CacheFactory.getCacheData().fromSerialObject();
+CacheFactory.getCacheData().fromSerialObject();
 out.println("清除缓存成功！");
 %>
