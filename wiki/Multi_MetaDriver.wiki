@@ -26,8 +26,10 @@
 
     ===执行引擎===
 
-   EEPlat执行引擎采用微内核和插件架构。微内核负责模型之间的关系以及消息传递。插件包含存储、查询、UI、流程等，插件是可自定义的，也是可替换的。在现阶段，EEPlat执行引擎只提供Java版本，但是在技术上我们还可以支持Microsoft .NET、Python、Ruby等其它多种开发平台上的执行引擎，可以达到一套模型驱动同不同技术平台多套系统的效果。
+   EEPlat执行引擎采用微内核和插件架构。微内核负责模型之间的关系以及消息传递。插件包含存储、查询、UI、流程等，插件是可自定义的，也是可替换的。EEPlat的UI引擎可以做到同时支持PC Browse和智能手机界面显示。
   <img src="http://eeplat.googlecode.com/files/EEPlat_runtime_engine.png"/>
+
+   在现阶段，EEPlat执行引擎只提供Java版本，但是在技术上我们还可以支持Microsoft .NET、Python、Ruby等其它多种开发平台上的执行引擎，可以达到一套模型驱动同不同技术平台多套系统的效果。
 
 
 ==基本部署架构==
