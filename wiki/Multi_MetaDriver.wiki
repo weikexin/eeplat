@@ -29,23 +29,17 @@
    EEPlat执行引擎采用微内核和插件架构。微内核负责模型之间的关系以及消息传递。插件包含存储、查询、UI、流程等，插件是可自定义的，也是可替换的。在现阶段，EEPlat执行引擎只提供Java版本，但是在技术上我们还可以支持Microsoft .NET、Python、Ruby等其它多种开发平台上的执行引擎，可以达到一套模型驱动同不同技术平台多套系统的效果。
   <img src="http://eeplat.googlecode.com/files/EEPlat_runtime_engine.png"/>
 
- 
-
-==EEPlat和Appforce的对比==
-   同类也是最成功的PaaS产品为Salesforce的Force.com(Appforce)，下面是两者的对比列表，对比项包含Appforce的四项核心技术：多租户、元数据驱动、Web Service API、AppExchange。
-
-  <img src="http://eeplat.googlecode.com/files/eeplat_appforce.png"/>
-
 
 ==基本部署架构==
 
   无状态的系统设计是大规模运营的关键，即不依赖于本机的会话（session）以及本地文件系统等。EEPlat主要采用了session 集中管理、配置数据库集中管理等手段，和很多大规模运营的实践类似，如下图：
 
   <img src="http://eeplat.googlecode.com/files/eeplat_deploy_struture.png"/>
+ 
 
+==EEPlat和Appforce的对比==
+   同类也是最成功的PaaS产品为Salesforce的Force.com(Appforce)，下面是两者的对比列表，对比项包含Appforce的四项核心技术：多租户、元数据驱动、Web Service API、AppExchange。
 
-
-
-
+  <img src="http://eeplat.googlecode.com/files/eeplat_appforce.png"/>
 
    
