@@ -15,22 +15,21 @@
     ===数据存储===
    数据存储我们暂时只支持关系型数据库，计划支持mongodb。我们采用和Salesforce Appforce 类似的Sparce Column技术，
 
- 如下图：
-    
-
-
-   如上图，在EEPlat执行引擎的解释下可以直接产生应用程序，在现阶段，EEPlat执行引擎只提供Java版本，但是在技术上我们还可以提供Microsoft .NET、Python、Ruby等其它多种开发平台上的执行引擎，可以达到一套模型驱动同不同技术平台多套系统的效果，可以实现真正的“跨平台”，可以满足客户应用中技术平台的多样性需求，为客户升级或转换最新技术平台做好了准备,如下图：
-  <img src="http://eeplat.googlecode.com/files/eeplat_crosstech_struture.png"/>
-
- 
-
-==元模型体系==
+    ===元模型体系===
 
    EEPlat拥有世界领先的元模型体系。元模型是声明式业务对象的模型，声明式业务对象由元模型描述。EEPlat元模型体系是对企业信息化、电子政务等信息化领域业务的高度抽象，拥有自描述和动态扩展特性，能准确得完成业务领域模型的描述。  元模型从承担职责的角度分为功能元模型、业务对象元模型、服务元模型、规则元模型、工作流元模型、组织元模型、UI元模型等。
 
    业务对象元模型主要描述业务功能的静态结构，服务元模型主要完成业务逻辑，同时负责业务对象元模型之间的交互；工作流元模型主要完成业务流程及业务对象元模型的协作；组织元模型通过组织元模型之间的职责关系可以实现灵活的组织结构，UI元模型是菜单、面板、表格、表格元素、功能树等的UI模型的元模型，可以实现复杂的界面表现，如下图：
 
   <img src="http://eeplat.googlecode.com/files/EEPlat_metamodel_en.png"/>
+
+
+    ===执行引擎===
+
+   在EEPlat执行引擎的解释下可以直接产生应用程序，在现阶段，EEPlat执行引擎只提供Java版本，但是在技术上我们还可以提供Microsoft .NET、Python、Ruby等其它多种开发平台上的执行引擎，可以达到一套模型驱动同不同技术平台多套系统的效果，可以实现真正的“跨平台”，可以满足客户应用中技术平台的多样性需求，为客户升级或转换最新技术平台做好了准备,如下图：
+  <img src="http://eeplat.googlecode.com/files/eeplat_crosstech_struture.png"/>
+
+ 
 
 ==EEPlat和Appforce的对比==
    同类也是最成功的PaaS产品为Salesforce的Force.com(Appforce)，下面是两者的对比列表，对比项包含Appforce的四项核心技术：多租户、元数据驱动、Web Service API、AppExchange。
