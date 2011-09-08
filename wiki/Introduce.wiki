@@ -19,9 +19,6 @@
 	* 通过页面配置，灵活变动页面外观；
 	* 通过业务对象配置，灵活增减业务实体属性；
 
-===为软件开发商带来的竞争优势===
-<img height="400" width="600" src="http://eeplat.googlecode.com/files/yiyi_superiority.png"/>
-
 
 EEPlat系列产品还没有大规模推广，只有一些公司在使用，但已经显现出其卓越的开发效率。现在使用EEPlat产品作为基础开发平台的公司有：
   # 北京虎蜥信息技术有限公司
