@@ -8,7 +8,7 @@
   * 开发文档
           *  [Introduce 平台简介]
           *  [TechArchive 技术架构]
-          *  [BasicTheory DSL及元模型]
+          *  [BasicTheory 元数据驱动]
           *  [BusinessObjectBus 业务对象总线]
           *  [ConfigTools 配置工具界面结构]
           *  [ConfigApplication 工程]
