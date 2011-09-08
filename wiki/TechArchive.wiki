@@ -8,7 +8,7 @@
 ===UI技术架构===
     EEPlat平台在界面控制模式方面，充分考虑到传统的MVC模式的优缺点，最终采取了层叠式MVC模式，即HMVC。
 
-  <img height="300" width="450" src="http://eeplat.googlecode.com/files/yiyi_ui_hmvc.png"/>。
+  <img  src="http://eeplat.googlecode.com/files/yiyi_ui_hmvc.png"/>。
 
  HMVC模式即Hierarchical-Model-View-Controller模式，也可以叫做Layered MVC。HMVC模式把客户端应用程序分解为有层次的父子关系的MVC。反复应用这个模式，形成结构化的客户端架构。 　它的优点主要有：
   # 把界面分成了多个部分，降低了依赖性。 
