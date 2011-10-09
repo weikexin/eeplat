@@ -10,13 +10,11 @@
   	
   		if(validate('${model.targetForms}')){
 			loadPml({
-		   		  <#if (model.linkPaneModel.linkType==5)>
-	   			 	'pml':'${model.linkPaneModel.resource.resourcePath}',
-	   			 <#else>
+
 	   			 	'pml':'${model.linkPaneModel.name}',
 	   			 	'pmlWidth':'${model.linkPaneModel.paneWidth?if_exists}',
 	   			 	'pmlHeight':'${model.linkPaneModel.paneHeight?if_exists}',
-	   			 </#if>
+
 		   		 'title':'${model.linkPaneModel.title}',
 		   		 'formName':'a${model.gridModel.objUid}'
 		   		  <#if (model.targetPaneModel)?exists>	         
