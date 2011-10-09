@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.js.RunJs;
+import com.exedosoft.plat.multitenancy.Tenant;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOViewTemplate;
@@ -48,6 +49,7 @@ public class DODownLoadExcelReport extends DOViewTemplate {
 		if(DOGlobals.getInstance().getSessoinContext().getFormInstance().getObjectValue("datas")!=null){
 			datas = (Map)DOGlobals.getInstance().getSessoinContext().getFormInstance().getObjectValue("datas");
 		}
+		String tempXls = DOGlobals.getInstance().getSessoinContext().getFormInstance().getValue("tempXls");
 
 		String aFolder = "test";
 		try {
@@ -67,16 +69,24 @@ public class DODownLoadExcelReport extends DOViewTemplate {
 				.indexOf("web-inf") + 7);
 
 		String templateFileName = "simple.xls";
+		
+		
 		if(fm.getInputConfig()!=null &&
 				(fm.getInputConfig().toLowerCase().endsWith(".xls") ||
 						fm.getInputConfig().toLowerCase().endsWith(".xlsx") 
 				)){
 			templateFileName = fm.getInputConfig();
 		}
+		
+		templateFileName = prefix + "/xls/" + templateFileName;
+		
+		if(tempXls!=null){
+			templateFileName = Tenant.getTenantFilePath() + tempXls;		
+		}
 
 		XLSTransformer transformer = new XLSTransformer();
 		try {
-			transformer.transformXLS(prefix + "/xls/" + templateFileName , datas, destFileName);
+			transformer.transformXLS( templateFileName, datas, destFileName);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
