@@ -1,6 +1,6 @@
 <#include "TFormBase.ftl">
 <#--参数通过formName传递-->
-<button type="button"  style="${model.style?if_exists}"    id='${model.objUid}'  <#compress><@JudgeStyle model/></#compress> >${model.l10n}</button>
+<button type="button"  style="${model.style?if_exists}"  id='${model.objUid}'  <#compress><@JudgeStyle model/></#compress> >${model.l10n}</button>
 <script>
 
  function fnCB${model.objUid}(){
@@ -11,6 +11,9 @@
 	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
 	  		}else{
 	  			$('#' + '${model.gridModel.containerPane.name}').parents(".jqmDialog").jqmHide();
+	  			<#if (model.gridModel.containerPane.parent)?exists>	
+	  				$('#F' + '${model.gridModel.containerPane.parent.name}').jqmHide();
+	  			</#if>
 		  	}  	
 	  	}catch(e){
 	  	}	

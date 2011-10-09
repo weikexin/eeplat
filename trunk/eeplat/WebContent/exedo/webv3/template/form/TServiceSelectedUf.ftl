@@ -11,6 +11,9 @@
 	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
 	  		}else{
 	  			$('#' + '${model.gridModel.containerPane.name}').parent(".jqmDialog").jqmHide();
+	  			<#if (model.gridModel.containerPane.parent)?exists>	
+	  				$('#F' + '${model.gridModel.containerPane.parent.name}').jqmHide();
+	  			</#if>
 		  	}  	
 	  	}catch(e){
 	  	}	
