@@ -2,7 +2,7 @@
 
 <script>
 $('#${model.objUid}').bind('click',function(){
-	alert("未实现");
+    $('#${model.targetForms}')[0].reset();
   }
 );
 </script>

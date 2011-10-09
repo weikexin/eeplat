@@ -20,7 +20,7 @@ import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.login.LoginMain;
-import com.exedosoft.plat.multitenancy.MultiAccount;
+import com.exedosoft.plat.login.MultiAccount;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
@@ -233,7 +233,7 @@ public class SSOController extends HttpServlet {
 
 			} else {
 
-				echoStr = "账号/密码出错，请重试（8月20号注册的用户请重新注册）！";
+				echoStr = "账号/密码出错，请重试（9月28号注册的用户请重新注册）！";
 			}
 		}
 

@@ -46,7 +46,7 @@ public class RegisterMail {
 
 	// //////////////////////////////////////////////////////////////
 	// 发送邮件
-	private static void sendEmail(String to, String title, String text)
+	public static void sendEmail(String to, String title, String text)
 			throws AddressException, MessagingException, IOException {
 
 		// **************************************************8

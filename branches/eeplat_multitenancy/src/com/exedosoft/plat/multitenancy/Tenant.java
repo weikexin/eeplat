@@ -1,8 +1,13 @@
 package com.exedosoft.plat.multitenancy;
 
 import com.exedosoft.plat.bo.BaseObject;
-import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.safe.DOTenancy;
 
+/**
+ * 保证是一个安全租户类
+ * @author IBM
+ *
+ */
 public class Tenant extends BaseObject {
 	
 	/**
@@ -141,11 +146,14 @@ public class Tenant extends BaseObject {
 		this.startDate = startDate;
 	}
 	
-	public static DODataSource getTenantDataSource(){
-		
-		
-		return null;
+	public static String getTenantFilePath(){
+		return DOTenancy.getTenantFilePath();
 	}
+	
+	public static String getTenantWebPath(){
+		return DOTenancy.getTenantWebPath();
+	}
+
 
 
 }

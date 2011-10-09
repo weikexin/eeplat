@@ -97,8 +97,10 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 	var url = globalURL + "servicecontroller?contextServiceName="+aService+"&callType=ss&sc_page_no="
 					+ sc_page_no+"&sc_page_size="+sc_page_size+"&"+searchColName+"="+ Col_Value +"&"+paras;
 
-	$.post(url,function(result){
-	   		eval("var ret =" + result);
+	$.post(url,{},function(data){
+
+
+		   var ret = data;
 		   if(ret!=null && ret.items!=null && ret.items.length>0){
 		   
 		    var popHeight = 250;
@@ -162,7 +164,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 	   }else{
 			$("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;没有记录!").show();
 	   }	                            
-   });
+   },"json");
    
    
 }

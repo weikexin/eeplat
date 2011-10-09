@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 
-import com.exedosoft.plat.multitenancy.MultiAccount;
+import com.exedosoft.plat.login.MultiAccount;
 
 
 /**
