@@ -52,7 +52,7 @@ public class DOImport extends DOAbstractAction {
 			}
 
 			fileName = DOGlobals.UPLOAD_TEMP.trim()
-					+ StringUtil.getCurrentDayStr() + "/" + fileName.trim();
+					 + "/" + fileName.trim();
 			System.out.println("FileName::" + fileName);
 			try {
 				Document doc = DOMXmlUtil.getInstance().getDocument(fileName);

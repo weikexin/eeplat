@@ -605,25 +605,29 @@ function  sortDown(o,boName,serviceName){
 
 
 
-
 ////////////////////////////////无刷新 flash上传
-function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
-	
+function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,anAction){
+
 if(fileDesc==null || $.trim(fileDesc)==""){
-	fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
 }
 if(fileExt==null || $.trim(fileExt)==""){
-	fileExt = '*.jpg;*.gif;*.bmp';
+fileExt = '*.jpg;*.gif;*.bmp';
 }
 if(autoUpload==null){
-	autoUpload = true;
+autoUpload = true;
 }
-	
+
+var theAction = 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ;
+if(anAction){
+theAction = anAction + ';jsessionid=' + sessionid ;
+}
+
 var o = $("#" + uploadifyID).prev();
 $("#" + uploadifyID).uploadify({
 'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
 'scriptData'     :{'jsessionid':sessionid},
-'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
+'script'         : theAction,
 'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 'queueID'        : uploadifyQueueID,
 'auto'           : autoUpload,
