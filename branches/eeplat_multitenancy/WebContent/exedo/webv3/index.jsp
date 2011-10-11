@@ -12,8 +12,7 @@
   globalURL = "/<%=DOGlobals.URL%>/";
 </script>  
 
-<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
-<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
 
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
@@ -118,7 +117,7 @@ $(function(){
   function submitForm(){
 
 
-	   var paras =  $('#loginform').formSerialize();
+	   var paras =  $('#loginform').serialize();
 	   paras = paras + "&contextServiceName=do_org_account_findbynameAndPassword"
 	   $.post(globalURL + "ssocontroller",paras,
 			function (data, textStatus){

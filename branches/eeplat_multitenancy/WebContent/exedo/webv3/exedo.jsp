@@ -54,8 +54,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/button.css"  type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
  -->
-  
-  
  
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
@@ -63,9 +61,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/core.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css" type="text/css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.css" type="text/css"  media="print, projection, screen"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/dialog.css"     type="text/css"  />  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.css"    type="text/css" />  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/uploadify.css"    type="text/css" />  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.css" type="text/css" /> 
 
@@ -73,6 +68,7 @@ globalURL = "/<%=DOGlobals.URL%>/";
  <!-- 平台主体及其它集成的css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/xtree2.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/redmond/jquery-ui-1.8.16.custom.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css" type="text/css" />
 <link rel="stylesheet"
@@ -84,14 +80,9 @@ globalURL = "/<%=DOGlobals.URL%>/";
 
  
 <!-- 插件的js -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/ui.core.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tab/ui.tabs.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqModal.js"></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/dialog/jqDnR.js" ></script> 
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.tablesorter.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects_static.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js" ></script>	
@@ -102,7 +93,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xloadtree2.js" ></script> 
 <script type="text/javascript" src="<%=request.getContextPath() %>/FCKeditor/fckeditor.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/codepress/codepress.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/FusionChartsFree/FusionCharts.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>

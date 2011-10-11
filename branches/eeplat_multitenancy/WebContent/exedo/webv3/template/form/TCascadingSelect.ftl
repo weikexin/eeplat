@@ -3,7 +3,7 @@
 <script>
 $('#${model.objUid}').bind('click',function(){
 	<#if (model.gridModel.containerPane.name)?exists>
-  		$('#' + '${model.gridModel.containerPane.name}').jqmHide();
+  		$('#' + '${model.gridModel.containerPane.name}').dialog('close');
   	</#if>
   }
 );

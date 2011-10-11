@@ -97,10 +97,14 @@ function callAction(p){
 	   	   if(p.pml!=null) {
 	   		   
 	   		   if(p.target &&  $.trim(p.target)!=""){
+  				    var resourcePath = p.resourcePath;
+   				    if(resourcePath==null){
+   				    	resourcePath = p.pml;
+   				    }
 	   			  if(p.target=='_opener_window'){
-	   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 	   			  }else  if(p.target=='_opener_location'){
-	   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
+	   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
 	   			  }  
 	   			  else if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,p.pml);
@@ -322,10 +326,14 @@ function callService(p){
  		   	   if(p.pml!=null) {
  		   		   
   		   		   if(p.target &&  $.trim(p.target)!=""){
+  	  				    var resourcePath = p.resourcePath;
+  	   				    if(resourcePath==null){
+  	   				    	resourcePath = p.pml;
+  	   				    }
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,p.pml + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = p.pml + "&"  + paras + "&isApp=true";
+  		   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
   		   			  }  
   		   			  else if(p.target=='_opener_tab'){
   							createNewTab(pmlName,title,p.pml);
@@ -449,10 +457,14 @@ function loadPml(p){
 	try{
 
 		
+		 var resourcePath = p.resourcePath;
+		 if(resourcePath==null){
+		 resourcePath = p.pml;
+		 }
 	   if(p.target=='_opener_window'){
-   				  	window.open(p.pml + "&" +  urlCodeDeal(paras),p.title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
-   	   }else  if(p.target=='_opener_location'){
-				  	window.location = p.pml + "&"  + urlCodeDeal(paras) + "&isApp=true";
+				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+		}else  if(p.target=='_opener_location'){
+				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
 	   } 
 	   else	if(p.target && $.trim(p.target)!="" && p.target!='_opener_tab'){
 
