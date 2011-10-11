@@ -13,8 +13,7 @@
 </script>  
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
-<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery.js" ></script>
-<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/form/jquery.form.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
@@ -98,7 +97,7 @@ $(function(){
 	   loading();
   
 
-	   var paras =  $('#loginid').formSerialize();
+	   var paras =  $('#loginid').serialize();
 	   paras = paras + "&contextServiceName=do_org_user_findbynameandpwd"
 	   $.post(globalURL + "ssocontroller",paras,
 			function (data, textStatus){

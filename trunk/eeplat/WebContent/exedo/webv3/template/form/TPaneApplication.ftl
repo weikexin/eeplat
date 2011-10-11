@@ -6,7 +6,7 @@
 	  });
   <#else>
 	  $('#${model.objUid}').bind('click',function(){
-	 		window.open('${appName}/');
+	 		window.open('CRM/');
 	  });
    </#if>	  
 </script>

@@ -1,31 +1,60 @@
 <#--定义dataBinding-->
 <#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
+
   <ul data-role='listview' >
-  <#list data as ins>
-      <li>
-	       <a  href="${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
-			   <#list showCols as item> 
-						${item.l10n}:&nbsp; <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue}  </#if> <br/>
-		    </#list>
-			  </a>   
-	  </li> 
-   </#list>
+  
+   <#if (data?size > 0)>
+	  <#list data as ins>
+	      <li>
+	           <#if (controCols?size==0) > 
+		        <a  href="/${webmodule}/${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
+		       </#if> 
+				   <#list showCols as item> 
+							${item.l10n}:&nbsp; <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue}  </#if> <br/>
+			      </#list>
+	           <#if (controCols?size==0) > 
+				</a>
+			   </#if>	 
+				 <#list  controCols as item>
+				    <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue} </#if> 
+				 </#list>  
+		  </li> 
+	   </#list><!--End data-->
+	  <#if ((pageNo?exists) && (data?size > pageSize ) )>
        <li>
 		    	第<span class='pageNo'>${pageNo}</span>页&nbsp;
 		    	 每页<span class='rowSize'>${rowSize}</span>条&nbsp;
 		    	 共<span class='pageSize'>${pageSize}</span>页 &nbsp; 
 		    	共<span class="resultSize">${resultSize}</span>条
-	   </li>	
+	   </li>
+	 </#if> <!--End Page Split--> 
+    <#else>
+          <li>
+            暂无数据！
+          </li>
+    </#if>
 	</ul>  
 
 <p/>	
+   <#if ((pageNo?exists) && (data?size > pageSize ) )>
 	<div data-role="controlgroup" data-type="horizontal" data-theme="e">
 	    <a   class='firstPage' data-role="button" data-theme="a" data-inline="true">首</a>
-		  <a   class='prevPage' data-role="button" data-theme="a" data-icon="arrow-l" data-inline="true">前</a>
-		  <a   class='nextPage' data-role="button" data-theme="a" data-icon="arrow-r" data-inline="true">后</a>
-		   <a   class='lastPage' data-role="button" data-theme="a"  data-inline="true">尾</a>
-		  
-</div>
+		<a   class='prevPage' data-role="button" data-theme="a" data-icon="arrow-l" data-inline="true">前</a>
+		<a   class='nextPage' data-role="button" data-theme="a" data-icon="arrow-r" data-inline="true">后</a>
+		<a   class='lastPage' data-role="button" data-theme="a"  data-inline="true">尾</a>
+    </div>
+   </#if> 
+
+   <fieldset class="ui-grid-a">
+					<#list bottomForms as item> 
+										<div class="ui-block-b">
+										      <#if (item.controller.name!="com.exedosoft.plat.ui.jquery.form.TClose") >
+				                      <#if '${dataBind(null,item)}' ==''> ${item.htmlValue}  </#if>
+				                  </#if>    
+				            </div>   
+		 			</#list>
+     </fieldset>
+   
 <#if (model.rowSize?exists && model.rowSize > 0 && pmlName?exists)>
   <script>
 			pageSplit('${model.containerPane.name}','${pmlName}','${formName}');

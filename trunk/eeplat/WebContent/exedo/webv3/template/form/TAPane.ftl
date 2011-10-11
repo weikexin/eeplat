@@ -1,6 +1,6 @@
 <#include "TFormBase.ftl">
 <#if (model.data?exists)>
-	<a  id='${model.objUid}${model.data.uid}'  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
+	<a  id='${model.objUid}${model.data.uid}' data-role="button"  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
 	<#if (model.linkPaneModel?exists) >
 	<script>
 	
@@ -27,7 +27,6 @@
 	
 	  $('#${model.objUid}').bind('click',function(){
 		    loadPml({
-
 
 		   			 	'pml':'${model.linkPaneModel.name}',
 		   			 	'pmlWidth':'${model.linkPaneModel.paneWidth?if_exists}',
