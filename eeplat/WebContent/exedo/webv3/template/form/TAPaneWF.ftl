@@ -1,5 +1,5 @@
 <#include "TFormBase.ftl">
-<a  id='${model.objUid}${model.data.uid}'  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
+<a  id='${model.objUid}${model.data.uid}' data-role="button"  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
 <#if (paneModel?exists) >
 <script>
 

@@ -1,3 +1,4 @@
+<!--在多租户情况下，不考虑实际表的创建，但考虑对shji-->
 <div id="PM_DO_BO_Property_DBManager"  style="overflow:auto;width:100%;height:100%;">
  	    
 	<br/>
@@ -92,78 +93,59 @@
 		  <tr>
 			<th  style='display:none' class="{sorter: false}" ></th>
             <th id='col_name'    nowrap='nowrap' align='center'>列名 </th> 
+            <th id='col_l10n'    nowrap='nowrap' align='center'>中文名 </th> 
             <th id='dbtype'    nowrap='nowrap' align='center'>数据库类型 </th> 
-            <th id='dbsize'    nowrap='nowrap' align='center'>字段长度 </th> 
+            
 		</tr>
 		</thead>
 		<tbody>
 		
 		
 		<tr id="tr0"  style="display:none">
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;'  exedo_notnull='NotNull'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  size="25"/>  </td> 
+		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'    onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  size="25"/>  </td> 
+		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'    onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_l10n'  title='中文名'  size="25"/>  </td> 
 		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px'  exedo_notnull='NotNull'  name="dbtype"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
-							<option/>
-							<option value="BIT">BIT</option>
-							<option value="TINYINT">TINYINT</option>
-							<option value="SMALLINT">SMALLINT</option>
-							<option value="INTEGER">INTEGER</option>
+							<option value="VARCHAR32">VARCHAR(32)</option>
+							<option value="VARCHAR64">VARCHAR(64)</option>
+							<option value="VARCHAR128">VARCHAR(128)</option>
+							<option value="VARCHAR255">VARCHAR(255)</option>
+							<option value="VARCHAR1000">VARCHAR(1000)</option>
+						  <option value="CHAR1">CHAR(1)</option>
+							<option value="INT">INT</option>
 							<option value="BIGINT">BIGINT</option>
 							<option value="FLOAT">FLOAT</option>
-							<option value="REAL">REAL</option>
-							<option value="DOUBLE">DOUBLE</option>
-							<option value="NUMERIC">NUMERIC</option>
-							<option value="DECIMAL">DECIMAL</option>
-							<option value="CHAR">CHAR</option>
-							<option value="VARCHAR" selected="selected"  >VARCHAR</option>
-							<option value="VARCHAR2">VARCHAR2</option>
-							<option value="TEXT">TEXT</option>
-							<option value="LONGVARCHAR">LONGVARCHAR</option>
+							<option value="DECIMAL2">DECIMAL(2位小数)</option>
+							<option value="DECIMAL1">DECIMAL(1位小数)</option>
+							<option value="DECIMAL3">DECIMAL(3位小数)</option>
 							<option value="DATE">DATE</option>
 							<option value="DATETIME">DATETIME</option>
-							<option value="TIME">TIME</option>
 							<option value="TIMESTAMP">TIMESTAMP</option>
-							<option value="BINARY">BINARY</option>
-							<option value="VARBINARY">VARBINARY</option>
-							<option value="LONGVARBINARY">LONGVARBINARY</option>
-							<option value="BLOB">BLOB</option>
 							<option value="CLOB">CLOB</option>
-							<option value="BOOLEAN">BOOLEAN</option>
 							</select>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='dbsize' id='gm_do_bo_property_dbmanager_dbsize' title='字段长度' exedo_validconfig='RealNumber' exedo_length='' size="25"/>  </td> 
 			</tr>
 		
 		
 			<tr id="tr1">
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'    onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  size="25"/>  </td> 
+		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull' readonly='readonly'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_name'  title='列名'  value="id" size="25"/>  </td> 
+		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;' exedo_notnull='NotNull'   readonly='readonly'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='col_l10n'  title='中文名'  size="25"/>  </td> 
 		            <td  nowrap='nowrap' align='center' >    <select   style='width:100px' exedo_notnull='NotNull'   name="dbtype"  title='数据库类型' exedo_validconfig='RealNumber' exedo_length='' >
-							<option/>
-							<option value="BIT">BIT</option>
-							<option value="TINYINT">TINYINT</option>
-							<option value="SMALLINT">SMALLINT</option>
-							<option value="INTEGER">INTEGER</option>
+							<option value="VARCHAR32" selected>VARCHAR(32)</option>
+							<option value="VARCHAR64">VARCHAR(64)</option>
+							<option value="VARCHAR128">VARCHAR(128)</option>
+							<option value="VARCHAR255">VARCHAR(255)</option>
+							<option value="VARCHAR1000">VARCHAR(1000)</option>
+						  <option value="CHAR1">CHAR(1)</option>
+							<option value="INT">INT</option>
 							<option value="BIGINT">BIGINT</option>
 							<option value="FLOAT">FLOAT</option>
-							<option value="REAL">REAL</option>
-							<option value="DOUBLE">DOUBLE</option>
-							<option value="NUMERIC">NUMERIC</option>
-							<option value="DECIMAL">DECIMAL</option>
-							<option value="CHAR">CHAR</option>
-							<option value="VARCHAR" selected="selected"  >VARCHAR</option>
-							<option value="VARCHAR2">VARCHAR2</option>
-							<option value="TEXT">TEXT</option>
-							<option value="LONGVARCHAR">LONGVARCHAR</option>
+							<option value="DECIMAL2">DECIMAL(2位小数)</option>
+							<option value="DECIMAL1">DECIMAL(1位小数)</option>
+							<option value="DECIMAL3">DECIMAL(3位小数)</option>
 							<option value="DATE">DATE</option>
 							<option value="DATETIME">DATETIME</option>
-							<option value="TIME">TIME</option>
 							<option value="TIMESTAMP">TIMESTAMP</option>
-							<option value="BINARY">BINARY</option>
-							<option value="VARBINARY">VARBINARY</option>
-							<option value="LONGVARBINARY">LONGVARBINARY</option>
-							<option value="BLOB">BLOB</option>
 							<option value="CLOB">CLOB</option>
-							<option value="BOOLEAN">BOOLEAN</option>
 							</select>  </td> 
-		            <td  nowrap='nowrap' align='center' >    <input  style='border:#B3B3B3 1px solid;'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='dbsize'  title='字段长度' exedo_validconfig='RealNumber' exedo_length='' size="25"/>  </td> 
 			</tr>
 		     
 		  
@@ -175,20 +157,7 @@
 			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >保存</button>
 					<script>
 					
-					 function fnCB3ba35f69a6084e76bfed4c89e41c2f65(){
-							try{
-								if($('#F' + 'PM_DO_UI_Controller_Update').size()>0){
-						  			$('#F' + 'PM_DO_UI_Controller_Update').jqmHide();
-						  		}else{
-						  			$('#' + 'PM_DO_UI_Controller_Update').parents(".jqmDialog").jqmHide();
-							  	}  	
-						  	}catch(e){
-						  	}	
-						  
-					  		reloadTree();     
-					  	
-					 }
-					
+				
 					$('#3ba35f69a6084e76bfed4c89e41c2f65').bind('click',function(){
 					
 					  var isValid = true;
@@ -229,35 +198,7 @@
 						 });
 					}
 					
-					if(isValid){	 
-						 $("input[name='dbsize']").each(
-						   function(index,o){
-						     if(index >0){
-						       var value = $(o).val();
-						       var type = $("select[name='dbtype']").eq(index).val(); 
-						       if(type=='VARCHAR' ||
-						       type=='VARCHAR2' ||
-						       type=='CHAR' ||
-						       type=='NUMERIC' ||
-						       type=='DECIMAL' ||
-						       type=='BINARY'
-						       )
-						       if(value==''){
-						       	 o.focus();
-						         isValid = false;
-						       	 alert("字段长度不能为空!");
-						       	 return;
-						       }else       if(checkErrNum(value)){
-						          o.focus();
-						          isValid = false;
-						       	  alert("字段长度只能为数字!");
-						          return;
-						       }
-						       
-						       
-						     }
-						   });
-					 }
+
 ////////////////////////////////////////////////有效性判断结束
 
 ////////////////////界面参数传递到后台
@@ -317,14 +258,7 @@
 			$(this).addClass("selected");
 //			$(this).find(".list_check").attr("checked",true);//点击就选中，容易出现问题
 		});
-		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('dblclick',function(){
-			var selectedValue = $(this).attr('value');
-			var dealBus = "&dataBus=setContext&contextKey=DO_BO_Property" + "&contextValue=" + selectedValue;
-			$(".toolbar .selected").removeClass("selected");
-			$(this).addClass("selected");
-				popupDialog('PM_DO_BO_Property_Browse','查看信息','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
 
-		});
 		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('mouseover',function(){
 			$(this).addClass("mover");
 		}).bind('mouseout',function(){

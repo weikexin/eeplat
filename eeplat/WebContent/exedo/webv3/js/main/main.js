@@ -4,17 +4,6 @@ var isHome = 1; //是否有首页   有是1   没有是0
 var globalService = globalURL + 'servicecontroller';
 var globalPml= globalURL + 'mvccontroller';
 
-/**
- * 调用 , websphere 
- * setInterval('regOnline()',1650*60*1);
- */
-
-
-function regOnline(){
-
-	$.get(globalURL + "exedo/webv3/regOnline.jsp?"+ Math.random());
-}
-
 //得到浏览器可用高度，赋给菜单  以及右边区域总div
 function resscrEvt(height,width){
 	if(height==undefined||width==undefined){
@@ -28,13 +17,13 @@ function resscrEvt(height,width){
 ///左边索引菜单
 	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
-	$(".mRight:visible").css("height",height-top);
+	$(".mRight:visible").css("height",height-top+20);
 	$(".mRight:visible").css("width",width-left);
 ///树	 
 	$(".tree").css("height",height-top);
 //tab-pane
-    $(".ui-tabs-panel").css("height",height-top-25);  
-    $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width());   
+    $(".ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
+    $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width()-10);   //原来没有-10
   
     $(".mRight:visible").css("overflow","hidden");
 
@@ -67,37 +56,31 @@ function bindMenuHoverCss(){
 
 //点击菜单
 function bindClickMenu() {
-	 $(".mMenu").bind("click",function(event){
-	 		//设置center总区域有滚动条
-			//$(".mRight:eq(0)").css("overflow-y","auto");
-			//$(".mRight:eq(0)").css("overflow-x","auto");
-			$(".mMenu").removeClass("mMenu-hover2");
-			$(".mMenu").removeClass("mMenu-hover");
-			$(this).addClass("mMenu-hover2");
-			
-			
-			//菜单id和tab  id有关联
-			var menuId = $(this).attr("id");
-			//菜单title 等于 tab的 title
-			var menuName = $(this).attr("name");
-			//属性选择器   选择table 属性 tabId  值为 menuId的
-			var paneId = $(this).attr("paneid");
-			var clickJs =  $(this).attr("clickjs");
+ $(".mMenu").bind("click",function(event){
+ 		//设置center总区域有滚动条
+		//$(".mRight:eq(0)").css("overflow-y","auto");
+		//$(".mRight:eq(0)").css("overflow-x","auto");
+		
+		$(".mMenu").removeClass("mMenu-hover2");
+		$(".mMenu").removeClass("mMenu-hover");
+		$(this).addClass("mMenu-hover2");
+		
+		
+		//菜单id和tab  id有关联的
+		var menuId = $(this).attr("id");
+		//菜单title 等于 tab的 title
+		var menuName = $(this).attr("name");
+		//属性选择器   选择table 属性 tabId  值为 menuId的
+		var paneId = $(this).attr("paneid");
+		if(paneId==null || paneId.indexOf('mvccontroller')!=-1){
+			createTab(menuId,menuName,paneId,'isMenu');
+		}else{
+			window.open(paneId);
+		}	
+		event.stopPropagation();
 
-			if(clickJs==null){
-				if( paneId==null || paneId.indexOf('mvccontroller')!=-1){
-					createTab(menuId,menuName,paneId,'isMenu');
-				}else{
-					window.open(paneId);
-				}
-			}else{
-				eval(clickJs);
-			}
-			event.stopPropagation();
-
-	  })
-	};
-
+  })
+};
 
 
 
@@ -208,7 +191,7 @@ function selectTabCss(tabSelector){
 	  	$("#mRight").clone().attr("id",'tab_' + tabId).insertAfter("#mRight");
 	  	
 	 
-		if(paneUrl.indexOf(".htm")!=-1){
+		if(paneUrl.indexOf(".htm")!=-1 ||  paneUrl.indexOf('.jsp')!=-1){
 			$('#tab_' + tabId).append( "<iframe  id='if" + tabId + "'  frameborder='0'  />" );
 			
 			$('#if' + tabId).height( $('#tab_' + tabId).height() )
@@ -216,8 +199,10 @@ function selectTabCss(tabSelector){
 		              .attr('src',paneUrl);
 			resscrEvt();          
 		}else{
+			loading();
 			$('#tab_' + tabId).load(paneUrl,function(){
 				resscrEvt();
+				closeWin();
 			});
 		}
 	  	
@@ -304,8 +289,12 @@ function loadWorkbench(path){
 function closeWin(){
 //	$("#fullBg").css("display","none");
 //	$(".alertClose").parent("#msg").css("display","none");
-	$("#main_msg").remove();
-	$("#fullBg").remove();
+	try{
+		$("#main_msg").remove();
+		$("#fullBg").remove();
+	}catch(e){
+		
+	}	
 }
 /*****************************************遮罩层***************************************************/
 /*
@@ -318,10 +307,10 @@ content:弹出框里面得内容，自定义
 isClose:是否有关闭按钮
 */
 function showMainMsg(position,msgW,msgH,align,type,content,isClose){
-	$("body").prepend("<DIV id=fullBg></DIV><DIV id=main_msg></DIV>");
+	$("body").prepend("<DIV id=fullBg style='z-index: 199999'></DIV><DIV style='z-index: 299999' id=main_msg></DIV>");
 	
 	if(type=="loading"){
-		content="<div>&nbsp;&nbsp;请稍后......</div>";
+		content="<div >&nbsp;&nbsp;正在加载,请稍后......</div>";
 	}else if(type=="loadingImg"){
 		content= "<div class=index-loading></div>";
 	}
@@ -330,7 +319,7 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 	if(align=="left"){
 		$("#main_msg").css({top:$(position).offset().top,left:$(position).offset().left,width:msgW,height:msgH});
 	}else if(align=="center"){
-		$("#main_msg").css({top:$(position).offset().top+($(position).height()-msgH)/2,left:$(position).offset().left+($(position).width()-msgH)/2,width:msgW,height:msgH});
+		$("#main_msg").css({top:$(position).offset().top+($(position).height()-msgH)/2,left:$(position).offset().left+($(position).width()-msgW)/2,width:msgW,height:msgH});
 	}else if(align=="right"){
 		$("#main_msg").css({top:$(position).offset().top,left:$(position).offset().left+$(position).width()-msgW-5,width:msgW,height:msgH});
 	}
@@ -352,6 +341,29 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 		})
 	}
 }
+
+//开启遮罩
+
+function loading(aMsg,position){
+
+    var aPos = "body";
+    if(position){
+    	aPos = position;
+    }
+    var msgLen = 150;
+    if(aMsg){
+    	 msgLen = aMsg.length * 10 + 10;
+    }
+	if(aMsg!=null){
+		showMainMsg(aPos,msgLen,16,"center","sef_defined","<div>&nbsp;&nbsp;" +aMsg + "</div>","n");
+	}else{
+		showMainMsg(aPos,msgLen,16,"center","loading","","n");
+	}	
+
+}
+
+
+
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -380,9 +392,40 @@ function urlCodeDeal(str){
 	return result;
 }
 
-
 /*****************************************弹出层代码******************************************/
 function popupDialog(id,title,href,width,height){
+
+
+	    if(width==null || width==""){
+	    	width = 650;
+	    }
+	    if(height==null || height==""){
+	    	height = 380;
+	    }
+
+		createFloatDiv(id,title);
+		
+		$('#F' + id).dialog({
+			autoOpen: false,
+			height: height,
+			width: width,
+			modal: true
+		}); 
+
+		$('#F' + id).load(href);
+		$( '#F' + id ).dialog( "open" );
+}
+
+function createFloatDiv(id,title) {
+
+    var htmlStr = "<div id='F" + id  + "' title='"
+	+ title + "'></div> \n";
+	$(document.body).append(htmlStr); 
+}
+
+
+/*****************************************弹出层代码OLD******************************************/
+function popupDialog2(id,title,href,width,height){
 
 
 		createFloatDiv(id,title);
@@ -391,6 +434,7 @@ function popupDialog(id,title,href,width,height){
 			ajax: href,
 			target: t,
 			modal: true, 
+			onLoad: function(){closeWin();},
 			onHide: function(h) { 
 						t.html('Please Wait...');  // Clear Content HTML on Hide.
 						h.o.remove(); // remove overlay
@@ -407,21 +451,15 @@ function popupDialog(id,title,href,width,height){
 	     if(height!=null && height>0){
 	    	 $('#F' + id).height(parseInt(height));
 	     }
-	     
-	     if($(".jqmDialog").length >= 1){
-	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 290 - $(".jqmDialog").height()/2 );
-			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 970 - $(".jqmDialog").width()/2);
-		 }
 		
 	     $('#F' + id).jqmShow();
-//
-//	     
-//		 if($(".jqmDialog").length > 1){
-//	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
-//			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
-//		 }
+		 if($(".jqmDialog").length > 1){
+	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
+			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
+		 }
+		 loading(null,'#F' + id);
 }
-function createFloatDiv(id,title) {
+function createFloatDiv2(id,title) {
 	     var htmlStr = "<div id='F" + id  + "' class='jqmDialog'> \n"
  		+" <div class='jqmdTL'><div class='jqmdTR'><div class='jqmdTC'>" + title + "</div></div></div> \n"
  		+" <input type='image' src='" +globalURL +"exedo/webv3/js/jquery-plugin/dialog/close.gif' class='jqmdX jqmClose' /> \n"
@@ -429,7 +467,7 @@ function createFloatDiv(id,title) {
 		+" <p>Please wait... <img src='" +globalURL +"exedo/webv3/js/jquery-plugin/dialog/busy.gif' alt='loading' /></p>  \n </div> \n"
 		+"	<div class='jqHandle'></div>  \n  </div> \n";
 		$(document.body).append(htmlStr); 
-};
+}
 
 
 /**

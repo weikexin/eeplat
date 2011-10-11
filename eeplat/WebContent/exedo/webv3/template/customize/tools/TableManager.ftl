@@ -174,9 +174,9 @@
 					 function fnCB3ba35f69a6084e76bfed4c89e41c2f65(){
 							try{
 								if($('#F' + 'PM_DO_UI_Controller_Update').size()>0){
-						  			$('#F' + 'PM_DO_UI_Controller_Update').jqmHide();
+						  			$('#F' + 'PM_DO_UI_Controller_Update').dialog('close');
 						  		}else{
-						  			$('#' + 'PM_DO_UI_Controller_Update').parents(".jqmDialog").jqmHide();
+						  			$('#' + 'PM_DO_UI_Controller_Update').parents(".ui-dialog-content").dialog('close');
 							  	}  	
 						  	}catch(e){
 						  	}	
