@@ -17,13 +17,13 @@ function resscrEvt(height,width){
 ///左边索引菜单
 	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
-	$(".mRight:visible").css("height",height-top);
+	$(".mRight:visible").css("height",height-top+20);
 	$(".mRight:visible").css("width",width-left);
 ///树	 
 	$(".tree").css("height",height-top);
 //tab-pane
-    $(".ui-tabs-panel").css("height",height-top-25);  
-    $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width());   
+    $(".ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
+    $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width()-10);   //原来没有-10
   
     $(".mRight:visible").css("overflow","hidden");
 
@@ -392,9 +392,40 @@ function urlCodeDeal(str){
 	return result;
 }
 
-
 /*****************************************弹出层代码******************************************/
 function popupDialog(id,title,href,width,height){
+
+
+	    if(width==null || width==""){
+	    	width = 650;
+	    }
+	    if(height==null || height==""){
+	    	height = 380;
+	    }
+
+		createFloatDiv(id,title);
+		
+		$('#F' + id).dialog({
+			autoOpen: false,
+			height: height,
+			width: width,
+			modal: true
+		}); 
+
+		$('#F' + id).load(href);
+		$( '#F' + id ).dialog( "open" );
+}
+
+function createFloatDiv(id,title) {
+
+    var htmlStr = "<div id='F" + id  + "' title='"
+	+ title + "'></div> \n";
+	$(document.body).append(htmlStr); 
+}
+
+
+/*****************************************弹出层代码OLD******************************************/
+function popupDialog2(id,title,href,width,height){
 
 
 		createFloatDiv(id,title);
@@ -428,7 +459,7 @@ function popupDialog(id,title,href,width,height){
 		 }
 		 loading(null,'#F' + id);
 }
-function createFloatDiv(id,title) {
+function createFloatDiv2(id,title) {
 	     var htmlStr = "<div id='F" + id  + "' class='jqmDialog'> \n"
  		+" <div class='jqmdTL'><div class='jqmdTR'><div class='jqmdTC'>" + title + "</div></div></div> \n"
  		+" <input type='image' src='" +globalURL +"exedo/webv3/js/jquery-plugin/dialog/close.gif' class='jqmdX jqmClose' /> \n"
@@ -436,7 +467,7 @@ function createFloatDiv(id,title) {
 		+" <p>Please wait... <img src='" +globalURL +"exedo/webv3/js/jquery-plugin/dialog/busy.gif' alt='loading' /></p>  \n </div> \n"
 		+"	<div class='jqHandle'></div>  \n  </div> \n";
 		$(document.body).append(htmlStr); 
-};
+}
 
 
 /**

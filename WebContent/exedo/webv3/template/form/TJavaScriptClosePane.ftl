@@ -23,9 +23,9 @@ $('#${model.objUid}').bind('click',function(){
 
 		try{
 			if($('#F' + '${model.gridModel.containerPane.name}').size()>0){
-	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
+	  			$('#F' + '${model.gridModel.containerPane.name}').dialog('close');
 	  		}else{
-	  			$('#' + '${model.gridModel.containerPane.name}').parents(".jqmDialog").jqmHide();
+	  			$('#' + '${model.gridModel.containerPane.name}').parents(".ui-dialog-content").dialog('close');
 		  	}  	
 	  	}catch(e){
 	  	}

@@ -7,11 +7,11 @@
 	    <#if (model.gridModel.containerPane.name)?exists>
 		try{
 			if($('#F' + '${model.gridModel.containerPane.name}').size()>0){
-	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
+	  			$('#F' + '${model.gridModel.containerPane.name}').dialog('close');
 	  		}else{
-	  			$('#' + '${model.gridModel.containerPane.name}').parent(".jqmDialog").jqmHide();
+	  			$('#' + '${model.gridModel.containerPane.name}').parents(".ui-dialog-content").dialog('close');
 	  			<#if (model.gridModel.containerPane.parent)?exists>	
-	  				$('#F' + '${model.gridModel.containerPane.parent.name}').jqmHide();
+	  				$('#F' + '${model.gridModel.containerPane.parent.name}').dialog('close');
 	  			</#if>
 		  	}  	
 	  	}catch(e){

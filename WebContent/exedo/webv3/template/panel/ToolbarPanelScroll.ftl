@@ -9,12 +9,17 @@
 	             {
 			          type : 'button',
 			          text : '${item.title}',
-			          bodyStyle : '${item.cssStyle}',
+			          bodyStyle : <#if item.icon?exists>'${item.icon}'<#else>'${item.cssStyle}'</#if>,
 			          useable : 'T',
 			          handler : function(){
 			            $("#${model.name}_toolbar .toolbar .selected").removeClass("selected");
 			            $(this).addClass("selected");
-			          	$("#${model.name}_content").empty().load("${item.fullCorrHref}");
+			           
+			            var paras =  "";
+			            <#if conditionGrid?exists>
+			             paras =  getParasOfForms("a${conditionGrid.objUid}");
+			            </#if>
+			          	$("#${model.name}_content").empty().load("${item.fullCorrHref}",urlCodeDeal(paras));
 			          }
 			     }<#if ((item_index+1) != items?size)>,'-',</#if>
                 </#list> ]      

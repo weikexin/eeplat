@@ -1,5 +1,5 @@
 <#include "TFormBase.ftl">
-<#--参数通过formName传�1�7�1�7-->
+<#--参数通过formName传�1�7�1�7-->
 <button type="button" style="${model.style?if_exists}"   id='${model.objUid}' <#compress><@JudgeStyle model/></#compress> >${model.l10n}</button>
 <script>
  function fnCB${model.objUid}(){
@@ -7,9 +7,9 @@
 	    <#if (model.gridModel.containerPane.name)?exists>
 	       try{
 			if($('#F' + '${model.gridModel.containerPane.name}').size()>0){
-	  			$('#F' + '${model.gridModel.containerPane.name}').jqmHide();
+	  			$('#F' + '${model.gridModel.containerPane.name}').dialog('close');
 	  		}else{
-	  			$('#' + '${model.gridModel.containerPane.name}').parents(".jqmDialog").jqmHide();
+	  			$('#' + '${model.gridModel.containerPane.name}').parents(".ui-dialog-content").dialog('close');
 		  	}  	
 	  	}catch(e){
 	  	}
