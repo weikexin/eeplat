@@ -121,7 +121,11 @@
 
 		
 		$('#check_${model.objUid}').bind('click',function(){
-			$('#g${model.objUid} .list_check').attr('checked',$('#check_${model.objUid}').attr("checked"));
+			var check = $('#check_${model.objUid}').attr("checked");
+			if(typeof check == "undefined") {
+				check = false;
+			}
+			$('#g${model.objUid} .list_check').attr('checked',check);
 			///同时把第一条记录selected
 			if($('#check_${model.objUid}').attr("checked")){
 				$('#g${model.objUid} tbody  tr').eq(0).addClass("selected");
