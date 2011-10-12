@@ -75,7 +75,11 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			con = dss.getConnection();
 			DatabaseMetaData meta = con.getMetaData();
 			String[] tblTypes = new String[] { "TABLE" };
-			ResultSet rs = meta.getTables(null, null, null, tblTypes);
+			String schema = null;
+			if (dss.isOracle()) {
+				schema = dss.getUserName().trim().toUpperCase();
+			}
+			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
 			while (rs.next()) {
 				String tableName = rs.getString("TABLE_NAME").toLowerCase();
 				// ////////////增强更新功能
