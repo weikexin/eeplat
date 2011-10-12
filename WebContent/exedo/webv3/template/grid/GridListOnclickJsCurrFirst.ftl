@@ -153,7 +153,11 @@
 
 		
 		$('#check_${model.objUid}').bind('click',function(){
-			$('#g${model.objUid} .list_check').attr('checked',$('#check_${model.objUid}').attr("checked"));
+			var check = $('#check_${model.objUid}').attr("checked");
+			if(typeof check == "undefined") {
+				check = false;
+			}
+			$('#g${model.objUid} .list_check').attr('checked',check);
 			///同时把第一条记录selected
 			if($('#check_${model.objUid}').attr("checked")){
 				$('#g${model.objUid} tbody  tr').eq(0).addClass("selected");
@@ -173,12 +177,21 @@
 		});
 
 		$('#g${model.objUid} tbody  tr').bind('click',function(){
+			//判断点击的是否是同一条记录，若是，则不用刷新子目录
+			var isSelect = false;
+			var tvalue = $(this).attr('class');
+			if(tvalue !=null && tvalue.indexOf('selected')!=-1) {
+				isSelect = true;
+			} 
+		
 			$('#g${model.objUid} tbody  tr.selected').removeClass("selected");//去掉原来的选中selected
 			$(this).addClass("selected");
 //			$(this).find(".list_check").attr("checked",true);//点击就选中，容易出现问题
 			
-			///添加点击执行函数
-			tronclick${model.objUid}();
+						///添加点击执行函数
+			if(!isSelect){
+				tronclick${model.objUid}();
+			}
 		});
 		<#if model.subscribeAll> 
 		$('#g${model.objUid} tbody  tr').bind('dblclick',function(){

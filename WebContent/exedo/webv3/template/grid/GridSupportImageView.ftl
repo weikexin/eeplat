@@ -68,42 +68,194 @@ height: imgHeight;
 				</#if>
 			</#list>	
 		</#if>
-		<div align="center" class="oImgMaxBox"
-				style="width: 100%; height: 415px; overflow: hidden; z-index: 100;">
-				<#if filepath != '0000'> 
-					<img 
-				height="415" width="320" onmouseup="mymEnd();"
+			<div id="oImgDiv" align="center" class="oImgMaxBox"
+				style="height:450px; overflow: hidden;background-color:#F2FCF2;text-align:center;">
+				<#if !filepath?ends_with('0000')> 
+					<img onmouseup="mymEnd();"
 				onmousedown="mymStart(event);"
 				style="position: relative; zoom: 100%; cursor: move; z-index: auto;"
-				src="upload/${filepath}" title="${filename}" id="oImg" name="oImg" class="oImg">
-				</#if>
+				width="820" src="${filepath}" title="${filename}" id="oImg" name="oImg" class="oImg">
+			</#if>
 		</div>
 		</td></tr>
 	</table>
 </div>	
 <script>
+
+
+
+var clientH = document.body.clientHeight;
+var clientW = document.body.clientWidth;
+var oImgDiv =  document.getElementById('oImgDiv');
+var oImgPic = document.getElementById('oImg');
+
+
+var divPM =  document.getElementById('FPM_archfiles_browse_wenjtp_danmb');
+if(divPM == null) {
+	divPM =  document.getElementById('FPM_archfiles_browse_wenjtp_danmb_dayin');
+	if(divPM == null) {
+		divPM =  document.getElementById('FPM_archfiles_browse_wenjtp_danmb_xiazai');
+		if(divPM == null) {
+			divPM =  document.getElementById('FPM_archfiles_browse_wenjtp_danmb_dyxz');
+		}
+	}
+	
+}
+
+var imgInitW = 820;
+var imgInitH = 820;
+if(oImgPic!=null) {
+	var imgWidth = oImgPic.width;
+	var imgHeight = oImgPic.height;
+	imgInitH = 820*imgHeight/imgWidth;
+}
+//单面板
+if(divPM!=null) {
+	var browser=navigator.appName;
+	var b_version=navigator.appVersion;
+	var version=b_version.split(";");
+	var len = version.length;
+	var trim_Version="";
+	if(len > 1) {
+		trim_Version=version[1].replace(/[ ]/g,"");
+	}
+	if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE7.0")
+	{
+    	if(oImgPic != null) {
+			var imgWidth = oImgPic.width;
+			var imgHeight = oImgPic.height;
+			oImgPic.height = 820*imgHeight/imgWidth;
+			oImgPic.width = 820;
+			if(oImgDiv != null) {
+				oImgDiv.style.height = (clientH-120)+'px';
+				oImgDiv.style.width = '860px';
+				oImgDiv.style.overflow= "scroll";
+			}
+		}
+		divPM.style.top = '2px';
+		divPM.style.height = (clientH-5)+'px';
+		if(oImgDiv != null) {
+			oImgDiv.style.height = (clientH-120)+'px';
+			oImgDiv.style.width = '860px';
+			oImgDiv.style.overflow= "scroll";
+		}
+	} else {
+   		if(oImgPic != null) {
+			var imgWidth = oImgPic.width;
+			var imgHeight = oImgPic.height;
+			oImgPic.height = 820*imgHeight/imgWidth;
+			oImgPic.width = 820;
+			if(oImgDiv != null) {
+				oImgDiv.style.height = (clientH-120)+'px';
+				oImgDiv.style.width = '860px';
+				oImgDiv.style.overflow= "scroll";
+			}
+		}
+		divPM.style.top = '2px';
+		divPM.style.height = (clientH-5)+'px';
+		if(oImgDiv != null) {
+			oImgDiv.style.height = (clientH-120)+'px';
+			oImgDiv.style.width = '860px';
+			oImgDiv.style.overflow= "scroll";
+		}
+	}
+	
+} 
+//嵌入在主面板中
+else {
+	if(oImgPic != null) {
+		var imgWidth = oImgPic.width;
+		var imgHeight = oImgPic.height;
+		oImgPic.height = 820*imgHeight/imgWidth;
+		oImgPic.width = 820;
+		if(oImgDiv != null) {
+			oImgDiv.style.height = (clientH-130) + 'px';
+			oImgDiv.style.width = clientW*0.66+'px';
+			oImgDiv.style.overflow= "scroll";
+		}
+	}
+}
+
+
 // 缩放图片
 function myimgToSize(oBool) {
 	var oImg = document.getElementById('oImg');
-	var intZom = parseInt(oImg.style.zoom) + (oBool ? 20 : -20);
+	if(oImg == null || typeof oImg == 'undefined') {
+		alert("请先选择一张图片");
+		return false;
+	}
+	var oImgZW = oImg.width;
+	var oImgZH = oImg.height;
+	var intZom = parseInt(100) + parseInt(oBool ? 20 : -20);
 	if(intZom <= 0)
 		return false;
-	oImg.style.zoom = intZom + '%';
+	oImg.width = oImgZW*intZom/100;
+	oImg.height = oImgZH*intZom/100;
 }
 
 // 旋转图片
 var oArcSize = 1;
 function myimgRoll() {
 	var oImg = document.getElementById('oImg');
-	oImg.style.filter = 'Progid:DXImageTransform.Microsoft.BasicImage(Rotation='
-			+ oArcSize + ')';
-	oArcSize += 1;
+	if(oImg == null || typeof oImg == 'undefined') {
+		alert("请先选择一张图片");
+		return false;
+	}
+	oImg.style.zoom = '100%';
+//	var vM11 = cos(0);
+//	var vM12 = -sin(0);
+//	var vM21 = sin(0);
+//	var vM22 = cos(0);
+	var vM11 = 1.0;
+	var vM12 = 0.0;
+	var vM21 = 1.0;
+	var vM22 = 0.0;
 	oArcSize = oArcSize == 4 ? 0 : oArcSize;
+	 switch(oArcSize)
+    {
+   		case 0:
+			vM11 = 1.0;
+			vM12 = 0.0;
+			vM21 = 0.0;
+			vM22 = 1.0;
+			break;
+    	case 1:
+			vM11 = 0.0;
+			vM12 = -1.0;
+			vM21 = 1.0;
+			vM22 = 0.0;
+			break;
+			
+		case 2:
+			
+			vM11 = -1.0;
+			vM12 = 0.0;
+			vM21 = 0.0;
+			vM22 = -1.0;
+			break;
+		case 3:
+			
+		
+			vM11 = 0.0;
+			vM12 = 1.0;
+			vM21 = -1.0;
+			vM22 = 0.0;
+			break;
+               
+     }
+	oImg.style.filter = "Progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand',,M11="+vM11+",M12="+vM12+",M21="+vM21+",M22="+vM22+")";
+	//oImg.style.filter = 'Progid:DXImageTransform.Microsoft.BasicImage(Rotation=' + oArcSize + ')';
+
+	oArcSize += 1;
 }
 
 // 翻转图片
 function myimgReverse(arg) {
 	var oImg = document.getElementById('oImg');
+	if(oImg == null || typeof oImg == 'undefined') {
+		alert("请先选择一张图片");
+		return false;
+	}
 	oImg.style.filter = 'Flip' + arg;
 }
 
@@ -114,6 +266,10 @@ function mymStart(e) {
 	oBoolean = true;
 	if (oBoolean) {
 		var oImg = document.getElementById('oImg');
+		if(oImg == null || typeof oImg == 'undefined') {
+			alert("请先选择一张图片");
+			return false;
+		}
 		if (window.Event) {
 			//火狐  暂时没有实现
 		} else {
@@ -138,14 +294,24 @@ function mymStart(e) {
 }
 function mymEnd() {
 	oBoolean = false;
+	document.onmousemove = null;
+	return false;
 }
 
 //还原图片
 function mymReset() {
 	var oImg = document.getElementById('oImg');
-	oImg.style.zoom = '100%';
+	if(oImg == null || typeof oImg == 'undefined') {
+		alert("请先选择一张图片");
+		return false;
+	}
+	oImg.width = imgInitW;
+	oImg.height = imgInitH;
+	oImg.left=0;
+	oImg.top=0;
 }
 
+	
 
 // 按钮示例
 // <div style="position:relative; z-index:1000;">
