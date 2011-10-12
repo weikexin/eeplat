@@ -1,4 +1,6 @@
 var invokeDomId = "";
+var globalService = globalURL + 'servicecontroller';
+var globalPml= globalURL + 'mvccontroller';
 
 //在js里面直接调用action类
 /**
@@ -165,7 +167,6 @@ function callService(p){
     	}	
     	return;
     }
-
 	//表单验证
 	if(!validate(p.formName)){
 		if(p.btn){
@@ -177,15 +178,12 @@ function callService(p){
 		}	
 		return;
 	}
-
-	
 	///支持pml的两种形式 
 	var pmlName = "";
 	if(p.pml!=null &&  p.pml.indexOf('mvccontroller')==-1 && p.pml.indexOf('.pml')==-1){
 		pmlName = p.pml;
 		p.pml =  globalURL + p.pml + ".pml?1=1";
 	}
-	
 	/////提示性问题
 	if(p.echoJs!=null && !eval(unescape(p.echoJs))){
     	if(p.btn){
@@ -197,9 +195,7 @@ function callService(p){
     	}
 		return;
 	}
-	
-	
-	
+
 	var paras = "";
 	if(p.paras){
 		paras = p.paras;
@@ -213,7 +209,6 @@ function callService(p){
 	if(p.callType){
 		callType = p.callType;
 	}
-
 	var  callServStr = "";
 	if(p.serviceUid){
 		callServStr = "contextServiceUid="+ p.serviceUid;
@@ -263,7 +258,7 @@ function callService(p){
 	   				     	$.mobile.changePage({
 			 		   			url: aPath, 
 			 		   			type: "post", 
-			 		   			data: urlCodeDeal(paras)
+			 		   			data: paras
 			 		   		});	
    			        	}
    			         }
@@ -274,7 +269,7 @@ function callService(p){
 		 		   			$.mobile.changePage({
 			 		   			url: p.pml, 
 			 		   			type: "post", 
-			 		   			data: urlCodeDeal(paras)
+			 		   			data: paras
 			 		   		});	
 			 		   	}catch(e){
 			 		   		
@@ -434,6 +429,9 @@ function validate(formName){
     var aFName = ay[ii];
     var formJquery = $("#"+aFName);
     var form = formJquery[0];
+    if(form==null){
+    	continue;
+    }
     for (var i = 0; i < form.elements.length;i++)
     {
         el = form.elements[i];

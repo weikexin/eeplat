@@ -141,16 +141,17 @@ public class DOTableList extends DOAbstractAction {
 
 		StringBuffer keyCols = new StringBuffer();
 		StringBuffer valueCols = new StringBuffer();
-
+		String schema = null;
 		try {
 
 			DatabaseMetaData meta = con.getMetaData();
 
 			if (dss.isOracle()) {
 				aTable = aTable.toUpperCase();
+				schema = dss.getUserName().trim().toUpperCase();
 			}
 
-			ResultSet rs = meta.getColumns(null, null, aTable, null);
+			ResultSet rs = meta.getColumns(null, schema, aTable, null);
 			while (rs.next()) {
 
 				if ((rs.getInt("DATA_TYPE") == Types.VARCHAR || rs

@@ -14,14 +14,12 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOParameter;
 import com.exedosoft.plat.gene.jquery.SqlCol;
-import com.exedosoft.plat.DAOUtil;
-import com.exedosoft.plat.ExedoException;
-import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.plat.util.id.UUIDHex;
 
@@ -713,7 +711,17 @@ public class ATableForwarderImp implements ATableForwarder {
 			con = this.getConnection();
 			DatabaseMetaData meta = con.getMetaData();
 			System.out.println(con.getCatalog());
-			ResultSet rs = meta.getColumns(null, null, aTable, null);
+			
+			DODataSource dds = (DODataSource) DAOUtil.INSTANCE().getByObjUid(
+					DODataSource.class, this.dataSourceUid);
+
+			String schema = null;
+			
+			if (dds.isOracle()) {
+				schema = dds.getUserName().trim().toUpperCase();
+			}
+			ResultSet rs = meta.getColumns(null, schema, aTable, null);
+
 			while (rs.next()) {
 				SqlCol qc = new SqlCol();
 				qc.setName(rs.getString("COLUMN_NAME").toLowerCase());
