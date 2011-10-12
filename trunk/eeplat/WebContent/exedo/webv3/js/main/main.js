@@ -17,7 +17,7 @@ function resscrEvt(height,width){
 ///左边索引菜单
 	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
-	$(".mRight:visible").css("height",height-top+20);
+	$(".mRight:visible").css("height",height-top);
 	$(".mRight:visible").css("width",width-left);
 ///树	 
 	$(".tree").css("height",height-top);

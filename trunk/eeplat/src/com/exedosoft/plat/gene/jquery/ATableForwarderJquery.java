@@ -800,6 +800,8 @@ public class ATableForwarderJquery {
 
 	public Collection getCols(String aTable) {
 
+		
+		String schema = null;
 		if (this.dataSourceUid != null) {
 
 			try {
@@ -819,6 +821,11 @@ public class ATableForwarderJquery {
 					aTable = aTable.toUpperCase();
 				}
 
+				if (dds.isOracle()) {
+					schema = dds.getUserName().trim().toUpperCase();
+				}
+
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
@@ -834,7 +841,7 @@ public class ATableForwarderJquery {
 		try {
 			con = this.getConnection();
 			DatabaseMetaData meta = con.getMetaData();
-			ResultSet rs = meta.getColumns(null, null, aTable, null);
+			ResultSet rs = meta.getColumns(null, schema, aTable, null);
 			while (rs.next()) {
 				SqlCol qc = new SqlCol();
 				qc.setName(rs.getString("COLUMN_NAME").toLowerCase());

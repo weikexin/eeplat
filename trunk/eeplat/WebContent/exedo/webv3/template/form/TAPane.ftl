@@ -6,7 +6,9 @@
 	
 	  $('#${model.objUid}${model.data.uid}').bind('click',function(){
 		    loadPml({
-
+  			 <#if (model.linkPaneModel.linkType==5)>
+	   			 	'resourcePath':'${model.linkPaneModel.resource.resourcePath}',
+	   			 </#if>
 		   			 	'pml':'${model.linkPaneModel.name}',
 		   			 	'pmlWidth':'${model.linkPaneModel.paneWidth?if_exists}',
 		   			 	'pmlHeight':'${model.linkPaneModel.paneHeight?if_exists}',
