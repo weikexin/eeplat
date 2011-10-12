@@ -101,6 +101,9 @@ function callAction(p){
    				    if(resourcePath==null){
    				    	resourcePath = p.pml;
    				    }
+   				 if(resourcePath!=null && resourcePath.indexOf("?")==-1){
+   					resourcePath = resourcePath + "?1=1";		
+   			     }
 	   			  if(p.target=='_opener_window'){
 	   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 	   			  }else  if(p.target=='_opener_location'){
@@ -330,6 +333,9 @@ function callService(p){
   	   				    if(resourcePath==null){
   	   				    	resourcePath = p.pml;
   	   				    }
+  	   				 if(resourcePath!=null && resourcePath.indexOf("?")==-1){
+  	   					 resourcePath = resourcePath + "?1=1";		
+  	   				 }
   		   			  if(p.target=='_opener_window'){
   		   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
@@ -458,11 +464,18 @@ function loadPml(p){
 
 		
 		 var resourcePath = p.resourcePath;
+		 
+
+
 		 if(resourcePath==null){
 		 resourcePath = p.pml;
 		 }
+		 if(resourcePath!=null && resourcePath.indexOf("?")==-1){
+				resourcePath = resourcePath + "?1=1";		
+		  }
+
 	   if(p.target=='_opener_window'){
-				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 		}else  if(p.target=='_opener_location'){
 				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
 	   } 

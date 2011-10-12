@@ -22,13 +22,11 @@ function resscrEvt(height,width){
 ///树	 
 	$(".tree").css("height",height-top);
 //tab-pane
-    $(".ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
+    $(".mRight:visible .ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
     $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width()-10);   //原来没有-10
   
     $(".mRight:visible").css("overflow","hidden");
-
 }
-
 
 //让菜单能伸展   如果这个方法放到类里执行 就会非常慢  所以没有放到类里，在这里判断如果有outlook菜单 则执行
 $(function(){
