@@ -17,7 +17,7 @@ function resscrEvt(height,width){
 ///左边索引菜单
 	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
-	$(".mRight:visible").css("height",height-top+20);
+	$(".mRight:visible").css("height",height-top);
 	$(".mRight:visible").css("width",width-left);
 ///树	 
 	$(".tree").css("height",height-top);
@@ -454,7 +454,11 @@ function popupDialog2(id,title,href,width,height){
 		
 	     $('#F' + id).jqmShow();
 		 if($(".jqmDialog").length > 1){
-	         $('#F' + id).css("top",$(".jqmDialog").offset().top + 20 );
+			 var oldTop = $(".jqmDialog").offset().top;
+			 if(oldTop < 0){
+				 oldTop = 20;
+			 }
+	         $('#F' + id).css("top",oldTop + 20 );
 			 $('#F' + id).css("left",$(".jqmDialog").offset().left + 20 +$(".jqmDialog").width()/2);
 		 }
 		 loading(null,'#F' + id);

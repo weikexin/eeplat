@@ -17,6 +17,7 @@ public class DOBackTaskNoSave extends DOAbstractAction {
 		}
 		NodeInstance ni = NodeInstance.getNodeInstanceByID(ptNI
 				.getCorrInstance().getUid());
+		WFUtil.refreshWFPara(ni.getProcessInstance());
 		try {
 			ni.returnBack();
 		} catch (WFException e) {

@@ -5,13 +5,12 @@
 
   $('#${model.objUid}${model.data.uid}').bind('click',function(){
 	    loadPml({
-		   		  <#if ((paneModel.linkType?exists) && (paneModel.linkType==5))>
-	   			 	'pml':'${paneModel.resource.resourcePath}',
-	   			 <#else>
+  			     <#if (model.linkPaneModel.linkType==5)>
+	   			 	'resourcePath':'${model.linkPaneModel.resource.resourcePath}',
+	   			 </#if>
 	   			 	'pml':'${paneModel.name}',
 	   			 	'pmlWidth':'${paneModel.paneWidth?if_exists}',
 	   			 	'pmlHeight':'${paneModel.paneHeight?if_exists}',
-	   			 </#if>
 	   			 'paras':'dataBus=setContext&contextKey=do_pt_processtemplate&contextValue=${model.data.uid}',
 		   		 'title':'${paneModel.title}',
 		   		 'formName':'a${model.gridModel.objUid}'
