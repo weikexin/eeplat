@@ -22,7 +22,7 @@ function resscrEvt(height,width){
 ///树	 
 	$(".tree").css("height",height-top);
 //tab-pane
-    $(".ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
+    $(".mRight:visible .ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
     $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width()-10);   //原来没有-10
   
     $(".mRight:visible").css("overflow","hidden");
