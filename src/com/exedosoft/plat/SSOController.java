@@ -108,6 +108,8 @@ public class SSOController extends HttpServlet {
 							.getPath();
 					path = path.substring(0, path.toLowerCase().indexOf(
 							"classes"));
+						
+						dds.setObjUid(tenant.getValue("name"));
 
 					StringBuffer modelDBPath = new StringBuffer();
 					modelDBPath.append(path).append("db/tenancy/").append(
