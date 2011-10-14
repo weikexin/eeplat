@@ -3,7 +3,6 @@ package com.exedosoft.plat;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,13 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOApplication;
-import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
-import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.login.LoginMain;
 import com.exedosoft.plat.login.MultiAccount;
-import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 import com.exedosoft.safe.TenancyValues;
@@ -108,8 +104,7 @@ public class SSOController extends HttpServlet {
 							.getPath();
 					path = path.substring(0, path.toLowerCase().indexOf(
 							"classes"));
-						
-						dds.setObjUid(tenant.getValue("name"));
+
 
 					StringBuffer modelDBPath = new StringBuffer();
 					modelDBPath.append(path).append("db/tenancy/").append(
@@ -408,7 +403,7 @@ public class SSOController extends HttpServlet {
 		// DOController cc =
 		// DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
 		// System.out.println("Corr Controller::" + cc.getCorrByConfig());
-
+ 
 		DOApplication.clearAppCache();
 
 		// System.out.println(CacheFactory.getCacheRelation().get(DOApplication.class.getCanonicalName()));

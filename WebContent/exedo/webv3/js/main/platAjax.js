@@ -497,12 +497,15 @@ function loadPml(p){
 				$("#" + pmlName).data('paras',urlCodeDeal(paras));
 			}
 		}else{
-	
-	
+
 			if(pmlName!=""){
+
 		
 				////如果采用简化配置的情况 
-				if(p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
+				
+
+				if(p.target!=undefined && p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
+
 					loading();
 					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras),function(){
 						closeWin();

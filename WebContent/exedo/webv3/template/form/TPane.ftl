@@ -9,7 +9,7 @@
   $('#${model.objUid}').bind('click',function(){
 	    loadPml({
 
-	   			 <#if (model.linkPaneModel.linkType==5)>
+	   			 <#if (model.linkPaneModel?exists && model.linkPaneModel.linkType==5)>
 	   			 	'resourcePath':'${model.linkPaneModel.resource.resourcePath}',
 	   			 </#if>
 	   			 	'pml':'${model.linkPaneModel.name}',
