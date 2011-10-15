@@ -10,6 +10,8 @@ com.exedosoft.plat.ui.jquery.pane.Toolbar
 
 ==说明==
 
+工具条中每个按钮的图标样式定义在 /js/jquery-plugin/toolbar/core.css中，有new、edit、save、delete、search、role-setup、copy、linked等多种，还可以自行扩展。
+
 工具条有两种方式：
 
  # 该控制器pane_Toolbar，定义面板的时候连接的内容是空，控制器选pane_Toolbar ，并且要 定义子面板，子面板的标题为工具条每个button显示的名称。这种方式的工具条只能连接面板，不能连接服务。
