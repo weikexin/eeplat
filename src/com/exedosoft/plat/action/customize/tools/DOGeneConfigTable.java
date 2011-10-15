@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.CacheFactory;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
-import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.gene.jquery.ATableForwarderJquery;
 import com.exedosoft.plat.util.DOGlobals;
@@ -101,6 +101,10 @@ public class DOGeneConfigTable extends DOAbstractAction {
 			return NO_FORWARD;
 
 		}
+		CacheFactory.getCacheData().clear();
+		CacheFactory.getCacheRelation().getData().clear();
+		
+		
 		this.setEchoValue("初始化成功!");
 		return DEFAULT_FORWARD;
 	}

@@ -1,4 +1,5 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
+<%@page import="java.sql.Struct"%><%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 <%@ page import="com.exedosoft.plat.util.Escape"%>
 <%@ page import="com.exedosoft.plat.util.StringUtil"%>
@@ -27,7 +28,7 @@
 	String colName = "";// requestM.getParameter("colName");
 	String blobColName = "";// requestM.getParameter("blobColName");
 	String fileName = "";// requestM.getFilesystemName("fileupload");
-
+	String myFile="";
 	try {
 		List fileItems = fu.parseRequest(request);
 		// 依次处理每个上传的文件
@@ -35,16 +36,26 @@
 
 		while (iter.hasNext()) {
 			FileItem item = (FileItem) iter.next();
+			
 			//忽略其他不是文件域的所有表单信息
+			if(item.isFormField()){
+				if(item.getFieldName()!=null && item.getFieldName().equals("myFile")){
+					myFile=item.getString();
+					System.out.println("===========myFile---------"+myFile);
+				}
+			}
 			if (!item.isFormField()) {
 				String name = item.getName();
 				if (name.indexOf("\\") != -1) {
 					name = name.substring(name.lastIndexOf("\\") + 1);
-
+ 
 				}
-				fileName =  name;
+				fileName =  myFile+name;
+				
 				item.write(new File(DOGlobals.UPLOAD_TEMP + fileName));
+				System.out.println(fileName+"item:::::::"+item.getFieldName());
 			}
+			
 			if (item.getFieldName().equals("colName")) {
 				colName = item.getString();
 			}
@@ -57,5 +68,7 @@
 		e.printStackTrace();
 
 	}
+	
 	System.out.println("Upload Action Comm FileName::" + fileName);
+	
 %>
