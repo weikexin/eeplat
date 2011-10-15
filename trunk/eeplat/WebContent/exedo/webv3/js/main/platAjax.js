@@ -2,14 +2,10 @@ var invokeDomId = "";
 var mirrorEditor ;
 var mirrorEditor2 ;
 
-//在js里面直接调用action类
+// 在js里面直接调用action类
 /**
- * p的定义
- * p.btn
- * p.actionName
- * p.formName
- * p.paras
- * p.callback
+ * p的定义 p.btn p.actionName p.formName p.paras p.callback
+ * 
  * @param p
  * @return
  */
@@ -105,7 +101,7 @@ function callAction(p){
    					resourcePath = resourcePath + "?1=1";		
    			     }
 	   			  if(p.target=='_opener_window'){
-	   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 	   			  }else  if(p.target=='_opener_location'){
 	   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
 	   			  }  
@@ -154,21 +150,10 @@ function callAction(p){
 /**
  * p的定义
  * 
- * p.btn
- * p.serviceUid
- * p.serviceName
- * p.formName
- * p.paras
- * p.title
- * p.pml
- * p.pmlHeight
- * p.pmlWidth
- * p.target
- * p.echoJs
- * p.async 缺省 true
- * p.callType  //触发类别 default: us  ; others: uf
- * p.callback //回调函数  
-
+ * p.btn p.serviceUid p.serviceName p.formName p.paras p.title p.pml p.pmlHeight
+ * p.pmlWidth p.target p.echoJs p.async 缺省 true p.callType //触发类别 default: us ;
+ * others: uf p.callback //回调函数
+ * 
  */
 
 function callService(p){
@@ -240,7 +225,7 @@ function callService(p){
 	}
 	//初始化FckEditor值 
 	updateEditorFormValue();
-	//只要设置了formName，就从表单中获取
+	// 只要设置了formName，就从表单中获取
 	var paras = "";
 	if(p.paras){
 		paras = p.paras;
@@ -308,7 +293,7 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aTitle,aPath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aPath + "&"  + paras,aTitle,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
    		  		   			  }else  if(target=='_opener_location'){
    		  		   				  	window.location = aPath + "&"  + paras + "&isApp=true";
    		  		   			  }  
@@ -337,7 +322,7 @@ function callService(p){
   	   					 resourcePath = resourcePath + "?1=1";		
   	   				 }
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(title,resourcePath + "&"  + paras,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
   		   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
   		   			  }  
@@ -464,8 +449,6 @@ function loadPml(p){
 
 		
 		 var resourcePath = p.resourcePath;
-		 
-
 
 		 if(resourcePath==null){
 		 resourcePath = p.pml;
@@ -502,7 +485,7 @@ function loadPml(p){
 			if(pmlName!=""){
 		
 				////如果采用简化配置的情况 
-				if(p.target!=undefined && p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
+				if(p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
 					loading();
 					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras),function(){
 						closeWin();
@@ -633,38 +616,81 @@ function  sortDown(o,boName,serviceName){
 
 ////////////////////////////////无刷新 flash上传
 function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+	var now = new Date(); 
+	var myTime=now.getTime();
+	var myRand = Math.floor(Math.random()*myTime)+1;
+	var myFile = myTime+myRand;
 	
-if(fileDesc==null || $.trim(fileDesc)==""){
-	fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
-}
-if(fileExt==null || $.trim(fileExt)==""){
-	fileExt = '*.jpg;*.gif;*.bmp';
-}
-if(autoUpload==null){
-	autoUpload = true;
-}
+	if(fileDesc==null || $.trim(fileDesc)==""){
+		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+	}
+	if(fileExt==null || $.trim(fileExt)==""){
+		fileExt = '*.jpg;*.gif;*.bmp';
+	}
+	if(autoUpload==null){
+		autoUpload = true;
+	}
 	
-var o = $("#" + uploadifyID).prev();
-$("#" + uploadifyID).uploadify({
-'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
-'scriptData'     :{'jsessionid':sessionid},
-'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
-'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
-'queueID'        : uploadifyQueueID,
-'auto'           : autoUpload,
-'multi'          : true,
-'simUploadLimit' : 2,
-'buttonImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/browse-files.gif',
-'wmode'          : 'transparent',
-'width'          : 75,
-'height'          : 25,
-'fileDesc'       :fileDesc,
-'fileExt'		 :fileExt,
-'onSelect'       : function(event,queueID,fileObj){if(o.val()==""){ o.val(o.val() + fileObj.name);}else{ o.val(o.val() + ";" + fileObj.name);}},
-'onCancel'       : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
-});
+	var o = $("#" + uploadifyID).prev();
+	$("#" + uploadifyID).uploadify({
+		'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
+		'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
+		'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
+		'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
+		'queueID'        : uploadifyQueueID,
+		'auto'           : autoUpload,
+		'multi'          : true,
+		'simUploadLimit' : 2,
+		'buttonImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/browse-files.gif',
+		'wmode'          : 'transparent',
+		'width'          : 75,
+		'height'         : 25,
+		'fileDesc'       : fileDesc,
+		'fileExt'		 : fileExt,
+		'onSelect'       : function(event,queueID,fileObj){if(o.val()==""){ o.val(o.val() + myFile+fileObj.name);}else{ o.val(o.val() + ";" + myFile+fileObj.name);}},
+		'onCancel'       : function(event,queueID,fileObj,data){o.val(o.val().replace(myFile+fileObj.name,""));}
+	});
 }
 
+////////////////////////////////无刷新 flash上传 限制只能上传一个
+function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+	var now = new Date(); 
+	var myTime=now.getTime();
+	var myRand = Math.floor(Math.random()*myTime)+1;
+	var myFile = myTime+myRand;
+	
+	if(fileDesc==null || $.trim(fileDesc)==""){
+		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+	}
+	if(fileExt==null || $.trim(fileExt)==""){
+		fileExt = '*.jpg;*.gif;*.bmp';
+	}
+	if(autoUpload==null){
+		autoUpload = true;
+	}	
+	var o = $("#" + uploadifyID).prev();
+	$("#" + uploadifyID).uploadify({
+	'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
+	'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
+	'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid,
+	'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
+	'queueID'        : uploadifyQueueID,
+	'auto'           : autoUpload,
+	'multi'          : false,
+	'simUploadLimit' : 2,
+	'buttonImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/browse-files.gif',
+	'wmode'          : 'transparent',
+	'width'          : 75,
+	'height'         : 25,
+	'fileDesc'       : fileDesc,
+	'fileExt'		 : fileExt,
+	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
+	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
+	'onProgress'     : function(event,queueId,fileObj,date){o.val(myFile+fileObj.name);}
+	});
+	
+	
+}
 
 //验证表单函数
 function validate(formName){
@@ -935,9 +961,9 @@ function checkIdCard(idcard){
 		break; 
 		case 18: 
 		if ( parseInt(idcard.substr(6,4)) % 4 == 0 || (parseInt(idcard.substr(6,4)) % 100 == 0 && parseInt(idcard.substr(6,4))%4 == 0 )){ 
-		ereg=/^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$/;//??????????????? 
+		ereg=/^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$/;// ???????????????
 		} else { 
-		ereg=/^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$/;//??????????????? 
+		ereg=/^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$/;// ???????????????
 		} 
 		if(ereg.test(idcard)){
             S = (parseInt(idcard_array[0]) + parseInt(idcard_array[10])) * 7
@@ -1032,5 +1058,3 @@ function insertAuthPt(){
 	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
 	
 }
-   
-		  
