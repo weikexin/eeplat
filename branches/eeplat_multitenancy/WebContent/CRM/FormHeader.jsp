@@ -76,7 +76,7 @@
 	  if(obj!=null && obj.value!=null && obj.value!='f' && obj.value!='a'){
 		  var datas = obj.value.split(";");
 			var url = globalURL + "/servicecontroller?dataBus=setUserContext&contextKey=default_app_uid&contextValue=" +datas[0];
-			$.get(url,function(data){window.location = datas[1];},"text");
+			$.get(url,function(data){window.location = datas[1];});
 	  }else if(obj!=null && obj.value=='a'){
 		  loadPml({'pml':'PM_multi_appshare_listall','target':'_opener_tab','title':'从AppShare安装工程'});
       }

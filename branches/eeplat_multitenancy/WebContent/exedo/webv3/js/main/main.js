@@ -13,19 +13,19 @@ function resscrEvt(height,width){
 	var top = $(".gMain").offset().top;
 	var left = $(".gFpage:eq(0)").width() + 1;
 
-
 ///左边索引菜单
 	$(".gFpage:eq(0)").css("height",height-top );
 ////右边主要显示区域
 	$(".mRight:visible").css("height",height-top);
 	$(".mRight:visible").css("width",width-left);
+
 ///树	 
 	$(".tree").css("height",height-top);
 //tab-pane
     $(".mRight:visible .ui-tabs-panel").css("height",height-top-46);  ///原来的是-25
     $(".mRight:visible .ui-tabs-panel").css("width",width-left-$(".mRight:visible .lrschidren").width()-10);   //原来没有-10
   
-    $(".mRight:visible").css("overflow","hidden");
+  //  $(".mRight:visible").css("overflow","hidden");
 }
 
 //让菜单能伸展   如果这个方法放到类里执行 就会非常慢  所以没有放到类里，在这里判断如果有outlook菜单 则执行
