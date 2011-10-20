@@ -9,7 +9,6 @@
 <%
 			String paneModelContent = (String) request
 			.getAttribute("paneModelContent");
-	
 
 			SessionContext context = (SessionContext)session.getAttribute("userInfo");
 			if(null==session.getAttribute("userInfo") ||  context.getUser()==null){
