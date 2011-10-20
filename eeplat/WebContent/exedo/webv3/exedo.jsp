@@ -68,6 +68,7 @@ globalURL = "/<%=DOGlobals.URL%>/";
  <!-- 平台主体及其它集成的css -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/xtree2.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/nav/exedo_nav.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/redmond/jquery-ui-1.8.16.custom.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/main/main<%=mainStyle%>.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/workbench/workbench_style.css" type="text/css" />
