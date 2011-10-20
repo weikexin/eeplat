@@ -1,6 +1,7 @@
 var invokeDomId = "";
 var mirrorEditor ;
 var mirrorEditor2 ;
+var ie6len = 1000;
 
 // 在js里面直接调用action类
 /**
@@ -101,9 +102,9 @@ function callAction(p){
    					resourcePath = resourcePath + "?1=1";		
    			     }
 	   			  if(p.target=='_opener_window'){
-	   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				    window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 	   			  }else  if(p.target=='_opener_location'){
-	   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+	   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   			  }  
 	   			  else if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,p.pml);
@@ -119,7 +120,7 @@ function callAction(p){
  						  if(pageNo!=null && pageSize!=null){
  							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
  						  }
- 						  $("#" + p.target).empty().load(p.pml,dataParas);
+ 						  $("#" + p.target).empty().load(p.pml,getShorterParas(dataParas));
 					  }else{
 						  $("#" + p.target).empty().load(p.pml);
 					  }
@@ -293,9 +294,9 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aPath + "&"  + paras,aTitle,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aPath + "&"  + getShorterParas(paras),aTitle,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
    		  		   			  }else  if(target=='_opener_location'){
-   		  		   				  	window.location = aPath + "&"  + paras + "&isApp=true";
+   		  		   				  	window.location = aPath + "&"  + getShorterParas(paras) + "&isApp=true";
    		  		   			  }  
    		  		   			  else if(target=='_opener_tab'){
    		  							createNewTab(pmlName,aTitle,aPath);
@@ -322,9 +323,9 @@ function callService(p){
   	   					 resourcePath = resourcePath + "?1=1";		
   	   				 }
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
   		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+  		   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
   		   			  }  
   		   			  else if(p.target=='_opener_tab'){
   							createNewTab(pmlName,title,p.pml);
@@ -342,7 +343,7 @@ function callService(p){
   	  						  if(pageNo!=null && pageSize!=null){
   	  							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
   	  						  }
-  	  						  $("#" + p.target).empty().load(p.pml,dataParas);
+  	  						  $("#" + p.target).empty().load(p.pml,getShorterParas(dataParas));
   						  }else{
   							  $("#" + p.target).empty().load(p.pml);
   						  }
@@ -458,9 +459,9 @@ function loadPml(p){
 		  }
 
 	   if(p.target=='_opener_window'){
-				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
 		}else  if(p.target=='_opener_location'){
-				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   } 
 	   else	if(p.target && $.trim(p.target)!="" && p.target!='_opener_tab'){
 
@@ -469,12 +470,11 @@ function loadPml(p){
 				if(p.title){
 					title = p.title;
 				}
-				
-				popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
+				popupDialog(pmlName,title,p.pml + "&" +  getShorterParas(urlCodeDeal(paras)),p.pmlWidth,p.pmlHeight);
 				
 			}else{
 				loading();
-				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras),function(){
+				$("#" + p.target).empty().load(p.pml,getShorterParas(urlCodeDeal(paras)),function(){
 					closeWin();
 				});
 				$("#" + pmlName).data('paras',urlCodeDeal(paras));
@@ -487,7 +487,7 @@ function loadPml(p){
 				////如果采用简化配置的情况 
 				if(p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
 					loading();
-					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras),function(){
+					$("#" + pmlName).empty().load(p.pml,getShorterParas(urlCodeDeal(paras)),function(){
 						closeWin();
 					});
 					$("#" + pmlName).data('paras',urlCodeDeal(paras));
@@ -498,7 +498,7 @@ function loadPml(p){
 					}
 					var thisPml = p.pml;
 					if(paras!="" && urlCodeDeal(paras)!=""){
-						thisPml = p.pml + "&" +  urlCodeDeal(paras);
+						thisPml = p.pml + "&" +  getShorterParas(urlCodeDeal(paras));
 					}
 					if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,thisPml);
@@ -540,6 +540,21 @@ function  getParasOfForms(targetForms){
 	return paras;
 }
 
+/**
+ * 
+ * IE6、7 URL长度的限制
+ * @param paras
+ * @return
+ */
+function getShorterParas(paras){
+	
+	if(paras!=null && paras.length>ie6len && $.browser.msie && 
+			($.browser.version=='6.0' 
+		||	 $.browser.version=='7.0')){
+		return paras.substr(0,ie6len);
+    }
+	return paras;
+}
 
 
 function updateEditorFormValue()

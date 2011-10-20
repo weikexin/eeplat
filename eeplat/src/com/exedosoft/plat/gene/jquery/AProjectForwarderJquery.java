@@ -286,6 +286,24 @@ public class AProjectForwarderJquery {
 			pmLeft.setCategory(aBO);
 			pmLeft.setL10n(project.getL10n() + "左边索引面板");
 			pmLeft.setName(project.getName() + "_leftindex_pane");
+			
+			
+			/**
+			 * 存储Mobile索引菜单的面包
+			 */
+			DOPaneModel pmMobile = new DOPaneModel();
+			pmMobile.setCategory(aBO);
+			pmMobile.setName( project.getName() + "_mobile_pane");
+			pmMobile.setL10n(project.getL10n() + "菜单");
+			pmMobile.setTitle(project.getDescription());
+			pmMobile.setExedoJsp("../mobile/exedo.jsp");
+			
+			pmMobile.setLinkType(DOPaneModel.LINKTYPE_MENU);
+			pmMobile.setLinkUID(dmRoot.getObjUid());
+			// //////////////ccLayOutPane
+			pmMobile.setController(contentPane);
+
+			DAOUtil.INSTANCE().store(pmMobile);
 
 			/**
 			 * 保存左边的左边的索引菜单

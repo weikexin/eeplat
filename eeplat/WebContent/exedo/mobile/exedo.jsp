@@ -2,41 +2,45 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@page import="com.exedosoft.plat.bo.DOService"%>
+<%@ page import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
 <%
 	String paneModelContent = (String) request
 			.getAttribute("paneModelContent");
 %>
 
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-		<title>云鹤平台应用</title>
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.css" />
-		<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery-1.5.2.min.js" ></script>
-		<script language="javascript">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1, maximum-scale=1" />
+<title>云鹤平台应用</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.css" />
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery-1.5.2.min.js"></script>
+<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		  //reset type=date inputs to text
 		  $( document ).bind( "mobileinit", function(){
 		    $.mobile.page.prototype.options.degradeInputs.date = true;
 		  });	
-		</script>  
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.js" ></script>
-    	<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jQuery.ui.datepicker.js" ></script>
-    	<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.js" ></script>
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"  ></script>
-   		<!--start 自己定义的JS -->
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/gztiaojs.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/mysimpleconfirm.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxdetail.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxdan.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/bxzhusufei.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/empjs.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/myjs/modifycity.js"></script>
-		<!--end 自己定义的JS -->
-		
-	 		<script language="javascript">
+		</script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/exedo/mobile/js/jQuery.ui.datepicker.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"></script>
+<script language="javascript">
+
+	alert("aaaaaaa");
   			jQuery(function($){
  			     $.datepicker.regional['zh-CN'] = {
  			        clearText: '清除',
@@ -73,13 +77,15 @@
  			        isRTL: false};
  			        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
  			    });
-		    
-		</script>  
-		   			
-    </head>
+
+  			alert("1111111111");
+		    alert("<%=paneModelContent%>");
+
+		</script>
+</head>
 <body>
 
- <%=paneModelContent%>
-	
+<%=paneModelContent%>
+
 </body>
 </html>

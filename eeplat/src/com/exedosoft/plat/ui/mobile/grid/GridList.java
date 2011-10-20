@@ -36,12 +36,39 @@ public class GridList extends DOViewTemplate {
 		if (gm.getService() == null) {
 			return null;
 		}
+		List cols = gm.getNormalGridFormLinks();
+		if(cols.size() < 1){
+			return null;
+		}
+
 		// ///Mobile特殊代码点击链接的面板
 		String linkPaneName = "#";
 		List topForms = gm.getTopOutGridFormLinks();
 		DOPaneModel browseModel = DOPaneModel.getPaneModelByName("pm_"
 				+ gm.getCategory().getName() + "_browse");
-		if (browseModel != null) {
+		
+		DOFormModel lastModel = (DOFormModel)cols.get(cols.size() - 1);
+		if("查看".equals(lastModel.getL10n())){
+			if(lastModel.getLinkPaneModel()!=null){
+				linkPaneName = lastModel.getLinkPaneModel().getName();
+			}
+		}
+		List lastLinkForms = lastModel.getLinkForms();
+		if(lastLinkForms!=null){
+			for(Iterator it = lastLinkForms.iterator(); it.hasNext();){
+				DOFormModel aFm = (DOFormModel)it.next();
+				if("查看".equals(aFm.getL10n())){
+					if(aFm.getLinkPaneModel()!=null){
+						linkPaneName = aFm.getLinkPaneModel().getName();
+						break;
+					}
+				}
+				
+			}
+		}
+		
+		
+		if (linkPaneName.equals("#") && browseModel != null) {
 			linkPaneName = browseModel.getName();
 		}
 
@@ -58,33 +85,41 @@ public class GridList extends DOViewTemplate {
 		// //DOGlobals.getInstance()
 		// .getSessoinContext().getFormInstance().getValue(
 		// "cols")
-		List cols = gm.getNormalGridFormLinks();
 		List showCols = new ArrayList();
+		List controCols = new ArrayList();
 		if (cols.size() > 3) {
-			showCols.add(cols.get(0));
-			showCols.add(cols.get(1));
-			DOFormModel aFm = (DOFormModel)cols.get(cols.size() - 1);
-			String categoryName = aFm.getController().getCategory().getName();
-			//////如果是操作相关的控制器
-			if("c_form_button".equals(categoryName) ||
-					"c_form_suite".equals(categoryName) ||
-					"c_form_service".equals(categoryName) ||
-					"c_form_pane".equals(categoryName)){
-				showCols.add(aFm);
-			}else{
-				showCols.add(cols.get(2));
+			splitCols(showCols, controCols, (DOFormModel)cols.get(0));
+			splitCols(showCols, controCols, (DOFormModel)cols.get(1));
+			splitCols(showCols, controCols, (DOFormModel)cols.get(cols.size() - 1));
+			/////如果最后一列是控制列，则再显示一列
+			if(controCols.size() >0 ){
+				splitCols(showCols, controCols, (DOFormModel)cols.get(2));
 			}
 		} else {
-			showCols.addAll(cols);
+			for(Iterator it = cols.iterator(); it.hasNext();){
+				DOFormModel aFm = (DOFormModel)it.next();
+				splitCols(showCols, controCols, aFm);
+			}
+		}
+		
+		List bottomForms =  gm.getBottomOutGridFormLinks();
+		for(Iterator it = topForms.iterator(); it.hasNext();){
+			DOFormModel aFm = (DOFormModel)it.next();
+			if(!aFm.getController().getName().toLowerCase().contains("selected")){
+				bottomForms.add(aFm);
+			}
 		}
 
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("model", gm);
 		data.put("showCols", showCols);
+		data.put("controCols", controCols);
+		data.put("bottomForms", bottomForms);
 		data.put("linkPaneName", linkPaneName);
 		data.put("data", getListData(gm, data));
 		data.put("webmodule", DOGlobals.URL);
 		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
+		
 		if (gm.getContainerPane() != null) {
 			data.put("pmlName", gm.getContainerPane().getName());
 		}
@@ -122,6 +157,21 @@ public class GridList extends DOViewTemplate {
 		}
 
 		return data;
+	}
+
+	private void splitCols(List showCols, List controCols,
+			DOFormModel aFm) {
+		String categoryName = aFm.getController().getCategory().getName();
+
+		//////如果是操作相关的控制器
+		if("c_form_button".equals(categoryName) ||
+				"c_form_suite".equals(categoryName) ||
+				"c_form_service".equals(categoryName) ||
+				"c_form_pane".equals(categoryName)){
+			controCols.add(aFm);
+		}else{
+			showCols.add(aFm);
+		}
 	}
 
 	public static List<BOInstance> getListData(DOGridModel gridModel,

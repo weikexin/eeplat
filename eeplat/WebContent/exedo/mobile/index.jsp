@@ -62,10 +62,7 @@
 	  //登录
 	  function submitForm(){
 		   var paras =  $('#loginform').serialize();
-		   paras = paras + "&contextServiceName=do_org_employee_findbynameandpwd&mobileclient=true";
-
-
-
+		   paras = paras + "&contextServiceName=do_org_user_findbynameandpwd&mobileclient=true";
 		   $.ajax({
 			   url: globalURL + "ssocontroller",
 			   data: paras,
@@ -73,7 +70,7 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "zfbx_manager_mobile_pane.pml";
+				        window.location= globalURL + "tm_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }
