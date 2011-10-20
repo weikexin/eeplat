@@ -40,7 +40,7 @@
 	src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"></script>
 <script language="javascript">
 
-	alert("aaaaaaa");
+
   			jQuery(function($){
  			     $.datepicker.regional['zh-CN'] = {
  			        clearText: '清除',
@@ -77,9 +77,6 @@
  			        isRTL: false};
  			        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
  			    });
-
-  			alert("1111111111");
-		    alert("<%=paneModelContent%>");
 
 		</script>
 </head>
