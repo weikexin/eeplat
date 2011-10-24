@@ -83,7 +83,8 @@ public class ContextListener implements ServletContextListener {
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 			CacheFactory.getCacheData().fromSerialObject();
 			// /控制器需要重新注册
-			String sql = "select * from do_ui_controller";
+			// 应该可以从里从两个文件中加载
+			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
 			List list = DAOUtil.INSTANCE()
 					.select(DOController.class, sql);
 

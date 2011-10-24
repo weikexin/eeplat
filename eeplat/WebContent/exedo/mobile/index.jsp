@@ -70,7 +70,7 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "tm_mobile_pane.pml";
+				        window.location= globalURL + "bbb_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }
