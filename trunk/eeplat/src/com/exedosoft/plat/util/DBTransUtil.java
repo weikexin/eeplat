@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.SQLTypes;
 import com.exedosoft.plat.bo.DODataSource;
 
@@ -199,7 +200,20 @@ public class DBTransUtil {
 
 			DatabaseMetaData meta = con.getMetaData();
 			String[] tblTypes = new String[] { "TABLE" };
-			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
+			
+			/*对oracle的schema过滤 by whutmen@gmail.com begin */
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			DODataSource dss = DODataSource.getDataSourceByL10n(bo
+					.getCorrInstance().getValue("l10n"));
+			String schema = null;
+			if (dss.isOracle()) {
+				schema = dss.getUserName().trim().toUpperCase();
+			}
+			
+			ResultSet rsDB = meta.getTables(null, schema, null, tblTypes);
+            /*by whutmen@gmail.com end */
+			
+			//ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME").toLowerCase();
 				// ////////////增强更新功能
@@ -250,7 +264,20 @@ public class DBTransUtil {
 
 			DatabaseMetaData meta = con.getMetaData();
 			String[] tblTypes = new String[] { "TABLE" };
-			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
+			
+			/*对oracle的schema过滤 by whutmen@gmail.com begin */
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			DODataSource dss = DODataSource.getDataSourceByL10n(bo
+					.getCorrInstance().getValue("l10n"));
+			String schema = null;
+			if (dss.isOracle()) {
+				schema = dss.getUserName().trim().toUpperCase();
+			}
+			
+			ResultSet rsDB = meta.getTables(null, schema, null, tblTypes);
+            /*by whutmen@gmail.com end */
+			
+			//ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME");
 				// ////////////增强更新功能
@@ -311,7 +338,20 @@ public class DBTransUtil {
 
 			DatabaseMetaData meta = con.getMetaData();
 			String[] tblTypes = new String[] { "TABLE" };
-			ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
+			
+			/*对oracle的schema过滤 by whutmen@gmail.com begin */
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			DODataSource dss = DODataSource.getDataSourceByL10n(bo
+					.getCorrInstance().getValue("l10n"));
+			String schema = null;
+			if (dss.isOracle()) {
+				schema = dss.getUserName().trim().toUpperCase();
+			}
+			
+			ResultSet rsDB = meta.getTables(null, schema, null, tblTypes);
+            /*by whutmen@gmail.com end */
+			
+			//ResultSet rsDB = meta.getTables(null, null, null, tblTypes);
 			while (rsDB.next()) {
 				String tableName = rsDB.getString("TABLE_NAME").toLowerCase();
 				// ////////////增强更新功能
