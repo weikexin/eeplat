@@ -35,10 +35,10 @@
 
 <script type="text/javascript">
 
-    if($.browser.msie){
+    /* if($.browser.msie){
 
     	document.write("Workflow Tools not Supports IE! Please Try FireFox、Chrome.");
-    } 
+    } */ 
 	
  	var selectedMother = null;//选中的模板
 	var selectedNode = null;//选中的节点
@@ -207,8 +207,7 @@ $(function() {
 					
 					////加载xml
 					$("#property",svg.root()).bind("click",function(evt){
-						  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true" +  "',window,'scroll:0;status:0;resizable:1;dialogWidth:680px;dialogHeight:520px');
-										
+						showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;				
 					});
 					///加载该模板的流程图
 					loadWfXml();
@@ -218,7 +217,16 @@ $(function() {
 	);
 });
 
-
+//打开模态窗口
+function showDialog(_url) {
+    if ($.browser.msie) {//ie的情形
+    	window.open(_url, "", 'modal=yes;');
+    }
+    else { //其它browser eg. firefox 
+    	var OpenedWindow = window.open(_url, "", 'modal=1;');
+        OpenedWindow.focus();
+    }
+}
 
 function doMouseUpMother(evt,svg){
 	
@@ -423,8 +431,8 @@ function doClick(evt){
 
 	if(evt.detail==2){
 	  var vid = $(o).attr('id');
-		  
-	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:680px;dialogHeight:520px');
+
+	  showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
 		
@@ -471,7 +479,7 @@ function doClickLineTxt(evt){
 	selectedLineTxt = object;		
 	if(evt.detail==2){
 	  var vid = $(object).attr('id');
-	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true?vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:400px;dialogHeight:200px');
+	  showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
 		return;
