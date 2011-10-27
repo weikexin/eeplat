@@ -72,18 +72,18 @@
 
   http://eeplat.googlecode.com/files/auth_menu.png 
 
- 通讯薄：查看用户信息
+   ==  通讯薄：查看用户信息   ==  
 
- 角色维护：维护角色基本信息
+   ==   角色维护：维护角色基本信息   ==  
 
- 部门管理：维护部门基本信息
+   ==   部门管理：维护部门基本信息   ==  
 
- 用户管理：以部门结构为索引，管理用户信息，同时设置用户拥有的角色
+   ==   用户管理：以部门结构为索引，管理用户信息，同时设置用户拥有的角色   ==  
 
   http://eeplat.googlecode.com/files/auth_user.png
 
- 用户查询：查询用户基本信息
+   ==   用户查询：查询用户基本信息   ==  
 
- 菜单权限：显示菜单，设置菜单使用的角色
+   ==   菜单权限：显示菜单，设置菜单使用的角色   ==  
 
   http://eeplat.googlecode.com/files/auth_menu_role.png
