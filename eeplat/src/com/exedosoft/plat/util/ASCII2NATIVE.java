@@ -28,7 +28,7 @@ public class ASCII2NATIVE {
 
 	public static void main(String[] args) {
 		File f = new File(
-				"c:\\mydb.script");
+				"c:\\backup.sql");
 		File f2 = new File(
 		"c:\\mydb3.script");
 		if (f.exists() && f.isFile()) {
@@ -42,8 +42,13 @@ public class ASCII2NATIVE {
 						new FileInputStream(f), "JISAutoDetect"));
 
 				while ((line = br.readLine()) != null) {
-					System.out.println(ascii2Native(line));
-					sb.append(ascii2Native(line)).append(";\n");//.append(";\n\r")
+					String str = ascii2Native(line);
+					str = str.replace(" PUBLIC.", " ")
+					.replace(" CACHED ", " ")
+					.replace(" LONGVARCHAR", " CLOB")
+					.replace(" VARCHAR", " VARCHAR(255)");
+					System.out.println(str);
+					sb.append(str).append("\n"); //.append(";\n"); //.append(";\n\r")
 				}
 				
 				

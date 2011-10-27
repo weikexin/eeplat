@@ -95,6 +95,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 		
 		CacheFactory.getCacheData().clear();
 		CacheFactory.getCacheRelation().getData().clear();
+		CacheFactory.getCacheData().fromSerialObject();
 		
 		this.setEchoValue("初始化成功!");
 		return DEFAULT_FORWARD;

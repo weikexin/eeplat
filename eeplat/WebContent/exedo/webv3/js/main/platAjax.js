@@ -102,7 +102,7 @@ function callAction(p){
    					resourcePath = resourcePath + "?1=1";		
    			     }
 	   			  if(p.target=='_opener_window'){
-	   				    window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				    window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
 	   			  }else  if(p.target=='_opener_location'){
 	   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   			  }  
@@ -294,7 +294,7 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aPath + "&"  + getShorterParas(paras),aTitle,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aPath + "&"  + getShorterParas(paras),aTitle,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
    		  		   			  }else  if(target=='_opener_location'){
    		  		   				  	window.location = aPath + "&"  + getShorterParas(paras) + "&isApp=true";
    		  		   			  }  
@@ -323,7 +323,7 @@ function callService(p){
   	   					 resourcePath = resourcePath + "?1=1";		
   	   				 }
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
   		   			  }else  if(p.target=='_opener_location'){
   		   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
   		   			  }  
@@ -459,7 +459,7 @@ function loadPml(p){
 		  }
 
 	   if(p.target=='_opener_window'){
-				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
 		}else  if(p.target=='_opener_location'){
 				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   } 

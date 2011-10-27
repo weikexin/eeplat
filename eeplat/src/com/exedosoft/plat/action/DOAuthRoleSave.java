@@ -9,9 +9,9 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.bo.org.DOAuthorization;
 import com.exedosoft.plat.bo.org.OrgParter;
-import com.exedosoft.plat.bo.org.SessionParterFactory;
-//import com.exedosoft.plat.dao.DAOException;
+import com.exedosoft.plat.bo.org.SessionParterFactory; //import com.exedosoft.plat.dao.DAOException;
 //import com.exedosoft.plat.dao.WFDAO;
+import com.exedosoft.plat.ui.DOMenuModel;
 import com.exedosoft.plat.util.DOGlobals;
 
 /**
@@ -30,12 +30,6 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	 */
 	private static final long serialVersionUID = 101111111111L;
 
-	private static DOService setRoleExcel = DOService
-			.getService("do.bx.role.update.xes.excel");
-
-	private static DOService setRoleExcelNull = DOService
-			.getService("do.bx.role.update.xes.excel.no");
-
 	@Override
 	public String excute() throws ExedoException {
 		// TODO Auto-generated method stub
@@ -45,31 +39,20 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		if (parterUid == null) {
 			return null;
 		}
-
-		// /////////////////////////isExcel 是否可以导出到excel
-		String isExcel = DOGlobals.getInstance().getSessoinContext()
-				.getFormInstance().getValue("isExcel");
-		if ("5".equals(isExcel)) {
-			setRoleExcel.invokeUpdate(parterUid);
-		} else {
-			setRoleExcelNull.invokeUpdate(parterUid);
+		String boNames = DOGlobals.getInstance().getSessoinContext()
+		.getFormInstance().getValue("boNames");
+		if(boNames!=null){
+			String[] arraybns = boNames.split(",");
+			for(int i = 0 ; i < arraybns.length ; i++){
+				String aBNS = arraybns[i];
+				boInstanceAuth(parterUid, aBNS);
+			}
 		}
-		// /////////////////////end
-
-		// /////////formModel的权限配置
-
-		boInstanceAuth(parterUid, "tbclassxuequ");
-
-		boInstanceAuth(parterUid, "tbgrade");
-
-		boInstanceAuth(parterUid, "tbkemu");
-
-		// tbclassxuequ
 		formAuth(parterUid);
 
 		menuAuth(parterUid);
 
-		return null;
+		return DEFAULT_FORWARD;
 	}
 
 	/**
@@ -81,52 +64,11 @@ public class DOAuthRoleSave extends DOAbstractAction {
 
 		List allAuthBIs = SessionParterFactory.getSessionParter()
 				.getBIAuthConfigByRole(parterUid);
-		DOBO boRole = OrgParter.getDefaultRole().getDoBO();
-		BOInstance role = boRole.getInstance(parterUid);
-
-		if (role == null) {
-			System.out.println("Role is null!!!!!!!!!");
-			return;
-		}
-
 		System.out.println("allAuthBIs:::" + allAuthBIs);
 
-		String fmConfigs = DOGlobals.getInstance().getSessoinContext()
-				.getFormInstance().getValue(boName);
-
 		DOBO authBO = DOBO.getDOBOByName(boName);
-
-		if (fmConfigs == null) {
-			return;
-		}
-
-		String[] fConfigs = fmConfigs.split(";");
-//
-//		WFDAO dao = new WFDAO();
-//		dao.setAutoClose(false);
-		try {
-			for (int i = 0; i < fConfigs.length; i++) {
-				String[] aConfig = fConfigs[i].split(",");
-				if (aConfig[0] != null && !"".equals(aConfig[0])) {
-
-					String dbAccess = "0";
-					if (allAuthBIs != null
-							&& allAuthBIs.contains(authBO.getObjUid()
-									+ aConfig[0])) {
-						dbAccess = "1";
-					}
-					if (aConfig[0] != null) {
-						addAuth(aConfig[1], dbAccess, aConfig[0],  role,
-								DOAuthorization.WHAT_BOINSTANCE, authBO
-										.getObjUid());
-					}
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		dao.closeSession();
+		baseAuth(parterUid, allAuthBIs, boName,
+				DOAuthorization.WHAT_BOINSTANCE,authBO.getObjUid());
 
 	}
 
@@ -140,41 +82,11 @@ public class DOAuthRoleSave extends DOAbstractAction {
 
 		List allAuthForms = SessionParterFactory.getSessionParter()
 				.getFormAuthConfigByRole(parterUid);
-		DOBO boRole = OrgParter.getDefaultRole().getDoBO();
-		BOInstance role = boRole.getInstance(parterUid);
+		System.out.println("allAuthForms:::" + allAuthForms);
 
-		if (role == null) {
-			System.out.println("Role is null!!!!!!!!!");
-			return;
-		}
+		baseAuth(parterUid, allAuthForms, "fmAuth",
+				DOAuthorization.WHAT_UI_FORM,null);
 
-		String fmConfigs = DOGlobals.getInstance().getSessoinContext()
-				.getFormInstance().getValue("fmConfigs");
-		String[] fConfigs = fmConfigs.split(";");
-//
-//		WFDAO dao = new WFDAO();
-//		dao.setAutoClose(false);
-		try {
-			for (int i = 0; i < fConfigs.length; i++) {
-				String[] aConfig = fConfigs[i].split(",");
-				if (aConfig[0] != null && !"".equals(aConfig[0])) {
-
-					String dbAccess = "0";
-					if (allAuthForms != null
-							&& allAuthForms.contains(aConfig[0])) {
-						dbAccess = "1";
-					}
-					if (aConfig[0] != null) {
-						addAuth(aConfig[1], dbAccess, aConfig[0],  role,
-								DOAuthorization.WHAT_UI_FORM, null);
-					}
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		dao.closeSession();
 	}
 
 	/**
@@ -185,10 +97,19 @@ public class DOAuthRoleSave extends DOAbstractAction {
 	private void menuAuth(String parterUid) {
 		List allAuthMenus = SessionParterFactory.getSessionParter()
 				.getMenuAuthConfigByRole(parterUid);
+		
+		System.out.println("allAuthMenus:::" + allAuthMenus);
+
+		baseAuth(parterUid, allAuthMenus, "menuAuth",
+				DOAuthorization.WHAT_UI_MENU,null);
+
+	}
+
+	private void baseAuth(String parterUid, List allAuthMenus, String formStrKey,
+			int type,String whereDOBO) {
+
 		DOBO boRole = OrgParter.getDefaultRole().getDoBO();
 		BOInstance role = boRole.getInstance(parterUid);
-
-		System.out.println("Enter:::::::::::::DOAuthRoleSave");
 
 		if (role == null) {
 			System.out.println("User is null!!!!!!!!!");
@@ -196,24 +117,37 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		}
 
 		String authcofig = DOGlobals.getInstance().getSessoinContext()
-				.getFormInstance().getValue("authcofig");
+				.getFormInstance().getValue(formStrKey);
 		String[] menuConfigs = authcofig.split(";");
+		
+		System.out.println("Key::" + formStrKey + "; menuConfigs::" + menuConfigs);
 
-//		WFDAO dao = new WFDAO();
-//		dao.setAutoClose(false);
+		// WFDAO dao = new WFDAO();
+		// dao.setAutoClose(false);
 		try {
 			for (int i = 0; i < menuConfigs.length; i++) {
 				String[] aConfig = menuConfigs[i].split(",");
 				if (aConfig[0] != null && !"".equals(aConfig[0])) {
-
-					String dbAccess = "0";
-					if (allAuthMenus != null
-							&& allAuthMenus.contains(aConfig[0])) {
-						dbAccess = "1";
+					
+					if(DOAuthorization.WHAT_UI_MENU==type){
+						DOMenuModel dmm = DOMenuModel.getMenuModelByID(aConfig[0]);
+						if(dmm!=null && !dmm.isFilter()){
+							continue;
+						}
 					}
-					if (aConfig[0] != null) {
-						addAuth(aConfig[1], dbAccess, aConfig[0],  role,
-								DOAuthorization.WHAT_UI_MENU, null);
+					
+					String containKey = aConfig[0];
+					if(DOAuthorization.WHAT_BOINSTANCE==type){
+						containKey = whereDOBO +  aConfig[0];
+					}
+
+					if (allAuthMenus != null
+							&& allAuthMenus.contains(containKey)) {
+						if (aConfig[1].equals("0")) {// ///移除权限
+							removeAuth(aConfig[0], role, type, whereDOBO);
+						}
+					} else if (aConfig[1].equals("1")) {
+						addAuth(aConfig[0], role, type, whereDOBO);
 					}
 				}
 			}
@@ -221,34 +155,30 @@ public class DOAuthRoleSave extends DOAbstractAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		dao.closeSession();
 	}
 
-	// /////////角色不做反向赋权，只有人员才做反向赋权
-	private void addAuth(String uiAccess, String dbAccess, String dmmUid,
-			 BOInstance role, int type, String whereDOBO) throws ExedoException
-			 {
-		if (!uiAccess.equals(dbAccess)) {
+	// /////////增加角色权限
+	private void addAuth(String whatUid, BOInstance role, int type,
+			String whereDOBO) throws ExedoException {
 
-			System.out
-					.println("22222222222222222222222222222222222222222222222222222");
-			// DOAuthorization.removeDOAuthorizations(OrgParter.getDefaultRole(),
-			// role.getUid(), type, dmmUid);
-			DOAuthorization.removeDOAuthorizations(OrgParter.getDefaultRole(),
-					role.getUid(), type, dmmUid, whereDOBO, null);
+		DOAuthorization da = new DOAuthorization();
+		da.setParterUid(OrgParter.getDefaultRole().getObjUid());
+		da.setOuUid(role.getUid());
+		da.setWhatType(type);
+		da.setWhatUid(whatUid);
+		da.setWhereDOBO(whereDOBO);
+		da.setAuthority(Boolean.TRUE);
+		da.setIsInherit(Boolean.TRUE);
+		DAOUtil.BUSI().store(da);
+	}
 
-			if ("1".equals(uiAccess)) {
-				DOAuthorization da = new DOAuthorization();
-				da.setParterUid(OrgParter.getDefaultRole().getObjUid());
-				da.setOuUid(role.getUid());
-				da.setWhatType(type);
-				da.setWhatUid(dmmUid);
-				da.setWhereDOBO(whereDOBO);
-				da.setAuthority(Boolean.TRUE);
-				da.setIsInherit(Boolean.TRUE);
-				DAOUtil.BUSI().store(da);
-			}
-		}
+	// /////////删除角色权限
+	private void removeAuth(String whatUid, BOInstance role, int type,
+			String whereDOBO) {
+
+		DOAuthorization.removeDOAuthorizations(OrgParter.getDefaultRole(), role
+				.getUid(), type, whatUid, whereDOBO, null);
+
 	}
 
 	public static void main(String[] args) {
@@ -257,47 +187,5 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		System.out.println(a.substring(32));
 
 	}
-
-	// // /////////角色不做反向赋权，只有人员才做反向赋权
-	// private void authAForm(String uiAccess, String dbAccess, String dmmUid,
-	// WFDAO dao, BOInstance role) throws DAOException {
-	// if (!uiAccess.equals(dbAccess)) {
-	//
-	// DOAuthorization.removeDOAuthorizations(OrgParter.getDefaultRole(),
-	// role.getUid(), DOAuthorization.WHAT_UI_FORM, dmmUid);
-	// if ("1".equals(uiAccess)) {
-	// DOAuthorization da = new DOAuthorization();
-	// da.setParterUid(OrgParter.getDefaultRole().getObjUid());
-	// da.setOuUid(role.getUid());
-	// da.setWhatType(DOAuthorization.WHAT_UI_FORM);
-	// da.setWhatUid(dmmUid);
-	// da.setAuthority(Boolean.TRUE);
-	// da.setIsInherit(Boolean.TRUE);
-	// dao.store(da);
-	// }
-	// }
-	// }
-	//	
-	//	
-	// // /////////角色不做反向赋权，只有人员才做反向赋权
-	// private void authABOInstance(String uiAccess, String dbAccess, String
-	// dmmUid,
-	// WFDAO dao, BOInstance role) throws DAOException {
-	// if (!uiAccess.equals(dbAccess)) {
-	//
-	// DOAuthorization.removeDOAuthorizations(OrgParter.getDefaultRole(),
-	// role.getUid(), DOAuthorization.WHAT_BOINSTANCE, dmmUid);
-	// if ("1".equals(uiAccess)) {
-	// DOAuthorization da = new DOAuthorization();
-	// da.setParterUid(OrgParter.getDefaultRole().getObjUid());
-	// da.setOuUid(role.getUid());
-	// da.setWhatType(DOAuthorization.WHAT_BOINSTANCE);
-	// da.setWhatUid(dmmUid);
-	// da.setAuthority(Boolean.TRUE);
-	// da.setIsInherit(Boolean.TRUE);
-	// dao.store(da);
-	// }
-	// }
-	// }
 
 }
