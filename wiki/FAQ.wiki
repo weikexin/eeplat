@@ -1,3 +1,4 @@
+#sidebar index
 == 如何修改web module 的名称？ ==
   平台缺省的web module名称为 eeplat，如果需要改成其它名称请修改 web-inf/classes 下面globals.xml文件
 
