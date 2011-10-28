@@ -1,3 +1,4 @@
+#sidebar index
    JavaScript API 依赖于Jquery js类库及platAjax.js文件。JavaScript API 的方法都接受唯一的参数p，参数p及相关api说明如下。
 
 = JavaScript参数对象p =
