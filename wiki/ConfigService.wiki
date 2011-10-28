@@ -1,3 +1,4 @@
+#sidebar index
 == 基本概念 ==
 
     服务是描述业务对象的行为。这个服务既可以是底层数据层面的操作，也可以是粗粒度的业务行为。当一个数据表被初始化为业务对象后，会形成6个基本服务，命名规则是业务对象 + `_` + 后缀，后缀分别为browse、list、insert、update、delete、auto_condition。
