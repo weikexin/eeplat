@@ -1,3 +1,4 @@
+#sidebar index
 Java  API的 分为四部分介绍：1，DOService；  2，其它重点类； 3，接口或抽象类说明；4，帮助类。
 
 DOService 是Java API的核心实现类，单独作说明；Javascript API也仅仅是 DOService 的客户端（BROWSE）简单实现。
