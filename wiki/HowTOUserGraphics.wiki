@@ -1,3 +1,4 @@
+#sidebar index
   平台集成的图表显示组件为FusionChartsFree，可以支持常见图表的显示，具体的支持类型见 FusionChartsFree 文件夹下面，也可以引入其他图表显示组件。下面举一个简单的的例子，用柱状图显示t_expense表中的金额。
 
 
