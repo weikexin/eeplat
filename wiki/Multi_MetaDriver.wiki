@@ -1,3 +1,4 @@
+#sidebar index
 ==元数据驱动及隔离==
 
    所谓元数据（metadata）即描述数据的数据(data about data)，在EEPlat中，对于描述业务系统(包括业务数据、逻辑和UI)的元数据我们称之为模型（model）或声明式业务对象（Declarative Domain Object），下面图文中元数据、模型、声明式业务对象的概念可以互相替换，如下图：
