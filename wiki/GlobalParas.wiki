@@ -1,3 +1,4 @@
+#sidebar index
 = GLOBAL.XML =
 
  globals.xml 位于classes 下。开发环境下修改src下面的既可。 是平台的核心全局配置。配置参数：
