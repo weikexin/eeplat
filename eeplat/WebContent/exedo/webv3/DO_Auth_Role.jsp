@@ -8,6 +8,7 @@
 <%@page import="com.exedosoft.plat.bo.DOBO"%>
 <%@page import="com.exedosoft.plat.bo.BOInstance"%>
 <%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 <%
 String roleUid = request.getParameter("contextValue");
@@ -229,8 +230,13 @@ input.ctlBtn,button {
                       </TR>
   <%
  
-			 DOMenuModel dmm = DOMenuModel.getMenuModelByName("bbb_root");
-			 List parents =  dmm.retrieveChildrenNoAuth();
+			 DOMenuModel dmm = DOMenuModel.getMenuModelByName(DOGlobals.getValue("application") + "_root");
+             List parents =  new ArrayList();       
+             if(dmm!=null){
+			 	parents =  dmm.retrieveChildrenNoAuth();
+             }else{
+            	 out.println("请修改exedo/webv3/DO_Auth_Role.jsp文件233行左右，DOMenuModel.getMenuModelByName()，换成实际的根菜单名称");
+             }
 			 for(Iterator it = parents.iterator(); it.hasNext();){
 				 DOMenuModel pMenu = (DOMenuModel)it.next();
  %>

@@ -36,15 +36,7 @@ body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px}
 </style>
 <script language="javascript">
 
-//开启遮罩
-function loading(){
-	showMainMsg("body",90,14,"center","loading","","n");
-}
-//关闭遮罩
 
-function loadClose(){
-	closeWin();
-}
 $(function(){
 //回车事件
   $(document).keypress(function (e) {
@@ -102,6 +94,8 @@ $(function(){
 	   $.post(globalURL + "ssocontroller",paras,
 			function (data, textStatus){
 			   var retValue = unescape(data.returnValue);
+
+			 	closeWin();
 			
 			   if('success'==retValue){
 			        window.location= globalURL + "pane_dorgauth.pml?isApp=true";
