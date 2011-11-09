@@ -65,10 +65,8 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		List allAuthBIs = SessionParterFactory.getSessionParter()
 				.getBIAuthConfigByRole(parterUid);
 		System.out.println("allAuthBIs:::" + allAuthBIs);
-
-		DOBO authBO = DOBO.getDOBOByName(boName);
 		baseAuth(parterUid, allAuthBIs, boName,
-				DOAuthorization.WHAT_BOINSTANCE,authBO.getObjUid());
+				DOAuthorization.WHAT_BOINSTANCE,boName);
 
 	}
 

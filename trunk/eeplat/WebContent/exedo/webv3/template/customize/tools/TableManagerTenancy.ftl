@@ -35,7 +35,7 @@
 									<TBODY>
 										<TR>
 											<TD class="b_left"></TD>
-											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='new' > 新增 </button>
+											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='delete' > 新增 </button>
 <script>
   var globali = 2;
   $('#402880242a65aabd012a65aac8c2000a').bind('click',function(){
