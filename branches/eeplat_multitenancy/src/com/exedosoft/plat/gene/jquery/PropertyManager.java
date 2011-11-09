@@ -169,6 +169,11 @@ public class PropertyManager {
 				geneForm(pro,gmInsert);
 			}		
 			
+			DOGridModel gmDulplicate = DOGridModel.getGridModelByName("GM_" + aDOBO.getName()+"_dulplicate");
+			if(gmDulplicate!=null){
+				geneForm(pro,gmDulplicate);
+			}		
+			
 			
 
 			// ///////////////////////UI暂时可以不用先增加
