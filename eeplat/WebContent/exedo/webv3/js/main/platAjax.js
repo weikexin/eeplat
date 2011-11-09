@@ -1025,7 +1025,7 @@ function pageSplit(dataKey,pmlName,formName){
 				    	return;
 				    }
 			  		$(document.body).data(dataKey,"1");
-				    var pmlUrl = getPmlUrl(pmlName,1,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,1,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
@@ -1033,29 +1033,29 @@ function pageSplit(dataKey,pmlName,formName){
 				    if($(document.body).data(dataKey)=="1"){
 				    	return;
 				    }
-				    var curPageNo = parseInt($(document.body).data(dataKey)) - 1;
+				    var curPageNo = parseInt($(document.body).data(dataKey).replace(",","")) - 1;
 				    $(document.body).data(dataKey,"" + curPageNo);
-				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
 			$("#"+dataKey+" .nextPage").bind('click',function(){
 
-				    if(parseInt($("#"+dataKey+" .pageNo").text())>=parseInt(($("#"+dataKey+" .pageSize").text())) ){
+				    if(parseInt($("#"+dataKey+" .pageNo").text().replace(",",""))>=parseInt(($("#"+dataKey+" .pageSize").text().replace(",",""))) ){
 				    	return;
 				    }
-				    var curPageNo = parseInt($("#"+dataKey+" .pageNo").text()) + 1;
+				    var curPageNo = parseInt($("#"+dataKey+" .pageNo").text().replace(",","")) + 1;
 				    $(document.body).data(dataKey,"" + curPageNo);
-				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
 			$("#"+dataKey+" .lastPage").bind('click',function(){
-				    if(parseInt($("#"+dataKey+" .pageNo").text())==$("#"+dataKey+" .pageSize").text()){
+				    if(parseInt($("#"+dataKey+" .pageNo").text().replace(",",""))==$("#"+dataKey+" .pageSize").text().replace(",","")){
 				    	return;
 				    }
-				    $(document.body).data(dataKey,$("#"+dataKey+" .pageSize").text());
-				    var pmlUrl = getPmlUrl(pmlName,$("#"+dataKey+" .pageSize").text(),$("#"+dataKey+" .rowSize").text() );
+				    $(document.body).data(dataKey,$("#"+dataKey+" .pageSize").text().replace(",",""));
+				    var pmlUrl = getPmlUrl(pmlName,$("#"+dataKey+" .pageSize").text().replace(",",""),$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 
