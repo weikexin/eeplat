@@ -81,6 +81,24 @@
 		</thead>
 		<#--Table Header部分输出完毕-->
 		<tbody>
+		
+		
+				
+		<tr id="tr0"  style="display:none">
+			<#if model.NO><#--是否有数字序列-->
+				<td align='center'></td>
+			</#if>
+			<#if model.checkBox><#--定义CheckBox-->
+				<td style="align: center" >&nbsp;&nbsp;<input type ='checkbox' class='list_check'  name='checkinstance'/> <input type ='hidden'  name='checkinstance_hidden'/> </td>
+			<#elseif model.radio>
+				<td align='center'><input type ='radio'  name='checkinstance'/>   <input type ='hidden'  name='checkinstance_hidden'/>  </td>
+			</#if>
+			<#--输出其它的头标题 ins:{'l10n':'中国','name':'china','location':'a'}    item:{'key':'l10n'}--> 
+			<#list model.normalGridFormLinks as item> 
+		            <td  <#if item.noWrapValue>nowrap='nowrap'</#if> <#compress>  <@JudgeAlign item/></#compress>  style="${item.style?if_exists}" >  ${item.htmlValue}  </td> 
+			</#list>
+		</tr>
+		
 	   <#list data as ins>
 			<tr  value='${ins.uid?if_exists}'  title='${ins.name?if_exists}'>
 			<#if model.NO><#--是否有数字序列-->

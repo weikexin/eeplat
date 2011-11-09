@@ -231,7 +231,8 @@ public class AProjectForwarderJquery {
 			// ////////同名DOMenuModel
 			dmRoot.setName(project.getName() + "_root");
 			dmRoot.setL10n("欢迎使用" + project.getL10n());
-			DAOUtil.INSTANCE().store(dmRoot);
+			DOService storeRootMenu = DOService.getService("DO_UI_MenuModel_Insert_firstlevel");
+			DAOUtil.INSTANCE().store(dmRoot,storeRootMenu);
 			
 			
 //			////更新菜单获取的sql语句

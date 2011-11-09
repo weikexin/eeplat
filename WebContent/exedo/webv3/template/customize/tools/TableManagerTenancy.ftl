@@ -62,7 +62,7 @@
 										<TR>
 											<TD class="b_left"></TD>
 											<TD class="b_center"> 
- <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='search'> 删除</button>
+ <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='delete'> 删除</button>
  <script>
  
  

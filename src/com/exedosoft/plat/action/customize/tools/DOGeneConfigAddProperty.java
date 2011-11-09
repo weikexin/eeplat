@@ -9,7 +9,7 @@ import com.exedosoft.plat.gene.jquery.PropertyManager;
 public class DOGeneConfigAddProperty extends DOAbstractAction {
 
 	/**
-	 * 
+	 * 现在的已经不生成配置数据了，更改后生成数据的是DOAlterTable
 	 */
 	private static final long serialVersionUID = 4555077593344493040L;
 
