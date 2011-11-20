@@ -31,11 +31,15 @@
 -->
 </style>
 </head>
+
 <body class="login">
+
+
+<div align="center" style="margin:7em 7em 0 7em" > <img border=0 height=125px  src="images/logo.png"/>
+</div>
+
 <div id="login">
-
-<h1><a  title="云鹤平台"><img border=0 height=125px width=330px src="images/logo.png"/></a></h1>
-
+<br/>
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label>用户名 </label> <br />
