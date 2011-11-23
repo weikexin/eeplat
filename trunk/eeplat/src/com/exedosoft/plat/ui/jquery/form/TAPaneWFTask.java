@@ -16,6 +16,8 @@ import com.exedosoft.wf.wfi.ProcessInstance;
 /**
  * 模板本身定义的模板优先
  * 
+ * 如发生不能弹出的情况，应该是目标面板没有定义
+ * 
  * @author aa
  * 
  */

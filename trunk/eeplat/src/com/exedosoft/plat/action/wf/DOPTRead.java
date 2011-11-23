@@ -69,7 +69,10 @@ public class DOPTRead extends DOAbstractAction {
 					+ getDefault(aNode.getRejectTxt()) + "' autoService='"
 					+ autoServiceName + "' authType='"
 					+ authType + "' paneName='"
-					+ paneName + "' decisionExpression='"
+					+ paneName 
+					 + "' subflow='"
+						+ getDefault(aNode.getNodeExt1())
+					+ "' decisionExpression='"
 					+ getDefault(aNode.getDecisionExpression()) + "' decisionType='"
 					+ deciType + "' nodeDesc='"
 					+ getDefault(aNode.getNodeDesc())

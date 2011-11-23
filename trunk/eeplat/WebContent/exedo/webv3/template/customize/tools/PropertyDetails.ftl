@@ -20,6 +20,7 @@
 									$("#trRejectTxt").css('display','none');	
 									$("#trAutoService").css('display','none');	
 									$("#trPaneName").css('display','none');
+									$("#trNodeExt1").css('display','none');
 							}
 							
 							if( nodetype=='start'
@@ -31,10 +32,12 @@
 									$("#trDecisionExpression").css('display','none');	
 									$("#trDecisionType").css('display','none');	
 									$("#trAutoService").css('display','none');	
+									$("#trNodeExt1").css('display','none');
 							}
 							
 							
-							if( nodetype=='auto' ){
+							if( nodetype=='auto' ||  nodetype=='subFlow'
+							 ){
 									$("#trPaneName").css('display','none');
 									$("#trDecisionExpression").css('display','none');	
 									$("#trDecisionType").css('display','none');	
@@ -45,6 +48,11 @@
 									$("#trSpecName").css('display','none');	
 									$("#trPassTxt").css('display','none');	
 									$("#trRejectTxt").css('display','none');	
+									if(nodetype=='subFlow'){
+										$("#trAutoService").css('display','none');	
+									}else{
+										$("#trNodeExt1").css('display','none');
+									}
 							}
 							
 							
@@ -66,7 +74,8 @@
 						  $("#decisionExpression").val(selectedNode.getAttribute('decisionexpression'));	
 						  
 						  $("#decisionType").val(selectedNode.getAttribute('decisiontype'));	
-						  $("#nodeDesc").val(selectedNode.getAttribute('nodedesc'));	
+						  $("#nodeDesc").val(selectedNode.getAttribute('nodedesc'));
+						  $("#node_ext1").val(selectedNode.getAttribute('subflow'));		
 						  
 						  ////刷新总线 当前节点为选中的节点
 						  callPlatBus({'paras':'dataBus=setContext&contextKey=do_pt_node_reference&contextValue=' + selectedNode.getAttribute('id') });
@@ -102,6 +111,7 @@
 						selectedNode.setAttribute("decisionexpression",$("#decisionExpression").val());
 						selectedNode.setAttribute("decisiontype",$("#decisionType").val());
 						selectedNode.setAttribute("nodedesc",$("#nodeDesc").val());
+						selectedNode.setAttribute("subflow",$("#node_ext1").val());
 						
 						
 						
@@ -156,12 +166,12 @@
 							<select	name="authType" id="authType" title='权限验证类型'>
 	
 								<option value="0">标准权限表</option>
-								<option value="0">==以下类型不适合通用的VIEW==</option>
+								<option value="-1">==以下类型不适合通用的VIEW==</option>
 								<option value="3">数据拥有者</option>
 								<option value="8">运行时指定用户</option>
 								<option value="16">运行时指定角色</option>
 								<option value="18">运行时通过类指定于工作流权限表</option>
-								<option value="0">==以下类型只能通过API获取个人工作列表==</option>
+								<option value="-1">==以下类型只能通过API获取个人工作列表==</option>
 								<option value="1">使用脚本</option>
 								<option value="2">使用JAVA类</option> 
 							</select>	
@@ -179,10 +189,10 @@
 						
 						
 						<tr id="trSpecName">
-							<td  width='35%'>数据拥有者字段或用户/角色界面字段：</td>
+							<td  width='35%'>数据拥有者标识：</td>
 							<td   align='left'>
 								<input					type='text' name='specName'
-								id='specName' title='数据拥有者字段或用户/角色界面字段'
+								id='specName' title='数据拥有者标识'
 								size="25" /></td>
 						</tr>
 						
@@ -237,6 +247,13 @@
 								size="25" /></td>
 						</tr>
 						
+					    <tr id='trNodeExt1'>
+							<td width='35%'>关联流程：</td>
+							<td   align='left'>
+								<input	type='text' name='node_ext1'
+								 title='关联流程' id='node_ext1'
+								size="25" >  </td>
+						</tr>
 						
 						<tr>
 							<td width='35%'>节点描述：</td>
@@ -245,6 +262,7 @@
 								id='nodeDesc' title='节点名称'
 								size="20" > </textarea>  </td>
 						</tr>
+						
 
 							<tr>
 								<td  height='30' valign='bottom' colspan=2 style="text-align:center">

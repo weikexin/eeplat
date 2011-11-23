@@ -410,15 +410,19 @@ function popupDialog(id,title,href,width,height){
 			modal: true
 		}); 
 
+
 		$('#F' + id).load(href);
 		$( '#F' + id ).dialog( "open" );
 }
 
 function createFloatDiv(id,title) {
-
-    var htmlStr = "<div id='F" + id  + "' title='"
-	+ title + "'></div> \n";
-	$(document.body).append(htmlStr); 
+	
+	if($("#F" + id).size() == 0){
+	
+	    var htmlStr = "<div id='F" + id  + "' title='"
+		+ title + "'></div> \n";
+		$(document.body).append(htmlStr);
+	}
 }
 
 
