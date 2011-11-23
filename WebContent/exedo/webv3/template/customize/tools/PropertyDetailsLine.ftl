@@ -1,51 +1,3 @@
-	 <script>
-				//获得参数的方法
-			$(function(){
-					var selectedLineTxt = window.opener.selectedLineTxt;
-					if(selectedLineTxt){
-						var selectedLine = window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id').substring(4));
-						$("#condition").val(selectedLine.getAttribute("condition"));
-						$("#ui_show").val(selectedLine.getAttribute("showvalue"));
-					}
-				});			
-				
-				function setValues(form1){
-					
-					var aValue = form1.condition.value;
-					var showValue = form1.ui_show.value;
-					
-					if(aValue==null || $.trim(aValue)==''){
-						alert("表达式不可以为空");
-						form1.condition.focus();
-					  return;	
-					}
-					
-				
-					if(showValue==null || $.trim(showValue)==''){
-						alert("界面显示不可以为空");
-						form1.ui_show.focus();
-					  return;	
-					}
-
-					var selectedLineTxt = window.opener.selectedLineTxt;
-					if(selectedLineTxt){
-
-								var selectedLine = window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id').substring(4));
-								selectedLine.setAttribute("condition",aValue);
-								selectedLine.setAttribute("showvalue",showValue);
-						    window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id')).firstChild.nodeValue=showValue;
-					   }else{
-					   	alert("系统故障，请与管理员联系!");
-					   	}
-					   	window.close();
-
-						//var svgDoc = svgWin.SVGDocument;
-						//var selectedNode = svgWin.selectedNode;
-						//svgDoc.getElementById('txt_' + selectedNode.getAttribute('id')).firstChild.nodeValue=aValue;
-						
-				} 
-		</script>
-
 		<br/>
 		<form name="form1">
 			
@@ -86,5 +38,49 @@
 
 		</form>		
 			
+ <script>
+				//获得参数的方法
 
-		</form>		
+				var selectedLineTxt = window.opener.selectedLineTxt;
+					if(selectedLineTxt){
+						var selectedLine = window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id').substring(4));
+						$("#condition").val(selectedLine.getAttribute("condition"));
+						$("#ui_show").val(selectedLine.getAttribute("showvalue"));
+				}
+				
+				function setValues(form1){
+					
+					var aValue = form1.condition.value;
+					var showValue = form1.ui_show.value;
+					
+					if(aValue==null || $.trim(aValue)==''){
+						alert("表达式不可以为空");
+						form1.condition.focus();
+					  return;	
+					}
+					
+				
+					if(showValue==null || $.trim(showValue)==''){
+						alert("界面显示不可以为空");
+						form1.ui_show.focus();
+					  return;	
+					}
+
+					var selectedLineTxt = window.opener.selectedLineTxt;
+					if(selectedLineTxt){
+
+								var selectedLine = window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id').substring(4));
+								selectedLine.setAttribute("condition",aValue);
+								selectedLine.setAttribute("showvalue",showValue);
+						    window.opener.svgDoc.getElementById(selectedLineTxt.getAttribute('id')).firstChild.nodeValue=showValue;
+					   }else{
+					   	alert("系统故障，请与管理员联系!");
+					   	}
+					   	window.close();
+
+						//var svgDoc = svgWin.SVGDocument;
+						//var selectedNode = svgWin.selectedNode;
+						//svgDoc.getElementById('txt_' + selectedNode.getAttribute('id')).firstChild.nodeValue=aValue;
+						
+				} 
+		</script>

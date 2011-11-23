@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>云鹤平台工作流建模工具</title>
+<title>EEPlat工作流建模工具</title>
 <style type="text/css">
 @import "jquery.svg.css";
 
@@ -35,10 +35,10 @@
 
 <script type="text/javascript">
 
-    if($.browser.msie){
+    /* if($.browser.msie){
 
     	document.write("Workflow Tools not Supports IE! Please Try FireFox、Chrome.");
-    } 
+    } */ 
 	
  	var selectedMother = null;//选中的模板
 	var selectedNode = null;//选中的节点
@@ -207,8 +207,12 @@ $(function() {
 					
 					////加载xml
 					$("#property",svg.root()).bind("click",function(evt){
-						  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true" +  "',window,'scroll:0;status:0;resizable:1;dialogWidth:680px;dialogHeight:520px');
-										
+						if(selectedNode){
+							showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
+						}
+						//else if(selectedLine){///现在只是简化处理，只针对选中的文本，需要线文本和线之间建立管理
+						//	showDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true&vid=') ;
+						//}				
 					});
 					///加载该模板的流程图
 					loadWfXml();
@@ -218,7 +222,16 @@ $(function() {
 	);
 });
 
-
+//打开模态窗口
+function showDialog(_url) {
+    if ($.browser.msie) {//ie的情形
+    	window.open(_url, "", 'modal=yes;');
+    }
+    else { //其它browser eg. firefox 
+    	var OpenedWindow = window.open(_url, "", 'modal=1;');
+        OpenedWindow.focus();
+    }
+}
 
 function doMouseUpMother(evt,svg){
 	
@@ -423,7 +436,7 @@ function doClick(evt){
 
 	if(evt.detail==2){
 	  var vid = $(o).attr('id');
-		  
+
 	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:680px;dialogHeight:520px');
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
@@ -465,13 +478,14 @@ function doClickSelectLine(evt)//选中某line元素，stroke变为blue
 }
 
 
+
 function doClickLineTxt(evt){
 
 	var object = evt.target;
 	selectedLineTxt = object;		
 	if(evt.detail==2){
 	  var vid = $(object).attr('id');
-	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true?vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:400px;dialogHeight:200px');
+	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true&vid=' + vid,window,'scroll:0;status:0;resizable:1;dialogWidth:400px;dialogHeight:200px');
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
 		return;
@@ -778,8 +792,14 @@ function addNewNode(aNode)//增加新节点,user流默认property为none
 			}else{
 							shape.setAttribute("specname", ""); 
 			}
-				
-		  
+
+
+			if(aNode.subflow){
+				shape.setAttribute("subflow", aNode.subflow); 
+			}else{
+				shape.setAttribute("subflow", ""); 
+			}
+  
 
 			
 			nodeType = aNode.nodeType;
@@ -998,6 +1018,7 @@ function save()//生成流程串
 				+"' authType='" + o.getAttribute("authtype")
 				+"' specName='" + o.getAttribute("specname")
 				
+				+"' subflow='" + o.getAttribute("subflow")
 				+"' autoService='" + o.getAttribute("autoservice");
 
 			   if(o.getAttribute("decisionexpression")!=null){
