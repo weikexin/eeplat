@@ -127,6 +127,8 @@ public class DOPTStore extends DOAbstractAction {
 					ptNode.setPassTxt(e.getAttribute("passTxt"));
 					ptNode.setRejectTxt(e.getAttribute("rejectTxt"));
 					ptNode.setSpecName(e.getAttribute("specName"));
+					ptNode.setNodeExt1(e.getAttribute("subflow"));
+					
 					if(e.getAttribute("x")!=null){
 						ptNode.setX(Integer.parseInt(e.getAttribute("x")));
 					}

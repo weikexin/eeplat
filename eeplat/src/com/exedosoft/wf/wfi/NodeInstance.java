@@ -32,11 +32,14 @@ import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.plat.ActionFactory;
 import com.exedosoft.wf.WFAccess;
+import com.exedosoft.wf.WFEngine;
+import com.exedosoft.wf.WFEngineFactory;
 import com.exedosoft.wf.WFException;
 import com.exedosoft.wf.WFJudge;
 import com.exedosoft.wf.WFUtil;
 import com.exedosoft.wf.pt.NodeDenpendency;
 import com.exedosoft.wf.pt.PTNode;
+import com.exedosoft.wf.pt.ProcessTemplate;
 
 /**
  * 每个模板的PTVars中至少有一个ptvar 是 TYPE_BO这种类型的。 Node Instance初始化时，
@@ -584,8 +587,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 		List list = this.getFinishFlowDepts();
 
-		System.out.println("Finish Flow Depts==========");
-		System.out.println(list);
+
 		StringBuffer buffer = new StringBuffer();
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			String aDept = (String) it.next();
@@ -615,8 +617,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 		List list = this.getFinishFlowPerformers();
 
-		System.out.println("Finish Flow Performers==========");
-		System.out.println(list);
 		StringBuffer buffer = new StringBuffer();
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			String aPerformer = (String) it.next();
@@ -1031,9 +1031,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			SessionContext us = DOGlobals.getInstance().getSessoinContext();
 			BOInstance formI = us.getFormInstance();
 			String rTxt = "";
-			System.out.println("formI=====" + formI);
 			PTNode node = this.getNode();
-			System.out.println("node=====" + node);
 			if (formI != null && node != null) {
 				if (node.getRejectTxt() != null
 						&& !"".equals(node.getRejectTxt().trim())) {
@@ -1218,12 +1216,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 		BOInstance formI = us.getFormInstance();
 
-		System.out.println("formI==-===" + formI);
-		System.out.println("formI==-===" + formI);
-		System.out.println("formI==-===" + formI);
-		System.out.println("formI==-===" + formI);
-		System.out.println("formI==-===" + formI);
-
 		// //////////////从界面获取用户的录入，更新变量对应的值
 		try {
 			if (formI != null) {
@@ -1316,11 +1308,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 		 */
 		dealProcessState(this.nodeStateShow);
 
-		if (this.getNodeType() == PTNode.TYPE_START) {
-
-			System.out.println(this);
-
-		}
 
 		try {
 			DAOUtil.BUSI().store(this);
@@ -1336,14 +1323,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 						.intValue() == PTNode.TYPE_SELF)) {
 			return;
 		}
+		
+		
 
 		/**
 		 * 自动Service 执行节点
 		 */
 
-		/**
-		 * 人工节点人工执行
-		 */
 		if (getNodeType() != null
 				&& (getNodeType().intValue() == PTNode.TYPE_SERVICE_AUTO)) {
 
@@ -1357,6 +1343,32 @@ public class NodeInstance extends BaseObject implements Serializable {
 				}
 			}
 		}
+		
+		
+		
+		/**
+		 * 子流程
+		 */
+		if (getNodeType() != null
+				&& (getNodeType().intValue() == PTNode.TYPE_SUBPROCESS)){
+			String subFlowName = this.getNodeExt1();
+			if(subFlowName!=null && !subFlowName.trim().equals("")){
+				ProcessTemplate subPT = ProcessTemplate.getPTByName(subFlowName);
+				if(subPT!=null){
+					WFEngine wfi = WFEngineFactory.getWFEngine();
+					ProcessInstance subPI = wfi.startProcess(subPT);
+					this.setNodeExt2(subPI.getObjUid());
+					try {
+						DAOUtil.BUSI().store(this);
+					} catch (ExedoException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			return;
+		}
+		
 		finishNode();
 	}
 
@@ -1401,9 +1413,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 		//
 		// WFDAO dao = new WFDAO();
 		// /可以被拦截
-		processInstance = this.getProcessInstance();
+		this.processInstance = this.getProcessInstance();
 		if (state != null && !"".equals(state.trim())) {
-			processInstance.setCurState(state);
+			this.processInstance.setCurState(state);
 		}
 		// else if (thisNode != null && thisNode.getNodeStateShow() != null
 		// && !thisNode.getNodeStateShow().trim().equals("")) {
@@ -1411,8 +1423,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// }
 
 		// if (!this.isFirstActivityNode()) {
-		processInstance.setCurStateTime(this.getNodeDate());
-		processInstance.setCurStateUser(this.getPerformer());
+		this.processInstance.setCurStateTime(this.getNodeDate());
+		this.processInstance.setCurStateUser(this.getPerformer());
 		// }
 		// else {// /////////第一个人工节点启动 才算是真正的启动
 		// processInstance.setExeStatus(ProcessInstance.STATUS_RUN);
@@ -1533,7 +1545,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 				// WFDAO dao = new WFDAO();
 				// //如果还有未完成的节点则流程不能结束
 				finishFlow();
-			} else {
+			} else if(this.getNodeType() != null
+					&& this.getNodeType().intValue() != PTNode.TYPE_SUBPROCESS){
 				dealFailure("该节点未找到后置节点执行:");
 			}
 		}
@@ -1932,6 +1945,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 		ni.setSpecName(node.getSpecName());
 		ni.setNodeStateShow(node.getNodeStateShow());
 		ni.setNodeStateShowBack(node.getNodeStateShowBack());
+		ni.setNodeExt1(node.getNodeExt1());
+		ni.setNodeExt2(node.getNodeExt2());
 		ni.setX(node.getX());
 		ni.setY(node.getY());
 

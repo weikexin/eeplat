@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>云鹤平台工作流建模工具</title>
+<title>EEPlat工作流建模工具</title>
 <style type="text/css">
 @import "jquery.svg.css";
 
@@ -207,7 +207,12 @@ $(function() {
 					
 					////加载xml
 					$("#property",svg.root()).bind("click",function(evt){
-						showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;				
+						if(selectedNode){
+							showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
+						}
+						//else if(selectedLine){///现在只是简化处理，只针对选中的文本，需要线文本和线之间建立管理
+						//	showDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true&vid=') ;
+						//}				
 					});
 					///加载该模板的流程图
 					loadWfXml();
@@ -432,7 +437,7 @@ function doClick(evt){
 	if(evt.detail==2){
 	  var vid = $(o).attr('id');
 
-	  showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
+	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:680px;dialogHeight:520px');
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
 		
@@ -473,13 +478,14 @@ function doClickSelectLine(evt)//选中某line元素，stroke变为blue
 }
 
 
+
 function doClickLineTxt(evt){
 
 	var object = evt.target;
 	selectedLineTxt = object;		
 	if(evt.detail==2){
 	  var vid = $(object).attr('id');
-	  showDialog('<%=request.getContextPath()%>/pane_wf_propertydetails.pml?isApp=true&vid=') ;
+	  window.showModalDialog('<%=request.getContextPath()%>/pane_wf_propertydetailsline.pml?isApp=true&vid=' + vid,window,'scroll:0;status:0;resizable:1;dialogWidth:400px;dialogHeight:200px');
 	 //  popupDialog("aaa","属性编辑器",'propertyDetails.html?vid=' + vid );
 		//browserEval(openUrl);
 		return;
@@ -786,8 +792,14 @@ function addNewNode(aNode)//增加新节点,user流默认property为none
 			}else{
 							shape.setAttribute("specname", ""); 
 			}
-				
-		  
+
+
+			if(aNode.subflow){
+				shape.setAttribute("subflow", aNode.subflow); 
+			}else{
+				shape.setAttribute("subflow", ""); 
+			}
+  
 
 			
 			nodeType = aNode.nodeType;
@@ -1006,6 +1018,7 @@ function save()//生成流程串
 				+"' authType='" + o.getAttribute("authtype")
 				+"' specName='" + o.getAttribute("specname")
 				
+				+"' subflow='" + o.getAttribute("subflow")
 				+"' autoService='" + o.getAttribute("autoservice");
 
 			   if(o.getAttribute("decisionexpression")!=null){

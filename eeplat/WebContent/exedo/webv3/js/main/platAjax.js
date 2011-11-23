@@ -558,21 +558,25 @@ function getShorterParas(paras){
 
 
 function updateEditorFormValue()
-{	 try {
+{	 
+	try {
 			 ///fckeditor
                 for ( i = 0; i < parent.frames.length; ++i )
                         if ( parent.frames[i].FCK )
                                 parent.frames[i].FCK.UpdateLinkedField();
-    ////codemirror
+	}catch(e){
+	 }
+	
+	try{
+	    ////codemirror
 	    if(mirrorEditor){
 		    mirrorEditor.save();
 	    }
 	    if(mirrorEditor2){
 	    	mirrorEditor2.save();
 	    }
-
 	}catch(e){
-	 }          
+	}
 }
 
 

@@ -21,7 +21,7 @@ import com.exedosoft.plat.ExedoException;
 
 
 /**
- * @todo
+ * @todo  current在并行状态下会出问题，所以多个流程 并行的话不能用current的参数
  * @todo  应该加一种类型,子机发送失败
  */
 
