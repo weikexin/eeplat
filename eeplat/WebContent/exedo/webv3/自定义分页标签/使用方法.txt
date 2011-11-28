@@ -1,0 +1,17 @@
+page=this.memoManager.getByPage(page, key, listType, listRight, userId);
+		PageBean pageBean=new PageBean(page.getResult(),page.getTotalCount(),page.getPageNo(),page.getPageSize());
+		PageTag tag=new PageTag();
+		tag.setPageBean(pageBean);
+		String info=tag.getPage();
+		pageBean.setInfo(info);
+		Struts2Utils.getRequest().setAttribute("pageBean", pageBean);
+
+
+jsp
+页面Div里面直接显示${pageBean.info}
+再实现
+//每个分页都要实现此方法 pageNo为当前的页数
+function gotoMyPage(pageNo){
+ var total = ${page.totalPages};					
+ 
+}											
