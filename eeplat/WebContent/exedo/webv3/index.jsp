@@ -22,12 +22,7 @@
 <style type="text/css">
 <!--
 #numImg{ cursor:pointer}
-.btn{
-	width:40px;
-	height:22px;
-	border:0px;
-	cursor:pointer
-}
+
 -->
 </style>
 </head>
@@ -37,9 +32,10 @@
 
 <div align="center" style="margin:7em 7em 0 7em" > <img border=0 height=125px  src="images/logo.png"/>
 </div>
+<br/>
 
 <div id="login">
-<br/>
+
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label>用户名 </label> <br />
@@ -52,15 +48,15 @@
 	<p class="forgetmenot">
 	
 	     <label>验证码</label>
-       <input type="text" name="randcode"  style="height:16px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;">
-        <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" >
+       <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
+        <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
 	
 	
 	
 	</p>
 	<p class="submit">
-		<img src="images/login/dl.gif" class="btn"><img src="images/login/cz.gif" class="btn">
-	</p>
+			<img src="images/login/btn_sign-in.png" class="btn"/>
+    </p>
 </form>
 
 <div>
