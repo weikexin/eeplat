@@ -18,23 +18,24 @@
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/login.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
 
 <style type="text/css">
 <!--
 #numImg{ cursor:pointer}
-.btn{
-	width:40px;
-	height:22px;
-	border:0px;
-	cursor:pointer
-}
+
 -->
 </style>
 </head>
-<body class="login">
-<div id="login">
 
-<h1><a  title="云鹤平台"><img border=0 height=125px width=330px src="images/logo.png"/></a></h1>
+<body class="login">
+
+
+<div align="center" style="margin:7em 7em 0 7em" > <img border=0   src="<%=request.getContextPath()%>/exedo/webv3/images/logo_console.png"/>
+</div>
+<br/>
+
+<div id="login">
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
@@ -48,15 +49,15 @@
 	<p class="forgetmenot">
 	
 	     <label>验证码</label>
-       <input type="text" name="randcode"  style="height:16px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;">
-        <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" >
+       <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
+        <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
 	
 	
 	
 	</p>
 	<p class="submit">
-		<img src="images/login/dl.gif" class="btn"><img src="images/login/cz.gif" class="btn">
-	</p>
+			<img src="images/login/btn_sign-in.png" class="btn"/>
+    </p>
 </form>
 
 <div>
@@ -79,6 +80,9 @@ $(function(){
 	);
 
   $(function(){
+	  
+	  $("body").css("height",$(window).height());
+	  
   	  $(".btn:first").bind("click",function(){
   	  		var userName = $("input:eq(0)").val();
   	  		var passWord = $("input:eq(1)").val();
@@ -116,12 +120,14 @@ $(function(){
   //登录
   function submitForm(){
 
-
+	   loading("登录中，请稍后......");
 	   var paras =  $('#loginform').serialize();
 	   paras = paras + "&contextServiceName=do_org_account_findbynameAndPassword"
 	   $.post(globalURL + "ssocontroller",paras,
-			function (data, textStatus){
-			   var retValue = unescape(data.returnValue);
+			function (data){
+
+			   var ret  = $.parseJSON(data);
+			   var retValue = unescape(ret.returnValue);
 			
 			   if('success'==retValue){
 			        window.location= globalURL + "abp_base_pane.pml?isApp=true";
@@ -129,9 +135,10 @@ $(function(){
 			   		
 				   	alert(retValue);
 				   	imgChange($("#numImg"));
+				   	closeWin();
 			   }
 				
-	  },"json");
+	  });
 	  
   }
 </script>
