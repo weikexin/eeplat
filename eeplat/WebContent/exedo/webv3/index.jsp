@@ -18,6 +18,8 @@
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/login.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
+
 
 <style type="text/css">
 <!--
@@ -30,7 +32,7 @@
 <body class="login">
 
 
-<div align="center" style="margin:7em 7em 0 7em" > <img border=0 height=125px  src="images/logo.png"/>
+<div align="center" style="margin:7em 7em 0 7em" > <img border=0   src="<%=request.getContextPath()%>/exedo/webv3/images/logo_console.png"/>
 </div>
 <br/>
 
@@ -79,6 +81,9 @@ $(function(){
 	);
 
   $(function(){
+	  
+	  $("body").css("height",$(window).height());
+	  
   	  $(".btn:first").bind("click",function(){
   	  		var userName = $("input:eq(0)").val();
   	  		var passWord = $("input:eq(1)").val();
@@ -116,7 +121,7 @@ $(function(){
   //登录
   function submitForm(){
 
-
+	   loading("登录中，请稍后......");
 	   var paras =  $('#loginform').serialize();
 	   paras = paras + "&contextServiceName=do_org_account_findbynameAndPassword"
 	   $.post(globalURL + "ssocontroller",paras,
@@ -131,6 +136,7 @@ $(function(){
 			   		
 				   	alert(retValue);
 				   	imgChange($("#numImg"));
+				   	closeWin();
 			   }
 				
 	  });

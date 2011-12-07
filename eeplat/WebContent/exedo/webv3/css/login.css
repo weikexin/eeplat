@@ -1,7 +1,6 @@
-
 body {
 font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"ËÎÌו"
-padding-top:30px;
+ height:100%;
 }
 
 
@@ -12,8 +11,6 @@ label {
 color:#777777;
 font-size:13px;
 }
-
-
 
 
 #loginform {
@@ -50,6 +47,7 @@ clear:both;
 
 .submit {
 float:right;
+cursor:pointer;
 }
 
 .forgetmenot {
