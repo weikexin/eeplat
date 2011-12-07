@@ -304,9 +304,33 @@ type:类型，loading和loadingImg,登录现在用的是loading,loadingImg是一
 content:弹出框里面得内容，自定义
 isClose:是否有关闭按钮
 */
+//开启遮罩
+
+function loading(aMsg,position){
+
+    var aPos = "body";
+    if(position){
+    	aPos = position;
+    }
+    var msgLen = 150;
+    if(aMsg){
+    	 msgLen = aMsg.length * 15 ;
+    }
+	if(aMsg!=null){
+		showMainMsg(aPos,msgLen,16,"center","sef_defined","<div>&nbsp;&nbsp;" +aMsg + "</div>","n");
+	}else{
+		showMainMsg(aPos,msgLen,16,"center","loading","","n");
+	}	
+
+}
+
 function showMainMsg(position,msgW,msgH,align,type,content,isClose){
-	$("body").prepend("<DIV id=fullBg style='z-index: 199999'></DIV><DIV style='z-index: 299999' id=main_msg></DIV>");
 	
+	if($("#main_msg").size() == 0){
+		$("body").append("<DIV id=fullBg style='z-index: 199999;position:absolute'></DIV><DIV style='z-index: 299999;margin:0;padding:2px;' id=main_msg></DIV>");
+	}else{
+		$("#main_msg").empty();
+	}
 	if(type=="loading"){
 		content="<div >&nbsp;&nbsp;正在加载,请稍后......</div>";
 	}else if(type=="loadingImg"){
@@ -339,27 +363,6 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 		})
 	}
 }
-
-//开启遮罩
-
-function loading(aMsg,position){
-
-    var aPos = "body";
-    if(position){
-    	aPos = position;
-    }
-    var msgLen = 150;
-    if(aMsg){
-    	 msgLen = aMsg.length * 10 + 10;
-    }
-	if(aMsg!=null){
-		showMainMsg(aPos,msgLen,16,"center","sef_defined","<div>&nbsp;&nbsp;" +aMsg + "</div>","n");
-	}else{
-		showMainMsg(aPos,msgLen,16,"center","loading","","n");
-	}	
-
-}
-
 
 
 
@@ -410,19 +413,15 @@ function popupDialog(id,title,href,width,height){
 			modal: true
 		}); 
 
-
 		$('#F' + id).load(href);
 		$( '#F' + id ).dialog( "open" );
 }
 
 function createFloatDiv(id,title) {
-	
-	if($("#F" + id).size() == 0){
-	
-	    var htmlStr = "<div id='F" + id  + "' title='"
-		+ title + "'></div> \n";
-		$(document.body).append(htmlStr);
-	}
+
+    var htmlStr = "<div id='F" + id  + "' title='"
+	+ title + "'></div> \n";
+	$(document.body).append(htmlStr); 
 }
 
 

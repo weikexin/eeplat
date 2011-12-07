@@ -113,13 +113,11 @@ public abstract class DOBaseForm implements DOIView {
 			buffer.append(" onchange='").append(Escape.unescape(fm.getOnChangeJs())).append("' oninput='").append(Escape.unescape(fm.getOnChangeJs())).append("' onpropertychange='").append(Escape.unescape(fm.getOnChangeJs())).append("'");
 		}
 
-	
-		//��ý���ִ��js
+
 		if(fm.getEscapeOnFocusJs() != null && !"".equals(Escape.unescape(fm.getEscapeOnFocusJs().trim()))) {
 			buffer.append(" onfocus='").append(Escape.unescape(fm.getEscapeOnFocusJs())).append("'");
 		}
-		
-		//ʧȥ����ִ��js
+
 		if(fm.getEscapeOnBlurJs() != null && !"".equals(Escape.unescape(fm.getEscapeOnBlurJs().trim()))) {
 			buffer.append(" onblur='").append(Escape.unescape(fm.getEscapeOnBlurJs())).append("'");
 		}

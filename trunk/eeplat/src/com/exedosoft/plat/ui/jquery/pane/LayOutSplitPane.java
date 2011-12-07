@@ -1,9 +1,7 @@
 package com.exedosoft.plat.ui.jquery.pane;
 
-import com.exedosoft.plat.ui.DOIModel;
-import com.exedosoft.plat.ui.DOPaneModel;
 /**
- * 左右分割面板样式的控制器
+ * 左右分割面板样式的控制器,布局界面考虑用jquery.layout改写。
  */
 public class LayOutSplitPane extends TPaneTemplate {
 	
