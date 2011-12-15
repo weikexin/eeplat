@@ -12,6 +12,10 @@
   globalURL = "/<%=DOGlobals.URL%>/";
 </script>  
 
+<%
+  System.out.println("Referer::" + request.getHeader("Referer"));
+%>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
 
@@ -24,7 +28,9 @@
 <style type="text/css">
 <!--
 #numImg{ cursor:pointer}
-
+html,body{
+ overflow:hidden;
+}
 -->
 </style>
 </head>
