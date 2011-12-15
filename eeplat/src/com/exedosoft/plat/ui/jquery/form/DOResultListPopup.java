@@ -125,6 +125,9 @@ public class DOResultListPopup extends DOBaseForm {
 		}
 
 		buffer.append(this.appendValidateConfig(fm));
+		
+		this.appendHtmlJs(buffer, fm);
+		
 		buffer.append("/>");
 
 		buffer.append(

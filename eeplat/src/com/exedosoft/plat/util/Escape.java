@@ -167,6 +167,9 @@ public class Escape {
 		
 		System.out.println(Escape.escape(stest));
 //		System.out.println(URLEncoder.encode(Escape.escape(stest)));
+		
+		System.out.println( new java.sql.Date(System.currentTimeMillis()) );
+
 
 	//	System.out.println(unencapsewith__(stest));
 	}

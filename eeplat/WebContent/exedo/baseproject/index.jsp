@@ -23,7 +23,9 @@
 <style type="text/css">
 <!--
 #numImg{ cursor:pointer}
-
+html,body{
+ overflow:hidden;
+}
 -->
 </style>
 </head>

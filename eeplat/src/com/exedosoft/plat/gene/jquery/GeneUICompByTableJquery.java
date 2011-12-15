@@ -23,6 +23,7 @@ import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOGridModel;
 
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.ui.jquery.form.DOValueDateTime;
 import com.exedosoft.plat.ui.jquery.form.TPaneSelected;
 import com.exedosoft.plat.ui.jquery.form.TServiceSelected;
 import com.exedosoft.plat.ui.jquery.form.TPane;
@@ -66,7 +67,7 @@ public class GeneUICompByTableJquery  {
 	private static DOController formValueSimple = DOController.getControllerByName(DOValueSimple.class
 			.getName());
 
-	private static DOController formValueDate = DOController.getControllerByName(DOValueDate.class
+	private static DOController formValueDate = DOController.getControllerByName(DOValueDateTime.class
 			.getName());
 
 	private static DOController formDateMy97 = DOController
