@@ -170,6 +170,7 @@ public class SSOController extends HttpServlet {
 										.getService("do_org_user_browse");
 								List corrUsers = findUserService
 										.invokeSelect(ma.getObjUid());
+								BOInstance employee = null;
 								try {
 									if (corrUsers == null
 											|| corrUsers.size() == 0) {
@@ -178,8 +179,10 @@ public class SSOController extends HttpServlet {
 										DOService storeUser = DOService
 												.getService("do_org_user_insert");
 										// /建立用户间的对应关系
-										storeUser.store(user);
-										// //由于数据隔离的原因屏蔽
+										user.putValue("user_code", user.getValue("name"));
+										employee = storeUser.store(user);
+										// //由于数据隔离的原因屏蔽，会在运行时自动关联角色，我是怎么做到的呢？=
+										////在SessionParterDefault里面自动增加的，所以下面的代码屏蔽了
 										// // /如果是创建者赋予管理员角色
 										// if
 										// ("2".equals(user.getValue("asrole")))
@@ -192,11 +195,14 @@ public class SSOController extends HttpServlet {
 										// "40288031288a2b8501288a3d009d000d");
 										// storeUserRole.store(paras);
 										// }
+									}else{
+										employee = (BOInstance)corrUsers.get(0);
 									}
 								} catch (ExedoException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+								user.putValue("name", employee.getValue("name"));
 
 								// ///获取缺省工程的URL
 								String default_app_uid = user

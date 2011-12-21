@@ -223,8 +223,8 @@
 					   
 					if(isValid){   
 					
-					  var type = $("select[name='dbtype']").size(); 
-						$("select[name='dbtype']").each(
+					  var type = $("select[name='type']").size(); 
+						$("select[name='type']").each(
 						   function(index,o){
 						     if($(o).parent().parent().attr('id')!='tr0'){
 						       var value = $(o).val(); 
@@ -238,23 +238,7 @@
 						 });
 					}
 					
-					if(isValid){	 
-						 $("input[name='dbsize']").each(
-						   function(index,o){
-						       if((value=='') && isValid){
-						       	 o.focus();
-						         isValid = false;
-						       	 alert("字段长度不能为空!");
-						       	 return;
-						       }else   if(!checkErrNum(value) && isValid){
-						          o.focus();
-						          isValid = false;
-						       	  alert("字段长度只能为数字!");
-						          return;
-						       }
-
-						   });
-					 }
+	
 ////////////////////////////////////////////////有效性判断结束
 
 ////////////////////界面参数传递到后台

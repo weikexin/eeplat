@@ -21,8 +21,8 @@ public class RegisterMail {
 		 * 设置邮件主题和内容
 		 */
 		// 提交、审批的报销单
-		String emailTitle = "云鹤PaaS应用平台邮箱认证";// 邮件主题;
-		StringBuffer emailText = new StringBuffer("尊敬的云鹤PaaS应用平台用户您好！<br/>\n")
+		String emailTitle = "EEPlat PaaS应用平台邮箱认证";// 邮件主题;
+		StringBuffer emailText = new StringBuffer("尊敬的EEPlat PaaS应用平台用户您好！<br/>\n")
 				.append("感谢您的支持，请您对邮箱进行认证。请点击以下链接进行确认：<br/>\n")
 				.append(
 						"<a  target='_opener' href='http://www.eeplat.com/multimanager/reg_active.jsp?tenantId=")

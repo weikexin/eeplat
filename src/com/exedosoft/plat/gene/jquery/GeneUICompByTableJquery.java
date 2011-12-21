@@ -1,41 +1,34 @@
 package com.exedosoft.plat.gene.jquery;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.text.AbstractDocument.Content;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.exedosoft.plat.bo.BOInstance;
-import com.exedosoft.plat.bo.DODataSource;
-import com.exedosoft.plat.bo.DOBOProperty;
-import com.exedosoft.plat.bo.DOService;
-import com.exedosoft.plat.bo.DOServiceRedirect;
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.Transaction;
+import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOBOProperty;
+import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOGridModel;
-
 import com.exedosoft.plat.ui.DOPaneModel;
-import com.exedosoft.plat.ui.jquery.form.TPaneSelected;
-import com.exedosoft.plat.ui.jquery.form.TServiceSelected;
-import com.exedosoft.plat.ui.jquery.form.TPane;
 import com.exedosoft.plat.ui.jquery.form.DOInputHidden;
+import com.exedosoft.plat.ui.jquery.form.DOInputText;
+import com.exedosoft.plat.ui.jquery.form.DOTextArea;
+import com.exedosoft.plat.ui.jquery.form.DOValueDateTime;
+import com.exedosoft.plat.ui.jquery.form.DOValueSimple;
 import com.exedosoft.plat.ui.jquery.form.TClose;
+import com.exedosoft.plat.ui.jquery.form.TPane;
+import com.exedosoft.plat.ui.jquery.form.TPaneSelected;
 import com.exedosoft.plat.ui.jquery.form.TServiceSelectedUf;
 import com.exedosoft.plat.ui.jquery.form.TServiceUf;
 import com.exedosoft.plat.ui.jquery.form.my97.DatePicker;
-import com.exedosoft.plat.ui.jquery.form.DOInputText;
-import com.exedosoft.plat.ui.jquery.form.DOTextArea;
-import com.exedosoft.plat.ui.jquery.form.DOValueDate;
-import com.exedosoft.plat.ui.jquery.form.DOValueSimple;
 import com.exedosoft.plat.ui.jquery.grid.GridConditionAutoTr;
 import com.exedosoft.plat.ui.jquery.grid.GridList;
 import com.exedosoft.plat.ui.jquery.grid.GridSupportMore;
@@ -69,7 +62,7 @@ public class GeneUICompByTableJquery {
 			.getControllerByName(DOValueSimple.class.getName());
 
 	private static DOController formValueDate = DOController
-			.getControllerByName(DOValueDate.class.getName());
+			.getControllerByName(DOValueDateTime.class.getName());
 
 	private static DOController formDateMy97 = DOController
 			.getControllerByName(DatePicker.class.getName());
@@ -179,7 +172,7 @@ public class GeneUICompByTableJquery {
 
 	private void dealMultiL10ns() {
 
-		if (multiL10ns.size() == 0) {
+//		if (multiL10ns.size() == 0) {
 			// /获取 对应的l10n
 			TenancyValues tv = (TenancyValues) DOGlobals.getInstance()
 					.getSessoinContext().getTenancyValues();
@@ -199,7 +192,7 @@ public class GeneUICompByTableJquery {
 					}
 				}
 			}
-		}
+//		}
 
 	}
 
