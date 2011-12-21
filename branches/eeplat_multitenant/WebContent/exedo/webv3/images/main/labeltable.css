@@ -1,0 +1,100 @@
+/*条件表格的样式设置*/
+.labeltable_middle_table {
+	width: 90%;
+	wangbs:expression(this.cellSpacing=1);
+	
+	background: #9EBFE8 
+}
+
+.labeltable_middle_table tr {
+	height: 20px;
+}
+
+.labeltable_middle_td {
+	text-align: right;
+	border:1px;
+	border-style:solid;
+	background-color: #F8FCFF;
+	vertical-align: middle;
+}
+
+.labeltable_middle_td_01 {
+	border:1px;
+	border-style:solid;
+	background-color: #F8FCFF;
+	word-break: break-all;
+	vertical-align: middle;
+}
+.labeltable_middle_td_bar {
+	background-color: #9EBFE8;
+	word-break: break-all;
+	text-align: left;
+	vertical-align: middle;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+}
+
+button {
+
+	BORDER-RIGHT: #9EBFFF 1px solid;
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #9EBFFF 1px solid;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#9EBFFF);
+	BORDER-LEFT: #9EBFFF 1px solid;
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #9EBFFF 1px solid
+	
+}
+
+.box {
+	display: block;
+	text-align: center;
+}
+
+.filterTableCSS{
+	width: 90%;
+	wangbs:expression(this.cellSpacing=1);
+
+	border-spacing:0px;
+	
+	border-style:solid;
+	border:1px;
+	border-Color: #9EBFE8;
+	
+}
+
+
+<!--
+.labeltable_middle_td_bar_label {
+	background-color: #9EBFE8;
+	word-break: break-all;
+	vertical-align: middle;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+	height: 20px
+}
+-->

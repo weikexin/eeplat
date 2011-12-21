@@ -1,0 +1,32 @@
+<export><app>{"dobouid":"402880d831b4317e0131b43407420003","panemodeluid":"402880d831b4317e0131b43419a1000e","webappname":"jxc","l10n":"进销存","objuid":"402880d831b4317e0131b433f8cb0001","name":"jxc"}</app>
+<package><li>{&quot;applicationuid&quot;:&quot;402880d831b4317e0131b433f8cb0001&quot;,&quot;order_num&quot;:&quot;0&quot;,&quot;l10n&quot;:&quot;进销存&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b43406770002&quot;,&quot;name&quot;:&quot; jxc&quot;}</li>
+</package>
+<bo>{"mainpanemodeluid":"402880d831b4317e0131b434082d0004","type":"3","l10n":"进销存_全局","objuid":"402880d831b4317e0131b43407420003","name":" jxc_global_bo","bpuid":"402880d831b4317e0131b43406770002"}</bo>
+<property></property>
+<parameter></parameter>
+<rule></rule>
+<service></service>
+
+<parameter_service></parameter_service>
+<rule_service></rule_service><pane><li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;layoutalign&quot;:&quot;top&quot;,&quot;controlleruid&quot;:&quot;0926c605410d49cc8634c35cd7ea111&quot;,&quot;l10n&quot;:&quot;进销存_头面板&quot;,&quot;linktype&quot;:&quot;5&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b4340b590005&quot;,&quot;name&quot;:&quot; jxc_headerPane&quot;,&quot;linkuid&quot;:&quot;ff80808131275dcc0131275e3b490005&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;controlleruid&quot;:&quot;7a04bcaa1adb48978055fd2d6408107a&quot;,&quot;l10n&quot;:&quot;进销存_工作区域面板&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b43411c20007&quot;,&quot;name&quot;:&quot; jxc_mainpane&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;controlleruid&quot;:&quot;0926c605410d49cc8634c35cd7ea333&quot;,&quot;l10n&quot;:&quot;进销存_根面板&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b434082d0004&quot;,&quot;name&quot;:&quot;pane_ jxc&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;controlleruid&quot;:&quot;0926c605410d49cc8634c35cd7ea555&quot;,&quot;l10n&quot;:&quot;进销存基本内容显示&quot;,&quot;linktype&quot;:&quot;5&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b4341607000b&quot;,&quot;name&quot;:&quot; jxc_MainContent&quot;,&quot;linkuid&quot;:&quot;ff80808131275dcc0131275e3fdd000c&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;targetpaneuid&quot;:&quot;402880d831b4317e0131b4341607000b&quot;,&quot;controlleruid&quot;:&quot;0926c605410d49cc8634c35cd7ea222&quot;,&quot;l10n&quot;:&quot;进销存左边索引面板&quot;,&quot;linktype&quot;:&quot;3&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b434182a000d&quot;,&quot;name&quot;:&quot; jxc_leftindex_pane&quot;,&quot;linkuid&quot;:&quot;402880d831b4317e0131b43413960009&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;controlleruid&quot;:&quot;0926c605410d49cc8634c35cd7ea333&quot;,&quot;l10n&quot;:&quot;进销存菜单&quot;,&quot;linktype&quot;:&quot;3&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b43419a1000e&quot;,&quot;name&quot;:&quot;jxc_mobile_pane&quot;,&quot;linkuid&quot;:&quot;402880d831b4317e0131b43413960009&quot;}</li>
+</pane>
+
+<pane_links><li>{&quot;childpaneuid&quot;:&quot;402880d831b4317e0131b4341607000b&quot;,&quot;parentpaneuid&quot;:&quot;402880d831b4317e0131b43411c20007&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b434176f000c&quot;,&quot;ordernum&quot;:&quot;17&quot;}</li>
+<li>{&quot;childpaneuid&quot;:&quot;402880d831b4317e0131b434182a000d&quot;,&quot;parentpaneuid&quot;:&quot;402880d831b4317e0131b43411c20007&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b4341b09000f&quot;,&quot;ordernum&quot;:&quot;15&quot;}</li>
+<li>{&quot;childpaneuid&quot;:&quot;402880d831b4317e0131b4340b590005&quot;,&quot;parentpaneuid&quot;:&quot;402880d831b4317e0131b434082d0004&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b4340ca10006&quot;,&quot;ordernum&quot;:&quot;5&quot;}</li>
+<li>{&quot;childpaneuid&quot;:&quot;402880d831b4317e0131b43411c20007&quot;,&quot;parentpaneuid&quot;:&quot;402880d831b4317e0131b434082d0004&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b434130a0008&quot;,&quot;ordernum&quot;:&quot;10&quot;}</li>
+</pane_links>
+<grid></grid>
+<form></form>
+<form_relation></form_relation>
+<form_target></form_target>
+<menu><li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;controlleruid&quot;:&quot;0ccb3a1e06c64ca9aae12b14f906dd83&quot;,&quot;l10n&quot;:&quot;欢迎使用进销存&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b43413960009&quot;,&quot;name&quot;:&quot; jxc_root&quot;,&quot;ordernum&quot;:&quot;0&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;parentuid&quot;:&quot;402880d831b4317e0131b43413960009&quot;,&quot;controlleruid&quot;:&quot;0ccb3a1e06c64ca9aae12b14f906dd83&quot;,&quot;l10n&quot;:&quot;进销存菜单&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b43414b0000a&quot;,&quot;name&quot;:&quot; jxc_bp&quot;,&quot;ordernum&quot;:&quot;0&quot;}</li>
+<li>{&quot;categoryuid&quot;:&quot;402880d831b4317e0131b43407420003&quot;,&quot;targetpaneuid&quot;:&quot;_opener_tab&quot;,&quot;parentuid&quot;:&quot;402880d831b4317e0131b43414b0000a&quot;,&quot;controlleruid&quot;:&quot;0ccb3a1e06c64ca9aae12b14f906dd83&quot;,&quot;l10n&quot;:&quot;TEST2&quot;,&quot;objuid&quot;:&quot;402880d831b4317e0131b434bf190010&quot;,&quot;name&quot;:&quot;TEST2&quot;,&quot;linkpaneuid&quot;:&quot;2c90b0e83127a69c013127c5eb6a0152&quot;,&quot;ordernum&quot;:&quot;0&quot;}</li>
+</menu>
+<tree></tree></export>

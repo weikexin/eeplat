@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<meta http-equiv="content-type" content="text/html;charset=gb2312">
+<TITLE>NTKO Office文档控件JSP示例安装指南</TITLE>
+</HEAD>
+<BODY>
+<Center>
+<h2>NTKO Office文档控件JSP示例安装指南</h2>
+<h3><font color=red>本安装指南适用于windows 2000平台+</font></h3>
+<hr width=80%>
+<TABLE BORDER=0 width=80%><tr><td>
+<p>
+安装步骤:
+</p>
+<h3>1、安装j2sdk-1_4_1-windows-i586.exe。</h3>
+<p style="line-height:24pt">
+您可以到<a href="http://java.sun.com/j2se/1.4.1/download.html" target="_blank">Sun公司的下载地址下载：http://java.sun.com/j2se/1.4.1/download.html</a>.<BR>
+下载后安装。比如，安装到D:\j2sdk1.4.1目录。
+</p>
+<h3>2、正确设置JAVA_HOME环境变量。</h3>
+<p style="line-height:24pt">
+设置JDK_HOME环境变量的值为您在第1步中安装的java sdk的位置，如：D:\j2sdk1.4.1
+</p>
+<h3>3、安装jakarta-tomcat V4.0.6版本（您也可以测试新的版本，本示例开发时运行于V4.0.6版本）</h3>
+<p style="line-height:24pt">
+您可以到apache的如下位置下载：<a href="http://archive.apache.org/dist/jakarta/tomcat-4/archive/v4.0.6/bin/" target="_blank">jakarta-tomcat V4.0.6的下载地址：http://archive.apache.org/dist/jakarta/tomcat-4/archive/v4.0.6/bin/</a>.注意要下载<font color=red>jakarta-tomcat-4.0.6.exe</font>文件。<BR>
+下载之后安装。比如，安装到D:\Tomcat 4.0目录。
+</p>
+<h3>4、安装示例程序</h3>
+<p style="line-height:24pt">
+将jspsql.rar解压缩,并将解压缩后生成的整个目录，拷贝到您在第3步中安装jakarta-tomcat的目录下的webapps目录下。比如，D:\Tomcat 4.0\webapps,注意需要连同目录“jspsql”一起拷贝。
+</p>
+<h3>5、创建数据源。</h3>
+<p style="line-height:24pt">
+使用ODBC数据源管理器，添加系统DSN，驱动程序选择"SQL Server",数据源名填写"ntko",并按提示选择SQLServer示例数据库。
+示例数据库的表名为MyUploadTable，字段定义如下：<img src="tabledesign.gif">
+</p>
+<P>
+<h3>6、从浏览器访问：http://your_tomcat_server_ip:8080/jspsql/jspdemo/default.jsp .</h3>
+
+<p>
+</td></tr></table>
+<BR><BR><BR>
+<h3>@版权所有：刘伶训</h3>
+<h3><a href="http://www.ntko.com" target="_blank">http://www.ntko.com</h3>
+<h3><a href="mailto:tanger@ntko.com">tanger@ntko.com</a></h3>
+</center>
+</BODY>
+</HTML>

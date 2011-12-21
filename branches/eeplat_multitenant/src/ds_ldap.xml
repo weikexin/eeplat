@@ -1,0 +1,6 @@
+<config>
+ 		<property name="connection.driver_class">com.octetstring.jdbcLdap.sql.JdbcLdapDriver</property>
+        <property name="connection.url">jdbc:ldap://192.168.0.3:389/o=zephyr.com.cn?SEARCH_SCOPE:=subTreeScope</property>
+        <property name="connection.username">uid=root,o=zephyr.com.cn</property>
+        <property name="connection.password">123123</property>
+</config>
