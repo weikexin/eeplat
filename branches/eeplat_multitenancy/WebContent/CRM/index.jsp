@@ -23,6 +23,9 @@
 <style type="text/css">
 <!--
 #numImg{ cursor:pointer}
+html,body{
+ overflow:hidden;
+}
 
 -->
 </style>
@@ -39,7 +42,7 @@
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
-		<label>用户名 </label> <br />
+		<label>账号 </label> <br />
 		<input type="text" name="name" id="name" class="input"  size="20" tabindex="10" /></label>
 	</p>
 	<p>
@@ -86,7 +89,7 @@ $(function(){
   	  		var passWord = $("input:eq(1)").val();
   	  		var randCode = $("input:eq(2)").val();
 			if(userName==""){
-				alert("请填写用户名!");
+				alert("请填写账号!");
 				return;
 			}
 			if(passWord==""){

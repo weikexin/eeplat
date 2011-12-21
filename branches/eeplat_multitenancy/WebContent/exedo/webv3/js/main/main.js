@@ -275,7 +275,9 @@ function loadWorkbench(path){
 		$("#tab_workbench_container").show();
 	}else{
 	  	$("#mRight").clone().attr("id",'tab_workbench_container').insertAfter("#mRight");
-		$("#tab_workbench_container").load(globalURL + workbenchPath);
+	  	if(workbenchPath!=null && workbenchPath!=""){
+	  		$("#tab_workbench_container").load(globalURL + workbenchPath);
+	  	}
 		$("#mRight").hide();
 		$("#tab_workbench_container").show();
 
