@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<!-- ca filter -->
+	<listener>
+		<listener-class>
+			com.exedosoft.plat.SessionListener
+		</listener-class>
+	</listener>
+
+
+	<listener>
+		<listener-class>
+			com.exedosoft.plat.ContextListener
+		</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>doFilter</filter-name>
+		<filter-class>com.exedosoft.plat.DOFilter</filter-class>
+	</filter>
+
+
+
+	<filter>
+		<filter-name>gzip</filter-name>
+		<filter-class>
+			com.ken.finance.gzip.CompressionFilter
+		</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+		<filter-name>gzip</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>doFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>
+			net.fckeditor.connector.ConnectorServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>mvccontroller</servlet-name>
+		<servlet-class>com.exedosoft.plat.MVCController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>loadtreesvl</servlet-name>
+		<servlet-class>
+			com.exedosoft.plat.ui.jquery.tree.LoadTreeSvl
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servicecontroller</servlet-name>
+		<servlet-class>
+			com.exedosoft.plat.ServiceController
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ssocontroller</servlet-name>
+		<servlet-class>com.exedosoft.plat.SSOController</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>
+			net.sourceforge.barbecue.BarcodeServlet
+		</servlet-name>
+		<servlet-class>
+			net.sourceforge.barbecue.BarcodeServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+
+	<servlet-mapping>
+		<servlet-name>mvccontroller</servlet-name>
+		<url-pattern>/mvccontroller</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>mvccontroller</servlet-name>
+		<url-pattern>*.pml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>loadtreesvl</servlet-name>
+		<url-pattern>/loadtreesvl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servicecontroller</servlet-name>
+		<url-pattern>/servicecontroller</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ssocontroller</servlet-name>
+		<url-pattern>/ssocontroller</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>
+			net.sourceforge.barbecue.BarcodeServlet
+		</servlet-name>
+		<url-pattern>/dobarcode/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>/FCKeditor/editor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+
+	<mime-mapping>
+		<extension>doc</extension>
+		<mime-type>application/vnd.ms-word</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>pdf</extension>
+		<mime-type>application/pdf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xls</extension>
+		<mime-type>application/msexcel</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xml</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<env-entry>
+		<env-entry-name>global.config</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>
+			../webapps/exedo/WEB-INF/classes/conf/config.xml
+		</env-entry-value>
+	</env-entry>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>testpml.jsp</welcome-file>
+	</welcome-file-list>
+
+
+
+</web-app>

@@ -1,0 +1,59 @@
+body {
+font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"ËÎÌו"
+ height:100%;
+}
+
+
+#login  p {
+margin-bottom:0;
+}
+label {
+color:#777777;
+font-size:13px;
+}
+
+
+
+#loginform {
+   background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #E5E5E5; 
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 0 6px #999999;
+    margin: 0 auto;
+    padding:20px 20px 60px;
+    width: 350px;
+}
+
+*html #loginform{
+    padding-bottom:25px
+}
+
+
+#password, #name {
+background:none repeat scroll 0 0 #FBFBFB;
+border:1px solid #E5E5E5;
+font-size:20px;
+margin-bottom:16px;
+margin-right:6px;
+margin-top:2px;
+padding:3px;
+width:97%;
+}
+input {
+color:#555555;
+}
+.clear {
+clear:both;
+}
+
+.submit {
+float:right;
+cursor:pointer;
+}
+
+.forgetmenot {
+float:left;
+font-weight:normal;
+margin-bottom:0;
+}
+
