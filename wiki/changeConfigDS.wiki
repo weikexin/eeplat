@@ -23,7 +23,7 @@
 
 == 更改为mysql ==
 
-  * 在mysql中新建一个数据库名称例如为:conf_init ,运行下载的脚本，地址为：http://eeplat.googlecode.com/files/conf_init.sql。
+  * 在mysql中新建一个数据库名称例如为:conf_init ,运行下载的脚本，地址为：http://eeplat.googlecode.com/files/conf_init.sql
 
   * 直接把classes(源代码方式为src)下面的 globals.xml默认的数据源修改为如下（数据库名称、用户名/密码修改为自己的）：
 
