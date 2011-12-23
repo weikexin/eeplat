@@ -30,6 +30,7 @@
           *  [ConfigResouce     资源]
           *  [ConfigDataSource     数据源]
           *  [ManagerTable     数据表维护]
+          *  [changeConfigDS     更改配置数据库]
           *  [ConfigWorkflow     工作流]
           *  [CodeGenerator     编码生成器]
           *  [OrgParter     组织权限简介]
