@@ -14,7 +14,8 @@
 
   更改为hsqldb较为简单，直接把classes(源代码方式为src)下面的 globals.xml默认的数据源修改为：
 
-{{{      	<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+{{{      
+	<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="connection.url">mydb</property>
         <property name="connection.username">sa</property>
         <property name="connection.password">1111</property>
@@ -27,7 +28,8 @@
 
   2，直接把classes(源代码方式为src)下面的 globals.xml默认的数据源修改为如下（数据库名称、用户名/密码修改为自己的）：
 
-{{{      		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+{{{ 
+    		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/conf_init?useUnicode=true&amp;characterEncoding=utf-8</property>  
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
