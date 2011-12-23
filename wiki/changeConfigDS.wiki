@@ -20,7 +20,6 @@
         <property name="connection.password">1111</property>
 }}}
 
-
 == 更改为mysql ==
 
   1，下载建库的sql脚本，地址为：http://eeplat.googlecode.com/files/conf_init.sql。在你的mysql中新建一个数据库
@@ -33,4 +32,3 @@
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
 }}}
-
