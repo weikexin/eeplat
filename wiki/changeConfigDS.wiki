@@ -6,11 +6,19 @@
   无论是配置数据库还是业务数据库都没有限制数据库的类型。但是配置数据库只在hsqldb、h2、mysql三种数据库上做过严格测试，并成功运行过多个商业项目。（在早期版本中配置数据库也在sqlserver上支持过多个项目，所以sqlserver理论上也是支持的，业务数据库在Oracle、DB2、Mysql、SqlServer都成功支持过多个商业项目）。
 
 
+= 更改配置数据库 =
+
+ 默认的配置数据库是H2文件方式，当然也可以更改为Server方式。下面介绍一下如何切换成hsqldb和mysql。
+
+== 更改为hsqldb ==
+
+  更改为hsqldb较为简单，直接把classes(源代码方式为src)下面的 globals.xml文件修改掉就可以，把默认的数据源修改为：
+
+{{{      	<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="connection.url">mydb</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">1111</property>
+}}}
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== 更改为mysql ==
