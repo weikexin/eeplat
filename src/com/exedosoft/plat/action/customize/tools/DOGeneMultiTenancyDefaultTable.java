@@ -25,7 +25,6 @@ import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.SqlCol;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
-import com.lowagie.tools.concat_pdf;
 
 public class DOGeneMultiTenancyDefaultTable extends DOAbstractAction {
 

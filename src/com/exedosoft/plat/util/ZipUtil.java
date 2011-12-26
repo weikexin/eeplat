@@ -70,6 +70,7 @@ public class ZipUtil {
 	// return null;
 	// }
 
+	 // TODO GOOGLE IO
 	public static List unzip(ZipFile aZipFile) {
 
 		String randomStr = UUIDHex.getInstance().generate();
@@ -90,16 +91,16 @@ public class ZipUtil {
 				sb.append(ze.getName());
 				File aFile = new File(sb.toString());
 				aFile.createNewFile();
-				FileOutputStream fos = new FileOutputStream(aFile);
+			//	FileOutputStream fos = new FileOutputStream(aFile);
 
-				byte[] by = new byte[1024];
-				int c;
-				while ((c = is.read(by)) != -1) {
-					fos.write(by, 0, c);
-				}
-				unZipFiles.add(sb.toString());
-				fos.close();
-				is.close();
+//				byte[] by = new byte[1024];
+//				int c;
+//				while ((c = is.read(by)) != -1) {
+//					fos.write(by, 0, c);
+//				}
+//				unZipFiles.add(sb.toString());
+//				fos.close();
+//				is.close();
 			}
 		} catch (ZipException e) {
 			// TODO Auto-generated catch block
@@ -137,7 +138,8 @@ public class ZipUtil {
 
 		File aFile = new File(zipFilePath.toString());
 		aFile.createNewFile();
-		OutputStream os = new FileOutputStream(aFile);
+		 // TODO GOOGLE IO
+		OutputStream os =  null;// new FileOutputStream(aFile);
 		ZipOutputStream zos = new ZipOutputStream(os);
 		String[] arraySelect = allSelects.split(",");
 		for (int i = 0; i < arraySelect.length; i++) {

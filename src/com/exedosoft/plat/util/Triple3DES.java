@@ -53,27 +53,29 @@ public class Triple3DES {
 	 */
 	public void encrypt(String sourceFile,String saveFile) throws Exception {
 		
-		FileInputStream inf = new FileInputStream(sourceFile);
-		FileOutputStream outf = new FileOutputStream(saveFile);
+		 // TODO GOOGLE IO
 		
-		cipher.init(Cipher.ENCRYPT_MODE, secureKey);
-		CipherOutputStream out = new CipherOutputStream(outf, cipher);
-		
-		byte[] buf = new byte[BUFFER_SIZE];
-		int numRead = inf.read(buf);
-		while(numRead != -1){
-			if(numRead < 8){
-				for(int i=numRead;i<BUFFER_SIZE;i++){
-					buf[i] = 0x0;
-				}
-			}
-			
-			out.write(buf, 0, BUFFER_SIZE);
-			numRead = inf.read(buf);
-		}
-		
-		inf.close();
-		out.close();
+//		FileInputStream inf = new FileInputStream(sourceFile);
+//		FileOutputStream outf = new FileOutputStream(saveFile);
+//		
+//		cipher.init(Cipher.ENCRYPT_MODE, secureKey);
+//		CipherOutputStream out = new CipherOutputStream(outf, cipher);
+//		
+//		byte[] buf = new byte[BUFFER_SIZE];
+//		int numRead = inf.read(buf);
+//		while(numRead != -1){
+//			if(numRead < 8){
+//				for(int i=numRead;i<BUFFER_SIZE;i++){
+//					buf[i] = 0x0;
+//				}
+//			}
+//			
+//			out.write(buf, 0, BUFFER_SIZE);
+//			numRead = inf.read(buf);
+//		}
+//		
+//		inf.close();
+//		out.close();
 	}
 	/**
 	 * 使用3DES算法解密文件
@@ -82,33 +84,36 @@ public class Triple3DES {
 	 * @throws Exception
 	 */
 	public void decrypt(String sourceFile,String saveFile) throws Exception {
-		FileInputStream inf = new FileInputStream(sourceFile);
-		FileOutputStream outf = new FileOutputStream(saveFile);
 		
-	
-		cipher.init(Cipher.DECRYPT_MODE, secureKey);
-		//CipherOutputStream out = new CipherOutputStream(outf, cipher);
 		
-		byte[] buf = new byte[BUFFER_SIZE];
-		int numRead = inf.read(buf);
-		while(numRead != -1){
-			byte[] res = cipher.doFinal(buf);
-			int lastIndex = BUFFER_SIZE;
-			for(int i=BUFFER_SIZE-1;i>=0;i--){
-				if(res[i] == 0x0){
-					lastIndex--;
-				}else{
-					break;
-				}
-			}
-			outf.write(res, 0, lastIndex);
-			
-			//out.write(buf, 0, numRead);
-			numRead = inf.read(buf);
-		}
-		
-		inf.close();
-		outf.close();
+		 // TODO GOOGLE IO
+//		FileInputStream inf = new FileInputStream(sourceFile);
+//		FileOutputStream outf = new FileOutputStream(saveFile);
+//		
+//	
+//		cipher.init(Cipher.DECRYPT_MODE, secureKey);
+//		//CipherOutputStream out = new CipherOutputStream(outf, cipher);
+//		
+//		byte[] buf = new byte[BUFFER_SIZE];
+//		int numRead = inf.read(buf);
+//		while(numRead != -1){
+//			byte[] res = cipher.doFinal(buf);
+//			int lastIndex = BUFFER_SIZE;
+//			for(int i=BUFFER_SIZE-1;i>=0;i--){
+//				if(res[i] == 0x0){
+//					lastIndex--;
+//				}else{
+//					break;
+//				}
+//			}
+//			outf.write(res, 0, lastIndex);
+//			
+//			//out.write(buf, 0, numRead);
+//			numRead = inf.read(buf);
+//		}
+//		
+//		inf.close();
+//		outf.close();
 	}
 	
 	public static void main(String[] args) throws Exception {

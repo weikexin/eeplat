@@ -121,7 +121,7 @@ public class ScanFile {
 		for(Iterator   it = list.iterator();it.hasNext();){
 			String aFile = (String)it.next();
 			System.out.println("正在转换:::" + aFile);
-			ReadTxtFile.convertGBK2UTF4File(aFile);
+
 		}
 		
 		//System.out.println(list.size());

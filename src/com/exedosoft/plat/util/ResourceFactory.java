@@ -7,18 +7,18 @@ import javax.naming.*;
  */
 public class ResourceFactory{
 
-  private static Context env;
+ // private static Context env;
   private static  ResourceFactory rf ;
   private ResourceFactory(){
-    try {
-      env = (Context)(new InitialContext()).lookup("java:comp/env");
-    }
-    catch (NamingException ex) {
-
-    }
+//    try {
+//      env = (Context)(new InitialContext()).lookup("java:comp/env");
+//    }
+//    catch (Exception ex) {
+//
+//    }
   }
 /**
- *
+ * @todo GOOGLE IO
  * Looks up resource defined in the web.xml file<br>
  * Gets the object
  */
@@ -28,7 +28,8 @@ public class ResourceFactory{
        rf = new ResourceFactory();
      }
     try{
-      return env.lookup(resourceName);
+     // return env.lookup(resourceName);
+    	return null;
     
     }
     catch(Exception e){
@@ -37,8 +38,8 @@ public class ResourceFactory{
       return "conf";
     }finally{
     	try {
-			env.close();
-		} catch (NamingException e) {
+		//	env.close();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

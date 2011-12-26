@@ -233,7 +233,8 @@ public class SimpleXMLUtil {
             // file should always come out pretty-printed.
             XMLOutputter outputter = new XMLOutputter();
             
-            out = new BufferedOutputStream(new FileOutputStream(tempFile));
+       	 // TODO GOOGLE IO
+            out =  null;//new BufferedOutputStream(new FileOutputStream(tempFile));
             outputter.output(doc, out);
         }
         catch (Exception e) {

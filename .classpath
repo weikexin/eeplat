@@ -19,19 +19,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool-1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/freemarker.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/iText-2.0.8.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/iTextAsian.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/java_memcached-release_2.0.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/js.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oscache-2.1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/quartz-1.6.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/uploadFile.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xfire-all-1.2.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ldap.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-1.4.jar"/>
@@ -42,11 +35,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.6-20091214.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-jexl-2.0.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yhsdao.jar" sourcepath="/yiyi_dao"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.6.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-simple-1.6.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsqlparser.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/h2-1.3.149.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yhsmain.jar" sourcepath="/yiyi_core"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtds-1.2.5.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
