@@ -379,8 +379,8 @@ public class AProjectForwarderJquery {
 		}
 		in.close();
 
-		
-		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new  FileOutputStream(indexFile),"utf-8"));
+		 // TODO GOOGLE IO	
+		BufferedWriter out =  null;///new BufferedWriter(new OutputStreamWriter(new  FileOutputStream(indexFile),"utf-8"));
 		out.append(sb.toString());
 		out.flush();
 		out.close();

@@ -102,8 +102,10 @@ public class DOExportApplication extends DOAbstractAction {
 		.append(selectApp.getValue("name"))
 		.append(".xml");
 		try {
-			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(fileName.toString()), "utf-8"));
+			 // TODO GOOGLE IO
+			BufferedWriter out =  null;
+//			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+//					new FileOutputStream(fileName.toString()), "utf-8"));
 			out.append(sb.toString());
 			out.flush();
 			out.close();

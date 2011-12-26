@@ -964,28 +964,29 @@ public class StringUtil {
 	 */
 	public static void copyDirectiory(String file1, String file2)
 			throws IOException {
-		(new File(file1)).mkdirs();
-		File[] file = (new File(file2)).listFiles();
-		for (int i = 0; i < file.length; i++) {
-			if (file[i].isFile()) {
-				FileInputStream input = new FileInputStream(file[i]);
-				FileOutputStream output = new FileOutputStream(file1 + "/"
-						+ file[i].getName());
-				byte[] b = new byte[1024 * 5];
-				int len;
-				while ((len = input.read(b)) != -1) {
-					output.write(b, 0, len);
-				}
-				output.flush();
-				output.close();
-				input.close();
-			}
-			if (file[i].isDirectory() && !file[i].getName().equals(".svn")) {
-				copyDirectiory(file1 + "/" + file[i].getName(), file2 + "/"
-						+ file[i].getName());
-			}
-
-		}
+		 // TODO GOOGLE IO
+//		(new File(file1)).mkdirs();
+//		File[] file = (new File(file2)).listFiles();
+//		for (int i = 0; i < file.length; i++) {
+//			if (file[i].isFile()) {
+//				FileInputStream input = new FileInputStream(file[i]);
+//				FileOutputStream output = new FileOutputStream(file1 + "/"
+//						+ file[i].getName());
+//				byte[] b = new byte[1024 * 5];
+//				int len;
+//				while ((len = input.read(b)) != -1) {
+//					output.write(b, 0, len);
+//				}
+//				output.flush();
+//				output.close();
+//				input.close();
+//			}
+//			if (file[i].isDirectory() && !file[i].getName().equals(".svn")) {
+//				copyDirectiory(file1 + "/" + file[i].getName(), file2 + "/"
+//						+ file[i].getName());
+//			}
+//
+//		}
 
 	}
 
@@ -997,23 +998,25 @@ public class StringUtil {
 	 * @throws Exception
 	 */
 	public static void copyFile(File in, File out) {
-		try {
-			FileChannel sourceChannel = new FileInputStream(in).getChannel();
-			FileChannel destinationChannel = new FileOutputStream(out)
-					.getChannel();
-			sourceChannel.transferTo(0, sourceChannel.size(),
-					destinationChannel);
-			// or // destinationChannel.transferFrom(sourceChannel, 0,
-			// sourceChannel.size());
-			sourceChannel.close();
-			destinationChannel.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		 // TODO GOOGLE IO
+//		try {
+//			FileChannel sourceChannel = new FileInputStream(in).getChannel();
+//			FileChannel destinationChannel = new FileOutputStream(out)
+//					.getChannel();
+//			sourceChannel.transferTo(0, sourceChannel.size(),
+//					destinationChannel);
+//			// or // destinationChannel.transferFrom(sourceChannel, 0,
+//			// sourceChannel.size());
+//			sourceChannel.close();
+//			destinationChannel.close();
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 

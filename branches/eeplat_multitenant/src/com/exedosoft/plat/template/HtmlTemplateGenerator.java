@@ -102,6 +102,7 @@ public class HtmlTemplateGenerator {
 	 *            保存文件名
 	 * @throws IOException
 	 * @throws TemplateException
+
 	 */
 	public static void create(String ftlTemplate, Map contents,
 			String savePath, String saveFilename) throws IOException,
@@ -116,8 +117,10 @@ public class HtmlTemplateGenerator {
 		if (!file.exists())
 			file.mkdirs();
 
-		Writer out = new OutputStreamWriter(new FileOutputStream(realPath + "/"
-				+ saveFilename), "UTF-8");
+		 // TODO GOOGLE IO
+		Writer out =  null;
+//				new OutputStreamWriter(new FileOutputStream(realPath + "/"
+//				+ saveFilename), "UTF-8");
 		temp.process(contents, out);
 		out.flush();
 	}
