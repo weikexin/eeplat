@@ -1,3 +1,4 @@
+#sidebar index
    后台的Javascript可以调用所有的Java API，但是需要注意JavaScript的用法。
 
    后台的Javascript的内置变量：
