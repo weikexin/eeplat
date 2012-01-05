@@ -6,6 +6,9 @@
    * douser:当前的登陆用户
    * doform: 当前的提交的表单内容
    * doinstance:当前记录
+   * docontext:全局Session,SessionContext				.getInstance()
+   * doservice:当前的服务
+   * domodel:当前的模型
 
    内置变量用法：
 
