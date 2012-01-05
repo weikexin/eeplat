@@ -8,6 +8,10 @@
 
    内置变量用法：
 
-   内置变量.getValue("属性名称") 就可以获取属性对应的值，如获取当前登陆者的部门: var deptuid = douser.getValue("deptuid");
+   内置变量.getValue("属性名称") 就可以获取属性对应的值，如获取当前登陆者的部门: 
+{{{
+  var deptuid = douser.getValue("deptuid");
+
+}}}
 
    
