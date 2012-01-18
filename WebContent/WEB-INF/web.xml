@@ -40,15 +40,6 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>ConnectorServlet</servlet-name>
-		<servlet-class>
-			net.fckeditor.connector.ConnectorServlet
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-
-	<servlet>
 		<servlet-name>mvccontroller</servlet-name>
 		<servlet-class>com.exedosoft.plat.MVCController</servlet-class>
 	</servlet>
@@ -109,10 +100,7 @@
 		<url-pattern>/dobarcode/*</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>ConnectorServlet</servlet-name>
-		<url-pattern>/FCKeditor/editor/filemanager/connectors/*</url-pattern>
-	</servlet-mapping>
+
 
 	<mime-mapping>
 		<extension>doc</extension>
@@ -137,6 +125,13 @@
 			../webapps/exedo/WEB-INF/classes/conf/config.xml
 		</env-entry-value>
 	</env-entry>
+	
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/exedo/webv3/404.html</location>
+	</error-page>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>testpml.jsp</welcome-file>

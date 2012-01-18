@@ -27,6 +27,10 @@ html,body{
  overflow:hidden;
 }
 
+img{ vertical-align:middle;}
+
+a { pointer: cursor;  	text-decoration:	none;}
+
 -->
 </style>
 </head>
@@ -54,19 +58,23 @@ html,body{
 	     <label>验证码</label>
        <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
         <img src='<%=request.getContextPath()%>/exedo/webv3/image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
+
+	<br/><br/>	
 	
-		
-	</p>
-	<p class="submit">
-			<img src="<%=request.getContextPath()%>/exedo/webv3/images/login/btn_sign-in.png" class="btn"/>
-    </p>
+  	 <span  style="valign:top"> 其它账号登录：</span>
+  	 <a  title="新浪微博登录" href="<%=request.getContextPath()%>/openid/weibo/call.jsp">  <img alt="新浪微博登录" src="<%=request.getContextPath()%>/CRM/images/16_weibo.png" border=0 /> </a> &nbsp;
+  	 <a  title="QQ登录" href="<%=request.getContextPath()%>/openid/qq/call.jsp">   <img alt="QQ登录" src="<%=request.getContextPath()%>/CRM/images/16_qq.png" border=0 />   </a> &nbsp;
+  	 <a  title="网易账号登录" href="<%=request.getContextPath()%>/openid/163/call.jsp">   <img alt="网易账号登录"  src="<%=request.getContextPath()%>/CRM/images/16_163.png" border=0 />  </a> &nbsp;
+  	 <a  title="人人账号登录" href="<%=request.getContextPath()%>/openid/renren/call.jsp">   <img alt="人人账号登录" src="<%=request.getContextPath()%>/CRM/images/16_renren.png" border=0 /> </a> 
+		<p class="submit">
+				<img src="<%=request.getContextPath()%>/exedo/webv3/images/login/btn_sign-in.png" class="btn"/>
+	    </p>
 </form>
 
 </div>
+
 </body>
 <script language="javascript">
-
-
 
 $(function(){
 //回车事件

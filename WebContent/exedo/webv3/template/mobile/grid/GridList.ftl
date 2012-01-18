@@ -7,7 +7,7 @@
 	  <#list data as ins>
 	      <li>
 	           <#if (controCols?size==0) > 
-		        <a  href="/${webmodule}/${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
+		        <a  data-direction="reverse" href="/${webmodule}/${linkPaneName}.pml?dataBus=setContext&contextKey=${ins.bo.name}&contextValue=${ins.uid}&contextNIUid=${(ins.map.contextniuid)?if_exists}&contextPIUid=${ins.map.contextpiuid?if_exists}">
 		       </#if> 
 				   <#list showCols as item> 
 							${item.l10n}:&nbsp; <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue}  </#if> <br/>

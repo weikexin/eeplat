@@ -4,13 +4,21 @@
 		<property name="webmodule">eemulti</property>
 		<property name="transaction.isolation">2</property>
 		 <!--jdbc:hsqldb:file:/c:/db/mydb-->
-
-		 
-		<!--在多租户环境下，这个只在登陆时候用，下一步可以考虑使用这个方案了 --> 
-        <property name="connection.driver_class">org.h2.Driver</property>
+		
+		
+		<property name="connection.driver_class">org.h2.Driver</property>
 		<property name="connection.url">config</property> <!-- jdbc:h2:d:/db/conf_archive;config -->
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
+		
+		<!-- jdbc:h2:d:/db/conf_archive;config -->
+		<!--在多租户环境下，这个只在登陆时候用，下一步可以考虑使用这个方案了 com.google.appengine.api.rdbms.AppEngineDriver--> 
+		<!-- 
+        <property name="connection.driver_class">com.google.cloud.sql.Driver</property>
+		<property name="connection.url">jdbc:google:rdbms://dev4gae:eeplat/mydb</property> 
+        <property name="connection.username"></property>
+        <property name="connection.password"></property>
+         -->
 <!-- 
         <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="connection.url">mydb</property>

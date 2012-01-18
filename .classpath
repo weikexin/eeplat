@@ -19,7 +19,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool-1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/freemarker.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/js.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>

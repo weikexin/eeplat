@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.ui-icon-openid-163 {
+	background-image: url("163_18.png");
+}
+
+.ui-icon-openid-weibo {
+	background-image: url("weibo_18.png");
+}
+
+.ui-icon-openid-qq {
+	background-image: url("qq_18.png");
+}
+
+.ui-icon-openid-renren {
+	background-image: url("renren_18.png");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-openid-163 {
+		background-image: url("163_36.png");
+		background-size: 18px 18px;
+	}
+	
+	.ui-icon-openid-weibo {
+		background-image: url("weibo_36.png");
+		background-size: 18px 18px;
+	}
+	
+	.ui-icon-openid-qq {
+		background-image: url("qq_36.png");
+		background-size: 18px 18px;
+	}
+	
+	.ui-icon-openid-renren {
+		background-image: url("renren_36.png");
+		background-size: 18px 18px;
+	}
+	
+}
