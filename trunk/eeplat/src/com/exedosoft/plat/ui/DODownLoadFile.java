@@ -155,6 +155,7 @@ public class DODownLoadFile {
 			while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
 				bos.write(buff, 0, bytesRead);
 			}
+			bos.flush();
 
 			// is = new FileInputStream(filePath);
 			// byte[] b = new byte[100 * 1024];

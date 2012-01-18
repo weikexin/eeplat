@@ -100,6 +100,8 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 	$.post(url,function(result){
 		   var ret = result;
 		   if(ret!=null && ret.items!=null && ret.items.length>0){
+			   
+			   
 		   
 		    var popHeight = 250;
 		    var height = 20*(ret.items.length+2) + 15;
@@ -160,7 +162,13 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
  		    $(".dmBody tr:even").addClass("dmLayerEven"); 
 			//mOver($("#dmBody")[0].firstChild.firstChild);
 	   }else{
-			$("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;没有记录!").show();
+		   
+
+		   if(ret.success=='false' && ret.msg.indexOf("err001")!=-1){
+			   window.location = "exedo/webv3/logoff.jsp";
+		   }else{
+			   $("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;没有记录!").show();
+		   }
 	   }	                            
    });
    

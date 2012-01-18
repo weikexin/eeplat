@@ -111,18 +111,11 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
-<!-- 
-
-
 	<error-page>
 		<error-code>404</error-code>
-		<location>/common/404.jsp</location>
+		<location>/exedo/webv3/404.html</location>
 	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/common/error.jsp</location>
-	</error-page>
-	 -->
+
 	<env-entry>
 		<env-entry-name>global.config</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>

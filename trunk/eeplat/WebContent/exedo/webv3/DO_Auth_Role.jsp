@@ -14,7 +14,6 @@
 String roleUid = request.getParameter("contextValue");
 DOBO boBO = DOBO.getDOBOByName("do_org_role");
 BOInstance roleBI = boBO.getInstance(roleUid);
-
 %>
 
 <html>
@@ -230,7 +229,7 @@ input.ctlBtn,button {
                       </TR>
   <%
  
-			 DOMenuModel dmm = DOMenuModel.getMenuModelByName(DOGlobals.getValue("application") + "_root");
+			 DOMenuModel dmm = DOMenuModel.getMenuModelByName("jyhd_root");
              List parents =  new ArrayList();       
              if(dmm!=null){
 			 	parents =  dmm.retrieveChildrenNoAuth();
@@ -267,10 +266,12 @@ input.ctlBtn,button {
                                            DOMenuModel thirdMenu = (DOMenuModel)itThird.next();
               							   if(thirdMenu.isAccessByRole(roleUid)){
     										  checked = " checked='checked' ";
+    									   }else{
+    										   checked = "";
     									   }
                                   %>
                                           <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          <input type="checkbox" name="menuUid"  parentid="a<%=pMenu.getObjUid()%>"  id="a<%=thirdMenu.getObjUid()%>" <%=checked%>  value="<%=thirdMenu.getObjUid()%>">
+                                          <input type="checkbox" name="menuUid" class="menuUid"  parentid="a<%=pMenu.getObjUid()%>"  id="a<%=thirdMenu.getObjUid()%>" <%=checked%>  value="<%=thirdMenu.getObjUid()%>">
 									       <%=thirdMenu.getL10n() %>
 		                                
 		                                <%  
@@ -282,9 +283,11 @@ input.ctlBtn,button {
 		                                           DOMenuModel leafMenu = (DOMenuModel)itLeaf.next();
 		              							   if(leafMenu.isAccessByRole(roleUid)){
 		    										  checked = " checked='checked' ";
+		    									   }else{
+		    										   checked = "";
 		    									   }
 		                                  %>
-			                               <input type="checkbox" name="menuUid"  parentid="a<%=pMenu.getObjUid()%>"  id="a<%=leafMenu.getObjUid()%>" <%=checked%>  value="<%=leafMenu.getObjUid()%>">
+			                               <input type="checkbox" name="menuUid"  class="menuUid"  parentid="a<%=pMenu.getObjUid()%>"  id="a<%=leafMenu.getObjUid()%>" <%=checked%>  value="<%=leafMenu.getObjUid()%>">
 									       <%=leafMenu.getL10n() %>
 								<%   } out.println("】");  } } } out.println("<br/>");
 								  } %>

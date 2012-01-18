@@ -1,6 +1,7 @@
 var invokeDomId = "";
 var mirrorEditor ;
 var mirrorEditor2 ;
+var kindEditor;
 var ie6len = 1000;
 
 // 在js里面直接调用action类
@@ -574,6 +575,9 @@ function updateEditorFormValue()
 	    }
 	    if(mirrorEditor2){
 	    	mirrorEditor2.save();
+	    }
+	    if(kindEditor){
+	    	kindEditor.sync();
 	    }
 	}catch(e){
 	}
