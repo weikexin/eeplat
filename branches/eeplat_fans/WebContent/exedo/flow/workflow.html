@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+	<head>
+		<link rel=stylesheet href="main.css" type="text/css"/>
+		<link rel=stylesheet href="table.css" type="text/css"/>
+		<script type="text/javascript" href="jquery.js"></script>
+		<script type="text/javascript" href="jquery.svg.js"></script>
+
+	
+		<script>
+				//获得参数的方法
+				var request = 
+				{ 
+					queryString : function(val) 
+					{ 
+					var uri = window.location.search; 
+					alert(uri);
+					var re = new RegExp("" +val+ "=([^&?]*)", "ig"); 
+					return ((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null); 
+					} 
+				} 
+		</script>
+
+		<title>工作流设计器</title>
+	</head>	
+	<body margin="0">
+<embed id="svgwf" src="CheckFlow2.svg" width="1000" height="700"
+				type="image/svg+xml"
+							pluginspage="." />
+	</body>	
+</html>	

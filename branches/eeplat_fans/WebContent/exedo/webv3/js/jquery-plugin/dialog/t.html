@@ -1,0 +1,105 @@
+<html>
+<script src="../../jquery/jquery.js" type="text/javascript"></script>  
+<script src="jqModal.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="jqModal.css"    type="text/css" />  
+<script src="jqDnR.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="dialog.css"     type="text/css"  />  
+
+<style>
+	
+.jqHandle {
+   background: red;
+   height:5px;
+   width: 5px;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   cursor: se-resize;
+}
+
+.jqDrag {
+  width: 100%;
+  cursor: move;
+}
+
+
+
+.jqDnR {
+    z-index: 3;
+    position: relative;
+    
+    width: 180px;
+    height:200px;
+    font-size: 0.77em;
+    color: #618d5e;
+    margin: 5px 10px 10px 10px;
+    padding: 8px;
+    background-color: #EEE;
+    border: 1px solid #CCC;
+}
+</style>	
+ 
+	<script>
+		$().ready(function() {
+		  // notice that you can pass an element as the target 
+		  //  in addition to a string selector.
+		  
+
+		  
+		  var t = $('div.jqmContent');
+		  
+		  $('#ex4').jqm({
+		    ajax: '1.html', /* Extract ajax URL from the 'href' attribute of triggering element */
+		    target: t,
+		    modal: true, /* FORCE FOCUS */
+		    onHide: function(h) { 
+		      t.html('Please Wait...');  // Clear Content HTML on Hide.
+		      h.o.remove(); // remove overlay
+		      h.w.fadeOut(888); // hide window
+		      
+		    },
+		    overlay: 0}).jqDrag('.jqmdHeader').jqResize('.jqHandle'); 
+		    
+		   $('#ex4').jqmShow();
+		   
+		   $('#ex1').jqResize('.jqHandle');
+		   
+		  
+		});
+
+		
+		
+		
+	</script>
+	
+	<body>
+		
+		
+	<div id="ex4" class="jqmDialog">
+	 <!--	<div class="jqmdTL"><div class="jqmdTR"><div class="jqmdTC">Modal Dialog</div></div></div> -->
+	 
+	  <div class="jqmdHeader jqDrag">Model Dialog</div>
+		<img src="close2.gif" class="jqmdX jqmClose"/>
+		<!-- <div class="jqmdBL"><div class="jqmdBR"><div class="jqmdBC"> -->
+		
+		<div class="jqmContent">
+		<p>Please wait... <img src="busy.gif" alt="loading" /></p>
+		</div>
+		
+		<!-- </div></div></div> -->
+	 	<div class="jqHandle"></div>
+ </div>
+
+
+			
+		
+	<div id="ex1" class="jqDnR">
+	  I am an example Box "#ex1"<br />
+	  You can *RESIZE* Me.
+	  <div class="jqHandle"></div>
+	</div>
+		
+		
+	</body>	
+	
+</html>	

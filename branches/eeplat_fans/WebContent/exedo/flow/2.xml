@@ -1,0 +1,30 @@
+﻿<wf>	<processtemplate name='txsclc'><nodes><node id='txsclc_n3' nodeType='start' nodeName='开始节点' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='138' y='70'/>
+<node id='txsclc_n5' nodeType='activity' nodeName='服务人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='266' y='71'/>
+<node id='txsclc_n7' nodeType='activity' nodeName='审核人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='360' y='68'/>
+<node id='txsclc_n8' nodeType='activity' nodeName='面审人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='463' y='69'/>
+<node id='txsclc_n9' nodeType='activity' nodeName='调查人员' nodeStateShow='面审人员审查贷款人情况完毕，等待调查人员介入。' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='614' y='73'/>
+<node id='txsclc_n10' nodeType='activity' nodeName='初定人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='372' y='204'/>
+<node id='txsclc_n11' nodeType='xorDecision' nodeName='资料是否完整' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='if_zl' decisionType='' nodeDesc='' x='373' y='317'/>
+<node id='txsclc_n12' nodeType='auto' nodeName='审查完成' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='customer_delete_copy_copy' decisionExpression='' decisionType='1' nodeDesc='' x='372' y='510'/>
+<node id='txsclc_n13' nodeType='end' nodeName='结束节点' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='759' y='509'/>
+<node id='txsclc_n15' nodeType='activity' nodeName='服务人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='239' y='312'/>
+<node id='txsclc_n16' nodeType='activity' nodeName='审核人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='236' y='209'/>
+<node id='txsclc_n18' nodeType='xorDecision' nodeName='联系人是否完整' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='if_lxr' decisionType='' nodeDesc='' x='375' y='411'/>
+<node id='txsclc_n20' nodeType='activity' nodeName='服务人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='592' y='405'/>
+<node id='txsclc_n21' nodeType='activity' nodeName='调查人员' nodeStateShow='' nodeStateShowBack='' accessClass='' passTxt='' rejectTxt='' autoService='' decisionExpression='' decisionType='' nodeDesc='' x='574' y='279'/>
+</nodes><transitions><transition id='txsclc_n3txsclc_n5' from='txsclc_n3' to='txsclc_n5'/>
+<transition id='txsclc_n5txsclc_n7' from='txsclc_n5' to='txsclc_n7'/>
+<transition id='txsclc_n7txsclc_n8' from='txsclc_n7' to='txsclc_n8'/>
+<transition id='txsclc_n8txsclc_n9' from='txsclc_n8' to='txsclc_n9'/>
+<transition id='txsclc_n9txsclc_n10' from='txsclc_n9' to='txsclc_n10'/>
+<transition id='txsclc_n10txsclc_n11' from='txsclc_n10' to='txsclc_n11'/>
+<transition id='txsclc_n11txsclc_n15' from='txsclc_n11' to='txsclc_n15' condition='=0' showvalue='不完整'/>
+<transition id='txsclc_n11txsclc_n18' from='txsclc_n11' to='txsclc_n18' condition='=1' showvalue='完整'/>
+<transition id='txsclc_n12txsclc_n13' from='txsclc_n12' to='txsclc_n13'/>
+<transition id='txsclc_n15txsclc_n16' from='txsclc_n15' to='txsclc_n16'/>
+<transition id='txsclc_n16txsclc_n10' from='txsclc_n16' to='txsclc_n10'/>
+<transition id='txsclc_n18txsclc_n20' from='txsclc_n18' to='txsclc_n20' condition='=0' showvalue='不完整'/>
+<transition id='txsclc_n18txsclc_n12' from='txsclc_n18' to='txsclc_n12' condition='=1' showvalue='完整'/>
+<transition id='txsclc_n20txsclc_n21' from='txsclc_n20' to='txsclc_n21'/>
+<transition id='txsclc_n21txsclc_n10' from='txsclc_n21' to='txsclc_n10'/>
+</transitions></processtemplate></wf>

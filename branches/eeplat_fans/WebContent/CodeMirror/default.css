@@ -1,0 +1,52 @@
+.cm-s-default span.cm-keyword {color: #708;}
+.cm-s-default span.cm-atom {color: #219;}
+.cm-s-default span.cm-number {color: #164;}
+.cm-s-default span.cm-def {color: #00f;}
+.cm-s-default span.cm-variable {color: black;}
+.cm-s-default span.cm-variable-2 {color: #05a;}
+.cm-s-default span.cm-variable-3 {color: #0a5;}
+.cm-s-default span.cm-property {color: black;}
+.cm-s-default span.cm-operator {color: black;}
+.cm-s-default span.cm-comment {color: #a50;}
+.cm-s-default span.cm-string {color: #a11;}
+.cm-s-default span.cm-meta {color: #555;}
+.cm-s-default span.cm-error {color: #f00;}
+.cm-s-default span.cm-qualifier {color: #555;}
+.cm-s-default span.cm-builtin {color: #30a;}
+.cm-s-default span.cm-bracket {color: #cc7;}
+.cm-s-default span.cm-tag {color: #170;}
+.cm-s-default span.cm-attribute {color: #00c;}
+.CodeMirror {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-family: Droid Sans, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+pre {
+  background-color: #eee;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  padding: 1em;
+}
+
+pre.code {
+  margin: 0 1em;
+}
+.completions {
+        position: absolute;
+        z-index: 10;
+        overflow: hidden;
+        -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+        box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+}
+.completions select {
+        background: #fafafa;
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+}

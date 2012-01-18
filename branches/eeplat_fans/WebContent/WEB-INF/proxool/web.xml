@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<!-- ca filter -->
+	<listener>
+		<listener-class>
+			com.exedosoft.plat.SessionListener
+		</listener-class>
+	</listener>
+
+
+	<listener>
+		<listener-class>
+			com.exedosoft.plat.ContextListener
+		</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>doFilter</filter-name>
+		<filter-class>com.exedosoft.plat.DOFilter</filter-class>
+	</filter>
+
+
+
+	<filter-mapping>
+		<filter-name>doFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>
+			net.fckeditor.connector.ConnectorServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>mvccontroller</servlet-name>
+		<servlet-class>com.exedosoft.plat.MVCController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>loadtreesvl</servlet-name>
+		<servlet-class>
+			com.exedosoft.plat.ui.jquery.tree.LoadTreeSvl
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servicecontroller</servlet-name>
+		<servlet-class>
+			com.exedosoft.plat.ServiceController
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ssocontroller</servlet-name>
+		<servlet-class>com.exedosoft.plat.SSOController</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>mvccontroller</servlet-name>
+		<url-pattern>/mvccontroller</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>mvccontroller</servlet-name>
+		<url-pattern>*.pml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>loadtreesvl</servlet-name>
+		<url-pattern>/loadtreesvl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servicecontroller</servlet-name>
+		<url-pattern>/servicecontroller</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ssocontroller</servlet-name>
+		<url-pattern>/ssocontroller</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>/FCKeditor/editor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- CMS系统配置  by 王宏亮 2011-01-11  -->
+	<servlet>
+		<servlet-name>freemarker</servlet-name>
+		<servlet-class>com.exedosoft.plat.cms.CMSFreemarkerServlet
+		</servlet-class>
+		<init-param>
+			<param-name>TemplatePath</param-name>
+			<param-value>/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>NoCache</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ContentType</param-name>
+			<param-value>text/html; charset=UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>template_update_delay</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>default_encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>number_format</param-name>
+			<param-value>0.##########</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>freemarker</servlet-name>
+		<url-pattern>*.ftl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>freemarker</servlet-name>
+		<url-pattern>/cmsaction</url-pattern>
+	</servlet-mapping>
+
+	<!--  end of cms setting -->
+	
+	
+	<!-- begin of proxool -->
+	<servlet>  
+	  <servlet-name>ServletConfigurator</servlet-name>  
+	  <servlet-class>  
+	    org.logicalcobwebs.proxool.configuration.ServletConfigurator   
+	  </servlet-class>  
+	  <init-param>  
+	    <param-name>xmlFile</param-name>  
+	    <param-value>WEB-INF/proxool.xml</param-value>  
+	  </init-param>  
+	  <load-on-startup>1</load-on-startup>  
+	</servlet>  
+  
+	<servlet>  
+	  <servlet-name>Admin</servlet-name>  
+	  <servlet-class>  
+	    org.logicalcobwebs.proxool.admin.servlet.AdminServlet   
+	  </servlet-class>  
+	</servlet>  
+	<servlet-mapping>  
+	  <servlet-name>Admin</servlet-name>  
+	  <url-pattern>/admin</url-pattern>  
+	</servlet-mapping>  
+	
+	<!-- end of proxool -->
+
+	<mime-mapping>
+		<extension>doc</extension>
+		<mime-type>application/vnd.ms-word</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>pdf</extension>
+		<mime-type>application/pdf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xls</extension>
+		<mime-type>application/msexcel</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xml</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+
+	<mime-mapping>
+		<extension>ico</extension>
+		<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+	
+	<session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+<!-- 
+
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/common/error.jsp</location>
+	</error-page>
+	 -->
+	<env-entry>
+		<env-entry-name>global.config</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>
+			../webapps/exedo/WEB-INF/classes/conf/config.xml
+		</env-entry-value>
+	</env-entry>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>testpml.jsp</welcome-file>
+	</welcome-file-list>
+
+
+
+</web-app>
