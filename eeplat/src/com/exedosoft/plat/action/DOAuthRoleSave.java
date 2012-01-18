@@ -103,7 +103,7 @@ public class DOAuthRoleSave extends DOAbstractAction {
 
 	}
 
-	private void baseAuth(String parterUid, List allAuthMenus, String formStrKey,
+	private void baseAuth(String parterUid, List allAuthMenus, String strKey,
 			int type,String whereDOBO) {
 
 		DOBO boRole = OrgParter.getDefaultRole().getDoBO();
@@ -115,16 +115,21 @@ public class DOAuthRoleSave extends DOAbstractAction {
 		}
 
 		String authcofig = DOGlobals.getInstance().getSessoinContext()
-				.getFormInstance().getValue(formStrKey);
-		String[] menuConfigs = authcofig.split(";");
+				.getFormInstance().getValue(strKey);
 		
-		System.out.println("Key::" + formStrKey + "; menuConfigs::" + menuConfigs);
+		if(authcofig==null){
+			return;
+		}
+		
+		String[] configs = authcofig.split(";");
+		
+		System.out.println("Key::" + strKey + "; menuConfigs::" + configs);
 
 		// WFDAO dao = new WFDAO();
 		// dao.setAutoClose(false);
 		try {
-			for (int i = 0; i < menuConfigs.length; i++) {
-				String[] aConfig = menuConfigs[i].split(",");
+			for (int i = 0; i < configs.length; i++) {
+				String[] aConfig = configs[i].split(",");
 				if (aConfig[0] != null && !"".equals(aConfig[0])) {
 					
 					if(DOAuthorization.WHAT_UI_MENU==type){

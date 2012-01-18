@@ -2024,15 +2024,31 @@ public class NodeInstance extends BaseObject implements Serializable {
 				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_USER || nextNodeInstance
 						.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_ROLE)) {
 			// //通过从界面上取值，上一个节点的SpecName决定下一个节点的使用者
-			String nextPerformerUid = formI.getValue(this.getSpecName());
+			
+			String  scheduleId = this.getSpecName();
+			if(scheduleId==null || "".equals(scheduleId.trim())){
+				scheduleId = "scheduleId";
+			}
+			
+			String nextPerformerUid = formI.getValue(scheduleId);
 
 			// if (nextNodeInstance.isFirstActivityNode()) {
 			// SessionContext context = DOGlobals.getInstance()
 			// .getSessoinContext();
 			// nextPerformerUid = context.getUser().getUid();
 			// }
-
-			nextNodeInstance.setScheduleOUUid(nextPerformerUid);
+			if(nextPerformerUid != null){
+				nextNodeInstance.setScheduleOUUid(nextPerformerUid);
+//				String[] idarray = nextPerformerUid.split(",");
+//				for(int i = 0 ; i < idarray.length ; i++){
+//					String anId = idarray[i];
+//					///针对 user 存储
+//					
+//					
+//				}
+			}
+			
+			
 			// WFDAO dao = new WFDAO();
 			try {
 				DAOUtil.BUSI().store(nextNodeInstance);

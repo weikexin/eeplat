@@ -1,3 +1,8 @@
+<%
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Cache-Control", "no-store");
+response.setDateHeader("Expires", 0);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
@@ -9,9 +14,7 @@
 <html>
 
 <%
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Cache-Control", "no-store");
-	response.setDateHeader("Expires", 0);
+
 	String paneModelContent = (String) request
 			.getAttribute("paneModelContent");
 	String paneModelTitle = (String) request
@@ -66,6 +69,8 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.css" type="text/css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/uploadify.css"    type="text/css" />  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.css" type="text/css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.neosmart.fb.wall.css" type="text/css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/status.css" type="text/css" /> 
 
  
  <!-- 平台主体及其它集成的css -->
@@ -91,12 +96,15 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects_static.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js" ></script>	
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.elastic.js" ></script>		
 <!-- 平台主体及其他集成的js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xloadtree2.js" ></script> 
 <script type="text/javascript" src="<%=request.getContextPath() %>/FCKeditor/fckeditor.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/kindeditor/lang/zh_CN.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/FusionChartsFree/FusionCharts.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>

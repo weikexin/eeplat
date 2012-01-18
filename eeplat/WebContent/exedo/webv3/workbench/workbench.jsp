@@ -30,7 +30,7 @@
 	    <ul>
 	    	<li><a  href="javascript:loadPml({'pml':'trans_formmodel_setl10n','target':'_opener_tab','title':'字典翻译'})">导入字典翻译</a></li>
 		    <br/>   	  
-			<li><a  href="javascript:loadPml({'pml':'PM_DO_BO_Export_Select','target':'_opener_tab','title':'导入业务对象'})">导入业务对象</a></li>
+			<li><a  href="javascript:loadPml({'pml':'PM_DO_BO_Export_Select','target':'_opener_tab','title':'导入业务对象'})">导入配置</a></li>
 		    <br/>
 	    	<li><a  href="javascript:loadPml({'pml':'PM_do_pt_processtemplate_Main','target':'_opener_tab','title':'工作流建模'})">工作流建模</a></li>
 			<br/>
