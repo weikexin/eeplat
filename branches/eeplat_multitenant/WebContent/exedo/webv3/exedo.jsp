@@ -129,7 +129,6 @@ $(function(){
 	bindTabCloseCss(tabBtnSelector);
 	bindTabCloseWindow(tabBtnSelector);
 	
-
 	
 	//初始化左右拖动
 	  $(".resizeTd").mousedown(function(e){
@@ -150,9 +149,9 @@ $(function(){
 			  $(document).unbind('mouseup');	
 			  }
 		  );
-
 	 });
-
+	
+	
 	  resscrEvt();
 });
 <%

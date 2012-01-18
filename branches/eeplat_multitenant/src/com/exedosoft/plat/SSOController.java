@@ -86,157 +86,44 @@ public class SSOController extends HttpServlet {
 		if ("true".equals(formBI.getValue("mobileclient"))
 				|| formBI.getValue("randcode").equals(
 						request.getSession().getAttribute("rand"))) {// //验证码正确
-			MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
-					formBI.getValue("password"));
 
-			if (ma != null) {
+			String serviceName = request.getParameter("contextServiceName");
 
-				BOInstance user = new BOInstance();
-				user.fromObject(ma);
+			if (!"do_org_account_findbynameAndPassword".equals(serviceName)) {
+				MultiAccount ma = MultiAccount.findUser(
+						formBI.getValue("name"), formBI.getValue("password"));
 
-				DOService aService = DOService
-						.getService("multi_tenancy_browse_byname");
-				BOInstance tenant = aService.getInstance(user
-						.getValue("tenancyId"));
-				if (tenant != null && tenant.getName() != null) {
+				if (ma != null) {
 
-					String path = this.getClass().getResource("/globals.xml")
-							.getPath();
-					path = path.substring(0, path.toLowerCase().indexOf(
-							"classes"));
+					BOInstance user = new BOInstance();
+					user.fromObject(ma);
 
-
-					StringBuffer modelDBPath = new StringBuffer();
-					modelDBPath.append(path).append("db/tenancy/").append(
-							tenant.getValue("name"));
-
-					File modeDBFile = new File(modelDBPath.toString());
-					if (modeDBFile.exists()) {
-
-						if (user != null && user.getValue("tenancyId") != null) {
-							/**
-							 * tenancyId 相当于 multi_tenancy表中的name
-							 */
-							System.out.println("当前登录的租户为::"
-									+ user.getValue("tenancyId"));
-
-							if (tenant != null && tenant.getName() != null) {
-
-								// /设置公司名称
-								user.putValue("company", tenant
-										.getValue("l10n"));
-
-								DODataSource dds = new DODataSource();
-								dds.setObjUid(user.getValue("tenancyId"));
-								dds.setDialect("h2");
-								dds.setDriverClass("org.h2.Driver");
-
-								dds
-										.setDriverUrl((new StringBuilder(
-												"jdbc:h2:"))
-												.append(modelDBPath).append("/config").toString());
-
-								dds.setUserName("sa");
-								dds.setPassword("");
-
-								// tenant data datastore url
-								String multi_datasource_uid = tenant
-										.getValue("multi_datasource_uid");
-
-								DODataSource dataDds = null;
-								if (multi_datasource_uid != null) {
-									DOService findDataSource = DOService
-											.getService("multi_datasource_browse");
-									BOInstance aBI = findDataSource
-											.getInstance(multi_datasource_uid);
-									if (aBI != null) {
-										dataDds = (DODataSource) aBI
-												.toObject(DODataSource.class);
-									}
-								}
-								// /globals 放到session中
-
-								// //需要更改多租户表中，租户数据库中的数据源
-								// ////每个租户为定位到某个物理数据库中
-								// ///租户数据库分配
-								TenancyValues tv = new TenancyValues(dds,
-										tenant);
-								if (dataDds != null) {
-									tv.setDataDDS(dataDds);
-								}
-								DOGlobals.getInstance().getSessoinContext()
-										.setTenancyValues(tv);
-								DOService findUserService = DOService
-										.getService("do_org_user_browse");
-								List corrUsers = findUserService
-										.invokeSelect(ma.getObjUid());
-								BOInstance employee = null;
-								try {
-									if (corrUsers == null
-											|| corrUsers.size() == 0) {
-										// user.putValue("objuid",
-										// ma.getObjUid());
-										DOService storeUser = DOService
-												.getService("do_org_user_insert");
-										// /建立用户间的对应关系
-										user.putValue("user_code", user.getValue("name"));
-										employee = storeUser.store(user);
-										// //由于数据隔离的原因屏蔽，会在运行时自动关联角色，我是怎么做到的呢？=
-										////在SessionParterDefault里面自动增加的，所以下面的代码屏蔽了
-										// // /如果是创建者赋予管理员角色
-										// if
-										// ("2".equals(user.getValue("asrole")))
-										// {
-										// DOService storeUserRole = DOService
-										// .getService("do_org_user_role_insert");
-										// Map paras = new HashMap();
-										// paras.put("user_uid", user.getUid());
-										// paras.put("role_uid",
-										// "40288031288a2b8501288a3d009d000d");
-										// storeUserRole.store(paras);
-										// }
-									}else{
-										employee = (BOInstance)corrUsers.get(0);
-									}
-								} catch (ExedoException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								user.putValue("name", employee.getValue("name"));
-
-								// ///获取缺省工程的URL
-								String default_app_uid = user
-										.getValue("default_app_uid");
-								if (default_app_uid != null) {
-									DOApplication dao = DOApplication
-											.getApplicationByID(default_app_uid);
-									if (dao != null
-											&& dao.getOuterLinkPaneStr() != null) {
-										returnPath = dao.getOuterLinkPaneStr();
-									}
-								}
-
-								// //处理登录日志==========================
-								LoginMain.makeLogin(user, request);
-
-								System.out.println("当前业务库:::"
-										+ DOGlobals.getInstance()
-												.getSessoinContext()
-												.getTenancyValues()
-												.getDataDDS());
-								System.out.println("当前缺省的配置库:::"
-										+ DODataSource.parseGlobals());
-
-							}
-						}
-					}else{
-						echoStr = "该账号没有被激活！";
-					}
+					DOService aService = DOService
+							.getService("multi_tenancy_browse_byname");
+					BOInstance tenant = aService.getInstance(user
+							.getValue("tenancyId"));
+					
+					echoStr = makeMultiLogin(request, user, tenant);
 				}
 
-			} else {
+				else {
 
-				echoStr = "账号/密码出错，请重试（9月28号注册的用户请重新注册）！";
+					echoStr = "账号/密码出错，请重试（9月28号注册的用户请重新注册）！";
+				}
+
+			} else {// 管理登陆
+
+				if (serviceName != null && !serviceName.trim().equals("")) {
+					DOService curService = DOService.getService(serviceName);
+					String returnValue = null;
+					try {
+						returnValue = curService.invokeAll();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
 			}
 		}
 
@@ -284,9 +171,9 @@ public class SSOController extends HttpServlet {
 		// // TODO Auto-generated catch block
 		// e.printStackTrace();
 		// }
-		//		
 		//
-		//		
+		//
+		//
 		//
 		boolean isDelegate = false;
 		// try {
@@ -301,8 +188,8 @@ public class SSOController extends HttpServlet {
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
-			outHtml.append("{\"returnPath\":\"").append(returnPath).append(
-					"\",\"targetPane\":\"");
+			outHtml.append("{\"returnPath\":\"").append(returnPath)
+					.append("\",\"targetPane\":\"");
 			// /////////value
 
 			if (echoStr == null || echoStr.trim().equals("")) {
@@ -320,8 +207,8 @@ public class SSOController extends HttpServlet {
 				echoStr = "验证码错误！";
 			}
 
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append(
-					"\"}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr)
+					.append("\"}");
 
 			// } else if ("ext".equals(DOGlobals.getValue("jslib"))) {
 			//
@@ -344,15 +231,15 @@ public class SSOController extends HttpServlet {
 				echoStr = "";
 			}
 			echoStr = echoStr.trim();
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append(
-					"\"}");
+			outHtml.append("\",\"returnValue\":\"").append(echoStr)
+					.append("\"}");
 		}
 
 		// //改变所用的jslib
 		if ("true".equals(formBI.getValue("mobileclient"))) {
 			if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
-				DOGlobals.getInstance().getSessoinContext().getUser().putValue(
-						"jslib", "jquery_mobile");
+				DOGlobals.getInstance().getSessoinContext().getUser()
+						.putValue("jslib", "jquery_mobile");
 			}
 			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
@@ -360,6 +247,170 @@ public class SSOController extends HttpServlet {
 
 	}
 
+	public  String makeMultiLogin(HttpServletRequest request, 
+			BOInstance user,BOInstance tenant) {
+		
+		if(tenant==null){
+			tenant = this.getTestTenant();	
+			user.putValue("asrole", "1");
+		}
+		
+		String echoStr = "";
+		
+
+		if (tenant != null && tenant.getName() != null) {
+
+			String path = this.getClass()
+					.getResource("/globals.xml").getPath();
+			path = path.substring(0,
+					path.toLowerCase().indexOf("classes"));
+
+			StringBuffer modelDBPath = new StringBuffer();
+			modelDBPath.append(path).append("db/tenancy/")
+					.append(tenant.getValue("name"));
+
+			File modeDBFile = new File(modelDBPath.toString());
+			if (modeDBFile.exists()) {
+
+				if (user != null
+						&& tenant != null) {
+					/**
+					 * tenancyId 相当于 multi_tenancy表中的name
+					 */
+					System.out.println("当前登录的租户为::"
+							+ user.getValue("tenancyId"));
+
+					if (tenant != null && tenant.getName() != null) {
+
+						// /设置公司名称
+						user.putValue("company",
+								tenant.getValue("l10n"));
+
+						DODataSource dds = new DODataSource();
+						dds.setObjUid(user.getValue("tenancyId"));
+						dds.setDialect("h2");
+						dds.setDriverClass("org.h2.Driver");
+
+						dds.setDriverUrl((new StringBuilder(
+								"jdbc:h2:")).append(modelDBPath)
+								.append("/config").toString());
+
+						dds.setUserName("sa");
+						dds.setPassword("");
+
+						// tenant data datastore url
+						String multi_datasource_uid = tenant
+								.getValue("multi_datasource_uid");
+
+						DODataSource dataDds = null;
+						if (multi_datasource_uid != null) {
+							DOService findDataSource = DOService
+									.getService("multi_datasource_browse");
+							BOInstance aBI = findDataSource
+									.getInstance(multi_datasource_uid);
+							if (aBI != null) {
+								dataDds = (DODataSource) aBI
+										.toObject(DODataSource.class);
+							}
+						}
+						// /globals 放到session中
+
+						// //需要更改多租户表中，租户数据库中的数据源
+						// ////每个租户为定位到某个物理数据库中
+						// ///租户数据库分配
+						TenancyValues tv = new TenancyValues(dds,
+								tenant);
+						if (dataDds != null) {
+							tv.setDataDDS(dataDds);
+						}
+						DOGlobals.getInstance().getSessoinContext()
+								.setTenancyValues(tv);
+						DOService findUserService = DOService
+								.getService("do_org_user_browse");
+						List corrUsers = findUserService
+								.invokeSelect(user.getUid());
+						BOInstance employee = null;
+						try {
+							if (corrUsers == null
+									|| corrUsers.size() == 0) {
+								// user.putValue("objuid",
+								// ma.getObjUid());
+								DOService storeUser = DOService
+										.getService("do_org_user_insert");
+								// /建立用户间的对应关系
+								user.putValue("user_code",
+										user.getValue("name"));
+								employee = storeUser.store(user);
+								// //由于数据隔离的原因屏蔽，会在运行时自动关联角色，我是怎么做到的呢？=
+								// //在SessionParterDefault里面自动增加的，所以下面的代码屏蔽了
+								// // /如果是创建者赋予管理员角色
+								// if
+								// ("2".equals(user.getValue("asrole")))
+								// {
+								// DOService storeUserRole =
+								// DOService
+								// .getService("do_org_user_role_insert");
+								// Map paras = new HashMap();
+								// paras.put("user_uid",
+								// user.getUid());
+								// paras.put("role_uid",
+								// "40288031288a2b8501288a3d009d000d");
+								// storeUserRole.store(paras);
+								// }
+							} else {
+								employee = (BOInstance) corrUsers
+										.get(0);
+							}
+						} catch (ExedoException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						user.putValue("name",
+								employee.getValue("name"));
+
+						// ///获取缺省工程的URL
+//									String default_app_uid = user
+//											.getValue("default_app_uid");
+//									if (default_app_uid != null) {
+//										DOApplication dao = DOApplication
+//												.getApplicationByID(default_app_uid);
+//										if (dao != null
+//												&& dao.getOuterLinkPaneStr() != null) {
+//											returnPath = dao
+//													.getOuterLinkPaneStr();
+//										}
+//									}
+
+						// //处理登录日志==========================
+						LoginMain.makeLogin(user, request);
+
+						System.out.println("当前业务库:::"
+								+ DOGlobals.getInstance()
+										.getSessoinContext()
+										.getTenancyValues()
+										.getDataDDS());
+						System.out.println("当前缺省的配置库:::"
+								+ DODataSource.parseGlobals());
+					}
+
+				}
+			}
+		} else {
+			echoStr = "该账号没有被激活！";
+		}
+		return echoStr;
+	}
+
+	private BOInstance getTestTenant(){
+	
+		DOService aService = DOService
+				.getService("multi_tenancy_browse_byname");
+		BOInstance tenant = aService.getInstance("carrefour");
+//		if(tenant==null){
+//			tenant = aService.getInstance("carrefour");
+//		}
+		return tenant;
+	}
 	/*
 	 * (non-Java-doc)
 	 * 
@@ -409,7 +460,7 @@ public class SSOController extends HttpServlet {
 		// DOController cc =
 		// DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
 		// System.out.println("Corr Controller::" + cc.getCorrByConfig());
- 
+
 		DOApplication.clearAppCache();
 
 		// System.out.println(CacheFactory.getCacheRelation().get(DOApplication.class.getCanonicalName()));

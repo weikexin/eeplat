@@ -101,7 +101,8 @@
 		    <% }%>
 		   </select>
 		&nbsp;&nbsp;
-		<%if(isDev){ %><a onclick="setup()" >设置 </a> | <%} %> <a onclick="helpme();" >帮助</a>  | <a onclick="logOff()" >退出</a>
+		
+		<%if(isDev){ %><a onclick="setup()" >开发 </a> | <%} %> <a onclick="helpme();" >帮助</a>  | <a onclick="logOff()" >退出</a>
 	</div>
 </div>
 

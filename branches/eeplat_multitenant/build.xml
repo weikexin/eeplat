@@ -1,77 +1,100 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- WARNING: Eclipse auto-generated file.
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="yiyi_dev">
+<project basedir="." default="build" name="eeplat_multitenant">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../"/>
-    <property name="yiyi_core.location" value="../yiyi_core"/>
     <property name="yiyi_dao.location" value="../yiyi_dao"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.5"/>
-    <property name="source" value="1.5"/>
-    <path id="Apache Tomcat v5.5 [Apache Tomcat v5.5].libraryclasspath">
-        <pathelement location="../../../Tomcat5.5/common/lib/commons-el.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/jasper-compiler-jdt.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/jasper-compiler.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/jasper-runtime.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/jsp-api.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/mysql-connector-java-5.0.3-bin.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/naming-factory-dbcp.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/naming-factory.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/naming-resources.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/ojdbc14.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/lib/servlet-api.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/endorsed/resolver.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/endorsed/xalan.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/endorsed/xercesImpl.jar"/>
-        <pathelement location="../../../Tomcat5.5/common/endorsed/xml-apis.jar"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath">
+        <pathelement location="../../../tomcat6/lib/annotations-api.jar"/>
+        <pathelement location="../../../tomcat6/lib/catalina-ant.jar"/>
+        <pathelement location="../../../tomcat6/lib/catalina-ha.jar"/>
+        <pathelement location="../../../tomcat6/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../tomcat6/lib/catalina.jar"/>
+        <pathelement location="../../../tomcat6/lib/ecj-3.3.1.jar"/>
+        <pathelement location="../../../tomcat6/lib/el-api.jar"/>
+        <pathelement location="../../../tomcat6/lib/jasper-el.jar"/>
+        <pathelement location="../../../tomcat6/lib/jasper.jar"/>
+        <pathelement location="../../../tomcat6/lib/jsp-api.jar"/>
+        <pathelement location="../../../tomcat6/lib/servlet-api.jar"/>
+        <pathelement location="../../../tomcat6/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../tomcat6/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../tomcat6/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../tomcat6/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../tomcat6/lib/tomcat-i18n-ja.jar"/>
     </path>
-    <path id="Web App Libraries.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/anolemain_unobfus.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/ant.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/asm-3.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/barbecue-1.5-alpha3.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/cglib-2.2.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-digester-1.8.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-fileupload.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-jexl-1.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-lang.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-logging.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/commons-pool-1.2.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/freemarker.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/hsqldb.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/iText-2.0.8.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/iTextAsian.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/java_memcached-release_2.0.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/jdom.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/js.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/jtds-1.2.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/jxl.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/jxls-core-0.9.8.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/oscache-2.1.1.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/poi-3.2-FINAL-20081019.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/quartz-1.6.0.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/uploadFile.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/workspace/yiyi_dev/WebContent/WEB-INF/lib/xfire-all-1.2.6.jar"/>
-    </path>
-    <path id="Persisted container [com.soyatec.uml.CONTAINER for project [yiyi_dev]].libraryclasspath"/>
+    <path id="Web App Libraries.libraryclasspath"/>
     <path id="JUnit 3.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_3.8.2.v20090203-1005/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_3.8.2.v3_8_2_v20100427-1100/junit.jar"/>
     </path>
-    <path id="yiyi_dev.classpath">
+    <path id="App Engine SDK [App Engine - 1.6.0].libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/appengine-local-runtime-shared.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/el-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp/repackaged-appengine-ant-1.7.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp/repackaged-appengine-ant-launcher-1.7.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp/repackaged-appengine-jasper-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp/repackaged-appengine-jasper-el-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp/repackaged-appengine-tomcat-juli-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/jsp-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/shared/servlet-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/appengine-api-1.0-sdk-1.6.0.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/appengine-api-labs-1.6.0.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/appengine-jsr107cache-1.6.0.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/jsr107cache-1.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/datanucleus-appengine-1.0.10.final.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/datanucleus-core-1.1.5.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/datanucleus-jpa-1.1.5.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/geronimo-jpa_3.0_spec-1.1.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/geronimo-jta_1.1_spec-1.1.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/user/orm/jdo2-api-2.3-eb.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.6.0.v201111171704r37/appengine-java-sdk-1.6.0/lib/appengine-tools-api.jar"/>
+    </path>
+    <path id="eeplat_multitenant.classpath">
         <pathelement location="WebContent/WEB-INF/classes"/>
-        <path refid="Apache Tomcat v5.5 [Apache Tomcat v5.5].libraryclasspath"/>
+        <path refid="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="Persisted container [com.soyatec.uml.CONTAINER for project [yiyi_dev]].libraryclasspath"/>
         <path refid="JUnit 3.libraryclasspath"/>
+        <pathelement location="WebContent/WEB-INF/lib/ant.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/asm-3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/barbecue-1.5-alpha3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/cglib-2.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-dbcp-1.2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-digester-1.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-lang.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-pool-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/freemarker.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hsqldb.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jdom.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/js.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-3.1.12-bin.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ojdbc14.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/uploadFile.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/activation.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mail.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io-1.4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jxls-core-1.0-RC-1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jxls-reader-1.0-RC-1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/poi-3.6-20091214.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/poi-ooxml-3.6-20091214.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.6-20091214.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-jexl-2.0.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/yhsdao.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jsqlparser.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/h2-1.3.149.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/yhsmain.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jtds-1.2.5.jar"/>
+        <path refid="App Engine SDK [App Engine - 1.6.0].libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="WebContent/WEB-INF/classes"/>
@@ -92,18 +115,12 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="yiyi_dev.classpath"/>
+            <classpath refid="eeplat_multitenant.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
-        <ant antfile="${yiyi_core.location}/build.xml" dir="${yiyi_core.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${yiyi_core.location}/build.xml" dir="${yiyi_core.location}" inheritAll="false" target="build">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
-        <ant antfile="${yiyi_dao.location}/build.xml" dir="${yiyi_dao.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${yiyi_dao.location}/build.xml" dir="${yiyi_dao.location}" inheritAll="false" target="build">
+        <ant antfile="build.xml" dir="${yiyi_dao.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${yiyi_dao.location}" inheritAll="false" target="build">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>
@@ -121,30 +138,5 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
-    </target>
-    <target name="ATableForwarderJquery">
-        <java classname="com.exedosoft.plat.gene.jquery.ATableForwarderJquery" failonerror="true" fork="yes">
-            <classpath refid="yiyi_dev.classpath"/>
-        </java>
-    </target>
-    <target name="DOInputText">
-        <java classname="com.exedosoft.plat.ui.jquery.form.DOInputText" failonerror="true" fork="yes">
-            <classpath refid="yiyi_dev.classpath"/>
-        </java>
-    </target>
-    <target name="GeneUIMain">
-        <java classname="com.exedosoft.plat.gene.jquery.GeneUIMain" failonerror="true" fork="yes">
-            <classpath refid="yiyi_dev.classpath"/>
-        </java>
-    </target>
-    <target name="ProcessTemplate">
-        <java classname="com.exedosoft.wf.pt.ProcessTemplate" failonerror="true" fork="yes">
-            <classpath refid="yiyi_dev.classpath"/>
-        </java>
-    </target>
-    <target name="PropertyManager">
-        <java classname="com.exedosoft.plat.gene.jquery.PropertyManager" failonerror="true" fork="yes">
-            <classpath refid="yiyi_dev.classpath"/>
-        </java>
     </target>
 </project>

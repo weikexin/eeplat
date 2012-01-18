@@ -50,3 +50,14 @@ table.tablesorter tbody tr.selected:hover td{
 	background-color:#ff9;
 }
 table.tablesorter td,table.tablesorter th{ border:#ccc solid 1px; }
+
+.ui-icon-openid-163 {
+	background-image: url("images/163_16.png");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-openid-163 {
+		background-image: url("images/163_32.png");
+		background-size: 18px 18px;
+	}
+}
