@@ -1,0 +1,181 @@
+
+a.blue:link {
+color:#3b5998; 
+text-decoration:none; 
+}
+
+a.blue:visited {
+color:#3b5998; 
+text-decoration:none; 
+}
+
+a.blue:hover {
+color:#3b5998; 
+text-decoration:underline; 
+}
+
+a.blue:active {
+color:#3b5998; 
+}
+
+a.light_blue:link {
+color:#6d84b4; 
+text-decoration:none; 
+}
+
+a.light_blue:visited {
+color:#6d84b4; 
+text-decoration:none; 
+}
+
+a.light_blue:hover {
+color:#6d84b4; 
+text-decoration:underline; 
+}
+
+a.light_blue:active {
+color:#36d84b4; 
+}
+
+.blue{
+padding:0;
+margin:0;
+font-weight:bold;
+}
+
+.text{
+padding:0;
+margin:0;
+clear:both;
+overflow:hidden;
+}
+
+.clear{
+clear:both;
+}
+
+.con{
+width:495px;
+text-align:left;
+}
+
+.img_top{
+position:relative;
+left:52px;
+width:11px;
+height:7px;
+background-image:url('top_arrow.png');
+background-repeat: no-repeat;
+display:block;
+clear:both;
+z-index:2;
+}
+
+*html .img_top{
+	position:absolute;
+	background-image:none;
+}
+
+.input_box{
+font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+color:#808080;
+width:495px;
+height:30px;
+padding:5px 0 0 5px;
+border:solid #b4bbcd 1px;
+outline:none;
+resize:none;
+}
+
+
+
+.share{
+color:#808080;
+padding:0 12px 2px 0;
+font-weight:bold;
+float:left;
+position:relative;
+}
+
+.status{
+width:75px;
+height:14px;
+background-image:url('top_status.png');
+background-repeat: no-repeat;
+color:#000000; 
+text-align:right;
+font-weight:bold;
+float:left;
+}
+
+.pd{
+padding:8px 0 4px 0;
+}
+
+.text_status{
+position:relative;
+top:-1px;
+z-index:1;
+float:left;
+}
+
+
+
+.loading{
+display:none;
+width:16px;
+height:11px;
+background-image:url('loading.gif');
+float:right;
+}
+
+.load_status_out{
+padding-top:10px;
+}
+
+.load_status{
+margin-top:10px;
+padding-bottom:10px;
+border-bottom:solid #aaaaaa 1px;
+}
+
+.status_img{
+width:50px;
+height:50px;
+background:#eceff5;
+float:left;
+}
+
+.status_text{
+padding:0 10px 0 10px;
+float:left;
+}
+
+.date{
+padding-top:5px;
+color:#999999;
+}
+
+/* button */
+
+.button_outside_border_blue{
+width:50px;
+margin-top:5px;
+border:solid #29447e 1px;
+border-bottom:solid #1a356e 1px;
+cursor:pointer;
+float:right;
+}
+ 
+.button_inside_border_blue{
+padding:4px 0 4px 0;
+background-color:#5c75a9;
+border-top:solid #8a9cc2 1px;
+text-align:center;
+font-weight:bold;
+color:#ffffff;
+}
+ 
+div.button_inside_border_blue:active{
+background-color:#4f6aa3;
+}
