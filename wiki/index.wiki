@@ -35,6 +35,7 @@
           *  [CodeGenerator     编码生成器]
           *  [OrgParter     组织权限简介]
           *  [OrgAuth       复杂权限设置] 
+          *  [Embed_Pml     嵌入使用]
           *  [HowToUseExcelReport     使用EXCEL报表]
           *  [HowTOUserGraphics       如何何使用图表]
           *  [ImportExportBusinessObject     配置数据导入导出]
