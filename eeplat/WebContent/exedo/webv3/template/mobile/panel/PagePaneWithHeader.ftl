@@ -4,7 +4,7 @@
 		<h1>${model.title}</h1>
 		<a href="javascript:window.location='${app_index}'" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
 	</div>
-  <div data-role="content">
+  <div data-role="content"  data-theme="d">
  	   ${items_html}
  	</div>   
  	<#if  footer?exists>

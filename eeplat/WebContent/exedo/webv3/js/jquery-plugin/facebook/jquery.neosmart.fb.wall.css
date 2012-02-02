@@ -3,10 +3,11 @@
 	.fb-wall{
 		font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
 		font-size:13px;
-		width:520px;
 		line-height:1.2em;
 		color:#333333;
-		padding:10px;
+		/*
+		width:520px; 
+		padding:10px;*/
 		background-color:#FFF;}
 		
 	.fb-wall a{
@@ -31,6 +32,8 @@
 		
 	.fb-wall-avatar{
 		float:left;
+		width:48px;
+		height:48px;
 		border:0;}
 		
 	.fb-wall-data{

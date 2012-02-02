@@ -18,9 +18,16 @@
 	content="width=device-width, minimum-scale=1, maximum-scale=1" />
 <title>云鹤平台应用</title>
 
-<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0rc2.min.css" />
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0rc2.min.js" ></script>	
+
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.neosmart.fb.wall.css" type="text/css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/status.css" type="text/css" />
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.elastic.js" ></script>	
+
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.css" />
