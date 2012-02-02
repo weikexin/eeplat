@@ -3,7 +3,7 @@
 =EEPlat支持在页面框架中嵌入使用=
 
    由于上线要求、风险考虑或项目遗留等原因必须使用现有的界面布局、组织结构以及索引菜单。EEPlat支持嵌入到现有的界面框架，并且支持把现有的用户会话（Session）转换为EEPlat的用户会话。
-   解决方案是通过一个中介JSP转发，如下图的pml.jsp的内容，它会接受pml的参数（面板名称），如下列URL：：
+   解决方案是通过一个中介JSP转发，它会接受pml的参数（面板名称），如下列URL：：
 {{{
    http://testme.com/eeplat/exedo/webv3/pml.jsp?pml=PM_do_log_Main
 }}}
@@ -12,7 +12,7 @@
 
 
 
-
+如下图的pml.jsp的内容：
 
 {{{
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
