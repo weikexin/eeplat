@@ -9,9 +9,9 @@
 }}}
   具体解决方案：
 
- *　接受面板参数。
- *　判断EEPlat Session是否存在，存在的话直接转发面板界面。
- *  不存在，则获取当前框架的Session ,并把当前的Session转化为EEPlat Session ，然后转发面板界面。
+ * 接受面板参数。
+ * 判断EEPlat Session是否存在，存在的话直接转发面板界面。
+ * 不存在，则获取当前框架的Session ,并把当前的Session转化为EEPlat Session ，然后转发面板界面。
   
 
 
