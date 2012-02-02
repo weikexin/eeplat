@@ -104,6 +104,8 @@
 
    下面可以进行简单测试，点击“我的第一个工程”，在右侧界面上点击“直接打开工程”或者“打开工程登录”，如下图：
   <img height="200" width="600" src="http://eeplat.googlecode.com/files/yiyi_bs_open.png"/>
+
+  打开工程登录默认的密码为:u/1111，对应的数据表为do_org_user。
  
   打开的界面为：
 
