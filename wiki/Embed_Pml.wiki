@@ -1,6 +1,12 @@
-#summary One-sentence summary of this page.
+#sidebar index
 
-= Introduction =
+=EEPlat支持在页面框架中嵌入使用=
+
+   如由于上线要求、风险考虑或项目遗留等原因必须使用现有的界面布局、组织结构以及索引菜单。EEPlat支持嵌入到现有的界面框架，并且支持把现有的用户会话（Session）转换为EEPlat的用户会话。
+
+
+
+
 
 {{{
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
@@ -27,10 +33,13 @@
 		if (null == session.getAttribute("userInfo")
 				|| context.getUser() == null) {
 			
-			
+		///获取当前的用户session
+                        String cust_id = usersession..getAttribute("cust_id");
+
+                        String cust_name = usersession..getAttribute("cust_name");
 			BOInstance biUser = new BOInstance();
-			biUser.putValue("objuid", "cust_id");///第三方用户的ID
-			biUser.putValue("name", "cust_name");////第三方用户的名称 
+			biUser.putValue("objuid", cust_id);///第三方用户的ID
+			biUser.putValue("name", cust_name);////第三方用户的名称 
 		//	biUser.putValue("otherpara", "cust_name");////ID和名称是最重要的，也可以增加其他的属性
 			LoginMain.makeLogin(biUser, request);
 		}
