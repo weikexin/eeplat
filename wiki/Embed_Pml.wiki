@@ -35,8 +35,8 @@
 			
 		///获取当前的用户session
                         String cust_id = usersession..getAttribute("cust_id");
-
                         String cust_name = usersession..getAttribute("cust_name");
+
 			BOInstance biUser = new BOInstance();
 			biUser.putValue("objuid", cust_id);///第三方用户的ID
 			biUser.putValue("name", cust_name);////第三方用户的名称 
