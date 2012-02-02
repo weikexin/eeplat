@@ -1,5 +1,3 @@
-
-
 <div id="${model.objUid}" class="fb-wall" style="display: block;">
 
    <div class="fb-wall-box fb-wall-box-first">

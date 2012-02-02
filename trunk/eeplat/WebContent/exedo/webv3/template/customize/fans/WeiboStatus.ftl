@@ -1,9 +1,13 @@
 <div id="${model.objUid}" class="fb-wall" style="display: block;">
   <#list data as ins>
-		<div class="fb-wall-box">
+	     <#if ins_index==0>
+	       <div class="fb-wall-box fb-wall-box-first">
+	      <#else>
+			<div class="fb-wall-box">
+	     </#if>
 			<a href="#"
 				target="_blank"><img class="fb-wall-avatar"
-				src="${contextPath}images/empty.gif"></a>
+				src="${ins.map.owner_pic?if_exists}"/></a>
 			
 			<div class="fb-wall-data">
 				<span class="fb-wall-message"><a
@@ -32,8 +36,7 @@
 				    <span class="fb-wall-comment"> <a
 							href="#s"
 							class="fb-wall-comment-avatar" target="_blank"><img
-								src="${contextPath}images/empty.gif"></a> 
-				    <input type="text" name="ttt" /></span>			
+								src="${contextPath}images/empty.gif"></a><input type="text" name="ttt" data-role="none"/></span>			
 			    </div>
 			</div>
 

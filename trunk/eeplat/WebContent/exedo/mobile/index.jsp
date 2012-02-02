@@ -6,13 +6,15 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-        <title>云鹤平台应用登录</title>
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0rc2.min.css" />
+        <title>EEPlat PaaS Login</title>
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
+
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0rc2.min.js" ></script>	
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
     </head>
 	<body>
 	    
@@ -70,7 +72,7 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "bbb_mobile_pane.pml";
+				        window.location= globalURL + "jyhd_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }
