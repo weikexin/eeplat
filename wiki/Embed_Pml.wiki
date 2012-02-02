@@ -3,6 +3,12 @@
 =EEPlat支持在页面框架中嵌入使用=
 
    如由于上线要求、风险考虑或项目遗留等原因必须使用现有的界面布局、组织结构以及索引菜单。EEPlat支持嵌入到现有的界面框架，并且支持把现有的用户会话（Session）转换为EEPlat的用户会话。
+   解决方案是通过一个中介JSP转发，如下图的pml.jsp的内容，它会接受pml的参数，接受面板的名称，如下列URL：：
+{{{
+   http://testme.com/eeplat/exedo/webv3/pml.jsp?pml=PM_do_log_Main
+}}}
+
+  
 
 
 
@@ -34,8 +40,8 @@
 				|| context.getUser() == null) {
 			
 		///获取当前的用户session
-                        String cust_id = usersession..getAttribute("cust_id");
-                        String cust_name = usersession..getAttribute("cust_name");
+                        String cust_id = usersession..getAttribute("cust_id");///第三方用户的ID
+                        String cust_name = usersession..getAttribute("cust_name");////第三方用户的名称 
 
 			BOInstance biUser = new BOInstance();
 			biUser.putValue("objuid", cust_id);///第三方用户的ID
