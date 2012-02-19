@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.exedosoft.plat.DOAccess;
 import com.exedosoft.plat.bo.BOInstance;
-import com.exedosoft.plat.js.RunJs;
+import com.exedosoft.plat.js.RunJsFactory;;
 
 public class AccessUtil {
 
@@ -57,7 +57,7 @@ public class AccessUtil {
 		}  else {
 
 
-			String isTrue = RunJs.evaluate(condition, aBI);
+			String isTrue = RunJsFactory.getRunJs().evaluate(condition, aBI);
 			if (isTrue != null && isTrue.equals("true")) {
 				return true;
 			} else {
