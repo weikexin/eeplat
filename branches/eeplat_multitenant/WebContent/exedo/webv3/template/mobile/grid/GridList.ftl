@@ -14,10 +14,34 @@
 			      </#list>
 	           <#if (controCols?size==0) > 
 				</a>
-			   </#if>	 
-				 <#list  controCols as item>
-				    <#if '${dataBind(ins,item)}' ==''> ${item.htmlValue} </#if> 
-				 </#list>  
+			   </#if>	
+			   <!--如果后面控制器大于2项，控制器每列3项-->
+			   <#if (controCols?size > 2) > 
+				   <div class="ui-grid-b"> 
+					 <#list  controCols as item>
+					     <#if ((item_index % 3)==0)>
+						     <div class="ui-block-a">
+						    <#if '${dataBind(ins,item)}' ==''>  ${item.htmlValue} </#if> 
+						     </div>
+					     </#if>
+					     <#if ((item_index % 3) ==1)>
+						     <div class="ui-block-b">
+						    <#if '${dataBind(ins,item)}' ==''>  ${item.htmlValue} </#if> 
+						     </div>
+					     </#if>
+					     <#if ((item_index % 3) ==2)>
+						     <div class="ui-block-c">
+						    <#if '${dataBind(ins,item)}' ==''>  ${item.htmlValue} </#if> 
+						     </div>
+					     </#if>
+					 </#list>  
+					</div> 
+			 <#else>	
+			 	 <#list  controCols as item>
+			  		 <#if '${dataBind(ins,item)}' ==''>  ${item.htmlValue} </#if> 
+			  	  </#list>	 
+			 </#if>
+			 	
 		  </li> 
 	   </#list><!--End data-->
 	  <#if ((pageNo?exists) && (data?size > pageSize ) )>

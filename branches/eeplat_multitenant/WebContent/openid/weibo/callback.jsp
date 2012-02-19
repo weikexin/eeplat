@@ -4,8 +4,12 @@
 <%@ page language="java" import="com.eeplat.social.openapi.user.SocialUser,com.eeplat.social.openapi.user.SocialUserManager" %>
 <%@ page language="java" import="com.exedosoft.plat.SSOController" %>
 <%@ page language="java" import="com.exedosoft.plat.bo.BOInstance" %>
+<%@ page language="java" import="com.exedosoft.plat.util.DOGlobals" %>
 
 <%
+
+
+    System.out.println("Enter Callback=======================================");
 	
 	String verifier=request.getParameter("oauth_verifier");
 	Weibo weibo = new Weibo();
@@ -37,6 +41,12 @@
 					
 				    user =  SocialUserManager.storeUser(user);
 					
+				    
+					//数据库中并没有设计name字段，storeUser如果存在就会
+					//从数据库中查询加载，把name对应的值覆盖为null了
+					user.setName(currentUser.getName());
+
+				    
 					SSOController  sso = new SSOController();
 					
 					BOInstance biUser = new BOInstance();
@@ -44,7 +54,18 @@
 					
 					sso.makeMultiLogin(request, biUser, null);
 					
-					response.sendRedirect(request.getContextPath() +  "/pane_CRM.pml?isApp=true");
+					if("true".equals(session.getAttribute("mobileclient"))){
+						if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
+							DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+						}
+						System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
+						response.sendRedirect(request.getContextPath() +  "/exedo/mobile/AppList.jsp");//pane_jyhd.pml?isApp=true
+
+					}else{
+						response.sendRedirect(request.getContextPath() +  "/pane_CRM.pml?isApp=true");
+					}
+					
+					
 								
 					
 					out.println("Just for a test,您使用新浪微博成功登录！");				

@@ -26,6 +26,7 @@ import com.exedosoft.plat.bo.org.OrgAccountability;
 import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.plat.bo.org.OrgParterValue;
 import com.exedosoft.plat.js.RunJs;
+import com.exedosoft.plat.js.RunJsFactory;
 import com.exedosoft.plat.login.LoginMain;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
@@ -1822,7 +1823,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		log.info("处理后的表达式");
 		log.info(expression);
 
-		String retValue = RunJs.evaluate(expression, bi);
+		String retValue = RunJsFactory.getRunJs().evaluate(expression, bi);
 		log.info("表达式执行后的值:" + retValue);
 		return retValue;
 

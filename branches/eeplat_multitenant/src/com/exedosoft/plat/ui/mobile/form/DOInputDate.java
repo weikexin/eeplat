@@ -24,10 +24,9 @@ public class DOInputDate extends DOBaseForm {
 
 			buffer.append(" value='").append(theValue).append("'");
 		}
-		if (isReadOnly(fm)) {
-			buffer.append(" readonly='readonly' ");
 
-		}
+		buffer.append("  data-role='datebox'  data-options='{\"mode\":\"datebox\",\"focusMode\": true}'");
+
 		buffer.append(" size=\"").append(getInputSize(fm)).append("\"/>");
 		if (fm.isNotNull()) {
 			buffer.append("&nbsp;<font color='red'>*</font>");
@@ -41,7 +40,8 @@ public class DOInputDate extends DOBaseForm {
 				buffer.append(fm.getNote());
 			}
 		}
-
+		
+	
 		return buffer.toString();
 	}
 

@@ -6,6 +6,11 @@
 
 <%
 
+////改变所用的jslib
+if("true".equals(request.getParameter("mobileclient"))){
+	session.setAttribute("mobileclient", "true");
+}
+
     TBlog tblog = new TBlog();
 	RequestToken resToken=tblog.getOAuthRequestToken();
 	if(resToken!=null){

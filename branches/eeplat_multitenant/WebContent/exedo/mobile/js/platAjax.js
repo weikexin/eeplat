@@ -92,8 +92,7 @@ function callAction(p){
 	   	   if(p.pml!=null) {
 	   		   
 		   		try{
- 		   			$.mobile.changePage({
-	 		   			url: p.pml, 
+ 		   			$.mobile.changePage(p.pml,{
 	 		   			type: "post", 
 	 		   			data: urlCodeDeal(paras)
 	 		   		});	
@@ -255,8 +254,7 @@ function callService(p){
    				        var target = arrayTarget[ai];
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
-	   				     	$.mobile.changePage({
-			 		   			url: aPath, 
+	   				     	$.mobile.changePage(aPath,{
 			 		   			type: "post", 
 			 		   			data: paras
 			 		   		});	
@@ -266,8 +264,7 @@ function callService(p){
 			 
  		   	   if(p.pml!=null) {
 		 		   		try{
-		 		   			$.mobile.changePage({
-			 		   			url: p.pml, 
+		 		   			$.mobile.changePage( p.pml,{
 			 		   			type: "post", 
 			 		   			data: paras
 			 		   		});	
@@ -362,21 +359,23 @@ function loadPml(p){
 	}
 
 	try{
-
-	   if(p.noreverse){
-	    	$.mobile.changePage({
-				url: p.pml, 
-				type: "post", 
-				data: urlCodeDeal(paras)},"",false, false
-			);
-		   
-	   }else{
-    	$.mobile.changePage({
-			url: p.pml, 
-			type: "post", 
-			data: urlCodeDeal(paras)}
-		);
-	   }	
+		
+		   if(p.noreverse){
+		    	$.mobile.changePage(p.pml,{
+						type: "post", 
+						data: urlCodeDeal(paras),
+						reverse: false,
+						changeHash: false
+					}
+				);
+			   
+		   }else{
+		    	$.mobile.changePage(p.pml,{
+					type: "post", 
+					data: urlCodeDeal(paras)}
+				);
+		   }
+	   	
 	}catch(e){
 		
 	}

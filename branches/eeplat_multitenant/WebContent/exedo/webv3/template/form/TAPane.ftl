@@ -1,6 +1,6 @@
 <#include "TFormBase.ftl">
 <#if (model.data?exists)>
-	<a  id='${model.objUid}${model.data.uid}' data-role="button"  style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
+	<a  id='${model.objUid}${model.data.uid}' data-role="button"  data-inline="true"  <#compress><@JudgeMobileIcon model/> </#compress>   style="${model.style?if_exists}"  href='#' value="${model.l10n}">${model.l10n}</a>
 	<#if (model.linkPaneModel?exists) >
 	<script>
 	

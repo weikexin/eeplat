@@ -6,20 +6,23 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-        <title>云鹤PaaS应用平台登录</title>
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
+        <title>EEPlat Login</title>
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
+
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
-		<script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery-1.5.2.min.js" ></script>
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.js" ></script>	
+
     </head>
 	<body>
 	    
 	<div data-role="page" data-theme="b">
 	 
 	    <div data-role="header" data-position="inline"  data-nobackbtn="true">
-	        <h1>云鹤PaaS应用平台登录</h1>
+	        <h1>EEPlat Login</h1>
 	    </div>
 	 
 	    <div data-role="content" data-theme="c">

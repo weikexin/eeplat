@@ -5,6 +5,12 @@
 
 
 <%
+
+////改变所用的jslib
+if("true".equals(request.getParameter("mobileclient"))){
+	session.setAttribute("mobileclient", "true");
+}
+
 	Weibo weibo = new Weibo();
 	RequestToken resToken = weibo.getOAuthRequestToken(GlobalConfig.getCallBack("weibo.cb"));
 	if(resToken!=null){
