@@ -13,7 +13,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOService;
-import com.exedosoft.plat.js.RunJs;
+import com.exedosoft.plat.js.RunJsFactory;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOViewTemplate;
@@ -39,7 +39,7 @@ public class DODownLoadExcelReport extends DOViewTemplate {
 
 		String genScript = fm.getController().getGenScript();
 		if (genScript != null && !"".equals(genScript.trim())) {
-               RunJs.evaluate(genScript);
+			RunJsFactory.getRunJs().evaluate(genScript);
 		}
 
 
