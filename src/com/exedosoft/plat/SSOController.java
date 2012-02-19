@@ -108,7 +108,7 @@ public class SSOController extends HttpServlet {
 
 				else {
 
-					echoStr = "账号/密码出错，请重试（9月28号注册的用户请重新注册）！";
+					echoStr = "账号/密码出错！";
 				}
 
 			} else {// 管理登陆

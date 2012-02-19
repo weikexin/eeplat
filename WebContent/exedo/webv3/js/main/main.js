@@ -504,3 +504,35 @@ function reloadTree(type){
 	  
 	  }
 }
+
+/**
+ * is mobile
+ */
+
+function isMobile(){
+	
+
+	// If the screen orientation is defined we are in a modern mobile OS
+	var mobileOS = typeof orientation != 'undefined' ? true : false;
+	
+	if(mobileOS){
+		return true;
+	}
+	
+	var android = (navigator.platform.indexOf("android")>=0);
+	
+	var iPhone = (navigator.platform.indexOf("iPhone")>=0);
+	
+	var iPod = (navigator.platform.indexOf("iPod")>=0);
+	
+	var iPad = (navigator.platform.indexOf("iPad")>=0);
+	
+	var symbian = (navigator.platform.indexOf("symbian")>=0);
+	
+	var series60 = (navigator.platform.indexOf("series60")>=0);	
+	
+	var BlackBerry = (navigator.platform.indexOf("BlackBerry")>=0);	
+
+
+	return android || iPhone || iPod || iPad || symbian || series60 || BlackBerry;
+}

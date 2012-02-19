@@ -10,6 +10,7 @@
 	import="com.eeplat.social.openapi.user.SocialUser,com.eeplat.social.openapi.user.SocialUserManager"%>
 <%@ page language="java" import="com.exedosoft.plat.SSOController"%>
 <%@ page language="java" import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page language="java" import="com.exedosoft.plat.util.DOGlobals" %>
 <%
 	try {
 		String oauth_code = request.getParameter("code");
@@ -48,8 +49,17 @@
 
 		sso.makeMultiLogin(request, biUser, null);
 
-		response.sendRedirect(request.getContextPath()
-				+ "/pane_CRM.pml?isApp=true");
+		if("true".equals(session.getAttribute("mobileclient"))){
+			if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
+				DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
+			}
+			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
+			response.sendRedirect(request.getContextPath() +  "/exedo/mobile/AppList.jsp");//pane_jyhd.pml?isApp=true
+
+		}else{
+			response.sendRedirect(request.getContextPath() +  "/pane_CRM.pml?isApp=true");
+		}
+		
 
 	} catch (Exception e) {
 		response.sendRedirect(request.getContextPath()

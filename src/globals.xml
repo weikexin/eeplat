@@ -64,7 +64,7 @@
 		<property name="useCache">no</property>
 		
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
-		<property name="tenant_db">E:/eclipse35/workspace/eeplat_multitenancy/WebContent/WEB-INF/db/tenancy/</property>
+		<property name="tenant_db">E:/eclipse35/workspace/eeplat_multitenant/WebContent/WEB-INF/db/tenancy/</property>
 		
 		<!--登陆是否启用绿色通道-->
 		<property name="login.greenchannel">1</property>

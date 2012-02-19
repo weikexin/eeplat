@@ -1,4 +1,4 @@
-﻿<div data-role="page"  id="${model.name}" name="${model.name}">
+<div data-role="page"  id="${model.name}" name="${model.name}">
 	<div data-role="header" data-theme="b">
 		<a href="#" data-icon="arrow-l" data-rel="back"  class="ui-btn-left">Back</a>
 		<h1>${model.title}</h1>

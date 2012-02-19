@@ -2,6 +2,7 @@ package com.exedosoft.plat.ui.jquery.form;
 
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
+import com.exedosoft.plat.util.DOGlobals;
 
 public class DOInputCheckBox extends DOStaticList {
 
@@ -14,17 +15,20 @@ public class DOInputCheckBox extends DOStaticList {
 		DOFormModel property = (DOFormModel)iModel;			
 
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("<input name=\"").append(property.getFullColName());
+		buffer.append("<input name=\"").append(property.getFullColName())
+		.append("\" id=\"").append(property.getFullColID());
+		
+		String configValue = "";
 		if (property.getInputConfig() != null
 				&& !"".equals(property.getInputConfig())) {
-			String configValue = property.getInputConfig().substring(0,
+			configValue = property.getInputConfig().substring(0,
 					property.getInputConfig().indexOf(","));
 			buffer.append("\" value=\"").append(configValue);
 		} else {
 			buffer.append("\" value=\"").append("1");
 		}
 		
-		buffer.append("\"  type=\"checkbox\"");
+		buffer.append("\" class=\"custom\"   type=\"checkbox\"");
 		
 		buffer.append(getDecoration(property));
 
@@ -33,8 +37,6 @@ public class DOInputCheckBox extends DOStaticList {
 		boolean isDefaultChecked = false;
 		if (property.getInputConfig() != null
 				&& property.getInputConfig().indexOf("@") != -1) {
-			String configValue = property.getInputConfig().substring(0,
-					property.getInputConfig().indexOf(","));
 			String defaultCheck = property.getInputConfig().substring(
 					property.getInputConfig().indexOf("@") + 1);
 			if (configValue.equalsIgnoreCase(defaultCheck)) {
@@ -55,6 +57,21 @@ public class DOInputCheckBox extends DOStaticList {
 		}
 		
 		buffer.append("/>");
+		
+		
+		
+		
+		if ("jquery_mobile".equals(DOGlobals.getInstance()
+				.getSessoinContext().getUser().getValue("jslib"))) {
+			
+			if("".equals(configValue)){
+				configValue = "&nbsp";
+			}
+			
+			buffer.append("<label for='").append(property.getFullColID())
+			.append("'> ").append(configValue).append("</label>");
+			
+		}
 		return buffer.toString();
 	}
 

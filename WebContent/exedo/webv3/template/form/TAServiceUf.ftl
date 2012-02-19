@@ -1,6 +1,6 @@
 <#include "TFormBase.ftl">
 <#--参数通过本条记录的主键传递，如果是弹出窗口，并不关闭-->
-<a  id='${model.objUid}${model.data.uid}' data-role="button"  style="${model.style?if_exists}"    href='#' value="${model.l10n}">${model.l10n}</a>
+<a  id='${model.objUid}${model.data.uid}' data-role="button"  data-inline="true" <#compress><@JudgeMobileIcon model/> </#compress> style="${model.style?if_exists}"    href='#' value="${model.l10n}">${model.l10n}</a>
 <script>
 
 $('#${model.objUid}${model.data.uid}').bind('click',function(){

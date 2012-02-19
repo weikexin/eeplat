@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 public class DOInputRadio extends DOStaticList {
@@ -26,10 +27,13 @@ public class DOInputRadio extends DOStaticList {
 		if (list != null) {
 			boolean isFirst = true;
 			String defaultValue = getDefaultListValue(property);
+			int i = 0;
 			for (Iterator it = list.iterator(); it.hasNext();) {
+				i ++;
 				String[] half = (String[]) it.next();
 				buffer.append(" <input ")
 				.append(" type=\"radio\" name=\"").append(property.getFullColName()).append("\" ")
+				.append(" type=\"radio\" id=\"").append(property.getFullColID()).append(i).append("\" ")	
 				.append("  value=\"").append(half[0]);
 				buffer.append("\"");
 				if (isFirst) {
@@ -66,8 +70,16 @@ public class DOInputRadio extends DOStaticList {
 							property.getEscapeDOClickJs()).append("'");
 				}
 
-				buffer.append("/>")
-				.append(half[1]);
+				buffer.append("/>");
+				
+				if (!"jquery_mobile".equals(DOGlobals.getInstance()
+						.getSessoinContext().getUser().getValue("jslib"))) {
+					buffer.append(half[1]);
+				} else {
+					buffer.append("<label for='")
+							.append(property.getFullColID()).append(i).append("'> ")
+							.append(half[1]).append("</label>");
+				}
 				
 			}
 		}

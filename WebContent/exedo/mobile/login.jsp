@@ -6,74 +6,40 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-        <title>EEPlat PaaS Login</title>
-		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0.min.css" />
+        <title>EEPlat Login</title>
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
 		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
+		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.datebox.min.css" />
 
-		<script language="javascript">
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.datebox.min.js" ></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js" ></script>
+   		
+   		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0.min.js" ></script>
+   		
     </head>
 	<body>
 	    
 	<div data-role="page" data-theme="b">
 	 
 	    <div data-role="header" data-position="inline"  data-nobackbtn="true" data-theme="b">
-	        <h1>EEPlat PaaS Login</h1>
+	        <h1>EEPlat Login</h1>
 	    </div>
 	 
 	    <div data-role="content" data-theme="c">
 		
-			<a href="index.html" data-role="button" data-icon="openid-weibo">新浪微博登录</a> 
+			<a   href="<%=request.getContextPath()%>/openid/weibo/call.jsp?mobileclient=true" data-role="button" rel="external" data-icon="openid-weibo">新浪微博登录</a> 
 		
-			<a href="index.html" data-role="button" data-icon="openid-qq">QQ账号登录</a> 
+			<a href="<%=request.getContextPath()%>/openid/qq/call.jsp?mobileclient=true" data-role="button" rel="external" data-icon="openid-qq">QQ账号登录</a> 
 		
-			<a href="index.html" data-role="button" data-icon="openid-renren">人人账号登录</a> 
+			<a href="<%=request.getContextPath()%>/openid/renren/call.jsp?mobileclient=true" data-role="button" rel="external" data-icon="openid-renren">人人账号登录</a> 
 			
-	  	    <a href="index.html" data-role="button" data-icon="openid-163">网易账号登录</a> 
+	  	    <a href="<%=request.getContextPath()%>/openid/163/call.jsp?mobileclient=true" data-role="button" rel="external" data-icon="openid-163">网易账号登录</a> 
 
 	    </div>
 	</div>
 	</body>
-	<script language="javascript">
-	
-	  $(function(){
-	  	  $("#asub").bind("click",function(){
-	  	  		var userName = $("input:eq(0)").val();
-	  	  		var passWord = $("input:eq(1)").val();
-				if(userName==""){
-					alert("请填写用户名!");
-					return;
-				}
-				if(passWord==""){
-					alert("请填写密码!");
-					return;
-				}
-	  	  		submitForm();
-	  	  })
-	  });
-	
-	  //登录
-	  function submitForm(){
-		   var paras =  $('#loginform').serialize();
-		   paras = paras + "&contextServiceName=do_org_user_findbynameandpwd&mobileclient=true";
-		   $.ajax({
-			   url: globalURL + "ssocontroller",
-			   data: paras,
-			   dataType:"json",
-			   success: function(data){
-				   var retValue = unescape(data.returnValue);
-				   if('success'==retValue){
-				        window.location= globalURL + "bbb_mobile_pane.pml";
-				   }else{
-					   	alert(retValue);
-				   }
-				 }
-			 });
-		   
-
-	  }
-</script>
 	</html>

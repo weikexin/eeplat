@@ -6,6 +6,7 @@ import java.util.List;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 
 public class DOInputCheckBoxList extends DOStaticList {
@@ -14,6 +15,7 @@ public class DOInputCheckBoxList extends DOStaticList {
 		super();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public String getHtmlCode(DOIModel iModel) {
 
 		DOFormModel property = (DOFormModel) iModel;
@@ -21,9 +23,12 @@ public class DOInputCheckBoxList extends DOStaticList {
 		StringBuffer buffer = new StringBuffer();
 
 		if (property.getLinkService() != null) {
+			int i = 0;
 			for (Iterator it = property.getLinkService().invokeSelect()
 					.iterator(); it.hasNext();) {
 
+				i++;
+				 
 				BOInstance instance = (BOInstance) it.next();
 
 				buffer.append("<input name=\"").append(
@@ -31,43 +36,62 @@ public class DOInputCheckBoxList extends DOStaticList {
 
 				buffer.append("\" value=\"").append(instance.getUid());
 
-				buffer.append("\"  type=\"checkbox\"");
+				buffer.append("\" class=\"custom\"   type=\"checkbox\"");
 
 				buffer.append(getDecoration(property));
 
-				if (DOStaticList.isChecked(instance.getUid(), property
-						.getValue())) {
+				if (DOStaticList.isChecked(instance.getUid(),
+						property.getValue())) {
 					buffer.append(" checked ");
 				}
-				 if (isReadOnly(property)) {
-					 buffer.append(" DISABLED  ");
-				 }
+				if (isReadOnly(property)) {
+					buffer.append(" DISABLED  ");
+				}
 				buffer.append("/>");
-				buffer.append(instance.getThisLink());
-				//buffer.append(instance.getName());
+
+				if (!"jquery_mobile".equals(DOGlobals.getInstance()
+						.getSessoinContext().getUser().getValue("jslib"))) {
+					buffer.append(instance.getThisLink());
+				} else {
+
+					buffer.append("<label for='")
+							.append(property.getFullColID()).append(i).append("'> ")
+							.append(instance.getThisLink()).append("</label>");
+				}
+				// buffer.append(instance.getName());
 
 			}
-		} else if(property.getInputConfig()!=null){
+		} else if (property.getInputConfig() != null) {
 
+			int i = 0;
 			List list = StringUtil.getStaticList(property.getInputConfig());
 			for (Iterator it = list.iterator(); it.hasNext();) {
+				i ++;
 				String[] half = (String[]) it.next();
 				buffer.append("<input name=\"").append(
 						property.getFullColName());
 
 				buffer.append("\" value=\"").append(half[0]);
 
-				buffer.append("\"  type=\"checkbox\"");
+				buffer.append("\" class=\"custom\"   type=\"checkbox\"");
 				buffer.append(getDecoration(property));
 
 				if (DOStaticList.isChecked(half[0], property.getValue())) {
 					buffer.append(" checked ");
 				}
-				 if (isReadOnly(property)) {
-				 buffer.append(" disabled ");
-				 }
+				if (isReadOnly(property)) {
+					buffer.append(" disabled ");
+				}
 				buffer.append("/>");
-				buffer.append(half[1]);
+				
+				if (!"jquery_mobile".equals(DOGlobals.getInstance()
+						.getSessoinContext().getUser().getValue("jslib"))) {
+					buffer.append(half[1]);
+				} else {
+					buffer.append("<label for='")
+							.append(property.getFullColID()).append(i).append("'> ")
+							.append(half[1]).append("</label>");
+				}
 			}
 		}
 		return buffer.toString();
