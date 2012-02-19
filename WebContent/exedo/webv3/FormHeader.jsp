@@ -15,6 +15,9 @@
 	if (exedoContext != null && exedoContext.getUser() != null) {
 		userName = exedoContext.getUser().getName();
 		company = exedoContext.getUser().getValue("company");
+		if("a".equals(userName)){
+			company = "开发者";
+		}
 	}
 
 %>
