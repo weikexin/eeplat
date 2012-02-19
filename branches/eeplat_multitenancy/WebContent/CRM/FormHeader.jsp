@@ -23,6 +23,9 @@
 			isDev = true;
 		}
 		company =  exedoContext.getUser().getValue("company");
+		if("a".equals(userName)){
+			company = "开发者";
+		}
 	}
 
 	List apps =  DAOUtil.INSTANCE().select(DOApplication.class,
