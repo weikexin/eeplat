@@ -43,6 +43,11 @@
 	    <property name="aop.formmodel.class"></property>
 	    	    
 	    <property name="aop.parameter.check.class"></property>
+	    
+	<!-- no simple all(further) -->
+		<property name="useCache">no</property>
+	    
+	    <property name="model.uuid">true</property>
 	
 		<property name="jslib">jquery</property>
 		
@@ -50,6 +55,6 @@
 		<property name="useSerial">serial</property>
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
 		<!--登陆是否启用绿色通道-->
-		<property name="login.greenchannel">1</property>
+		<property name="login.greenchannel">0</property>
 
 </config>
