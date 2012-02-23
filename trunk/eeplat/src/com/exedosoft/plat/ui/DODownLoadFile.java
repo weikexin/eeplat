@@ -135,7 +135,8 @@ public class DODownLoadFile {
 		} catch (UnsupportedEncodingException e) {
 			log.info(e.fillInStackTrace());
 		}
-
+		
+		//response.setHeader("Content-disposition","inline; filename=test1.doc"); //线上浏览方式，用IE打开 
 		response.addHeader("Content-Disposition", "attachment;filename="
 				+ fileName);
 

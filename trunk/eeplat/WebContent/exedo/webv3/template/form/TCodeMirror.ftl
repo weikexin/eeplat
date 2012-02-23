@@ -6,7 +6,7 @@
 <br/>
 <script>
   mirrorEditor = CodeMirror.fromTextArea(document.getElementById("${model.fullColID}"),
-       { tabMode: "indent",lineNumbers: true,  matchBrackets: true, onKeyEvent: function(i, e) {
+       {mode: "javascript",  tabMode: "indent",indentUnit: 4,lineNumbers: true,  matchBrackets: true, onKeyEvent: function(i, e) {
 	      if (e.keyCode == 32 && (e.shiftKey || e.metaKey) && !e.altKey) {
 	        e.stop();
 	        return startComplete();
