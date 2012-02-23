@@ -6,7 +6,7 @@
 <br/>
 <script>
   mirrorEditor2 = CodeMirror.fromTextArea(document.getElementById("${model.fullColID}"),
-       { mode: "text/html",tabMode: "indent",lineNumbers: true,  matchBrackets: true});
+       {  mode: "text/html",tabMode: "indent",indentUnit: 4, lineNumbers: true,  matchBrackets: true});
         
 </script>
 

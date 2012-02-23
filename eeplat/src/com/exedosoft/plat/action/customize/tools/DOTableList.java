@@ -15,6 +15,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.gene.jquery.SqlCol;
+import com.exedosoft.plat.util.DOGlobals;
 
 /**
  * 
@@ -78,7 +79,12 @@ public class DOTableList extends DOAbstractAction {
 					if (!aTable.startsWith("bin$")) {
 						bi.putValue(this.service.getBo().getKeyCol(), aTable);
 						bi.putValue("tablename", aTable);
-						bi.putValue("keyCol", icc.getKeyCols());
+						
+						if("false".equals(DOGlobals.getValue("model.uuid"))){
+							bi.putValue("keyCol", icc.getValueCols());
+						}else{
+							bi.putValue("keyCol", icc.getKeyCols());
+						}
 						bi.putValue("valueCol", icc.getValueCols());
 						bi.setUid(aTable);
 						list.add(bi);
