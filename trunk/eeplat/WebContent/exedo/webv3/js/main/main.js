@@ -410,7 +410,10 @@ function popupDialog(id,title,href,width,height){
 			autoOpen: false,
 			height: height,
 			width: width,
-			modal: true
+			modal: true,
+			close: function(event, ui) {
+				 $("#dmLayer").hide();
+			}
 		}); 
 
 		$('#F' + id).load(href);
