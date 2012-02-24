@@ -406,13 +406,17 @@ function popupDialog(id,title,href,width,height){
 	    	height = 380;
 	    }
 
+	    ////捕获关闭事件
 		createFloatDiv(id,title);
 		
 		$('#F' + id).dialog({
 			autoOpen: false,
 			height: height,
 			width: width,
-			modal: true
+			modal: true,
+			close: function(event, ui) {
+				 $("#dmLayer").hide();
+			}
 		}); 
 
 		$('#F' + id).load(href);

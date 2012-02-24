@@ -39,5 +39,9 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yhsmain.jar" sourcepath="/yiyi_core"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtds-1.2.5.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/yhsopenid.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
