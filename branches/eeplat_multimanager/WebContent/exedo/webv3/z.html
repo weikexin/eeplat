@@ -1,0 +1,63 @@
+<html> 
+<title>table拖动(兼容Firefox 3.5/IE6)，固定表格宽度</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+<script type="text/javascript" 	src="js/jquery/jquery.js" ></script>
+
+
+<style type="text/css"><!-- 
+
+.gLe , .gRi{
+	height:200px;
+}
+
+
+/**主框架可以左右调节的span的class */
+.resizeTd{ 
+	width:2px;
+	background-color:#84B8D5;
+	margin:0px; 
+	cursor:e-resize; 
+}  
+--></style> 
+<script type="text/javascript"><!-- 
+  $(function(){
+	  $(".resizeTd").mousedown(function(e){
+		  var oldPageX = e.pageX;
+		  var old_gLeW = $(".gLe").width();
+		  var old_gRiW = $(".gRi").width();
+		  $(document).bind('mousemove',function(e){
+//////////////不能太小
+			  if(e.pageX > 10){
+
+				  $(".gLe").width(old_gLeW + e.pageX - oldPageX);
+				  $(".gRi").width(old_gRiW - e.pageX + oldPageX);
+
+			  }
+			  window.status = e.pageX;	   
+		  }).bind('mouseup',function(e){
+			  $(document).unbind('mousemove');
+			  $(document).unbind('mouseup');	
+			  }
+		  );
+
+	});
+	
+  });
+  
+// --></script> 
+<body > 
+	
+<table style='table-layout:fixed;' width="60%" border="1" cellspacing="0" cellpadding="0" bordercolorlight="#7b7b7b" bordercolordark="#efefef" id="theObjTable" > 
+
+<tr> 
+<td class="gLe">序号</td>
+<td class="resizeTd">&nbsp;</td>
+<td class="gRi">业务员</td> 
+</tr> 
+
+</table> 
+
+
+
+</body> 
+</html> 

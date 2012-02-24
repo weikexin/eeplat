@@ -1,0 +1,7 @@
+<!-- 多租户环境下 ，多租户集中数据指向的数据源-->
+<config>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/multi_tenancy?useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.username">wkx</property>
+        <property name="connection.password">123asd</property>            
+</config>

@@ -1,0 +1,1277 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="FlowSvg" onload="Init(evt)" onmousedown="MouseDown(evt)" onmousemove="Drag(evt)" onmouseup="Drop(evt)">
+	<!--=======================================================================================================================-->
+	<!--此处是前期准备-->
+	<!--背景-->
+	<rect id="BKBackDrop" x="-10%" y="-10%" width="110%" height="110%" fill="none" pointer-events="all"/>
+	<defs>
+		<!--渐变背景样式-->
+		<linearGradient id="BKjianbian" gradientTransform="rotate(90)">
+			<stop offset="0%" stop-color="#6699FF"/>
+			<stop offset="50%" stop-color="#6699cc"/>
+			<stop offset="100%" stop-color="#003366"/>
+		</linearGradient>
+	</defs>
+	<defs>
+		<!--箭头-->
+		<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="7" markerHeight="7" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="black" stroke="black"/>
+		</marker>
+		<marker id="sanjiao" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="10" orient="auto">
+			<path d="M 0 0 L 10 5 L 0 10 z" fill="yellow" stroke="black"/>
+		</marker>
+	</defs>
+	<g id="BKBackground" fill="#FFFFFF" stroke="lightgrey" stroke-width="1" shape-rendering="optimizeSpeed">
+		<!--ToolBar 区域-->
+		<rect x="10" y="10" width="800" height="40" id="toolbar"/>
+		<!--工具箱区域-->
+		<rect x="10" y="50" width="100" height="530" id="BKToolRect"/>
+		<!--工作区域-->
+		<rect x="110" y="50" width="700" height="530" stroke="black" id="BKBackgroundR" fill="#FFFFFF" onclick="rangeUnvisible();lineUnvisible()"/>
+	</g>
+	<!--toolbar的具体定义-->
+	<!--onmouseover="funcOn(evt)" onmouseout="funcOut(evt)"-->
+	<g id="UIadd">
+		<image id="save" x="150" y="20" width="56" height="20" onmouseover="showTip('保存');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/save.gif" canmove="false" type="bk"/>
+		<image id="zoomin" x="250" y="20" width="56" height="20" onmouseover="showTip('缩小');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/zoomin.gif" canmove="false" type="bk"/>
+		<image id="zoomout" x="330" y="20" width="56" height="20" onmouseover="showTip('放大');" onmouseout="unshowTip();" onclick="showTip(makeTheFlow())" xlink:href="images/zoomout.gif" canmove="false" type="bk"/>
+		<image id="delete" x="410" y="20" width="56" height="20" onmouseover="showTip('删除所选节点');" onmouseout="unshowTip();" onclick="deleteObject()" xlink:href="images/delete.gif" canmove="false" type="bk"/>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--============================工具箱=============================-->
+	<!--====人工节点===-->
+	<image id="motherCP1" x="40" y="60" width="35" height="35" xlink:href="images/task.png" canmove="false" type="bk"/>
+	<image id="motherCPm1" x="40" y="60" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/task.png" oldX="40" oldY="60" canmove="true" nodeType="activity" type="mother" property="人工节点" property2="none" property3="0"/>
+	<text id="motherCPt1" x="58" y="107" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		人工节点
+	</text>
+	<!--====自动节点===-->
+	<image id="autoNode" x="40" y="120" width="35" height="35" xlink:href="images/auto.gif" canmove="false" type="bk"/>
+	<image id="autoNode1" x="40" y="120" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/auto.gif" oldX="40" oldY="120" canmove="true" nodeType="auto" type="mother" property="自动节点" property2="none" property3="0"/>
+	<text id="txtAutoNode" x="58" y="165" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		自动节点
+	</text>
+	<!--====分支节点===-->
+	<image id="andDecision" x="40" y="180" width="35" height="35" xlink:href="images/fork.png" canmove="false" type="bk"/>
+	<image id="andDecision1" x="40" y="180" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/fork.png" oldX="40" oldY="180" canmove="true" nodeType="andDecision" type="mother" property="无条件分支" property2="none" property3="0"/>
+	<text id="txtAndDecision" x="55" y="225" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		无条件分支
+	</text>
+	<!--====条件分支===-->
+	<image id="xorDecision" x="40" y="240" width="35" height="35" xlink:href="images/iffork.gif" canmove="false" type="bk"/>
+	<image id="xorDecision1" x="40" y="240" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/iffork.gif" oldX="40" oldY="240" canmove="true" nodeType="xorDecision" type="mother" property="条件分支" property2="none" property3="0"/>
+	<text id="txtXorDecision" x="58" y="286" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		条件分支
+	</text>
+	<!--====合并节点===-->
+	<image id="andConjuction" x="40" y="300" width="35" height="35" xlink:href="images/join.png" canmove="false" type="bk"/>
+	<image id="andConjuction1" x="40" y="300" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/join.png" oldX="40" oldY="300" canmove="true" nodeType="andConjuction" type="mother" property="合并节点" property2="none" property3="0"/>
+	<text id="txtAndConjuction" x="58" y="346" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		合并节点
+	</text>
+	<!--====路由节点===-->
+	<image id="orConjuction" x="40" y="360" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="orConjuction1" x="40" y="360" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/route.gif" oldX="40" oldY="360" canmove="true" nodeType="orConjuction" type="mother" property="路由节点" property2="none" property3="0"/>
+	<text id="txtOrConjuction" x="58" y="402" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
+		路由节点
+	</text>
+	<!--流程连接-->
+	<image id="drawLine" x="40" y="420" width="35" height="35" onmouseover="showTip('流程连接');toolrangeV(evt)" onmouseout="unshowTip();toolrangeUV()" onclick="beginDrawLine()" xlink:href="images/transition.png" canmove="false" type="bk"/>
+	<!--====开始节点===-->
+	<image id="startNode" x="40" y="465" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="startNode1" x="40" y="465" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/start.png" oldX="40" oldY="465" canmove="true" nodeType="start" type="mother" property="开始节点" property2="none" property3="0"/>
+	<!--====结束节点===-->
+	<image id="endNode" x="40" y="510" width="35" height="35" xlink:href="images/route.gif" canmove="false" type="bk"/>
+	<image id="endNode1" x="40" y="510" width="35" height="35" onmouseover="toolrangeV(evt)" onmouseout="toolrangeUV()" xlink:href="images/end.gif" oldX="40" oldY="510" canmove="true" nodeType="end" type="mother" property="结束节点" property2="none" property3="0"/>
+	<!--=======================================================================================================================-->
+	<!--提示窗口-->
+	<g id="tooltip" visibility="hidden">
+		<rect id="tipRect" x="0" y="0" width="100" height="15" fill-opacity="30" fill="#ffffcc" stroke="rgb(9,0,130)" stroke-width="1" shape-rendering="optimizeSpeed"/>
+		<text id="tipText" x="0" y="0">TipText</text>
+	</g>
+	<!--=======================================================================================================================-->
+	<!--work边框-->
+	<rect id="range" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--tool边框-->
+	<rect id="toolrange" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--功能边框-->
+	<rect id="funcrange" x="0" y="0" width="56" height="20" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+	<!--=======================================================================================================================-->
+	<!--UI区-->
+	<g id="success" visibility="hidden">
+		<circle cx="122" cy="497" r="7" style="fill: #FF0">
+			<animate id="a1" attributeName="fill" attributeType="CSS" begin="mouseover" repeatCount="1" dur="2s" from="#FF0" to="#F00" fill="freeze" end="indefinite"/>
+			<animate id="a2" attributeName="fill" attributeType="CSS" begin="mouseout" end="indefinite" repeatCount="1" restart="always" dur="2s" from="#F00" to="#FF0" fill="freeze"/>
+		</circle>
+		<text id="okTip" x="200" y="502" stroke="black" style="fill:white;text-anchor: middle" stroke-width="0.3" onmouseover="sucUnShow()">
+			流程生成成功，请保存！
+		</text>
+	</g>
+
+	<script language="javascript" id="svgJS"><![CDATA[
+//========================================================================================================================================		
+ 
+function fileLoaded (data) {
+ if(data.success) {
+ var newMenuRoot=parseXML(data.content,contextMenu);
+ contextMenu.replaceChild(newMenuRoot,contextMenu.getDocumentElement());  
+ } 
+}
+//========================================================================================================================================	
+    var SVGDocument = null;
+    var SVGRoot = null;
+    var TrueCoords = null;
+    var BackDrop = null;
+	var GrabPoint = null;//在某个元素的偏移量
+	var DragTarget = null;//拖拽的元素
+	var selectObject = null;//选中的节点
+	var selectLine = null;//选中的线
+	var canDrawLine = false;//是否可以画线了
+	var iIndex = 0;//全局元素个数
+	var startNode = null;
+
+
+
+
+//-------------------------------
+function getTopStr(inputStr,iNum)//取得前iNum位字符串
+{
+	return inputStr.substr(0,iNum);
+}
+//------------------------------
+function showTip(sMsg)//hint显示
+{
+	var TipTextElem=document.getElementById("tipText");
+	var tooltip=document.getElementById("tooltip");
+	var TipRectElem = document.getElementById("tipRect");
+	TipTextElem.childNodes.item(0).data=sMsg;
+	TipRectElem.setAttribute("x",evt.clientX+20);
+	TipRectElem.setAttribute("y",evt.clientY-20);
+	TipTextElem.setAttribute("x",evt.clientX+25);
+	TipTextElem.setAttribute("y",evt.clientY-7);
+	TipRectElem.setAttribute("width",TipTextElem.getComputedTextLength()+10);
+	tooltip.setAttribute("visibility","visible");
+}
+function unshowTip()//hint消失
+{
+	var tooltip=document.getElementById("tooltip");
+	tooltip.setAttribute("visibility","hidden");
+}
+//------------------------------	
+function showAttribute(evt,attribute)//tip显示某项属性
+{
+	var object = evt.getTarget();
+	//var ss = object.getAttribute(attribute);
+	//showTip(ss);
+	showTip(getAtt(object,attribute));
+}
+function showAttribute2(evt)//tip显示，测试用
+{
+	var object = evt.getTarget();
+
+	showTip('id is '+getAtt(object,'id')+' before is '+getAtt(object,'before')+' beyond is '+getAtt(object,'beyond')+' propoty is'+getAtt(object,'property')+' propoty2 is '+getAtt(object,'property2')+' propoty3 is '+getAtt(object,'property3') );
+}
+//------------------------------		
+function getAtt(object,att)//获取某元素的某项属性
+{
+	return object.getAttribute(att);
+}
+function getAttEx(evt,att)//获取鼠标点击元素的某项属性
+{
+	var object = evt.getTarget();
+	return object.getAttribute(att);
+}		
+//------------------------------
+function rangeVisible(evt)//选中某flow元素，并且增加边框
+{
+
+	var object = evt.getTarget();
+
+	if(evt.detail==2){
+	  var vid = getAtt(object,'id');
+	  var openUrl = "window.showModalDialog('propertyDetails.html?vid=" + vid +"',window,'scroll:0;status:0;resizable:1;dialogWidth:500px;dialogHeight:420px') ";
+		browserEval(openUrl);
+		return;
+	}
+	var s1 = getAtt(object,'type');
+	if (s1 != 'flow') return;//如果不是流节点则退出
+	drawLine(getSelectObject(),object);
+	var x1 = Number(getAtt(object,'x'));
+	var y1 = Number(getAtt(object,'y'));
+	var rangeObject = document.getElementById('range');
+	rangeObject.setAttribute('x',x1-1);
+	rangeObject.setAttribute('y',y1-1);
+	rangeObject.setAttribute('visibility','visible');
+	selectObject = object;
+}
+function rangeUnvisible()//使flow边框不可见
+{
+	var rangeObject = document.getElementById('range');
+	rangeObject.setAttribute('visibility','hidden');
+	selectObject = null;
+}
+
+function lineVisible(evt)//选中某line元素，stroke变为blue
+{
+	var object = evt.getTarget();
+	var s1 = getAtt(object,'type');
+	if (s1 != 'line') return;
+	rangeUnvisible();
+	object.setAttribute('stroke','red');
+	selectLine = object;
+
+}
+function lineUnvisible()//使line恢复原样，成为不选中状态
+{
+
+	var object = getSelectLine();
+	if (object == null) return;	
+	object.setAttribute('stroke','black');
+	selectLine = null;
+}
+
+//------------------------------
+function getSelectObject()//获得选中的节点
+{
+	return selectObject;
+/*
+	var rangeO = document.getElementById('range');
+	var sVisible = getAtt(rangeO,'visibility');
+	if (sVisible=='hidden')
+	return null
+	else return selectObject;
+*/	
+}
+function getSelectLine()//获得选中的线
+{
+	return selectLine;
+}
+
+//------------------------------
+function isWorkSpace(evt)//是否在工作区
+{
+	var nowX = evt.clientX;
+	var nowY = evt.clientY;
+	if (((Number(nowX)>100) &&(Number(nowX)<800)) && ((Number(nowY)>0)&&(Number(nowY)<530)))
+	return true
+	else return false;
+}
+function isToolSpace()//是否在工具栏区
+{
+	var nowX = evt.clientX;
+	var nowY = evt.clientY;
+	if (((Number(nowX)<100) &&(Number(nowX)>0)) && ((Number(nowY)>0)&&(Number(nowY)<530)))
+	return true
+	else return false;
+}
+function deleteObject()//删除所选节点
+{
+	var object = getSelectObject();//流
+	var object2 = getSelectLine();//线
+
+	
+	//删除下面的文字
+	if(object){
+		var nodeType =  getAtt(object,'nodeType');
+		if(nodeType=='start'){
+			alert("开始节点不能删除");
+			return;
+		}
+		var txtId = 'txt_' + getAtt(object,'id');
+		var txtObj = document.getElementById(txtId);
+		if(txtObj){
+			document.getDocumentElement().removeChild(txtObj);
+		}
+	}	
+		
+	
+	if ((object==null)&&(object2 == null))
+	{
+		alert('未选中任何元素');
+		return;
+	}
+	if ((object!=null)&&(object2 != null))
+	{
+		alert('元素选择错误，选择数为2');
+		return;
+	}
+	if (object!=null)//删除流节点
+	{
+		rangeUnvisible();//有selectObject = null;
+		//取消其前驱和后继的beyond和before属性，变为none
+		var sBefore = getAtt(object,'before');
+		if (sBefore!='none')
+		{
+			var befObject = document.getElementById(sBefore);//取消节点的beyond属性
+			befObject.setAttribute('beyond','none');
+			var befLine = document.getElementById(sBefore+getAtt(object,'id'));//删除连线
+			document.getDocumentElement().removeChild(befLine);
+		}
+		var sBeyond = getAtt(object,'beyond');
+		if (sBeyond!='none')
+		{
+			var beyObject = document.getElementById(sBeyond);
+			beyObject.setAttribute('before','none');
+			var beyLine = document.getElementById(getAtt(object,'id')+sBeyond);//删除连线
+			document.getDocumentElement().removeChild(beyLine);		
+		}
+		
+		document.getDocumentElement().removeChild(object);	
+		
+	
+		return;
+	}
+	if (object2!=null)//删除线
+	{
+		var sBefore = getAtt(object2,'before');
+		var befObject = document.getElementById(sBefore);//取消节点的beyond属性
+		befObject.setAttribute('beyond','none');
+		var sBeyond = getAtt(object2,'beyond');
+		var beyObject = document.getElementById(sBeyond);//取消节点的before属性
+		beyObject.setAttribute('before','none');
+		document.getDocumentElement().removeChild(object2);	
+		selectLine = null;
+		return;
+	}	
+
+}
+//========================================================================================================================================	
+function MouseDown(evt)//鼠标down
+{
+
+
+	if (getAttEx(evt,"canmove")=="true")
+	{
+		lineUnvisible();
+		toolrangeUV();
+		DragTarget = evt.getTarget();
+		DragTarget.setAttribute('oldX',getAtt(DragTarget,'x'));
+		DragTarget.setAttribute('oldY',getAtt(DragTarget,'y'));//修改oldX、oldY
+        DragTarget.parentNode.appendChild( DragTarget );
+        DragTarget.setAttributeNS(null, 'pointer-events', 'none');
+        //var transMatrix = DragTarget.getCTM();
+		var x1 = evt.clientX-getAtt(DragTarget,'x');
+		var y1 = evt.clientY-getAtt(DragTarget,'y');
+        GrabPoint.x = TrueCoords.x - x1;// - Number(transMatrix.e);
+        GrabPoint.y = TrueCoords.y - y1;// - Number(transMatrix.f);
+        GrabPoint.x = x1;
+        GrabPoint.y = y1;	
+		//alert(transMatrix.x);
+		//alert(transMatrix.y);
+	}
+
+}
+//--------------------------------------------------------------------------------
+function Drag(evt)//鼠标移动
+{
+ GetTrueCoords(evt);
+ if (DragTarget)
+ {
+	rangeUnvisible();//使选中节点的边框不可见
+    var newX = TrueCoords.x - GrabPoint.x;
+    var newY = TrueCoords.y - GrabPoint.y;
+    //DragTarget.setAttributeNS(null, 'transform', 'translate(' + newX + ',' + newY + ')');//不可以转换坐标
+	DragTarget.setAttribute("x",newX);
+	DragTarget.setAttribute("y",newY);
+	
+
+////改变移动节点txt的x y坐标	
+	var dragTargetId = DragTarget.getAttribute("id");
+    var txtNode = SVGDocument.getElementById("txt_" + dragTargetId);
+    if(txtNode){
+		txtNode.setAttribute("x",newX+15);
+		txtNode.setAttribute("y",newY+50);
+	}
+	
+	
+	if (getAtt(DragTarget,'type')!='flow') return;
+	
+	
+	var sBefore = getAtt(DragTarget,'before');
+	if (sBefore!='none')//如果有before
+	{
+		if(sBefore.indexOf(",")==-1){
+			var befLine = document.getElementById(sBefore+getAtt(DragTarget,'id'));
+			befLine.setAttribute('x2',newX);
+			befLine.setAttribute('y2',newY+20);
+		}else{
+			var arrayBefors = sBefore.split(",");
+			for(var i = 0; i < arrayBefors.length; i++){
+				var aBefor = arrayBefors[i];
+				var befLine = document.getElementById(aBefor+getAtt(DragTarget,'id'));
+				befLine.setAttribute('x2',newX);
+				befLine.setAttribute('y2',newY+20);
+			}
+		
+		}
+	}
+	var sBeyond = getAtt(DragTarget,'beyond');
+	if (sBeyond!='none')//如果有beyond
+	{
+		if(sBeyond.indexOf(",")==-1){
+			var beyLine = document.getElementById(getAtt(DragTarget,'id')+sBeyond);
+			beyLine.setAttribute('x1',newX+40);
+			beyLine.setAttribute('y1',newY+20);
+		}else{
+			var arrayBeyonds = sBeyond.split(",");
+			for(var i = 0; i < arrayBeyonds.length; i++){
+				var aBeyond = arrayBeyonds[i];
+				var beyLine = document.getElementById(getAtt(DragTarget,'id')+aBeyond);
+				beyLine.setAttribute('x1',newX+40);
+				beyLine.setAttribute('y1',newY+20);
+			}
+		
+		}
+	}	
+	
+	
+	/*
+	//查找前驱后继节点，如果有则删除线，重新画线（改变线的x,y属性也可以）
+	var object = DragTarget;
+	var sBefore = getAtt(DragTarget,'before');//如果有before
+	alert('before is'+sBefore);
+	if (sBefore!='none')
+	{
+		var befLine = document.getElementById(sBefore+getAtt(object,'id'));//删除连线
+		document.getDocumentElement().removeChild(befLine);
+		var befObject = document.getElementById(sBefore);//重新画线
+		drawLine(befObject,DragTarget);	
+	}
+	var sBeyond = getAtt(object,'beyond');
+	if (sBeyond!='none')
+	{
+		var beyLine = document.getElementById(getAtt(object,'id')+sBeyond);//删除连线
+		document.getDocumentElement().removeChild(beyLine);
+		var beyObject = document.getElementById(sBeyond);//重新画线
+		drawLine(DragTarget,befObject);	//object就是dragtarget	
+	}
+	*/
+	
+ }
+}
+//---------------------------------------------------------------------------------
+function GetTrueCoords(evt)//获取最终坐标
+{
+	 var newScale = SVGRoot.currentScale;
+	 var translation = SVGRoot.currentTranslate;
+	 TrueCoords.x = (evt.clientX - translation.x)/newScale;
+	 TrueCoords.y = (evt.clientY - translation.y)/newScale;
+}
+//----------------------------------------------------------------------------------
+function Drop(evt)//鼠标up
+{
+ if ( DragTarget )
+ {
+    DragTarget.setAttributeNS(null, 'pointer-events', 'all');
+	var newX,newY;
+	//alert('begin');
+	if (getAtt(DragTarget,'type')=='mother')//如果是模板
+	{
+	//alert('mother');
+	
+			if (isWorkSpace(evt))//如果up在工作区
+			{
+			//alert("in workspace");
+				GetTrueCoords(evt);
+				newX = TrueCoords.x - GrabPoint.x;
+				newY = TrueCoords.y - GrabPoint.y;	
+				AddNewPoint(newX,newY,getAtt(DragTarget,'property'));
+				DragTarget.setAttribute("x",Number(getAtt(DragTarget,"oldX")));
+				DragTarget.setAttribute("y",Number(getAtt(DragTarget,"oldY")));					
+			}
+			else if(isToolSpace(evt))//如果up在tools区
+			{
+				//alert("in toolspace");
+				DragTarget.setAttribute("x",Number(getAtt(DragTarget,"oldX")));
+				DragTarget.setAttribute("y",Number(getAtt(DragTarget,"oldY")));
+			}
+			else//如果落在其他区域则回old，可以合并，但也许有用
+			{
+				DragTarget.setAttribute("x",Number(getAtt(DragTarget,"oldX")));
+				DragTarget.setAttribute("y",Number(getAtt(DragTarget,"oldY")));	
+			}
+	}
+	else if (getAtt(DragTarget,'type')=='flow')//如果是流元素
+	{
+			if(!isWorkSpace(evt))//如果up不在work区
+			{
+				DragTarget.setAttribute("x",Number(getAtt(DragTarget,"oldX")));
+				DragTarget.setAttribute("y",Number(getAtt(DragTarget,"oldY")));
+			}
+	}
+    DragTarget = null;
+ }
+ 
+}
+
+//========================================================================================================================================
+function AddNewPoint(x,y,property)//增加新节点,user流默认property为none
+{
+	//alert("in");
+	var shape = document.createElement("image");
+	iIndex++;
+	shape.setAttribute("id", "flow"+iIndex);
+	//alert('flow'+iIndex);
+	shape.setAttribute("x", x);
+	shape.setAttribute("y", y);
+	shape.setAttribute("width", 40);
+	shape.setAttribute("height", 40);
+	var xlinkns = "http://www.w3.org/1999/xlink";
+	shape.setAttribute("canmove", "true");
+	shape.setAttribute("oldX", x);
+	shape.setAttribute("oldY", y);
+	shape.setAttribute("type", 'flow');
+	shape.setAttribute("before", "none");
+	shape.setAttribute("beyond", 'none');
+	shape.setAttribute("property", property);
+	shape.setAttribute("property2", property);	
+	shape.setAttribute("property3", iIndex);	
+	shape.setAttribute("onclick", 'rangeVisible(evt)');
+
+
+/////业务属性字段
+	shape.setAttribute("nodeName", "none");
+	shape.setAttribute("nodeStateShow", "none");
+	shape.setAttribute("nodeStateShowBack", "none");
+	shape.setAttribute("authType", "none");
+	shape.setAttribute("accessClass", "none");
+	shape.setAttribute("specName", "none");
+	shape.setAttribute("decisionType", "none");
+	shape.setAttribute("decisionExpression", "none");
+	shape.setAttribute("passTxt", "none");
+	shape.setAttribute("rejectTxt", "none");
+	shape.setAttribute("nodeDesc", "none");
+
+
+///业务属性字段	
+	
+	
+	
+	
+//	shape.setAttribute("onmouseover", "showAttribute(evt,'property2')");
+//	shape.setAttribute("onmouseout", "unshowTip()");
+
+	
+	var nodeType = getAtt(DragTarget,'nodeType');
+	if(nodeType=='start'){
+		if(startNode!=null){
+		    alert("流程中只能有一个开始节点!");
+			return;
+		}
+    	shape.setAttributeNS(xlinkns,'xlink:href','images/start.png');
+    	shape.setAttribute("nodeType", 'start');
+    	startNode = shape;
+
+	
+	}else if (nodeType=='end'){
+	    shape.setAttributeNS(xlinkns,'xlink:href','images/end.gif');
+    	shape.setAttribute("nodeType", 'end');
+	
+	}else if (nodeType=='activity'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/task.png');
+		shape.setAttribute("nodeType", 'activity');
+
+	
+	}else if (nodeType=='andDecision'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/fork.png');
+		shape.setAttribute("nodeType", 'andDecision');
+	
+	}else if (nodeType=='xorDecision'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/iffork.gif');
+		shape.setAttribute("nodeType", 'xorDecision');
+	
+	}else if (nodeType=='andConjuction'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/join.png');
+		shape.setAttribute("nodeType", 'andConjuction');
+	
+	}else if (nodeType=='orConjuction'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/route.gif');
+		shape.setAttribute("nodeType", 'orConjuction');
+	
+	}else if (nodeType=='auto'){
+		shape.setAttributeNS(xlinkns,'xlink:href','images/auto.gif');
+		shape.setAttribute("nodeType", 'auto');
+	
+	}
+
+	document.documentElement.appendChild(shape);
+
+///////////////////创建下面的文字元素
+
+
+	var txt = document.createElement("text");
+	txt.setAttribute("id", "txt_flow"+iIndex);
+	//alert('flow'+iIndex);
+	txt.setAttribute("x", x+15);
+	txt.setAttribute("y", y+50);
+	txt.setAttribute("stroke", "black");
+	txt.setAttribute("stroke-width", 0.3);
+	txt.setAttribute("style", "fill:black;text-anchor: middle");
+	var textNode = null;
+	if(nodeType=='start'){
+		textNode = document.createTextNode("开始节点");
+	}else if(nodeType=='end'){
+		textNode = document.createTextNode("结束节点");
+	}
+	else{
+		textNode = document.createTextNode("new node" + iIndex);
+	}
+	txt.appendChild(textNode);
+	document.documentElement.appendChild(txt);
+	
+	
+}
+
+
+
+
+//========================================================================================================================================
+function Init(evt)
+{
+	 SVGDocument = evt.target.ownerDocument;
+	 SVGRoot = SVGDocument.documentElement;
+	 TrueCoords = SVGRoot.createSVGPoint();
+	 GrabPoint = SVGRoot.createSVGPoint();
+	 BackDrop = SVGDocument.getElementById('BackDrop');
+}
+
+//========================================================================================================================================
+
+function test()
+{
+	var object = document.getElementById("motherCPm1");
+	if (object==null)
+	{
+		alert("no motherCPm");
+		return;
+	}
+	alert("oldX is "+getAtt(object,"oldX"));
+	alert("oldY is "+getAtt(object,"oldY"));
+	alert("canmove is "+getAtt(object,"canmove"));
+	
+	//alert("motherCPm exists");
+	var s1 = getAtt(object,"oldX");
+	var s2 = getAtt(object,"oldY");
+	//alert(s2);
+	//object.setAttribute("x",parseInt(s1,10));
+	//object.setAttribute("y",parseInt(s2,10));
+	object.setAttribute("x",240);
+	object.setAttribute("y",250);
+	alert("X is "+getAtt(object,"x"));
+	alert("Y is "+getAtt(object,"y"));	
+
+}
+//========================================================================================================================================
+//画线
+function beginDrawLine()//开始画线
+{
+	canDrawLine = true;
+}
+function drawLine(object1,object2)//画线函数
+{
+	if (object1==null) return;//不符合条件的情况
+	if (object2==null) return;
+	if (object1==object2) return;
+	if (canDrawLine == false) return;
+	
+	//判断是否可以划线
+	//先判断是否可以画出
+	var node1Type = 	getAtt(object1,'nodeType');
+	
+	//判断是否可以画入
+	var node2Type = 	getAtt(object2,'nodeType');
+	
+
+
+	//开始节点判断
+	if(node2Type=='start'){
+		return;
+	}
+	
+	//结束节点判断
+	if(node1Type=='end'){
+		return;
+	}
+
+
+
+   if (getAtt(object2,'before')!='none' && getAtt(object2,'before')!=null && getAtt(object2,'before')!=''){
+      if(node2Type=='andDecision' || node2Type=='xorDecision' || node2Type=='activity' || node2Type=='auto' || node2Type=='end')  return;
+
+   }
+
+   if (getAtt(object1,'beyond')!='none' && getAtt(object1,'beyond')!=null && getAtt(object1,'beyond')!=''){
+	  if(node1Type=='andConjuction' || node1Type=='orConjuction' || node1Type=='activity' || node1Type=='auto' || node1Type=='start')  return;   
+   }
+   
+	
+	
+	
+	var tmpLine = document.getElementById(getAtt(object2,'id')+getAtt(object1,'id'));
+	if (tmpLine!=null) return;//如果想反序画则退出
+	var x1,y1,x2,y2;
+	x1 = Number(getAtt(object1,'x'))+40;
+	y1 = Number(getAtt(object1,'y'))+20;
+	x2 = Number(getAtt(object2,'x'));
+	y2 = Number(getAtt(object2,'y'))+20;
+	var shape = document.createElement("line");
+	var sName = getAtt(object1,'id')+getAtt(object2,'id');
+	shape.setAttribute("id", sName);
+	shape.setAttribute("x1", x1);
+	shape.setAttribute("y1", y1);
+	shape.setAttribute("x2", x2);
+	shape.setAttribute("y2", y2);
+
+	
+	shape.setAttribute("before",getAtt(object1,'id'));
+	shape.setAttribute("beyond",getAtt(object2,'id'));
+	
+	shape.setAttribute("stroke","black");
+
+	shape.setAttribute("canmove","true");
+
+	shape.setAttribute("marker-mid", "url(#sanjiao)");
+	shape.setAttribute("marker-end", "url(#arrow)");
+	shape.setAttribute("type", "line");
+	//shape.setAttribute("onmouseover", "showAttribute2(evt)");
+	shape.setAttribute("onclick", "lineVisible(evt)");
+	document.getDocumentElement().appendChild(shape);
+	canDrawLine = false;
+	
+
+
+	
+	var strBefors = '';
+	if(getAtt(object2,'before')!='none'){
+		strBefors = getAtt(object2,'before') + "," +  getAtt(object1,'id');	
+	}else{
+		strBefors = getAtt(object1,'id');
+	}
+	
+	var strbeyonds = '';
+	if(getAtt(object1,'beyond')!='none'){
+		strbeyonds = getAtt(object1,'beyond') + "," + getAtt(object2,'id');	
+	}else{
+		strbeyonds = getAtt(object2,'id');	
+	}	
+	
+	object2.setAttribute('before',strBefors);
+	
+	object1.setAttribute('beyond',strbeyonds);
+
+}
+
+
+//========================================================================================================================================	
+//界面效果
+function funcOn(evt)//进入时加边框
+{
+	var object = evt.getTarget();
+	object.setAttribute('stroke-width','1');
+}
+function funcOut(evt)//离开时时消失边框
+{
+	var object = evt.getTarget();
+	object.setAttribute('stroke-width','0');
+}
+//------------------------------
+function toolrangeV(evt)//选中某元素，并且增加边框,tool元素
+{
+	var object = evt.getTarget();
+	var s1 = getAtt(object,'type');
+	//if (s1 != 'mother') return;//如果不是mother节点则退出
+	var x1 = Number(getAtt(object,'x'));
+	var y1 = Number(getAtt(object,'y'));
+	var rangeObject = document.getElementById('toolrange');
+	rangeObject.setAttribute('x',x1-1);
+	rangeObject.setAttribute('y',y1-1);
+	rangeObject.setAttribute('visibility','visible');
+}
+function toolrangeUV()//使边框不可见
+{
+	var rangeObject = document.getElementById('toolrange');
+	rangeObject.setAttribute('visibility','hidden');
+}
+
+function funcrangeV(evt)//选中某元素，并且增加边框,功能区元素
+{
+	var object = evt.getTarget();
+	var x1 = Number(getAtt(object,'x'));
+	var y1 = Number(getAtt(object,'y'));
+	var rangeObject = document.getElementById('funcrange');
+	rangeObject.setAttribute('x',x1-1);
+	rangeObject.setAttribute('y',y1-1);
+	rangeObject.setAttribute('visibility','visible');
+}
+function funcrangeUV()//使边框不可见
+{
+	var rangeObject = document.getElementById('funcrange');
+	rangeObject.setAttribute('visibility','hidden');
+}
+//------------------------------
+function sucShow()//生成成功的动画
+{
+	var object = document.getElementById('success');
+	object.setAttribute('visibility','visible');
+}
+
+function sucUnShow()
+{
+	var object = document.getElementById('success');
+	object.setAttribute('visibility','hidden');
+}
+
+
+
+//========================================================================================================================================
+top.makeTheFlow=makeTheFlow;//说明此函数可供上层调用
+function makeTheFlow()//生成流程串
+{
+	if (!isGoodFlow())
+	{
+		alert("流程有问题！");
+		return 'Error';
+	}
+	
+	var fObject = getF();
+	if (fObject==null){
+		alert("流程有问题！");
+		return 'Error';
+	}
+	
+	///要遍历全部节点
+
+   gObject = startNode;	
+	
+	var tmpS = getAtt(fObject,'beyond');
+	var sFlow = getAtt(fObject,'property');
+	
+	alert("tmpS::" + tmpS);
+	
+	alert("sFlow::" + sFlow);
+	
+	
+	
+	var yObject = document.getElementById(tmpS);
+	while(yObject != null)
+	{
+		sFlow = sFlow + getAtt(yObject,'property');
+		//alert('id is'+getAtt(yObject,'id'));
+		//alert('property is '+getAtt(yObject,'property'));
+		tmpS = getAtt(yObject,'beyond');
+		yObject = document.getElementById(tmpS);
+	}
+	//sFlow = getTopStr(sFlow,sFlow.length -1);
+	//sucShow();
+	return sFlow;
+}
+function getF()//获取before为none且beyond不为none的节点
+{
+	if (iIndex==0)
+	return null;
+
+	var object = null;
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			if ((getAtt(object,'before')=='none')&&(getAtt(object,'beyond')!='none'))
+			return object;
+		}
+	}
+	return null;	
+}
+function isGoodFlow()//检测是否是合理的流程串
+{
+
+
+	//没有开始节点
+	if(startNode==null){
+		return false;
+	}
+	
+	var iCount = getCount();
+	//alert(iCount);
+	if (iCount==1)
+	return true;	
+	if (iCount<1)
+	return false;
+	//alert('aaa');
+
+	
+	if (getFCount()!=1)
+	return false;
+	//alert('bbb');
+	
+	if (getLCount()!=1)
+	return false;
+	//alert('ccc');
+	//sucShow();
+	return true;
+}
+function getCount()//获得真正可用的节点数
+{
+	if (iIndex==0)
+	return 0;
+	var iCount = 0;
+	var object = null;
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			if (getAtt(object,'property')!='none')
+			iCount++;
+		}
+	
+	}
+	return iCount;
+}
+function getCount2()//获得审批流可用的节点数
+{
+	if (iIndex==0)
+	return 0;
+	var iCount = 0;
+	var object = null;
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			//if (getAtt(object,'property')!='none')
+			iCount++;
+		}
+	
+	}
+	return iCount;
+}
+
+
+function getFCount()//获得before为none的节点数
+{
+	if (iIndex==0)
+	return 0;
+	var iCount = 0;
+	var object = null;
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			if (getAtt(object,'before')=='none')
+			iCount++;
+		}
+	}
+	return iCount;
+}
+function getLCount()//获得beyond为none的节点数
+{
+	if (iIndex==0)
+	return 0;
+	var iCount = 0;
+	var object = null;
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			if (getAtt(object,'beyond')=='none')
+			iCount++;		
+		}
+	}
+	return iCount;
+}
+//========================================================================================================================================
+function getRandom(a1,a2)//获取a1,a2之间的随机整数
+{
+	var iResult = Math.floor(Math.random()*(a2-a1))+a1;
+	return iResult;
+}
+function workFlowLoad(FlowStr)//加载工作流
+{
+	var aFlow = FlowStr.split(";");
+	var baseX,baseY;
+	baseX = 115;
+	baseY = 200;
+	iIndex = 0;
+	for(var i = 0; i<aFlow.length; i++)//增加所有节点
+	{
+		AddNewPoint(baseX,baseY,aFlow[i])
+		baseX = baseX + getRandom(50,55);
+		baseY = baseY + getRandom(-50,50);
+		
+	}
+	var object1 = document.getElementById('flow1');
+	var tmpName2;
+	for(var j = 2; j<iIndex+1; j++)//画线
+	{
+		tmpName2 = "flow"+j;
+		object2 = document.getElementById(tmpName2);
+		beginDrawLine();
+		drawLine(object1,object2);
+		object1 = object2;	
+	}	
+}
+//========================================================================================================================================	
+
+//为每个审批节点增加主审批用户，此函数可供上层调用,外部保证MainUser不为空
+top.addMainUser=addMainUser;
+function addMainUser(MainUser_no,MainUser_name)
+{
+	if (selectObject==null)
+	{
+		alert("未选中任何审批节点！");
+		return;
+	}
+	var s1 = selectObject.getAttribute("property");
+	if (s1!="none")//如果已经更改过了mainuser
+	{
+		if(s1.indexOf(MainUser_no)>-1)
+		{
+			alert("错误，用户'"+MainUser_name+"'已设置！");
+			return;
+		}
+		selectObject.setAttribute("property",MainUser_no+';'+s1);
+		selectObject.setAttribute("property2",MainUser_name+';'+selectObject.getAttribute("property2"));
+	}else
+	{
+		selectObject.setAttribute("property",MainUser_no);//如果未曾更改过则直接置mainuser
+		selectObject.setAttribute("property2",MainUser_name);//如果未曾更改过则直接置mainuser
+	}
+
+	alert("成功添加主审！");
+}
+//------------------------------
+//为每个审批节点增加代理审批用户，此函数可供上层调用,外部保证SubUser不为空
+top.addSubUser=addSubUser;
+function addSubUser(SubUser_no,SubUser_name)
+{
+	if (selectObject==null)
+	{
+		alert("未选中任何审批节点！");
+		return;
+	}
+	var s1 = selectObject.getAttribute("property");
+	if (s1!="none")//如果已经更改过了subuser
+	{
+		if(s1.indexOf(SubUser_no)>-1)
+		{
+			alert("错误，用户'"+SubUser_name+"'已设置！");
+			return;
+		}
+		selectObject.setAttribute("property",s1+';'+SubUser_no);
+		selectObject.setAttribute("property2",selectObject.getAttribute("property2")+';'+SubUser_name);
+	}else
+	{
+		selectObject.setAttribute("property",SubUser_no);//如果未曾更改过则直接置subuser
+		selectObject.setAttribute("property2",SubUser_name);//如果未曾更改过则直接置subuser
+	}
+
+	alert("成功添加代理人！");
+}
+//------------------------------
+//========================================================================================================================================
+top.makeCheckFlow1=makeCheckFlow1;
+function makeCheckFlow1()//生成审批流程串内部号
+{
+	if(!isGoodFlow())//非合理流程串
+	{
+		return "Error";
+	}
+	
+	var iCount = getCount();
+	if (iCount==1)
+	{
+		var tmp1 = null;
+		var sTmpN;
+		if (iIndex==1)
+		{
+			tmp1 = document.getElementById('flow1');
+			return getAtt(tmp1,'property3');
+		}
+		for (var z=1;z<iIndex+1;z++)
+		{
+			sTmpN = 'flow'+z;
+			tmp1 = document.getElementById(sTmpN);
+			if (tmp1!=null)
+			{
+				return getAtt(tmp1,'property3');
+			}
+		}
+		return 'Error';
+	}
+	
+	var fObject = getF();
+	if (fObject==null)
+	return 'Error';	
+
+	var tmpS = getAtt(fObject,'beyond');
+	var sFlow = getAtt(fObject,'property3');
+	var yObject = document.getElementById(tmpS);
+	while(yObject != null)
+	{
+		sFlow = sFlow + getAtt(yObject,'property3');
+		//alert('id is'+getAtt(yObject,'id'));
+		//alert('property is '+getAtt(yObject,'property3'));
+		tmpS = getAtt(yObject,'beyond');
+		yObject = document.getElementById(tmpS);
+	}
+	//sFlow = getTopStr(sFlow,sFlow.length -1);
+	return sFlow;
+}
+
+top.makeCheckFlow2=makeCheckFlow2;
+function makeCheckFlow2()//生成审批流程串审批人
+{
+	if(!isGoodFlow())//非合理流程串
+	{
+		return "Error";
+	}
+	
+	var iCount = getCount();
+	if (iCount==1)
+	{
+		var tmp1 = null;
+		var sTmpN;
+		if (iIndex==1)
+		{
+			tmp1 = document.getElementById('flow1');
+			return getAtt(tmp1,'property');
+		}
+		for (var z=1;z<iIndex+1;z++)
+		{
+			sTmpN = 'flow'+z;
+			tmp1 = document.getElementById(sTmpN);
+			if (tmp1!=null)
+			{
+				return getAtt(tmp1,'property');
+			}
+		}
+		return 'Error';	
+	}
+	
+	var fObject = getF();
+	if (fObject==null)
+	return 'Error';	
+
+	var tmpS = getAtt(fObject,'beyond');
+	var sFlow = getAtt(fObject,'property');
+	var yObject = document.getElementById(tmpS);
+	while(yObject != null)
+	{
+		sFlow = sFlow + '>'+ getAtt(yObject,'property');
+		//alert('id is'+getAtt(yObject,'id'));
+		//alert('property is '+getAtt(yObject,'property'));
+		tmpS = getAtt(yObject,'beyond');
+		yObject = document.getElementById(tmpS);
+	}
+	//sFlow = getTopStr(sFlow,sFlow.length -1);
+	return sFlow;
+}
+//========================================================================================================================================
+top.clear=clear;
+function clear()//清屏
+{
+    //alert('begin clear');
+	//alert('iIndex='+iIndex);
+	var j = getCount2();
+	//alert(j);
+	if (j==0)
+	return;
+	
+	var sName;
+	for (var i=1;i<iIndex+1;i++)
+	{
+		sName = 'flow'+i;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+			selectObject = object;
+			deleteObject();
+		}
+	}
+	iIndex=0;
+}
+//========================================================================================================================================
+top.CheckFlowLoad=CheckFlowLoad;
+function CheckFlowLoad(sCFstr,sCFstr2,sCFstr3)//sCFstr形如a;b>c;a>d
+{//查看审批流，load
+    //sCFstr = sCFstr+'>';
+  if (sCFstr.indexOf('>')<0)//如果只有一个审批流节点
+  {
+    //alert('one point');
+     AddNewPoint(115,200,sCFstr);
+     var ob1 = document.getElementById('flow1');
+	if (ob1 != null)
+	{
+		ob1.setAttribute("property", sCFstr);
+		ob1.setAttribute("property2", sCFstr2);		
+		ob1.setAttribute("property3", sCFstr3);		
+	}
+  }
+  else
+  {
+	//有多个节点
+	var sPoint = sCFstr.split(">");
+	var sPoint2 = sCFstr2.split(">");
+	//var sProp3 = sCFstr3.split(">");
+	
+	//alert(sCFstr);
+	var baseX,baseY;
+	baseX = 115;
+	baseY = 200;
+	iIndex = 0;
+	for(var i = 0; i<sPoint.length; i++)//增加所有节点
+	{
+		AddNewPoint(baseX,baseY,sPoint[i]);
+		baseX = baseX + getRandom(50,85);
+		baseY = baseY + getRandom(-60,60);
+		
+	}
+	
+	var object1 = document.getElementById('flow1');
+	var tmpName2;
+	for(var j = 2; j<iIndex+1; j++)//画线
+	{
+		tmpName2 = "flow"+j;
+		object2 = document.getElementById(tmpName2);
+		beginDrawLine();
+		drawLine(object1,object2);
+		object1 = object2;	
+	}
+	//alert('iIndex = '+iIndex);
+	var sName;
+	var jj=0;
+	for (var i2=1;i2<iIndex+1;i2++)
+	{
+		sName = 'flow'+i2;
+		object = document.getElementById(sName);
+		if (object!=null)
+		{
+		  //for (var j2=0;)
+			object.setAttribute("property", sPoint[jj]);
+			object.setAttribute("property2", sPoint2[jj]);		
+			object.setAttribute("property3", sCFstr3.substr(jj,1));
+			jj = jj+1;
+		}
+	}	
+	
+	
+  }
+  //添加属性
+  
+}
+//========================================================================================================================================		
+		]]></script>
+</svg>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+<title>Untitled Document</title> 
+<style type="text/css"> 
+*{margin:0px;padding:0px} 
+html{overflow:hidden} 
+#sideBar{width:200px;height:100%;overflow:auto} 
+#toggleBar,.div{ 
+width:7px;height:100%; 
+overflow:hidden;background:#eee; 
+cursor:e-resize;border-left:1px solid #ccc;border-right:1px solid #ccc; 
+} 
+td{display:block;overflow:auto;word-break:break-all;} 
+</style> 
+<script type="text/javascript" src="jquery.js"></script> 
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+//及时调整页面内容的高度 
+setInterval(function(){ 
+var winH=(document.documentElement||document.body).clientHeight; 
+$("#tbl,#sideBar,#toggleBar,#main").css("height",winH); 
+$("td").each(function(){$(this).html()||$(this).html(" ")}); 
+},100) 
+} 
+); 
+var begin_x; 
+var drag_flag = false; 
+document.onmousemove = mouseDrag 
+document.onmouseup = mouseDragEnd 
+//半透明的拖动条（模拟） 
+var alphaDiv="<div class='div' id='alphaDiv' style='position:absolute;height:2000px;top:0;z-index:10001;filter:alpha(opacity=50);opacity:0.5;left:200px'> </div>"; 
+function setDrag(){ 
+drag_flag=true; 
+begin_x=event.x; 
+//添加蒙板 
+createMask(); 
+//添加半透明拖动条 
+$(alphaDiv).css("left",$("#toggleBar")[0].offsetLeft).appendTo("body"); 
+} 
+//关键部分 
+function createMask(){ 
+//创建背景 
+var rootEl=document.documentElement||document.body; 
+var docHeight=((rootEl.clientHeight>rootEl.scrollHeight)?rootEl.clientHeight:rootEl.scrollHeight)+"px"; 
+var docWidth=((rootEl.clientWidth>rootEl.scrollWidth)?rootEl.clientWidth:rootEl.scrollWidth)+"px"; 
+var shieldStyle="position:absolute;top:0px;left:0px;width:"+docWidth+";height:"+docHeight+";background:#000;z-index:10000;filter:alpha(opacity=0);opacity:0"; 
+$("<div id='shield' style=\""+shieldStyle+"\"></div>").appendTo("body"); 
+} 
+//拖动时执行的函数 
+function mouseDrag(){ 
+if(drag_flag==true){ 
+if (window.event.button==1){ 
+var now_x=event.x; 
+var value=parseInt($("#alphaDiv")[0].style.left)+now_x-begin_x; 
+$("#alphaDiv")[0].style.left=value+"px"; 
+begin_x=now_x; 
+} 
+$("body").css("cursor","e-resize"); //设定光标类型 
+}else{ 
+try{ 
+$("#shield").remove(); 
+$("#sideBar")[0].style.pixelWidth=$("#alphaDiv")[0].style.left; 
+$("#alphaDiv").remove(); 
+}catch(e){} 
+} 
+} 
+function mouseDragEnd(){ 
+//设置拖动条的位置 
+if(drag_flag==true){ 
+//设定拖动条的位置（设定左侧的宽度） 
+$("#sideBar")[0].style.pixelWidth=parseInt($("#alphaDiv")[0].style.left); 
+$("#shield").remove(); //删除蒙板 
+$("#alphaDiv").remove(); //删除半透明拖动条 
+$("body").css("cursor","normal"); //恢复光标类型 
+} 
+drag_flag=false; 
+} 
+</script> 
+</head> 
+<body> 
+<table id="tbl" border="0" bordercollaspe="collapse" cellpadding="2" cellspacing="0" width="100%" height="100%"> 
+<tr> 
+<td width="1"><div id="sideBar" style="width:200px;"><div style="height:1200px">asdfasdf</div></div> 
+</td> 
+<td width="1" onmousedown="setDrag()" id="toggleBar"></td> 
+<td id="main"> 
+<iframe src="test.htm" id="frmMain" width="100%" height="100%"></iframe> 
+</td> 
+</tr> 
+</table> 
+</body> 
+</html> 
