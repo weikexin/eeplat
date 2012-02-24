@@ -1,0 +1,1 @@
+﻿<%response.sendRedirect("CRM/index.jsp");%>

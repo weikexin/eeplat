@@ -1,0 +1,3 @@
+01-12 12:34:04 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "MULTI_ACCOUNT" not found; SQL statement:
+insert into multi_account(objuid,name,tenancyid,password,asrole,creator,modifier,modifydate,mversion,default_app_uid) values(?,?,?,?,?,?,?,?,?,?) [42102-149]
