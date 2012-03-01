@@ -46,7 +46,7 @@
   * 多租户
     * [Multi_First 一个简单的例子]
     * [Multi_MetaDriver 多租户基础架构]
-    * [Multi_Code 语言沙箱]
+    * [Multi_Code 沙箱]
     * [Multi_Mobile 手机支持]
     * [Multi_dev 在线开发说明]
     * [AppShare AppShare(应用商店)]
