@@ -4,10 +4,13 @@
 
 =框架限制=
 
-  所有的代码和界面都须运行在EEPlat Framework下。
-  在EEPlat Framework中，需要使用HTML或者FreeMarker
-  
+  * 所有的代码和界面都须运行在EEPlat Framework下。
+  在EEPlat Framework中，需要使用HTML或者FreeMarker，而不可使用JSP。
 
+  * 对数据库的所有操作都须使用MetaData中的服务。
+
+  * 文件的上传采用标准控制器，或以标准控制器为基础的扩展控制器。
+  
 
 
 =语言限制=
