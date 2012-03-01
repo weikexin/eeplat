@@ -1,2 +1,4 @@
 #sidebar index
 文档撰写中......，请注册体验：http://www.eeplat.com/multimanager/PM_multi_tenancy_register.pml?isApp=true&greenChannel=true 。
+=开发语言支持=
+EEPlat支持的开发语言为Rhino。
