@@ -4,10 +4,10 @@
 
   <img width="320px" src="http://eeplat.googlecode.com/files/IMG_0107.png"/>
 
-  <img src="http://eeplat.googlecode.com/files/IMG_0109.png"/>
+  <img  width="320px" src="http://eeplat.googlecode.com/files/IMG_0109.png"/>
 
-  <img src="http://eeplat.googlecode.com/files/IMG_0110.png"/>
+  <img  width="320px" src="http://eeplat.googlecode.com/files/IMG_0110.png"/>
 
-  <img src="http://eeplat.googlecode.com/files/IMG_0111.png"/>
+  <img  width="320px" src="http://eeplat.googlecode.com/files/IMG_0111.png"/>
 
-  <img src="http://eeplat.googlecode.com/files/IMG_0112.png"/>
+  <img   width="320px" src="http://eeplat.googlecode.com/files/IMG_0112.png"/>
