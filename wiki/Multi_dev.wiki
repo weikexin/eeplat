@@ -24,4 +24,6 @@ EEPlat的代码编辑采用的组件为CodeMirror和ACE，它们的特点有：
 
 当浏览器客户端为IE时，用的代码编辑组件全部为CodeMirror。其它浏览器主要编辑场景用的ACE，嵌入式（如自定义动作、校验规则、控制器编辑界面）场景用的CodeMirror。推荐使用Firefox浏览器。
 
-EEPlat 扩展了ACE的Autocompletion 。
+EEPlat 扩展了ACE的Autocompletion，常用API可以自动完成。
+
+
