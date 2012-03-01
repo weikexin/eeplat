@@ -1,4 +1,16 @@
 #sidebar index
+  
+  * 下文所述之事针对共有云多租户版本，私有云或普通服务器没有下属沙箱限制。 *
+
+==框架限制==
+
+  所有的代码和界面都须运行在EEPlat Framework下。
+  在EEPlat Framework中，需要使用HTML或者FreeMarker
+  
+
+
+
+==语言限制==
 
   EEPlat支持的开发语言为Javascript(Rhino)，在线编写的代码运行在Rhino沙箱中。EEPlat Engine可以做到：
 
