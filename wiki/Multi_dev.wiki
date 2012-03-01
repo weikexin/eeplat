@@ -2,6 +2,9 @@
 
 EEPlat支持[JavaScriptAPI   浏览器端JavaScript]、 [JavaScriptAPIBack   服务器端JavaScript(Rhino)]、HTML(HTML5)、CSS在线编写。 
 
+* 通过在线开发，你可以定制化界面、定制化后台逻辑、集成第三方应用等等（MetaData的配置可能不能完全满足要求）。 *
+
+
 EEPlat的代码编辑采用的组件为CodeMirror和ACE，它们的特点有：
    
     *  Autocompletion
@@ -45,6 +48,4 @@ EEPlat 扩展了ACE的Autocompletion，常用API可以自动完成，使用Ctrl(
 =CSS=
 
   <img src="http://eeplat.googlecode.com/files/css.png"/>
-
-
 
