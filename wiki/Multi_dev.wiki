@@ -19,6 +19,8 @@ EEPlat的代码编辑采用的组件为CodeMirror和ACE，它们的特点有：
     *  Autoformatting of code
     *  Emacs keybindings
     *  Vim keybindings
+    *  Auto indentation and outdent
+    *  Work with huge documents (100,000 lines and more are no problem)
 
 
 
