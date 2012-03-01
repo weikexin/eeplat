@@ -39,9 +39,9 @@
           *  [HowToUseExcelReport     使用EXCEL报表]
           *  [HowTOUserGraphics       如何何使用图表]
           *  [ImportExportBusinessObject     配置数据导入导出]
-          *  [JavaScriptAPI     JAVASCRIPT API(前端)]    
+          *  [JavaScriptAPI     JAVASCRIPT API(浏览器端)]    
           *  [JavaAPI     JAVA API]
-          *  [JavaScriptAPIBack     JAVASCRIPT API(后台)]    
+          *  [JavaScriptAPIBack     JAVASCRIPT API(服务器端)]    
           *  [GlobalParas     全局配置参数]
   * 多租户
     * [Multi_First 一个简单的例子]
