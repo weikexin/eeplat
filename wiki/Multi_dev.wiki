@@ -1,7 +1,6 @@
 #sidebar index
 
-EEPlat支持[JavaScriptAPI   浏览器端JavaScript]、 [JavaScriptAPIBack   服务器端JavaScript(Rhino)]    
-后台[]、HTML(HTML5)、CSS在线编写。 
+EEPlat支持[JavaScriptAPI   浏览器端JavaScript]、 [JavaScriptAPIBack   服务器端JavaScript(Rhino)]、HTML(HTML5)、CSS在线编写。 
 
 EEPlat的代码编辑采用的组件为CodeMirror和ACE，它们的特点有：
    
