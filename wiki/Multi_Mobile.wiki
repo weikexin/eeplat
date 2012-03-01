@@ -1,6 +1,9 @@
 #sidebar index
 
+  EEPlat支持手机的基础是MetaData，拥有PC和Mobile两种界面引擎，一次配置，同时支持PC和Mobile，即可以根据一样的元数据生成PC和Mobile两种界面，也可以个性化定制化的Mobile界面。
 
+
+  下面是手机的部分截图：
 
   <img width="320px" src="http://eeplat.googlecode.com/files/IMG_0107.png"/>
 
