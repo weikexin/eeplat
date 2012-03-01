@@ -1,2 +1,13 @@
 #sidebar index
-文档撰写中......，请注册体验：http://www.eeplat.com/multimanager/PM_multi_tenancy_register.pml?isApp=true&greenChannel=true 。
+
+
+
+  <img src="http://eeplat.googlecode.com/files/IMG_0107.png"/>
+
+  <img src="http://eeplat.googlecode.com/files/IMG_0109.png"/>
+
+  <img src="http://eeplat.googlecode.com/files/IMG_0110.png"/>
+
+  <img src="http://eeplat.googlecode.com/files/IMG_0111.png"/>
+
+  <img src="http://eeplat.googlecode.com/files/IMG_0112.png"/>
