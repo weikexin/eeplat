@@ -4,6 +4,8 @@ EEPlat支持[JavaScriptAPI   浏览器端JavaScript]、 [JavaScriptAPIBack   服
 
 * 通过在线开发，你可以定制化界面、定制化后台逻辑、集成第三方应用等等（[Multi_MetaDriver MetaData]的配置可能不能完全满足要求）。 *
 
+EEPlat提供导入导出功能，在线开发的代码可以很好的进行分享和重用。
+
 
 EEPlat的代码编辑采用的组件为CodeMirror和ACE，它们的特点有：
    
