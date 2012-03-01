@@ -1,4 +1,4 @@
 #sidebar index
 
-EEPlat支持[JavaAPI     浏览器端JavaScript]、 [JavaScriptAPIBack   服务器端JavaScript(Rhino)]    
+EEPlat支持[JavaScriptAPI   浏览器端JavaScript]、 [JavaScriptAPIBack   服务器端JavaScript(Rhino)]    
 后台[]、HTML(HTML5)、CSS在线编写。 
