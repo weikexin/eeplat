@@ -2,7 +2,7 @@
 
 
 
-  <img src="http://eeplat.googlecode.com/files/IMG_0107.png"/>
+  <img width="320px" src="http://eeplat.googlecode.com/files/IMG_0107.png"/>
 
   <img src="http://eeplat.googlecode.com/files/IMG_0109.png"/>
 
