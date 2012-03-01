@@ -1,4 +1,20 @@
 #sidebar index
-文档撰写中......，请注册体验：http://www.eeplat.com/multimanager/PM_multi_tenancy_register.pml?isApp=true&greenChannel=true 。
-=开发语言支持=
-EEPlat支持的开发语言为Rhino。
+
+  EEPlat支持的开发语言为Javascript(Rhino)，在线编写的代码运行在Rhino沙箱中。EEPlat Engine可以做到：
+
+===代码运行时间====
+
+  可以定义代码的执行时间，例如只允许代码执行10秒。
+
+===反射====
+
+  可以定义是否允许使用反射。
+
+===白名单或黑名单类列表====
+
+  EEPlat可以采用黑名单或白名单策略，白名单的扩展性差，一般采用黑名单策略，
+即限制哪些类不可以被使用。
+
+===黑名单方法列表====
+
+  可以限制哪些方法不可以被调用。
