@@ -4,14 +4,19 @@
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
 	
-	
 	    <property name="connection.driver_class">org.h2.Driver</property>
-		<property name="connection.url">config</property>  
+		<property name="connection.url">config</property> 
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
+
 		
 
        <!--
+       
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/c_fans?useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>    
        
        	<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="connection.url">mydb</property>
@@ -43,14 +48,19 @@
 	    <property name="aop.formmodel.class"></property>
 	    	    
 	    <property name="aop.parameter.check.class"></property>
-	    
-	<!-- no simple all(further) -->
-		<property name="useCache">no</property>
+
 	    
 	    <property name="model.uuid">true</property>
+	    
+	    <!-- 是否采用JDK自带的rhino引擎，模式是extend不采用，采用EEPlat扩展的 -->
+	    <property name="rhino.jdk">extend</property>
+	    <!-- 启用rhinojs 执行最快模式（全编译） -->
+	    <property name="rhino.fastest">false</property>
 	
 		<property name="jslib">jquery</property>
-		
+			    
+		<!-- no simple all(further) -->
+		<property name="useCache">no</property>
 		<!-- 两种:serial no -->
 		<property name="useSerial">serial</property>
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
