@@ -80,7 +80,7 @@ this.actionForm  这个成员变量不可用。
 
 例子：
        
-	   callAction({'btn':btn,
+       callAction({'btn':btn,
 	   			   'actionName':"com.exedosoft.plat.action.customize.archive.SaveArchiveAndDetails",
 	   			   'paras':paras,'callback':cbtest});
 
