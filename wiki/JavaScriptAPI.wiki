@@ -84,11 +84,7 @@ this.actionForm  这个成员变量不可用。
 	   			   'actionName':"com.exedosoft.plat.action.customize.archive.SaveArchiveAndDetails",
 	   			   'paras':paras,'callback':cbtest});
 
-
-
-}}}
-
-        function cbtest(data) {
+       function cbtest(data) {
 	var flag = data.empty;
 	var msg = data.msg;
 	if(flag == "errordata") {
@@ -124,6 +120,10 @@ this.actionForm  这个成员变量不可用。
 			bzVacationPaneBack();
 	}
 }
+
+}}}
+
+ 
 
 == callPlatBus(p) ==
 {{{
