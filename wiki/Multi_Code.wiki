@@ -4,7 +4,7 @@
 
 =开发语言与沙箱=
 
-  EEPlat的现在支持的开发语言为Javascript(Rhino)和Java，可以选择是否启用Java支持。Javascipt可以在线编写，Java必须采用部署jar包的方式。分别提供了两种沙箱机制Rhino沙箱和Java沙箱。 如果启用Java沙箱，Javascipt也必须遵守Java沙箱的限制。Java沙箱提供了和Google App Engine一致的JRE白名单。
+  EEPlat的现在支持的开发语言为Javascript(Rhino)和Java，可以选择是否启用Java支持。Javascipt可以在线编写，Java必须采用部署jar包方式。分别提供了两种沙箱机制Rhino沙箱和Java沙箱。 如果启用Java沙箱，Javascipt也必须遵守Java沙箱的限制。Java沙箱提供了和Google App Engine一致的JRE白名单。
 
 
 
