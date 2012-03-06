@@ -128,6 +128,35 @@ this.actionForm  这个成员变量不可用。
 	}
 }
 
+///////////在自定义动作中设置返回值
+   		if ("0".equals(empty[0])) {
+			BOInstance bi = new BOInstance();
+			bi.putValue("empty", "notempty");
+			bi.putValue("btn", btn);
+			//设置返回值
+			this.setInstance(bi);
+			return this.DEFAULT_FORWARD;
+		} else if ("1".equals(empty[0])) {
+			return DEFAULT_FORWARD;
+		} else if("2".equals(empty[0])){
+			BOInstance bi = new BOInstance();
+			//设置返回值
+			String msg = empty[1];
+			bi.putValue("msg", msg);
+			bi.putValue("empty", "errordata");
+			this.setInstance(bi);
+			return this.DEFAULT_FORWARD;
+		} else /*if("3".equals(empty[0]))*/{
+			//设置返回值
+			BOInstance bi = new BOInstance();
+			String msg = empty[1];
+			bi.putValue("msg", msg);
+			bi.putValue("empty", "errordata2");
+			this.setInstance(bi);
+			return this.DEFAULT_FORWARD;
+		} 
+
+
 }}}
 
  
