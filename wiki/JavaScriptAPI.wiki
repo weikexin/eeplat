@@ -15,6 +15,7 @@
   p.pmlWidth         连接的面板的宽带（弹出面板）
   P.target           目标面板
   p.echoJs	     执行服务之前的前台提示
+  p.async            异步执行，默认为true; false为同步
 
   p.callType         触发类别: 
                 type='us',只执行当前的服务（不执行对应的规则），返回的结果是一条json记录数据
