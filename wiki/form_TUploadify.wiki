@@ -45,11 +45,15 @@ Uploadify本质上是一个基于Flash的jQuery上传插件（跨域上传的情
 <1>这个文件的要放在站点的根目录下而且文件名固定;
 <2>跨域访问端口在1024以下必须要通过策略文件来定义信任关系。换句话说端口大于等于1024隐式开放访问权限。
 crossdomain.xml文件的内容如下：
+
+{{{
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE cross-domain-policy SYSTEM  
 "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd" >  
 <cross-domain-policy>  
 <site-control permitted-cross-domain-policies="all" />  
 <allow-access-from domain="*" />  
+
+}}}
 <allow-http-request-headers-from domain="*" headers="*"/>
 </cross-domain-policy>
