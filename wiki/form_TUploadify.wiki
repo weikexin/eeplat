@@ -37,9 +37,12 @@ Tuploadfiy控制器(用的uploadify插件)，跨域上传文件失败（非IE内
 Uploadify本质上是一个基于Flash的jQuery上传插件（跨域上传的情况牵扯到两个安全模型,一是浏览器的同源策略，一是Flash的安全沙箱策略）。所以跨域关键点在于Flash的安全沙箱策略。Flash安全策略简单讲：同一个域的属于同一个沙箱，同一个沙箱的可以互相访问.如果要访问另外一个沙箱的内容就要在另外一个沙箱定义信任,这种信任策略就定义在crossdomain.xml中。
 解决方案：
 可直接按照下面的第3步设置，如未解决，再安装1至3步设置。
+
 1、首先要将uploadify插件方法中的scriptAccess参数设置为always；
+
 2、将uploadify.swf文件放置在上传页面的服务器上；
 （注意：这里文件放置的地址不是指文件存储的目标服务器，而是指和html文件所在的服务器）；
+
 3、将名为crossdomain.xml的XML文件保存在文件存储的机器上（目标机器）的站点根目录（如tomcat，就应该放在webapp的root下，然后访问http:localhost:port/crossdomain.xml，如果成功显示，证明配置成功）。
 对于crossdomain.xml还有两点细节：
 <1>这个文件的要放在站点的根目录下而且文件名固定;
