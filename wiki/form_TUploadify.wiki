@@ -54,6 +54,8 @@ crossdomain.xml文件的内容如下：
 <site-control permitted-cross-domain-policies="all" />  
 <allow-access-from domain="*" />  
 
-}}}
+
 <allow-http-request-headers-from domain="*" headers="*"/>
 </cross-domain-policy>
+
+}}}
