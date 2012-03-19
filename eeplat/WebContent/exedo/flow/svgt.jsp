@@ -1313,7 +1313,7 @@ function getFCount(svg)//获得before为none的节点数
 <br/>
 <div>
 
-<span style="font-size:25px;font-weight:bold">云鹤平台工作流建模工具</span> 
+<span style="font-size:25px;font-weight:bold">EEPlat工作流建模工具</span> 
 <span style="font-size:12px">(Firefox下效果最佳，创建新节点的方式不是拖动，而是点击、点击。) </span>
 <div>
 <br/>

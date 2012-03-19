@@ -1,6 +1,6 @@
 html{
 	height:100%;
-	overflow:hidden
+	overflow:hidden;
 }
 body{
 	 height:100%;
@@ -250,3 +250,4 @@ object{
 	margin-bottom:-4px;
 	cursor:pointer;
 }
+

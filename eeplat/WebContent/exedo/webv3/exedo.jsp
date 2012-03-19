@@ -55,12 +55,6 @@ response.setDateHeader("Expires", 0);
 globalURL = "/<%=DOGlobals.URL%>/";
 
 </script>
-
-<!-- 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/button.css"  type="text/css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icon.css"  type="text/css"/>
- -->
- 
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <!-- Jquery插件的css -->

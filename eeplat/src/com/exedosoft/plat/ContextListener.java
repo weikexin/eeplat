@@ -2,7 +2,6 @@ package com.exedosoft.plat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
@@ -14,7 +13,6 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 
 import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.bo.DODataSource;
@@ -81,29 +79,29 @@ public class ContextListener implements ServletContextListener {
 		t.schedule(cot,0, 2 * 60 * 1000);
 		////////////////////////////////Online Timer
 
-		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
-			CacheFactory.getCacheData().fromSerialObject();
-			// /控制器需要重新注册
-			// 应该可以从里从两个文件中加载
-			String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
-			List list = DAOUtil.INSTANCE()
-					.select(DOController.class, sql);
-
-			Iterator localIterator = list.iterator();
-			while (localIterator.hasNext()) {
-				BaseObject localBaseObject = (BaseObject) localIterator.next();
-				CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
-						localBaseObject);
-			}
-
-		}
-
-		DODataSource defaultDs = DODataSource.parseGlobals();
-		poolASource(defaultDs);
-
 		// String sql =
 		// "select dds.* from DO_DataSource dds,DO_Application da where dds.applicationUID = da.objuid and da.name = ?";
 		try {
+			
+			if ("serial".equals(DOGlobals.getValue("useSerial"))) {
+				CacheFactory.getCacheData().fromSerialObject();
+				// /控制器需要重新注册
+				// 应该可以从里从两个文件中加载
+//				String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
+//				List list = DAOUtil.INSTANCE()
+//						.select(DOController.class, sql);
+//
+//				Iterator localIterator = list.iterator();
+//				while (localIterator.hasNext()) {
+//					BaseObject localBaseObject = (BaseObject) localIterator.next();
+//					CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
+//							localBaseObject);
+//				}
+
+			}
+
+			DODataSource defaultDs = DODataSource.parseGlobals();
+			poolASource(defaultDs);
 
 			System.out.println("Application's Name:: "
 					+ DOGlobals.getValue("application"));

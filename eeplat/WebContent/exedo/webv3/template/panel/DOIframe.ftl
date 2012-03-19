@@ -1,4 +1,4 @@
-<iframe  id="if${model.name}"  frameborder='0' src="${resPath}" style="width:100%;"/>
+<iframe  id="if${model.name}"  frameborder='0' src="${resPath}" style="width:${model.paneWidth?default('95%')};"/>
 <script>
 
 	var	height = $(window).height();
