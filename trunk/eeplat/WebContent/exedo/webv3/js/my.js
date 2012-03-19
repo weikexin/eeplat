@@ -1,6 +1,6 @@
 function cbAAA1(v){
 	if(v!=null && v.length>0){
-		alert("閮ㄩ棬鍚嶇О::" + v[0].name);
+		alert("名称为::" + v[0].name);
 	}
 	//$('#gm_do_org_user_insert_name').val(v);
 }

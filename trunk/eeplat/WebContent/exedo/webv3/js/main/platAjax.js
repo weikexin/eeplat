@@ -1073,12 +1073,4 @@ function getPmlUrl(pmlName,pageNo,pageSize){
 	return  globalURL + pmlName + ".pml?pageSize="+pageSize+"&pageNo="+pageNo; 
 }
 
-function insertAuthPt(){
-	var selectedNode = window.opener.selectedNodeBak;
-	var whatuid = selectedNode.getAttribute('id');
-	var ouuid = $("#gm_do_authorization_insert_ptnode_role_ouuid").val();
-	callService({'serviceName':'u_role_ptnode',paras:"whatuid=" + whatuid + "&ouuid="+ouuid,'pml':'PM_do_org_role_of_ptnode','target':'PM_do_org_role_of_ptnode'}  );
-	
-	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
-	
-}
+

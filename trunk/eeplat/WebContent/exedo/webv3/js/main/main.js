@@ -478,6 +478,7 @@ function createFloatDiv2(id,title) {
 }
 
 
+
 /**
  * 刷新树 
  * @param type =1 刷新 选中的节点，否则刷新 选中节点的上层
@@ -539,3 +540,17 @@ function isMobile(){
 	return android || iPhone || iPod || iPad || symbian || series60 || BlackBerry;
 }
 
+
+
+/**
+ * 工作流节点权限相关
+ */
+function insertAuthPt(){
+	var selectedNode = window.opener.selectedNodeBak;
+	var whatuid = selectedNode.getAttribute('id');
+	var ouuid = $("#gm_do_authorization_insert_ptnode_role_ouuid").val();
+	callService({'serviceName':'u_role_ptnode',paras:"whatuid=" + whatuid + "&ouuid="+ouuid,'pml':'PM_do_org_role_of_ptnode','target':'PM_do_org_role_of_ptnode'}  );
+	
+	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
+	
+}
