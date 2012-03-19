@@ -1319,7 +1319,7 @@ function getFCount(svg)//获得before为none的节点数
 <br/>
 
 <div id="svgbasics">
-	﻿<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="workflow" >
+	﻿<svg style=" width: 825px; height: 1095px; " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="workflow" >
 			
 			<style type="text/css">
 	      <![CDATA[
