@@ -17,7 +17,7 @@
 }}}
 
 
-   不常用的（多租户版启用Java扩展下面的变量不支持）有：
+   不常用的有：
    * docontext:全局Session,  对应JAVA类SessionContext				
    * doservice:当前的服务,对应JAVA类 DOService
    * domodel:当前的模型,对应JAVA类 DOIModel
