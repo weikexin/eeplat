@@ -43,7 +43,11 @@ public class DOWfMonitor extends DOAbstractAction {
 		Map<String, NodeInstance> nodeIMap = new HashMap<String, NodeInstance>();
 		for (Iterator<NodeInstance> it = nis.iterator(); it.hasNext();) {
 			NodeInstance ni = it.next();
-			nodeIMap.put(ni.getNode().getObjUid(), ni);
+			if(nodeIMap.get(ni.getNode().getObjUid())==null){
+				nodeIMap.put(ni.getNode().getObjUid(), ni);
+			}else if(ni.getExeStatus().intValue() == NodeInstance.STATUS_FINISH){
+				nodeIMap.put(ni.getNode().getObjUid(), ni);
+			}
 		}
 
 		ProcessTemplate pt = pi.getProcessTemplate();
