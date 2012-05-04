@@ -798,20 +798,37 @@ public class StringUtil {
 		// ///\\w*(\\s)+[order](\\s)+[by]{1}{\\w*}(\\s)+\\w*
 		// ///////////去掉,后面的空格
 		str = str.replaceAll(",(\\s)*", ",");
-		System.out.println(str);
 
+		String ret = "";
+		ret = getColHelper(str,"order(\\s)+by(\\s)");
+		
+		if(ret!=null && !ret.equals("")){
+			return ret;
+		}
+		
+		if(str.indexOf(" group ")!=-1){
+			
+			return getColHelper(str,"group(\\s)+by(\\s)");
+		}
+
+		return "";
+	}
+
+	private static String getColHelper(String str,String p) {
 		// ////////根据order by 特征 提取order by col 字段
-		Pattern pattern = Pattern.compile("order(\\s)+by(\\s)+(.)+(\\s)*");
+		
+		String ret = "";
+		
+		Pattern pattern = Pattern.compile(p +  "+(.)+(\\s)*");
 
 		Matcher matcher = pattern.matcher(str);
 
 		if (matcher.find()) {
 			// ///////////去掉order by 只返回col
-			return matcher.group().replaceAll("order(\\s)+by(\\s)+", "");
+			ret = matcher.group().replaceAll(p +  "+", "");
 
 		}
-
-		return "";
+		return ret;
 	}
 
 	// (\S)+[@]{1}(\S)+[.]{1}(\w)+
