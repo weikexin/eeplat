@@ -1,0 +1,21 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+
+
+html,body{ height:100%; overflow:hidden; width:100%;}
+body{ height:100%;}
+a{ text-decoration:none; cursor:pointer;}
+.font12{ font-size:12px;}
+.color{ color:#7e7e7e}
+.blue{ color:#007edd; font-weight:bold;}
+.colorr{ color:#FF0000;}
+.letter{ letter-spacing:2px;}
+#bg{ width:100%; height:100%; overflow:auto;}
+.shadow{background:url(../images/delegate/bga.png) no-repeat center; width:826px; height:460px; overflow:hidden;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="exedo/webv3/bga.png");_background:none;
+}
+.main{width:357px; height:218px; text-align:center;}
+.main li{ list-style-position:outside; width:357px; line-height:25px;}
+.main li em{ _position:relative;}
+.main a{ margin:0px 8px;}
+.notice{ width:357px; height:22px; background:#f8fbcb; line-height:24px;}
