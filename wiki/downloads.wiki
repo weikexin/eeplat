@@ -1,3 +1,3 @@
 源代码下载只支持SVN方式，具体参见[SvnSetup 源代码SVN安装]。
 
-这里是<a href="http://eeplat.googlecode.com/files/eeplat.war" target="_blank">WAR包下载</a>。
+这里是<a href="http://eeplat-social-api.googlecode.com/files/eeplat.war" target="_blank">WAR包下载</a>。
