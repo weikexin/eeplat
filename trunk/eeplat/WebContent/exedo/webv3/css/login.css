@@ -1,6 +1,6 @@
 body {
-	font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"ËÎÌו";
- 	height:100%;
+font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif,"ËÎÌו"
+ height:100%;
 }
 
 
@@ -13,13 +13,14 @@ font-size:13px;
 }
 
 
+
 #loginform {
-   background: none repeat scroll 0 0 #FFFFFF;
-  border: 1px solid #E5E5E5; 
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E5E5E5; 
     border-radius: 8px 8px 8px 8px;
     box-shadow: 0 0 6px #999999;
     margin: 0 auto;
-    padding:20px 20px 60px;
+    padding:20px 20px 80px;
     width: 350px;
 }
 
@@ -55,4 +56,3 @@ float:left;
 font-weight:normal;
 margin-bottom:0;
 }
-

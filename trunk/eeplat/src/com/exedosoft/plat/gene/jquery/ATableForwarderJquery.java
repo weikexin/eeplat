@@ -61,8 +61,8 @@ public class ATableForwarderJquery {
 
 			try {
 				DODataSource dds = null;
-				if (DOGlobals.getInstance().getSessoinContext()
-						.getTenancyValues() != null) {
+				if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+
 					dds = DOGlobals.getInstance().getSessoinContext()
 							.getTenancyValues().getDataDDS();
 				}
@@ -806,9 +806,9 @@ public class ATableForwarderJquery {
 
 			try {
 				DODataSource dds = null;
-				if (DOGlobals.getInstance().getSessoinContext()
-						.getTenancyValues() != null) {
-					DOGlobals.getInstance().getSessoinContext()
+				if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+					
+					dds = DOGlobals.getInstance().getSessoinContext()
 							.getTenancyValues().getDataDDS();
 				}
 				if (dds == null) {

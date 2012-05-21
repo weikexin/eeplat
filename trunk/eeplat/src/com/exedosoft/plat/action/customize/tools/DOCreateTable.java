@@ -53,7 +53,7 @@ public class DOCreateTable extends DOAbstractAction {
 			if (!colName.equals("")) {
 				sb.append(colName).append("  ").append(dbtypes[i]);
 
-				if (dbsizes[i] != null && !dbsizes[i].equals("")){
+				if (dbsizes[i] != null && !dbsizes[i].equals("")) {
 					sb.append(" (").append(dbsizes[i]).append(")");
 				}
 				if (i < (colNames.length - 1)) {
@@ -65,9 +65,21 @@ public class DOCreateTable extends DOAbstractAction {
 
 		System.out.println("Create table Sql::" + sb);
 
-		DOBO bo = DOBO.getDOBOByName("do_datasource");
-		DODataSource dss = DODataSource.getDataSourceByL10n(bo
-				.getCorrInstance().getValue("l10n"));
+
+
+		DODataSource dss = null; 
+		///多租户情况`
+		
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+			dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
+		} else {//单租户情况
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			dss = DODataSource.getDataSourceByL10n(bo
+					.getCorrInstance().getValue("l10n"));
+		}
+		
+		
 
 		List list = new ArrayList();
 		Connection con = null;

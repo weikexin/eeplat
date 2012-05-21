@@ -15,7 +15,7 @@
 
 	   			 'paras':'dataBus=setContext&contextKey=do_wfi_nodeinstance&contextValue=${model.data.uid}&contextKey=${busiBOName?if_exists}&contextValue=${instance_uid?if_exists}',
 		   		 'title':'${paneModel.title}',
-		   		 'formName':'a${model.gridModel.objUid}'
+		         'formName':'${model.targetForms}'
 		   		  <#if (model.targetPaneModel)?exists>	         
 				,'target':'${model.targetPaneModel.name}'
 				 </#if> });

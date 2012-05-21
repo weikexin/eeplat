@@ -1,8 +1,10 @@
 package com.exedosoft.plat.util;
 
+import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.wf.wfi.NodeInstance;
 import com.exedosoft.wf.wfi.ProcessInstance;
 
@@ -23,13 +25,25 @@ public class DEMONodeInstanceAuth extends DOAbstractAction {
 			NodeInstance preConflict = ni.getNodeInstanceByPTNodeID(pi.getObjUid(), "tt2_n16", "" + NodeInstance.STATUS_FINISH);
 			
 			if(preConflict!=null){
-				NodeInstance.storePersionAuth(ni.getObjUid(), preConflict.getPerformer(), Boolean.FALSE);
+				NodeInstance.storePersionAuth(ni.getObjUid(), preConflict.getPerformer());
 			}
 			
 		}
 		
 		
 		return DEFAULT_FORWARD;
+	}
+	
+	
+	public static void main(String[] args){
+		
+
+		
+		DOBO aBO = DAOUtil.INSTANCE().getByName(DOBO.class, "do_authorization");
+		
+		System.out.println( "aBO:::" + aBO);
+
+		
 	}
 
 }

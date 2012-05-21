@@ -30,7 +30,7 @@ public class DOValueMultData implements DOIView {
 		StringBuffer buffer = new StringBuffer();
 		int i = 0;
 		for (Iterator it = linkService.invokeSelect().iterator(); it.hasNext();) {
-			BOInstance bi = (BOInstance) it.next();
+			BOInstance bi = (BOInstance<?>) it.next();
 			buffer.append(bi.getThisLink());
 			buffer.append(";");
 			if(i  > 5){

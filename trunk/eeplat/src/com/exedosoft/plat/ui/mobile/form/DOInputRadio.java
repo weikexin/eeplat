@@ -32,11 +32,14 @@ public class DOInputRadio extends DOStaticList {
 			.append(property.getL10n())
 			.append("</legend>\n");
 
+			int i = 0;
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				String[] half = (String[]) it.next();
+				i ++;
 				buffer.append(" <input ")
 				.append(" type=\"radio\" name=\"").append(property.getFullColName()).append("\" ")
-				.append("  value=\"").append(half[0]);
+				.append(" id=\"").append(property.getFullColID()).append(i)
+				.append("\"  value=\"").append(half[0]);
 				buffer.append("\"");
 				if (isFirst) {
 					if (value == null
@@ -73,7 +76,12 @@ public class DOInputRadio extends DOStaticList {
 				}
 
 				buffer.append("/>")
-				.append(half[1]);
+				.append("<label for=\"")
+				.append(property.getFullColID())
+				.append(i)
+				.append("\" >")
+				.append(half[1])
+				.append("</label>");
 			}
 			buffer.append("</fieldset>");
 		}

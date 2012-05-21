@@ -9,6 +9,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.org.DOAuthorization;
 import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.wf.pt.NodeDenpendency;
 import com.exedosoft.wf.pt.PTNode;
@@ -43,9 +44,9 @@ public class DOWfMonitor extends DOAbstractAction {
 		Map<String, NodeInstance> nodeIMap = new HashMap<String, NodeInstance>();
 		for (Iterator<NodeInstance> it = nis.iterator(); it.hasNext();) {
 			NodeInstance ni = it.next();
-			if(nodeIMap.get(ni.getNode().getObjUid())==null){
+			if (nodeIMap.get(ni.getNode().getObjUid()) == null) {
 				nodeIMap.put(ni.getNode().getObjUid(), ni);
-			}else if(ni.getExeStatus().intValue() == NodeInstance.STATUS_FINISH){
+			} else if (ni.getExeStatus().intValue() == NodeInstance.STATUS_FINISH) {
 				nodeIMap.put(ni.getNode().getObjUid(), ni);
 			}
 		}
@@ -91,7 +92,41 @@ public class DOWfMonitor extends DOAbstractAction {
 					e.printStackTrace();
 				}
 				if (name != null) {
-					nodeName = nodeName + "(" + name + ")";
+					nodeName = nodeName + "(操作人:" + name + ")";
+				}
+			}
+			//当流程是下一步执行人可选时，当前节点操作人若为上一步操作人所选择的，
+			//则在当前节点显示当前节点的操作人.--by stone
+			else if (nodeI != null && nodeI.getPerformer() == null) {
+				String name = null;
+				String nodeUUid = null;
+				String nextUserId = null;
+
+				nodeUUid = nodeI.getObjUid();
+
+				if (nodeUUid != null) {
+					List nextUserList = DOAuthorization.getAuthConfigOfWhat(""
+							+ DOAuthorization.WHAT_WF_NODEINSTANCE, nodeUUid);
+
+					if (nextUserList.size() > 0) {
+						DOAuthorization nextuserDO = (DOAuthorization) nextUserList
+								.iterator().next();
+						if (nextuserDO != null) {
+							nextUserId = nextuserDO.getOuUid();
+						}
+
+						if (nextUserId != null) {
+							BOInstance ouUser = OrgParter.getDefaultEmployee()
+									.getDoBO().getInstance(nextUserId);
+
+							if (ouUser != null) {
+								name = ouUser.getName();
+							}
+						}
+					}
+				}
+				if (name != null) {
+					nodeName = nodeName + "(操作人:" + name + ")";
 				}
 			}
 
@@ -152,9 +187,8 @@ public class DOWfMonitor extends DOAbstractAction {
 						aLineStr = aLineStr
 								+ "' condition='"
 								+ nd.getCondition().replace("&", "&amp;")
-										.replace(">", "&gt;")
-										.replace("<", "&lt;")
-										.replace("'", "&apos;")
+										.replace(">", "&gt;").replace("<",
+												"&lt;").replace("'", "&apos;")
 										.replace("\"", "&quot;");
 					}
 
@@ -177,7 +211,7 @@ public class DOWfMonitor extends DOAbstractAction {
 		xml.append("</processtemplate></wf>");
 		echo.putValue("xmlStr", xml.toString());
 		this.setInstance(echo);
-		System.out.println("PT's XML:::" + xml);
+		// System.out.println("PT's XML:::" + xml);
 		return DEFAULT_FORWARD;
 	}
 

@@ -14,7 +14,7 @@
 
 	   			 'paras':'dataBus=setContext&contextKey=do_pt_processtemplate&contextValue=${model.data.uid}',
 		   		 'title':'${paneModel.title}',
-		   		 'formName':'a${model.gridModel.objUid}'
+		         'formName':'${model.targetForms}'
 		   		  <#if (model.targetPaneModel)?exists>	         
 				,'target':'${model.targetPaneModel.name}'
 				 </#if> });

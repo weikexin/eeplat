@@ -2,12 +2,17 @@ package com.exedosoft.plat.util;
 
 import javax.imageio.ImageIO;
 import javax.imageio.IIOException;
+import javax.swing.plaf.ComponentUI;
+import javax.tools.JavaFileObject;
+import javax.tools.SimpleJavaFileObject;
+
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.awt.image.AffineTransformOp;
 import java.awt.geom.AffineTransform;
 
@@ -61,15 +66,16 @@ public class ImgTest {
 
 	public static void main(String argv[]) throws IOException {
 		
-		File fi = new File("c:/zhang.jpg"); // 大图文件
-		BufferedImage bis = ImageIO.read(fi);
-		ImgTest.rotateImg(bis,30,Color.white);
+		Random r = new Random();
+		File fi = new File("c:/bb" + r.nextInt() + ".txt"); // 大图文件
+//		BufferedImage bis = ImageIO.read(fi);
+//		
+//		ImgTest.rotateImg(bis,30,Color.white);
+		fi.createNewFile();
+			
+			
+		System.out.println(fi.getAbsolutePath());
 
-		
-		
-		
-		
-		
 		
 		
 		

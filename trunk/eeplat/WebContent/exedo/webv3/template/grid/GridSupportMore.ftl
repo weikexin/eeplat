@@ -9,6 +9,9 @@
 	<br/>
 </#if>
 <div width="100%">
+<#if model.headTitle?exists>
+	${model.headTitle}
+</#if>
 
 <#if (model.topOutGridFormLinks?size > 0) > 
 	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
@@ -47,7 +50,11 @@
 		<#if model.caption?exists>
 			<#assign icon = (model.icon)?default("MyRightArrow.jpg")/>
 			<tr> 
-				<td class='title' colspan="${colNum*2}"> <img src='${contextPath}images/${icon}'/> <b> ${model.caption} </b> </td>
+				<td class='title' colspan="${colNum*2}"> 
+				<#if !model.caption?contains("<") >
+				<img src='${contextPath}images/${icon}'/> 
+				</#if>
+				<b> ${model.caption} </b> </td>
 			</tr>
 		</#if> 
 		</thead>	

@@ -29,7 +29,9 @@
 			
 		}
 	}
-	if("".equals(company) && "a".equals(userName)){
+	
+	
+	if("".equals(company) ||  "a".equals(userName)){
 		company = "开发者";
 	}
 

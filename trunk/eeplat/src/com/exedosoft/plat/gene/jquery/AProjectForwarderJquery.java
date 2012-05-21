@@ -24,6 +24,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOResource;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.gene.jquery.multi.AProjectForwarderMulti;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.ui.DOMenuModel;
 import com.exedosoft.plat.ui.DOPaneLinks;
@@ -82,6 +83,16 @@ public class AProjectForwarderJquery {
 			.getControllerByName(JqueryMenuXP.class.getName());
 
 	public void forwardBaseUI(String projectUid) {
+		
+		
+		if("true".equals(DOGlobals.getValue("multi.tenancy"))){
+			
+			AProjectForwarderMulti  afm = new AProjectForwarderMulti();
+			afm.forwardBaseUI(projectUid);
+			return;
+
+		}
+		
 		
 		DOApplication project = DOApplication.getApplicationByID(projectUid);
 

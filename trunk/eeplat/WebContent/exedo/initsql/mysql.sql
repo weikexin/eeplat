@@ -1,19 +1,4 @@
-  /*
-Navicat MySQL Data Transfer
-
-Source Server         : 127.0.0.1
-Source Server Version : 50024
-Source Host           : localhost:3306
-Source Database       : test
-
-Target Server Type    : MYSQL
-Target Server Version : 50024
-File Encoding         : 65001
-
-Date: 2010-05-20 10:40:28
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
+  SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS `do_auth_owner`;
 CREATE TABLE `do_auth_owner` (
@@ -434,6 +419,51 @@ CREATE TABLE `t_expense` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP VIEW IF EXISTS `wf_db`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wf_db` AS select distinct `wpi`.`curState` AS `curstate`,`ni`.`node_uid` AS `node_uid`,`ni`.`nodeDate` AS `nodeDate`,`ni`.`OBJUID` AS `contextNIUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`pass_txt` AS `pass_txt`,`ni`.`reject_txt` AS `reject_txt`,`ur`.`USER_UID` AS `user_uid`,`wpi`.`WFI_Desc` AS `WFI_Desc`,`wpi`.`startUser` AS `startUser`,`wpi`.`startTime` AS `startTime` from (((`do_wfi_nodeinstance` `ni` join `do_wfi_processinstance` `wpi`) join `do_org_user_role` `ur`) join `do_authorization` `a`) where ((`wpi`.`OBJUID` = `ni`.`PI_UID`) and (`a`.`parterUid` = _utf8'9') and (`a`.`ouUid` = `ur`.`ROLE_UID`) and (`ni`.`node_uid` = `a`.`whatUid`) and (`ni`.`ExeStatus` = 2) and (`wpi`.`ExeStatus` = 2));
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wf_yb` AS select distinct `wpi`.`WFI_Desc` AS `wfi_desc`,`wpi`.`startUser` AS `startuser`,`wpi`.`startTime` AS `starttime`,`ni`.`OBJUID` AS `contextNIUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`curState` AS `curState`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`performerUid` AS `USER_UID`,`ni`.`nodeDate` AS `nodeDate` from (`do_wfi_nodeinstance` `ni` join `do_wfi_processinstance` `wpi` on((`ni`.`PI_UID` = `wpi`.`OBJUID`))) where ((`ni`.`ExeStatus` = 3) and (`wpi`.`ExeStatus` = 2));
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wf_bj` AS select distinct `wpi`.`WFI_Desc` AS `wfi_desc`,`wpi`.`startUser` AS `startuser`,`wpi`.`startTime` AS `starttime`,`ni`.`OBJUID` AS `contextNiUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`curState` AS `curState`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`performerUid` AS `USER_UID`,`ni`.`nodeDate` AS `nodeDate` from (`do_wfi_his_nodeinstance` `ni` join `do_wfi_his_processinstance` `wpi` on((`ni`.`PI_UID` = `wpi`.`OBJUID`))) where ((`ni`.`ExeStatus` = 3) and (`wpi`.`ExeStatus` = 3))
+CREATE  VIEW `wf_db` AS select distinct `wpi`.`curState` AS `curstate`,`ni`.`node_uid` AS `node_uid`,`ni`.`nodeDate` AS `nodeDate`,`ni`.`OBJUID` AS `contextNIUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`pass_txt` AS `pass_txt`,`ni`.`reject_txt` AS `reject_txt`,`ur`.`USER_UID` AS `user_uid`,`wpi`.`WFI_Desc` AS `WFI_Desc`,`wpi`.`startUser` AS `startUser`,`wpi`.`startTime` AS `startTime` from (((`do_wfi_nodeinstance` `ni` join `do_wfi_processinstance` `wpi`) join `do_org_user_role` `ur`) join `do_authorization` `a`) where ((`wpi`.`OBJUID` = `ni`.`PI_UID`) and (`a`.`parterUid` = _utf8'9') and (`a`.`ouUid` = `ur`.`ROLE_UID`) and (`ni`.`node_uid` = `a`.`whatUid`) and (`ni`.`ExeStatus` = 2) and (`wpi`.`ExeStatus` = 2));
+CREATE  VIEW `wf_yb` AS select distinct `wpi`.`WFI_Desc` AS `wfi_desc`,`wpi`.`startUser` AS `startuser`,`wpi`.`startTime` AS `starttime`,`ni`.`OBJUID` AS `contextNIUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`curState` AS `curState`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`performerUid` AS `USER_UID`,`ni`.`nodeDate` AS `nodeDate` from (`do_wfi_nodeinstance` `ni` join `do_wfi_processinstance` `wpi` on((`ni`.`PI_UID` = `wpi`.`OBJUID`))) where ((`ni`.`ExeStatus` = 3) and (`wpi`.`ExeStatus` = 2));
+CREATE  VIEW `wf_bj` AS select distinct `wpi`.`WFI_Desc` AS `wfi_desc`,`wpi`.`startUser` AS `startuser`,`wpi`.`startTime` AS `starttime`,`ni`.`OBJUID` AS `contextNiUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`curState` AS `curState`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`performerUid` AS `USER_UID`,`ni`.`nodeDate` AS `nodeDate` from (`do_wfi_his_nodeinstance` `ni` join `do_wfi_his_processinstance` `wpi` on((`ni`.`PI_UID` = `wpi`.`OBJUID`))) where ((`ni`.`ExeStatus` = 3) and (`wpi`.`ExeStatus` = 3));
+CREATE VIEW  wf_db_schedule     AS SELECT DISTINCT
+  `wpi`.`curState`     AS `curstate`,
+  `ni`.`node_uid`      AS `node_uid`,
+  `ni`.`nodeDate`      AS `nodeDate`,
+  `ni`.`OBJUID`        AS `contextNIUid`,
+  `wpi`.`OBJUID`       AS `contextPIUid`,
+  `wpi`.`instance_uid` AS `instance_uid`,
+  `ni`.`pass_txt`      AS `pass_txt`,
+  `ni`.`reject_txt`    AS `reject_txt`,
+  `ur`.`USER_UID`      AS `user_uid`,
+  `wpi`.`WFI_Desc`     AS `WFI_Desc`,
+  `wpi`.`startUser`    AS `startUser`,
+  `wpi`.`startTime`    AS `startTime`
+FROM (((`do_wfi_nodeinstance` `ni`
+     JOIN `do_wfi_processinstance` `wpi`)
+    JOIN `do_org_user_role` `ur`)
+   JOIN `do_authorization` `a`)
+WHERE ((`wpi`.`OBJUID` = `ni`.`PI_UID`)
+       AND (`a`.`parterUid` = '9')
+       AND (`a`.`ouUid` = `ur`.`ROLE_UID`)
+       AND (`ni`.`node_uid` = `a`.`whatUid`)
+       AND (`ni`.`ExeStatus` = 2)
+       AND (`wpi`.`ExeStatus` = 2))
+       
+UNION   SELECT DISTINCT
+  `wpi`.`curState`     AS `curstate`,
+  `ni`.`node_uid`      AS `node_uid`,
+  `ni`.`nodeDate`      AS `nodeDate`,
+  `ni`.`OBJUID`        AS `contextNIUid`,
+  `wpi`.`OBJUID`       AS `contextPIUid`,
+  `wpi`.`instance_uid` AS `instance_uid`,
+  `ni`.`pass_txt`      AS `pass_txt`,
+  `ni`.`reject_txt`    AS `reject_txt`,
+  `a`.`ouUid`          AS `user_uid`,
+  `wpi`.`WFI_Desc`     AS `WFI_Desc`,
+  `wpi`.`startUser`    AS `startUser`,
+  `wpi`.`startTime`    AS `startTime`
+FROM ((`do_wfi_nodeinstance` `ni`
+     JOIN `do_wfi_processinstance` `wpi`)
+      JOIN `do_authorization` `a`)
+WHERE ((`wpi`.`OBJUID` = `ni`.`PI_UID`)
+       AND (`a`.`parterUid` = 1)
+       AND (`ni`.`objuid` = `a`.`whatUid`)
+       AND (`ni`.`ExeStatus` = 2)
+       AND (`wpi`.`ExeStatus` = 2));

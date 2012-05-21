@@ -12,44 +12,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.plat.login.LoginDelegateList;
+import com.exedosoft.plat.login.LoginMain;
+import com.exedosoft.plat.login.MultiAccount;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
+import com.exedosoft.safe.TenancyValues;
 
 public class SSOController extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8828111215284288122L;
 
 	private static final String CONTENT_TYPE = "text/html; charset=utf-8";
 
-	// private static Log log = LogFactory.getLog(ServiceController.class);
+     private static Log log = LogFactory.getLog(ServiceController.class);
 
-	/*
-	 * (non-Java-doc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#HttpServlet()
-	 */
 	public SSOController() {
 		super();
 	}
 
-	/*
-	 * (non-Java-doc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request,
-	 * HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType(CONTENT_TYPE);
@@ -70,11 +66,91 @@ public class SSOController extends HttpServlet {
 				new DOServletContext(request, response));
 
 		BOInstance formBI = getFormInstance(request);
-		System.out.println("Get the form Instance::::::::::::::");
-		System.out.println(formBI);
+		log.info("Get the form Instance::::::::::::::");
+		log.info(formBI);
 
 		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
 
+		String returnValue = null;
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+			log.info("运行在多租户环境下 =================================");
+			returnValue = makeMultiLogin(request, formBI);
+		}else{
+			log.info("运行在普通环境下 =================================");
+			returnValue = makeSimpleLogin(request,  formBI);
+		}
+
+		boolean isDelegate = false;
+		try {
+			isDelegate = LoginDelegateList.isDelegate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+
+		StringBuffer outHtml = new StringBuffer();
+
+		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
+
+			// ////为了保留结构，没有实际意义
+			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
+			// /////////value
+			String echoStr = DOGlobals.getInstance().getRuleContext()
+					.getEchoValue();
+
+			if (echoStr == null || echoStr.trim().equals("")) {
+				if (returnValue != null && !returnValue.trim().equals("")) {
+					echoStr = returnValue;
+				} else {
+					echoStr = "success";
+				}
+				////代理的情况
+				if (isDelegate) {
+					echoStr = "delegate";
+				}
+			}
+			echoStr = echoStr.trim();
+			outHtml.append("\",\"returnValue\":\"").append(echoStr)
+					.append("\"}");
+
+		} else {
+			// ////为了保留结构，没有实际意义 缺省时使用dojo的包
+			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
+			// /////////value
+			String echoStr = DOGlobals.getInstance().getRuleContext()
+					.getEchoValue();
+			if (echoStr == null) {
+				echoStr = "";
+			}
+			echoStr = echoStr.trim();
+			outHtml.append("\",\"returnValue\":\"").append(echoStr)
+					.append("\"}");
+		}
+
+		// //改变所用的jslib
+		if ("true".equals(formBI.getValue("mobileclient"))) {
+			if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
+				DOGlobals.getInstance().getSessoinContext().getUser()
+						.putValue("jslib", "jquery_mobile");
+			}
+			log.info("use jslib:::" + DOGlobals.getValue("jslib"));
+		}
+		out.println(outHtml);
+
+	}
+
+	private String makeSimpleLogin(HttpServletRequest request, 
+			BOInstance formBI) {
+		
+		// //首先判断验证码，手机访问不判断
+		if (formBI.getValue("mobileclient") == null
+				&& !formBI.getValue("randcode").equals(
+						request.getSession().getAttribute("rand"))) {
+
+			return "验证码不正确！";
+		}
+
+		String returnValue = null;
 		String serviceUid = request.getParameter("contextServiceUid"); // /////////业务对象服务uid
 		DOService curService = null;
 		if (serviceUid != null && !serviceUid.trim().equals("")) {
@@ -88,8 +164,9 @@ public class SSOController extends HttpServlet {
 		}
 
 		if (curService == null) {
-			out.println("{error:noservice}");
-			return;
+			// out.println("{error:noservice}");
+			returnValue = "没有定义服务！";
+			return returnValue;
 		}
 
 		String contextInstanceUid = formBI.getValue("contextInstanceUid");
@@ -101,7 +178,7 @@ public class SSOController extends HttpServlet {
 				DOBO bo = DOBO.getDOBOByID(contextClassUid);
 				bi = bo.refreshContext(contextInstanceUid);
 			} else if (curService.getBo() != null) {
-				System.out.println("RefreshContextInstance:::::::::"
+				log.info("RefreshContextInstance:::::::::"
 						+ contextInstanceUid);
 				bi = curService.getBo().refreshContext(contextInstanceUid);
 			}
@@ -110,7 +187,7 @@ public class SSOController extends HttpServlet {
 		/**
 		 * 执行用户定义的特定登录Action 如 LoginAction2 LoginAction等。
 		 */
-		String returnValue = null;
+
 		try {
 			returnValue = curService.invokeAll();
 		} catch (Exception e) {
@@ -118,81 +195,126 @@ public class SSOController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
-		boolean isDelegate = false;
-		try {
-			isDelegate = LoginDelegateList.isDelegate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		}
-
-
-
-		StringBuffer outHtml = new StringBuffer();
-
-	
-		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
-
-			// ////为了保留结构，没有实际意义
-			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
-			// /////////value
-			String echoStr = DOGlobals.getInstance().getRuleContext()
-					.getEchoValue();
-
-			if (echoStr == null || echoStr.trim().equals("")) {
-				echoStr = "success";
-				if(isDelegate){
-					echoStr = "delegate";
-				}
-			}
-			echoStr = echoStr.trim();
-			System.out.println("echoStr is :" + echoStr);
-
-			if (formBI.getValue("mobileclient")==null && !formBI.getValue("randcode").equals(
-					request.getSession().getAttribute("rand"))) {
-				echoStr = "验证码错误！";
-			}
-
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
-
-//		} else if ("ext".equals(DOGlobals.getValue("jslib"))) {
-//
-//			if (!"success".equals(returnValue)) {
-//				returnValue = "用户名/密码错误,请重试!";
-//			} else {
-//
-//				System.out.println(formBI.getValue("randcode"));
-//				System.out.println(request.getSession().getAttribute("rand"));
-//
-//			}
-//			outHtml.append("{success:true,msg:\'").append(returnValue).append(
-//					"\'}");
-
-		} else {
-			// ////为了保留结构，没有实际意义  缺省时使用dojo的包
-			outHtml.append("{\"returnPath\":\"").append("\",\"targetPane\":\"");
-			// /////////value
-			String echoStr = DOGlobals.getInstance().getRuleContext()
-					.getEchoValue();
-			if (echoStr == null) {
-				echoStr = "";
-			}
-			echoStr = echoStr.trim();
-			outHtml.append("\",\"returnValue\":\"").append(echoStr).append("\"}");
-		}
-
-		////改变所用的jslib
-		if("true".equals(formBI.getValue("mobileclient"))){
-			if(DOGlobals.getInstance().getSessoinContext().getUser()!=null){
-				DOGlobals.getInstance().getSessoinContext().getUser().putValue("jslib", "jquery_mobile");
-			}
-			System.out.println("use jslib:::" + DOGlobals.getValue("jslib"));
-		}
-		out.println(outHtml);
-
+		return returnValue;
 	}
 
+	public String makeMultiLogin(HttpServletRequest request, BOInstance formBI) {
+
+		// //首先判断验证码，手机访问不判断
+		if (formBI.getValue("mobileclient") == null
+				&& !formBI.getValue("randcode").equals(
+						request.getSession().getAttribute("rand"))) {
+
+			return "验证码不正确！";
+		}
+
+		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
+
+		// 处理登录
+
+		String echoStr = "";
+
+		/**
+		 * 查找账号
+		 */
+		MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
+				formBI.getValue("password"));
+		if (ma == null) {
+			return "账号/密码出错，请重试！";
+		}
+
+		BOInstance user = new BOInstance();
+		user.fromObject(ma);
+		DOService aService = DOService
+				.getService("multi_tenancy_browse_byname");
+		// ////////////根据用户查找租户
+		BOInstance tenant = aService.getInstance(user.getValue("tenancyId"));
+		// ////////如果租户不存在
+		if (tenant == null || tenant.getName() == null) {
+			return "该账号没有被激活！";
+		}
+		log.info("当前登录的租户为::" + user.getValue("tenancyId"));
+
+		// tenant data datastore url
+		String multi_datasource_uid = tenant.getValue("multi_datasource_uid");
+		// tenant config datastore url
+		String model_datasource_uid = tenant.getValue("model_datasource_uid");
+
+		DODataSource dataDds = null;
+		DODataSource dds = null;
+		if (multi_datasource_uid != null && model_datasource_uid != null) {
+
+			DOService findDataSource = DOService
+					.getService("multi_datasource_browse");
+
+			// //data datasource
+			BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
+			if (aBI != null) {
+				dataDds = (DODataSource) aBI.toObject(DODataSource.class);
+				///现在多租户情况下默认都是mysql
+				dataDds.setDialect(DODataSource.DIALECT_MYSQL);
+			}
+
+			// /model datasource
+			aBI = findDataSource.getInstance(model_datasource_uid);
+			if (aBI != null) {
+				dds = (DODataSource) aBI.toObject(DODataSource.class);
+				///现在多租户情况下默认都是mysql
+				dds.setDialect(DODataSource.DIALECT_MYSQL);
+			}
+		}
+
+		if (dataDds == null || dds == null) {
+			return "该账号没有被激活或者没有正确初始化，请与管理员联系！";
+		}
+
+		// /globals 放到session中
+
+		// //需要更改多租户表中，租户数据库中的数据源
+		// ////每个租户为定位到某个物理数据库中
+		// ///租户数据库分配
+		TenancyValues tv = new TenancyValues(dds, tenant);
+
+		tv.setDataDDS(dataDds);
+		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
+		DOService findUserService = DOService.getService("do_org_user_browse");
+
+		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+		BOInstance employee = null;
+		try {
+			if (corrUsers == null || corrUsers.size() == 0) {
+				// user.putValue("objuid",
+				// ma.getObjUid());
+				DOService storeUser = DOService
+						.getService("do_org_user_insert");
+				// /建立用户间的对应关系
+				user.putValue("user_code", user.getValue("name"));
+				employee = storeUser.store(user);
+
+			} else {
+				employee = (BOInstance) corrUsers.get(0);
+			}
+		} catch (ExedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		user.putValue("name", employee.getValue("name"));
+
+		// /设置公司名称
+		user.putValue("company", tenant.getValue("l10n"));
+
+		// //处理登录日志==========================
+		LoginMain.makeLogin(user, request);
+
+		log.info("当前业务库:::"
+				+ DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues().getDataDDS());
+
+		log.info("当前缺省的配置库:::" + DODataSource.parseGlobals());
+
+		return echoStr;
+
+	}
 
 	/*
 	 * (non-Java-doc)
@@ -234,42 +356,16 @@ public class SSOController extends HttpServlet {
 		}
 
 	}
-	
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 		CacheFactory.getCacheData().fromSerialObject();
-
-//		DOGlobals.globalConfigs.put("jslib", "jquery_mobile");
-//		DOController  cc = DOController.getControllerByID("0ccb3a1e06c64ca9aae12b14f906dd83");
-//		System.out.println("Corr Controller::" + cc.getCorrByConfig());
-//		
-//		System.out.println("111111111111:::" +  OrgParter.getAllParters());
-//		OrgParter parter = OrgParter.getDefaultRole();
-//		DOBO aBO = parter.getDoBO();
-//		
-//		//DOBO aBO = DOBO.getDOBOByName("do_org_role");
-//		System.out.println(aBO);
-//		System.out.println(aBO.getDSeleAllService());
-		
-	
-//		
 		DOApplication.clearAppCache();
-		
-		//System.out.println(CacheFactory.getCacheRelation().get(DOApplication.class.getCanonicalName()));
 
-		List<DOApplication> apps  = DOApplication.getApplications();
-		
-		
-		
-
+		List<DOApplication> apps = DOApplication.getApplications();
 
 		System.out.println("apps::::" + apps);
 
-//		DOPaneModel pm = DOPaneModel.getPaneModelByName("abp_base_pane");
-//		
-//		System.out.println("pm::::" + pm.getController());
-
-		
 
 	}
 }

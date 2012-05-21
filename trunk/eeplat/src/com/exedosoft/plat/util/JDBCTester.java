@@ -11,7 +11,7 @@ import java.sql.Types;
 import com.exedosoft.plat.bo.DODataSource;
 
 public class JDBCTester {
-	
+
 	//
 
 	public static StringBuffer changeBitType() {
@@ -21,19 +21,21 @@ public class JDBCTester {
 		Connection con = DODataSource.getDefaultCon();
 		try {
 
+//			PreparedStatement pstmt = con
+//					.prepareStatement();
+			
+			PreparedStatement pstmt = con.prepareStatement("select * from do_bo where lower(name)=?",
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
 
-				PreparedStatement pstmt = con
-						.prepareStatement("select * from C1923912");
+			pstmt.setString(1, "do_log");
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println(rs.getString("name"));
+			}
 
-				ResultSet rs = pstmt.executeQuery();
-				ResultSetMetaData rsMeta = rs.getMetaData();
-				rsMeta.getTableName(0);
-				for (int col = 1; col <= rsMeta.getColumnCount(); col++) {
-				
-				}
+			pstmt.close();
 
-				pstmt.close();
-	
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -49,11 +51,9 @@ public class JDBCTester {
 		return buffer;
 
 	}
-	
-	public static void main(String[] args){
-		
-		
-	}
 
+	public static void main(String[] args) {
+		changeBitType();
+	}
 
 }

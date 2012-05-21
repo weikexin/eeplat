@@ -3,20 +3,40 @@
 		<property name="application">eeplat</property>
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
-	
-	    <property name="connection.driver_class">org.h2.Driver</property>
+
+        
+       	<property name="connection.driver_class">org.h2.Driver</property>
 		<property name="connection.url">config</property> 
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
-
-		
+ 
 
        <!--
        
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/c_fans?useUnicode=true&amp;characterEncoding=utf-8</property>
+
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/c_kids?useUnicode=true&amp;characterEncoding=utf-8</property>
         <property name="connection.username">root</property>
-        <property name="connection.password"></property>    
+        <property name="connection.password"></property>  
+	
+
+		
+           
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:xe</property>
+        <property name="connection.username">eeplat</property>
+        <property name="connection.password">eeplat</property>
+        
+        
+        <property name="connection.driver_class">org.h2.Driver</property>
+		<property name="connection.url">jdbc:h2:d:/db/conf_archive</property> 
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
+        
+       	<property name="connection.driver_class">org.h2.Driver</property>
+		<property name="connection.url">jdbc:h2:d:/db/conf_archive</property> 
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
        
        	<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
 		<property name="connection.url">mydb</property>
@@ -45,26 +65,70 @@
 
 	    <property name="aop.panemodel.class"></property>
 	    
-	    <property name="aop.formmodel.class"></property>
+	    <property name="aop.formmodel.class">com.exedosoft.plat.FAOP</property>
 	    	    
 	    <property name="aop.parameter.check.class"></property>
 
 	    
-	    <property name="model.uuid">true</property>
+	    <property name="model.uuid">false</property>
 	    
 	    <!-- 是否采用JDK自带的rhino引擎，模式是extend不采用，采用EEPlat扩展的 -->
 	    <property name="rhino.jdk">extend</property>
 	    <!-- 启用rhinojs 执行最快模式（全编译） -->
 	    <property name="rhino.fastest">false</property>
 	
+	<!-- 
+		<property name="ui.resultlist.config">label,value</property>
+	 -->
 		<property name="jslib">jquery</property>
 			    
 		<!-- no simple all(further) -->
 		<property name="useCache">no</property>
+		
+
 		<!-- 两种:serial no -->
 		<property name="useSerial">serial</property>
 		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
 		<!--登陆是否启用绿色通道-->
 		<property name="login.greenchannel">0</property>
 
+<!--!!!!!!!!!!!!!!!!!!!!!!!!! 多租户，沙箱相关 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->		
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<property name="multi.tenancy">false</property>
+		
+		<!-- sandbox 总开关,true为开启;default:false -->
+		<property name="sandbox.global">false</property>
+		
+		<!-- 代码执行的时间限制, 0表示没有限制 ；default:10s-->
+		<property name="sandbox.rhino.overtime">10</property>
+		
+		<!-- 是否启用java扩展 ；default:false-->
+		<property name="sandbox.extend.java">false</property>
+		
+		
+		<!-- SQL执行的时间限制, 0表示没有限制 ;defualt:60s-->
+		<property name="sandbox.sql.overtime">60</property>
+		
+		<!-- 是否运行反射；default:false 不允许  -->
+		<property name="sandbox.class.reflection">false</property>		
+		
+		
+		<!-- 是否启用JRE类白名单过滤, default: true 过滤 -->
+		<property name="sandbox.class.whitelist">true</property>		
+		
+		<!-- 是否启用方法黑名单过滤; default: false不过滤 -->
+		<property name="sandbox.method.blacklist">false</property>
+		
+		<!-- rmi.rhino -->
+		<property name="rmi.rhino.uri">rmi://localhost:1099/js</property>		
+		
+		<!-- 数据库管理 -->
+		<property name="dbmanager.language">zh_CN</property>
+
+		<!-- 配置库使用mysql，需要方言支持 -->
+		<property name="useDialect">dialect_mysql.properties</property>
 </config>

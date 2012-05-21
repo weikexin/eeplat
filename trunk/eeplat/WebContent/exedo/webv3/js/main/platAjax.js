@@ -56,11 +56,18 @@ function callAction(p){
 	}else if(p.paras==null && p.formName!=null && $.trim(p.formName)!=""){
 		paras =  getParasOfForms(p.formName);
 	}
+	
+	var callType = "as";
+	if(p.callType){
+		callType = p.callType;
+	}
+
+	
 	if(p.actionName){
-		paras = "callType=as&greenChannel=true&userDefineClass="+p.actionName + "&" + urlCodeDeal(paras);
+		paras = "callType=" + callType + "&greenChannel=true&userDefineClass="+p.actionName + "&" + urlCodeDeal(paras);
 	}
 	if(p.actionConfigName){
-		paras = "callType=as&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
+		paras = "callType=" + callType + "&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
 	}
 	
 	loading(aMsg);
@@ -581,6 +588,8 @@ function updateEditorFormValue()
 	    }
 	}catch(e){
 	}
+	
+	
 }
 
 
@@ -636,10 +645,52 @@ function  sortDown(o,boName,serviceName){
 }
 
 
+////////////////////////////////无刷新 flash上传 限制只能上传一个,不改变文件名称
+function uploadifyPlain(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
+
+	if(fileDesc==null || $.trim(fileDesc)==""){
+		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+	}
+	if(fileExt==null || $.trim(fileExt)==""){
+		fileExt = '*.jpg;*.gif;*.bmp';
+	}
+	if(autoUpload==null){
+		autoUpload = true;
+	}	
+	
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify_plain.jsp";
+	}
+
+	
+	var o = $("#" + uploadifyID).prev();
+	$("#" + uploadifyID).uploadify({
+	'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
+	'scriptData'     : {'jsessionid':sessionid},
+	'script'         : 'exedo/webv3/' + uploadActionFile,
+	'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
+	'queueID'        : uploadifyQueueID,
+	'auto'           : autoUpload,
+	'multi'          : false,
+	'simUploadLimit' : 2,
+	'buttonImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/browse-files.gif',
+	'wmode'          : 'transparent',
+	'width'          : 75,
+	'height'         : 25,
+	'fileDesc'       : fileDesc,
+	'fileExt'		 : fileExt,
+	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
+	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
+	'onProgress'     : function(event,queueId,fileObj,date){o.val(fileObj.name);}
+	});
+	
+	
+}
+
 
 
 ////////////////////////////////无刷新 flash上传
-function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
 	var now = new Date(); 
 	var myTime=now.getTime();
 	var myRand = Math.floor(Math.random()*myTime)+1;
@@ -654,12 +705,15 @@ function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sess
 	if(autoUpload==null){
 		autoUpload = true;
 	}
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify.jsp";
+	}
 	
 	var o = $("#" + uploadifyID).prev();
 	$("#" + uploadifyID).uploadify({
 		'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
 		'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
-		'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
+		'script'         : 'exedo/webv3/' + uploadActionFile + ';jsessionid=' + sessionid ,
 		'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 		'queueID'        : uploadifyQueueID,
 		'auto'           : autoUpload,
@@ -677,7 +731,7 @@ function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sess
 }
 
 ////////////////////////////////无刷新 flash上传 限制只能上传一个
-function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
 	var now = new Date(); 
 	var myTime=now.getTime();
 	var myRand = Math.floor(Math.random()*myTime)+1;
@@ -692,11 +746,16 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	if(autoUpload==null){
 		autoUpload = true;
 	}	
+	
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify.jsp";
+	}
+	
 	var o = $("#" + uploadifyID).prev();
 	$("#" + uploadifyID).uploadify({
 	'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
 	'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
-	'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid,
+	'script'         : 'exedo/webv3/' + uploadActionFile + ';jsessionid=' + sessionid,
 	'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 	'queueID'        : uploadifyQueueID,
 	'auto'           : autoUpload,
@@ -710,7 +769,7 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	'fileExt'		 : fileExt,
 	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
 	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
-	'onProgress'     : function(event,queueId,fileObj,date){o.val(myFile+fileObj.name);}
+	'onProgress'     : function(event,queueId,fileObj,date){o.val(fileObj.name);}
 	});
 	
 	

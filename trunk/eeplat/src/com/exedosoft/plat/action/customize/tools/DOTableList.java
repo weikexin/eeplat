@@ -37,18 +37,29 @@ public class DOTableList extends DOAbstractAction {
 
 	public String excute() {
 
-		DOBO bo = DOBO.getDOBOByName("do_datasource");
-		DODataSource dss = DODataSource.getDataSourceByL10n(bo
-				.getCorrInstance().getValue("l10n"));
-		
-//        if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") && dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
-//        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
-//        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
-//            StringBuilder  driverUrl =
-//            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
-//            
-//            dss.setDriverUrl(driverUrl.toString());
-//        }
+		DODataSource dss = null;
+
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+			dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
+		} else {// 单租户情况
+
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			dss = DODataSource.getDataSourceByL10n(bo.getCorrInstance()
+					.getValue("l10n"));
+		}
+
+		// if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") &&
+		// dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
+		// String path =
+		// DODataSource.class.getResource("/globals.xml").getPath();
+		// path = path.substring(0, path.toLowerCase().indexOf("classes"));
+		// StringBuilder driverUrl =
+		// new
+		// StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
+		//
+		// dss.setDriverUrl(driverUrl.toString());
+		// }
 
 		List list = new ArrayList();
 		Connection con = null;
@@ -79,10 +90,10 @@ public class DOTableList extends DOAbstractAction {
 					if (!aTable.startsWith("bin$")) {
 						bi.putValue(this.service.getBo().getKeyCol(), aTable);
 						bi.putValue("tablename", aTable);
-						
-						if("false".equals(DOGlobals.getValue("model.uuid"))){
+
+						if ("false".equals(DOGlobals.getValue("model.uuid"))) {
 							bi.putValue("keyCol", icc.getValueCols());
-						}else{
+						} else {
 							bi.putValue("keyCol", icc.getKeyCols());
 						}
 						bi.putValue("valueCol", icc.getValueCols());
@@ -173,8 +184,8 @@ public class DOTableList extends DOAbstractAction {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		InputConfigCols icc = new InputConfigCols(keyCols.toString(), valueCols
-				.toString());
+		InputConfigCols icc = new InputConfigCols(keyCols.toString(),
+				valueCols.toString());
 		return icc;
 
 	}
@@ -184,15 +195,13 @@ public class DOTableList extends DOAbstractAction {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
 
-        	String path =  DODataSource.class.getResource("/globals.xml").getPath();
-        	path = path.substring(0, path.toLowerCase().indexOf("classes"));
-            StringBuilder  driverUrl =
-            	new StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append("test/test");
-            
-            System.out.println("DriverUrl:::" + driverUrl);
-        	
+		String path = DODataSource.class.getResource("/globals.xml").getPath();
+		path = path.substring(0, path.toLowerCase().indexOf("classes"));
+		StringBuilder driverUrl = new StringBuilder("jdbc:hsqldb:file:")
+				.append(path).append("db/").append("test/test");
+
+		System.out.println("DriverUrl:::" + driverUrl);
 
 	}
 

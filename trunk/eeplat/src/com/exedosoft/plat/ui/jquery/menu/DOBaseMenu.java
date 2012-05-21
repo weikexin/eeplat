@@ -23,7 +23,7 @@ public abstract class DOBaseMenu implements DOIView {
 	protected void appendLink(StringBuffer buffer, DOMenuModel aMenu,
 			String echoStr) {
 		
-		// //如果拥有LinkPane
+		// //锟斤拷锟接碉拷锟絃inkPane
 		
 
 		if (aMenu.getMenuType() != null
@@ -40,7 +40,7 @@ public abstract class DOBaseMenu implements DOIView {
 			
 			String targetname =  "_opener_tab";
 			if(aMenu.getTargetPane()!=null){
-				aMenu.getTargetPane().getName();
+				targetname = aMenu.getTargetPane().getName();
 			}
 			buffer.append("loadPml({'pml':'").append(
 					aMenu.getLinkPane().getName()).append("','pmlName':'")
@@ -51,13 +51,13 @@ public abstract class DOBaseMenu implements DOIView {
 							targetname).append("'} );");
 
 		} else if (aMenu.getLinkService() != null) {
-			// ////下一步支持
+			// ////锟斤拷一锟斤拷支锟斤拷
 		} else if (aMenu.getDoClickJs() != null) {
 
 			buffer.append("eval(")
 			.append(aMenu.getDoClickJs())
 			.append(")");
-			// ////下一步支持
+			// ////锟斤拷一锟斤拷支锟斤拷
 		}
 
 		else {
@@ -95,7 +95,7 @@ public abstract class DOBaseMenu implements DOIView {
 	// menuChild.getName()).append("' ");
 	// }
 	//
-	// // //如果拥有LinkPane或linkService
+	// // //锟斤拷锟接碉拷锟絃inkPane锟斤拷linkService
 	// if (menuChild.getLinkPane() != null
 	// || menuChild.getLinkService() != null) {
 	// buffer.append(" onclick=\"javascript:");

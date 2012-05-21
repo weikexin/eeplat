@@ -1,4 +1,4 @@
-package com.exedosoft.plat.ui;
+package com.exedosoft.plat.template;
 
 /**
  * @author  IBM

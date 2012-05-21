@@ -65,14 +65,20 @@ public class PTNode extends BaseObject {
 
 	public final static int TYPE_SERVICE_AUTO = 21;
 
+	/**
+	 * 自定义路由节点，包括自连接节点，由程序自己控制路由规则，这个节点也可以实现会签
+	 * 这个节点也没有必要，只要用自定义动作人工控制器就可以了。
+	 * 自定义动作可以自己控制器路由，可以自由跳转。
+	 * 
+	 */
 	public final static int TYPE_SELF = 11;
 
 	/**
 	 * 自动的会签支持，依据DOAuthorization的getAuthConfigUsers 每个会签结果保存为xml文件。
-	 * 
+	 * 暂时不考虑这种情况，或者自定义路由节点以及考虑到了
 	 */
 
-	public final static int TYPE_SELF_CONJUNCTION = 16;
+//	public final static int TYPE_SELF_CONJUNCTION = 16;
 
 	public final static int TYPE_START = 2;
 

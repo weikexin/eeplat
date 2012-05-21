@@ -588,7 +588,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 		List list = this.getFinishFlowDepts();
 
-
 		StringBuffer buffer = new StringBuffer();
 		for (Iterator it = list.iterator(); it.hasNext();) {
 			String aDept = (String) it.next();
@@ -603,9 +602,10 @@ public class NodeInstance extends BaseObject implements Serializable {
 			NodeInstance aNI = (NodeInstance) runNodes.get(0);
 			if (aNI.getNodeType() != null
 					&& aNI.getNodeType().intValue() == PTNode.TYPE_SELF) {
-				buffer.append("--><font color='red'>").append(
-						deptBO.getInstance(aNI.getAccessDeptUidOfSelfNode())
-								.getName()).append("</font>");
+				buffer.append("--><font color='red'>")
+						.append(deptBO.getInstance(
+								aNI.getAccessDeptUidOfSelfNode()).getName())
+						.append("</font>");
 
 			}
 
@@ -628,8 +628,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 		List runNodes = this.getProcessInstance().getRunNodes();
 		if (runNodes != null && runNodes.size() > 0) {
 			NodeInstance aNI = (NodeInstance) runNodes.get(0);
-			buffer.append("<font color='red'>").append(
-					aNI.getNode().getNodeName()).append("</font>");
+			buffer.append("<font color='red'>")
+					.append(aNI.getNode().getNodeName()).append("</font>");
 		}
 
 		return buffer.toString();
@@ -731,46 +731,76 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// }
 	}
 
+	/**
+	 * 初始化后续节点
+	 * 
+	 * @return
+	 */
 	private List initPostNodeDepes() {
 
 		PTNode tNode = this.getNode();
 
 		/**
-		 * 如果是自连接,先处理自连接.
+		 * 如果是自定义路由节点，（包括自连接）
+		 * 
+		 * SELF的场景有两个：
+		 * 
+		 * 1， 存在两个节点：第一个节点可以自由指定多个人进行会签，这个节点的类型为self
+		 * ,后续的节点为activity。self节点觉得生成多少个人的 会签节点，注意，每个节点的授权给具体的一个人。
+		 * 2，一个节点的自连接，这个节点需要自动条件路由，特别是部门内的路由，可以向上找签署人
+		 * 
 		 */
 		if (this.getNodeType() != null
 				&& this.getNodeType().intValue() == PTNode.TYPE_SELF) {
 
-			OrgParter userParter = OrgParter.getDefaultEmployee();
-			DOBO userBO = userParter.getDoBO();
-			BOInstance bi = userBO.getInstance(this.getPerformer());
-			String deptUid = bi.getValue("unit_uid");
-			if (!"11".equals(deptUid)) {
-				List llist = new ArrayList();
-				// WFDAO daoself = new WFDAO();
+			WFJudge wfa = null;
+			try {
 
-				//				
-				// daoself.setAutoClose(false);
+				Class caClass = Class.forName(tNode.getDecisionExpression());
+				wfa = (WFJudge) caClass.newInstance();
+				wfa.doJudge(this);
 
-				NodeInstance niPost = NodeInstance.initNodeInstance(this
-						.getProcessInstance(), tNode, NodeInstance.STATUS_FREE);
-				NIDependency nid = new NIDependency();
-				try {
-					DAOUtil.BUSI().store(niPost);
-
-					nid.setPreNodeInstance(this);
-					nid.setPostNodeInstance(niPost);
-					DAOUtil.BUSI().store(nid);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					// daoself.closeSession();
-				}
-				llist.add(nid);
-				return llist;
-
+			} catch (ClassNotFoundException ex) {
+				log.error(ex.getMessage());
+			} catch (Exception ex1) {
+				log.error(ex1);
 			}
+
+			List nextNodeDepes = this.getPostNodeDepes();
+			if (nextNodeDepes != null && nextNodeDepes.size() > 0) {
+				return nextNodeDepes;
+			}
+
+			// OrgParter userParter = OrgParter.getDefaultEmployee();
+			// DOBO userBO = userParter.getDoBO();
+			// BOInstance bi = userBO.getInstance(this.getPerformer());
+			// String deptUid = bi.getValue("unit_uid");
+			// if (!"11".equals(deptUid)) {
+			// List llist = new ArrayList();
+			// // WFDAO daoself = new WFDAO();
+			//
+			// //
+			// // daoself.setAutoClose(false);
+			//
+			// NodeInstance niPost = NodeInstance.initNodeInstance(this
+			// .getProcessInstance(), tNode, NodeInstance.STATUS_FREE);
+			// NIDependency nid = new NIDependency();
+			// try {
+			// DAOUtil.BUSI().store(niPost);
+			//
+			// nid.setPreNodeInstance(this);
+			// nid.setPostNodeInstance(niPost);
+			// DAOUtil.BUSI().store(nid);
+			// } catch (Exception e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// } finally {
+			// // daoself.closeSession();
+			// }
+			// llist.add(nid);
+			// return llist;
+			//
+			// }
 		}
 		// ////////////如果子连接执行完才执行下面的.
 
@@ -782,8 +812,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 					.hasNext();) {
 
 				NodeDenpendency nd = (NodeDenpendency) it.next();
-				NodeInstance niPost = NodeInstance.initNodeInstance(this
-						.getProcessInstance(), nd.getPostNode(),
+				NodeInstance niPost = NodeInstance.initNodeInstance(
+						this.getProcessInstance(), nd.getPostNode(),
 						NodeInstance.STATUS_FREE);
 				DAOUtil.BUSI().store(niPost);
 				NIDependency nid = new NIDependency(); // ///实例的关联类
@@ -1002,6 +1032,12 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 	/**
 	 * 处理当前节点和回退节点的关系,并生成新的节点
+	 * 
+	 * 和initPostNodeDepes 内容有有重叠
+	 * 
+	 * initPostNodeDepes是根据工作流定义生成后续节点
+	 * 
+	 * 该方法是自由生成新节点
 	 * 
 	 * @param dao
 	 * @param forwardNodeInstance
@@ -1223,7 +1259,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 				for (Iterator it = this.getProcessInstance()
 						.retrieveVarInstances().iterator(); it.hasNext();) {
 					VarInstance vi = (VarInstance) it.next();
-					if(formI.getValue(vi.getVarName())!=null){
+					if (formI.getValue(vi.getVarName()) != null) {
 						vi.setVarValue(formI.getValue(vi.getVarName()));
 					}
 					DAOUtil.BUSI().store(vi);
@@ -1309,7 +1345,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 		 */
 		dealProcessState(this.nodeStateShow);
 
-
 		try {
 			DAOUtil.BUSI().store(this);
 		} catch (Exception ex) {
@@ -1324,8 +1359,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 						.intValue() == PTNode.TYPE_SELF)) {
 			return;
 		}
-		
-		
 
 		/**
 		 * 自动Service 执行节点
@@ -1344,18 +1377,17 @@ public class NodeInstance extends BaseObject implements Serializable {
 				}
 			}
 		}
-		
-		
-		
+
 		/**
 		 * 子流程
 		 */
 		if (getNodeType() != null
-				&& (getNodeType().intValue() == PTNode.TYPE_SUBPROCESS)){
+				&& (getNodeType().intValue() == PTNode.TYPE_SUBPROCESS)) {
 			String subFlowName = this.getNodeExt1();
-			if(subFlowName!=null && !subFlowName.trim().equals("")){
-				ProcessTemplate subPT = ProcessTemplate.getPTByName(subFlowName);
-				if(subPT!=null){
+			if (subFlowName != null && !subFlowName.trim().equals("")) {
+				ProcessTemplate subPT = ProcessTemplate
+						.getPTByName(subFlowName);
+				if (subPT != null) {
 					WFEngine wfi = WFEngineFactory.getWFEngine();
 					ProcessInstance subPI = wfi.startProcess(subPT);
 					this.setNodeExt2(subPI.getObjUid());
@@ -1369,7 +1401,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			}
 			return;
 		}
-		
+
 		finishNode();
 	}
 
@@ -1541,13 +1573,13 @@ public class NodeInstance extends BaseObject implements Serializable {
 			// 如果是结束节点 并且流程中没有其它活动节点的话 流程可以结束 ，并且转移到历史表中
 			if (this.getNodeType() != null
 					&& this.getNodeType().intValue() == PTNode.TYPE_END
-					//&& processInstance.getRunNodes().size() == 0
-					) {
+			// && processInstance.getRunNodes().size() == 0
+			) {
 				// WFDAO dao = new WFDAO();
 				// //如果还有未完成的节点则流程不能结束
 				finishFlow();
-			} else if(this.getNodeType() != null
-					&& this.getNodeType().intValue() != PTNode.TYPE_SUBPROCESS){
+			} else if (this.getNodeType() != null
+					&& this.getNodeType().intValue() != PTNode.TYPE_SUBPROCESS) {
 				dealFailure("该节点未找到后置节点执行:");
 			}
 		}
@@ -1710,7 +1742,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 			// if(tPreNodes.size() != preNodes.size()){
 			// return false;
 			// }
-			//			
+			//
 			// for (Iterator itPre = preNodes.iterator(); itPre.hasNext();) {
 			// NodeInstance niPre = (NodeInstance) itPre.next();
 			// if (niPre.getExeStatus() != null
@@ -1731,11 +1763,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 						&& niPre.getExeStatus().intValue() == NodeInstance.STATUS_FINISH) {
 					if (backFinish) {
 						// WFDAO dao = new WFDAO();
-						this
-								.getProcessInstance()
+						this.getProcessInstance()
 								.setExeStatus(
-										Integer
-												.valueOf(ProcessInstance.STATUS_FAILURE));
+										Integer.valueOf(ProcessInstance.STATUS_FAILURE));
 						try {
 							DAOUtil.BUSI().store(this.getProcessInstance());
 						} catch (Exception ex) {
@@ -1788,8 +1818,8 @@ public class NodeInstance extends BaseObject implements Serializable {
 		PTNode tNode = this.getNode();
 
 		// //////////////////////////相对应业务对象
-		BOInstance bi = tNode.getProcessTemplate().getDoBO().getInstance(
-				this.getProcessInstance().getInstanceUid());
+		BOInstance bi = tNode.getProcessTemplate().getDoBO()
+				.getInstance(this.getProcessInstance().getInstanceUid());
 		// //////////来自界面输入
 		BOInstance formBI = DOGlobals.getInstance().getSessoinContext()
 				.getFormInstance();
@@ -1822,7 +1852,6 @@ public class NodeInstance extends BaseObject implements Serializable {
 
 		log.info("处理后的表达式");
 		log.info(expression);
-
 
 		String retValue = RunJsFactory.getRunJs().evaluate(expression, bi);
 		log.info("表达式执行后的值:" + retValue);
@@ -1959,22 +1988,22 @@ public class NodeInstance extends BaseObject implements Serializable {
 		//
 		// String ouuid = DOGlobals.getInstance().getSessoinContext()
 		// .getUser().getValue("deptbelonguid");
-		//			
+		//
 		// //pi.getProcessTemplate()
-		//		 
+		//
 		// //
 		// if(node.getObjUid().equals("paperc003")){
 		// ouuid = DOGlobals.getInstance().getSessoinContext()
 		// .getUser().getValue("org_province");
 		// }
 		// //
-		//			
+		//
 		// if (DOGlobals.getInstance().getRuleContext().get("SCHEDULE_OUUID") !=
 		// null) {
 		// ouuid = DOGlobals.getInstance().getRuleContext().get(
 		// "SCHEDULE_OUUID").getUid();
 		// }
-		//			
+		//
 		// /**
 		// * 一般是第一个人工节点
 		// */
@@ -1982,7 +2011,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// ouuid = DOGlobals.getInstance().getSessoinContext()
 		// .getUser().getValue("deptuid");
 		// }
-		//			
+		//
 		// if (ouuid != null) {
 		// ni.setScheduleOUUid(ouuid);
 		// }
@@ -2026,31 +2055,46 @@ public class NodeInstance extends BaseObject implements Serializable {
 				&& (nextNodeInstance.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_USER || nextNodeInstance
 						.getAuthType().intValue() == PTNode.AUTH_TYPE_SCHEDULE_ROLE)) {
 			// //通过从界面上取值，上一个节点的SpecName决定下一个节点的使用者
-			
-			String  scheduleId = this.getSpecName();
-			if(scheduleId==null || "".equals(scheduleId.trim())){
-				scheduleId = "scheduleId";
-			}
-			
-			String nextPerformerUid = formI.getValue(scheduleId);
 
-			// if (nextNodeInstance.isFirstActivityNode()) {
-			// SessionContext context = DOGlobals.getInstance()
-			// .getSessoinContext();
-			// nextPerformerUid = context.getUser().getUid();
-			// }
-			if(nextPerformerUid != null){
-				nextNodeInstance.setScheduleOUUid(nextPerformerUid);
-//				String[] idarray = nextPerformerUid.split(",");
-//				for(int i = 0 ; i < idarray.length ; i++){
-//					String anId = idarray[i];
-//					///针对 user 存储
-//					
-//					
-//				}
+			String scheduleIds = "scheduleIds";
+//			if (scheduleIds == null || "".equals(scheduleIds.trim())) {
+//				scheduleIds = "scheduleIds";
+//			}
+
+			String nextPerformerUids = formI.getValue(scheduleIds);
+
+
+			// /一般在实际审批过程中，就是制定人，如果指定角色意义不大，因为角色范围大，完全可以采用预定义的
+			// //而具体的人的弹性比较大; PTNode.AUTH_TYPE_SCHEDULE_ROLE这个可以去掉
+			if (nextPerformerUids != null) {
+
+				if (nextPerformerUids.length() < 50) {
+					nextNodeInstance.setScheduleOUUid(nextPerformerUids);
+				}
+
+				String[] idarray = nextPerformerUids.split(",");
+				for (int i = 0; i < idarray.length; i++) {
+					String anId = idarray[i];
+					DOAuthorization da = new DOAuthorization();
+
+					storePersionAuth(nextNodeInstance.getObjUid(),anId);
+					// /针对 user 存储 存储权限表， 修改待办的 sql
+//
+//					da.setParterUid(OrgParter.getDefaultEmployee().getObjUid());
+//					da.setOuUid(anId);
+//					da.setWhatType(DOAuthorization.WHAT_WF_NODEINSTANCE);
+//					da.setWhatUid(this.getObjUid());
+//					da.setAuthority(Boolean.TRUE);
+//					da.setIsInherit(Boolean.TRUE);
+//					try {
+//						DAOUtil.BUSI().store(da);
+//					} catch (ExedoException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+				}
 			}
-			
-			
+
 			// WFDAO dao = new WFDAO();
 			try {
 				DAOUtil.BUSI().store(nextNodeInstance);
@@ -2103,19 +2147,17 @@ public class NodeInstance extends BaseObject implements Serializable {
 	 */
 
 	public static void storePersionAuth(String nodeInstanceUid,
-			String personUid, boolean isAccess) {
+			String personUid) {
 
 		// WFDAO dao = new WFDAO();
 		DOAuthorization daNew = new DOAuthorization();
-		daNew.setAuthority(Boolean.FALSE);
+		daNew.setAuthority(Boolean.TRUE);
 
 		// daNew.setIsInherit(Boolean.TRUE);
 		daNew.setOuUid(personUid);
 		daNew.setParterUid(OrgParter.getDefaultEmployee().getObjUid());
 
-		daNew
-				.setWhatType(Integer
-						.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE));
+		daNew.setWhatType(Integer.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE));
 		daNew.setWhatUid(nodeInstanceUid);
 		try {
 			DAOUtil.BUSI().store(daNew);
@@ -2141,9 +2183,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 		// /////////////PTNode.AUTH_TYPE_AUTHTABLE_INSTANCE的情况 实例级别
 		if (this.getAuthType() != null
 				&& this.getAuthType().intValue() == PTNode.AUTH_TYPE_AUTHTABLE_INSTANCE) {
-			return DOAuthorization.isAccess(Integer
-					.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE), this
-					.getObjUid(), null, null);
+			return DOAuthorization.isAccess(
+					Integer.valueOf(DOAuthorization.WHAT_WF_NODEINSTANCE),
+					this.getObjUid(), null, null);
 		}
 
 		PTNode tNode = this.getNode();
@@ -2225,7 +2267,9 @@ public class NodeInstance extends BaseObject implements Serializable {
 				if (tNode.getSpecName().equals("creator")) {// /流程创建者
 					accessUser = this.getProcessInstance().getCreator();
 				} else {
-					BOInstance bi = tNode.getProcessTemplate().getDoBO()
+					BOInstance bi = tNode
+							.getProcessTemplate()
+							.getDoBO()
 							.getInstance(
 									this.getProcessInstance().getInstanceUid());
 					accessUser = bi.getValue(tNode.getSpecName());

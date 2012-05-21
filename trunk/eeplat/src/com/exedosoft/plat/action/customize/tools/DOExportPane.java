@@ -15,7 +15,7 @@ import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.StringUtil;
 
-public class DOExportPane extends DOExport {
+public class DOExportPane extends DOExportSimple {
 
 	/**
 	 * 
