@@ -75,7 +75,17 @@ public class DOAlterTable extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		DOBO selected = DOBO.getDOBOByID(bo.getCorrInstance().getUid());
 
-		DODataSource dss = selected.getDataBase();
+		DODataSource dss = null; 
+		///多租户情况`
+		
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+			dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
+		} else {//单租户情况
+			dss = selected.getDataBase();
+		}
+		
+		
 		Transaction t = dss.getTransaction();
 		t.begin();
 
@@ -128,7 +138,10 @@ public class DOAlterTable extends DOAbstractAction {
 								.append(colNames[len]).append(" ").append(
 										dbtypes[len]);
 
+						int iDBSize = 255;
 						if (dbsizes[len] != null && !dbsizes[len].equals("")) {
+							iDBSize = Integer
+									.parseInt(dbsizes[len]);
 							sb.append(" (").append(dbsizes[len]).append(")");
 						}
 						listSql.add(sb.toString());
@@ -143,8 +156,7 @@ public class DOAlterTable extends DOAbstractAction {
 						}
 						System.out.println("ColName:" + colNames[len]
 								+ "  DBSize:" + dbsizes[len]);
-						pm.addProperty(selected, colNames[len], iType, Integer
-								.parseInt(dbsizes[len]));
+						pm.addProperty(selected, colNames[len], iType, iDBSize);
 						
 
 					}else{

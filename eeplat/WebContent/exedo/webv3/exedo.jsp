@@ -64,7 +64,8 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/uploadify.css"    type="text/css" />  
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.css" type="text/css" /> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.neosmart.fb.wall.css" type="text/css" /> 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/status.css" type="text/css" /> 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/status.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/ztree/zTreeStyle.css" type="text/css" />
 
  
  <!-- 平台主体及其它集成的css -->
@@ -92,6 +93,7 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.elastic.js" ></script>		
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/ztree/jquery.ztree.core-3.1.min.js" ></script>
 <!-- 平台主体及其他集成的js -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/treev2/xtree2.js" ></script>
@@ -126,7 +128,7 @@ $(function(){
 	bindTabCloseCss(tabBtnSelector);
 	bindTabCloseWindow(tabBtnSelector);
 	
-
+	
 	
 	//初始化左右拖动
 	  $(".resizeTd").mousedown(function(e){
@@ -153,7 +155,7 @@ $(function(){
 	  resscrEvt();
 });
 <%
-  DOService aService = DOService.getService("DO_BO_Icon_List");
+  DOService aService = DOService.getService("DO_BO_Icon_List_js");
   if(aService!=null){
 	  List list = aService.invokeSelect();
 	  for(Iterator it = list.iterator(); it.hasNext();){

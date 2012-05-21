@@ -6,22 +6,24 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-        <title>EEPlat PaaS Login</title>
+        <title>EEPlat Login</title>
 		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
 		<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
 
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
-		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
-   		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
+		
+
     </head>
 	<body>
 	    
 	<div data-role="page" data-theme="b">
 	 
 	    <div data-role="header" data-position="inline"  data-nobackbtn="true" data-theme="b">
-	        <h1>云鹤平台应用登录</h1>
+	        <h1>EEPlat Login</h1>
 	    </div>
 	 
 	    <div data-role="content" data-theme="c">
@@ -72,7 +74,8 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				        window.location= globalURL + "jyhd_mobile_pane.pml";
+				       // window.location= "AppList.jsp";
+					   window.location= globalURL + "jyhd_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }

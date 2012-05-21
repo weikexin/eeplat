@@ -408,6 +408,52 @@ CREATE OR REPLACE VIEW WF_YB AS SELECT DISTINCT
   wfi_desc,startuser,starttime,ni.objuid as contextNiUid,wpi.OBJUID AS contextPIUid, wpi.curState, wpi.instance_uid, ni.performeruid as USER_UID,nodeDate
  FROM  do_wfi_his_nodeinstance ni INNER JOIN    do_wfi_his_processinstance wpi ON ni.PI_UID = wpi.OBJUID
   WHERE (ni.ExeStatus = 3) AND (wpi.ExeStatus = 3);
+  
+ CREATE OR REPLACE VIEW  wf_db_schedule     AS  (SELECT DISTINCT
+  wpi.curState     AS curstate,
+  ni.node_uid      AS node_uid,
+  ni.nodeDate      AS nodeDate,
+  ni.OBJUID        AS contextNIUid,
+  wpi.OBJUID       AS contextPIUid,
+  wpi.instance_uid AS instance_uid,
+  ni.pass_txt      AS pass_txt,
+  ni.reject_txt    AS reject_txt,
+  ur.USER_UID      AS user_uid,
+  wpi.WFI_Desc     AS WFI_Desc,
+  wpi.startUser    AS startUser,
+  wpi.startTime    AS startTime
+FROM (((do_wfi_nodeinstance ni
+     JOIN do_wfi_processinstance wpi)
+    JOIN do_org_user_role ur)
+   JOIN do_authorization a)
+WHERE ((wpi.OBJUID = ni.PI_UID)
+       AND (a.parterUid = '9')
+       AND (a.ouUid = ur.ROLE_UID)
+       AND (ni.node_uid = a.whatUid)
+       AND (ni.ExeStatus = 2)
+       AND (wpi.ExeStatus = 2))
+       
+UNION   SELECT DISTINCT
+  wpi.curState     AS curstate,
+  ni.node_uid      AS node_uid,
+  ni.nodeDate      AS nodeDate,
+  ni.OBJUID        AS contextNIUid,
+  wpi.OBJUID       AS contextPIUid,
+  wpi.instance_uid AS instance_uid,
+  ni.pass_txt      AS pass_txt,
+  ni.reject_txt    AS reject_txt,
+  a.ouUid          AS user_uid,
+  wpi.WFI_Desc     AS WFI_Desc,
+  wpi.startUser    AS startUser,
+  wpi.startTime    AS startTime
+FROM ((do_wfi_nodeinstance ni
+     JOIN do_wfi_processinstance wpi)
+      JOIN do_authorization a)
+WHERE ((wpi.OBJUID = ni.PI_UID)
+       AND (a.parterUid = 1)
+       AND (ni.objuid = a.whatUid)
+       AND (ni.ExeStatus = 2)
+       AND (wpi.ExeStatus = 2))); 
 
 insert into DO_ORG_DEPT (OBJUID, DEPT_CODE, NAME, LEADER, TYPE, ORDER_NUM, LOCATION, TEL, PARENTUID, NOTE)
 values ('4028803127b6f15a0127b7294a7a0004', 'pingtaibumen', '平台部门', '40288031278ed91501278ed915b30000', 2, null, null, null, null, null);

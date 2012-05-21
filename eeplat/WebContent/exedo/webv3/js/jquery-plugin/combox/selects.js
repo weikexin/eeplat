@@ -175,6 +175,33 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
    
 }
 
+
+function popupHide2()
+{
+	$("#dmLayer").hide();
+	$(document).unbind("click",popupHide2);
+	$(document).unbind("mouseover",popupHide);
+}
+function popupHide()
+{
+	if($("#dmLayer").css("display")!="none")
+	{
+		$(document).bind("click",popupHide2);
+	}
+}
+$(document).ready(
+function (){
+	$("#dmLayer").bind('mouseover',function(){
+		$(document).unbind("click",popupHide2);
+		$(document).unbind("mouseover",popupHide);
+		})
+	 .bind('mouseout',function(){
+		 $(document).bind("mouseover",popupHide);
+	 });
+}		
+);
+
+
 function invokePopup(obj,aFormName,searchColName,pageNo,pageSize,clearOtherUid){
 
 	if($("#dmLayer").css("display")=="none"){
@@ -187,6 +214,7 @@ function invokePopup(obj,aFormName,searchColName,pageNo,pageSize,clearOtherUid){
 		  $("#dmLayer").css("top", t.offset().top + t.height()+1).css("left",t.offset().left+1);
 		  $("#dmLayer").empty().append("<font color='red'>正在加载.............</font>").show();
 		  createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,'');
+		  $(document).bind("mouseover",popupHide);
 	}else{
 		 $("#dmLayer").hide();
 	}	  

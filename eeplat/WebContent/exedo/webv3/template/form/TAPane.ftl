@@ -14,7 +14,7 @@
 		   			 	'pmlHeight':'${model.linkPaneModel.paneHeight?if_exists}',
 		   			 'paras':'dataBus=setContext&contextKey=${model.data.bo.name}&contextValue=${model.data.uid}&contextNIUid=${(model.data.map.contextniuid)?if_exists}&contextPIUid=${model.data.map.contextpiuid?if_exists}',
 			   		 'title':'${model.linkPaneModel.title}',
-			   		 'formName':'a${model.gridModel.objUid}'
+		  	       'formName':'${model.targetForms}'
 			   		  <#if (model.targetPaneModel)?exists>	         
 					,'target':'${model.targetPaneModel.name}'
 					 </#if> }

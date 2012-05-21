@@ -10,7 +10,9 @@ import com.exedosoft.plat.CacheFactory;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.gene.jquery.ATableForwarderJquery;
+import com.exedosoft.plat.util.DOGlobals;
 
 public class DOGeneConfigTable extends DOAbstractAction {
 
@@ -27,8 +29,19 @@ public class DOGeneConfigTable extends DOAbstractAction {
 
 	public String excute() {
 
-		DOBO bo = DOBO.getDOBOByName("do_datasource");
-		String dataSourceUid = bo.getCorrInstance().getUid();
+		String dataSourceUid = null;
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+
+			DODataSource dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
+			dataSourceUid = dss.getObjUid();
+
+		} else {
+
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			dataSourceUid = bo.getCorrInstance().getUid();
+
+		}
 
 		String[] tables = this.actionForm.getValueArray("checkinstance");
 		String bpUid = this.actionForm.getValue("bpUid");
@@ -55,7 +68,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 									+ "没有定义主键，无法进行初始化!");
 						}
 					} else {
-						/////////////造成这个问题，有可能是 key 值没有选择。要注意一下
+						// ///////////造成这个问题，有可能是 key 值没有选择。要注意一下
 
 						this.setEchoValue("浏览器内部错误，请重试或选用firefox!");
 						return NO_FORWARD;
@@ -82,7 +95,7 @@ public class DOGeneConfigTable extends DOAbstractAction {
 				String valuecol = bi.getValue("valuecol");
 
 				ATableForwarderJquery af = new ATableForwarderJquery(aTable,
-						keycol, valuecol, dataSourceUid, bpUid,"");
+						keycol, valuecol, dataSourceUid, bpUid, "");
 				af.forwardAll();
 			}
 
@@ -92,11 +105,11 @@ public class DOGeneConfigTable extends DOAbstractAction {
 			return NO_FORWARD;
 
 		}
-		
+
 		CacheFactory.getCacheData().clear();
 		CacheFactory.getCacheRelation().getData().clear();
 		CacheFactory.getCacheData().fromSerialObject();
-		
+
 		this.setEchoValue("初始化成功!");
 		return DEFAULT_FORWARD;
 	}

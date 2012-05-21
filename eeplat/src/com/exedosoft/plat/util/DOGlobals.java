@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Collections;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,9 +17,8 @@ import com.exedosoft.plat.DOThreadContext;
 import com.exedosoft.plat.SessionContext;
 import com.exedosoft.plat.util.xml.DOMXmlUtil;
 
-
 /**
- * @author   IBM
+ * @author IBM
  */
 public class DOGlobals {
 
@@ -36,7 +36,6 @@ public class DOGlobals {
 	}
 
 	private static Log log = LogFactory.getLog(DOGlobals.class);
-
 
 	/**
 	 * 全局配置常量
@@ -100,7 +99,6 @@ public class DOGlobals {
 	// // public static String DB_CONFIG =
 	// "D:\\eclipse\\workspace\\exedo\\db\\mydb";
 
-
 	public static String SESSION_PARTER = "com.exedosoft.plat.SessionParterDefault";
 
 	public static String SERVLET_INIT_CLASS = "";
@@ -145,9 +143,6 @@ public class DOGlobals {
 	private static DOGlobals globals = null;
 
 	public static Document timeDefineDoc = null;
-	
-	
-
 
 	static {
 
@@ -166,8 +161,7 @@ public class DOGlobals {
 					nodeValue = element.getFirstChild().getNodeValue();
 				}
 				globalConfigs.put(attrName, nodeValue);
-				
-				
+
 				if ("uploadfiletemp".equals(attrName)) {
 					System.out.println("UPLOADFILE::::::::::::::::::::"
 							+ nodeValue);
@@ -185,8 +179,8 @@ public class DOGlobals {
 							+ nodeValue);
 					URL = nodeValue;
 					PRE_FULL_FOLDER = "/" + URL + "/exedo/webv3/";
-				    UPLOAD_URL = "/" + URL + "/upload/";
-				    OUT_HTML_URL = "/" + URL + "/exedo/webv3/outhtml/";
+					UPLOAD_URL = "/" + URL + "/upload/";
+					OUT_HTML_URL = "/" + URL + "/exedo/webv3/outhtml/";
 					continue;
 				}
 				if ("search.resultsize".equals(attrName)) {
@@ -328,41 +322,42 @@ public class DOGlobals {
 					continue;
 
 				}
-				
-				
-				////////////SESSION_PARTER session_parter权限的parter
+
+				// //////////SESSION_PARTER session_parter权限的parter
 				if ("sessionparter.class".equals(attrName)) {
 
-					System.out
-							.println("SESSION_PARTER::::::::::::::::::::" + nodeValue);
+					System.out.println("SESSION_PARTER::::::::::::::::::::"
+							+ nodeValue);
 					if (nodeValue != null)
 						SESSION_PARTER = nodeValue;
 					continue;
 
 				}
-				
-				
 
 			}
-			
 
 			URL url = DOGlobals.class.getResource("/globals.xml");
 			String aPath = url.getPath().toLowerCase();
 			aPath = aPath.replaceAll("/[.]/", "/");
 
-			OUT_HTML = aPath.substring(0, aPath.indexOf("web-inf"))
-					+ "/exedo/web/outhtml/";
+			if (aPath.indexOf("web-inf") != -1) {
+				OUT_HTML = aPath.substring(0, aPath.indexOf("web-inf"))
+						+ "/exedo/web/outhtml/";
+			}
 
+			/**
+			 * 安全性设计，初始化后不可改动
+			 */
+			Collections.unmodifiableMap(globalConfigs);
 			log.info("Init global config finished!");
 
 			// ///////////执行定时统计
-//			if (IS_SCHEDULE == 1) {
-//				GTSchedule.scheduleStat();
-//			}
+			// if (IS_SCHEDULE == 1) {
+			// GTSchedule.scheduleStat();
+			// }
 
 			// ///////每天早晨8点开始配号
 			// GTSchedule.scheduleStat();
-
 
 		} catch (Exception e) {
 
@@ -372,8 +367,8 @@ public class DOGlobals {
 
 		}
 	}
-	
-	public static String getValue(String aKey){
+
+	public static String getValue(String aKey) {
 		return globalConfigs.get(aKey);
 	}
 
@@ -392,13 +387,8 @@ public class DOGlobals {
 		return SessionContext.getInstance().getThreadContext();
 	}
 
-	
-	
-	
 	public SessionContext getSessoinContext() {
-		
-		
-		
+
 		return SessionContext.getInstance();
 
 	}
@@ -415,13 +405,11 @@ public class DOGlobals {
 	 * @return
 	 */
 	public DOServletContext getServletContext() {
-		
-		
+
 		return SessionContext.getInstance().getServletContext();
 
 	}
 
-	
 	public static void main(String[] args) {
 
 	}

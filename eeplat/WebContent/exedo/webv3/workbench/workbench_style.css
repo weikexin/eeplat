@@ -4,11 +4,14 @@
 	padding:0 0 5px 0;
 	margin:4px 0 0 5px;
 	z-index:1;
+	font-size:12px; 
 }
+
+
 #workbench_container  .gztmodel
 {
 	float:left;
-	margin:2px;
+	margin:3px;
 	width:49%;
 	height:250px;
 	
@@ -98,4 +101,50 @@
 	scrollbar-Shadow-color:#FFFFFF;
 	scrollbar-arrow-color:#ABD8FF;
 	scrollbar-track-color:#ffffff;
+}
+
+
+
+#workbench_container  .gztleft
+{
+
+	float:left;
+	margin:2px;
+	width:24%;
+	height:250px;
+	
+}
+
+#workbench_container  .gztright
+{
+	float:right;
+	margin:2px;
+	margin-right:7px;
+	width:25%;
+	height:250px;
+	
+}
+
+
+
+#workbench_container .gtzbar {
+	height: 500px;
+}
+
+#workbench_container .gtzbar .gzmid{
+	height: 465px;
+}
+
+#workbench_container .gtzbar .midleft{
+	height: 465px;
+}
+
+
+#workbench_container ul{
+	
+	margin:16px;
+	padding:0px;
+	align:left;
+	text-align:left;
+	
 }

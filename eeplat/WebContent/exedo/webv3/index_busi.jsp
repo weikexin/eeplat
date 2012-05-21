@@ -106,7 +106,7 @@ $(function(){
 			   if('success'==retValue){
 			        window.location= globalURL + "abp_base_pane.pml?isApp=true";
 			   }else if('delegate'==retValue){
-			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true";
+			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_aaa";
 			   }
 			   else{
 			   		

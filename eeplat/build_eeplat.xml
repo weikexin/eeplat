@@ -7,9 +7,9 @@
 <project basedir="." default="build" name="eeplat">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../"/>
-    <property name="eeplat_dbmanager.location" value="../eeplat_dbmanager"/>
     <property name="yiyi_core.location" value="../yiyi_core"/>
     <property name="yiyi_dao.location" value="../yiyi_dao"/>
+	<property name="rmi.run.folder" value="../../rmi_agent" />
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
@@ -108,12 +108,6 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
-        <ant antfile="build.xml" dir="${eeplat_dbmanager.location}" inheritAll="false" target="clean"/>
-        <ant antfile="build.xml" dir="${eeplat_dbmanager.location}" inheritAll="false" target="build">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
         <ant antfile="build.xml" dir="${yiyi_core.location}" inheritAll="false" target="clean"/>
         <ant antfile="build.xml" dir="${yiyi_core.location}" inheritAll="false" target="build">
             <propertyset>
@@ -140,19 +134,15 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Escape">
-        <java classname="com.exedosoft.plat.util.Escape" failonerror="true" fork="yes">
-            <classpath refid="eeplat.classpath"/>
-        </java>
-    </target>
-    <target name="ImgTest">
-        <java classname="com.exedosoft.plat.util.ImgTest" failonerror="true" fork="yes">
-            <classpath refid="eeplat.classpath"/>
-        </java>
-    </target>
-    <target name="SerialData">
-        <java classname="com.exedosoft.plat.SerialData" failonerror="true" fork="yes">
-            <classpath refid="eeplat.classpath"/>
-        </java>
-    </target>
+	<target name="package" description="包装成jar文件">
+		<jar jarfile="${rmi.run.folder}/eeplat.jar">
+			<fileset dir="WebContent/WEB-INF/classes">
+				<exclude name="*.cmd" />
+				<exclude name="*.obj" />
+				<exclude name="note" />
+				<exclude name="note" />
+				<exclude name="log4j.properties" />
+			</fileset>
+		</jar>
+	</target>
 </project>

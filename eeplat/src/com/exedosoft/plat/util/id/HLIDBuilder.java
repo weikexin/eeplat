@@ -2,6 +2,7 @@ package com.exedosoft.plat.util.id;
 
 import com.exedosoft.plat.bo.DODataSource;
 
+import java.text.DecimalFormat;
 import java.util.Hashtable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -149,8 +150,11 @@ public class HLIDBuilder {
 //       i++;
 //     }
 //     System.out.println(++i);
-	   String aa = "1100000710453";
-	   System.out.println(Integer.parseInt(aa.substring(9)));
+	   DecimalFormat df = new DecimalFormat("0");    
+	   
+	   Double d = new Double("1.397545871E10");  
+	     
+	   System.out.println(df.format(d));
 
    }
 

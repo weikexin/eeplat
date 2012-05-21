@@ -198,11 +198,31 @@ public class DOStaticList extends DOBaseForm {
 		if (value == null) {
 			value = this.getDefaultListValue(property);
 		}
-		for (Iterator it = list.iterator(); it.hasNext();) {
-			String[] halfs = (String[]) it.next();
+		if (value!=null && value.indexOf(";") > 0) {
+			
+			String[] values = value.split(";");
+			StringBuffer labels = new StringBuffer();
+			for(int i =0; i < values.length ; i++){
+				for (Iterator it = list.iterator(); it.hasNext();) {
+					String[] halfs = (String[]) it.next();
 
-			if ((value != null && value.equals(halfs[0]))) {
-				return halfs[1];
+					if ((values[i] != null && values[i].equals(halfs[0]))) {
+						labels.append(halfs[1]).append(";");
+					}
+				}
+				
+			}
+			if(labels.length()>0){
+				return labels.substring(0,labels.length()-1);
+			}
+			
+		} else {
+			for (Iterator it = list.iterator(); it.hasNext();) {
+				String[] halfs = (String[]) it.next();
+
+				if ((value != null && value.equals(halfs[0]))) {
+					return halfs[1];
+				}
 			}
 		}
 		// if (value != null) {
@@ -251,6 +271,10 @@ public class DOStaticList extends DOBaseForm {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		StringBuffer labels = new StringBuffer("fsdfds;");
+		
+		System.out.println("labels::" + labels.substring(0,labels.length()-1));
+		
 
 	}
 

@@ -122,11 +122,13 @@ table.tablesorter {
 	font-size: 12px;
 	width: 98%;
 	text-align: left;
+	vertical-align:middle;
 	border-collapse:collapse; 
 }
 
 table.tablesorter tr{
 	height:20px;
+		vertical-align:middle;
 }
 table.tablesorter thead tr th,table.tablesorter tr td.title{
 		background-color:#e6EEEE;

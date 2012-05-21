@@ -172,7 +172,7 @@ public class DOResultListPopup extends DOBaseForm {
 
 		buffer.append("/>");
 		buffer.append(
-				"<IMG  style='CURSOR: pointer;padding-bottom:2px;margin-left:-21px;' onclick=\"invokePopup(this")
+				"<img  style='CURSOR: pointer;vertical-align:text-top;margin-left:-21px;' onclick=\"invokePopup(this")
 				.append(",'").append(fm.getTargetForms()).append("','");
 		buffer.append(fm.getLinkService().getBo().getValueCol()).append("',1,")
 				.append(max_pagesize);

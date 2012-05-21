@@ -403,8 +403,11 @@ function popupDialog(id,title,href,width,height){
 	    if(height==null || height==""){
 	    	height = 380;
 	    }
+	    
+	    if($('#F' + id).size()==0){
+			createFloatDiv(id,title);
+	    }
 
-		createFloatDiv(id,title);
 		
 		$('#F' + id).dialog({
 			autoOpen: false,
@@ -413,6 +416,7 @@ function popupDialog(id,title,href,width,height){
 			modal: true,
 			close: function(event, ui) {
 				 $("#dmLayer").hide();
+				 $('#F' + id).empty();
 			}
 		}); 
 
@@ -554,3 +558,58 @@ function insertAuthPt(){
 	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
 	
 }
+
+/**
+ * 代码编辑相关
+ */
+function insertAceCode(){
+	
+	var name = $("input[name=propertyuid]").val();
+	
+	if(name==null || name==''){
+		alert("名称不可以为空!");
+		return;
+	}
+	var isValid = 1;
+	var validChecks = $("input[name=icon]:checked");
+	if(validChecks.length > 0){
+		isValid = $("input[name=icon]:checked").val();
+	}
+	
+	var theCode  = '';
+	if($.browser.msie){
+		
+	    if(mirrorEditor){
+		    mirrorEditor.save();
+		    theCode = mirrorEditor.getValue();
+	    }else   if(mirrorEditor2){
+	    	mirrorEditor2.save();
+	    	theCode = mirrorEditor2.getValue();
+	    }
+	    
+		
+	}else{
+		var theEditor = window.frames['ace_editer_code'].editor;
+		theCode = theEditor.getSession().getValue();
+	}
+	
+	
+	var objuid = $("input[name=objuid]").val();
+	
+	var hidden_type = $("input[name=hidden_type]").val();
+	
+	if(hidden_type==null){
+		hidden_type = 'js';
+	}
+	
+	var serviceName = "DO_BO_Icon_Insert";
+	if(objuid){
+		serviceName = "DO_BO_Icon_Update";
+	}
+	
+	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert('保存成功!'), paras:"propertyuid=" + name + "&formulascript=" + encodeURIComponent(theCode) + "&icon=" + isValid + "&mVersion="+hidden_type,'pml':'PM_DO_BO_Icon_Result','target':'PM_DO_BO_Icon_Result'}  );
+
+	 
+}
+
+

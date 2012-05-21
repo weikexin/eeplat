@@ -37,6 +37,8 @@ html,body{
 	overflow:hidden;
 	align:left;
 }
+
+v:img{ position:relative;top:0;left:0;width:35px;height:35px}
 </style>
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
@@ -56,8 +58,8 @@ html,body{
 
 	var paper = Raphael("canvas");
 	loadWfMonitor(paper);
-
-
+	
+	
   
 </script>
 

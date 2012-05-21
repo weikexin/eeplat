@@ -359,19 +359,23 @@ function loadPml(p){
 	}
 
 	try{
-
-	   if(p.noreverse){
-	    	$.mobile.changePage(p.pml,{
-				type: "post", 
-				data: urlCodeDeal(paras)},"",false, false
-			);
-		   
-	   }else{
-    	$.mobile.changePage(p.pml,{
-			type: "post", 
-			data: urlCodeDeal(paras)}
-		);
-	   }	
+		
+		   if(p.noreverse){
+		    	$.mobile.changePage(p.pml,{
+						type: "post", 
+						data: urlCodeDeal(paras),
+						reverse: false,
+						changeHash: false
+					}
+				);
+			   
+		   }else{
+		    	$.mobile.changePage(p.pml,{
+					type: "post", 
+					data: urlCodeDeal(paras)}
+				);
+		   }
+	   	
 	}catch(e){
 		
 	}

@@ -11,7 +11,16 @@
 <%@page import="com.exedosoft.plat.bo.BOInstance"%>
 <%@page import="com.exedosoft.plat.util.DOGlobals"%>
 <%@page import="com.exedosoft.plat.DAOUtil"%>
-<%@page import="java.util.Iterator;"%>
+<%@page import="java.util.Iterator"%>
+<%@ page import="com.exedosoft.plat.SessionContext"%>
+
+
+<%
+			SessionContext context = (SessionContext)session.getAttribute("userInfo");
+			if(null==session.getAttribute("userInfo") ||  context.getUser()==null){
+			 response.sendRedirect(request.getContextPath() + "/exedo/webv3/logoff.jsp");
+			}
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,40 +28,33 @@
 <meta name="viewport"
 	content="width=device-width, minimum-scale=1, maximum-scale=1" />
 <title>请选择您要进入的工程</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.min.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery-1.5.2.min.js"></script>
+
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.css" />
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/openid.css" />
+<link rel="stylesheet"  href="<%=request.getContextPath()%>/exedo/mobile/css/jquery.mobile.datebox.min.css" />
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.datebox.min.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js" ></script>
+
 <script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
-		  //reset type=date inputs to text
-		  $( document ).bind( "mobileinit", function(){
-		    $.mobile.page.prototype.options.degradeInputs.date = true;
-		  });	
-		</script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile-1.0a4.1.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/mobile/js/jQuery.ui.datepicker.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.ui.datepicker.mobile.js"></script>
+</script>
+
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/exedo/mobile/js/platAjax.js"></script>
 
 <!--Other Scripts  -->
 <body>
 <%
- 
-   List list = null;
-   
+
    List appList =  DAOUtil.INSTANCE().select(DOApplication.class,
-		"select * from DO_Application",list);
+		"select * from DO_Application");
 
 	if (appList.size() == 0) {
 		out
-				.println("<script language='javascript'>window.location.href='index.jsp';</script>");//如果没有子系统则直接返回到登陆页面 
+				.println("<script language='javascript'>window.location.href='login.jsp';</script>");//如果没有子系统则直接返回到登陆页面 
 		return;
 	} else if (appList.size() == 1) {
 
@@ -61,7 +63,7 @@
 		return;
 	}
 %>
-<div data-role="page" data-theme="b" id="appList" name="appList">
+<div data-role="page"  id="appList" name="appList">
 
 	<div data-role="header" data-theme="b">
 		<h1>请选择要进入的工程</h1>

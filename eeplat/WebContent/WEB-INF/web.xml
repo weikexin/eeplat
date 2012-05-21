@@ -55,6 +55,22 @@
 		<servlet-name>ssocontroller</servlet-name>
 		<servlet-class>com.exedosoft.plat.SSOController</servlet-class>
 	</servlet>
+	
+	 <servlet>
+        <servlet-name>dbmanager</servlet-name>
+        <servlet-class>com.exedosoft.dbmanager.org.h2.server.web.WebServlet</servlet-class>
+        <!--
+        <init-param>
+            <param-name>webAllowOthers</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>trace</param-name>
+            <param-value></param-value>
+        </init-param>
+        -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
 
 	<servlet-mapping>
@@ -83,6 +99,13 @@
 		<url-pattern>/FCKeditor/editor/filemanager/connectors/*</url-pattern>
 	</servlet-mapping>
 
+
+
+
+    <servlet-mapping>
+        <servlet-name>dbmanager</servlet-name>
+        <url-pattern>/dbmanager/*</url-pattern>
+    </servlet-mapping>
 
 
 	<mime-mapping>
