@@ -12,4 +12,4 @@ EEPlat Build20120521发布在线编写代码做了重大更新，更好的支持
 
 6，集成了OpenID。
 
-7，配置库增加支持MYSQL、Oraccle。
+7，配置库增加支持MYSQL、Oracle。
