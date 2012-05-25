@@ -130,5 +130,5 @@
 		<property name="dbmanager.language">zh_CN</property>
 
 		<!-- 配置库使用mysql，需要方言支持 -->
-		<property name="useDialect">dialect_mysql.properties</property>
+			<!-- <property name="useDialect">dialect_mysql.properties</property> -->
 </config>
