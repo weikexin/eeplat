@@ -60,15 +60,10 @@ public class JquerySimpleTree extends DOViewTemplate {
 		data.put("treeModelUrl", treeModelUrl);
 		// /
 
-		if (treeModel.getActionPane() != null) {
+		if (treeModel.getTemplate() != null) {
 			StringBuffer buffer = new StringBuffer();
-			buffer.append("javascript:loadPml({'pml':'")
-					.append(treeModel.getActionPane().getName())
-					.append("','pmlName':'")
-					.append(treeModel.getActionPane().getName())
-					.append("','target':'")
-					.append(treeModel.getTargetPane().getName())
-					.append("'} );");
+			buffer.append("javascript:")
+					.append(treeModel.getTemplate());
 			
 			data.put("actionUrl", buffer.toString());
 		}
