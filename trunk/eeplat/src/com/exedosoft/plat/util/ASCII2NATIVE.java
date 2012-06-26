@@ -27,7 +27,7 @@ public class ASCII2NATIVE {
 	}
 
 	public static void main(String[] args) {
-		File f = new File("c:\\backup.sql");
+		File f = new File("c:\\mydb.script");
 		File f2 = new File("c:\\mydb.sql");
 		if (f.exists() && f.isFile()) {
 			// convert param-file
@@ -48,7 +48,7 @@ public class ASCII2NATIVE {
 
 						String str = ascii2Native(line);
 						System.out.println(str);
-						sb.append(str).append("\n"); // .append(";\n");
+						sb.append(str).append(";\n"); // .append(";\n");
 														// //.append(";\n\r")
 					}
 				}

@@ -41,29 +41,32 @@ response.setDateHeader("Expires", 0);
 <script src="src/mode-html.js" type="text/javascript" charset="utf-8"></script>
 <script>
 
-var editor;
+
 
 var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 
 window.onload = function() {
-    editor = ace.edit("csseditor");
-    
-	document.getElementById('csseditor').style.fontSize='16px';
-
-    var cssMode = require("ace/mode/css").Mode;
-    editor.getSession().setMode(new cssMode());
-	editor.getSession().setValue(theHiddenValue);
+	if(parent.cssEditor!=null){
+		parent.cssEditor.destroy();
+	}
+		parent.cssEditor = ace.edit("csseditor");
+	    
+		document.getElementById('csseditor').style.fontSize='16px';
 	
-	editor.commands.addCommand({
-		name: "save",
-		bindKey: {
-			win: "Ctrl-s", // Shift-Right
-			mac: "Command-s" // Shift-Right
-		},
-		exec: function(editor) {	
-			 parent.insertAceCode();
-		}
-	});
+	    var cssMode = require("ace/mode/css").Mode;
+	    parent.cssEditor.getSession().setMode(new cssMode());
+	    parent.cssEditor.getSession().setValue(theHiddenValue);
+		
+	    parent.cssEditor.commands.addCommand({
+			name: "save",
+			bindKey: {
+				win: "Ctrl-s", // Shift-Right
+				mac: "Command-s" // Shift-Right
+			},
+			exec: function(editor) {	
+				 parent.insertAceCode();
+			}
+		});
 	
 
 };

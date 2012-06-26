@@ -43,8 +43,6 @@ response.setDateHeader("Expires", 0);
 	
 	var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 
-    var editor;
-
 	var autocompleting=false;
 	
 	var js_tags=["callService",
@@ -75,16 +73,16 @@ response.setDateHeader("Expires", 0);
 					ac.size=10;
 				}
 
-				var sel = editor.getSelection();
+				var sel = parent.jsEditor.getSelection();
 				
-				var session = editor.getSession();
+				var session = parent.jsEditor.getSession();
 
 				var lead = sel.getSelectionLead();
 
-				var pos = editor.renderer.textToScreenCoordinates(lead.row, lead.column);
+				var pos = parent.jsEditor.renderer.textToScreenCoordinates(lead.row, lead.column);
 				
 				//calulate the container offset
-				var obj=editor.container;
+				var obj=parent.jsEditor.container;
 				
 				var curleft = 0;
 				var curtop = 0;
@@ -101,7 +99,7 @@ response.setDateHeader("Expires", 0);
 				ac.style.display='block';
 				ac.style.background='white';
 				
-				var sel=editor.selection.getRange();
+				var sel=parent.jsEditor.selection.getRange();
 
 				var tag;
 				for(i in js_tags){
@@ -141,33 +139,37 @@ response.setDateHeader("Expires", 0);
 				
 				ac.selectedIndex=0;						
 		
-				editor.container.appendChild(ac);
+				parent.jsEditor.container.appendChild(ac);
 				
 				autocompleting=true;
 
 	}
 	
 	window.onload = function() {
+		
+		if(parent.jsEditor!=null){
+			parent.jsEditor.destroy();
+		}
 	
-		editor = ace.edit("javascripteditor");
+		parent.jsEditor = ace.edit("javascripteditor");
 		
 		document.getElementById('javascripteditor').style.fontSize='16px';
-		//editor.getSession().setUseWrapMode(true);
+		//parent.jsEditor.getSession().setUseWrapMode(true);
 			
 		var Mode = require("ace/mode/javascript").Mode;
-		editor.getSession().setMode(new Mode());
+		parent.jsEditor.getSession().setMode(new Mode());
 		
 		
 		
-		editor.setBehavioursEnabled(false);
+		parent.jsEditor.setBehavioursEnabled(false);
 		
-		editor.getSession().setValue(theHiddenValue);
+		parent.jsEditor.getSession().setValue(theHiddenValue);
 
-		//editor.commands.removeCommand("gotowordright");///Ctril + right use myself defined
+		//parent.jsEditor.commands.removeCommand("gotowordright");///Ctril + right use myself defined
 		
 	
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "langle2",
 			bindKey: {
 				win: "Ctrl-.", // Shift-Right
@@ -175,14 +177,14 @@ response.setDateHeader("Expires", 0);
 			},
 			exec: function(editor) {	
                
-				//editor.autocomplete();
+				//parent.jsEditor.autocomplete();
 				
 				autocomplete(editor);
 		
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "save",
 			bindKey: {
 				win: "Ctrl-s", // Shift-Right
@@ -194,7 +196,7 @@ response.setDateHeader("Expires", 0);
 		});
 		
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "finish",
 			bindKey: {
 				win: ".", // >
@@ -203,7 +205,7 @@ response.setDateHeader("Expires", 0);
 			},
 			exec: function(editor) {					
 				
-				editor.insert('.');
+				parent.jsEditor.insert('.');
 				if( document.getElementById('ac') ){
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
@@ -213,7 +215,7 @@ response.setDateHeader("Expires", 0);
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "up",
 			bindKey: {
 				win: "Up",
@@ -230,12 +232,12 @@ response.setDateHeader("Expires", 0);
 						select.selectedIndex=select.selectedIndex-1;
 					}
 				}else{
-					editor.navigateUp(args.times);
+					parent.jsEditor.navigateUp(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "down",
 			bindKey: {
 				win: "Down",
@@ -252,12 +254,12 @@ response.setDateHeader("Expires", 0);
 						select.selectedIndex=select.selectedIndex+1;
 					}
 				}else{
-					editor.navigateDown(args.times);
+					parent.jsEditor.navigateDown(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "escape",
 			bindKey: {
 				win: "Esc",
@@ -275,7 +277,7 @@ response.setDateHeader("Expires", 0);
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.jsEditor.commands.addCommand({
 			name: "enter",
 			bindKey: {
 				win: "Return",
@@ -288,25 +290,25 @@ response.setDateHeader("Expires", 0);
 					var tag=select.options[select.selectedIndex].value;
 					
 					
-					var sel=editor.selection.getRange();
-					var line=editor.getSession().getLine(sel.start.row);	
+					var sel=parent.jsEditor.selection.getRange();
+					var line=parent.jsEditor.getSession().getLine(sel.start.row);	
 					if(line.toLowerCase().charAt(line.length-1)==tag.toLowerCase().charAt(0)){
 					  tag = tag.substr(1);
 					}					
 
-					editor.insert(tag);
+					parent.jsEditor.insert(tag);
 					
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
 					autocompleting=false;
 				}else{
-					editor.insert('\n');
+					parent.jsEditor.insert('\n');
 				}
 			}
 		});
 		
 	
-//		editor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
+//		parent.jsEditor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
 //			if( document.getElementById('ac') ){
 //				var ac=document.getElementById('ac');
 //				
@@ -314,11 +316,11 @@ response.setDateHeader("Expires", 0);
 //			}					
 //		});
 		
-//		editor.getSession().on('change', function(e) {   
+//		parent.jsEditor.getSession().on('change', function(e) {   
 			
-//			var sel=editor.selection.getRange();
+//			var sel=parent.jsEditor.selection.getRange();
 
-//			var line=editor.getSession().getLine(sel.start.row);						
+//			var line=parent.jsEditor.getSession().getLine(sel.start.row);						
 
 			//console.log("last::" + line.charAt(sel.start.column));
 	  
@@ -330,7 +332,7 @@ response.setDateHeader("Expires", 0);
 		
 
 		
-		event.addListener(editor.textInput.getElement(), "keydown", 
+		event.addListener(parent.jsEditor.textInput.getElement(), "keydown", 
 			function(e){
 				if(autocompleting && ( (e.keyCode >=65 && e.keyCode <=90)  )){//|| e.keyCode == 51
 						
@@ -344,7 +346,7 @@ response.setDateHeader("Expires", 0);
 								  }
 							}
 						}else{
-							editor.navigateUp(args.times);
+							parent.jsEditor.navigateUp(args.times);
 						}
 				}
 			}

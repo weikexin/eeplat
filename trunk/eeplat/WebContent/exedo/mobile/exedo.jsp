@@ -41,6 +41,13 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.datebox.i18n.zh-CN.utf8.js" ></script>
 
 
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/map/ui/jquery.ui.map.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/map/ui/jquery.ui.map.services.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/map/ui/jquery.ui.map.extensions.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/map/ui/modernizr.min.js" ></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script> 
+
+
 <script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 

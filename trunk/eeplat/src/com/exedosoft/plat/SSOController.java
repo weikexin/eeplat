@@ -35,7 +35,7 @@ public class SSOController extends HttpServlet {
 
 	private static final String CONTENT_TYPE = "text/html; charset=utf-8";
 
-     private static Log log = LogFactory.getLog(ServiceController.class);
+     private static Log log = LogFactory.getLog(SSOController.class);
 
 	public SSOController() {
 		super();
@@ -73,10 +73,10 @@ public class SSOController extends HttpServlet {
 
 		String returnValue = null;
 		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
-			log.info("运行在多租户环境下 =================================");
+			log.info("Running in MultiTenent env=================================");
 			returnValue = makeMultiLogin(request, formBI);
 		}else{
-			log.info("运行在普通环境下 =================================");
+			log.info("Running in normal env=================================");
 			returnValue = makeSimpleLogin(request,  formBI);
 		}
 

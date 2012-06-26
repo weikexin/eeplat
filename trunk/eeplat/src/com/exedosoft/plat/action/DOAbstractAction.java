@@ -3,7 +3,9 @@ package com.exedosoft.plat.action;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 import com.exedosoft.plat.DOThreadContext;
 import com.exedosoft.plat.ExedoException;
@@ -22,8 +24,7 @@ public abstract class DOAbstractAction implements Serializable, DOAction {
 	public static final String NO_FORWARD = "noforward";
 
 
-	protected static Category logger = Category
-			.getInstance(DOAbstractAction.class);
+	protected static Log logger = LogFactory.getLog(DOAbstractAction.class);
 
 	protected DOService service;
 

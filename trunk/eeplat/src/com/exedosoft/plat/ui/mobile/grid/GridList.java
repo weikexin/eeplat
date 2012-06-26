@@ -57,7 +57,7 @@ public class GridList extends DOViewTemplate {
 		if(lastLinkForms!=null){
 			for(Iterator it = lastLinkForms.iterator(); it.hasNext();){
 				DOFormModel aFm = (DOFormModel)it.next();
-				if("查看".equals(aFm.getL10n())){
+				if("查看".equals(aFm.getL10n()) || "Browse".equals(aFm.getL10n()) ){
 					if(aFm.getLinkPaneModel()!=null){
 						linkPaneName = aFm.getLinkPaneModel().getName();
 						break;
@@ -80,6 +80,16 @@ public class GridList extends DOViewTemplate {
 				}
 			}
 		}
+		
+		try{
+			if(gm.getService().getBo().getMainPaneModel()!=null){
+				linkPaneName = gm.getService().getBo().getMainPaneModel().getName();
+				
+			}
+		}catch(Exception e){
+			
+		}
+		
 		// /////////////Mobile显示的列
 		// ////下一步可以用户定义列
 		// //DOGlobals.getInstance()

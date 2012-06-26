@@ -767,9 +767,9 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	'height'         : 25,
 	'fileDesc'       : fileDesc,
 	'fileExt'		 : fileExt,
-	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
+	'onSelect'       : function(event,queueID,fileObj){ o.val(myFile+fileObj.name);},
 	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
-	'onProgress'     : function(event,queueId,fileObj,date){o.val(fileObj.name);}
+	'onProgress'     : function(event,queueId,fileObj,date){o.val(myFile+fileObj.name);}
 	});
 	
 	

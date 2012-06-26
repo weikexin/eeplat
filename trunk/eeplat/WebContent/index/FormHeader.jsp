@@ -3,6 +3,7 @@
 <%@ page import="com.exedosoft.plat.bo.DOApplication"%>
 <%@ page import="com.exedosoft.plat.bo.BOInstance"%>
 <%@ page import="com.exedosoft.plat.DAOUtil"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
 <%
@@ -111,7 +112,7 @@
 		   </select>
 		&nbsp;&nbsp;
 		
-		<%if(isDev){ %><a onclick="setup()" >开发 </a> | <%} %> <a onclick="helpme();" >帮助</a>  | <a onclick="logOff()" >退出</a>
+		<%if(isDev){ %><a onclick="setup()" ><%=I18n.instance().get("Developer")%> </a> | <%} %> <a onclick="helpme();" ><%=I18n.instance().get("Help")%></a>  | <a onclick="logOff()" ><%=I18n.instance().get("Exit")%></a>
 	</div>
 </div>
 

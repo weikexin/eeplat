@@ -347,6 +347,21 @@ CREATE TABLE do_org_user_delegate (
   mVersion varchar(50) DEFAULT NULL,
   PRIMARY KEY (objuid)
 );
+
+
+CREATE TABLE do_log_dev (
+  id varchar(32) NOT NULL,
+  threadstr varchar(255) default NULL,
+  starttime datetime default NULL,
+  userName varchar(256) default NULL,
+  ip varchar(128) default NULL,
+  msgstr text,
+  col1 varchar(255) default NULL,
+  col2 varchar(255) default NULL,
+  col3 varchar(255) default NULL,
+  PRIMARY KEY  (id)
+) ;
+
 CREATE TABLE [dbo].[t_expense] (
 	[id] [nvarchar] (96) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	[title] [nvarchar] (255) COLLATE Chinese_PRC_CI_AS NULL ,

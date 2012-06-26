@@ -52,11 +52,11 @@ public class DBTemplateLoader implements TemplateLoader {
 				conn = dss.getConnection();
 			}
 			s = conn
-					.prepareStatement("select * from DO_UI_Controller where objuid= ?");
+					.prepareStatement("select * from DO_BO_ICON where objuid= ?");
 			s.setString(1, para);
 			rs = s.executeQuery();
 			if (rs.next()) {
-				String template = rs.getString("template");
+				String template = rs.getString("formulaScript");
 //				log.info("template:::" + template);
 //				if (template != null && template.startsWith("/*linkfile*/")) {
 //					File aFile = new File(filePrefix + template.substring(13));

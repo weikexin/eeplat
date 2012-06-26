@@ -27,7 +27,7 @@ public class GridList extends DOViewTemplate {
 	private static Log log = LogFactory.getLog(GridList.class);
 
 	public GridList() {
-		this.templateFile = "grid/GridList.ftl";
+		this.templateFile = "grid/GridListPagination.ftl";
 	}
 
 	public Map<String, Object> putData(DOIModel doimodel) {

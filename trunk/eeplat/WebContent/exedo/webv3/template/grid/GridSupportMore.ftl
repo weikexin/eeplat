@@ -1,5 +1,7 @@
 <#--定义dataBinding-->
-<#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()>  
+<#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()> 
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()> 
+
 <#--开始输出空行-->
 <#if model.numTopP?exists>
 	<#list 1..model.numTopP as x>  
@@ -86,7 +88,7 @@
 			<#if (model.moreGridFormLinks?size > 0) >
 				<#if (model.abstractGridFormLinks?size > 0)>   
 				<tr>
-					<td colspan="${colNum*2}" style="cursor:pointer" ><span style="cursor:pointer" onclick="toggleMore(this);"><b>更多信息</b></span></td>
+					<td colspan="${colNum*2}" style="cursor:pointer" ><span style="cursor:pointer" onclick="toggleMore(this);"><b>${i18n('More')}</b></span></td>
 				</tr>
 				</#if>
 			<#macro JudgeDisplay >
@@ -140,7 +142,7 @@ function toggleMore(obj){
 
     var a = $(obj).parent().parent().nextAll(":not(.buttonMore)");
 	a.toggle(a.css('display') == 'none');
-	var html = $(obj).text()=='更多信息' ? '<b>更少信息</b>' : '<b>更多信息</b>';
+	var html = $(obj).text()=="${i18n('More')}" ? "<b>${i18n('Less')}</b>" : "<b>${i18n('More')}</b>";
 	$(obj).html(html);
 
 }

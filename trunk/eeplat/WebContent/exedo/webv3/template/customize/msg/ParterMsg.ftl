@@ -1,8 +1,6 @@
-
-
 <div id="${model.objUid}" class="fb-wall" style="display: block;">
 
-   <div class="fb-wall-box fb-wall-box-first">
+   <div id="msg_first" class="fb-wall-box fb-wall-box-first">
 
 	   	<div class="con">
 			<div class="pd">
@@ -12,9 +10,9 @@
 			</div>
 			<div class="img_top"></div>
 			<div class="text_status">
-				<textarea class="input_box"></textarea>
+				<textarea class="input_box" id="msg_body"></textarea>
 			</div>
-			<div class="button_outside_border_blue" id="share">
+			<div class="button_outside_border_blue" id="msg_share">
 				<div class="button_inside_border_blue">发布</div>
 			</div>
 			<div class="clear"></div>
@@ -56,7 +54,9 @@
 							href="#s"
 							class="fb-wall-comment-avatar" target="_blank"><img
 								src="${contextPath}images/empty.gif"></a> 
-				    <input type="text" name="ttt" /></span>			
+								<textarea class="input_box_update" ></textarea>
+					  		  <div style="float:right;margin-top:5px;width:46px;cursor:pointer"  rel_subject="${ins.map.id?if_exists}" class="button_comment button_inside_border_blue">回复</div>
+				    </span>			
 			    </div>
 			</div>
 
@@ -68,7 +68,56 @@
 
 <script type="text/javascript">
 
-	$(".input_box").elastic().css("height","30px");
+	$(".input_box").elastic();
+	
+	$(".input_box_update").elastic();
+	
+	$("#msg_share").click(
+	  function(){
+	  
+	  		
+		if($('#msg_body').val()==null || $.trim($('#msg_body').val()) == ''){
+		  return;
+		}
+	
+		var paras = "msg_content=" + encodeURIComponent($('#msg_body').val());
+	 	 callService({'btn':this,
+	 	 'serviceName':'c_subject_insert',
+	 	 'paras':paras,
+	 	 'callback':refreshMsg
+	 	 });
+	  	 	
+	  }
+	);
+	
+	function refreshMsg(){
+		loadPml({'pml':'PM_c_subject_partermsg','target':'PM_c_subject_partermsg'});
+	}
+	
+	
+	$(".button_comment").click(
+	  function(){
+		if($(this).prev().val()==null || $.trim($(this).prev().val()) == ''){
+		  return;
+		}
+
+		var paras = "c_content=" + encodeURIComponent($(this).prev().val()) + "&subject_uid=" + encodeURIComponent($(this).attr('rel_subject'));
+	 	 callService({'btn':this,
+	 	 'serviceName':'c_comment_insert',
+	 	 'paras':paras,
+	 	 'callback':refreshCommit
+	 	 });
+	  	 	
+	  }
+	);
+	
+	
+	function refreshCommit(){
+		//alert($(this).prev().val());
+		loadPml({'pml':'PM_c_subject_partermsg','target':'PM_c_subject_partermsg'});
+	}
+	
+	
 	
 
 </script> 

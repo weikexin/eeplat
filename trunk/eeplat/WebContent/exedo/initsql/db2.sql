@@ -367,6 +367,21 @@ create table T_EXPENSE
 ;
 alter table T_EXPENSE
   add constraint EXPENSE_KEY primary key (ID);
+  
+  CREATE TABLE do_log_dev (
+  id varchar(32) NOT NULL,
+  threadstr varchar(255) ,
+  starttime date ,
+  userName varchar(256) ,
+  ip varchar(128),
+  msgstr clob,
+  col1 varchar(255) ,
+  col2 varchar(255) ,
+  col3 varchar(255) 
+  ) ;
+
+alter table do_log_dev
+  add constraint do_log_dev primary key (id);
 
 CREATE TABLE DO_CODE_MAXSEQUENCE (
   OBJUID VARCHAR (32)  NOT NULL ,

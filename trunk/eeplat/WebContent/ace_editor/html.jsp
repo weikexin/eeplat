@@ -37,26 +37,30 @@
 
 	var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 
-    var editor;
 
 	var autocompleting=false;
 	
 	var html_tags=['!doctype','a','abbr','acronym','address','applet','area','b','base','basefont','bdo','bgsound','big','blink','blockquote','body','br','button','caption','center','cite','code','col','colgroup','comment','dd','del','dfn','dir','div','dl','dt','em','embed','fieldset','font','form','frame','frameset','h1','h2','h3','h4','h5','h6','head','hr','html','i','iframe','ilayer','img','input','ins','isindex','kbd','keygen','label','layer','legend','li','link','listing','map','marquee','menu','meta','multicol','nextid','nobr','noembed','noframes','nolayer','noscript','object','ol','optgroup','option','p','param','plaintext','pre','q','rb','rbc','rp','rt','rtc','ruby','s','samp','script','select','small','spacer','span','strike','strong','style','sub','sup','table','tbody','td','textarea','tfoot','th','thead','tr','tt','u','ul','var','wbr','xml','xmp','#assign','#if','#else','#elseif','#list','#switch','#for','#break','#setting','#break','#macro'];
 	
 	window.onload = function() {
-		editor = ace.edit("htmleditor");
+		
+		if(parent.htmlEditor!=null){
+			parent.htmlEditor.destroy();
+		}
+		
+		parent.htmlEditor = ace.edit("htmleditor");
 		
 		document.getElementById('htmleditor').style.fontSize='16px';
-		//editor.getSession().setUseWrapMode(true);
-		editor.getSession().setValue(theHiddenValue);
+		//parent.htmlEditor.getSession().setUseWrapMode(true);
+		parent.htmlEditor.getSession().setValue(theHiddenValue);
 		
 		var Mode = require("ace/mode/html").Mode;
-		editor.getSession().setMode(new Mode());
+		parent.htmlEditor.getSession().setMode(new Mode());
 		
-		editor.setBehavioursEnabled(false);
+		parent.htmlEditor.setBehavioursEnabled(false);
 		
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "autocomplete",
 			exec: function(editor)  {
 			
@@ -77,12 +81,12 @@
 					ac.size=10;
 				}
 
-				var sel = editor.getSelection();
+				var sel = parent.htmlEditor.getSelection();
 				
-				var session = editor.getSession();
+				var session = parent.htmlEditor.getSession();
 				
 				var lead = sel.getSelectionLead();
-				var pos = editor.renderer.textToScreenCoordinates(lead.row, lead.column);
+				var pos = parent.htmlEditor.renderer.textToScreenCoordinates(lead.row, lead.column);
 				
 				/*
 				ac.addEventListener('click',function(e){
@@ -91,7 +95,7 @@
 				*/
 				
 				//calulate the container offset
-				var obj=editor.container;
+				var obj=parent.htmlEditor.container;
 				
 				var curleft = 0;
 				var curtop = 0;
@@ -108,9 +112,9 @@
 				ac.style.display='block';
 				ac.style.background='white';
 				
-				var sel=editor.selection.getRange();
+				var sel=parent.htmlEditor.selection.getRange();
 
-				var line=editor.getSession().getLine(sel.start.row);						
+				var line=parent.htmlEditor.getSession().getLine(sel.start.row);						
 				
 				line=line.substr(0,sel.start.col);						
 			
@@ -152,13 +156,13 @@
 				
 				ac.selectedIndex=0;						
 		
-				editor.container.appendChild(ac);
+				parent.htmlEditor.container.appendChild(ac);
 				
 				autocompleting=true;
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "langle",
 			bindKey: {
 				win: "Shift-,", // <
@@ -166,17 +170,17 @@
 				sender: "htmleditor"
 			},
 			exec: function(editor) {					
-				editor.insert('<');
+				parent.htmlEditor.insert('<');
 					
-				//editor.autocomplete();
-				editor.commands.exec('autocomplete',editor);
+				//parent.htmlEditor.autocomplete();
+				parent.htmlEditor.commands.exec('autocomplete',editor);
 
 				//command.exec(editor);					
 			}
 		});
 		
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "finish",
 			bindKey: {
 				win: "Shift-.", // >
@@ -185,7 +189,7 @@
 			},
 			exec: function(editor) {					
 				
-				editor.insert('>');
+				parent.htmlEditor.insert('>');
 				if( document.getElementById('ac') ){
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
@@ -195,7 +199,7 @@
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "up",
 			bindKey: {
 				win: "Up",
@@ -212,12 +216,12 @@
 						select.selectedIndex=select.selectedIndex-1;
 					}
 				}else{
-					editor.navigateUp(args.times);
+					parent.htmlEditor.navigateUp(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "down",
 			bindKey: {
 				win: "Down",
@@ -234,12 +238,12 @@
 						select.selectedIndex=select.selectedIndex+1;
 					}
 				}else{
-					editor.navigateDown(args.times);
+					parent.htmlEditor.navigateDown(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "escape",
 			bindKey: {
 				win: "Esc",
@@ -257,7 +261,7 @@
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.htmlEditor.commands.addCommand({
 			name: "enter",
 			bindKey: {
 				win: "Return",
@@ -269,9 +273,9 @@
 					var select=document.getElementById('ac');
 					var tag=select.options[select.selectedIndex].value;
 					
-					var sel=editor.selection.getRange();
+					var sel=parent.htmlEditor.selection.getRange();
 
-					var line=editor.getSession().getLine(sel.start.row);						
+					var line=parent.htmlEditor.getSession().getLine(sel.start.row);						
 					
 					line=line.substr(0,sel.start.column);						
 				
@@ -284,21 +288,21 @@
 					
 					sel.start.column=sel.start.column-text.length
 												
-					editor.selection.setSelectionRange(sel);
+					parent.htmlEditor.selection.setSelectionRange(sel);
 					
-					editor.insert(tag);
+					parent.htmlEditor.insert(tag);
 					
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
 					autocompleting=false;
 				}else{
-					editor.insert('\n');
+					parent.htmlEditor.insert('\n');
 				}
 			}
 		});
 		
 	
-//		editor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
+//		parent.htmlEditor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
 //			if( document.getElementById('ac') ){
 //				var ac=document.getElementById('ac');
 //				
@@ -316,7 +320,7 @@
 		
 
 		
-		event.addListener(editor.textInput.getElement(), "keydown", 
+		event.addListener(parent.htmlEditor.textInput.getElement(), "keydown", 
 			function(e){
 				if(autocompleting && ( (e.keyCode >=65 && e.keyCode <=90)  )){//|| e.keyCode == 51
 						
@@ -330,7 +334,7 @@
 								  }
 							}
 						}else{
-							editor.navigateUp(args.times);
+							parent.htmlEditor.navigateUp(args.times);
 						}
 				}
 			}

@@ -1,5 +1,7 @@
 
 <div id="${model.objUid}" class="fb-wall" style="display: block;">
+<#if (data?size > 0)>
+
   <#list data as ins>
      <#if ins_index==0>
        <div class="fb-wall-box fb-wall-box-first">
@@ -24,5 +26,16 @@
 			<div class="fb-wall-clean"></div>
 		</div>
   </#list>
+<#else>
+	 <div class="fb-wall-box fb-wall-box-first">
+	       
+	       <div class="fb-wall-data">
+				<span class="fb-wall-message">
+					暂时没有消息!
+					<br></span>
+			</div>
+	       	<div class="fb-wall-clean"></div>
+    </div>
+</#if>  
 </div>
 

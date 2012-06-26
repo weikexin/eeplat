@@ -1,12 +1,13 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>管理平台登录</title>
+<title><%=I18n.instance().get("Welcome Login")%></title>
 
 <script language="javascript">
   globalURL = "/<%=DOGlobals.URL%>/";
@@ -46,22 +47,22 @@ a { pointer: cursor;  	text-decoration:	none;}
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
-		<label>账号 </label> <br />
+		<label><%=I18n.instance().get("UserName")%> </label> <br />
 		<input type="text" name="name" id="name" class="input"  size="20" tabindex="10" /></label>
 	</p>
 	<p>
-		<label>密码 </label><br />
+		<label><%=I18n.instance().get("Paasword")%></label><br />
 		<input type="password" name="password" id="password" class="input"  size="20" tabindex="20" /></label>
 	</p>
 	<p class="forgetmenot">
 	
-	     <label>验证码</label>
+	     <label><%=I18n.instance().get("Verification")%></label>
        <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
         <img src='<%=request.getContextPath()%>/exedo/webv3/image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
 
 	<br/><br/>	
 	
-  	 <span  style="valign:top"> 其它账号登录：</span>
+  	 <span  style="valign:top"> <%=I18n.instance().get("Others")%>：</span>
   	 <a  title="新浪微博登录" href="<%=request.getContextPath()%>/openid/weibo/call.jsp">  <img alt="新浪微博登录" src="<%=request.getContextPath()%>/index/images/16_weibo.png" border=0 /> </a> &nbsp;
   	 <a  title="QQ登录" href="<%=request.getContextPath()%>/openid/qq/call.jsp">   <img alt="QQ登录" src="<%=request.getContextPath()%>/index/images/16_qq.png" border=0 />   </a> &nbsp;
   	 <a  title="网易账号登录" href="<%=request.getContextPath()%>/openid/163/call.jsp">   <img alt="网易账号登录"  src="<%=request.getContextPath()%>/index/images/16_163.png" border=0 />  </a> &nbsp;

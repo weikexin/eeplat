@@ -161,7 +161,8 @@ public class Escape {
 	
 	
 	public static void main(String[] args) {
-		String stest = "oracle+/";
+		String stest = "北京";
+		System.out.println(Escape.escape(stest));
 //		System.out.println(stest);
 //		System.out.println(URLEncoder.encode(stest));
 		

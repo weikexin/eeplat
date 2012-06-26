@@ -122,7 +122,7 @@ public class ReadTxtFile {
 		in.close();
 
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream(indexFile), "utf-8"));
+				new FileOutputStream(indexFile+"2"), "utf-8"));
 		out.append(sb.toString());
 		out.flush();
 		out.close();

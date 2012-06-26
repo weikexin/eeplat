@@ -13,7 +13,18 @@
 	 </script>
 <#else>
 <input type="hidden" id="${model.fullColID}"  value="${model.value?if_exists}"/>
-<iframe id="ace_editer_code" name="ace_editer_code" frameborder='0' src="ace_editor/css.jsp?hiddenid=${model.fullColID}" style="width:100%;height:450px"/>
+<script>
+  	
+  $("#ace_editer_code_html").remove();
+  $("#ace_editer_code_js").remove();
+  $("#ace_editer_code_rhino").remove();
+  $("#ace_editer_code_css").remove();
+  
+  $("#${model.fullColID}")
+  .after("<iframe id='ace_editer_code_css' name='ace_editer_code' frameborder='0' src='ace_editor/css.jsp?hiddenid=${model.fullColID}' style='width:100%;height:450px'/>");
+</script>
+
+
 </#if>
 
 
