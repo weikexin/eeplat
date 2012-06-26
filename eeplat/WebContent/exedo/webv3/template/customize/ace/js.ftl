@@ -17,6 +17,7 @@
 	   });
 	 </script>
 <#else>
+
 <input type="hidden" id="${model.fullColID}"  value="${model.value?if_exists}"/>
-<iframe id="ace_editer_code" name="ace_editer_code" frameborder='0' src="ace_editor/js.jsp?hiddenid=${model.fullColID}" style="width:100%;height:450px"/>
+<iframe id="ace_editer_code_js" name="ace_editer_code" frameborder='0' src="ace_editor/js.jsp?hiddenid=${model.fullColID}" style="width:100%;height:450px"/>
 </#if>

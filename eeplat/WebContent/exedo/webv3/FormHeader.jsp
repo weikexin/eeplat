@@ -5,6 +5,7 @@
 <%@ page import="com.exedosoft.plat.bo.org.OrgParterValue"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
@@ -32,7 +33,7 @@
 	
 	
 	if("".equals(company) ||  "a".equals(userName)){
-		company = "开发者";
+		company = I18n.instance().get("Developer");
 	}
 
 %>
@@ -93,11 +94,11 @@
 	
 	 <div class="control">
 	    <span class="inner">
-			欢迎您，<%=userName%> ！
+			<%=I18n.instance().get("Welcome")%>，<%=userName%> ！
 		</span> [ <%=company%> ]
 	
 		&nbsp;&nbsp;
-			<a onclick="refreshMe()" >清空缓存</a> | <a onclick="helpme();" >帮助</a>  | <a onclick="logOff()" >退出</a>
+			<a onclick="refreshMe()" ><%=I18n.instance().get("Clear Cache")%></a> | <a onclick="helpme();" ><%=I18n.instance().get("Help")%></a>  | <a onclick="logOff()" ><%=I18n.instance().get("Exit")%></a>
 	</div>
 
 </div>

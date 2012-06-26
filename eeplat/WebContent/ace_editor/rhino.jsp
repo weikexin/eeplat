@@ -8,7 +8,7 @@
         overflow: hidden;
     }
     
-    #javascripteditor { 
+    #rhinoeditor { 
         margin: 0;
         position: absolute;
         top: 0;
@@ -26,15 +26,14 @@
 
 %>
 
-<pre id="javascripteditor"></pre>
+<pre id="rhinoeditor"></pre>
     
 <script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
 
 var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
-    var editor;
-
+  
 
 	var autocompleting=false;
 	
@@ -91,16 +90,16 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 					ac.size=10;
 				}
 
-				var sel = editor.getSelection();
+				var sel = parent.rhinoEditor.getSelection();
 				
-				var session = editor.getSession();
+				var session = parent.rhinoEditor.getSession();
 
 				var lead = sel.getSelectionLead();
 
-				var pos = editor.renderer.textToScreenCoordinates(lead.row, lead.column);
+				var pos = parent.rhinoEditor.renderer.textToScreenCoordinates(lead.row, lead.column);
 				
 				//calulate the container offset
-				var obj=editor.container;
+				var obj=parent.rhinoEditor.container;
 				
 				var curleft = 0;
 				var curtop = 0;
@@ -117,7 +116,7 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 				ac.style.display='block';
 				ac.style.background='white';
 				
-				var sel=editor.selection.getRange();
+				var sel=parent.rhinoEditor.selection.getRange();
 
 				//var tag;
 				for(i in js_tags){
@@ -157,31 +156,35 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 				
 				ac.selectedIndex=0;						
 		
-				editor.container.appendChild(ac);
+				parent.rhinoEditor.container.appendChild(ac);
 				
 				autocompleting=true;
 
 	}
 	
 	window.onload = function() {
-	
-		editor = ace.edit("javascripteditor");
 		
-		document.getElementById('javascripteditor').style.fontSize='16px';
-		//editor.getSession().setUseWrapMode(true);
+		if(parent.rhinoEditor!=null){
+			parent.rhinoEditor.destroy();
+		}
+	
+		parent.rhinoEditor = ace.edit("rhinoeditor");
+		
+		document.getElementById('rhinoeditor').style.fontSize='16px';
+		//parent.rhinoEditor.getSession().setUseWrapMode(true);
 		
 		var Mode = require("ace/mode/javascript").Mode;
-		editor.getSession().setMode(new Mode());
+		parent.rhinoEditor.getSession().setMode(new Mode());
 		
-		editor.setBehavioursEnabled(false);
+		parent.rhinoEditor.setBehavioursEnabled(false);
 		
-		editor.getSession().setValue(theHiddenValue);
+		parent.rhinoEditor.getSession().setValue(theHiddenValue);
 		
-		//editor.commands.removeCommand("gotowordright");///Ctril + right use myself defined
+		//parent.rhinoEditor.commands.removeCommand("gotowordright");///Ctril + right use myself defined
 		
 	
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "langle2",
 			bindKey: {
 				win: "Ctrl-.", // Shift-Right
@@ -189,14 +192,14 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 			},
 			exec: function(editor) {	
                
-				//editor.autocomplete();
+				//parent.rhinoEditor.autocomplete();
 				
 				autocomplete(editor);
 		
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "save",
 			bindKey: {
 				win: "Ctrl-s", // Shift-Right
@@ -209,16 +212,16 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 		
 		
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "finish",
 			bindKey: {
 				win: ".", // >
 				mac: ".", // >
-				sender: "javascripteditor"
+				sender: "rhinoeditor"
 			},
 			exec: function(editor) {					
 				
-				editor.insert('.');
+				parent.rhinoEditor.insert('.');
 				if( document.getElementById('ac') ){
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
@@ -228,12 +231,12 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "up",
 			bindKey: {
 				win: "Up",
 				mac: "Up",
-				sender: "javascripteditor"
+				sender: "rhinoeditor"
 			},
 			exec: function(editor,args) {
 				if( document.getElementById('ac') ){
@@ -245,17 +248,17 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 						select.selectedIndex=select.selectedIndex-1;
 					}
 				}else{
-					editor.navigateUp(args.times);
+					parent.rhinoEditor.navigateUp(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "down",
 			bindKey: {
 				win: "Down",
 				mac: "Down",
-				sender: "javascripteditor"
+				sender: "rhinoeditor"
 			},
 			exec: function(editor,args) {
 				if( document.getElementById('ac') ){
@@ -267,17 +270,17 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 						select.selectedIndex=select.selectedIndex+1;
 					}
 				}else{
-					editor.navigateDown(args.times);
+					parent.rhinoEditor.navigateDown(args.times);
 				}
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "escape",
 			bindKey: {
 				win: "Esc",
 				mac: "Esc",
-				sender: "javascripteditor"
+				sender: "rhinoeditor"
 			},
 			exec: function(editor) {
 				if( document.getElementById('ac') ){							
@@ -290,36 +293,36 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 			}
 		});
 		
-		editor.commands.addCommand({
+		parent.rhinoEditor.commands.addCommand({
 			name: "enter",
 			bindKey: {
 				win: "Return",
 				mac: "Return",
-				sender: "javascripteditor"
+				sender: "rhinoeditor"
 			},
 			exec: function(editor) {
 				if( document.getElementById('ac') ){
 					var select=document.getElementById('ac');
 					var tag=select.options[select.selectedIndex].value;
 					
-					var sel=editor.selection.getRange();
+					var sel=parent.rhinoEditor.selection.getRange();
 
-					var line=editor.getSession().getLine(sel.start.row);	
+					var line=parent.rhinoEditor.getSession().getLine(sel.start.row);	
 					if(line.toLowerCase().charAt(line.length-1)==tag.toLowerCase().charAt(0)){
 					  tag = tag.substr(1);
 					}	
-					editor.insert(tag);
+					parent.rhinoEditor.insert(tag);
 					var ac=document.getElementById('ac');
 					ac.parentNode.removeChild(ac);
 					autocompleting=false;
 				}else{
-					editor.insert('\n');
+					parent.rhinoEditor.insert('\n');
 				}
 			}
 		});
 		
 	
-//		editor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
+//		parent.rhinoEditor.getSession().selection.on('changeCursor',function(oldRange, newRange, newText) {			
 //			if( document.getElementById('ac') ){
 //				var ac=document.getElementById('ac');
 //				
@@ -327,11 +330,11 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 //			}					
 //		});
 		
-//		editor.getSession().on('change', function(e) {   
+//		parent.rhinoEditor.getSession().on('change', function(e) {   
 			
-//			var sel=editor.selection.getRange();
+//			var sel=parent.rhinoEditor.selection.getRange();
 
-//			var line=editor.getSession().getLine(sel.start.row);						
+//			var line=parent.rhinoEditor.getSession().getLine(sel.start.row);						
 
 			//console.log("last::" + line.charAt(sel.start.column));
 	  
@@ -343,7 +346,7 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 		
 
 		
-		event.addListener(editor.textInput.getElement(), "keydown", 
+		event.addListener(parent.rhinoEditor.textInput.getElement(), "keydown", 
 			function(e){
 				if(autocompleting && ( (e.keyCode >=65 && e.keyCode <=90)  )){//|| e.keyCode == 51
 						
@@ -357,7 +360,7 @@ var theHiddenValue = parent.document.getElementById("<%=hiddenid%>").value;
 								  }
 							}
 						}else{
-							editor.navigateUp(args.times);
+							parent.rhinoEditor.navigateUp(args.times);
 						}
 				}
 			}

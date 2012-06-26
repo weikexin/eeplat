@@ -708,7 +708,7 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		BOInstance instance = new BOInstance();
 		instance.setUid("tree.new.record");
 		instance.setBo(service.getBo());
-		instance.putValue(service.getBo().getValueCol(), "新增");
+		instance.putValue(service.getBo().getValueCol(), "Add New");
 		list.add(instance);
 
 	}

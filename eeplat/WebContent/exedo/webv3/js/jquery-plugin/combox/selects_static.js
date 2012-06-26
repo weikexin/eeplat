@@ -40,7 +40,7 @@
 		    setTip(obj,popHeight);
 
   			var dmLayer = "";
-			dmLayer = dmLayer + '<table class="dmBody" style="margin-left:5px;margin-top:5px;width:95%;font-size:9pt;cursor:pointer"   border="0" cellpadding="0" cellspacing="0" >';
+			dmLayer = dmLayer + '<table id="dmLayerTable" class="dmBody" style="word-break:keep-all;margin-left:5px;margin-top:5px;font-size:9pt;cursor:pointer"   border="0" cellpadding="0" cellspacing="0" >';
 			
 			//输出一个空行
 			dmLayer = dmLayer + '<tr height="20px"  codeID="" ><td style="padding: 1px;" ></td></tr>';
@@ -58,6 +58,18 @@
 			dmLayer = dmLayer + '</table>';
 
 			$("#dmLayer").empty().append(dmLayer);
+			
+			
+			var dmWTableWidth = $("#dmLayerTable").width();
+			if(dmWTableWidth < 144){
+				$("#dmLayerTable").css('width',164);
+				dmWTableWidth = 164;
+			}else{
+				dmWTableWidth = dmWTableWidth + 20;
+			}
+			$("#dmLayer").css('width',dmWTableWidth);
+
+			
 			$(".dmBody tr").bind('click',selInputValue)
  		                 .bind('mouseover',function(){$(this).find("td").addClass("dmLayerMouseOverCss")})
  		                 .bind('mouseout',function(){$(this).find("td").removeClass("dmLayerMouseOverCss")});
@@ -88,7 +100,7 @@ function invokeStaticPopup(obj,dataStr,clearOtherUid){
 		  	obj = obj.previousSibling;
 		  }
 		  var t = $(obj);
-		  $("#dmLayer").css("top", t.offset().top + t.height()+1).css("left",t.offset().left+1);
+		  $("#dmLayer").css("top", t.offset().top + t.height()+1).css("left",t.offset().left);
  	      $("#dmLayer").empty().append("<font color='red'>正在加载.............</font>").show();
 		  createStaticDmLayer(obj,dataStr,clearOtherUid);
 		  $(document).bind("mouseover",popupHide);

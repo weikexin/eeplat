@@ -80,7 +80,19 @@ z-index:2;
 font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 color:#808080;
 width:495px;
-height:30px;
+height:50px;
+padding:5px 0 0 5px;
+border:solid #b4bbcd 1px;
+outline:none;
+resize:none;
+}
+
+
+.input_box_update{
+font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+color:#808080;
+width:350px;
+height:20px;
 padding:5px 0 0 5px;
 border:solid #b4bbcd 1px;
 outline:none;

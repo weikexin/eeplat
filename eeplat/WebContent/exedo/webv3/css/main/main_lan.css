@@ -174,7 +174,7 @@ table.tablesorter tbody tr.mover td{
 
 table.tablesorter tfoot tr td {
 		background-color:#e6EEEE;
-		border: 1px solid #FFF;
+		border: 1px solid #ccc;
 		font-size: 12px;
 }
 
@@ -213,14 +213,14 @@ object{
 
 #dmLayer{
 	position: absolute;
-	border: 1px solid blue;
+	border: 1px solid #838484;
 	background:white;
-	width: 163px;
+	width: 164px;
 	height: 200px; 
 	z-index: 9998;
 	display: none;
-	overflow-x:auto;
 	overflow-y:auto;
+	overflow-x:hidden;
 }
 
 

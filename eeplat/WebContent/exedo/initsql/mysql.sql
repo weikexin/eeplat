@@ -13,7 +13,7 @@ CREATE TABLE `do_auth_owner` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objUid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_auth_suite`;
@@ -32,7 +32,7 @@ CREATE TABLE `do_auth_suite` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_authorization`;
@@ -53,7 +53,7 @@ CREATE TABLE `do_authorization` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `do_authorization` VALUES ('402880312870acd1012870f1133a0001', '9', '4028803127b6f15a0127b725c6930003', null, null, null, '110', 'test_n12', '1', '1', null, null, null, null, null);
 INSERT INTO `do_authorization` VALUES ('40288031287fd27f0128801f4bb9000a', '9', '40288031287fd27f01287fdc23670002', null, null, null, '110', 'tt2_n11', '1', '1', null, null, null, null, null);
@@ -98,7 +98,7 @@ CREATE TABLE `do_log` (
   `ip` varchar(50) default NULL,
   `sessionid` varchar(50) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_log_data`;
@@ -117,7 +117,7 @@ CREATE TABLE `do_log_data` (
   `OLD_VALUE` varchar(2000) default NULL,
   `NEW_VALUE` varchar(2000) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_org_dept`;
@@ -133,7 +133,7 @@ CREATE TABLE `do_org_dept` (
   `parentUid` varchar(32) default NULL,
   `note` varchar(255) default NULL,
   PRIMARY KEY  (`objUid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `do_org_dept` VALUES ('4028803127b6f15a0127b7294a7a0004', 'pingtaibumen', '平台部门', '40288031278ed91501278ed915b30000', '2', null, null, null, null, null);
 
@@ -151,7 +151,7 @@ CREATE TABLE `do_org_role` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objUid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `do_org_role` VALUES ('4028803127b6f15a0127b725c6930003', '普通员工', 'putongyuangong', null, '1', '普通员工', null, null, null, null, null);
 INSERT INTO `do_org_role` VALUES ('40288031287fd27f01287fdb80af0001', '部门经理', 'bumenjingli', null, null, '部门经理', null, null, null, null, null);
@@ -173,7 +173,7 @@ CREATE TABLE `do_org_role_conflict` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objUid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
 
 
 DROP TABLE IF EXISTS `do_org_timespan`;
@@ -188,7 +188,7 @@ CREATE TABLE `do_org_timespan` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objUid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_org_user`;
@@ -209,7 +209,7 @@ CREATE TABLE `do_org_user` (
   `modifyDate` datetime default NULL,
   `mVersion` varchar(50) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
 
 
 CREATE TABLE `do_org_user_delegate` (
@@ -241,7 +241,7 @@ CREATE TABLE `do_org_user_role` (
   `USER_UID` varchar(32) default NULL,
   `ROLE_UID` varchar(50) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 INSERT INTO `do_org_user_role` VALUES ('40288031287fd27f01288047ad6e0071', '40288031287fd27f01288045ecd3006e', '4028803127b6f15a0127b725c6930003');
@@ -258,7 +258,7 @@ CREATE TABLE `do_wfi_his_ni_dependency` (
   `Post_NID_UID` varchar(32) default NULL,
   `do_condition` varchar(255) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_his_nodeinstance`;
@@ -285,7 +285,7 @@ CREATE TABLE `do_wfi_his_nodeinstance` (
   `node_ext2` varchar(500) default NULL,
   `retNodeUID` varchar(50) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_his_processinstance`;
@@ -306,7 +306,7 @@ CREATE TABLE `do_wfi_his_processinstance` (
   `instance2_uid` varchar(32) default NULL,
   `instance3_uid` varchar(32) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_his_varinstance`;
@@ -319,7 +319,7 @@ CREATE TABLE `do_wfi_his_varinstance` (
   `bo_property_uid` varchar(32) default NULL,
   `instance_uid` varchar(100) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_ni_dependency`;
@@ -329,7 +329,7 @@ CREATE TABLE `do_wfi_ni_dependency` (
   `Post_NID_UID` varchar(32) default NULL,
   `do_condition` varchar(255) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_nodeinstance`;
@@ -356,7 +356,7 @@ CREATE TABLE `do_wfi_nodeinstance` (
   `node_ext2` varchar(500) default NULL,
   `retNodeUID` varchar(50) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_processinstance`;
@@ -377,7 +377,7 @@ CREATE TABLE `do_wfi_processinstance` (
   `instance2_uid` varchar(32) default NULL,
   `instance3_uid` varchar(32) default NULL,
   PRIMARY KEY  (`OBJUID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `do_wfi_varinstance`;
@@ -390,7 +390,7 @@ CREATE TABLE `do_wfi_varinstance` (
   `bo_property_uid` varchar(32) default NULL,
   `instance_uid` varchar(100) default NULL,
   PRIMARY KEY  (`objuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE DO_CODE_MAXSEQUENCE (
 	OBJUID varchar (32)  NOT NULL ,
@@ -407,6 +407,20 @@ CREATE TABLE DO_CODE_MAXSEQUENCE (
 	mVersion varchar (50)  NULL 
 );
 
+
+CREATE TABLE do_log_dev (
+  id varchar(32) NOT NULL,
+  threadstr varchar(255) default NULL,
+  starttime datetime default NULL,
+  userName varchar(256) default NULL,
+  ip varchar(128) default NULL,
+  msgstr text,
+  col1 varchar(255) default NULL,
+  col2 varchar(255) default NULL,
+  col3 varchar(255) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `t_expense`;
 CREATE TABLE `t_expense` (
   `id` varchar(32) NOT NULL default '',
@@ -416,7 +430,7 @@ CREATE TABLE `t_expense` (
   `expense_money` float NOT NULL default '0',
   `note` text default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP VIEW IF EXISTS `wf_db`;
 CREATE  VIEW `wf_db` AS select distinct `wpi`.`curState` AS `curstate`,`ni`.`node_uid` AS `node_uid`,`ni`.`nodeDate` AS `nodeDate`,`ni`.`OBJUID` AS `contextNIUid`,`wpi`.`OBJUID` AS `contextPIUid`,`wpi`.`instance_uid` AS `instance_uid`,`ni`.`pass_txt` AS `pass_txt`,`ni`.`reject_txt` AS `reject_txt`,`ur`.`USER_UID` AS `user_uid`,`wpi`.`WFI_Desc` AS `WFI_Desc`,`wpi`.`startUser` AS `startUser`,`wpi`.`startTime` AS `startTime` from (((`do_wfi_nodeinstance` `ni` join `do_wfi_processinstance` `wpi`) join `do_org_user_role` `ur`) join `do_authorization` `a`) where ((`wpi`.`OBJUID` = `ni`.`PI_UID`) and (`a`.`parterUid` = _utf8'9') and (`a`.`ouUid` = `ur`.`ROLE_UID`) and (`ni`.`node_uid` = `a`.`whatUid`) and (`ni`.`ExeStatus` = 2) and (`wpi`.`ExeStatus` = 2));

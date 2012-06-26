@@ -1,12 +1,13 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>管理平台登录</title>
+<title><%=I18n.instance().get("Welcome Login")%></title>
 
 <script language="javascript">
   globalURL = "/<%=DOGlobals.URL%>/";
@@ -46,16 +47,16 @@ html,body{
 
 <form name="loginform" id="loginform"  method="post">
 	<p>
-		<label>用户名 </label> <br />
+		<label><%=I18n.instance().get("UserName")%> </label> <br />
 		<input type="text" name="name" id="name" class="input" value="a" size="20" tabindex="10" /></label>
 	</p>
 	<p>
-		<label>密码 </label><br />
+		<label><%=I18n.instance().get("Paasword")%></label><br />
 		<input type="password" name="password" id="password" class="input" value="1" size="20" tabindex="20" /></label>
 	</p>
 	<p class="forgetmenot">
 	
-	     <label>验证码</label>
+	    <label><%=I18n.instance().get("Verification")%></label>
        <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
         <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
 	

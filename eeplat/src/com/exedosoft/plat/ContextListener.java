@@ -74,7 +74,7 @@ public class ContextListener implements ServletContextListener {
 		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
 		
 		/////////////////////////////////////Online Timer
-		Timer t = new Timer();
+		Timer t = new Timer(true);
 		CheckOnlineTask  cot = new CheckOnlineTask();
 		t.schedule(cot,0, 2 * 60 * 1000);
 		////////////////////////////////Online Timer
@@ -149,12 +149,12 @@ public class ContextListener implements ServletContextListener {
 		// 最小空闲连接
 		// bds.setMinIdle(5);
 		// 最大空闲连接
-		bds.setMaxIdle(5);
+		bds.setMaxIdle(2);
 		// 超时回收时间(以毫秒为单位)
 		// //等待30秒
 		bds.setMaxWait(30000);
 		// /////////初始化连接池
-		bds.setInitialSize(10);
+		bds.setInitialSize(5);
 
 		bds.setRemoveAbandoned(true);
 		bds.setRemoveAbandonedTimeout(60);

@@ -170,8 +170,12 @@ public class DOTableList extends DOAbstractAction {
 
 			ResultSet rs = meta.getColumns(null, schema, aTable, null);
 			while (rs.next()) {
-
-				if ((rs.getInt("DATA_TYPE") == Types.VARCHAR || rs
+				
+				if("false".equals(DOGlobals.getValue("gene_key_uuid"))){
+					keyCols.append(rs.getString("COLUMN_NAME")).append(",")
+					.append(rs.getString("COLUMN_NAME")).append(";");
+					
+				}else	if ((rs.getInt("DATA_TYPE") == Types.VARCHAR || rs
 						.getInt("DATA_TYPE") == Types.CHAR)
 						&& rs.getInt("COLUMN_SIZE") >= 32) {
 					keyCols.append(rs.getString("COLUMN_NAME")).append(",")

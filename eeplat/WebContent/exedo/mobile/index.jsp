@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 <!DOCTYPE html>
 	<html>
 	<head>
@@ -29,16 +30,14 @@
 	    <div data-role="content" data-theme="c">
 	        <form  id="loginform" method="get">
 	           <div data-role="fieldcontain">
-		            <label for="username">用户名:</label>
+		            <label for="username"><%=I18n.instance().get("UserName")%>:</label>
 	                <input type="text" name="name" id="username" value=""  />
                </div>
 				<div data-role="fieldcontain">
-				    <label for="password">密码:</label>
+				    <label for="password"><%=I18n.instance().get("Paasword")%>:</label>
 				    <input type="password" name="password" id="password" value="" />
 				</div>	
-   
-	            <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b">确定</a>
-	             
+ 	            <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b"><%=I18n.instance().get("Sign In")%></a>
 	        </form>
 	 
 	    </div>
@@ -74,8 +73,8 @@
 			   success: function(data){
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
-				       // window.location= "AppList.jsp";
-					   window.location= globalURL + "jyhd_mobile_pane.pml";
+				       // window.location= "AppList.jsp";	jyhd_mobile_pane
+					   window.location= globalURL + "wolfvillage_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }

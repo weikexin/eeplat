@@ -3,6 +3,7 @@ var  sc_page_size  = 100;
 var objGlobals;
 
 function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,configClearOtherUid){
+	
 
     objGlobals = obj;
 	// sc_page_size(每页多少条),sc_page_no(第几页)。
@@ -115,7 +116,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 		    
   			var dmLayer = "<div>";
 
-			dmLayer = dmLayer + '<table class="dmBody" height="'+ (height-25)  + 'px" style="margin-left:5px;margin-top:5px;width:100%;font-size:9pt;cursor:pointer"  border="0" cellpadding="0" cellspacing="0">';
+			dmLayer = dmLayer + '<table id="dmLayerTable" class="dmBody" height="'+ (height-25)  + 'px" style="word-break:keep-all;margin-left:5px;margin-top:5px;font-size:9pt;cursor:pointer"  border="0" cellpadding="0" cellspacing="0">';
 						//输出一个空行
 			dmLayer = dmLayer + '<tr height="20px"  codeID="" ><td colspan="2" style="padding: 1px;" ></td></tr>';
 			
@@ -134,7 +135,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 			
 			if(!(pageNo==1 && i < sc_page_size)){
 			
-				dmLayer = dmLayer + '<table height="20" style="margin-left:5px;width:90%;font-size:9pt;cursor:pointer"  border="0" cellpadding="0" cellspacing="0"><tr>';
+				dmLayer = dmLayer + '<table  height="20" style="margin-left:5px;width:90%;font-size:9pt;cursor:pointer"  border="0" cellpadding="0" cellspacing="0"><tr>';
 				
 				if(pageNo>1){
 					dmLayer = dmLayer + '<td  align="center" class="dmLayerPageCss"><span onClick="pageUp(\''
@@ -155,7 +156,17 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 			
 			dmLayer = dmLayer + '</div>';				
 			$("#dmLayer").empty().append(dmLayer);
-  		    $(".dmBody tr").bind('click',selInputValue)
+			
+			var dmWTableWidth = $("#dmLayerTable").width();
+			if(dmWTableWidth < 144){
+				$("#dmLayerTable").css('width',164);
+				dmWTableWidth = 164;
+			}else{
+				dmWTableWidth = dmWTableWidth + 20;
+			}
+			$("#dmLayer").css('width',dmWTableWidth);
+
+			$(".dmBody tr").bind('click',selInputValue)
  		                 .bind('mouseover',function(){$(this).find("td").addClass("dmLayerMouseOverCss")})
  		                 .bind('mouseout',function(){$(this).find("td").removeClass("dmLayerMouseOverCss")});
  		                 
@@ -167,6 +178,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 		   if(ret.success=='false' && ret.msg.indexOf("err001")!=-1){
 			   window.location = "exedo/webv3/logoff.jsp";
 		   }else{
+			   $("#dmLayer").css('width',164);
 			   $("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;没有记录!").show();
 		   }
 	   }	                            
@@ -211,7 +223,7 @@ function invokePopup(obj,aFormName,searchColName,pageNo,pageSize,clearOtherUid){
 		  }
 		  var t = $(obj);
 		  var serviceName = t.prev().attr('serviceName');
-		  $("#dmLayer").css("top", t.offset().top + t.height()+1).css("left",t.offset().left+1);
+		  $("#dmLayer").css("top", t.offset().top + t.height()+1).css("left",t.offset().left);
 		  $("#dmLayer").empty().append("<font color='red'>正在加载.............</font>").show();
 		  createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,'');
 		  $(document).bind("mouseover",popupHide);

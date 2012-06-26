@@ -1,0 +1,21 @@
+	.ui-combobox {
+	vertical-align:text-top;
+
+			    margin:0px;
+	    padding:0px;
+	}
+	.ui-button {
+		vertical-align:text-top;
+        height:22px;
+			    margin:0px;
+	    padding:0px;
+	    		display: inline-block;
+	}
+	.ui-autocomplete-input {
+	vertical-align:text-top;
+	    margin:0px;
+	    padding:0px;
+		v-align:top;
+		height:22px;
+
+	}

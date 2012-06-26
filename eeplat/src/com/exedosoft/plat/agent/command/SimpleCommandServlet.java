@@ -7,7 +7,7 @@ import com.exedosoft.plat.agent.CommandServlet;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 import com.exedosoft.plat.agent.message.MessageIn;
 /**
- * CommandServlet揑銥徣??丅
+ * CommandServlet
  * 
  * @author Administrator
  * 

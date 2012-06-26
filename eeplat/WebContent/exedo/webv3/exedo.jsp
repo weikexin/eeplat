@@ -66,6 +66,8 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/jquery.neosmart.fb.wall.css" type="text/css" /> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/facebook/status.css" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/ztree/zTreeStyle.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/combox.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/pagination/pagination.css" type="text/css"/>
 
  
  <!-- 平台主体及其它集成的css -->
@@ -89,6 +91,11 @@ globalURL = "/<%=DOGlobals.URL%>/";
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/toolbar/toolbar.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/selects_static.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/combox/combox.js" ></script>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/pagination/jquery.pagination.js" ></script>	
+
+
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/jquery.uploadify.v2.1.0.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/fileuploader/swfobject.js" ></script>	
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/treetable/jquery.treeTable.min.js" ></script>
@@ -154,18 +161,25 @@ $(function(){
 
 	  resscrEvt();
 });
+
+</script>
+
+
+<style type="text/css">
 <%
-  DOService aService = DOService.getService("DO_BO_Icon_List_js");
-  if(aService!=null){
+//加载自定义css
+DOService aService = DOService.getService("DO_BO_Icon_List_css");
+if(aService!=null){
 	  List list = aService.invokeSelect();
 	  for(Iterator it = list.iterator(); it.hasNext();){
 		   BOInstance bi = (BOInstance)it.next();
 		   if(bi!=null && bi.getValue("formulaScript")!=null)
 		   out.println(bi.getValue("formulaScript"));
 	  }
-  }
+}
 %>
-</script>
+</style>
+
 </head>
 
 <body  lang=zh>
@@ -173,4 +187,25 @@ $(function(){
 <input  type="hidden" id="mainStyle" value="<%=mainStyle %>"/> 
 <%=paneModelContent%>
 </body>
+<script>
+
+<%
+//加载自定义javascript
+ aService = DOService.getService("DO_BO_Icon_List_js");
+if(aService!=null){
+	  List list = aService.invokeSelect();
+	  for(Iterator it = list.iterator(); it.hasNext();){
+		   BOInstance bi = (BOInstance)it.next();
+		   if(bi!=null && bi.getValue("formulaScript")!=null)
+		   out.println(bi.getValue("formulaScript"));
+	  }
+}
+%>
+
+var cssEditor;
+var jsEditor;
+var htmlEditor;
+var rhinoEditor;
+</script>
+
 </html>

@@ -577,6 +577,12 @@ function insertAceCode(){
 	}
 	
 	var theCode  = '';
+	var hidden_type = $("input[name=mVersion]").val();
+	
+	if(hidden_type==null){
+		hidden_type = 'js';
+	}
+	
 	if($.browser.msie){
 		
 	    if(mirrorEditor){
@@ -586,30 +592,31 @@ function insertAceCode(){
 	    	mirrorEditor2.save();
 	    	theCode = mirrorEditor2.getValue();
 	    }
-	    
-		
 	}else{
-		var theEditor = window.frames['ace_editer_code'].editor;
-		theCode = theEditor.getSession().getValue();
+		
+		console.log("hidden_type::" + hidden_type);
+		
+		if(hidden_type=='js'){
+			theCode = jsEditor.getSession().getValue();
+		}else if(hidden_type=='css'){
+			theCode = cssEditor.getSession().getValue();
+		}else if(hidden_type=='rhino'){
+			theCode = rhinoEditor.getSession().getValue();
+		}else if(hidden_type=='html'){
+			theCode = htmlEditor.getSession().getValue();
+		}
 	}
 	
 	
 	var objuid = $("input[name=objuid]").val();
 	
-	var hidden_type = $("input[name=hidden_type]").val();
-	
-	if(hidden_type==null){
-		hidden_type = 'js';
-	}
-	
+
 	var serviceName = "DO_BO_Icon_Insert";
 	if(objuid){
 		serviceName = "DO_BO_Icon_Update";
 	}
-	
-	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert('保存成功!'), paras:"propertyuid=" + name + "&formulascript=" + encodeURIComponent(theCode) + "&icon=" + isValid + "&mVersion="+hidden_type,'pml':'PM_DO_BO_Icon_Result','target':'PM_DO_BO_Icon_Result'}  );
-
-	 
+	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert('保存成功!'), 
+		paras:"propertyuid=" + name + "&formulascript=" + encodeURIComponent(theCode) + "&icon=" + isValid + "&mVersion="+hidden_type}  );
 }
 
 
