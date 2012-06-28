@@ -3,8 +3,10 @@
 		<property name="application">eeplat</property>
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
-
-        
+		<!-- 
+		<property name="lang.local">en</property>
+         -->
+         
        	<property name="connection.driver_class">org.h2.Driver</property>
 		<property name="connection.url">config</property> 
         <property name="connection.username">sa</property>
