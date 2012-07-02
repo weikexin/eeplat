@@ -17,10 +17,7 @@ public class TPaneTemplate extends DOViewTemplate {
 
 		DOPaneModel pm = (DOPaneModel) doimodel;
 
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("model", pm);
-		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
-		data.put("webmodule", DOGlobals.URL);
+		Map<String, Object> data = super.putData(doimodel);
 
 		StringBuffer sbItems = new StringBuffer();
 		List children = pm.retrieveChildren();

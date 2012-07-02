@@ -212,20 +212,25 @@ function selectTabCss(tabSelector){
 }
 //控制tab也上的差号显示
 function bindTabCloseCss(tabBtnSelector){
-  if(tabBtnSelector==undefined){
-  		  $(".btn").bind("mouseover",function(){
-				$(this).children("a").removeClass("TabCls");
-		  }).bind("mouseout",function(){
-				$(this).children("a").addClass("TabCls");
-		  })
-  }else{
-  		  $(tabBtnSelector).bind("mouseover",function(){
-				$(this).children("a").removeClass("TabCls");
-		  }).bind("mouseout",function(){
-				$(this).children("a").addClass("TabCls");
-		  })
-  }
-}
+	  if(tabBtnSelector==undefined){
+	  		  $(".btn").bind("mouseover",function(){
+					$(this).children("a").removeClass("TabCls");
+					$(this).children("a").addClass("TabClsOver");
+			  }).bind("mouseout",function(){
+				    $(this).children("a").removeClass("TabClsOver");
+					$(this).children("a").addClass("TabCls");
+			  })
+	  }else{
+	  		  $(tabBtnSelector).bind("mouseover",function(){
+					$(this).children("a").removeClass("TabCls");
+					$(this).children("a").addClass("TabClsOver");
+			  }).bind("mouseout",function(){
+				    $(this).children("a").removeClass("TabClsOver");
+					$(this).children("a").addClass("TabCls");
+			  })
+	  }
+	}
+
 //给差号绑定关闭事件
 function bindTabCloseWindow(tabBtnSelector){
   if(tabBtnSelector==undefined){

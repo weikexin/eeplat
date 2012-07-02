@@ -168,7 +168,7 @@ $(function(){
 <style type="text/css">
 <%
 //加载自定义css
-DOService aService = DOService.getService("DO_BO_Icon_List_css");
+DOService aService = DOService.getService("DO_BO_Icon_List_css_valid");
 if(aService!=null){
 	  List list = aService.invokeSelect();
 	  for(Iterator it = list.iterator(); it.hasNext();){
@@ -191,7 +191,7 @@ if(aService!=null){
 
 <%
 //加载自定义javascript
- aService = DOService.getService("DO_BO_Icon_List_js");
+ aService = DOService.getService("DO_BO_Icon_List_js_valid");
 if(aService!=null){
 	  List list = aService.invokeSelect();
 	  for(Iterator it = list.iterator(); it.hasNext();){

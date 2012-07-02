@@ -161,7 +161,7 @@ public class DOImport extends DOAbstractAction {
 			}
 			// //////处理多租户表的导入
 
-			if (tenancy != null && createTableSql != null) {
+			if ("true".equals(DOGlobals.getValue("multi.tenancy")) && tenancy != null && createTableSql != null) {
 
 				// ///更新另外一个库
 				DODataSource dss = DOGlobals.getInstance().getSessoinContext()

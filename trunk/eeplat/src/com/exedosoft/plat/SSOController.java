@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.PropertyConfigurator;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOApplication;
@@ -35,17 +37,14 @@ public class SSOController extends HttpServlet {
 
 	private static final String CONTENT_TYPE = "text/html; charset=utf-8";
 
-     private static Log log = LogFactory.getLog(SSOController.class);
+	private static Log log = LogFactory.getLog(SSOController.class);
 
 	public SSOController() {
 		super();
 	}
 
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType(CONTENT_TYPE);
@@ -75,9 +74,9 @@ public class SSOController extends HttpServlet {
 		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
 			log.info("Running in MultiTenent env=================================");
 			returnValue = makeMultiLogin(request, formBI);
-		}else{
+		} else {
 			log.info("Running in normal env=================================");
-			returnValue = makeSimpleLogin(request,  formBI);
+			returnValue = makeSimpleLogin(request, formBI);
 		}
 
 		boolean isDelegate = false;
@@ -104,7 +103,7 @@ public class SSOController extends HttpServlet {
 				} else {
 					echoStr = "success";
 				}
-				////代理的情况
+				// //代理的情况
 				if (isDelegate) {
 					echoStr = "delegate";
 				}
@@ -135,13 +134,13 @@ public class SSOController extends HttpServlet {
 			}
 			log.info("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
+		////多租户，根据租户的不同初始化到不同的租户业务库中
+		initLog4j();
 		out.println(outHtml);
-
 	}
 
-	private String makeSimpleLogin(HttpServletRequest request, 
-			BOInstance formBI) {
-		
+	private String makeSimpleLogin(HttpServletRequest request, BOInstance formBI) {
+
 		// //首先判断验证码，手机访问不判断
 		if (formBI.getValue("mobileclient") == null
 				&& !formBI.getValue("randcode").equals(
@@ -178,8 +177,7 @@ public class SSOController extends HttpServlet {
 				DOBO bo = DOBO.getDOBOByID(contextClassUid);
 				bi = bo.refreshContext(contextInstanceUid);
 			} else if (curService.getBo() != null) {
-				log.info("RefreshContextInstance:::::::::"
-						+ contextInstanceUid);
+				log.info("RefreshContextInstance:::::::::" + contextInstanceUid);
 				bi = curService.getBo().refreshContext(contextInstanceUid);
 			}
 		}
@@ -251,7 +249,7 @@ public class SSOController extends HttpServlet {
 			BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
 			if (aBI != null) {
 				dataDds = (DODataSource) aBI.toObject(DODataSource.class);
-				///现在多租户情况下默认都是mysql
+				// /现在多租户情况下默认都是mysql
 				dataDds.setDialect(DODataSource.DIALECT_MYSQL);
 			}
 
@@ -259,7 +257,7 @@ public class SSOController extends HttpServlet {
 			aBI = findDataSource.getInstance(model_datasource_uid);
 			if (aBI != null) {
 				dds = (DODataSource) aBI.toObject(DODataSource.class);
-				///现在多租户情况下默认都是mysql
+				// /现在多租户情况下默认都是mysql
 				dds.setDialect(DODataSource.DIALECT_MYSQL);
 			}
 		}
@@ -327,6 +325,40 @@ public class SSOController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private void initLog4j() {
+
+		Properties pro = new Properties();
+		try {
+			pro.load(DOGlobals.class
+					.getResourceAsStream("/log4j.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		pro.put("log4j.appender.threadLog", "com.exedosoft.plat.log.ThreadAppender");
+		pro.put("log4j.appender.threadLog.layout", "org.apache.log4j.PatternLayout");
+		pro.put("log4j.appender.threadLog.layout.ConversionPattern", "%-d{yyyy-MM-dd HH:mm:ss} [%t] - [%p] %37c(:%L) %3x %m%n");
+		
+		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOSearch", "error, threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOTools", "error, threadLog");
+		
+		
+		pro.put("log4j.logger.com.exedosoft.plat.bo.DOService", "info,threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.bo.search.SearchImp", "info,threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.bo.BOInstance", "info,threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.MVCController", "info,threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.ServiceController", "info,threadLog");
+		pro.put("log4j.logger.com.exedosoft.plat.js.*", "info,threadLog");
+		pro.put("log4j.logger.ExceptionOutPrint", "info,threadLog");
+		pro.put("log4j.logger.SystemOutPrint", "info,threadLog");
+
+		PropertyConfigurator.configure(pro);
+		log.info("Logging initialized.");
+
+	}
+
 	private BOInstance getFormInstance(HttpServletRequest request) {
 
 		BOInstance formInstance = new BOInstance();
@@ -365,7 +397,6 @@ public class SSOController extends HttpServlet {
 		List<DOApplication> apps = DOApplication.getApplications();
 
 		System.out.println("apps::::" + apps);
-
 
 	}
 }

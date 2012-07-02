@@ -406,6 +406,8 @@ function callPlatBus(p){
  * p.target
  * p.pml
  * p.pmlName
+ * p.pmlWidth 弹出Dialog方式，宽度(px) 
+ * p.pmlHeight 弹出Dialog方式，高度(px)
  * urlCodeDeal(paras)  改写可以加快速度
  * @param p
  * @return

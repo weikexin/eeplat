@@ -43,6 +43,14 @@ public class SessionParterDefault implements SessionParter {
 		// ////////加入角色
 
 		OrgParter roleParter = OrgParter.getDefaultRole();
+		// /多租户下对应创建者，内置角色
+		BOInstance user = DOGlobals.getInstance().getSessoinContext().getUser();
+		if ("2".equals(user.getValue("asrole"))) {
+			OrgParterValue pvRole = new OrgParterValue(roleParter,
+					"40288031288a2b8501288a3d009d000d",
+					"管理员");
+			allAuths.add(pvRole);
+		}
 
 		appendRoles(allAuths, accountUid, roleParter);
 		log.info("参与验证的组织元素::" + allAuths);

@@ -78,7 +78,7 @@ public class DOStaticListPopup extends DOBaseForm {
 
 		buffer
 				.append(
-						"<IMG  style='CURSOR: pointer;vertical-align:text-top;margin-left:-21px;' onclick=invokeStaticPopup(this")
+						"<IMG  class='popupimg' onclick=invokeStaticPopup(this")
 		.append(",\"").append(sb.toString());
 	
 		buffer.append("\")  src='").append(DOGlobals.PRE_FULL_FOLDER).append(

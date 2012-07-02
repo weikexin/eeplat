@@ -36,11 +36,8 @@ public class GridList extends DOViewTemplate {
 		if (gm.getService() == null) {
 			return null;
 		}
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("model", gm);
+		Map<String, Object> data = super.putData(doimodel);
 		data.put("data", getListData(gm, data));
-		data.put("webmodule", DOGlobals.URL);
-		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
 		if (gm.getContainerPane() != null) {
 			data.put("pmlName", gm.getContainerPane().getName());
 		}
