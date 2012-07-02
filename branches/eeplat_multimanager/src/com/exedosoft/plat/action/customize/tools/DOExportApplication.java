@@ -106,9 +106,9 @@ public class DOExportApplication extends DOAbstractAction {
 			BufferedWriter out =  null;
 //			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
 //					new FileOutputStream(fileName.toString()), "utf-8"));
-			out.append(sb.toString());
-			out.flush();
-			out.close();
+//			out.append(sb.toString());
+//			out.flush();
+//			out.close();
 			
 			DOService insertAppShare = DOService.getService("multi_appshare_insert");
 			Map paras = new HashMap();
@@ -122,13 +122,7 @@ public class DOExportApplication extends DOAbstractAction {
 			paras.put("auth_tenant_name", tv.getTenant().getValue("l10n"));
 			paras.put("auth_tenant_id", tv.getTenant().getUid());
 			insertAppShare.invokeUpdate(paras);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

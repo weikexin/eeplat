@@ -51,7 +51,7 @@
 
   function logOff(){
 	  if(confirm('确定要退出吗？')){
-	  	window.location.href="CRM/logoff.jsp"
+	  	window.location.href="multi_manager/logoff.jsp"
 	  }
   }
 

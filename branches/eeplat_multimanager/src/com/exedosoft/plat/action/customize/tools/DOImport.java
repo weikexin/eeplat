@@ -64,19 +64,18 @@ public class DOImport extends DOAbstractAction {
 			// return NO_FORWARD;
 			// }
 
-			fileName = DOGlobals.UPLOAD_TEMP.trim()
-					+ "/" + fileName.trim();
+			fileName = DOGlobals.UPLOAD_TEMP.trim() + "/" + fileName.trim();
 			System.out.println("FileName::" + fileName);
 			boolean isImport = importXml(bpuid, fileName);
-			if(!isImport){
-				return NO_FORWARD;			
+			if (!isImport) {
+				return NO_FORWARD;
 			}
 			this.setEchoValue("翻译完成!");
-		
+
 		} catch (Exception e) {
 			t.rollback();
 			e.printStackTrace();
-		}finally{
+		} finally {
 			t.end();
 		}
 
@@ -89,8 +88,7 @@ public class DOImport extends DOAbstractAction {
 		try {
 			Document doc = DOMXmlUtil.getInstance().getDocument(fileName);
 
-			DOService appInsert = DOService
-					.getService("DO_Application_Insert");
+			DOService appInsert = DOService.getService("DO_Application_Insert");
 
 			DOService packageInsert = DOService
 					.getService("DO_BusiPackage_copy");
@@ -105,8 +103,7 @@ public class DOImport extends DOAbstractAction {
 
 			DOService doRuleInsert = DOService.getService("DO_Rule_Insert");
 
-			DOService serviceInsert = DOService
-					.getService("DO_Service_copy");
+			DOService serviceInsert = DOService.getService("DO_Service_copy");
 
 			DOService serviceRuleInsert = DOService
 					.getService("DO_Service_Rule_Insert");
@@ -148,131 +145,39 @@ public class DOImport extends DOAbstractAction {
 
 			String tenancy = null;
 			String curTenancy = null;
-			String tenancyTableJson = null;
+			String createTableSql = null;
 			List<String> coljsons = new ArrayList<String>();
 			// //////////////////////////////////////////////////////////////////////////////
 			for (int i = 0; i < children.getLength(); i++) {
 				Node aNode = children.item(i);
 				if (aNode instanceof Element) {
 
-					if (aNode.getNodeName().equals("tenancy")) {
+					if (aNode.getNodeName().equals("tenant")) {
 						tenancy = aNode.getFirstChild().getNodeValue();
-					} else if (aNode.getNodeName().equals("tenancy_table")) {
-						tenancyTableJson = aNode.getFirstChild()
-								.getNodeValue();
-					} else if (aNode.getNodeName()
-							.equals("tenancy_columns")) {
-						NodeList lis = aNode.getChildNodes();
-						for (int lii = 0; lii < lis.getLength(); lii++) {
-							Node aLi = lis.item(lii);
-							if (aLi instanceof Element) {
-								coljsons.add(aLi.getFirstChild()
-										.getNodeValue());
-							}
-						}
+					} else if (aNode.getNodeName().equals("create_table_sql")) {
+						createTableSql = aNode.getFirstChild().getNodeValue();
 					}
 				}
 			}
 			// //////处理多租户表的导入
 
-			boolean needImport = false;
-			if (tenancy != null && tenancyTableJson != null) {
-				if (DOGlobals.getInstance().getSessoinContext().getUser() != null) {
-					BOInstance biTenancy = (BOInstance) DOGlobals
-							.getInstance().getSessoinContext()
-							.getTenancyValues().getTenant();
-					curTenancy = biTenancy.getValue("name");
+			if (tenancy != null && createTableSql != null) {
 
-					if (biTenancy != null && curTenancy != null) {
+				// ///更新另外一个库
+				DODataSource dss = DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues().getDataDDS();
+				Connection con = dss.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(createTableSql);
+				pstmt.executeUpdate();
+				pstmt.close();
+				con.close();
+				// ///////////////////////////////////end create
+				// view
 
-						BOInstance tenancyTable = BOInstance
-								.fromJSONString(tenancyTableJson);
-						// 新的tennacyTable表
-						tenancyTable.putValue("id", null);
-
-						tenancyTable.putValue("corr_view", tenancyTable
-								.getValue("corr_view").replace(tenancy,
-										curTenancy));
-						tenancyTable.putValue("tenancy_name", biTenancy
-								.getValue("name"));
-						DOService findTenancyByTable = DOService
-								.getService("multi_tenancy_table_findrealtable");
-						List finded = findTenancyByTable
-								.invokeSelect(tenancyTable
-										.getValue("table_name"));
-						if (finded.size() == 0) {
-							needImport = true;
-							DOService insertTenancyTable = DOService
-									.getService("multi_tenancy_table_insert");
-							BOInstance newTenancy = insertTenancyTable
-									.invokeUpdate(tenancyTable);
-
-							DOService insertTenancyCol = DOService
-									.getService("multi_tenancy_column_insert");
-
-							StringBuffer sb = new StringBuffer(
-									"create view  ");
-							sb.append(biTenancy.getValue("name")).append(
-									"_").append(
-									tenancyTable.getValue("table_name"))
-									.append(" as select ");
-							int i = 0;
-
-							for (Iterator<String> it = coljsons.iterator(); it
-									.hasNext();) {
-								String aJson = it.next();
-								BOInstance colBI = BOInstance
-										.fromJSONString(aJson);
-								colBI.putValue("id", null);
-								colBI.putValue("tenancy_table_uid",
-										newTenancy.getUid());
-								insertTenancyCol.invokeUpdate(colBI);
-
-								sb.append(colBI.getValue("real_col"))
-										.append(" as ").append(
-												colBI.getValue("col_name"));
-
-								if (i < (coljsons.size() - 1)) {
-									sb.append(", ");
-								}
-								i++;
-							}
-							// ///////////////////////////////////begin
-							// create view
-
-							sb
-									.append(
-											"  from  t001 where tenancyId='")
-									.append(biTenancy.getValue("name"))
-									.append("' and tenancyTableId='")
-									.append(
-											tenancyTable
-													.getValue("table_name"))
-									.append("'");
-							log.info(" the View::::" + sb);
-
-							// ///更新另外一个库
-							DODataSource dss = DOGlobals.getInstance()
-									.getSessoinContext().getTenancyValues()
-									.getDataDDS();
-							Connection con = dss.getConnection();
-							PreparedStatement pstmt = con
-									.prepareStatement(sb.toString());
-							pstmt.executeUpdate();
-							pstmt.close();
-							con.close();
-							// ///////////////////////////////////end create
-							// view
-						}
-					}
-				}
-			} else {
-				needImport = true;
 			}
 
 			boolean isApp = false;
 			// ////////////////////////////////////////////////////////////////////////
-			if (needImport)// /需要导入
 				for (int i = 0; i < children.getLength(); i++) {
 					Node aNode = children.item(i);
 					if (aNode instanceof Element) {
@@ -290,18 +195,15 @@ public class DOImport extends DOAbstractAction {
 
 									DOBO boApp = DOBO
 											.getDOBOByName("do_application");
-									BOInstance exists = boApp
-											.getInstance(biApp
-													.getValue("objuid"));
+									BOInstance exists = boApp.getInstance(biApp
+											.getValue("objuid"));
 									if (exists != null) {
-										log.info("待导入的工程已经存在，请删除后再导入!"
-												+ exists);
-										this
-												.setEchoValue("待导入的工程已经存在，请删除后再导入!");
+										log.info("待导入的工程已经存在，请删除后再导入!" + exists);
+										this.setEchoValue("待导入的工程已经存在，请删除后再导入!");
 										return false;
 									}
 									appInsert.invokeUpdate(biApp);
-									isApp=true;
+									isApp = true;
 								}
 
 							}
@@ -325,12 +227,11 @@ public class DOImport extends DOAbstractAction {
 									if (exists != null) {
 										log.info("待导入的业务对象已经存在，请删除后再导入!"
 												+ exists);
-										this
-												.setEchoValue("待导入的业务对象已经存在，请删除后再导入!");
+										this.setEchoValue("待导入的业务对象已经存在，请删除后再导入!");
 										return false;
 									}
 									bi.putValue("datasourceuid", "");
-									if(!isApp){
+									if (!isApp) {
 										bi.putValue("bpuid", bpuid);
 									}
 									doboInsert.invokeUpdate(bi);
@@ -348,12 +249,9 @@ public class DOImport extends DOAbstractAction {
 							insertANode(serviceInsert, aNode, curTenancy);
 						} else if (aNode.getNodeName().equals(
 								"parameter_service")) {
-							insertANode(paraServiceInsert, aNode,
-									curTenancy);
-						} else if (aNode.getNodeName().equals(
-								"rule_service")) {
-							insertANode(serviceRuleInsert, aNode,
-									curTenancy);
+							insertANode(paraServiceInsert, aNode, curTenancy);
+						} else if (aNode.getNodeName().equals("rule_service")) {
+							insertANode(serviceRuleInsert, aNode, curTenancy);
 						} else if (aNode.getNodeName().equals("pane")) {
 							insertANode(paneModelInsert, aNode, curTenancy);
 						} else if (aNode.getNodeName().equals("pane_links")) {
@@ -362,11 +260,9 @@ public class DOImport extends DOAbstractAction {
 							insertANode(gridInsert, aNode, curTenancy);
 						} else if (aNode.getNodeName().equals("form")) {
 							insertANode(formInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals(
-								"form_relation")) {
+						} else if (aNode.getNodeName().equals("form_relation")) {
 							insertANode(formLinksInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName()
-								.equals("form_target")) {
+						} else if (aNode.getNodeName().equals("form_target")) {
 							insertANode(formTargetInsert, aNode, curTenancy);
 						} else if (aNode.getNodeName().equals("menu")) {
 							insertANode(menuModelInsert, aNode, curTenancy);
@@ -379,61 +275,12 @@ public class DOImport extends DOAbstractAction {
 						}
 					}
 				}
-			// //////处理多租户表的导入
-			// if (tenancy != null && tenancyTableJson != null) {
-			// if (DOGlobals.getInstance().getSessoinContext().getUser() !=
-			// null) {
-			// BOInstance biTenancy = (BOInstance) DOGlobals
-			// .getInstance().getSessoinContext().getUser()
-			// .getObjectValue("tenancy");
-			// if (biTenancy != null) {
-			// String curTenancy = biTenancy.getValue("name");
-			// BOInstance tenancyTable = BOInstance
-			// .fromJSONString(tenancyTableJson);
-			// // 新的tennacyTable表
-			// tenancyTable.putValue("id", null);
-			// tenancyTable.putValue("table_name", tenancyTable
-			// .getValue("table_name").replace(tenancy,
-			// curTenancy));
-			// tenancyTable.putValue("corr_view", tenancyTable
-			// .getValue("table_name").replace(tenancy,
-			// curTenancy));
-			// tenancyTable.putValue("tenancy_uid", biTenancy
-			// .getUid());
-			// DOService findTenancyByTable = DOService
-			// .getService("multi_tenancy_table_findbytablename");
-			// List finded = findTenancyByTable
-			// .invokeSelect(tenancyTable
-			// .getValue("table_name"));
-			// if (finded.size() == 0) {
-			// DOService insertTenancyTable = DOService
-			// .getService("multi_tenancy_table_insert");
-			// BOInstance newTenancy = insertTenancyTable
-			// .invokeUpdate(tenancyTable);
-			//
-			// DOService insertTenancyCol = DOService
-			// .getService("multi_tenancy_column_insert");
-			//
-			// for (Iterator<String> it = coljsons.iterator(); it
-			// .hasNext();) {
-			// String aJson = it.next();
-			// BOInstance colBI = BOInstance
-			// .fromJSONString(aJson);
-			// colBI.putValue("id", null);
-			// colBI.putValue("tenancy_table_uid",
-			// newTenancy.getUid());
-			// insertTenancyCol.invokeUpdate(colBI);
-			// }
-			// }
-			// }
-			// }
-			// }
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 		return true;
 	}
 

@@ -12,7 +12,7 @@
 			<div class="text_status">
 				<textarea class="input_box"></textarea>
 			</div>
-			<div class="button_outside_border_blue" id="share">
+			<div class="button_outside_border_blue" id="msg_share">
 				<div class="button_inside_border_blue">发布</div>
 			</div>
 			<div class="clear"></div>
@@ -67,6 +67,7 @@
 <script type="text/javascript">
 
 	$(".input_box").elastic().css("height","30px");
+
 	
 
 </script> 

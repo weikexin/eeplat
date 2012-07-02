@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import java.util.Iterator;
-
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
-import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.SqlCol;
 import com.exedosoft.plat.util.DOGlobals;
 
@@ -40,7 +37,18 @@ public class DOTableList extends DOAbstractAction {
 
 	public String excute() {
 
-		DODataSource dss = DOGlobals.getInstance().getSessoinContext().getTenancyValues().getDataDDS();
+		DODataSource dss = null;
+
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+			dss = DOGlobals.getInstance().getSessoinContext()
+					.getTenancyValues().getDataDDS();
+		} else {// 单租户情况
+
+			DOBO bo = DOBO.getDOBOByName("do_datasource");
+			dss = DODataSource.getDataSourceByL10n(bo.getCorrInstance()
+					.getValue("l10n"));
+		}
+
 		// if(dss.getDriverClass().equals("org.hsqldb.jdbcDriver") &&
 		// dss.getDriverUrl().indexOf("jdbc:hsqldb") == -1){
 		// String path =
@@ -49,7 +57,7 @@ public class DOTableList extends DOAbstractAction {
 		// StringBuilder driverUrl =
 		// new
 		// StringBuilder("jdbc:hsqldb:file:").append(path).append("db/").append(dss.getDriverUrl());
-		//            
+		//
 		// dss.setDriverUrl(driverUrl.toString());
 		// }
 
@@ -58,79 +66,42 @@ public class DOTableList extends DOAbstractAction {
 		try {
 			con = dss.getConnection();
 			DatabaseMetaData meta = con.getMetaData();
-			String[] tblTypes = new String[] { "TABLE", "VIEW" };
+			String[] tblTypes = new String[] { "TABLE" };
 
 			String schema = null;
 			if (dss.isOracle()) {
 				schema = dss.getUserName().trim().toUpperCase();
 			}
-
-			DOService aService = DOService
-					.getService("multi_tenancy_table_findtablesbytenancyid");
-			List<String> authTableStrs = new ArrayList<String>();
-
-			BOInstance biTenancy = null;
-			if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
-				biTenancy = (BOInstance) DOGlobals.getInstance()
-						.getSessoinContext().getTenancyValues().getTenant();
-
-				if (biTenancy != null && biTenancy.getValue("name") != null) {
-					List<BOInstance> hisTables = aService
-							.invokeSelect();
-					for (Iterator<BOInstance> it = hisTables.iterator(); it
-							.hasNext();) {
-						BOInstance bi = it.next();
-						authTableStrs.add(bi.getValue("table_name"));
-					}
-				}
-			}
-
 			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
-
 			while (rs.next()) {
-				String aTable = rs.getString("TABLE_NAME");
+				String tableName = rs.getString("TABLE_NAME");
+				// ////////////增强更新功能
+				// //////首先要跟现有的tableName比较
 
-				String tableType = rs.getString("TABLE_TYPE");
-				for (Iterator<String> it = authTableStrs.iterator(); it
-						.hasNext();) {
-					String hisTable = it.next();
+				// ////////////////
 
-					// ////////////增强更新功能
-					// //////首先要跟现有的tableName比较
+				if (this.judgeExists(tableName)) {
+					continue;
+				}
+				if (!"dtproperties".equals(tableName)) {
+					BOInstance bi = new BOInstance();
+					InputConfigCols icc = this.getCols(con, tableName, dss);
+					String aTable = rs.getString("TABLE_NAME").toLowerCase();
+					if (!aTable.startsWith("bin$")) {
+						bi.putValue(this.service.getBo().getKeyCol(), aTable);
+						bi.putValue("tablename", aTable);
 
-					if (this.judgeExists(hisTable)) {
-						continue;
-					}
-					if (!"dtproperties".equals(aTable)) {
-						if (biTenancy != null
-								&& (biTenancy.getValue("name") + "_" + hisTable)
-										.equalsIgnoreCase(aTable)) {
-
-							BOInstance bi = new BOInstance();
-							InputConfigCols icc = this
-									.getCols(con, aTable, dss);
-							if (!aTable.startsWith("bin$")) {
-								bi.putValue(this.service.getBo().getKeyCol(),
-										aTable);
-								bi.putValue("tablename", hisTable);
-								///多租户情况下，只能采用ID作为主键
-								bi.putValue("keyCol", "id,id");
-								bi.putValue("valueCol", icc.getValueCols());
-								bi.putValue("tableType", tableType);
-								if (biTenancy != null
-										&& tableType.equalsIgnoreCase("view")) {
-									bi.setUid("tenancy;" + hisTable);
-								} else {
-									bi.setUid(aTable);
-								}
-								list.add(bi);
-							}
+						if ("false".equals(DOGlobals.getValue("model.uuid"))) {
+							bi.putValue("keyCol", icc.getValueCols());
+						} else {
+							bi.putValue("keyCol", icc.getKeyCols());
 						}
+						bi.putValue("valueCol", icc.getValueCols());
+						bi.setUid(aTable);
+						list.add(bi);
 					}
 				}
 			}
-			// ///end get tables
-
 		} catch (SQLException ex) {
 			this.setEchoValue(ex.getMessage());
 			return NO_FORWARD;
@@ -187,16 +158,17 @@ public class DOTableList extends DOAbstractAction {
 
 		StringBuffer keyCols = new StringBuffer();
 		StringBuffer valueCols = new StringBuffer();
-
+		String schema = null;
 		try {
 
 			DatabaseMetaData meta = con.getMetaData();
 
 			if (dss.isOracle()) {
 				aTable = aTable.toUpperCase();
+				schema = dss.getUserName().trim().toUpperCase();
 			}
 
-			ResultSet rs = meta.getColumns(null, null, aTable, null);
+			ResultSet rs = meta.getColumns(null, schema, aTable, null);
 			while (rs.next()) {
 
 				if ((rs.getInt("DATA_TYPE") == Types.VARCHAR || rs
@@ -212,8 +184,8 @@ public class DOTableList extends DOAbstractAction {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		InputConfigCols icc = new InputConfigCols(keyCols.toString(), valueCols
-				.toString());
+		InputConfigCols icc = new InputConfigCols(keyCols.toString(),
+				valueCols.toString());
 		return icc;
 
 	}

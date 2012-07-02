@@ -9,7 +9,7 @@ import com.exedosoft.plat.gene.jquery.PropertyManager;
 public class DOGeneConfigAddProperty extends DOAbstractAction {
 
 	/**
-	 * 现在的已经不生成配置数据了，更改后生成数据的是DOAlterTable
+	 * 
 	 */
 	private static final long serialVersionUID = 4555077593344493040L;
 
@@ -31,23 +31,12 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 			this.setEchoValue("字段名称或者类型或者长度没有定义!");
 			return NO_FORWARD;
 		}
-		
-		this.service.invokeUpdate();
-		
 
 		
-//		DOBO thisBO = DOBO.getDOBOByID(instance.getUid());
-//		
-//		PropertyManager pm = new PropertyManager();
-//		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
+		DOBO thisBO = DOBO.getDOBOByID(instance.getUid());
 		
-		////处理租户表字段
-		////处理后根据表地段创建View
-		
-		///修改View
-		
-
-		
+		PropertyManager pm = new PropertyManager();
+		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
 
 		return DEFAULT_FORWARD;
 	}

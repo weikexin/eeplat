@@ -1,17 +1,8 @@
 package com.exedosoft.plat.action.customize.tools;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import com.exedosoft.plat.ExedoException;
@@ -21,9 +12,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
-import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
-import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.safe.TenancyValues;
 
 public class DOInstallApplication extends DOAbstractAction {

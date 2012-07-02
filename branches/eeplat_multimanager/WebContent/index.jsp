@@ -1,1 +1,1 @@
-﻿<%response.sendRedirect("CRM/index.jsp");%>
+﻿<%response.sendRedirect("multi_manager/index.jsp");%>
