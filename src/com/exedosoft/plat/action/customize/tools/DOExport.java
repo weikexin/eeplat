@@ -1,5 +1,9 @@
 package com.exedosoft.plat.action.customize.tools;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +13,7 @@ import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
@@ -57,32 +62,59 @@ public class DOExport extends DOAbstractAction {
 
 		sb.append("<bo>").append(selectBI.toJSONString()).append("</bo>\n");
 
-		if (selectBI.getValue("type") != null
-				&& (Integer.parseInt(selectBI.getValue("type")) == DOBO.TYPE_TENANCY_TABLE)) {
+		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
 			if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
 				BOInstance biTenancy = (BOInstance) DOGlobals.getInstance()
 						.getSessoinContext().getTenancyValues().getTenant();
-				if (biTenancy != null) {
-					DOService findTenancy = DOService
-							.getService("multi_tenancy_table_findrealtable");
-					BOInstance biTenancyTable = findTenancy
-							.getInstance(selectBI.getValue("sqlstr"));
-					sb.append("\n<tenancy>").append(biTenancy.getValue("name"))
-							.append("</tenancy>\n");
-					if (biTenancyTable != null) {
-						sb.append("\n<tenancy_table>").append(
-								biTenancyTable.toJSONString()).append(
-								"</tenancy_table>\n");
-						DOService findTenacyCols = DOService
-								.getService("multi_tenancy_column_findbytableid");
 
-						sb.append("\n<tenancy_columns>");
-						List tenancyCols = findTenacyCols
-								.invokeSelect(biTenancyTable.getUid());
-						appendLi(sb, tenancyCols);
-						sb.append("</tenancy_columns>");
+				if (biTenancy != null) {
+
+					sb.append("\n<tenant>").append(biTenancy.getValue("name"))
+							.append("</tenant>\n");
+					DODataSource dss = null;
+					// /多租户情况`
+
+					if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+						dss = DOGlobals.getInstance().getSessoinContext()
+								.getTenancyValues().getDataDDS();
+					} else {// 单租户情况
+						DOBO bo = DOBO.getDOBOByName("do_datasource");
+						dss = DODataSource.getDataSourceByL10n(bo
+								.getCorrInstance().getValue("l10n"));
+					}
+
+					Connection con = null;
+					try {
+						con = dss.getConnection();
+						String sql = "show create table "
+								+ selectBI.getValue("sqlstr");
+
+						PreparedStatement pstmt = con.prepareStatement(sql);
+
+						ResultSet rs = pstmt.executeQuery();
+
+						if (rs.next()) {
+							sb.append("\n<create_table_sql>")
+									.append(rs.getString(2))
+									.append("</create_table_sql>\n");
+						}
+
+						pstmt.close();
+					} catch (SQLException ex) {
+						this.setEchoValue(ex.getMessage());
+
+					} finally {
+						try {
+							if (!con.isClosed()) {
+								con.close();
+							}
+						} catch (SQLException ex1) {
+							this.setEchoValue(ex1.getMessage());
+
+						}
 
 					}
+
 				}
 			}
 		}

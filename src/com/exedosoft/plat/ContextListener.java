@@ -67,8 +67,8 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 
-		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
-		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
+//		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
+//		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
 
 		if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 

@@ -1031,6 +1031,9 @@ public class StringUtil {
 
 	public static void main(String[] args) throws Exception {
 
+		
+		
+		System.out.println(Escape.escape("function%20foo%28items%29%20%7B%0A%20%20%20%20var%20i%3B%0A%20%20%20%20for%20%28i%20%3D%200%3B%20i%20%3C%20items.length%3B%20i++%29%20%7B%0A%20%20%20%20%20%20%20%20alert%28%22Ace%20Rocks%20%22%20+%20items%5Bi%5D%29%3B%0A%20%20%20%20%7D%0A%7D".replace("%20", " ")));
 		//		
 		// File f1 = new File("c:/index.jsp");
 		// File f2 = new File("d:/index.jsp");

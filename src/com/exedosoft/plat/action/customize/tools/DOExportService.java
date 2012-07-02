@@ -11,7 +11,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.StringUtil;
 
-public class DOExportService extends DOExport {
+public class DOExportService extends DOExportSimple {
 
 	/**
 	 * 
