@@ -212,20 +212,25 @@ function selectTabCss(tabSelector){
 }
 //控制tab也上的差号显示
 function bindTabCloseCss(tabBtnSelector){
-  if(tabBtnSelector==undefined){
-  		  $(".btn").bind("mouseover",function(){
-				$(this).children("a").removeClass("TabCls");
-		  }).bind("mouseout",function(){
-				$(this).children("a").addClass("TabCls");
-		  })
-  }else{
-  		  $(tabBtnSelector).bind("mouseover",function(){
-				$(this).children("a").removeClass("TabCls");
-		  }).bind("mouseout",function(){
-				$(this).children("a").addClass("TabCls");
-		  })
-  }
-}
+	  if(tabBtnSelector==undefined){
+	  		  $(".btn").bind("mouseover",function(){
+					$(this).children("a").removeClass("TabCls");
+					$(this).children("a").addClass("TabClsOver");
+			  }).bind("mouseout",function(){
+				    $(this).children("a").removeClass("TabClsOver");
+					$(this).children("a").addClass("TabCls");
+			  })
+	  }else{
+	  		  $(tabBtnSelector).bind("mouseover",function(){
+					$(this).children("a").removeClass("TabCls");
+					$(this).children("a").addClass("TabClsOver");
+			  }).bind("mouseout",function(){
+				    $(this).children("a").removeClass("TabClsOver");
+					$(this).children("a").addClass("TabCls");
+			  })
+	  }
+	}
+
 //给差号绑定关闭事件
 function bindTabCloseWindow(tabBtnSelector){
   if(tabBtnSelector==undefined){
@@ -275,9 +280,7 @@ function loadWorkbench(path){
 		$("#tab_workbench_container").show();
 	}else{
 	  	$("#mRight").clone().attr("id",'tab_workbench_container').insertAfter("#mRight");
-	  	if(workbenchPath!=null && workbenchPath!=""){
-	  		$("#tab_workbench_container").load(globalURL + workbenchPath);
-	  	}
+		$("#tab_workbench_container").load(globalURL + workbenchPath);
 		$("#mRight").hide();
 		$("#tab_workbench_container").show();
 
@@ -405,9 +408,11 @@ function popupDialog(id,title,href,width,height){
 	    if(height==null || height==""){
 	    	height = 380;
 	    }
+	    
+	    if($('#F' + id).size()==0){
+			createFloatDiv(id,title);
+	    }
 
-	    ////捕获关闭事件
-		createFloatDiv(id,title);
 		
 		$('#F' + id).dialog({
 			autoOpen: false,
@@ -416,6 +421,7 @@ function popupDialog(id,title,href,width,height){
 			modal: true,
 			close: function(event, ui) {
 				 $("#dmLayer").hide();
+				 $('#F' + id).empty();
 			}
 		}); 
 
@@ -481,6 +487,7 @@ function createFloatDiv2(id,title) {
 }
 
 
+
 /**
  * 刷新树 
  * @param type =1 刷新 选中的节点，否则刷新 选中节点的上层
@@ -508,6 +515,7 @@ function reloadTree(type){
 	  
 	  }
 }
+
 
 /**
  * is mobile
@@ -540,3 +548,80 @@ function isMobile(){
 
 	return android || iPhone || iPod || iPad || symbian || series60 || BlackBerry;
 }
+
+
+
+/**
+ * 工作流节点权限相关
+ */
+function insertAuthPt(){
+	var selectedNode = window.opener.selectedNodeBak;
+	var whatuid = selectedNode.getAttribute('id');
+	var ouuid = $("#gm_do_authorization_insert_ptnode_role_ouuid").val();
+	callService({'serviceName':'u_role_ptnode',paras:"whatuid=" + whatuid + "&ouuid="+ouuid,'pml':'PM_do_org_role_of_ptnode','target':'PM_do_org_role_of_ptnode'}  );
+	
+	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
+	
+}
+
+/**
+ * 代码编辑相关
+ */
+function insertAceCode(){
+	
+	var name = $("input[name=propertyuid]").val();
+	
+	if(name==null || name==''){
+		alert("名称不可以为空!");
+		return;
+	}
+	var isValid = 1;
+	var validChecks = $("input[name=icon]:checked");
+	if(validChecks.length > 0){
+		isValid = $("input[name=icon]:checked").val();
+	}
+	
+	var theCode  = '';
+	var hidden_type = $("input[name=mVersion]").val();
+	
+	if(hidden_type==null){
+		hidden_type = 'js';
+	}
+	
+	if($.browser.msie){
+		
+	    if(mirrorEditor){
+		    mirrorEditor.save();
+		    theCode = mirrorEditor.getValue();
+	    }else   if(mirrorEditor2){
+	    	mirrorEditor2.save();
+	    	theCode = mirrorEditor2.getValue();
+	    }
+	}else{
+		
+		console.log("hidden_type::" + hidden_type);
+		
+		if(hidden_type=='js'){
+			theCode = jsEditor.getSession().getValue();
+		}else if(hidden_type=='css'){
+			theCode = cssEditor.getSession().getValue();
+		}else if(hidden_type=='rhino'){
+			theCode = rhinoEditor.getSession().getValue();
+		}else if(hidden_type=='html'){
+			theCode = htmlEditor.getSession().getValue();
+		}
+	}
+	
+	
+	var objuid = $("input[name=objuid]").val();
+	
+
+	var serviceName = "DO_BO_Icon_Insert";
+	if(objuid){
+		serviceName = "DO_BO_Icon_Update";
+	}
+	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert('保存成功!'), 
+		paras:"propertyuid=" + name + "&formulascript=" + encodeURIComponent(theCode) + "&icon=" + isValid + "&mVersion="+hidden_type}  );
+}
+
+
