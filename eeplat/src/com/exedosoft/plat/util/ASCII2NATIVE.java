@@ -27,8 +27,8 @@ public class ASCII2NATIVE {
 	}
 
 	public static void main(String[] args) {
-		File f = new File("c:\\mydb.script");
-		File f2 = new File("c:\\mydb.sql");
+		File f = new File("c:\\1.sql");
+		File f2 = new File("c:\\2.sql");
 		if (f.exists() && f.isFile()) {
 			// convert param-file
 			BufferedReader br = null;

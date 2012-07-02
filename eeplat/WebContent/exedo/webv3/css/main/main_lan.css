@@ -19,7 +19,7 @@ html,body,td,p,select,input,div,table,h1,h2,h3,span,button{font-size:12px; font-
 body,div,span,h1,h2,h3,h4,img,p,b,textarea,input,select,form,a,table,tr,td,th,button
 {margin:0;padding:0;font-family:verdana,Arial, Helvetica, sans-serif,;list-style-type:none;font-size:inherit;color:inherit;z-index:inherit}
 img,.gTab table,.gMain,#dvTab table{border:0;border-collapse:collapse}
-body.gPage,.gTab table td.tLe,.gTab table td.tRi,.gTab table a.TabCls,.sysWin h2 .fLe,.sysWin h2 .fRi,.sysWin div.bdy,.sysWin .icoSw,.JQsysWin h2 .fLe
+body.gPage,.gTab table td.tLe,.gTab table td.tRi,.gTab table a.TabCls,.gTab table a.TabClsOver,.sysWin h2 .fLe,.sysWin h2 .fRi,.sysWin div.bdy,.sysWin .icoSw,.JQsysWin h2 .fLe
 ,.JQsysWin h2 .fRi,.JQsysWin .icoSw,.condDiv h2 .fLe,.condDiv h2 .fRi,.condDiv div.bdy,.condDiv .icoSw
 ,.gTabTab table td.tLe,.gTabTab table td.tRi,.gTabTab table a.TabCls,.sysWinTab h2 .fLe,.sysWinTab h2 .fRi,.sysWinTab div.bdy,.sysWinTab  .icoSw
 	 {background-image:url(../../images/main/lan/f1.gif); background-repeat:no-repeat}
@@ -83,6 +83,7 @@ body.gPage{
 .gTab table td.tLe{width:6px; font-size:0;background-position:-456px -19px}
 .gTab table td.tRi{width:6px; font-size:0;background-position:-472px -19px}
 .gTab table a.TabCls{width:15px;height:15px; background-position:-520px -28px}
+.gTab table a.TabClsOver{width:15px;height:15px; background-position:-520px -71px}
 
 .gTab table.on{background-position:0 -184px; margin:0 0 0 0}
 .gTab table.on td{background-position:0 -184px}
@@ -90,6 +91,7 @@ body.gPage{
 .gTab table.on td.tRi{background-position:-470px -61px}
 .gTab table.on td.bdy NOBR{ color:#FFFFFF}
 .gTab table.on a.TabCls{width:15px;height:15px; background-position:-520px -71px}
+.gTab table.on a.TabClsOver{width:15px;height:15px; background-position:-520px 3px}
 
 
 .mMenu{
@@ -223,6 +225,12 @@ object{
 	overflow-x:hidden;
 }
 
+.popupimg {
+	CURSOR: pointer;
+	padding-bottom:0px;
+	*padding-bottom:-2px;
+	margin-left:-21px;
+}
 
 .dmLayerMouseOverCss{
 	background-color:yellow;

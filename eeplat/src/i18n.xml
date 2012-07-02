@@ -198,12 +198,66 @@
 	<key name="PM_badmintoninout_Condition">
 		<label local="en">Search Badminton In/Out </label>
 	</key>	
-	
-	
 	<key name="PM_badmintoninout_Result">
 		<label local="en">Badminton In/Out List </label>
 	</key>
-
+	<key name="查看">
+		<label local="en">Browse</label>
+	</key>
+	<key name="修改">
+		<label local="en">Modify</label>
+	</key>
+	<key name="删除">
+		<label local="en">Delete</label>
+	</key>
+	<key name="新增">
+		<label local="en">New</label>
+	</key>
+	<key name="复制">
+		<label local="en">Copy</label>
+	</key>
+	<key name="查询">
+		<label local="en">Search</label>
+	</key>
+	<key name="浏览信息">
+		<label local="en">Browse Information</label>
+	</key>
+	<key name="新增数据">
+		<label local="en">New</label>
+	</key>
+	<key name="信息列表">
+		<label local="en">Information List</label>
+	</key>
+	<key name="修改信息">
+		<label local="en">Modify</label>
+	</key>
+	<key name="请输入查询条件">
+		<label local="en">Please Enter Search Condition</label>
+	</key>
+	<key name="查询结果">
+		<label local="en">Result</label>
+	</key>
+	<key name="查看信息">
+		<label local="en">Browse</label>
+	</key>
+	<key name="新增信息">
+		<label local="en">New</label>
+	</key>
+	<key name="表格元素列表">
+		<label local="en">Grid Items</label>
+	</key>
+	<key name="从AppShare安装">
+		<label local="en">Install From Appshare</label>
+	</key>
+	<key name="普通用户">
+		<label local="en">Common User</label>
+	</key>
+	<key name="代理">
+		<label local="en">Delegate</label>
+	</key>
+	<key name="查看工程信息">
+		<label local="en">Browse</label>
+	</key>
 	
 	 
 </i18n>

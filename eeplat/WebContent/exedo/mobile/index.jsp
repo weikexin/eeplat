@@ -74,7 +74,7 @@
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
 				       // window.location= "AppList.jsp";	jyhd_mobile_pane
-					   window.location= globalURL + "wolfvillage_mobile_pane.pml";
+					   window.location= globalURL + "beijing_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }

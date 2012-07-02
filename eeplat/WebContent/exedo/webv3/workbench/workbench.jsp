@@ -65,6 +65,8 @@
 	<div class="gzmid"><div class="midleft"></div>
 	<div class="midcon">
 	    <ul>
+	        <li><a  href="javascript:loadPml({'pml':'PM_do_log_dev_Main','target':'_opener_tab','title':'Log'})"><%=I18n.instance().get("Logs")%></a></li>
+	        <br/>
 	        <li><a  href="javascript:loadPml({'pml':'trans_formmodel_setl10n','target':'_opener_tab','title':'字典翻译'})"><%=I18n.instance().get("I10n")%></a></li>
 	        <br/>
 	    	<li><a  href="javascript:loadPml({'pml':'PM_do_pt_processtemplate_Main','target':'_opener_tab','title':'工作流建模'})"><%=I18n.instance().get("Workflow Designer")%></a></li>

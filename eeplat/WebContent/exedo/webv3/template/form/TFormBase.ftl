@@ -17,6 +17,10 @@
 							|| a.l10n?lower_case?contains('delete') ||  a.l10n?lower_case?contains('remove')
 		)) >
 		class='delete'  <#compress><@JudgeMobileIcon a/> </#compress>
+	<#elseif (a.l10n?exists &&( a.l10n?contains('复制') 
+							|| a.l10n?lower_case?contains('copy') 
+		)) >
+		class='copy'  <#compress><@JudgeMobileIcon a/> </#compress>	
 	<#elseif (a.l10n?exists && (a.l10n?contains('查看') 
 							|| a.l10n?lower_case?contains('browse') 
 	)) >

@@ -195,8 +195,10 @@
 			//pageSplit('${model.containerPane.name}','${pmlName}','${formName}');
 			 $("#Pagination").pagination(${resultSize}, {  
 	            callback: PageCallback,  
+	            <#if (langlocal=='zh') >
 	            prev_text: '上一页',       //上一页按钮里text  
-	            next_text: '下一页',       //下一页按钮里text  
+	            next_text: '下一页',       //下一页按钮里text
+	            </#if>  
 	            items_per_page: ${rowSize},  //显示条数  
 	            num_display_entries: 6,    //连续分页主体部分分页条目数  
 	            current_page: ${pageNo}-1,   //当前页索引  

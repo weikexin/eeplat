@@ -26,13 +26,13 @@
 		}
 		company =  exedoContext.getUser().getValue("company");
 		if(company == null || "".equals(company)){
-			company = "普通用户";
+			company = I18n.instance().get("普通用户");
 		}
 	}
 
 	BOInstance delegate = SessionContext.getInstance().getDeleGate();
 	if(delegate!=null && delegate.getName()!=null){
-		userName = userName + "（代理" + delegate.getName() + "）";
+		userName = userName + "（" + I18n.instance().get("代理") + delegate.getName() + "）";
 	}
 	
 	List apps =  DAOUtil.INSTANCE().select(DOApplication.class,
@@ -97,7 +97,7 @@
 	
 	 <div class="control">
 	    <span class="inner">
-			欢迎您，<%=userName%> ！
+			<%=I18n.instance().get("Welcome")%>，<%=userName%> ！
 		</span>[ <%=company%> ]
 		&nbsp;&nbsp;
 		<select class="selectt" onchange="changeApp(this)">
@@ -107,7 +107,7 @@
 			
 			<%if(isDev){ %>
 		    <option value="f">--------------</option>
-		    <option value="a">从AppShare安装</option>
+		    <option value="a"><%=I18n.instance().get("从AppShare安装")%></option>
 		    <% }%>
 		   </select>
 		&nbsp;&nbsp;

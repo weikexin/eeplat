@@ -37,7 +37,11 @@ public abstract class DOViewTemplate implements DOIViewTemplate {
 		data.put("model", doimodel);
 		data.put("contextPath", DOGlobals.PRE_FULL_FOLDER);
 		data.put("webmodule", DOGlobals.URL);
-		
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			data.put("langlocal", "en");
+		}else{
+			data.put("langlocal", "ch");
+		}
 		return data;
 	}
 
