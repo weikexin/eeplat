@@ -1,6 +1,8 @@
 var invokeDomId = "";
 var mirrorEditor ;
 var mirrorEditor2 ;
+var kindEditor;
+var ie6len = 1000;
 
 // 在js里面直接调用action类
 /**
@@ -54,11 +56,18 @@ function callAction(p){
 	}else if(p.paras==null && p.formName!=null && $.trim(p.formName)!=""){
 		paras =  getParasOfForms(p.formName);
 	}
+	
+	var callType = "as";
+	if(p.callType){
+		callType = p.callType;
+	}
+
+	
 	if(p.actionName){
-		paras = "callType=as&greenChannel=true&userDefineClass="+p.actionName + "&" + urlCodeDeal(paras);
+		paras = "callType=" + callType + "&greenChannel=true&userDefineClass="+p.actionName + "&" + urlCodeDeal(paras);
 	}
 	if(p.actionConfigName){
-		paras = "callType=as&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
+		paras = "callType=" + callType + "&contextServiceName=do_auth_owner_browse&greenChannel=true&actionConfigName="+p.actionConfigName + "&" + urlCodeDeal(paras);
 	}
 	
 	loading(aMsg);
@@ -101,9 +110,9 @@ function callAction(p){
    					resourcePath = resourcePath + "?1=1";		
    			     }
 	   			  if(p.target=='_opener_window'){
-	   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+	   				    window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
 	   			  }else  if(p.target=='_opener_location'){
-	   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+	   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   			  }  
 	   			  else if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,p.pml);
@@ -119,7 +128,7 @@ function callAction(p){
  						  if(pageNo!=null && pageSize!=null){
  							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
  						  }
- 						  $("#" + p.target).empty().load(p.pml,dataParas);
+ 						  $("#" + p.target).empty().load(p.pml,getShorterParas(dataParas));
 					  }else{
 						  $("#" + p.target).empty().load(p.pml);
 					  }
@@ -211,7 +220,7 @@ function callService(p){
 		pmlName = p.pml;
 		p.pml =  globalURL + p.pml + ".pml?1=1";
 	}
-	
+		
 	/////提示性问题
 	if(p.echoJs!=null && !eval(unescape(p.echoJs))){
     	if(p.btn){
@@ -293,9 +302,9 @@ function callService(p){
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
    				   			  if(target=='_opener_window'){
-   		  		   				  	window.open(aPath + "&"  + paras,aTitle,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+   		  		   				  	window.open(aPath + "&"  + getShorterParas(paras),aTitle,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
    		  		   			  }else  if(target=='_opener_location'){
-   		  		   				  	window.location = aPath + "&"  + paras + "&isApp=true";
+   		  		   				  	window.location = aPath + "&"  + getShorterParas(paras) + "&isApp=true";
    		  		   			  }  
    		  		   			  else if(target=='_opener_tab'){
    		  							createNewTab(pmlName,aTitle,aPath);
@@ -322,9 +331,9 @@ function callService(p){
   	   					 resourcePath = resourcePath + "?1=1";		
   	   				 }
   		   			  if(p.target=='_opener_window'){
-  		   				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+  		   				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
   		   			  }else  if(p.target=='_opener_location'){
-  		   				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+  		   				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
   		   			  }  
   		   			  else if(p.target=='_opener_tab'){
   							createNewTab(pmlName,title,p.pml);
@@ -342,7 +351,7 @@ function callService(p){
   	  						  if(pageNo!=null && pageSize!=null){
   	  							dataParas = dataParas + "&pageSize="+pageSize+"&pageNo="+pageNo; 
   	  						  }
-  	  						  $("#" + p.target).empty().load(p.pml,dataParas);
+  	  						  $("#" + p.target).empty().load(p.pml,getShorterParas(dataParas));
   						  }else{
   							  $("#" + p.target).empty().load(p.pml);
   						  }
@@ -397,6 +406,8 @@ function callPlatBus(p){
  * p.target
  * p.pml
  * p.pmlName
+ * p.pmlWidth 弹出Dialog方式，宽度(px) 
+ * p.pmlHeight 弹出Dialog方式，高度(px)
  * urlCodeDeal(paras)  改写可以加快速度
  * @param p
  * @return
@@ -458,9 +469,9 @@ function loadPml(p){
 		  }
 
 	   if(p.target=='_opener_window'){
-				  	window.open(resourcePath + "&"  + paras,title,'height=760,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=no,location=no,status=no');
+				  	window.open(resourcePath + "&"  + getShorterParas(paras),title,'height=650,width=1012,left=0,top=0,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no');
 		}else  if(p.target=='_opener_location'){
-				  	window.location = resourcePath + "&"  + paras + "&isApp=true";
+				  	window.location = resourcePath + "&"  + getShorterParas(paras) + "&isApp=true";
 	   } 
 	   else	if(p.target && $.trim(p.target)!="" && p.target!='_opener_tab'){
 
@@ -469,12 +480,11 @@ function loadPml(p){
 				if(p.title){
 					title = p.title;
 				}
-				
-				popupDialog(pmlName,title,p.pml + "&" +  urlCodeDeal(paras),p.pmlWidth,p.pmlHeight);
+				popupDialog(pmlName,title,p.pml + "&" +  getShorterParas(urlCodeDeal(paras)),p.pmlWidth,p.pmlHeight);
 				
 			}else{
 				loading();
-				$("#" + p.target).empty().load(p.pml,urlCodeDeal(paras),function(){
+				$("#" + p.target).empty().load(p.pml,getShorterParas(urlCodeDeal(paras)),function(){
 					closeWin();
 				});
 				$("#" + pmlName).data('paras',urlCodeDeal(paras));
@@ -487,7 +497,7 @@ function loadPml(p){
 				////如果采用简化配置的情况 
 				if(p.target!='_opener' && p.target!='_opener_tab' && simpleConfig && $("#" + pmlName).size() > 0){
 					loading();
-					$("#" + pmlName).empty().load(p.pml,urlCodeDeal(paras),function(){
+					$("#" + pmlName).empty().load(p.pml,getShorterParas(urlCodeDeal(paras)),function(){
 						closeWin();
 					});
 					$("#" + pmlName).data('paras',urlCodeDeal(paras));
@@ -498,7 +508,7 @@ function loadPml(p){
 					}
 					var thisPml = p.pml;
 					if(paras!="" && urlCodeDeal(paras)!=""){
-						thisPml = p.pml + "&" +  urlCodeDeal(paras);
+						thisPml = p.pml + "&" +  getShorterParas(urlCodeDeal(paras));
 					}
 					if(p.target=='_opener_tab'){
 						createNewTab(pmlName,title,thisPml);
@@ -540,23 +550,48 @@ function  getParasOfForms(targetForms){
 	return paras;
 }
 
+/**
+ * 
+ * IE6、7 URL长度的限制
+ * @param paras
+ * @return
+ */
+function getShorterParas(paras){
+	
+	if(paras!=null && paras.length>ie6len && $.browser.msie && 
+			($.browser.version=='6.0' 
+		||	 $.browser.version=='7.0')){
+		return paras.substr(0,ie6len);
+    }
+	return paras;
+}
 
 
 function updateEditorFormValue()
-{	 try {
-    ////codemirror
+{	 
+	try {
+			 ///fckeditor
+                for ( i = 0; i < parent.frames.length; ++i )
+                        if ( parent.frames[i].FCK )
+                                parent.frames[i].FCK.UpdateLinkedField();
+	}catch(e){
+	 }
+	
+	try{
+	    ////codemirror
 	    if(mirrorEditor){
 		    mirrorEditor.save();
 	    }
 	    if(mirrorEditor2){
 	    	mirrorEditor2.save();
 	    }
-		 ///fckeditor
-                for ( i = 0; i < parent.frames.length; ++i )
-                        if ( parent.frames[i].FCK )
-                                parent.frames[i].FCK.UpdateLinkedField();
+	    if(kindEditor){
+	    	kindEditor.sync();
+	    }
 	}catch(e){
-	 }          
+	}
+	
+	
 }
 
 
@@ -612,10 +647,52 @@ function  sortDown(o,boName,serviceName){
 }
 
 
+////////////////////////////////无刷新 flash上传 限制只能上传一个,不改变文件名称
+function uploadifyPlain(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
+
+	if(fileDesc==null || $.trim(fileDesc)==""){
+		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+	}
+	if(fileExt==null || $.trim(fileExt)==""){
+		fileExt = '*.jpg;*.gif;*.bmp';
+	}
+	if(autoUpload==null){
+		autoUpload = true;
+	}	
+	
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify_plain.jsp";
+	}
+
+	
+	var o = $("#" + uploadifyID).prev();
+	$("#" + uploadifyID).uploadify({
+	'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
+	'scriptData'     : {'jsessionid':sessionid},
+	'script'         : 'exedo/webv3/' + uploadActionFile,
+	'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
+	'queueID'        : uploadifyQueueID,
+	'auto'           : autoUpload,
+	'multi'          : false,
+	'simUploadLimit' : 2,
+	'buttonImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/browse-files.gif',
+	'wmode'          : 'transparent',
+	'width'          : 75,
+	'height'         : 25,
+	'fileDesc'       : fileDesc,
+	'fileExt'		 : fileExt,
+	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
+	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
+	'onProgress'     : function(event,queueId,fileObj,date){o.val(fileObj.name);}
+	});
+	
+	
+}
+
 
 
 ////////////////////////////////无刷新 flash上传
-function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
 	var now = new Date(); 
 	var myTime=now.getTime();
 	var myRand = Math.floor(Math.random()*myTime)+1;
@@ -630,12 +707,15 @@ function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sess
 	if(autoUpload==null){
 		autoUpload = true;
 	}
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify.jsp";
+	}
 	
 	var o = $("#" + uploadifyID).prev();
 	$("#" + uploadifyID).uploadify({
 		'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
 		'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
-		'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid ,
+		'script'         : 'exedo/webv3/' + uploadActionFile + ';jsessionid=' + sessionid ,
 		'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 		'queueID'        : uploadifyQueueID,
 		'auto'           : autoUpload,
@@ -653,7 +733,7 @@ function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sess
 }
 
 ////////////////////////////////无刷新 flash上传 限制只能上传一个
-function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid){
+function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
 	var now = new Date(); 
 	var myTime=now.getTime();
 	var myRand = Math.floor(Math.random()*myTime)+1;
@@ -668,11 +748,16 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	if(autoUpload==null){
 		autoUpload = true;
 	}	
+	
+	if(uploadActionFile==null || uploadActionFile==""){
+		uploadActionFile = "upload_action_uploadify.jsp";
+	}
+	
 	var o = $("#" + uploadifyID).prev();
 	$("#" + uploadifyID).uploadify({
 	'uploader'       : 'exedo/webv3/js/jquery-plugin/fileuploader/uploadify.swf',
 	'scriptData'     : {'jsessionid':sessionid,'myFile':myFile},
-	'script'         : 'exedo/webv3/upload_action_uploadify.jsp;jsessionid=' + sessionid,
+	'script'         : 'exedo/webv3/' + uploadActionFile + ';jsessionid=' + sessionid,
 	'cancelImg'      : 'exedo/webv3/js/jquery-plugin/fileuploader/cancel.png',
 	'queueID'        : uploadifyQueueID,
 	'auto'           : autoUpload,
@@ -684,7 +769,7 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	'height'         : 25,
 	'fileDesc'       : fileDesc,
 	'fileExt'		 : fileExt,
-	'onSelect'       : function(event,queueID,fileObj){ o.val(fileObj.name);},
+	'onSelect'       : function(event,queueID,fileObj){ o.val(myFile+fileObj.name);},
 	//'onCancel'     : function(event,queueID,fileObj,data){o.val(o.val().replace(fileObj.name,""));}
 	'onProgress'     : function(event,queueId,fileObj,date){o.val(myFile+fileObj.name);}
 	});
@@ -1009,7 +1094,7 @@ function pageSplit(dataKey,pmlName,formName){
 				    	return;
 				    }
 			  		$(document.body).data(dataKey,"1");
-				    var pmlUrl = getPmlUrl(pmlName,1,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,1,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
@@ -1017,29 +1102,29 @@ function pageSplit(dataKey,pmlName,formName){
 				    if($(document.body).data(dataKey)=="1"){
 				    	return;
 				    }
-				    var curPageNo = parseInt($(document.body).data(dataKey)) - 1;
+				    var curPageNo = parseInt($(document.body).data(dataKey).replace(",","")) - 1;
 				    $(document.body).data(dataKey,"" + curPageNo);
-				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
 			$("#"+dataKey+" .nextPage").bind('click',function(){
 
-				    if(parseInt($("#"+dataKey+" .pageNo").text())>=parseInt(($("#"+dataKey+" .pageSize").text())) ){
+				    if(parseInt($("#"+dataKey+" .pageNo").text().replace(",",""))>=parseInt(($("#"+dataKey+" .pageSize").text().replace(",",""))) ){
 				    	return;
 				    }
-				    var curPageNo = parseInt($("#"+dataKey+" .pageNo").text()) + 1;
+				    var curPageNo = parseInt($("#"+dataKey+" .pageNo").text().replace(",","")) + 1;
 				    $(document.body).data(dataKey,"" + curPageNo);
-				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text() );
+				    var pmlUrl = getPmlUrl(pmlName,curPageNo,$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 			
 			$("#"+dataKey+" .lastPage").bind('click',function(){
-				    if(parseInt($("#"+dataKey+" .pageNo").text())==$("#"+dataKey+" .pageSize").text()){
+				    if(parseInt($("#"+dataKey+" .pageNo").text().replace(",",""))==$("#"+dataKey+" .pageSize").text().replace(",","")){
 				    	return;
 				    }
-				    $(document.body).data(dataKey,$("#"+dataKey+" .pageSize").text());
-				    var pmlUrl = getPmlUrl(pmlName,$("#"+dataKey+" .pageSize").text(),$("#"+dataKey+" .rowSize").text() );
+				    $(document.body).data(dataKey,$("#"+dataKey+" .pageSize").text().replace(",",""));
+				    var pmlUrl = getPmlUrl(pmlName,$("#"+dataKey+" .pageSize").text().replace(",",""),$("#"+dataKey+" .rowSize").text().replace(",","") );
 				    loadPml({'pml':pmlUrl,'target':pmlName,'formName':formName});
 			});
 
@@ -1049,12 +1134,4 @@ function getPmlUrl(pmlName,pageNo,pageSize){
 	return  globalURL + pmlName + ".pml?pageSize="+pageSize+"&pageNo="+pageNo; 
 }
 
-function insertAuthPt(){
-	var selectedNode = window.opener.selectedNodeBak;
-	var whatuid = selectedNode.getAttribute('id');
-	var ouuid = $("#gm_do_authorization_insert_ptnode_role_ouuid").val();
-	callService({'serviceName':'u_role_ptnode',paras:"whatuid=" + whatuid + "&ouuid="+ouuid,'pml':'PM_do_org_role_of_ptnode','target':'PM_do_org_role_of_ptnode'}  );
-	
-	$('#FPM_do_authorization_insert_ptnode_role').jqmHide();
-	
-}
+
