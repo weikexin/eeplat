@@ -69,7 +69,7 @@
 <script language="javascript">
 
   function logOff(){
-	  if(confirm('确定要退出吗？')){
+	  if(confirm('<%=I18n.instance().get("Confirm Exit")%>')){
 	  	window.location.href="exedo/webv3/logoff.jsp"
 	  }
   }
@@ -82,7 +82,7 @@
 
   function refreshMe(){
 				$.get("exedo/webv3/ClearCache.jsp",function(data){
-			  alert("清除缓存成功!");
+			  alert("<%=I18n.instance().get("Confirm ClearCache")%>");
 		});
   }
   

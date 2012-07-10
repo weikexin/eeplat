@@ -337,7 +337,7 @@ function showMainMsg(position,msgW,msgH,align,type,content,isClose){
 		$("#main_msg").empty();
 	}
 	if(type=="loading"){
-		content="<div >&nbsp;&nbsp;正在加载,请稍后......</div>";
+		content="<div >&nbsp;&nbsp;" + EELang.loading + "</div>";
 	}else if(type=="loadingImg"){
 		content= "<div class=index-loading></div>";
 	}
@@ -572,7 +572,7 @@ function insertAceCode(){
 	var name = $("input[name=propertyuid]").val();
 	
 	if(name==null || name==''){
-		alert("名称不可以为空!");
+		alert(EELang.nameRequired);
 		return;
 	}
 	var isValid = 1;
@@ -620,7 +620,7 @@ function insertAceCode(){
 	if(objuid){
 		serviceName = "DO_BO_Icon_Update";
 	}
-	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert('保存成功!'), 
+	callService({'serviceName':serviceName,'callType':'uf', 'callback':alert(EELang.saveSuccess), 
 		paras:"propertyuid=" + name + "&formulascript=" + encodeURIComponent(theCode) + "&icon=" + isValid + "&mVersion="+hidden_type}  );
 }
 

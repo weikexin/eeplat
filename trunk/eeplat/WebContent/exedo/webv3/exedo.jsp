@@ -116,6 +116,14 @@ globalURL = "/<%=DOGlobals.URL%>/";
 	src="<%=request.getContextPath() %>/CodeMirror/codemirror-compressed.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath() %>/CodeMirror/complete.js"></script>
+
+<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+<% }else{ %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+<% }%>
+	
+	
 <script language="javascript">
 
 globalURL = "/<%=DOGlobals.URL%>/";
@@ -163,6 +171,7 @@ $(function(){
 });
 
 </script>
+
 
 
 <style type="text/css">
