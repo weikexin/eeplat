@@ -91,18 +91,19 @@
 	<div class="gzmid"><div class="midleft"></div>
 	<div class="midcon">
 	
-		    <% if ("true".equals(DOGlobals.getValue("multi.tenancy"))) { %>
-		    <br/>       
-	      <b>您可以通过"数据库管理"，创建新的数据表，修改或删除存在的数据表。</b>
-	       <br/>"数据库管理"除了不能操作本地文件外，兼容所有的 MYSQL 5.5命令。
-	       
-		   <br/>数据表需要经过<b>"初始化表"</b>，才能生成平台相关元数据。
-				 <%} %>   
+ 
 	    <ul>
 	    <% if ("true".equals(DOGlobals.getValue("multi.tenancy"))) { %>
-	    	<li><a  href="dbmanager/" target="_blank"><%=I18n.instance().get("DataBase Manager")%></a></li>
+	    	<li><a  href="dbmanager/" target="_blank"><%=I18n.instance().get("DataBase Manager")%></a>&nbsp;&nbsp;
+	    		      <%=I18n.instance().get("data manager utility")%> <%=I18n.instance().get("datamanager mysql command")%>
+			       
+				   
+		   </li>
 		    <br/>
-			<li><a  href="javascript:loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'初始化表'})">初始化表</a></li>
+			<li><a  href="javascript:loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'初始化表'})">
+			<%=I18n.instance().get("初始化表")%></a> &nbsp;&nbsp;<%=I18n.instance().get("inittable_note")%>
+			
+			</li>
 		    <br/>
 		 <%} else { %>
 		     <li><a  href="javascript:loadPml({'pml':'PM_do_datasource_Result','target':'_opener_tab','title':'数据源管理'})"><%=I18n.instance().get("DataBase Manager")%></a></li>
@@ -110,8 +111,8 @@
 		 
 		 
 	 	    <% if ("true".equals(DOGlobals.getValue("multi.tenancy"))) { %>
-	    	<li><a  href="javascript:loadPml({'pml':'TabeCreator','target':'_opener_tab','title':'创建表'})">表创建向导</a>
-	    	<span style="font-size:12px"> &nbsp;&nbsp;&nbsp;&nbsp;表生成及初始化简单向导 </span>。  </li>
+	    	<li><a  href="javascript:loadPml({'pml':'TabeCreator','target':'_opener_tab','title':'创建表'})"><%=I18n.instance().get("Table Create Wizard")%></a>
+	    	<span style="font-size:12px"> &nbsp;&nbsp;&nbsp;&nbsp;<%=I18n.instance().get("FromTable2BO")%> </span>  </li>
 		 	<%} %>
 		    
 		</ul>	

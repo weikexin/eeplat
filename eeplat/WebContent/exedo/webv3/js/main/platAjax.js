@@ -28,7 +28,7 @@ function callAction(p){
 	if(p.async == false){
 		async = false;
 	}
-	var aMsg = "后台处理,请稍后......";
+	var aMsg = EEPlat.dealDaemon;
 	if(p.msg){
 		aMsg = p.msg;
 	}
@@ -137,7 +137,7 @@ function callAction(p){
 	   		     $("#" + pmlName).empty().load(p.pml);  
 	   		   }
 	   		   else{
-				 alert("没有定义目标面板,请检查相关配置!");
+				 alert(EELang.notDefineGoal);
 	   		   }	 
 		   }
 	   	   if(p.callback){

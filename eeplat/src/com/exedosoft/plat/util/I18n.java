@@ -12,8 +12,11 @@ import java.util.Map;
 
 import org.dom4j.io.XMLWriter;
 import java.io.*;
+
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
+
+import com.exedosoft.plat.bo.DODataSource;
 
 public class I18n {
 
@@ -53,8 +56,9 @@ public class I18n {
 
 		try {
 			SAXReader saxReader = new SAXReader();
-			Document document = saxReader.read(I18n.class
-					.getResourceAsStream("/i18n.xml"));
+			File file = new File(DODataSource.getConfigDBPath()+ "/../i18n.xml");
+
+			Document document = saxReader.read(file);
 
 			Element rootElement = document.getRootElement();
 
