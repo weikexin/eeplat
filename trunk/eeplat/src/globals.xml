@@ -5,24 +5,20 @@
 		<property name="transaction.isolation">2</property>
 		<!-- 
 		<property name="lang.local">en</property>
-         -->
-         
+		 -->
+		<property name="pml_suffix">.do</property>
+		<property name="letter.case.keep">true</property>
+		
+		
        	<property name="connection.driver_class">org.h2.Driver</property>
 		<property name="connection.url">config</property> 
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
- 
+    	     
+
 
        <!--
-       
-
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/c_kids?useUnicode=true&amp;characterEncoding=utf-8</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>  
-	
-
-		
+       jdbc:h2:tcp://localhost/conf_archive
            
         <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:xe</property>
@@ -30,10 +26,11 @@
         <property name="connection.password">eeplat</property>
         
         
-        <property name="connection.driver_class">org.h2.Driver</property>
-		<property name="connection.url">jdbc:h2:d:/db/conf_archive</property> 
-        <property name="connection.username">sa</property>
-        <property name="connection.password"></property>
+ 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/c_kids?useUnicode=true&amp;characterEncoding=utf-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>  
+
         
        	<property name="connection.driver_class">org.h2.Driver</property>
 		<property name="connection.url">jdbc:h2:d:/db/conf_archive</property> 
@@ -82,6 +79,7 @@
 	<!-- 
 		<property name="ui.resultlist.config">label,value</property>
 	 -->
+	 
 		<property name="jslib">jquery</property>
 			    
 		<!-- no simple all(further) -->
@@ -90,7 +88,7 @@
 
 		<!-- 两种:serial no -->
 		<property name="useSerial">serial</property>
-		<property name="uploadfiletemp">F:/google/eeplat/WebContent/upload/</property>
+		<property name="uploadfiletemp">D:/upload/</property>
 		<!--登陆是否启用绿色通道-->
 		<property name="login.greenchannel">0</property>
 
@@ -128,9 +126,9 @@
 		<!-- rmi.rhino -->
 		<property name="rmi.rhino.uri">rmi://localhost:1099/js</property>		
 		
-		<!-- 数据库管理 -->
-		<property name="dbmanager.language">zh_CN</property>
-
+		<!-- 数据库管理
+				<property name="dbmanager.language">zh_CN</property>
+		 -->
 		<!-- 配置库使用mysql，需要方言支持 -->
 			<!-- <property name="useDialect">dialect_mysql.properties</property> -->
 </config>
