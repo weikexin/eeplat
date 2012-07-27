@@ -15,6 +15,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 
 
 
@@ -53,6 +54,8 @@ public class LoginActionLDAP extends DOAbstractAction {
 			sc.getUser().putValue("password_email", pwd);
 			return "success";
 		} else {
+			this.setEchoValue(I18n.instance().get("当前工作流上下文丢失,请重新操作!"));
+
 			this.setEchoValue("用户名或密码错误，请重试!");
 			return "notpass";
 		}

@@ -3,6 +3,7 @@ package com.exedosoft.plat.action.wf;
 import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.wf.WFEngine;
 import com.exedosoft.wf.WFEngineFactory;
 import com.exedosoft.wf.pt.ProcessTemplate;
@@ -15,7 +16,7 @@ public class DOStartWf extends DOAbstractAction {
 
 
 		if (service.getProcessTemplate() == null) {
-			this.setEchoValue("服务未定义工作流模板");
+			this.setEchoValue(I18n.instance().get("服务未定义工作流模板"));
 			return NO_FORWARD;
 		}
 		Transaction t = new Transaction(service.getBo().getDataBase());

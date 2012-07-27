@@ -11,6 +11,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOFormTarget;
+import com.exedosoft.plat.util.I18n;
 
 public class CopyFormsToGrid extends DOAbstractAction {
 
@@ -23,21 +24,22 @@ public class CopyFormsToGrid extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+
+			setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
 
 		String gridModelUid = this.actionForm.getValue("gridModelUid");
 		if (gridModelUid == null) {
-			this.setEchoValue("没有选择表格！");
+			setEchoValue(I18n.instance().get("没有选择表格！"));
 			return NO_FORWARD;
 		}
 
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
-			this.setEchoValue("没有数据！");
+			setEchoValue(I18n.instance().get("没有数据！"));
+
 			return NO_FORWARD;
 		}
 		Transaction t = this.service.currentTransaction();

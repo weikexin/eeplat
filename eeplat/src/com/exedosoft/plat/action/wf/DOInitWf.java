@@ -3,6 +3,7 @@ package com.exedosoft.plat.action.wf;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.wf.WFEngine;
 import com.exedosoft.wf.WFEngineFactory;
 import com.exedosoft.wf.WFException;
@@ -18,7 +19,7 @@ public class DOInitWf extends DOAbstractAction {
 
 	public String excute() {
 		if (service.getProcessTemplate() == null) {
-			this.setEchoValue("Workflow Template is not defined!");
+			this.setEchoValue(I18n.instance().get("服务未定义工作流模板"));
 			return null;
 		}
 		try {

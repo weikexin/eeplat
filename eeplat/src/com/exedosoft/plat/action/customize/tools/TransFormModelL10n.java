@@ -13,6 +13,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.StringUtil;
 
 public class TransFormModelL10n extends DOAbstractAction {
@@ -28,8 +29,7 @@ public class TransFormModelL10n extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
@@ -85,7 +85,7 @@ public class TransFormModelL10n extends DOAbstractAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.setEchoValue("翻译完成!");
+		this.setEchoValue(I18n.instance().get("翻译完成!"));
 		return DEFAULT_FORWARD;
 	}
 

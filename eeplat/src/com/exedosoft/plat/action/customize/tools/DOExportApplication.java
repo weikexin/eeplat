@@ -23,6 +23,7 @@ import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.safe.TenancyValues;
 
@@ -37,7 +38,8 @@ public class DOExportApplication extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null) {
-			System.out.println("服务为定义！");
+			
+			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
@@ -48,7 +50,7 @@ public class DOExportApplication extends DOAbstractAction {
 		DOService findShare = DOService.getService("multi_appshare_findbyshareappid");
 		List findApps = findShare.invokeSelect(selectApp.getUid());
 		if(findApps!=null && findApps.size() >0 ){
-			this.setEchoValue("分享的应用必须原创APP，该应用已经分享到AppShare，不能重复分享!");
+			this.setEchoValue(I18n.instance().get("分享的应用必须原创APP，该应用已经分享到AppShare，不能重复分享!"));
 			return NO_FORWARD;
 		}
 
@@ -135,7 +137,7 @@ public class DOExportApplication extends DOAbstractAction {
 		
 		
 
-		this.setEchoValue("成功分享到AppShare!");
+		this.setEchoValue(I18n.instance().get("成功分享到AppShare!"));
 		return DEFAULT_FORWARD;
 
 	}

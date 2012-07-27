@@ -19,6 +19,7 @@ import com.exedosoft.plat.bo.DOParameter;
 import com.exedosoft.plat.bo.DOParameterService;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
+import com.exedosoft.plat.util.I18n;
 
 /**
  * 
@@ -43,25 +44,22 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 	public String excute() {
 
-		log.info("进入批量修改Action::::::::::::::::::::::::::");
+		log.info("Enter CoreSaveAllAction.class::::::::::::::::::::::::::");
 
 		if (this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			setEchoValue(I18n.instance().get("未配置SQL 语句"));
 		}
 
 		String aKey = "checkinstance";
 		String[] keys = this.actionForm.getValueArray(aKey);
 
 		if (keys == null || keys.length == 0) {
-			System.out.println("Key:" + aKey);
-			System.out.println("没有数据");
-			this.setEchoValue("没有数据");
+			setEchoValue(I18n.instance().get("没有数据"));
 			return NO_FORWARD;
 		}
 
 		List listKeys = Arrays.asList(keys);
-		log.info("选择的数据::" + listKeys);
+		log.info("Selected Data::" + listKeys);
 		// checkinstance_hidden
 		String[] key_hiddens = this.actionForm
 				.getValueArray("checkinstance_hidden");
@@ -99,7 +97,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 
 		try {
 			con = this.service.getBo().getDataBase().getContextConnection();
-			log.info("当前执行的SQL语句:" + this.service.getTempSql());
+			log.info("Current SQL:" + this.service.getTempSql());
 			PreparedStatement pstmt = con.prepareStatement(this.service
 					.getTempSql());
 
@@ -129,7 +127,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 					if (dop.getType() != null
 							&& dop.getType().intValue() == DOParameter.TYPE_FORM
 							&& dop.getDefaultValue() == null) {
-						log.info("批量修改参数的名称:::" + dop.getName());
+						log.info("Parameter Name:::" + dop.getName());
 
 						String[] valueArray = this.actionForm.getValueArray(dop
 								.getName());
@@ -157,7 +155,7 @@ public class CoreSaveAllAction extends DOAbstractAction {
 				}
 				pstmt.addBatch();
 			}
-			log.info("批量修改::batchSize:::" + batchSize);
+			log.info(":batchSize:::" + batchSize);
 			pstmt.executeBatch();
 
 		} catch (SQLException ex1) {

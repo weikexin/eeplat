@@ -20,6 +20,7 @@ import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.gene.jquery.PropertyManager;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 
 /**
  * 
@@ -197,7 +198,7 @@ public class DOAlterTable extends DOAbstractAction {
 		}
 		// TODO Auto-generated method stub
 		CacheFactory.getCacheRelation().getData().remove((new StringBuilder(String.valueOf(selected.getObjUid()))).append("_property").toString());
-		this.setEchoValue("保存成功!");
+		this.setEchoValue(I18n.instance().get("保存成功!"));
 		return DEFAULT_FORWARD;
 	}
 

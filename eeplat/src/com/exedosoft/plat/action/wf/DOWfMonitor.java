@@ -11,6 +11,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.org.DOAuthorization;
 import com.exedosoft.plat.bo.org.OrgParter;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.wf.pt.NodeDenpendency;
 import com.exedosoft.wf.pt.PTNode;
 import com.exedosoft.wf.pt.ProcessTemplate;
@@ -35,8 +36,7 @@ public class DOWfMonitor extends DOAbstractAction {
 		ProcessInstance pi = ProcessInstance.getProcessInstance(curPt.getUid());
 
 		if (curPt == null || pi == null) {
-			System.out.println("不存在工作流实例!");
-			this.setEchoValue("不存在工作流实例!");
+			this.setEchoValue(I18n.instance().get("不存在工作流实例!"));
 			return NO_FORWARD;
 		}
 

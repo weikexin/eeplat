@@ -26,9 +26,11 @@ import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.login.LoginMain;
 import com.exedosoft.plat.login.MultiAccount;
+import com.exedosoft.plat.login.MultiTenant;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.safe.TenancyValues;
 
 public class SSOController extends HttpServlet {
@@ -54,7 +56,6 @@ public class SSOController extends HttpServlet {
 		 * 植入session
 		 */
 		SessionContext us = new SessionContext();
-		System.out.println("第一次初始化Session=================");
 		request.getSession().setAttribute("userInfo", us);
 
 		// ///////////////////////////*************************捕获上下文
@@ -73,7 +74,7 @@ public class SSOController extends HttpServlet {
 		String returnValue = null;
 		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
 			log.info("Running in MultiTenent env=================================");
-			returnValue = makeMultiLogin(request, formBI);
+			returnValue = makeMultiLoginAndTenant(request, formBI);
 		} else {
 			log.info("Running in normal env=================================");
 			returnValue = makeSimpleLogin(request, formBI);
@@ -146,7 +147,7 @@ public class SSOController extends HttpServlet {
 				&& !formBI.getValue("randcode").equals(
 						request.getSession().getAttribute("rand"))) {
 
-			return "验证码不正确！";
+			return I18n.instance().get("验证码不正确！");
 		}
 
 		String returnValue = null;
@@ -164,7 +165,7 @@ public class SSOController extends HttpServlet {
 
 		if (curService == null) {
 			// out.println("{error:noservice}");
-			returnValue = "没有定义服务！";
+			returnValue = I18n.instance().get("没有定义服务！");
 			return returnValue;
 		}
 
@@ -203,7 +204,7 @@ public class SSOController extends HttpServlet {
 				&& !formBI.getValue("randcode").equals(
 						request.getSession().getAttribute("rand"))) {
 
-			return "验证码不正确！";
+			return I18n.instance().get("验证码不正确！");
 		}
 
 		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
@@ -215,10 +216,10 @@ public class SSOController extends HttpServlet {
 		/**
 		 * 查找账号
 		 */
-		MultiAccount ma = MultiAccount.findUser(formBI.getValue("name"),
+		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
 				formBI.getValue("password"));
 		if (ma == null) {
-			return "账号/密码出错，请重试！";
+			return I18n.instance().get("账号/密码出错，请重试！");
 		}
 
 		BOInstance user = new BOInstance();
@@ -229,7 +230,7 @@ public class SSOController extends HttpServlet {
 		BOInstance tenant = aService.getInstance(user.getValue("tenancyId"));
 		// ////////如果租户不存在
 		if (tenant == null || tenant.getName() == null) {
-			return "该账号没有被激活！";
+			return I18n.instance().get("该账号没有被激活！");
 		}
 		log.info("当前登录的租户为::" + user.getValue("tenancyId"));
 
@@ -263,7 +264,7 @@ public class SSOController extends HttpServlet {
 		}
 
 		if (dataDds == null || dds == null) {
-			return "该账号没有被激活或者没有正确初始化，请与管理员联系！";
+			return I18n.instance().get("该账号没有被激活或者没有正确初始化，请与管理员联系！");
 		}
 
 		// /globals 放到session中
@@ -300,19 +301,246 @@ public class SSOController extends HttpServlet {
 
 		// /设置公司名称
 		user.putValue("company", tenant.getValue("l10n"));
+		
+//		log.info("Login User:::" + user);
 
 		// //处理登录日志==========================
 		LoginMain.makeLogin(user, request);
 
-		log.info("当前业务库:::"
+		log.info("Current Data DB:::"
 				+ DOGlobals.getInstance().getSessoinContext()
 						.getTenancyValues().getDataDDS());
 
-		log.info("当前缺省的配置库:::" + DODataSource.parseGlobals());
+		log.info("Current Config DB:::" + DODataSource.parseGlobals());
 
 		return echoStr;
 
 	}
+	
+
+	public String makeMultiLoginAndTenant(HttpServletRequest request, BOInstance formBI) {
+
+		// //首先判断验证码，手机访问不判断
+		if (formBI.getValue("mobileclient") == null
+				&& !formBI.getValue("randcode").equals(
+						request.getSession().getAttribute("rand"))) {
+
+			return I18n.instance().get("验证码不正确！");
+		}
+
+		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
+
+		// 处理登录
+
+		String echoStr = "";
+
+		/**
+		 * 查找账号
+		 */
+		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
+				formBI.getValue("password"),formBI.getValue("tenancyId"));
+		if (ma == null) {
+			return I18n.instance().get("账号/密码出错，请重试！");
+		}
+
+		BOInstance user = new BOInstance();
+		user.fromObject(ma);
+		DOService aService = DOService
+				.getService("multi_tenancy_browse_byname");
+		// ////////////根据用户查找租户
+		BOInstance tenant = aService.getInstance(user.getValue("tenancyId"));
+		// ////////如果租户不存在
+		if (tenant == null || tenant.getName() == null) {
+			return I18n.instance().get("该账号没有被激活！");
+		}
+		log.info("当前登录的租户为::" + user.getValue("tenancyId"));
+
+		// tenant data datastore url
+		String multi_datasource_uid = tenant.getValue("multi_datasource_uid");
+		// tenant config datastore url
+		String model_datasource_uid = tenant.getValue("model_datasource_uid");
+
+		DODataSource dataDds = null;
+		DODataSource dds = null;
+		if (multi_datasource_uid != null && model_datasource_uid != null) {
+
+			DOService findDataSource = DOService
+					.getService("multi_datasource_browse");
+
+			// //data datasource
+			BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
+			if (aBI != null) {
+				dataDds = (DODataSource) aBI.toObject(DODataSource.class);
+				// /现在多租户情况下默认都是mysql
+				dataDds.setDialect(DODataSource.DIALECT_MYSQL);
+			}
+
+			// /model datasource
+			aBI = findDataSource.getInstance(model_datasource_uid);
+			if (aBI != null) {
+				dds = (DODataSource) aBI.toObject(DODataSource.class);
+				// /现在多租户情况下默认都是mysql
+				dds.setDialect(DODataSource.DIALECT_MYSQL);
+			}
+		}
+
+		if (dataDds == null || dds == null) {
+			return I18n.instance().get("该账号没有被激活或者没有正确初始化，请与管理员联系！");
+		}
+
+		// /globals 放到session中
+
+		// //需要更改多租户表中，租户数据库中的数据源
+		// ////每个租户为定位到某个物理数据库中
+		// ///租户数据库分配
+		TenancyValues tv = new TenancyValues(dds, tenant);
+
+		tv.setDataDDS(dataDds);
+		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
+		DOService findUserService = DOService.getService("do_org_user_browse");
+
+		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+		BOInstance employee = null;
+		try {
+			if (corrUsers == null || corrUsers.size() == 0) {
+				// user.putValue("objuid",
+				// ma.getObjUid());
+				DOService storeUser = DOService
+						.getService("do_org_user_insert");
+				// /建立用户间的对应关系
+				user.putValue("user_code", user.getValue("name"));
+				employee = storeUser.store(user);
+
+			} else {
+				employee = (BOInstance) corrUsers.get(0);
+			}
+		} catch (ExedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		user.putValue("name", employee.getValue("name"));
+
+		// /设置公司名称
+		user.putValue("company", tenant.getValue("l10n"));
+		
+//		log.info("Login User:::" + user);
+
+		// //处理登录日志==========================
+		LoginMain.makeLogin(user, request);
+
+		log.info("Current Data DB:::"
+				+ DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues().getDataDDS());
+
+		log.info("Current Config DB:::" + DODataSource.parseGlobals());
+
+		return echoStr;
+
+	}
+	
+//	public String makeMultiLoginOfTenant(HttpServletRequest request, BOInstance formBI) {
+//
+//		// //首先判断验证码，手机访问不判断
+//		if (formBI.getValue("mobileclient") == null
+//				&& !formBI.getValue("randcode").equals(
+//						request.getSession().getAttribute("rand"))) {
+//
+//			return I18n.instance().get("验证码不正确！");
+//		}
+//
+//		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
+//
+//		
+//		MultiTenant  mt = MultiTenant.findTenant(formBI.getValue("tenantId"));
+//	
+//		log.info("当前登录的租户为::" +mt);
+//
+//		// tenant data datastore url
+//		String multi_datasource_uid = mt.getMulti_datasource_uid();
+//		// tenant config datastore url
+//		String model_datasource_uid = mt.getModel_datasource_uid();
+//
+//		DODataSource dataDds = null;
+//		DODataSource dds = null;
+//		if (multi_datasource_uid != null && model_datasource_uid != null) {
+//
+//			DOService findDataSource = DOService
+//					.getService("multi_datasource_browse");
+//
+//			// //data datasource
+//			BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
+//			if (aBI != null) {
+//				dataDds = (DODataSource) aBI.toObject(DODataSource.class);
+//				// /现在多租户情况下默认都是mysql
+//				dataDds.setDialect(DODataSource.DIALECT_MYSQL);
+//			}
+//
+//			// /model datasource
+//			aBI = findDataSource.getInstance(model_datasource_uid);
+//			if (aBI != null) {
+//				dds = (DODataSource) aBI.toObject(DODataSource.class);
+//				// /现在多租户情况下默认都是mysql
+//				dds.setDialect(DODataSource.DIALECT_MYSQL);
+//			}
+//		}
+//
+//		if (dataDds == null || dds == null) {
+//			return I18n.instance().get("该账号没有被激活或者没有正确初始化，请与管理员联系！");
+//		}
+//
+//		// /globals 放到session中
+//
+//		// //需要更改多租户表中，租户数据库中的数据源
+//		// ////每个租户为定位到某个物理数据库中
+//		// ///租户数据库分配
+//		
+//		BOInstance tenant = new BOInstance();
+//		tenant.fromObject(mt);
+//		TenancyValues tv = new TenancyValues(dds, tenant);
+//
+//		tv.setDataDDS(dataDds);
+//		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
+//		DOService findUserService = DOService.getService("do_org_user_browse");
+//
+//		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+//		BOInstance employee = null;
+//		try {
+//			if (corrUsers == null || corrUsers.size() == 0) {
+//				// user.putValue("objuid",
+//				// ma.getObjUid());
+//				DOService storeUser = DOService
+//						.getService("do_org_user_insert");
+//				// /建立用户间的对应关系
+//				user.putValue("user_code", user.getValue("name"));
+//				employee = storeUser.store(user);
+//
+//			} else {
+//				employee = (BOInstance) corrUsers.get(0);
+//			}
+//		} catch (ExedoException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		user.putValue("name", employee.getValue("name"));
+//
+//		// /设置公司名称
+//		user.putValue("company", tenant.getValue("l10n"));
+//		
+////		log.info("Login User:::" + user);
+//
+//		// //处理登录日志==========================
+//		LoginMain.makeLogin(user, request);
+//
+//		log.info("Current Data DB:::"
+//				+ DOGlobals.getInstance().getSessoinContext()
+//						.getTenancyValues().getDataDDS());
+//
+//		log.info("Current Config DB:::" + DODataSource.parseGlobals());
+//
+//		return echoStr;
+//
+//	}
+
 
 	/*
 	 * (non-Java-doc)

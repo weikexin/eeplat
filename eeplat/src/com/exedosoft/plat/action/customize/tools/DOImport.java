@@ -23,6 +23,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.plat.util.xml.DOMXmlUtil;
 
@@ -38,8 +39,7 @@ public class DOImport extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
@@ -55,7 +55,8 @@ public class DOImport extends DOAbstractAction {
 			String fileName = this.actionForm.getValue("fileName");
 
 			if (fileName == null || fileName.trim().equals("")) {
-				this.setEchoValue("你还没有选择文件！");
+				this.setEchoValue(I18n.instance().get("你还没有选择文件！"));
+
 				return NO_FORWARD;
 			}
 
@@ -70,7 +71,8 @@ public class DOImport extends DOAbstractAction {
 			if (!isImport) {
 				return NO_FORWARD;
 			}
-			this.setEchoValue("翻译完成!");
+			this.setEchoValue(I18n.instance().get("翻译完成!"));
+
 
 		} catch (Exception e) {
 			t.rollback();
@@ -79,7 +81,8 @@ public class DOImport extends DOAbstractAction {
 			t.end();
 		}
 
-		this.setEchoValue("导入成功!");
+		this.setEchoValue(I18n.instance().get("导入成功!"));
+
 		return DEFAULT_FORWARD;
 
 	}
@@ -199,7 +202,7 @@ public class DOImport extends DOAbstractAction {
 											.getValue("objuid"));
 									if (exists != null) {
 										log.info("待导入的工程已经存在，请删除后再导入!" + exists);
-										this.setEchoValue("待导入的工程已经存在，请删除后再导入!");
+										this.setEchoValue(I18n.instance().get("待导入的工程已经存在，请删除后再导入!"));
 										return false;
 									}
 									appInsert.invokeUpdate(biApp);
@@ -227,7 +230,7 @@ public class DOImport extends DOAbstractAction {
 									if (exists != null) {
 										log.info("待导入的业务对象已经存在，请删除后再导入!"
 												+ exists);
-										this.setEchoValue("待导入的业务对象已经存在，请删除后再导入!");
+										this.setEchoValue(I18n.instance().get("待导入的业务对象已经存在，请删除后再导入!"));
 										return false;
 									}
 									bi.putValue("datasourceuid", "");

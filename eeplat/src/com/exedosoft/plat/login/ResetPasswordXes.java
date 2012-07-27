@@ -6,6 +6,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.StringUtil;
 
 public class ResetPasswordXes extends DOAbstractAction {
@@ -20,12 +21,12 @@ public class ResetPasswordXes extends DOAbstractAction {
 		String new_password2 = this.actionForm.getValue("new_password2");
 		
 		if(old_password==null || "".equals(old_password.trim())){
-			this.setEchoValue("旧密码不能为空");
+			this.setEchoValue(I18n.instance().get("旧密码不能为空"));
 			return NO_FORWARD;
 		}
 		
 		if(!new_password1.equals(new_password2)){
-		   this.setEchoValue("两次输入的新密码不一致");
+		   this.setEchoValue(I18n.instance().get("两次输入的新密码不一致"));
 		   return NO_FORWARD;
 		   
 		}
@@ -36,7 +37,7 @@ public class ResetPasswordXes extends DOAbstractAction {
 		List users =  findUser.invokeSelect(userName,StringUtil.MD5(old_password));
 		
 		if(users==null || users.size()==0){
-			this.setEchoValue("您输入的的旧密码不正确");
+			this.setEchoValue(I18n.instance().get("您输入的的旧密码不正确"));
 			return NO_FORWARD;
 		}else{
 			DOService updatePassword = DOService.getService("tbemployee.change.password");

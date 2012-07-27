@@ -4,6 +4,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.util.I18n;
 
 public class CopyServiceParas extends DOAbstractAction {
 
@@ -16,21 +17,20 @@ public class CopyServiceParas extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
 
 		String serviceUid = this.actionForm.getValue("serviceUid");
 		if(serviceUid==null){
-			this.setEchoValue("没有选择服务！");
+			this.setEchoValue(I18n.instance().get("没有选择服务！"));
 			return  DEFAULT_FORWARD;
 		}
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
 			System.out.println("没有数据！");
-			this.setEchoValue("没有数据！");
+			this.setEchoValue(I18n.instance().get("没有数据！"));
 			return NO_FORWARD;
 		}
 		

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.exedosoft.plat.util.I18n;
+
 
 /**
  * <p>
@@ -38,15 +40,13 @@ public class DealAParaMult extends DOAbstractAction {
 	public String excute()  {
 
 		if (this.service==null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			setEchoValue(I18n.instance().get("未配置SQL 语句"));
 		}
 
 
 		String[] checks = this.actionForm.getValueArray("checkinstance");
 		if (checks == null) {
-			System.out.println("没有数据");
-			this.setEchoValue("没有数据");
+			setEchoValue(I18n.instance().get("没有数据"));
 			return NO_FORWARD;
 		}
 		

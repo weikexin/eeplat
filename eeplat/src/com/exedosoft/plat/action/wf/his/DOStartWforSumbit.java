@@ -13,6 +13,7 @@ import com.exedosoft.wf.wfi.ProcessInstance;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.util.I18n;
 
 public class DOStartWforSumbit extends DOAbstractAction {
 
@@ -25,7 +26,7 @@ public class DOStartWforSumbit extends DOAbstractAction {
 
 		WFEngine wfi = WFEngineFactory.getWFEngine();
 		if (service.getProcessTemplate() == null) {
-			this.setEchoValue("服务未定义工作流模板");
+			this.setEchoValue(I18n.instance().get("服务未定义工作流模板"));
 			return null;
 		}
 

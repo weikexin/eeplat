@@ -15,6 +15,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.ExcuteSqlFile;
+import com.exedosoft.plat.util.I18n;
 
 /**
  * 
@@ -66,7 +67,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			fileName = prefix + "/exedo/initsql/hsqldb.sql";
 		}
 		else{
-			this.setEchoValue("现在只支持mysql、oracle、sqlserver、db2、hsqldb、h2和gae等数据库初始化!");
+			this.setEchoValue(I18n.instance().get("现在只支持mysql、oracle、sqlserver、db2、hsqldb、h2和gae等数据库初始化!"));
 			return NO_FORWARD;
 		}
 
@@ -86,7 +87,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 				if(tableName.equalsIgnoreCase("do_org_dept")){
 					rs.close();
 
-					this.setEchoValue("缺省实现表已经初始化完成请不要重复初始化!");
+					this.setEchoValue(I18n.instance().get("缺省实现表已经初始化完成请不要重复初始化!"));
 					changeTableDS(dss);
 					return NO_FORWARD;
 				}
@@ -122,9 +123,7 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 		
 		
 		changeTableDS(dss);
-
-		
-		this.setEchoValue("初始化完成，请不要再次初始化！");
+		this.setEchoValue(I18n.instance().get("初始化完成，请不要再次初始化！"));
 		return DEFAULT_FORWARD;
 	}
 

@@ -10,6 +10,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOParameterService;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.bo.DOServiceRule;
+import com.exedosoft.plat.util.I18n;
 
 public class CopyServiceDeep extends DOAbstractAction {
 
@@ -22,8 +23,7 @@ public class CopyServiceDeep extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
@@ -33,7 +33,7 @@ public class CopyServiceDeep extends DOAbstractAction {
 		DOService dos = DOService.getServiceByID(biService.getUid());
 
 		copyService(biService, dos);
-		this.setEchoValue("复制成功,请点击左侧树节点进行操作!");
+		this.setEchoValue(I18n.instance().get("复制成功,请点击左侧树节点进行操作!"));
 		return DEFAULT_FORWARD;
 
 	}

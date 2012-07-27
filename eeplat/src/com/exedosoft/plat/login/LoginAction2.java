@@ -17,6 +17,7 @@ import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 
 //
 // //修改本人密码
@@ -67,21 +68,21 @@ public class LoginAction2 extends DOAbstractAction {
 			if (invalidTime != null) {
 				System.out.println("该用户的过期时间::" + invalidTime);
 				if (invalidTime.before(new Date(System.currentTimeMillis()))) {
-					this.setEchoValue("该用户账户已经过期！");
+					this.setEchoValue(I18n.instance().get("该用户账户已经过期！"));
 					return NO_FORWARD;
 				}
 			}
 			
 			String fdstate = user.getValue("fdstate");
 			if("0".equals(fdstate)){
-				this.setEchoValue("该用户已冻结，请跟系统管理员联系！");
+				this.setEchoValue(I18n.instance().get("该用户已冻结，请跟系统管理员联系！"));
 				return NO_FORWARD;
 			}
 			LoginMain.makeLogin(user,DOGlobals.getInstance().getServletContext().getRequest());
 
 			return "success";
 		} else {
-			this.setEchoValue("用户名或密码错误，请重试!");
+			this.setEchoValue(I18n.instance().get("用户名或密码错误，请重试!"));
 			return "notpass";
 		}
 	}

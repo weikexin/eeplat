@@ -1,7 +1,5 @@
 package com.exedosoft.plat.login;
 
-import java.util.List;
-
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.bo.BOInstance;
@@ -9,6 +7,17 @@ import com.exedosoft.plat.bo.BaseObject;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
 import com.exedosoft.safe.TenancyValues;
+
+
+/**
+ * 账号 account 和  user 一定要分开
+ * 
+ * user 可能不能登录
+ * 
+ * account  是登录信息 可能和 计费相关。
+ * @author weikx
+ *
+ */
 
 public class MultiAccount extends BaseObject {
 
@@ -101,9 +110,9 @@ public class MultiAccount extends BaseObject {
 		this.asrole = asrole;
 	}
 
-	public static BOInstance findBIUser(String userName,String pwd){
+	public static BOInstance findAccountToBI(String userName,String pwd){
 		
-		MultiAccount ma = findUser(userName,pwd);
+		MultiAccount ma = findAccount(userName,pwd);
 		if(ma==null){
 			return null;
 		}
@@ -112,7 +121,7 @@ public class MultiAccount extends BaseObject {
 		return bi;
 	}
 	
-	public static MultiAccount findUser(String userName,String pwd){
+	public static MultiAccount findAccount(String userName,String pwd){
 		
 		if(userName==null || pwd==null){
 			return null;
@@ -126,11 +135,26 @@ public class MultiAccount extends BaseObject {
 		}
 		
 		return null;
-		
 	} 
 	
 	
-	public static void deleteUser(String accountUid){
+	public static MultiAccount findAccount(String userName,String pwd,String tenantId){
+		
+		if(userName==null || pwd==null){
+			return null;
+		}
+		
+		MultiAccount ma = DAOUtil.currentDataSource("/ds_multi.xml").getBySql(
+				MultiAccount.class, "select * from multi_account where name=? and password=? and  tenancyId=?",userName,StringUtil.MD5(pwd),tenantId);
+		
+		if(ma!=null && ma.getName()!=null){
+			return ma;
+		}
+		
+		return null;
+	} 
+	
+	public static void deleteAccount(String accountUid){
 
 		System.out.println("Delete multi_account :::" + accountUid);
 		try {
@@ -145,7 +169,7 @@ public class MultiAccount extends BaseObject {
 		
 	}
 	
-	public static void storeUser(BOInstance paraInstance){
+	public static void storeAccount(BOInstance<?> paraInstance){
 
 		
 		String objuid = paraInstance.getUid();
@@ -182,12 +206,12 @@ public class MultiAccount extends BaseObject {
 
 	public static void main(String[] args) {
 
-		MultiAccount ma = MultiAccount.findUser("jlf@jlf.com", "1");
+		MultiAccount ma = MultiAccount.findAccount("jlf@jlf.com", "1");
 		
 		System.out.println("MultiAccount:::" + ma);
 		
 		
-		BOInstance bi = MultiAccount.findBIUser("jlf@google.com", "2");
+		BOInstance bi = MultiAccount.findAccountToBI("jlf@google.com", "2");
 		
 		System.out.println("BOInstance:::" + bi);
 

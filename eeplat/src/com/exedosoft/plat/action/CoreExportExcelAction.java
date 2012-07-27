@@ -2,6 +2,7 @@ package com.exedosoft.plat.action;
 
 import com.exedosoft.plat.ActionFactory;
 import com.exedosoft.plat.bo.DOActionConfig;
+import com.exedosoft.plat.util.I18n;
 
 
 public class CoreExportExcelAction extends DOAbstractAction {
@@ -19,7 +20,7 @@ public class CoreExportExcelAction extends DOAbstractAction {
 			
 			String[] checks =  this.actionForm.getValueArray("checkinstance");
 			if (checks == null || checks.length == 0) {
-				setEchoValue("您没有选择数据");
+				setEchoValue(I18n.instance().get("您没有选择数据"));
 				return NO_FORWARD;
 			}
 		///	this.initTransConnection();

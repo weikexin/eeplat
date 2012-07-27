@@ -18,6 +18,7 @@ import com.exedosoft.plat.bo.DOParameterService;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 
 /**
  * 
@@ -42,7 +43,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 
 	public String excute() {
 
-		log.info("进入批量保存Action::::::::::::::::::::::::::");
+		log.info("Enter CoreSaveEditAction::::::::::::::::::::::::::");
 
 
 		BOInstance uiForm = DOGlobals.getInstance().getSessoinContext()
@@ -51,7 +52,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 		DOFormModel aFm = DOFormModel.getFormModelByID(formUid);
 
 		if (aFm == null) {
-			this.setEchoValue("未配置FormModel");
+			setEchoValue(I18n.instance().get("未配置FormModel"));
 			return NO_FORWARD;
 		}
 
@@ -62,7 +63,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 		DOService updateService = aFm.getSecondService();
 
 		if (insertService == null || updateService == null) {
-			this.setEchoValue("必须定义两个服务，新增的服务和修改的服务!");
+			setEchoValue(I18n.instance().get("必须定义两个服务，新增的服务和修改的服务!"));
 			return NO_FORWARD;
 		}
 
@@ -75,7 +76,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 			String inputName = uiForm.getValue("inputName");
 			if (inputName != null && !inputName.trim().equals("")) {
 				String[] inputValues = uiForm.getValueArray(inputName);
-				log.info("当前执行的SQL语句:" + insertService.getTempSql());
+				log.info("Current SQL:" + insertService.getTempSql());
 				PreparedStatement pstmt = con.prepareStatement(insertService
 						.getTempSql());
 
@@ -93,7 +94,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 						if (dop.getType() != null
 								&& dop.getType().intValue() == DOParameter.TYPE_FORM
 								&& dop.getDefaultValue() == null) {// //form类型直接从节目获取
-							log.info("批量修改新增的名称:::" + dop.getName());
+							log.info("Batch Parameter Name:::" + dop.getName());
 							String[] valueArray = uiForm.getValueArray(dop
 									.getName());
 							value = valueArray[len];
@@ -115,7 +116,7 @@ public class CoreSaveEditAction extends DOAbstractAction {
 					batchSize++;
 					pstmt.addBatch();
 				}
-				log.info("批量新增::batchSize:::" + batchSize);
+				log.info("::batchSize:::" + batchSize);
 				pstmt.executeBatch();
 				
 				/////多租户的处理
