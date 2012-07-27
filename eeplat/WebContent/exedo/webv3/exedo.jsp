@@ -9,8 +9,10 @@ response.setDateHeader("Expires", 0);
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
 <%@ page import="com.exedosoft.plat.bo.DOService"%>
 <%@ page import="com.exedosoft.plat.bo.BOInstance"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
+
 <html>
 
 <%
@@ -47,7 +49,7 @@ response.setDateHeader("Expires", 0);
 	System.out.println(mainStyle);
 %>
 <head>
-<title><%=paneModelTitle %></title>
+<title><%= I18n.instance().get(paneModelTitle)%></title>
 
 
 <script language="javascript">

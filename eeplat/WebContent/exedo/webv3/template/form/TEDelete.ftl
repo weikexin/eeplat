@@ -1,4 +1,5 @@
 <#include "TFormBase.ftl">
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()> 
  <button type="button" style=""   id='${model.objUid}' class='delete'>${model.l10n?default("删除")}</button>
  <script>
 
@@ -40,11 +41,11 @@
 	       if($(this).parent().parent().attr('value')!=null){
 	  		    $(this).parent().parent().addClass("selected");				
 			}else{	
-			    	alert("请选择一条记录！");
+			    	alert("${i18n('请选择一条记录！')}");
 		         	return;
 	      }
        }
-       if(confirm('你确定要删除吗')){
+         if(confirm( "${i18n('你确定要删除吗')}")){
         	if($('#g${model.gridModel.objUid} tbody  tr.selected').attr('value')!=null){
         	 var selectedValue = $('#g${model.gridModel.objUid} tbody  tr.selected').attr('value');
 		     var dealBus = "dataBus=setContext&contextKey=${model.gridModel.service.bo.name}&invokeButtonUid=${model.objUid}" + "&contextValue=" + selectedValue;

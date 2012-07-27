@@ -19,6 +19,11 @@
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
+<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+<% }else{ %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+<% }%>
 
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
@@ -56,15 +61,21 @@ html,body{
 	</p>
 	<p class="forgetmenot">
 	
-	    <label><%=I18n.instance().get("Verification")%></label>
+	     <label><%=I18n.instance().get("Verification")%></label>
        <input type="text" name="randcode"  style="height:18px; width:40px; border:solid 1px #cadcb2; font-size:12px; color:#81b432;" />
-        <img src='image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
+        <img src='<%=request.getContextPath()%>/exedo/webv3/image.jsp' height="18px"  border=0 id="numImg" title="看不清，换一张!" />
 	
 	
 	
 	</p>
 	<p class="submit">
-			<img src="images/login/btn_sign-in.png" class="btn"/>
+		<div style="float:left;width:30px;heigth:15px">&nbsp;</div>
+		<div class="buttons"  style="margin-top:10px;">
+			<a  class="btn">
+				<img src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icons/apply.png" alt=""/>
+				<%=I18n.instance().get("Sign In")%>
+			</a>
+		</div>	
     </p>
 </form>
 
@@ -92,22 +103,7 @@ $(function(){
 	  $("body").css("height",$(window).height());
 	  
   	  $(".btn:first").bind("click",function(){
-  	  		var userName = $("input:eq(0)").val();
-  	  		var passWord = $("input:eq(1)").val();
-  	  		var randCode = $("input:eq(2)").val();
-			if(userName==""){
-				alert("请填写用户名!");
-				return;
-			}
-			if(passWord==""){
-				alert("请填写密码!");
-				return;
-			}
-			if(randCode==""){
-				alert("请填写验证码!");
-				return;
-			}
-  	  		submitForm();
+   	  		submitForm();
   	  })
   	  
   	  $(".btn:last").bind("click",function(){
@@ -127,13 +123,29 @@ $(function(){
   }
   //登录
   function submitForm(){
+	  
+ 		var userName = $("input:eq(0)").val();
+	  		var passWord = $("input:eq(1)").val();
+	  		var randCode = $("input:eq(2)").val();
+		if(userName==""){
+			alert(EELang.accountRequired);
+			return;
+		}
+		if(passWord==""){
+			alert(EELang.pwdRequired);
+			return;
+		}
+		if(randCode==""){
+			alert(EELang.verificationRequired);
+			return;
+		}
 
-	   loading("登录中，请稍后......");
+	   loading(EELang.loading);
 	   var paras =  $('#loginform').serialize();
 	   paras = paras + "&contextServiceName=do_org_account_findbynameAndPassword"
 	   $.post(globalURL + "ssocontroller",paras,
 			function (data){
-
+	
 			   var ret  = $.parseJSON(data);
 			   var retValue = unescape(ret.returnValue);
 			

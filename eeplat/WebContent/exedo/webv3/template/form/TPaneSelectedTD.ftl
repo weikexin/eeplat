@@ -1,4 +1,6 @@
 <#include "TFormBase.ftl">
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()>
+ 
 <button type="button"  style="${model.style?if_exists}"  id='${model.objUid}' <#compress><@JudgeStyle model/></#compress> > ${model.l10n}</button>
 <script>
  $('#${model.objUid}').bind('click',function(){  
@@ -6,7 +8,7 @@
 	       if($(this).parent().parent().attr('value')!=null){
 	  		    $(this).parent().parent().addClass("selected");				
 			}else{	
-		    	alert("请选择一条记录！");
+		    	alert("${i18n('请选择一条记录！')}");
 	         	return;
 	      }
        }

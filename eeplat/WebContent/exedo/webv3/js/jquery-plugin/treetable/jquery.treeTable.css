@@ -10,7 +10,7 @@
   background-position: right;
   background-repeat: no-repeat;
   cursor: pointer;
-  padding: 0;
+  padding: 10px;
   width:15px;
   zoom: 1; /* IE7 Hack */
 }
@@ -27,7 +27,7 @@
  * ------------------------------------------------------------------------- */
 .treeTable tr.selected, .treeTable tr.accept {
   background-color: #3875d7;
-  color: #fff;
+ 
 }
 
 .treeTable tr.collapsed.selected td .expander, .treeTable tr.collapsed.accept td .expander {

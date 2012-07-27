@@ -28,7 +28,7 @@ function callAction(p){
 	if(p.async == false){
 		async = false;
 	}
-	var aMsg = EEPlat.dealDaemon;
+	var aMsg = EELang.dealDaemon;
 	if(p.msg){
 		aMsg = p.msg;
 	}
@@ -171,7 +171,7 @@ function callService(p){
 		return;
 	}
 	
-	var aMsg = "后台处理,请稍后......";
+	var aMsg = EELang.dealDaemon;
 	if(p.msg){
 		aMsg = p.msg;
 	}
@@ -179,7 +179,7 @@ function callService(p){
 	if(p.btn){
 		if(p.btn.nodeName=='A'){
 			if(p.btn.flag){
-				alert("请不要重复点击！");
+				alert(EELang.clickRepeat);
 				return;
 			}
 			p.btn.flag = true;
@@ -297,7 +297,7 @@ function callService(p){
    				        var target = arrayTarget[ai];
    				        var aTitle= arrayTitle[ai];
    				        if(aTitle==null){
-   				        	aTitle = "信息窗口";
+   				        	aTitle = EELang.infoDialog;
    				        }
    				        if(aPath!=null && aPath!=""
    				        && target!=null && target!=""){
@@ -316,7 +316,7 @@ function callService(p){
    			        	}
    			         }
    				   }
-                   var title = "新窗口"
+                   var title = EELang.newDialog;
                    if(p.title != null && p.title != "")
                 	  title = p.title;
 			 
@@ -361,7 +361,7 @@ function callService(p){
  		   		     $("#" + pmlName).empty().load(p.pml);  
  		   		   }
  		   		   else{
-					 alert("没有定义目标面板,请检查相关配置!");
+					 alert(EELang.noDefinedTaegetPane);
  		   		   }	 
 			   }
  		   	   if(p.callback){
@@ -517,7 +517,7 @@ function loadPml(p){
 					}	
 				}
 			}else{
-				alert("您没有定义弹出窗口的名称");
+				alert(EELang.noDialogName);
 			}	
 		}
 	}catch(e){
@@ -651,7 +651,7 @@ function  sortDown(o,boName,serviceName){
 function uploadifyPlain(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sessionid,uploadActionFile){
 
 	if(fileDesc==null || $.trim(fileDesc)==""){
-		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+		fileDesc=EELang.onlySelectFile;
 	}
 	if(fileExt==null || $.trim(fileExt)==""){
 		fileExt = '*.jpg;*.gif;*.bmp';
@@ -699,7 +699,7 @@ function uploadify(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUpload,sess
 	var myFile = myTime+myRand;
 	
 	if(fileDesc==null || $.trim(fileDesc)==""){
-		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+		fileDesc=EELang.onlySelectFile;
 	}
 	if(fileExt==null || $.trim(fileExt)==""){
 		fileExt = '*.jpg;*.gif;*.bmp';
@@ -740,7 +740,7 @@ function uploadifyOnlyOne(uploadifyID,uploadifyQueueID,fileDesc,fileExt,autoUplo
 	var myFile = myTime+myRand;
 	
 	if(fileDesc==null || $.trim(fileDesc)==""){
-		fileDesc='只能选择图像类文件(*.jpg;*.gif;*.bmp)';
+		fileDesc=EELang.onlySelectFile;
 	}
 	if(fileExt==null || $.trim(fileExt)==""){
 		fileExt = '*.jpg;*.gif;*.bmp';
@@ -837,7 +837,7 @@ function validate(formName){
         title = el.title;
         if(title==null || title=="")
         {
-            title = "必填字段";
+            title = EELang.required;
         }
         if(exedo_notnull!=null&& exedo_notnull=="NotNull")
         {
@@ -845,7 +845,7 @@ function validate(formName){
             if(el.type=='radio'){
             	 var checks = formJquery.find("input:checked");
             	 if(checks.size() == 0){
-            		 alert(title + " 不能为空!");
+            		 alert(title + EELang.required);
  	                 el.focus();
             		 return false;
             	 }
@@ -858,7 +858,7 @@ function validate(formName){
             			 }
             	 );
             	 if(!isChecked){
-            		 alert(title + " 不能为空!");
+            		 alert(title + EELang.required);
  	                 el.focus();
             		 return false;
             	 }
@@ -867,7 +867,7 @@ function validate(formName){
             }else{         
 	            if(theValue==null || ""==theValue)
 	            {
-	                alert(title + " 不能为空!");
+	                alert(title + EELang.required);
 	                el.focus();
 	                return false;
 	            }
@@ -879,7 +879,7 @@ function validate(formName){
             {
                 if(checkErrEmail(theValue))
                 {
-                    alert("E-MAIL 地址格式不正确！");
+                    alert(EELang.vEmail);
                     el.focus();
                     return false;
                 }
@@ -888,7 +888,7 @@ function validate(formName){
             {
                 if(checkErrUrl(theValue))
                 {
-                    alert("Url 地址格式不正确！");
+                    alert(EELang.vUrl);
                     el.focus();
                     return false;
                 }
@@ -897,7 +897,7 @@ function validate(formName){
             {
                 if(checkErrNum(theValue))
                 {
-                    alert(title + " 必须为整数类型!");
+                    alert(title + EELang.vInt);
                     el.focus();
                     return false;
                 }
@@ -906,7 +906,7 @@ function validate(formName){
             {
                 if(checkErrFloat(theValue))
                 {
-                    alert(title + " 必须为数字类型!");
+                    alert(title + EELang.vNumber);
                     el.focus();
                     return false;
                 }
@@ -924,7 +924,7 @@ function validate(formName){
             {
                 if(checkNotMobile(theValue))
                 {
-                    alert(title + " 必须为手机录入格式!");
+                    alert(title + EELang.vMobile);
                     el.focus();
                     return false;
                 }
@@ -933,7 +933,7 @@ function validate(formName){
             {
                 if(checkNotTelphone(theValue))
                 {
-                    alert(title + " 必须为固定电话录入格式!");
+                    alert(title + EELang.vPhone);
                     el.focus();
                     return false;
                 }
@@ -943,7 +943,7 @@ function validate(formName){
             {
                 if(funcChin(theValue))
                 {
-                    alert(title + "不能含有汉字!");
+                    alert(title + EELang.vSBC);
                     el.focus();
                     return false;
                 }
@@ -953,7 +953,7 @@ function validate(formName){
             {
                 if(funcSBCDot(theValue))
                 {
-                    alert(title + "不能含有全角字符和点(.)!");
+                    alert(title + EELang.vSBCDOT);
                     el.focus();
                     return false;
                 }
@@ -963,7 +963,7 @@ function validate(formName){
             {
                 if(theValue.length>exedo_length)
                 {
-                    alert( title +"的长度大于"+exedo_length+"个字符!");
+                    alert( title +EELang.vLeng+exedo_length+EELang.vLeng2);
                     el.focus();
                     return false;
                 }

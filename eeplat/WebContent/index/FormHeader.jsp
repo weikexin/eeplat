@@ -68,7 +68,7 @@
 <script language="javascript">
 
   function logOff(){
-	  if(confirm('确定要退出吗？')){
+	  if(confirm('<%=I18n.instance().get("Confirm Exit")%>')){
 	  	window.location.href="index/logoff.jsp"
 	  }
   }
@@ -88,7 +88,7 @@
 			var url = globalURL + "/servicecontroller?dataBus=setUserContext&contextKey=default_app_uid&contextValue=" +datas[0];
 			$.get(url,function(data){window.location = datas[1];});
 	  }else if(obj!=null && obj.value=='a'){
-		  loadPml({'pml':'PM_multi_appshare_listall','target':'_opener_tab','title':'从AppShare安装工程'});
+		  loadPml({'pml':'PM_multi_appshare_listall','target':'_opener_tab','title':'<%=I18n.instance().get("从AppShare安装")%>'});
       }
   }
 </script>
@@ -112,7 +112,7 @@
 		   </select>
 		&nbsp;&nbsp;
 		
-		<%if(isDev){ %><a onclick="setup()" ><%=I18n.instance().get("Developer")%> </a> | <%} %> <a onclick="helpme();" ><%=I18n.instance().get("Help")%></a>  | <a onclick="logOff()" ><%=I18n.instance().get("Exit")%></a>
+		<%if(isDev){ %><a onclick="setup()" ><%=I18n.instance().get("Develop")%> </a> | <%} %> <a onclick="helpme();" ><%=I18n.instance().get("Help")%></a>  | <a onclick="logOff()" ><%=I18n.instance().get("Exit")%></a>
 	</div>
 </div>
 

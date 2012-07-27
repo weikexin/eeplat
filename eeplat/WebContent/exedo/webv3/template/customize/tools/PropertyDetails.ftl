@@ -1,3 +1,4 @@
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()> 
 			<script>
 				//获得参数的方法
 					
@@ -132,144 +133,144 @@
 					
 					<thead>
 						<tr>
-							<td class='title' colspan=2><b>节点属性编辑</b></td>
+							<td class='title' colspan=2><b>${i18n('节点属性编辑')}</b></td>
 						</tr>
 					</thead>
 					<tbody>
 					   <tr>
-							<td width="35%">节点ID：</td>
-							<td align="left"><span  name="node_id" id="node_id" title="节点ID" size="25"/></td>
+							<td width="35%">${i18n('节点ID：')}</td>
+							<td align="left"><span  name="node_id" id="node_id" title="${i18n('节点属性编辑')}" size="25"/></td>
 						</tr>	
 						<tr>
-							<td width="35%">节点名称：</td>
-							<td align="left"><input type="text" name="node_name" id="node_name" title="节点名称" size="25"/></td>
+							<td width="35%">${i18n('节点名称：')}</td>
+							<td align="left"><input type="text" name="node_name" id="node_name" title="${i18n('节点名称：')}" size="25"/></td>
 						</tr>
 						<tr id="trNodeStateShow" >
-							<td   width='35%'>流程状态：</td>
+							<td   width='35%'>${i18n('流程状态：')}</td>
 							<td    align='left'>
 								<input					type='text' name='nodeStateShow'
-								id='nodeStateShow' title='通过后显示流程状态'
+								id='nodeStateShow' title='${i18n('流程状态：')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr id="trNodeStateShowBack">
-							<td  width='35%'>回退时流程状态：</td>
+							<td  width='35%'>${i18n('回退时流程状态：')}</td>
 							<td   align='left'>
 								<input					type='text' name='nodeStateShowBack'
-								id='nodeStateShowBack' title='回退后流程状态'
+								id='nodeStateShowBack' title='${i18n('回退时流程状态')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr id="trAuthType">
-							<td  width='35%'>权限验证类型：</td>
+							<td  width='35%'>${i18n('权限验证类型：')}</td>
 							<td   align='left'>
-							<select	name="authType" id="authType" title='权限验证类型'>
+							<select	name="authType" id="authType" title='${i18n('权限验证类型：')}'>
 	
-								<option value="0">标准权限表</option>
-								<option value="-1">==以下类型不适合通用的VIEW==</option>
-								<option value="3">数据拥有者</option>
-								<option value="8">运行时指定用户</option>
-								<option value="16">运行时指定角色</option>
-								<option value="18">运行时通过类指定于工作流权限表</option>
-								<option value="-1">==以下类型只能通过API获取个人工作列表==</option>
-								<option value="1">使用脚本</option>
-								<option value="2">使用JAVA类</option> 
+								<option value="0">${i18n('标准权限表')}</option>
+								<option value="-1">${i18n('==以下类型不适合通用的VIEW==')}</option>
+								<option value="3">${i18n('数据拥有者')}</option>
+								<option value="8">${i18n('运行时指定用户')}</option>
+								<option value="16">${i18n('运行时指定角色')}</option>
+								<option value="18">${i18n('运行时通过类指定于工作流权限表')}</option>
+								<option value="-1">${i18n('==以下类型只能通过API获取个人工作列表==')}</option>
+								<option value="1">${i18n('使用脚本')}</option>
+								<option value="2">${i18n('使用JAVA类')}</option> 
 							</select>	
 		
 						</tr>
 						
 												
 						<tr id="trAccessClass">
-							<td  width='35%'>权限控制类：</td>
+							<td  width='35%'>${i18n('权限控制类：')}</td>
 							<td align='left'>
 								<input		type='text' name='accessClass'
-								id='accessClass' title='权限控制类'
+								id='accessClass' title='${i18n('权限控制类：')}'
 								size="25" /></td>
 						</tr>
 						
 						
 						<tr id="trSpecName">
-							<td  width='35%'>数据拥有者标识：</td>
+							<td  width='35%'>${i18n('数据拥有者标识：')}</td>
 							<td   align='left'>
 								<input					type='text' name='specName'
-								id='specName' title='数据拥有者标识'
+								id='specName' title='${i18n('数据拥有者标识：')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr id="trDecisionType">
-							<td  width='35%'>条件判断类型：</td>
+							<td  width='35%'>${i18n('条件判断类型：')}</td>
 							<td   align='left'>
 							<select
-							name="decisionType" id="decisionType" title='条件判断类型'>
-								<option value="1">使用脚本</option>
-								<option value="2">使用JAVA类</option>
+							name="decisionType" id="decisionType" title='${i18n('条件判断类型：')}'>
+								<option value="1">${i18n('使用脚本')}</option>
+								<option value="2">${i18n('使用JAVA类')}</option>
 							</select>	
 						</tr>
 						
 						<tr id="trDecisionExpression">
-							<td  width='35%'>条件判断表达式(Class)：</td>
+							<td  width='35%'>${i18n('条件判断表达式(Class)：')}</td>
 							<td   align='left'>
 								<input type='text' name='decisionExpression'
-								id='decisionExpression' title='条件判断表达式（或JAVA类）'
+								id='decisionExpression' title='${i18n('条件判断表达式(Class)：')}'
 								size="25" /></td>
 						</tr>
 
 
 						<tr id="trAutoService">
-							<td  width='35%'>自动服务：</td>
+							<td  width='35%'>${i18n('自动服务：')}</td>
 							<td   align='left'>
 								<input	type='text' name='autoService'
-								id='autoService' title='自动执行的服务'
+								id='autoService' title='${i18n('自动服务：')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr id="trPaneName">
-							<td  width='35%'>审批面板名称：</td>
+							<td  width='35%'>${i18n('审批面板名称：')}</td>
 							<td   align='left'>
 								<input	type='text' name='paneName'
-								id='paneName' title='审批面板名称'
+								id='paneName' title='${i18n('审批面板名称：')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr id="trPassTxt">
-							<td  width='35%'>通过意见界面表单字段：</td>
+							<td  width='35%'>${i18n('通过意见界面表单字段：')}</td>
 							<td   align='left'>
 								<input		type='text' name='passTxt'
-								id='passTxt' title='通过意见界面表单字段'
+								id='passTxt' title='${i18n('通过意见界面表单字段：')}'
 								size="25" /></td>
 						</tr>
 						
 						<tr  id="trRejectTxt">
-							<td  width='35%'>驳回意见界面表单字段：</td>
+							<td  width='35%'>${i18n('驳回意见界面表单字段：')}</td>
 							<td align='left'>
 								<input		type='text' name='rejectTxt'
-								id='rejectTxt' title='驳回意见界面表单字段'
+								id='rejectTxt' title='${i18n('驳回意见界面表单字段：')}'
 								size="25" /></td>
 						</tr>
 						
 					    <tr id='trNodeExt1'>
-							<td width='35%'>关联流程：</td>
+							<td width='35%'>${i18n('关联流程：')}</td>
 							<td   align='left'>
 								<input	type='text' name='node_ext1'
-								 title='关联流程' id='node_ext1'
+								 title='${i18n('关联流程：')}' id='node_ext1'
 								size="25" >  </td>
 						</tr>
 						
 						<tr>
-							<td width='35%'>节点描述：</td>
+							<td width='35%'>${i18n('节点描述：')}</td>
 							<td   align='left'>
 								<textarea		cols="25" rows="3"		type='text' name='nodeDesc'
-								id='nodeDesc' title='节点名称'
+								id='nodeDesc' title='${i18n('节点描述：')}'
 								size="20" > </textarea>  </td>
 						</tr>
 						
 
 							<tr>
 								<td  height='30' valign='bottom' colspan=2 style="text-align:center">
-								<button type="button" title='确定'
+								<button type="button" title='${i18n('确定')}'
 									id='40288036151908400115194a696e009e'
 									onclick="javascript:setValues();return false">
-								确定</button>
+								${i18n('确定')}</button>
 								</td>
 							</tr>
 	                 </tbody> 
