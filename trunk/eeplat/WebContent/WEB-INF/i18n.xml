@@ -1,0 +1,1048 @@
+<i18n>
+	<key name="More">
+		<label local="zh">更多信息</label>
+	</key>
+	<key name="Less">
+		<label local="zh">更少信息</label>
+	</key>
+
+	<key name="Welcome">
+		<label local="zh">欢迎您</label>
+	</key>
+	
+	<key name="Develop">
+		<label local="zh">开发</label>
+	</key>
+	
+	<key name="Clear Cache">
+		<label local="zh">清空缓存</label>
+	</key>
+	
+	<key name="Help">
+		<label local="zh">帮助</label>
+	</key>
+	
+	<key name="Exit">
+		<label local="zh">退出</label>
+	</key>
+	
+	<key name="Welcome Login">
+		<label local="zh">管理平台登录</label>
+	</key>
+	
+	<key name="UserName">
+		<label local="zh">账号</label>
+	</key>
+
+	<key name="Tenant">
+		<label local="zh">租户</label>
+	</key>	
+	
+	
+	<key name="操作">
+		<label local="en">Operation</label>
+	</key>
+	
+	<key name="Paasword">
+		<label local="zh">密码</label>
+	</key>
+	
+	<key name="Verification">
+		<label local="zh">验证码</label>
+		<label local="en">Verification Code</label>
+	</key>
+	
+	 <key name="Others">
+		<label local="zh">其它账号登录</label>
+	</key>
+
+	 <key name="Sign In">
+		<label local="zh">登录</label>
+	</key>
+
+
+	 <key name="Controller Manager">
+		<label local="zh">控制器管理</label>
+	</key>
+	
+	<key name="Action Manager">
+		<label local="zh">自定义动作管理</label>
+	</key>
+	
+	<key name="Resource Manager">
+		<label local="zh">资源管理</label>
+	</key>
+
+	<key name="JavaScript(Browse)">
+		<label local="zh">浏览器端JavaScript管理</label>
+	</key>
+
+	<key name="JavaScript(Server)">
+		<label local="zh">服务器端JavaScript管理</label>
+	</key>
+
+	<key name="CSS">
+		<label local="zh">CSS代码管理</label>
+	</key>
+
+	<key name="HTML Freemaker">
+		<label local="zh">Html,FreeMarker代码管理</label>
+	</key>
+
+	<key name="Tools">
+		<label local="zh">常用工具</label>
+	</key>
+
+	<key name="FirstSetup">
+		<label local="zh">入门-构建新的工程</label>
+		<label local="en">First-Build New Application</label>
+	</key>
+
+	<key name="SomeStep1">
+		<label local="zh">只需要几步就可以生成新的工程，然后通过  </label>
+		<label local="en">Only Need Some Steps , You Can Generate New Application, Then via </label>
+	</key>
+	<key name="SomeStep2">
+		<label local="zh">配置</label>
+		<label local="en">Configuration</label>
+	</key>
+	<key name="SomeStep3">
+		<label local="zh">而不是编写代码轻松地扩展该工程。</label>
+		<label local="en">Not Coding To Extend the Application. </label>
+	</key>
+	<key name="Build New Application">
+		<label local="zh">创建新的工程</label>
+	</key>
+	<key name="About Help,Detail:">
+		<label local="zh">相关帮助，详见：</label>
+	</key>
+	<key name="First Step to Create Application.">
+		<label local="zh">创建工程入门。 </label>
+	</key>
+	<key name="I10n">
+		<label local="zh">字典翻译</label>
+	</key>
+	<key name="Workflow Designer">
+		<label local="zh">工作流建模</label>
+	</key>
+	<key name="Import Config">
+		<label local="en">Import</label>
+		<label local="zh">导入配置</label>
+	</key>
+	<key name="Organization Config">
+		<label local="zh">组织定义</label>
+	</key>
+	<key name="Sequence Config">
+		<label local="zh">编码定义</label>
+	</key>
+	<key name="Sequence Item Config">
+		<label local="zh">编码项定义</label>
+	</key>
+	<key name="DataBase Manager">
+		<label local="zh">数据库管理</label>
+	</key>
+
+	<key name="查看">
+		<label local="en">Browse</label>
+	</key>
+	<key name="修改">
+		<label local="en">Modify</label>
+	</key>
+	<key name="删除">
+		<label local="en">Delete</label>
+	</key>
+	<key name="新增">
+		<label local="en">New</label>
+	</key>
+	<key name="复制">
+		<label local="en">Copy</label>
+	</key>
+	<key name="查询">
+		<label local="en">Search</label>
+	</key>
+	<key name="浏览信息">
+		<label local="en">Browse Information</label>
+	</key>
+	<key name="新增数据">
+		<label local="en">New</label>
+	</key>
+	<key name="信息列表">
+		<label local="en">Information List</label>
+	</key>
+	<key name="修改信息">
+		<label local="en">Modify</label>
+	</key>
+	<key name="请输入查询条件">
+		<label local="en">Please Enter Search Condition</label>
+	</key>
+	<key name="查询结果">
+		<label local="en">Result</label>
+	</key>
+	<key name="查看信息">
+		<label local="en">Browse</label>
+	</key>
+	<key name="浏览数据">
+		<label local="en">Browse</label>
+	</key>
+	<key name="新增信息">
+		<label local="en">New</label>
+	</key>
+	<key name="表格元素列表">
+		<label local="en">Grid Items</label>
+	</key>
+	<key name="从AppShare安装">
+		<label local="en">Install From Appshare</label>
+	</key>
+	<key name="普通用户">
+		<label local="en">Common User</label>
+	</key>
+	<key name="代理">
+		<label local="en">Delegate</label>
+	</key>
+	<key name="查看工程信息">
+		<label local="en">Browse</label>
+	</key>
+	
+	<key name="data manager utility">
+		<label local="zh">您可以通过 数据库管理 ，创建新的数据表，修改或删除存在的数据表。</label>
+		<label local="en">You can via DataBase Manager,Create new table,modify or delete the exits tables.</label>
+	</key>	
+	<key name="datamanager mysql command">
+		<label local="zh">数据库管理 除了不能操作本地文件外，兼容所有的 MYSQL 5.5命令。</label>
+		<label local="en">Data Manager In addition to not operating  local files, compatible with all the MYSQL 5.5 command.</label>
+	</key> 
+	<key name="初始化表">
+		<label local="en">Initialize Table</label>
+	</key> 
+	<key name="inittable_note">
+		<label local="zh">数据表需要经过 初始化表，才能生成平台相关元数据。 </label>
+		<label local="en">Table via initialization,generate metadata of EEPlat. </label>
+	</key>
+	<key name="Table Create Wizard">
+		<label local="zh">表创建向导</label>
+		<label local="en">Table Create Wizard</label>
+	</key> 
+	<key name="FromTable2BO">
+		<label local="zh">表生成及初始化简单向导 。 </label>
+		<label local="en">From Table to BusinessObject  Wizard.</label>
+	</key> 
+	<key name="Confirm ClearCache">
+		<label local="zh">清除缓存成功!</label>
+		<label local="en">Clear Cache successfully!</label>
+	</key> 
+	<key name="Confirm Exit">
+		<label local="zh">确定要退出吗？</label>
+		<label local="en">Are you sure to exit?</label>
+	</key> 
+	<key name="Logs">
+		<label local="zh">日志</label>
+		<label local="en">Logs</label>
+	</key> 
+	<key name="管理员">
+		<label local="en">Admin</label>
+	</key> 
+	<key name="创建服务">
+		<label local="en">New Service</label>
+	</key> 
+	<key name="创建面板">
+		<label local="en">New Pane</label>
+	</key> 
+	<key name="创建菜单">
+		<label local="en">New Menu</label>
+	</key> 
+	<key name="创建动态树">
+		<label local="en">New Tree</label>
+	</key> 
+	<key name="关联业务对象">
+		<label local="en">Link to Other BO</label>
+	</key> 
+	<key name="关联流程">
+		<label local="en">Link to Process</label>
+	</key> 
+	<key name="业务对象维护">
+		<label local="en">BO Manager</label> 
+	</key> 
+	<key name="属性列表">
+		<label local="en">Properties</label>
+	</key> 
+	<key name="参数列表">
+		<label local="en">Parameters</label>
+	</key> 
+	<key name="表结构管理">
+		<label local="en">Table Structure</label>
+	</key>
+	<key name="服务列表">
+		<label local="en">Services</label>
+	</key> 	 
+	<key name="表结构管理">
+		<label local="en">Table Structure</label>
+	</key> 	 
+	<key name="组合面板列表">
+		<label local="en">Combination panes</label>
+	</key> 	 
+	<key name="所有面板列表">
+		<label local="en">All Panes</label>
+	</key> 	 
+	<key name="表格列表">
+		<label local="en">Grids</label>
+	</key> 	 
+	<key name="表名称">
+		<label local="en">Table Name</label>
+	</key> 	 
+	<key name="数据表结构">
+		<label local="en">Table Structure</label>
+	</key> 	 
+	<key name="列名">
+		<label local="en">Column Name</label>
+	</key> 	 
+	<key name="数据库类型">
+		<label local="en">Type</label>
+	</key> 	 
+	<key name="字段长度">
+		<label local="en">Length</label>
+	</key> 	 
+	<key name="全选">
+		<label local="en">All</label>
+	</key> 	 
+	<key name="序号">
+		<label local="en">SEQ</label>
+	</key> 	 
+	<key name="保存">
+		<label local="en">Save</label>
+	</key> 	 
+	<key name="EEPlat控制台">
+		<label local="en">EEPlat Console</label>
+	</key> 	 
+	<key name="工程信息">
+		<label local="en">Project Information</label>
+	</key> 	 
+	<key name="该账号没有被激活或者没有正确初始化，请与管理员联系！">
+		<label local="en">The account is not activated or is not properly initialized, please contact  administrator!</label>
+	</key> 	 
+	<key name="该账号没有被激活！">
+		<label local="en">The account is not activated!</label>
+	</key> 	 
+	<key name="账号/密码出错，请重试！">
+		<label local="en">Account / password error, please try again!</label>
+	</key> 	 
+	<key name="验证码不正确！">
+		<label local="en">The verification code is not correct!</label>
+	</key> 	 
+	<key name="没有定义服务！">
+		<label local="en">The service is no defined!</label>
+	</key> 	 
+	<key name="子面板列表">
+		<label local="en">Children Panes</label>
+	</key> 	 
+	<key name="所有引用">
+		<label local="en">All References</label>
+	</key> 	 
+	<key name="服务信息管理">
+		<label local="en">Service Manager</label>
+	</key> 	 
+	<key name="服务参数列表">
+		<label local="en">Parameters</label>
+	</key> 	 
+	<key name="基本信息">
+		<label local="en">Basic Information</label>
+	</key> 	 
+	<key name="规则定义">
+		<label local="en">Rules</label>
+	</key> 	 
+	<key name="转向定义">
+		<label local="en">Transition panes</label>
+	</key> 	 
+	<key name="生成的规则">
+		<label local="en">Generated Rules </label>
+	</key> 	 
+	<key name="业务包信息">
+		<label local="en">Package Information</label>
+	</key> 	 
+	<key name="面板信息">
+		<label local="en">Pane Information</label>
+	</key> 	 
+	<key name="动态树信息">
+		<label local="en">Data Tree Information</label>
+	</key> 	 
+	<key name="菜单信息">
+		<label local="en">Menu Information</label>
+	</key> 	 
+	<key name="控制器信息">
+		<label local="en">Controller Information</label>
+	</key> 	 
+	<key name="表格信息">
+		<label local="en">Grid Information</label>
+	</key> 	 
+	<key name="表格元素信息">
+		<label local="en">Grid Item Information</label>
+	</key> 	 
+	<key name="业务对象信息">
+		<label local="en">Business Object Informaiton</label>
+	</key> 	 
+	<key name="自定义动作信息">
+		<label local="en">Action Information</label>
+	</key> 	 
+	<key name="自定义动作管理">
+		<label local="en">Action Manager</label>
+	</key> 	 
+	<key name="上传新增">
+		<label local="en">New and Upload</label>
+	</key> 	 
+	<key name="浏览器端JavaScript代码列表">
+		<label local="en">Browse JavaScript</label>
+	</key> 	 
+	<key name="编辑客户端JavaScript">
+		<label local="en">Edit Server JavaScript</label>
+	</key> 	 
+	<key name="浏览器端JavaScript脚本(Ctrl+.唤起代码提示)">
+		<label local="en">Browse JavaScript(Ctrl+.  evoking code prompt)</label>
+	</key> 	 
+	<key name="服务器端JavaScript代码列表">
+		<label local="en">Server JavaScript</label>
+	</key> 	 
+	<key name="编辑服务端JavaScript">
+		<label local="en">Edit Server JavaScript</label>
+	</key> 	 
+	<key name="服务器端JavaScript脚本(Ctrl+.唤起代码提示)">
+		<label local="en">Server JavaScript(Ctrl+.  evoking code prompt)</label>
+	</key> 	 
+	<key name="CSS代码">
+		<label local="en">CSS Code</label>
+	</key> 	 
+	<key name="编辑CSS">
+		<label local="en">Edit CSS Code</label>
+	</key> 	 
+	<key name="HTML代码">
+		<label local="en">HTML Code</label>
+	</key> 	 
+	<key name="编辑服务端JavaScript">
+		<label local="en">Edit Server JavaScript</label>
+	</key> 	 
+	<key name="请输出文件名称">
+		<label local="en">Pleace Enter File Name</label>
+	</key> 	 
+	<key name="编辑HTML">
+		<label local="en">Edit HTML Code</label>
+	</key> 	 
+	<key name="请输入字段翻译">
+		<label local="en">Please Enter Field Translation</label>
+	</key> 	 
+	<key name="组织定义">
+		<label local="en">Parter Config</label>
+	</key> 	 
+	<key name="浏览文件">
+		<label local="en">File Browse</label>
+	</key> 	 
+	<key name="建立业务对象和流程的关联关系">
+		<label local="en">Build Relation between Process and BO</label>
+	</key> 	 
+	<key name="导入">
+		<label local="en">Import</label>
+	</key> 	 
+	<key name="编码定义 ">
+		<label local="en">Sequence Config</label>
+	</key> 	 
+	<key name="修改信息主面板">
+		<label local="en">Modify</label>
+	</key> 	 
+	<key name="建立业务对象间的关联关系">
+		<label local="en">Build Relation to Other BO</label>
+	</key> 	 
+	<key name="EEPlat工作流建模工具">
+		<label local="en">EEPlat Workflow Designer</label>
+	</key> 	 
+	<key name="流程中只能有一个开始节点!">
+		<label local="en">One Process only have One Start Node!</label>
+	</key> 	 
+	<key name="开始节点">
+		<label local="en">Start Node</label>
+	</key> 	 
+	<key name="结束节点">
+		<label local="en">End Node</label>
+	</key> 	 
+	<key name="未选中任何元素">
+		<label local="en">Select Nothing!</label>
+	</key> 	 
+	<key name="保存失败：无法正确生成XML，请检查模型是否正确或者关闭后重新打开！">
+		<label local="en">Save Failure: Generating XML mistakly, Pleace Check Process Model or Reload Browse!</label>
+	</key> 	 
+	<key name="保存成功!">
+		<label local="en">Save successfully</label>
+	</key> 	 
+	<key name="保存失败：服务器端错误!">
+		<label local="en">Save Failure: Server side Error!</label>
+	</key> 	 
+	<key name="没有开始节点">
+		<label local="en">NO Start Node</label>
+	</key> 	 
+	<key name="EEPlat工作流建模工具">
+		<label local="en">EEPlat Workflow Designer</label>
+	</key> 	 
+	<key name="(Firefox下效果最佳，创建新节点的方式不是拖动，而是点击、点击。)">
+		<label local="en">(Using Firefox is best, The Way of Creating Node is CLICK and CLICK  , not DRAG.)</label>
+	</key> 	 
+	<key name="人工节点">
+		<label local="en">Activity Node</label>
+	</key> 	 
+	<key name="自动节点">
+		<label local="en">Auto Node</label>
+	</key> 	 
+	<key name="分支节点">
+		<label local="en">And Decision</label>
+	</key> 	 
+	<key name="条件节点">
+		<label local="en">Xor Decision</label>
+	</key> 	 
+	<key name="汇合节点">
+		<label local="en">Conjuction Node</label>
+	</key> 	 
+	<key name="子流程">
+		<label local="en">Subflow Node</label>
+	</key> 	 
+	<key name="1,横排;2,竖排@2">
+		<label local="en">1,Horizontal;2,Vertical@2</label>
+	</key> 	 
+	<key name="0,否;1,是@1">
+		<label local="en">0,NO;1,YES@1</label>
+	</key> 	
+	<key name="1,是;0,否@1">
+		<label local="en">1,YES;0,NO@1</label>
+	</key> 	
+	<key name="0,否;1,是">
+		<label local="en">0,NO;1,YES</label>
+	</key> 	  
+	<key name="1,是;0,否">
+		<label local="en">1,YES;0,NO</label>
+	</key> 	
+	<key name="1,是;2,否">
+		<label local="en">1,YES;2,NO</label>
+	</key> 	
+	<key name="1,男;2,女;">
+		<label local="en">1,Male;2,Female;</label>
+	</key> 	 
+	<key name="1,页面;11,CSS;12,JS;20,JAVA_CLASS;21,JAVA_JAR;100,其它">
+		<label local="en">1,PAGE;11,CSS;12,JS;20,JAVA_CLASS;21,JAVA_JAR;100,OTHERS</label>
+	</key> 	 
+	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询;201,查询类型存储过程;202,保存类型存储过程;-1,禁用">
+		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;201,Search Storage Process;202,Save Storage Process;-1,Forbidden</label>
+	</key> 	 
+	<key name="1,数字;2,字符;3,大文本;4,WORD/WPS文档;5,二进制文件;6,JAVA序列化;7,URL;10,业务对象">
+		<label local="en">1,Number;2,String;3,CLOB;4,WORD/WPS;5,Binary File;6,JAVA Serial File;7,URL;10,Business Object"</label>
+	</key> 	 
+	<key name="4,数字;12,字符型;2005,大文本;1,布尔;93,时间">
+		<label local="en">4,Number;12,String;2005,CLOB;1,Boolean;93,Datetime</label>
+	</key> 	 
+	<key name="2,纯流水序号;22,组织年流水序号;25,按年流水序号;27,按组织流水序号;29,用户自定义序号;10,当期时间;3,登录ID;31,登录名称;32,登录岗位;33,登录单位;5,固定值;8,参数;100,类扩展">
+		<label local="en">2,Sequence;25,Sequence by year;27,Sequence by organization;29,User Defined Sequence;10,Current DateTime;3,Login ID;31,Login Station;32,Login Dept;33,Login;5,Fixed Value;8,Parameter;100,Class Extend</label>
+	</key> 	 
+	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询;201,查询类型存储过程;202,保存类型存储过程">
+		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;201,Search Storage Process;202,Save Storage Process;</label>
+	</key> 	 
+	<key name="1,缺省JNDI上下文;2,特殊JNDI上下文">
+		<label local="en">1,Default JNDI;2,Special JNDI</label>
+	</key> 	 
+	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询">
+		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;</label>
+	</key> 	 
+	<key name="0,否;-1,内联;1,下部;2,上部;5,右部;8,左部;12,统计@0">
+		<label local="en">0,NO;-1,Inline;1,Botttom;2,Top;5,Right;8,Left;12,Statictic@0</label>
+	</key> 	 
+	<key name="1,摘要;2,普通;">
+		<label local="en">1,Abstract;2,Normal</label>
+	</key> 	 
+	<key name="0,公开;1,过滤">
+		<label local="en">0,Public;1,Filter</label>
+	</key> 	 
+	<key name="0,不清空;1,清空">
+		<label local="en">0,NO;1,Clear</label>
+	</key> 	 
+	<key name="1,左;2,右">
+		<label local="en">1,Left;2,Right</label>
+	</key> 	 
+	<key name="只能选择图像类文件,JS,CSS,FTL,Excel,Word,PDF,TXT等格式文件">
+		<label local="en">Only Select Image,JS,CSS,FTL,Wowd,Excel,PDF,TXT ect. Files</label>
+	</key> 	 
+	<key name="1,基本表;3,系统功能;2,多租户表;22,第二类多租户表">
+		<label local="en">1,Base Table;3,Business Modules;2,MultiTable;22,MutliTable2</label>
+	</key> 	 
+	<key name="0,其它;1,是@1">
+		<label local="en">0,Others;1,YES@1</label>
+	</key> 	 
+	<key name="1,是;0,否;2,多重;5,多态">
+		<label local="en">1,YES;0,NO;2,MULTI;5;Polymorphic</label>
+	</key> 	 
+	<key name="2,流水序号;29,用户自定义序号;10,当期时间;3,登录ID;31,登录名称;32,登录岗位;33,登录单位;5,固定值;8,参数;100,类扩展">
+		<label local="en">2,Sequence;29,User Defined Sequence;10,Current DateTime;3,Login ID;31,Login Station;32,Login Dept;33,Login;5,Fixed Value;8,Parameter;100,Class Extend</label>
+	</key> 	 
+	<key name="1,激活;0,否@1">
+		<label local="en">1,YES;2,NO@1</label>
+	</key> 	 
+	<key name="1,基本表;2,系统功能">
+		<label local="en">1,Base Table;3,Business Modules;</label>
+	</key> 	 
+	<key name="1,关联;2,组合">
+		<label local="en">1,Related;2,Combination</label>
+	</key> 	 
+	<key name="1,一般;2,分割线;3,CheckBoxMenu;5,外连接;10,屏蔽委托">
+		<label local="en">1,Normal;2,Parting line;3,CheckBox Menu;5,Outer Link;10,Delegate Hidden</label>
+	</key> 	 
+	<key name="3,服务前;5,服务后">
+		<label local="en">3,Befor Service;4,After Service</label>
+	</key> 	 
+	<key name="2,表格;1,树;3,菜单;5,资源@2">
+		<label local="en">2,Grid;1,Data Tree;3,Menu;5,Resource@2</label>
+	</key> 	 
+	<key name="1,文本;2,整型;3,浮点型;4,E-MAIL;5,正则表达式;201,脚本方式FORM自动填充">
+		<label local="en">1,String;2,Integer;3,Float;4,E-MAIL;5,Regular Expression;201,Script</label>
+	</key> 	 
+	<key name="0,否;1,不符合即返回;2,检查全部参数">
+		<label local="en">0,NO;1,return ony one error;2,check all</label>
+	</key> 	 
+	<key name="0,否;1,CheckBox;2,Radio">
+		<label local="en">0,NO;1,CheckBox;2,Radio</label>
+	</key> 	 
+	<key name="1,页面;11,CSS;12,JS;20,JAVA_CLASS;21,JAVA_JAR;31,图片;35,Excel报表;100,其它">
+		<label local="en">1,PAGE;11,CSS;12,JS;20,JAVA_CLASS;21,JAVA_JAR;31,IMAGE;35,Excel Report;100,Others</label>
+	</key> 	 
+	<key name="1,开启私有;2,结束并复原总线">
+		<label local="en">1,Open private bus;2,Reset bus</label>
+	</key> 	 
+	<key name="1,开启私有;2,结束并复原总线;3,普通总线">
+		<label local="en">1,Open private bus;2,Reset bus;3,Normal</label>
+	</key> 	 
+	<key name="1,不能为空;2,来自动态列表;5,来自静态列表;8,不能重复">
+		<label local="en">1,Required;2,From Dyn List;5,From  Static List;8,No Repeat</label>
+	</key> 	 
+	<key name="0,全部;1,PC;2,Mobile">
+		<label local="en">0,ALL;1,PC;2,Mobile</label>
+	</key> 	 
+	<key name="0,不刷新;1,CURRENT节点;2,Search_List节点;3,CURRENT及Search_List节点;5,CURRENT及GLOBAL_UID节点">
+		<label local="en">0,NO;2,Current Node;2,Search List Node;3,Search And Search List Node;4,Current and Global Node</label>
+	</key> 	 
+	<key name="0,不订阅;1,全部订阅;2,不订阅双击">
+		<label local="en">0,NO;1,ALL;2,NO DBCLICK</label>
+	</key> 	 
+	<key name="1,权限表;0,不过滤;2,权限表和数据">
+		<label local="en">1,Permisson Table;0,NO;2,Permission Table and Data Filter</label>
+	</key> 	 
+	<key name="6,实例无关;61,实例相关">
+		<label local="en">6,Instance independence;61,Instance dependence</label>
+	</key> 	 
+	<key name="1,摘要;2,普通">
+		<label local="en">1,Abstact;2,Normal</label>
+	</key> 	 
+	<key name="节点属性">
+		<label local="en">Node Attribute</label>
+	</key> 	 
+	<key name="权限表">
+		<label local="en">Permission Tables</label>
+	</key> 	 
+	<key name="节点属性编辑">
+		<label local="en">Node Attrivate Editor</label>
+	</key> 	 
+	<key name="节点ID：">
+		<label local="en">Node ID:</label>
+	</key> 	 
+	<key name="节点名称：">
+		<label local="en">Node Name:</label>
+	</key> 	 
+	<key name="条件判断类型：">
+		<label local="en">Condition Type:</label>
+	</key> 	 
+	<key name="条件判断表达式(Class)：">
+		<label local="en">Condition Expression(Class):</label>
+	</key> 	 
+	<key name="节点描述：">
+		<label local="en">Node Description:</label>
+	</key> 	 
+	<key name="工作流_节点属性_Tab">
+		<label local="en">Node Attribute</label>
+	</key> 	 
+	<key name="工作流节点权限设置">
+		<label local="en">Node Permission </label>
+	</key> 	 
+	<key name="流程状态：">
+		<label local="en">Status after passing</label>
+	</key> 	 
+	<key name="回退时流程状态：">
+		<label local="en">Status after rejecting</label>
+	</key> 	 
+	<key name="权限验证类型：">
+		<label local="en">Permission Type:</label>
+	</key> 	 
+	<key name="标准权限表">
+		<label local="en">Permission Table</label>
+	</key> 	 
+	<key name="==以下类型不适合通用的VIEW==">
+		<label local="en">==Fow Below Items, Can't Using Generation Views==</label>
+	</key> 	 
+	<key name="数据拥有者">
+		<label local="en">Data Owner</label>
+	</key> 	 
+	<key name="运行时指定用户">
+		<label local="en">Assing User at Runtime</label>
+	</key> 	 
+	<key name="运行时指定角色">
+		<label local="en">Assing Role at Runtime</label>
+	</key> 	
+	<key name="运行时通过类指定于工作流权限表">
+		<label local="en">Assign Flow Permission Tables by JavaClass at Runtime</label>
+	</key> 	 
+	<key name="==以下类型只能通过API获取个人工作列表==">
+		<label local="en">==For Below Items,Only Access by Api ==</label>
+	</key> 	 
+	<key name="权限控制类：">
+		<label local="en">Permission Class:</label>
+	</key> 	 
+	<key name="数据拥有者标识：">
+		<label local="en">Data Owner Field:</label>
+	</key> 	 
+	<key name="使用JAVA类">
+		<label local="en">Using JavaClass</label>
+	</key> 	 
+	<key name="使用脚本">
+		<label local="en">Using Script</label>
+	</key> 	 
+	<key name="自动服务：">
+		<label local="en">Auto Service:</label>
+	</key> 	 
+	<key name="审批面板名称：">
+		<label local="en">Approve Pane Name:</label>
+	</key> 	 
+	<key name="通过意见界面表单字段：">
+		<label local="en">Pass Message Field:</label>
+	</key> 	 
+	<key name="驳回意见界面表单字段：">
+		<label local="en">Reject Message Field:</label>
+	</key> 	 
+	<key name="关联流程：">
+		<label local="en">Linded Process:</label>
+	</key> 	 
+	<key name="节点描述：">
+		<label local="en">Node Description:</label>
+	</key> 	 
+	<key name="确定">
+		<label local="en">Save</label>
+	</key> 	 
+	<key name="表达式：">
+		<label local="en">Condition Exception:</label>
+	</key> 	 
+	<key name="界面显示：">
+		<label local="en">Show Screen:</label>
+	</key> 	 
+	<key name="表达式不可以为空">
+		<label local="en">Condition Exception Required!</label>
+	</key> 	 
+	<key name="界面显示不可以为空">
+		<label local="en">Screen Show required!</label>
+	</key> 	 
+	<key name="系统故障，请与管理员联系!">
+		<label local="en">Error,Please contact  administrator</label>
+	</key> 	 
+	<key name="工作流_连接线属性">
+		<label local="en">Transaction Attribute</label>
+	</key> 	 
+	<key name="条件判断表达式">
+		<label local="en">Condition Exception</label>
+	</key> 	 
+	<key name="请选择角色">
+		<label local="en">Please Select Role</label>
+	</key> 	 
+	<key name="角色列表">
+		<label local="en">Role List</label>
+	</key> 	 
+	<key name="请选择一条记录！">
+		<label local="en">Please Select a Record!</label>
+	</key> 	 
+	<key name="你确定要删除吗">
+		<label local="en">Are you sure to delete?</label>
+	</key> 
+		 
+	<key name="表名不能为空!">
+		<label local="en">Table name is required!</label>
+	</key>
+	<key name="列名不能为空!">
+		<label local="en">Column name is required!</label>
+	</key>  	 
+	<key name="字段类型不能为空!">
+		<label local="en">Column Type Name is required!</label>
+	</key>  	 
+	<key name="字段长度不能为空!">
+		<label local="en">Column field length is required!</label>
+	</key>  	 
+	<key name="字段长度只能为数字!">
+		<label local="en">Column field length can be only integer </label>
+	</key>  	 
+	<key name="表名不能为空!">
+		<label local="en">Table name is required!</label>
+	</key>  	 
+	<key name="获取数据库中的数据表">
+		<label local="en">Tables</label>
+	</key> 
+	
+	<key name="您没有选择数据">
+		<label local="en">Tables</label>
+	</key> 
+	
+	<key name="未配置SQL 语句">
+		<label local="en">SQL statement is not configured</label>
+	</key> 
+
+	<key name="没有数据">
+		<label local="en">No data!</label>
+	</key> 
+
+	<key name="未配置FormModel">
+		<label local="en">FormModel is not configured!</label>
+	</key> 
+
+	<key name="必须定义两个服务，新增的服务和修改的服务!">
+		<label local="en">Must define the two services, new service and modify  service!</label>
+	</key> 
+
+	<key name="必须定义两个服务，新增的服务和修改的服务!">
+		<label local="en">Must define the two services, new service and modify  service!</label>
+	</key> 
+
+	<key name="没有选择表格！">
+		<label local="en">GridModel is not selected!</label>
+	</key> 
+
+	<key name="没有选择表格！">
+		<label local="en">GridModel is not selected!</label>
+	</key> 
+
+	<key name="复制成功,请点击左侧树节点进行操作!">
+		<label local="en">Copy is successful, please dbclick on the left side parent tree node to refresh!</label>
+	</key> 	
+
+	<key name="旧密码不能为空">
+		<label local="en">The old password can not be empty!</label>
+	</key> 	
+
+
+	<key name="两次输入的新密码不一致">
+		<label local="en">Two entered passwords do not match!</label>
+	</key> 	
+
+	<key name="您输入的的旧密码不正确">
+		<label local="en">The old password is incorrect!</label>
+	</key> 	
+
+
+	<key name="该用户账户已经过期！">
+		<label local="en">This user account has expired!</label>
+	</key> 	
+
+
+	<key name="该用户已冻结，请跟系统管理员联系！">
+		<label local="en">This user has been frozen, please contact the system administrator!</label>
+	</key> 	
+
+	<key name="用户名或密码错误，请重试！">
+		<label local="en">Username or password is incorrect, please try again!</label>
+	</key> 	
+
+	<key name="服务未定义工作流模板 ！">
+		<label local="en">Workflow Template is not configured!</label>
+	</key> 	
+
+
+	<key name="当前工作流上下文丢失,请重新操作!">
+		<label local="en">The current workflow context is missing, please try again!</label>
+	</key> 	
+
+	<key name="当前Session丢失，请重新登录!">
+		<label local="en">Session lost, Please log in again!</label>
+	</key> 	
+
+	<key name="没有选择工作流模板!">
+		<label local="en">Did not select the workflow template!</label>
+	</key> 	
+
+
+	<key name="翻译完成!">
+		<label local="en">Translated!</label>
+	</key> 	
+
+	<key name="没有定义服务!">
+		<label local="en">The service is not configured!</label>
+	</key> 	
+
+
+	<key name="成功生成规则!">
+		<label local="en">Successfully generated rule!</label>
+	</key> 	
+
+	<key name="应用已经存在！">
+		<label local="en">The application already exists!</label>
+	</key> 	
+
+	<key name="安装成功">
+		<label local="en">The installation was successful!</label>
+	</key> 	
+	
+	<key name="你还没有选择文件！">
+		<label local="en">You do not select a file!</label>
+	</key> 	
+	
+	<key name="待导入的业务对象已经存在，请删除后再导入!">
+		<label local="en">Business Object to be imported already exists, please delete after import!</label>
+	</key> 	
+
+	<key name="导入成功!">
+		<label local="en">The import is successful!</label>
+	</key> 	
+
+	<key name="浏览器内部错误，请重试或选用firefox!">
+		<label local="en">Browser's internal error, Please try again or choose firefox!</label>
+	</key> 	
+
+	<key name="没有选中数据表或没有定义主键!">
+		<label local="en">Did not select the data table, or no primary key defined!</label>
+	</key> 	
+
+	<key name="初始化成功!">
+		<label local="en">Initialization is successful!</label>
+	</key> 	
+
+	<key name="字段名称或者类型没有定义!">
+		<label local="en">The field name or type not defined!</label>
+	</key> 	
+
+	<key name="没有找到需要初始化的应用!">
+		<label local="en">Did not find the application you need to initialize!</label>
+	</key> 	
+
+	<key name="分享的应用必须原创APP，该应用已经分享到AppShare，不能重复分享!">
+		<label local="en">Sharing applications must be original APP, the application sharing to AppShare can not repeat the share!</label>
+	</key> 	
+	
+	<key name="成功分享到AppShare!">
+		<label local="en">Successful share to AppShare!!</label>
+	</key> 	
+
+
+	<key name="现在只支持mysql、oracle、sqlserver、db2、hsqldb、h2和gae等数据库初始化!">
+		<label local="en">Now only support mysql, oracle, sqlserver, db2, hsqldb, h2 and gae such as database initialization!</label>
+	</key> 	
+
+
+	<key name="初始化完成，请不要再次初始化！">
+		<label local="en">Initialization is completed, please do not re-initialize!</label>
+	</key> 	
+
+
+	<key name="没有选择服务！">
+		<label local="en">The service is not selected!</label>
+	</key> 	
+
+	<key name="缺省实现表已经初始化完成请不要重复初始化!">
+		<label local="en">The default implementation table initialization has been completed please do not repeat initialization!</label>
+	</key> 	
+
+
+	<key name="用户名不能为空">
+		<label local="en">The user name can not be empty!</label>
+	</key> 	
+
+	<key name="初始化可能花费几分钟至十几分钟,请稍后......">
+		<label local="en">Initialization may take a few minutes to ten a few minutes, please wait ...</label>
+	</key> 	
+
+	<key name="名称不可更改">
+		<label local="en">The name can not be changed!</label>
+	</key> 	
+	
+	<key name="分享工程可能花费几分钟至十几分钟,请稍后......">
+		<label local="en">Share project may take a few minutes to ten a few minutes, please wait ...</label>
+	</key> 	
+	<key name="安装工程可能花费几分钟至十几分钟,请稍后......">
+		<label local="en">The installation works may take a few minutes to ten a few minutes, please wait ...</label>
+	</key> 	
+
+
+<!-- Badmission -->
+
+	<key name="wolfvillage_mobile_pane">
+		<label local="en">Badminton Group Activity Manager</label>
+	</key>
+	<key name="wolfvillage_activity">
+		<label local="en">Activity</label>
+	</key>
+    <key name="wolfvillage_bp">
+		<label local="en">Group Base Data</label>
+	</key>
+    <key name="d_feetype">
+		<label local="en">Fee Category</label>
+	</key>
+    <key name="d_feetspliteype">
+		<label local="en">Fee Share Type</label>
+	</key>
+    <key name="wolfers">
+		<label local="en">Members</label>
+	</key>
+    <key name="account">
+		<label local="en">Account</label>
+	</key>
+    <key name="d_place">
+		<label local="en">Place</label>
+	</key>
+    <key name="d_badminton">
+		<label local="en">Badminton Type</label>
+	</key>
+    <key name="badmintoninv">
+		<label local="en">Badminton Reserve</label>
+	</key>
+    <key name="accountfillmoney">
+		<label local="en">Account Manager</label>
+	</key>
+    <key name="activity">
+		<label local="en">Activity Manager</label>
+	</key>
+    <key name="badmintoninout">
+		<label local="en">InOut Details</label>
+	</key>
+    <key name="PM_d_feetype_Result">
+		<label local="en">Fee Category Result</label>
+	</key>
+    <key name="Feetotal">
+		<label local="en">Create New Activity</label>
+	</key>
+    <key name="PM_activity_Result">
+		<label local="en">Activity List</label>
+	</key>
+    <key name="PM_activity_Condition">
+		<label local="en">Activity Condition</label>
+	</key>
+    <key name="PM_wolfers_Condition">
+		<label local="en">Search Members</label>
+	</key>
+    <key name="PM_wolfers_Result">
+		<label local="en">Members List</label>
+	</key>    
+	<key name="PM_d_feetspliteype_Condition">
+		<label local="en">Search Share Type</label>
+	</key>   
+	<key name="PM_d_feetspliteype_Result">
+		<label local="en">Share Type List</label>
+	</key>    
+	
+	<key name="PM_badmintoninout_Condition">
+		<label local="en">Search Badminton In/Out </label>
+	</key>	
+	<key name="PM_badmintoninout_Result">
+		<label local="en">Badminton In/Out List </label>
+	</key>
+	
+	<key name="账户充值">
+		<label local="en">Account recharge</label>
+	</key>
+	
+	
+<!-- Badmission -->
+
+	
+</i18n>
+
+
