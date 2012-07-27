@@ -4,6 +4,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.MVCController;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.wf.WFEngine;
 import com.exedosoft.wf.WFEngineFactory;
 import com.exedosoft.wf.WFException;
@@ -22,7 +23,7 @@ public class DOKillProcess extends DOAbstractAction {
 		System.out.println("ptPI=========" +  ptPI.getCorrInstance());
 		
 		if (ptPI.getCorrInstance() == null) {
-			this.setEchoValue("当前工作流上下文丢失,请重新操作!");
+			this.setEchoValue(I18n.instance().get("当前工作流上下文丢失,请重新操作!"));
 			return null;
 		}
 		

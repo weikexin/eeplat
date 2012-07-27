@@ -5,6 +5,7 @@ import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.util.I18n;
 
 public class GeneRulesFromService extends DOAbstractAction {
 
@@ -17,7 +18,7 @@ public class GeneRulesFromService extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null ) {
-			this.setEchoValue("没有定义服务!");
+			this.setEchoValue(I18n.instance().get("没有定义服务!"));
 			return NO_FORWARD;
 		}
 
@@ -41,7 +42,7 @@ public class GeneRulesFromService extends DOAbstractAction {
 			t.rollback();
 			e.printStackTrace();
 		}
-		this.setEchoValue("成功生成规则!");
+		this.setEchoValue(I18n.instance().get("成功生成规则!"));
 		return DEFAULT_FORWARD;
 
 	}

@@ -22,7 +22,6 @@ import com.exedosoft.plat.util.DOGlobals;
 
 public class ContextListener implements ServletContextListener {
 
-	
 	private static Log log = LogFactory.getLog(ContextListener.class);
 
 	/**

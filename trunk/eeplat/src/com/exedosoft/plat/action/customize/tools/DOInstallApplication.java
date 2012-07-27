@@ -13,6 +13,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.safe.TenancyValues;
 
 public class DOInstallApplication extends DOAbstractAction {
@@ -45,7 +46,8 @@ public class DOInstallApplication extends DOAbstractAction {
 					.getSessoinContext().getTenancyValues();
 			
 			if(tv.getTenant().getUid().equals(appShare.getValue("auth_tenant_id"))){
-				this.setEchoValue("应用已经存在！");
+				this.setEchoValue(I18n.instance().get("应用已经存在！"));
+
 				return this.NO_FORWARD;
 			}
 
@@ -72,8 +74,8 @@ public class DOInstallApplication extends DOAbstractAction {
 		} finally {
 			t.end();
 		}
+		this.setEchoValue(I18n.instance().get("安装成功"));
 
-		this.setEchoValue("安装成功");
 		return DEFAULT_FORWARD;
 
 	}

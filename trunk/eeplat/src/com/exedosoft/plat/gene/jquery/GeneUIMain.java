@@ -425,8 +425,19 @@ public class GeneUIMain {
 		DAOUtil.INSTANCE().store(fm);
 
 		fm = new DOFormModel();
+		
+		
 		fm.setController(formItemServiceUf);
-		fm.setEchoJs("confirm(\"你确定要删除吗\")");
+		
+		
+		fm.setEchoJs("confirmDelete()");
+		
+//		if("en".equals(DOGlobals.getValue("lang.local"))){
+//			fm.setEchoJs("confirm(\"Are you sure to delete?\")");
+//			
+//		}else{
+//			fm.setEchoJs("confirm(\"你确定要删除吗\")");
+//		}
 		DOService aService = DOService.getService(this.geneATable + "_delete");
 		fm.setLinkService(aService);
 		fm.setL10n("删除");

@@ -16,6 +16,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.xml.DOMXmlUtil;
 import com.exedosoft.plat.Transaction;
 
@@ -54,7 +55,8 @@ public class DOPTStore extends DOAbstractAction {
 				.getService("do_pt_node_denpendency_deleterubbish");
 				deleRelations.invokeUpdate();
 			}else{
-				this.setEchoValue("当前Session丢失，请重新登录!");
+				this.setEchoValue(I18n.instance().get("当前Session丢失，请重新登录!"));
+
 				return NO_FORWARD;
 			}
 

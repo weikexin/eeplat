@@ -3,11 +3,13 @@ package com.exedosoft.plat.ui.jquery.form;
 import java.util.Iterator;
 import java.util.List;
 
+
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOIModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.StringUtil;
+import com.exedosoft.plat.util.Escape;
 
 public class DOStaticListPopup extends DOBaseForm {
 
@@ -23,19 +25,31 @@ public class DOStaticListPopup extends DOBaseForm {
 		
 		List list = StringUtil.getStaticList(fm.getInputConfig());
 		
+	
+		
 		StringBuilder sb = new StringBuilder("{items:[");
 		for(Iterator it = list.iterator();it.hasNext();){
 			String[] one = (String[])it.next();
+			if(one==null || one.length<2){
+				continue;
+			}
 			sb.append("{'objuid':'")
 			.append(one[0])
 			.append("','name':'")
-			.append(one[1])
+			.append(Escape.escape(one[1]))
 			.append("'}");
 			if(it.hasNext()){
 				sb.append(",");
 			}
 		}
 		
+		
+//		sb.append("{\"objuid\":\"")
+//		.append(one[0])
+//		.append("\",\"name\":\"")
+//		.append(one[1])
+//		.append("\"}");
+//		
 		
 		sb.append("]}");
 		

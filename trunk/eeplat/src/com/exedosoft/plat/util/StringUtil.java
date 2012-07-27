@@ -1044,6 +1044,10 @@ public class StringUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
+		
+		System.out.println(Escape.escape("1111111  222"));
+		
+//		1111111%20%20222
 
 		//		
 		// File f1 = new File("c:/index.jsp");

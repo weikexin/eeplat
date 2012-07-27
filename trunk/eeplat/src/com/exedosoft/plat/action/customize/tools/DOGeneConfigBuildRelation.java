@@ -5,6 +5,7 @@ import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.gene.jquery.PropertyManager;
+import com.exedosoft.plat.util.I18n;
 
 public class DOGeneConfigBuildRelation extends DOAbstractAction {
 
@@ -19,7 +20,7 @@ public class DOGeneConfigBuildRelation extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if(instance==null){
-			this.setEchoValue("没有数据!");
+			this.setEchoValue(I18n.instance().get("没有数据!"));
 			return NO_FORWARD;
 		}
 		
@@ -27,7 +28,7 @@ public class DOGeneConfigBuildRelation extends DOAbstractAction {
 		String dobouid = this.actionForm.getValue("bouid");
 		
 		if(colName==null && dobouid ==null){
-			this.setEchoValue("字段名称或者类型没有定义!");
+			this.setEchoValue(I18n.instance().get("字段名称或者类型没有定义!"));
 			return NO_FORWARD;
 		}
 		

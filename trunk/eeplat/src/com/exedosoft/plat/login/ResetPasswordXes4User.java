@@ -3,6 +3,7 @@ package com.exedosoft.plat.login;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOService;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.plat.util.StringUtil;
 
 public class ResetPasswordXes4User extends DOAbstractAction {
@@ -22,11 +23,11 @@ public class ResetPasswordXes4User extends DOAbstractAction {
 		String new_password2 = this.actionForm.getValue("new_password2");
 		
 		if(userid==null || "".equals(userid.trim())){
-			this.setEchoValue("用户名不能为空");
+			this.setEchoValue(I18n.instance().get("用户名不能为空"));
 			return NO_FORWARD;
 		}
 		if(!new_password1.equals(new_password2)){
-		   this.setEchoValue("两次输入的新密码不一致");
+		   this.setEchoValue(I18n.instance().get("两次输入的新密码不一致"));
 		   return NO_FORWARD;
 		}
 		DOService updatePassword = DOService.getService("tbemployee.change.password.by.fdloginid");

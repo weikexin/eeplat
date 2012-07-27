@@ -16,6 +16,7 @@ import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.ui.jquery.form.TServiceUf;
 import com.exedosoft.plat.ui.jquery.grid.GridSupportMore;
+import com.exedosoft.plat.util.I18n;
 
 import com.exedosoft.wf.pt.ProcessTemplate;
 
@@ -38,7 +39,7 @@ public class DOGeneConfigBuildRelationWf extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if (instance == null) {
-			this.setEchoValue("没有数据!");
+			this.setEchoValue(I18n.instance().get("没有数据!"));
 			return NO_FORWARD;
 		}
 
@@ -46,7 +47,7 @@ public class DOGeneConfigBuildRelationWf extends DOAbstractAction {
 
 		System.out.println("模板ID::" + ptUid);
 		if (ptUid == null && ptUid == null) {
-			this.setEchoValue("流程模板没有定义!");
+			this.setEchoValue(I18n.instance().get("流程模板没有定义!"));
 			return NO_FORWARD;
 		}
 

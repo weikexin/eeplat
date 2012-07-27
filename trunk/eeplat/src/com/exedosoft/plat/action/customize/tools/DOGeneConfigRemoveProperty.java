@@ -6,6 +6,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
 import com.exedosoft.plat.gene.jquery.PropertyManager;
+import com.exedosoft.plat.util.I18n;
 
 public class DOGeneConfigRemoveProperty extends DOAbstractAction {
 
@@ -20,14 +21,15 @@ public class DOGeneConfigRemoveProperty extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_bo");
 		BOInstance instance = bo.getCorrInstance();
 		if(instance==null){
-			this.setEchoValue("没有数据!");
+			this.setEchoValue(I18n.instance().get("没有数据!"));
+
 			return NO_FORWARD;
 		}
 		
 		DOBO boProperty = DOBO.getDOBOByName("DO_BO_Property");
 		BOInstance propertyInstance = boProperty.getCorrInstance();
 		if(propertyInstance==null){
-			this.setEchoValue("没有数据!");
+			this.setEchoValue(I18n.instance().get("没有数据!"));
 			return NO_FORWARD;
 		}
 		DOBOProperty dop = DOBOProperty.getDOBOPropertyByID(propertyInstance.getUid());

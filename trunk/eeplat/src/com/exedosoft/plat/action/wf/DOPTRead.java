@@ -7,6 +7,7 @@ import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.util.I18n;
 import com.exedosoft.wf.pt.NodeDenpendency;
 import com.exedosoft.wf.pt.PTNode;
 import com.exedosoft.wf.pt.ProcessTemplate;
@@ -26,8 +27,7 @@ public class DOPTRead extends DOAbstractAction {
 		BOInstance curPt = bo.getCorrInstance();
 		BOInstance echo = new BOInstance();
 		if (curPt == null) {
-			System.out.println("没有选择工作流模板!");
-			this.setEchoValue("没有选择工作流模板!");
+			this.setEchoValue(I18n.instance().get("没有选择工作流模板!"));
 			return NO_FORWARD;
 		}
 		ProcessTemplate pt = ProcessTemplate.getPTByID(curPt.getUid());

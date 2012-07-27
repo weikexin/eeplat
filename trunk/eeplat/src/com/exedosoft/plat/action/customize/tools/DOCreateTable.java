@@ -16,6 +16,7 @@ import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.gene.jquery.SqlCol;
 import com.exedosoft.plat.util.DOGlobals;
+import com.exedosoft.plat.util.I18n;
 
 /**
  * 
@@ -105,7 +106,7 @@ public class DOCreateTable extends DOAbstractAction {
 
 		}
 		// TODO Auto-generated method stub
-		this.setEchoValue("保存成功!");
+		this.setEchoValue(I18n.instance().get("保存成功!"));
 		return DEFAULT_FORWARD;
 	}
 

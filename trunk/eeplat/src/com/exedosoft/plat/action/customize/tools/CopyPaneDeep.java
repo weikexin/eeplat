@@ -14,6 +14,7 @@ import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOFormTarget;
 import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.util.I18n;
 
 public class CopyPaneDeep extends DOAbstractAction {
 
@@ -26,8 +27,7 @@ public class CopyPaneDeep extends DOAbstractAction {
 	public String excute() throws ExedoException {
 
 		if (this.service == null || this.service.getTempSql() == null) {
-			System.out.println("未配置SQL 语句");
-			this.setEchoValue("未配置SQL 语句");
+			setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
 
@@ -115,7 +115,8 @@ public class CopyPaneDeep extends DOAbstractAction {
 			t.rollback();
 			e.printStackTrace();
 		}
-		this.setEchoValue("复制成功,请点击左侧树节点进行操作!");
+		setEchoValue(I18n.instance().get("复制成功,请点击左侧树节点进行操作!"));
+
 		return DEFAULT_FORWARD;
 
 	}

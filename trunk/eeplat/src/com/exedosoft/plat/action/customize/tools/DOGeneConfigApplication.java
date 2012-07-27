@@ -6,6 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.gene.jquery.AProjectForwarderJquery;
+import com.exedosoft.plat.util.I18n;
 
 public class DOGeneConfigApplication extends DOAbstractAction {
 
@@ -25,13 +26,13 @@ public class DOGeneConfigApplication extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("do_application");
 		String applicationUid = bo.getCorrInstance().getUid();
 		if(applicationUid==null){
-			this.setEchoValue("没有找到需要初始化的应用!");
+			this.setEchoValue(I18n.instance().get("没有找到需要初始化的应用!"));
 			return NO_FORWARD;
 		}
 
 		AProjectForwarderJquery  af = new AProjectForwarderJquery();
 		af.forwardBaseUI(applicationUid);
-		this.setEchoValue("初始化成功!");
+		this.setEchoValue(I18n.instance().get("初始化成功!"));
 		return DEFAULT_FORWARD;
 	}
 
