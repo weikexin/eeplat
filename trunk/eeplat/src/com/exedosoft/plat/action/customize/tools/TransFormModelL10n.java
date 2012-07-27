@@ -32,6 +32,13 @@ public class TransFormModelL10n extends DOAbstractAction {
 			this.setEchoValue(I18n.instance().get("未配置SQL 语句"));
 			return NO_FORWARD;
 		}
+		
+		DOService theService = this.service;
+		
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			theService = DOService.getService("updateFormModelsetl18n");
+		}
+	    		
 
 //		String fileName = this.actionForm.getValue("fileName");
 //
@@ -64,7 +71,7 @@ public class TransFormModelL10n extends DOAbstractAction {
 //					this.service.addBatch(map);
 //				}
 //			}
-			this.service.beginBatch();
+			theService.beginBatch();
 			String trans = this.actionForm.getValue("trans");
 			String[] tranArray = trans.split("\n");
 			for(int i = 0; i < tranArray.length; i++){
@@ -78,10 +85,10 @@ public class TransFormModelL10n extends DOAbstractAction {
 					Map map = new HashMap();
 					map.put("l10n_en", paras[0].toLowerCase());
 					map.put("l10n_china", paras[1]);
-					this.service.addBatch(map);
+					theService.addBatch(map);
 				}
 			}
-			this.service.endBatch();
+			theService.endBatch();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

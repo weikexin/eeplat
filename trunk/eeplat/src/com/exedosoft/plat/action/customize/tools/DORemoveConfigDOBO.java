@@ -28,6 +28,12 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 		DOBO bo = DOBO.getDOBOByName("DO_BO");
 		BOInstance instance = bo.getCorrInstance();
 		
+		removeBO(instance);
+	
+		return DEFAULT_FORWARD;
+	}
+
+	public static  void removeBO(BOInstance instance) {
 		DOService deletes = DOService.getService("DO_Parameter_deletebybouid");
 		Transaction t = deletes.currentTransaction();
 		t.begin();
@@ -84,17 +90,9 @@ public class DORemoveConfigDOBO extends DOAbstractAction {
 			e.printStackTrace();
 		}
 		t.end();
-		
-		
-		
-		
-		
-		
-	
-		return null;
 	}
 
-	private void deleteRubbish(BOInstance instance,String serviceName) throws ExedoException {
+	private static  void deleteRubbish(BOInstance instance,String serviceName) throws ExedoException {
 		DOService deletes = DOService.getService(serviceName);
 		deletes.invokeUpdate(instance.getUid());
 	}
