@@ -202,7 +202,9 @@
 	<key name="查看工程信息">
 		<label local="en">Browse</label>
 	</key>
-	
+	<key name="创建新的工程">
+		<label local="en">Build new Application</label>
+	</key>
 	<key name="data manager utility">
 		<label local="zh">您可以通过 数据库管理 ，创建新的数据表，修改或删除存在的数据表。</label>
 		<label local="en">You can via DataBase Manager,Create new table,modify or delete the exits tables.</label>
@@ -947,7 +949,7 @@
 	</key> 	
 
 	<key name="初始化可能花费几分钟至十几分钟,请稍后......">
-		<label local="en">Initialization may take a few minutes to ten a few minutes, please wait ...</label>
+		<label local="en">Initialization may take a few minutes to ten minutes, please wait ...</label>
 	</key> 	
 
 	<key name="名称不可更改">
@@ -955,10 +957,10 @@
 	</key> 	
 	
 	<key name="分享工程可能花费几分钟至十几分钟,请稍后......">
-		<label local="en">Share project may take a few minutes to ten a few minutes, please wait ...</label>
+		<label local="en">Share project may take a few minutes to ten minutes, please wait ...</label>
 	</key> 	
 	<key name="安装工程可能花费几分钟至十几分钟,请稍后......">
-		<label local="en">The installation works may take a few minutes to ten a few minutes, please wait ...</label>
+		<label local="en">The installation works may take a few minutes to ten minutes, please wait ...</label>
 	</key> 	
 
 
