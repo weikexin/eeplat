@@ -2,6 +2,7 @@
 <%@ page import="com.exedosoft.plat.bo.DOBO"%>
 <%@ page import="com.exedosoft.plat.bo.BOInstance"%>
 <%@ page import="com.exedosoft.plat.util.DOGlobals"%>
+<%@ page import="com.exedosoft.plat.util.I18n"%>
 <%
   		DOBO bo = DOBO.getDOBOByName("do_pt_processtemplate");
 		BOInstance curPt = bo.getCorrInstance();
@@ -10,6 +11,11 @@
         if(curPt!=null){
 			ptName = curPt.getName();
 		}
+        
+        String  enPrix= "";
+        if ("en".equals(DOGlobals.getValue("lang.local"))) {
+        	enPrix = "_en";
+        }
 
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -17,7 +23,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>EEPlat工作流建模工具</title>
+<title><%=I18n.instance().get("EEPlat工作流建模工具")%></title>
 <style type="text/css">
 @import "jquery.svg.css";
 
@@ -32,6 +38,15 @@
 </script>  
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/platAjax.js"  ></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/exedo/webv3/css/estop/estop.css" type="text/css" />
+
+
+<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+<% }else{ %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+<% }%>
+	
 
 <script type="text/javascript">
 
@@ -308,7 +323,7 @@ function doMouseMove(evt,svg){
 
 					
 					
-				  $('#toolrange',svg.root()).attr('x',$(selectedNode).attr('x')-1)
+				  $('#toolrange_active',svg.root()).attr('x',$(selectedNode).attr('x')-1)
 							 .attr('y',$(selectedNode).attr('y')-1)
 			       .attr('visibility','visible');
 
@@ -446,7 +461,7 @@ function doClick(evt){
 	
   lineUnvisible();
   var svg = $('#svgbasics').svg('get');
-  $('#toolrange',svg.root()).attr('x',$(o).attr('x')-1)
+  $('#toolrange_active',svg.root()).attr('x',$(o).attr('x')-1)
 							 .attr('y',$(o).attr('y')-1)
 			 .attr('visibility','visible');
   
@@ -637,7 +652,7 @@ function drawLine(object1,object2,condition,showValue)//画线函数
 		
 		///划线结束，去掉选中
   canDrawLine = false;
-  $('#toolrange',svg.root()).attr('visibility','hidden')
+  $('#toolrange_active',svg.root()).attr('visibility','hidden')
 	
 	
 	var strBefors = '';
@@ -808,14 +823,14 @@ function addNewNode(aNode)//增加新节点,user流默认property为none
 
 				if(nodeType=='start'){
 					if(startNode!=null){
-					    alert("流程中只能有一个开始节点!");
+					    alert('<%=I18n.instance().get("流程中只能有一个开始节点!")%>');
 						return;
 					}
 			    	shape.setAttributeNS(xlinkns,'xlink:href','images/start.png');
 			    	shape.setAttribute("nodetype", 'start');
 			    	if(aNode.nodeName){
 				    }else{
-			    		shape.setAttribute("nodename", "开始节点");
+			    		shape.setAttribute("nodename", '<%=I18n.instance().get("开始节点")%>');
 				    } 
 			    	startNode = shape;
 				}else if (nodeType=='end'){
@@ -823,7 +838,7 @@ function addNewNode(aNode)//增加新节点,user流默认property为none
 			    	shape.setAttribute("nodetype", 'end');
 			    	if(aNode.nodeName){
 				    }else{
-			    		shape.setAttribute("nodename", "结束节点");
+			    		shape.setAttribute("nodename", '<%=I18n.instance().get("结束节点")%>');
 				    } 
 				}else if (nodeType=='activity'){
 					shape.setAttributeNS(xlinkns,'xlink:href','images/task.png');
@@ -874,9 +889,9 @@ function addNewNode(aNode)//增加新节点,user流默认property为none
   				textNode = svg.root().ownerDocument.createTextNode(aNode.nodeName);
   			}else{
 						if(nodeType=='start'){
-							textNode = svg.root().ownerDocument.createTextNode("开始节点");
+							textNode = svg.root().ownerDocument.createTextNode('<%=I18n.instance().get("开始节点")%>');
 						}else if(nodeType=='end'){
-							textNode = svg.root().ownerDocument.createTextNode("结束节点");
+							textNode = svg.root().ownerDocument.createTextNode('<%=I18n.instance().get("结束节点")%>');
 						}
 						else{
 							textNode = svg.root().ownerDocument.createTextNode("new node" + iIndex);
@@ -915,7 +930,7 @@ function deleteObject()//删除所选节点
 	
 	if ((object==null)&&(object2 == null))
 	{
-		alert('未选中任何元素');
+		alert('<%=I18n.instance().get("未选中任何元素")%>');
 		return;
 	}
 	///如果选择两个，则只删除线
@@ -927,7 +942,9 @@ function deleteObject()//删除所选节点
 	if (object!=null)//删除流节点
 	{
 		unSelectNode();//有selectedNode = null;
-   $('#toolrange',svg.root()).attr('visibility','hidden')
+   $('#toolrange',svg.root()).attr('visibility','hidden');
+   $('#toolrange_active',svg.root()).attr('visibility','hidden');
+   
 
 		//取消其前驱和后继的beyond和before属性，变为none
 		var sBefore = object.getAttribute('before');
@@ -991,7 +1008,7 @@ function save()//生成流程串
 {
 	if (!isGoodFlow())
 	{
-		alert("流程有问题！");
+		alert('<%=I18n.instance().get("流程有问题！")%>');
 		return 'Error';
 	}
 	
@@ -1081,16 +1098,16 @@ function save()//生成流程串
 
 	if(xmlWf.indexOf('nodeType')==-1){
 
-		alert("保存失败：无法正确生成XML，请检查模型是否正确或者关闭后重新打开！")
+		alert('<%=I18n.instance().get("保存失败：无法正确生成XML，请检查模型是否正确或者关闭后重新打开！")%>')
 		return;
 	}
 
 	try{
 		callAction({'actionName':"com.exedosoft.plat.action.wf.DOPTStore",
 	   			   'paras':'ptXml=' +  encodeURIComponent(xmlWf)});
-		alert("保存成功!");
+		alert('<%=I18n.instance().get("保存成功!")%>');
 	}catch(e){
-	   alert("保存失败：服务器端错误!");
+	   alert('<%=I18n.instance().get("保存失败：服务器端错误!")%>');
 	}	   
 
 		   
@@ -1136,6 +1153,7 @@ function save()//生成流程串
 
 
 function cbXml(data){
+
 	var parser = new DOMParser();
     var  xmlDoc = parser.parseFromString(data.xmlstr,"text/xml");   
 
@@ -1145,6 +1163,7 @@ function cbXml(data){
 
 
 function loadWfXml(){
+
 	//首先清空界面
 	  clearAllNodes();
 
@@ -1157,7 +1176,7 @@ function loadWfXml(){
 
 function loadWfXmlHelper(xmlDoc){
 	
-	
+
 
    	var root = xmlDoc.documentElement;
 
@@ -1273,7 +1292,7 @@ function isGoodFlow()//检测是否是合理的流程串
 	
 	//没有开始节点
 	if(startNode==null){
-		alert("没有开始节点");
+		alert('<%=I18n.instance().get("没有开始节点")%>');
 		return false;
 	}
 
@@ -1313,8 +1332,8 @@ function getFCount(svg)//获得before为none的节点数
 <br/>
 <div>
 
-<span style="font-size:25px;font-weight:bold">EEPlat工作流建模工具</span> 
-<span style="font-size:12px">(Firefox下效果最佳，创建新节点的方式不是拖动，而是点击、点击。) </span>
+<span style="font-size:25px;font-weight:bold"><%=I18n.instance().get("EEPlat工作流建模工具")%></span> 
+<span style="font-size:12px"><%=I18n.instance().get("(Firefox下效果最佳，创建新节点的方式不是拖动，而是点击、点击。)")%></span>
 <div>
 <br/>
 
@@ -1368,56 +1387,59 @@ function getFCount(svg)//获得before为none的节点数
 		<!--toolbar的具体定义-->
 		<!--onmouseover="funcOn(evt)" onmouseout="funcOut(evt)"-->
 		<g id="UIadd">
-			<image id="save"  x="150" y="20" width="56" height="20" xlink:href="images/save.gif" style="cursor:hand" canmove="false" type="bk" style="cursor:pointer" />
+		
+
+		
+			<image id="save"  x="150" y="20" width="56" height="20" xlink:href="images/save<%=enPrix%>.gif" style="cursor:hand" canmove="false" type="bk" style="cursor:pointer" />
 	
-			<image id="property" x="330" y="20" width="56" height="20"  xlink:href="images/property.gif" canmove="false" type="bk" style="cursor:pointer" />
-			<image id="delete" x="410" y="20" width="56" height="20"  xlink:href="images/delete.gif" canmove="false" type="bk" style="cursor:pointer" />
+			<image id="property" x="330" y="20" width="56" height="20"  xlink:href="images/property<%=enPrix%>.gif" canmove="false" type="bk" style="cursor:pointer" />
+			<image id="delete" x="410" y="20" width="56" height="20"  xlink:href="images/delete<%=enPrix%>.gif" canmove="false" type="bk" style="cursor:pointer" />
 		</g>
 		<!--=======================================================================================================================-->
 		<!--============================工具箱=============================-->
 		<!--====人工节点===-->
 		<image id="activity" x="40" y="60" width="35" height="35" xlink:href="images/task.png"  nodetype="activity" type="mother" property="人工节点"  style="cursor:pointer" />
 		<text id="txtActivity" x="58" y="107" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			人工节点
+			<%=I18n.instance().get("人工节点")%>
 		</text>
 		<!--====自动节点===-->
 		<image id="autoNode" x="40" y="120" width="35" height="35" xlink:href="images/auto.gif"  nodetype="auto" type="mother" property="自动节点"  style="cursor:pointer" />
 		<text id="txtAutoNode" x="58" y="165" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			自动节点
+			<%=I18n.instance().get("自动节点")%>
 		</text>
 	
 	
 		<!--====分支节点===-->
 		<image id="andDecision" x="40" y="180" width="35" height="35" xlink:href="images/fork.png"  nodetype="andDecision" type="mother" property="分支节点"  style="cursor:pointer" />
 		<text id="txtAndDecision" x="55" y="225" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			分支节点
+			<%=I18n.instance().get("分支节点")%>
 		</text>
 	
 	
 		<!--====条件节点===-->
 		<image id="xorDecision" x="40" y="240" width="35" height="35" xlink:href="images/iffork.gif"  nodetype="xorDecision" type="mother" property="条件节点" style="cursor:pointer"  />
 		<text id="txtXorDecision" x="55" y="286" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			条件节点
+			<%=I18n.instance().get("条件节点")%>
 		</text>
 		
 		<!--====汇合节点===-->
 		<image id="andConjuction" x="40" y="300" width="35" height="35" xlink:href="images/route.gif"  nodetype="andConjuction" type="mother" property="汇合节点"  style="cursor:pointer" />
 		<text id="txtAndConjuction" x="58" y="346" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			汇合节点
+			<%=I18n.instance().get("汇合节点")%>
 		</text>
 		
 		<!--====合并节点===-->
 		<image id="subFlow" x="40" y="360" width="35" height="35"  xlink:href="images/models.png"  nodetype="subFlow" type="mother" property="子流程"  style="cursor:pointer" />
 		<text id="txtSubFlow" x="58" y="406" stroke="black" style="fill:black;text-anchor: middle" stroke-width="0.3">
-			子流程
+			<%=I18n.instance().get("子流程")%>
 		</text>
 		
 		<!--流程连接-->
 		<image id="drawLine" x="40" y="420" width="35" height="35" xlink:href="images/transition.png"  type="mother-flow"  style="cursor:pointer" />
 		<!--====开始节点===-->
-		<image id="startNode" x="40" y="465" width="35" height="35" xlink:href="images/start.png" nodetype="start" type="mother" property="开始节点"  style="cursor:pointer" />
+		<image id="startNode" x="40" y="465" width="35" height="35" xlink:href="images/start.png" nodetype="start" type="mother" property='<%=I18n.instance().get("开始节点")%>'  style="cursor:pointer" />
 		<!--====结束节点===-->
-		<image id="endNode" x="40" y="510" width="35" height="35" xlink:href="images/end.gif"  nodetype="end" type="mother" property="结束节点"  style="cursor:pointer" />
+		<image id="endNode" x="40" y="510" width="35" height="35" xlink:href="images/end.gif"  nodetype="end" type="mother" property='<%=I18n.instance().get("结束节点")%>'  style="cursor:pointer" />
 		<!--=======================================================================================================================-->
 		<!--提示窗口-->
 		<g id="tooltip" visibility="hidden">
@@ -1429,6 +1451,7 @@ function getFCount(svg)//获得before为none的节点数
 		<rect id="range" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
 		<!--tool边框-->
 		<rect id="toolrange" x="0" y="0" width="36" height="36" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
+		<rect id="toolrange_active" x="0" y="0" width="42" height="42" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
 		<!--功能边框-->
 		<rect id="funcrange" x="0" y="0" width="56" height="20" fill="none" visibility="hidden" stroke="rgb(9,0,130)" stroke-width="2" shape-rendering="optimizeSpeed"/>
 		<!--=======================================================================================================================-->

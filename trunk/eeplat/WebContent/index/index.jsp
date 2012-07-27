@@ -15,6 +15,11 @@
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" 	src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js" ></script>
+<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+<% }else{ %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+<% }%>
 
 <link rel="icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
@@ -48,12 +53,18 @@ a { pointer: cursor;  	text-decoration:	none;}
 <form name="loginform" id="loginform"  method="post">
 	<p>
 		<label><%=I18n.instance().get("UserName")%> </label> <br />
-		<input type="text" name="name" id="name" class="input"  size="20" tabindex="10" /></label>
+		<input type="text" name="name" id="name" class="input"  size="20" tabindex="10" value="demo"/></label>
 	</p>
 	<p>
 		<label><%=I18n.instance().get("Paasword")%></label><br />
-		<input type="password" name="password" id="password" class="input"  size="20" tabindex="20" /></label>
+		<input type="password" name="password" id="password" class="input"  size="20" tabindex="20" value="1"/></label>
 	</p>
+
+	<p>
+		<label><%=I18n.instance().get("Tenant")%>  (badminton,openclub to test)</label><br />
+		<input type="tenancyId" name="tenancyId" id="tenancyId" class="input"  size="20" tabindex="20"/></label>
+	</p>
+	
 	<p class="forgetmenot">
 	
 	     <label><%=I18n.instance().get("Verification")%></label>
@@ -62,14 +73,17 @@ a { pointer: cursor;  	text-decoration:	none;}
 
 	<br/><br/>	
 	
-  	 <span  style="valign:top"> <%=I18n.instance().get("Others")%>：</span>
-  	 <a  title="新浪微博登录" href="<%=request.getContextPath()%>/openid/weibo/call.jsp">  <img alt="新浪微博登录" src="<%=request.getContextPath()%>/index/images/16_weibo.png" border=0 /> </a> &nbsp;
-  	 <a  title="QQ登录" href="<%=request.getContextPath()%>/openid/qq/call.jsp">   <img alt="QQ登录" src="<%=request.getContextPath()%>/index/images/16_qq.png" border=0 />   </a> &nbsp;
-  	 <a  title="网易账号登录" href="<%=request.getContextPath()%>/openid/163/call.jsp">   <img alt="网易账号登录"  src="<%=request.getContextPath()%>/index/images/16_163.png" border=0 />  </a> &nbsp;
-  	 <a  title="人人账号登录" href="<%=request.getContextPath()%>/openid/renren/call.jsp">   <img alt="人人账号登录" src="<%=request.getContextPath()%>/index/images/16_renren.png" border=0 /> </a> 
-		<p class="submit">
-				<img src="<%=request.getContextPath()%>/exedo/webv3/images/login/btn_sign-in.png" class="btn"/>
-	    </p>
+	
+  
+	<p class="submit">
+		<div style="float:left;width:30px;heigth:15px">&nbsp;</div>
+		<div class="buttons"  style="margin-top:10px;">
+			<a  class="btn">
+				<img src="<%=request.getContextPath()%>/exedo/webv3/js/jquery-plugin/button/style/icons/apply.png" alt=""/>
+				<%=I18n.instance().get("Sign In")%>
+			</a>
+		</div>	
+    </p>
 </form>
 
 
@@ -95,21 +109,7 @@ $(function(){
 	  
 	  $("body").css("height",$(window).height());
   	  $(".btn:first").bind("click",function(){
-  	  		var userName = $("input:eq(0)").val();
-  	  		var passWord = $("input:eq(1)").val();
-  	  		var randCode = $("input:eq(2)").val();
-			if(userName==""){
-				alert("请填写账号!");
-				return;
-			}
-			if(passWord==""){
-				alert("请填写密码!");
-				return;
-			}
-			if(randCode==""){
-				alert("请填写验证码!");
-				return;
-			}
+ 
   	  		submitForm();
   	  })
   	  
@@ -137,9 +137,23 @@ $(function(){
 
   function submitForm(){
 
-  	 
+ 		var userName = $("input:eq(0)").val();
+	  		var passWord = $("input:eq(1)").val();
+	  		var randCode = $("input:eq(2)").val();
+		if(userName==""){
+			alert(EELang.accountRequired);
+			return;
+		}
+		if(passWord==""){
+			alert(EELang.pwdRequired);
+			return;
+		}
+		if(randCode==""){
+			alert(EELang.verificationRequired);
+			return;
+		}
 
-	   loading("登录中，请稍后......");
+	   loading(EELang.loading);
 
 	   var paras =  $('#loginform').serialize();
 
@@ -157,7 +171,7 @@ $(function(){
 				   if(data.returnPath!=null && $.trim(data.returnPath)!=''){
 					   window.location= unescape(data.returnPath);;
 					 }else{
-			        	window.location= globalURL + "pane_jyhd.pml?isApp=true";
+			        	window.location= globalURL + "pane_wolfvillage.pml?isApp=true";
 					 }
 			   }else if('delegate'==retValue){
 			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_jyhd";

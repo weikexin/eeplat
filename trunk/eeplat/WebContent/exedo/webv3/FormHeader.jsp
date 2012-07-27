@@ -24,7 +24,7 @@
 			for(Iterator it = parters.iterator() ; it.hasNext();){
 				OrgParterValue p = (OrgParterValue)it.next();
 				if(p.getParter()!=null && p.getParter().isRole()){
-					company = company + " " + p.getName();  
+					company = company + " " + I18n.instance().get(p.getName());  
 				}
 			}
 			

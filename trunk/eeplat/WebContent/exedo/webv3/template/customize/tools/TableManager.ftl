@@ -1,5 +1,6 @@
 <#--定义dataBinding-->
 <#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()> 
 
 <#--定义宏 判断输出什么类型的align-->
 <#macro JudgeAlign item>
@@ -21,7 +22,7 @@
 <div width="100%" height="100%">
 	 <div style="margin:0px 0px 0px 5px;border-top:1px solid #8db2e3;border-left:1px solid #8db2e3;border-right:1px solid #8db2e3;align:left;text-align:left;vertical-align: middle;background-color:#e6EEEE;width:98%;height:25px" >
 			
-		 					<img src='/${webmodule}/exedo/webv3/images/MyRightArrow.jpg'/> <b> 数据表结构 </b> 
+		 					<img src='/${webmodule}/exedo/webv3/images/MyRightArrow.jpg'/> <b>  ${i18n('数据表结构')} </b> 
 		
 	 </div>
 	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
@@ -36,7 +37,7 @@
 									<TBODY>
 										<TR>
 											<TD class="b_left"></TD>
-											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='new' > 新增 </button>
+											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='new' >${i18n('新增')} </button>
 <script>
   var globali = 2;
   $('#402880242a65aabd012a65aac8c2000a').bind('click',function(){
@@ -63,7 +64,7 @@
 										<TR>
 											<TD class="b_left"></TD>
 											<TD class="b_center"> 
- <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='delete'> 删除</button>
+ <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='delete'> ${i18n('删除')}</button>
  <script>
  
  
@@ -73,11 +74,11 @@
 	       if($(this).parent().parent().attr('value')!=null){
 	  		    $(this).parent().parent().addClass("selected");				
 			}else{	
-			    	alert("请选择一条记录！");
+			    	alert("${i18n('请选择一条记录！')}");
 		         	return;
 	      }
        }
-       if(confirm('你确定要删除吗')){
+         if(confirm( "${i18n('你确定要删除吗')}")){
         	$('#g402880242a65aabd012a65aabd0a0000 tbody  tr.selected').remove();
        }
   })
@@ -98,13 +99,13 @@
 		  <tr>
 			<#if model.checkBox><#--定义CheckBox-->
 				<th style="align: center"  width='5%' nowrap='nowrap' class="{sorter: false}">
-					全选<input type ='checkbox'   name='checkinstanceheader' 
+					${i18n('全选')}<input type ='checkbox'   name='checkinstanceheader' 
 					id="check_${model.objUid}"/>
 				</th>
 			</#if>
-            <th id='col_name'    nowrap='nowrap' align='center'>列名 </th> 
-            <th id='dbtype'    nowrap='nowrap' align='center'>数据库类型 </th> 
-            <th id='dbsize'    nowrap='nowrap' align='center'>字段长度 </th> 
+            <th id='col_name'    nowrap='nowrap' align='center'>${i18n('列名')}  </th> 
+            <th id='dbtype'    nowrap='nowrap' align='center'>${i18n('数据库类型')} </th> 
+            <th id='dbsize'    nowrap='nowrap' align='center'>${i18n('字段长度')} </th> 
 		</tr>
 		</thead>
 		<tbody>
@@ -168,7 +169,7 @@
 		
 		   <tfoot>
 	     	<tr> <td  style="text-align:center;align:center"  colspan="4" >
-			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >保存</button>
+			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >${i18n('保存')}</button>
 					<script>
 					
 					 function fnCB3ba35f69a6084e76bfed4c89e41c2f65(){
@@ -197,7 +198,7 @@
 					       if(value==''){
 					       	 o.focus();
 					       	 isValid = false;
-					       	 alert("列名不能为空!"+index);
+					       	 alert("${i18n('列名不能为空!')}"+index);
 					       	 return;
 					       }
 					     }
@@ -213,7 +214,7 @@
 						       if(value==''){
 						       	 o.focus();
 						         isValid = false;
-						       	 alert("字段类型不能为空!");
+						       	 alert("${i18n('字段类型不能为空!')}");
 						      	 return;
 						       }
 						     }
@@ -226,12 +227,12 @@
 						       if((value=='') && isValid){
 						       	 o.focus();
 						         isValid = false;
-						       	 alert("字段长度不能为空!");
+						       	 alert("${i18n('字段长度不能为空!')}");
 						       	 return;
 						       }else   if(!checkErrNum(value) && isValid){
 						          o.focus();
 						          isValid = false;
-						       	  alert("字段长度只能为数字!");
+						       	  alert("${i18n('字段长度只能为数字!')}");
 						          return;
 						       }
 
@@ -295,7 +296,7 @@
 			var dealBus = "&dataBus=setContext&contextKey=DO_BO_Property" + "&contextValue=" + selectedValue;
 			$(".toolbar .selected").removeClass("selected");
 			$(this).addClass("selected");
-				popupDialog('PM_DO_BO_Property_Browse','查看信息','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
+				popupDialog('PM_DO_BO_Property_Browse','Browse','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
 
 		});
 		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('mouseover',function(){

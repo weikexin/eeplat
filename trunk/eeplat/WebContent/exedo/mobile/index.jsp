@@ -13,6 +13,11 @@
 
 		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.js"></script>
    		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/mobile/js/jquery.mobile.js" ></script>
+   		<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+		<% }else{ %>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+		<% }%>
 		<script language="javascript">
 		  globalURL = "/<%=DOGlobals.URL%>/";
 		</script>  
@@ -31,11 +36,11 @@
 	        <form  id="loginform" method="get">
 	           <div data-role="fieldcontain">
 		            <label for="username"><%=I18n.instance().get("UserName")%>:</label>
-	                <input type="text" name="name" id="username" value=""  />
+	                <input type="text" name="name" id="username" value="badminton"  />
                </div>
 				<div data-role="fieldcontain">
 				    <label for="password"><%=I18n.instance().get("Paasword")%>:</label>
-				    <input type="password" name="password" id="password" value="" />
+				    <input type="password" name="password" id="password" value="1" />
 				</div>	
  	            <a id="asub" href="#" data-role="button" data-inline="true" data-theme="b"><%=I18n.instance().get("Sign In")%></a>
 	        </form>
@@ -50,14 +55,14 @@
 	  	  $("#asub").bind("click",function(){
 	  	  		var userName = $("input:eq(0)").val();
 	  	  		var passWord = $("input:eq(1)").val();
-				if(userName==""){
-					alert("请填写用户名!");
-					return;
-				}
-				if(passWord==""){
-					alert("请填写密码!");
-					return;
-				}
+	  			if(userName==""){
+	  				alert(EELang.accountRequired);
+	  				return;
+	  			}
+	  			if(passWord==""){
+	  				alert(EELang.pwdRequired);
+	  				return;
+	  			}
 	  	  		submitForm();
 	  	  })
 	  });
@@ -74,7 +79,7 @@
 				   var retValue = unescape(data.returnValue);
 				   if('success'==retValue){
 				       // window.location= "AppList.jsp";	jyhd_mobile_pane
-					   window.location= globalURL + "beijing_mobile_pane.pml";
+					   window.location= globalURL + "wolfvillage_mobile_pane.pml";
 				   }else{
 					   	alert(retValue);
 				   }

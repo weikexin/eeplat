@@ -37,8 +37,8 @@ body.gPage{
 
 .gMain{width:100%;heigth:100%;table-layout:fixed; }
 .gMain tr{vertical-align:top;}
-.gLe{width:161px;padding-bottom:15px}
-.gFpage{width:160px;overflow-x:hidden;overflow-y:auto;float:left}
+.gLe{width:171px;padding-bottom:15px}
+.gFpage{width:170px;overflow-x:hidden;overflow-y:auto;float:left}
 .gFd{ margin-top:0px;margin-bottom:0px}
 .lrschidren{float:left;width:100%;height:100%;}
 

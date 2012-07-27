@@ -51,8 +51,8 @@
 	 		   	+ content.objuid +
 	 		   	'">'
 				+' <td style="padding: 1px;" title="' 
-				  + content.name   +  '">'+
-				content.name 
+				  + unescape(content.name)   +  '">'+
+				  unescape(content.name)
 				+'</td> </tr> ';
 			}
 			dmLayer = dmLayer + '</table>';

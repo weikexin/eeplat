@@ -20,7 +20,7 @@ font-size:13px;
     border-radius: 8px 8px 8px 8px;
     box-shadow: 0 0 6px #999999;
     margin: 0 auto;
-    padding:20px 20px 80px;
+    padding:20px 20px 50px;
     width: 350px;
 }
 
@@ -29,12 +29,12 @@ font-size:13px;
 }
 
 
-#password, #name {
+.input {
 background:none repeat scroll 0 0 #FBFBFB;
 border:1px solid #E5E5E5;
 font-size:20px;
-margin-bottom:16px;
-margin-right:6px;
+margin-bottom:5px;
+margin-right:5px;
 margin-top:2px;
 padding:3px;
 width:97%;

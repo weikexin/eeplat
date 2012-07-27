@@ -1,3 +1,4 @@
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()> 
 <div id="PM_DO_BO_Property_DBManager"  style="overflow:auto;width:100%;height:100%;">
  	    
 	<br/>
@@ -6,16 +7,14 @@
 <form  method='post' id='a402880242a65aabd012a65aabd0a0000' name ='a402880242a65aabd012a65aabd0a0000'>
 
 <div style="margin-bottom:10px" >
-  
-&nbsp;&nbsp;&nbsp;&nbsp;  表名称:<input  style='border:#B3B3B3 1px solid;'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='tableName' id='tableName'  title='表名称'  size="50"/>  
-
+&nbsp;&nbsp;&nbsp;&nbsp;  ${i18n('表名称')}:<input  style='border:#B3B3B3 1px solid;'   onclick="this.style.borderColor='#406B9B'" onmouseover="this.style.borderColor='#99E300'" onmouseout="this.style.borderColor='#A1BCA3'"  type='text' name='tableName' id='tableName'  title='表名称'  size="50"/>  
 </div> 
  
 
 <div width="100%" height="100%">
 	 <div style="margin:0px 0px 0px 5px;border-top:1px solid #8db2e3;border-left:1px solid #8db2e3;border-right:1px solid #8db2e3;align:left;text-align:left;vertical-align: middle;background-color:#e6EEEE;width:98%;height:25px" >
 			
-		 					<img src='${contextPath}images/MyRightArrow.jpg'/> <b> 数据表结构 </b> 
+		 					<img src='${contextPath}images/MyRightArrow.jpg'/> <b> ${i18n('数据表结构')} </b> 
 		
 	 </div>
 	<DIV class="toolbar" style="BORDER-RIGHT: #8db2e3 1px solid; BORDER-TOP: #8db2e3 1px solid; BORDER-LEFT: #8db2e3 1px solid; BORDER-BOTTOM: #8db2e3 1px solid">
@@ -30,7 +29,7 @@
 									<TBODY>
 										<TR>
 											<TD class="b_left"></TD>
-											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='new' > 新增 </button>
+											<TD class="b_center"><button  type="button" id="402880242a65aabd012a65aac8c2000a"  style=""  class='new' >${i18n('新增')} </button>
 <script>
   var globali = 2;
   $('#402880242a65aabd012a65aac8c2000a').bind('click',function(){
@@ -57,7 +56,7 @@
 										<TR>
 											<TD class="b_left"></TD>
 											<TD class="b_center"> 
- <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='delete'> 删除</button>
+ <button type="button" style=""   id='402880242a65aabd012a65aac95f000b' class='delete'>${i18n('删除')}</button>
  <script>
  
  
@@ -67,11 +66,11 @@
 	       if($(this).parent().parent().attr('value')!=null){
 	  		    $(this).parent().parent().addClass("selected");				
 			}else{	
-			    	alert("请选择一条记录！");
+			    	alert("${i18n('请选择一条记录！')}");
 		         	return;
 	      }
        }
-       if(confirm('你确定要删除吗')){
+       if(confirm( "${i18n('你确定要删除吗')}")){
         	$('#g402880242a65aabd012a65aabd0a0000 tbody  tr.selected').remove();
        }
   })
@@ -91,9 +90,9 @@
 		<thead>
 		  <tr>
 			<th  style='display:none' class="{sorter: false}" ></th>
-            <th id='col_name'    nowrap='nowrap' align='center'>列名 </th> 
-            <th id='dbtype'    nowrap='nowrap' align='center'>数据库类型 </th> 
-            <th id='dbsize'    nowrap='nowrap' align='center'>字段长度 </th> 
+            <th id='col_name'    nowrap='nowrap' align='center'>${i18n('列名')} </th> 
+            <th id='dbtype'    nowrap='nowrap' align='center'>${i18n('数据库类型')} </th> 
+            <th id='dbsize'    nowrap='nowrap' align='center'>${i18n('字段长度')} </th> 
 		</tr>
 		</thead>
 		<tbody>
@@ -172,7 +171,7 @@
 		
 		   <tfoot>
 	     	<tr> <td  style="text-align:center;align:center"  colspan="4" >
-			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >保存</button>
+			           <button type="button"  style=""  id='3ba35f69a6084e76bfed4c89e41c2f65'  class='ctlBtn' >${i18n('保存')}</button>
 					<script>
 					
 					 function fnCB3ba35f69a6084e76bfed4c89e41c2f65(){
@@ -185,7 +184,7 @@
 					  var isValid = true;
 					  
 					  if($('#tableName').val()==''){
-					    alert("表名不能为空!");
+					    alert("${i18n('表名不能为空!')}");
 					    $('#tableName').get(0).focus();
 					    return;
 					  }
@@ -197,7 +196,7 @@
 					       if(value==''){
 					       	 o.focus();
 					       	 isValid = false;
-					       	 alert("列名不能为空!");
+					       	 alert("${i18n('列名不能为空!')}");
 					       	 return;
 					       }
 					     }
@@ -213,7 +212,7 @@
 						       if(value==''){
 						       	 o.focus();
 						         isValid = false;
-						       	 alert("字段类型不能为空!");
+						       	 alert("${i18n('字段类型不能为空!')}");
 						      	 return;
 						       }
 						     }
@@ -236,12 +235,12 @@
 						       if(value==''){
 						       	 o.focus();
 						         isValid = false;
-						       	 alert("字段长度不能为空!");
+						       	 alert("${i18n('字段长度不能为空!')}");
 						       	 return;
 						       }else       if(checkErrNum(value)){
 						          o.focus();
 						          isValid = false;
-						       	  alert("字段长度只能为数字!");
+						       	  alert("${i18n('字段长度只能为数字!')}");
 						          return;
 						       }
 						       
@@ -265,7 +264,7 @@
 					);
 					
 					function  forwardPml(){
-							loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'获取数据库中的数据表'});
+							loadPml({'pml':'PM_DO_DataSource_getAllTables','target':'_opener_tab','title':'Tables'});
 					}
 					
 					</script>  &nbsp; 
@@ -313,7 +312,7 @@
 			var dealBus = "&dataBus=setContext&contextKey=DO_BO_Property" + "&contextValue=" + selectedValue;
 			$(".toolbar .selected").removeClass("selected");
 			$(this).addClass("selected");
-				popupDialog('PM_DO_BO_Property_Browse','查看信息','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
+				popupDialog('PM_DO_BO_Property_Browse','Browse','/${webmodule}/mvccontroller?paneModelUid=6de9f6de1918483b872ac823398c53ba' + dealBus,'','')
 
 		});
 		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').bind('mouseover',function(){

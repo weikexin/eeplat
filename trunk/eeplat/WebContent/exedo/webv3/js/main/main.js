@@ -181,9 +181,9 @@ function selectTabCss(tabSelector){
 	var paneUrl = $(tabSelector).attr("paneId");
 //	showMainMsg("#mRight",32,32,"center","loadingImg","","n");
 	var tabId = $(tabSelector).attr("tabId");
+	
 	$(".mRight").hide();
 	if($('#tab_' + tabId).size()>0){
-		$('#tab_' + tabId).show();
 		resscrEvt();
 	}else{
 	  	$("#mRight").clone().attr("id",'tab_' + tabId).insertAfter("#mRight");
@@ -203,11 +203,8 @@ function selectTabCss(tabSelector){
 				closeWin();
 			});
 		}
-	  	
-
-		
-		$('#tab_' + tabId).show();
 	}
+	$('#tab_' + tabId).show();
 	//closeWin();
 }
 //控制tab也上的差号显示
@@ -271,9 +268,12 @@ function tabCloseWindow(tabBtnSelector){
 var workbenchPath = "";
 function loadWorkbench(path){
 	
-	if(path!=null){
-		workbenchPath = path;
+
+	if(path==null || path==undefined){
+		return;
 	}
+	
+	workbenchPath = path;
 
 	if($("#tab_workbench_container").size()>0){
 		$(".mRight").hide();
@@ -625,3 +625,48 @@ function insertAceCode(){
 }
 
 
+function  confirmDelete(){
+	  
+	return confirm(EELang.confirmDelete);
+}
+
+function confirmShare(){
+	
+	return confirm(EELang.confirmShare);
+	
+}
+
+function confirmSetup(){
+	
+	return confirm(EELang.confirmSetup);
+}
+
+function confirmCopy(){
+	
+	return confirm(EELang.confirmCopy);
+}
+
+
+function confirmInit(){
+	
+	return confirm(EELang.confirmInit);
+}
+
+function confirmGenerate(){
+	
+	return confirm(EELang.confirmGenerate);
+}
+
+function confirmServiceToRule(){
+	
+	return  confirm(EELang.confirmServiceToRule);
+}
+
+function confirmImport(){
+	return confirm(EELang.confirmImport);
+}
+
+function confirmRemove(){
+	
+	return confirm(EELang.confirmRemove);
+}

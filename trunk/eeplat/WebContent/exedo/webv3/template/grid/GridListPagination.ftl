@@ -1,5 +1,6 @@
 <#--定义dataBinding-->
-<#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/>  
+<#assign dataBind = "com.exedosoft.plat.template.BindData2FormModel"?new()/> 
+<#assign i18n = "com.exedosoft.plat.template.TPLI18n"?new()>  
 <#--开始输出空行-->
 <#if model.numTopP?exists>
 	<#list 1..model.numTopP as x>  
@@ -57,11 +58,11 @@
 			<#--隐藏列，数据部分输出记录的主键-->
 			<th  style='display:none' class="{sorter: false}" ></th>
 			<#if model.NO><#--是否有数字序列-->
-				<th  align='center' width='5%' class="{sorter: 'digit'}" nowrap='nowrap'>序号</th>
+				<th  align='center' width='5%' class="{sorter: 'digit'}" nowrap='nowrap'>${i18n('序号')}</th>
 			</#if>
 		<#if model.checkBox><#--定义CheckBox-->
 			<th style="align: center"  width='5%' nowrap='nowrap' class="{sorter: false}">
-				全选<input type ='checkbox'   name='checkinstanceheader' 
+				${i18n('全选')}<input type ='checkbox'   name='checkinstanceheader' 
 				id="check_${model.objUid}"/>
 			</th>
 		</#if>
@@ -115,7 +116,7 @@
 		  <tr>
 		   <#assign cols =  (model.normalGridFormLinks?size+2)/>
 		    <td  colspan="${cols}" >
-		     	<div id="Pagination" style="width:100%"></div> 
+		     	<div id="Pagination${model.objUid}" style="width:100%"></div> 
 		      </td>
 		  </tr>
 		 </tfoot> 
@@ -193,7 +194,7 @@
 		});
 		<#if (model.rowSize?exists && model.rowSize > 0 && pmlName?exists)>
 			//pageSplit('${model.containerPane.name}','${pmlName}','${formName}');
-			 $("#Pagination").pagination(${resultSize}, {  
+			 $("#Pagination${model.objUid}").pagination(${resultSize}, {  
 	            callback: PageCallback,  
 	            <#if (langlocal=='zh') >
 	            prev_text: '上一页',       //上一页按钮里text  
