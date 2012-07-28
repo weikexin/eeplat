@@ -305,9 +305,9 @@
 			$('#g402880242a65aabd012a65aabd0a0000 tbody  tr').removeClass("mover");
 		});
 		
-		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr input').bind('change',function(){
-		   $(this).parents("tr").children().eq(0).children(".list_check").attr("checked",true);
-		});
+//		$('#g402880242a65aabd012a65aabd0a0000 tbody  tr input').bind('change',function(){
+//		   $(this).parents("tr").children().eq(0).children(".list_check").attr("checked",true);
+//		});
 
 </script>
 
