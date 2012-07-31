@@ -3,9 +3,7 @@
 		<property name="application">eeplat</property>
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
-		<!-- 
 		<property name="lang.local">en</property>
-		 -->
 		<property name="pml_suffix">.do</property>
 		<property name="letter.case.keep">true</property>
 		
@@ -14,7 +12,6 @@
 		<property name="connection.url">config</property> 
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
-    	     
 
 
        <!--
@@ -59,14 +56,14 @@
 	    
 	    <!-- 自定义查询的class 
    	    <property name="plat.search.class">com.exedosoft.plat.search.customize.SearchTransCode</property>
--->
    	    <property name="aop.menumodel.class"></property>
 
 	    <property name="aop.panemodel.class"></property>
-	    
+	    AOP一定要禁掉,如果永远返回false, 则不走权限表，有条件的返回true，并且和权限表结合才有意义
 	    <property name="aop.formmodel.class">com.exedosoft.plat.FAOP</property>
-	    	    
+
 	    <property name="aop.parameter.check.class"></property>
+		-->
 
 	    
 	    <property name="model.uuid">false</property>
@@ -130,5 +127,5 @@
 				<property name="dbmanager.language">zh_CN</property>
 		 -->
 		<!-- 配置库使用mysql，需要方言支持 -->
-			<!-- <property name="useDialect">dialect_mysql.properties</property> -->
+	   <property name="useDialect">dialect_mysql.properties</property>
 </config>
