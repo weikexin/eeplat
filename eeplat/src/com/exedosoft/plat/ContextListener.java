@@ -69,8 +69,8 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 
-		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
-		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
+//		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
+//		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
 		
 		/////////////////////////////////////Online Timer
 		Timer t = new Timer(true);
@@ -178,25 +178,25 @@ public class ContextListener implements ServletContextListener {
 
 }
 
-class LoggerPrintStream extends PrintStream {
-
-	Logger logger;
-	String level = "info";
-
-	public LoggerPrintStream(String logName, String level) {
-		super(new ByteArrayOutputStream(0));
-		logger = Logger.getLogger(logName);
-		this.level = level;
-		if (logger == null)
-			throw new RuntimeException("Can't logger:" + logName);
-	}
-
-	public void println(String s) {
-		if ("info".equals(level)) {
-			logger.info(s);
-		} else {
-			logger.warn(s);
-		}
-	}
-	// /其它它代码略.......
-}
+//class LoggerPrintStream extends PrintStream {
+//
+//	Logger logger;
+//	String level = "info";
+//
+//	public LoggerPrintStream(String logName, String level) {
+//		super(new ByteArrayOutputStream(0));
+//		logger = Logger.getLogger(logName);
+//		this.level = level;
+//		if (logger == null)
+//			throw new RuntimeException("Can't logger:" + logName);
+//	}
+//
+//	public void println(String s) {
+//		if ("info".equals(level)) {
+//			logger.info(s);
+//		} else {
+//			logger.warn(s);
+//		}
+//	}
+//	// /其它它代码略.......
+//}
