@@ -139,12 +139,16 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 
 	private boolean locationInfo = false;
 
-	private static final boolean IS_LOG_EXITS = checkExistDevLog();;
+	private static  boolean IS_LOG_EXITS = true;
+	
+
 
 	private static final ThreadLocal<List> currentThread = new ThreadLocal<List>();
 
 	public ThreadAppender() {
 		super();
+		IS_LOG_EXITS = checkExistDevLog();
+		System.out.println("IS_LOG_EXITS::::::::::::" + IS_LOG_EXITS);
 
 	}
 
@@ -306,25 +310,27 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 	}
 
 	private static boolean checkExistDevLog() {
-		
 
-		
 		DODataSource dss = null;
 		Connection con = null;
 		try {
 			DOBO boLog = DOBO.getDOBOByName("do_log_dev");
-			if(boLog==null){
+			if (boLog == null) {
 				return false;
 			}
-			
+
 			if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+				if(DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues()==null){
+					return false;
+				}
 
 				dss = DOGlobals.getInstance().getSessoinContext()
 						.getTenancyValues().getDataDDS();
 			} else {
 
 				DOBO bo = DOBO.getDOBOByName("do_datasource");
-				if(bo==null){
+				if (bo == null) {
 					return false;
 				}
 				dss = bo.getDataBase();
@@ -399,8 +405,12 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 		DODataSource dss = null;
 		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
 
-			dss = DOGlobals.getInstance().getSessoinContext()
-					.getTenancyValues().getDataDDS();
+			if (DOGlobals.getInstance().getSessoinContext().getTenancyValues() != null) {
+				dss = DOGlobals.getInstance().getSessoinContext()
+						.getTenancyValues().getDataDDS();
+			}else{
+				return;
+			}
 		} else {
 
 			DOBO bo = DOBO.getDOBOByName("do_datasource");
