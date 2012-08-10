@@ -3,7 +3,7 @@
 		<property name="application">eeplat</property>
 		<property name="webmodule">eeplat</property>
 		<property name="transaction.isolation">2</property>
-		<property name="lang.local">en</property>
+		<property name="lang.local">zh</property>
 		<property name="pml_suffix">.do</property>
 		<property name="letter.case.keep">true</property>
 		
