@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.Transaction;
+import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.BusiPackage;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DOBOProperty;
@@ -191,7 +192,7 @@ public class GeneUIMain {
 				String bpUid = DOGlobals.getInstance().getSessoinContext()
 						.getFormInstance().getValue("bpUid");
 				BusiPackage dbp = BusiPackage.getPackageByID(bpUid);
-				menuName = dbp.getApplication().getName() + "_bp";
+				menuName = dbp.getApplication().getName();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -199,6 +200,14 @@ public class GeneUIMain {
 
 			DOMenuModel parentMenu = DOMenuModel.getMenuModelByName(menuName);
 			DOBO boMenu = DOBO.getDOBOByName("DO_UI_MenuModel");
+			
+			if(parentMenu==null){
+				DOMenuModel dmm  =  DOMenuModel.getMenuModelByName(menuName+"_root");
+				if(dmm!=null){
+					parentMenu = (DOMenuModel)dmm.retrieveChildren().get(0);
+				}
+			}
+			
 			if (parentMenu != null) {
 				boMenu.refreshContext(parentMenu.getObjUid());
 			}
@@ -208,8 +217,11 @@ public class GeneUIMain {
 			dmm.setLinkPane(pmTotal);
 			dmm.setTargetPane(_opener_tab);
 			dmm.setParentMenu(parentMenu);
+			dmm.setCategory(category);
 			dmm.setOrderNum(5);
-			DAOUtil.INSTANCE().store(dmm);
+			DOService menuModelInsert = DOService
+					.getService("DO_UI_MenuModel_copy");
+			DAOUtil.INSTANCE().store(dmm,menuModelInsert);
 
 			t.end();
 			// conditionGrid.setService(sService)
@@ -749,8 +761,20 @@ public class GeneUIMain {
 
 	public static void main(String[] args) {
 
-		GeneUIMain gm = new GeneUIMain("DO_Service_Redirect");
-		gm.geneConfig();
+		DOMenuModel parentMenu = new DOMenuModel();
+		parentMenu.setObjUid("cccc");
+		
+		DOMenuModel dmm = new DOMenuModel();
+		dmm.setName("a");
+		dmm.setL10n("b");
+		dmm.setParentMenu(parentMenu);
+		dmm.setOrderNum(5);
+		
+		BOInstance bi = new BOInstance();
+		bi.fromObject(dmm);
+		
+		System.out.println(bi);
+		
 
 		// CacheFactory.getCacheData().cacheAllConfigData();
 		//		

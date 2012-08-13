@@ -251,7 +251,7 @@ public class AProjectForwarder {
 			dmBP.setParentMenu(dmRoot);
 			dmBP.setController(menuController);
 			//////////同名DOMenuModel
-			dmBP.setName(project.getName()+"_bp");
+			dmBP.setName(project.getName());
 			dmBP.setL10n(project.getL10n()+"_根业务对象");
 			DAOUtil.INSTANCE().store(dmBP);
 			

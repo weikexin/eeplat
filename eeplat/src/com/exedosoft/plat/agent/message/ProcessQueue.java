@@ -37,10 +37,6 @@ public class ProcessQueue extends MSGAbstractQueue {
 
 	}
 
-	/**
-	 * 堏彍摉慜?棟?楍揑Message ??摉慜?棟?楍揑?搙 亊摉杤?摓?搙?丆樃Inpool庢Message ?峴揢廩丅
-	 * 
-	 */
 	public synchronized void removeMessage(Message aMessage) {
 
 		super.removeMessage(aMessage);

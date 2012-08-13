@@ -2,18 +2,18 @@ package com.exedosoft.plat.action.customize.tools;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
 import org.json.JSONException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.Transaction;
@@ -24,8 +24,6 @@ import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.I18n;
-import com.exedosoft.plat.util.StringUtil;
-import com.exedosoft.plat.util.xml.DOMXmlUtil;
 
 public class DOImport extends DOAbstractAction {
 
@@ -73,7 +71,6 @@ public class DOImport extends DOAbstractAction {
 			}
 			this.setEchoValue(I18n.instance().get("翻译完成!"));
 
-
 		} catch (Exception e) {
 			t.rollback();
 			e.printStackTrace();
@@ -89,7 +86,12 @@ public class DOImport extends DOAbstractAction {
 
 	public boolean importXml(String bpuid, String fileName) {
 		try {
-			Document doc = DOMXmlUtil.getInstance().getDocument(fileName);
+
+			SAXReader saxReader = new SAXReader();
+
+			Document document = saxReader.read(fileName);
+
+			Element rootElement = document.getRootElement();
 
 			DOService appInsert = DOService.getService("DO_Application_Insert");
 
@@ -118,7 +120,7 @@ public class DOImport extends DOAbstractAction {
 					.getService("DO_UI_PaneLinks_copy");
 
 			DOService formInsert = DOService
-					.getService("DO_UI_FormModel_COPY_TO_GRID");
+					.getService("DO_UI_FormModel_COPY_TO_GRID_EN");
 
 			DOService formTargetInsert = DOService
 					.getService("DO_UI_FormTargets_Insert");
@@ -144,140 +146,140 @@ public class DOImport extends DOAbstractAction {
 			DOService actionInsert = DOService
 					.getService("DO_ActionConfig_Insert");
 
-			NodeList children = doc.getDocumentElement().getChildNodes();
-
 			String tenancy = null;
 			String curTenancy = null;
 			String createTableSql = null;
 			List<String> coljsons = new ArrayList<String>();
 			// //////////////////////////////////////////////////////////////////////////////
-			for (int i = 0; i < children.getLength(); i++) {
-				Node aNode = children.item(i);
-				if (aNode instanceof Element) {
 
-					if (aNode.getNodeName().equals("tenant")) {
-						tenancy = aNode.getFirstChild().getNodeValue();
-					} else if (aNode.getNodeName().equals("create_table_sql")) {
-						createTableSql = aNode.getFirstChild().getNodeValue();
+			// for (Iterator it = rootElement.iterator(); it.hasNext();) {
+			// Node node = (Node) it.next();
+			// if (node instanceof Element) {
+			// Element elem = (Element) node;
+			// Attribute attrKey = elem.attribute("name");
+			// for (int i = 0; i < elem.nodeCount(); i++) {
+			// Node childNode = elem.node(i);
+			// if (childNode instanceof Element) {
+			for (Iterator it = rootElement.iterator(); it.hasNext();) {
+				Node aNode = (Node) it.next();
+				if (aNode instanceof Element) {
+					Element elem = (Element) aNode;
+
+					if (elem.getName().equals("tenant")) {
+						tenancy = elem.getTextTrim();
+					} else if (elem.getName().equals("create_table_sql")) {
+						createTableSql = elem.getTextTrim(); // //////处理多租户表的导入
+
+						if ("true".equals(DOGlobals.getValue("multi.tenancy"))
+								&& tenancy != null && createTableSql != null) {
+
+							createTable(createTableSql);
+							// ///////////////////////////////////end create
+							// view
+
+						}
+
 					}
 				}
-			}
-			// //////处理多租户表的导入
-
-			if ("true".equals(DOGlobals.getValue("multi.tenancy")) && tenancy != null && createTableSql != null) {
-
-				// ///更新另外一个库
-				DODataSource dss = DOGlobals.getInstance().getSessoinContext()
-						.getTenancyValues().getDataDDS();
-				Connection con = dss.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(createTableSql);
-				pstmt.executeUpdate();
-				pstmt.close();
-				con.close();
-				// ///////////////////////////////////end create
-				// view
-
 			}
 
 			boolean isApp = false;
 			// ////////////////////////////////////////////////////////////////////////
-				for (int i = 0; i < children.getLength(); i++) {
-					Node aNode = children.item(i);
-					if (aNode instanceof Element) {
+			for (Iterator it = rootElement.iterator(); it.hasNext();) {
+				Node aNode = (Node) it.next();
+				if (aNode instanceof Element) {
+					Element elem = (Element) aNode;
 
-						if (aNode.getNodeName().equals("app")) {
+					if (elem.getName().equals("app")) {
 
-							NodeList lis = aNode.getChildNodes();
-							for (int lii = 0; lii < lis.getLength(); lii++) {
-								Node aLi = lis.item(lii);
-								if (aNode instanceof Element) {
-									String aJson = aNode.getFirstChild()
-											.getNodeValue();
-									BOInstance biApp = BOInstance
-											.fromJSONString(aJson);
+						for (Iterator itlii = elem.iterator(); itlii.hasNext();) {
+							Node aLi = (Node) itlii.next();
+							if (aNode instanceof Element) {
+								String aJson = ((Element) aNode).getTextTrim();
+								BOInstance biApp = BOInstance
+										.fromJSONString(aJson);
 
-									DOBO boApp = DOBO
-											.getDOBOByName("do_application");
-									BOInstance exists = boApp.getInstance(biApp
-											.getValue("objuid"));
-									if (exists != null) {
-										log.info("待导入的工程已经存在，请删除后再导入!" + exists);
-										this.setEchoValue(I18n.instance().get("待导入的工程已经存在，请删除后再导入!"));
-										return false;
-									}
-									appInsert.invokeUpdate(biApp);
-									isApp = true;
+								DOBO boApp = DOBO
+										.getDOBOByName("do_application");
+								BOInstance exists = boApp.getInstance(biApp
+										.getValue("objuid"));
+								if (exists != null) {
+									log.info("待导入的工程已经存在，请删除后再导入!" + exists);
+									this.setEchoValue(I18n.instance().get(
+											"待导入的工程已经存在，请删除后再导入!"));
+									return false;
 								}
-
+								appInsert.invokeUpdate(biApp);
+								isApp = true;
 							}
 
-						} else if (aNode.getNodeName().equals("package")) {
-							insertANode(packageInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("bo")) {
-
-							NodeList lis = aNode.getChildNodes();
-							for (int lii = 0; lii < lis.getLength(); lii++) {
-								Node aLi = lis.item(lii);
-								if (aNode instanceof Element) {
-									String aJson = aNode.getFirstChild()
-											.getNodeValue();
-									BOInstance bi = BOInstance
-											.fromJSONString(aJson);
-
-									DOBO bo = DOBO.getDOBOByName("do_bo");
-									BOInstance exists = bo.getInstance(bi
-											.getValue("objuid"));
-									if (exists != null) {
-										log.info("待导入的业务对象已经存在，请删除后再导入!"
-												+ exists);
-										this.setEchoValue(I18n.instance().get("待导入的业务对象已经存在，请删除后再导入!"));
-										return false;
-									}
-									bi.putValue("datasourceuid", "");
-									if (!isApp) {
-										bi.putValue("bpuid", bpuid);
-									}
-									doboInsert.invokeUpdate(bi);
-								}
-
-							}
-
-						} else if (aNode.getNodeName().equals("property")) {
-							insertANode(propertyInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("parameter")) {
-							insertANode(parameterInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("rule")) {
-							insertANode(doRuleInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("service")) {
-							insertANode(serviceInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals(
-								"parameter_service")) {
-							insertANode(paraServiceInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("rule_service")) {
-							insertANode(serviceRuleInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("pane")) {
-							insertANode(paneModelInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("pane_links")) {
-							insertANode(paneLinksInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("grid")) {
-							insertANode(gridInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("form")) {
-							insertANode(formInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("form_relation")) {
-							insertANode(formLinksInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("form_target")) {
-							insertANode(formTargetInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("menu")) {
-							insertANode(menuModelInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("tree")) {
-							insertANode(treeModelInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("controller")) {
-							insertANode(controllerInsert, aNode, curTenancy);
-						} else if (aNode.getNodeName().equals("action")) {
-							insertANode(actionInsert, aNode, curTenancy);
 						}
+
+					} else if (elem.getName().equals("package")) {
+						insertANode(packageInsert, aNode, curTenancy);
+					} else if (elem.getName().equals("bo")) {
+
+						for (Iterator itlii = elem.iterator(); itlii.hasNext();) {
+							Node aLi = (Node) itlii.next();
+
+							if (aNode instanceof Element) {
+								String aJson = ((Element) aNode).getTextTrim();
+								BOInstance bi = BOInstance
+										.fromJSONString(aJson);
+
+								DOBO bo = DOBO.getDOBOByName("do_bo");
+								BOInstance exists = bo.getInstance(bi
+										.getValue("objuid"));
+								if (exists != null) {
+									log.info("待导入的业务对象已经存在，请删除后再导入!" + exists);
+									this.setEchoValue(I18n.instance().get(
+											"待导入的业务对象已经存在，请删除后再导入!"));
+									return false;
+								}
+								bi.putValue("datasourceuid", "");
+								if (!isApp) {
+									bi.putValue("bpuid", bpuid);
+								}
+								doboInsert.invokeUpdate(bi);
+							}
+
+						}
+
+					} else if (aNode.getName().equals("property")) {
+						insertANode(propertyInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("parameter")) {
+						insertANode(parameterInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("rule")) {
+						insertANode(doRuleInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("service")) {
+						insertANode(serviceInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("parameter_service")) {
+						insertANode(paraServiceInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("rule_service")) {
+						insertANode(serviceRuleInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("pane")) {
+						insertANode(paneModelInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("pane_links")) {
+						insertANode(paneLinksInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("grid")) {
+						insertANode(gridInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("form")) {
+						insertANode(formInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("form_relation")) {
+						insertANode(formLinksInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("form_target")) {
+						insertANode(formTargetInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("menu")) {
+						insertANode(menuModelInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("tree")) {
+						insertANode(treeModelInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("controller")) {
+						insertANode(controllerInsert, aNode, curTenancy);
+					} else if (aNode.getName().equals("action")) {
+						insertANode(actionInsert, aNode, curTenancy);
 					}
 				}
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -287,19 +289,44 @@ public class DOImport extends DOAbstractAction {
 		return true;
 	}
 
+	private void createTable(String createTableSql) {
+		// ///更新另外一个库
+		DODataSource dss = DOGlobals.getInstance()
+				.getSessoinContext().getTenancyValues()
+				.getDataDDS();
+		Connection con = dss.getConnection();
+		try {
+
+			PreparedStatement pstmt = con
+					.prepareStatement(createTableSql);
+			pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}finally{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+	}
+
 	private static void insertANode(DOService insertService, Node aNode,
 			String curTenancy) throws JSONException, ExedoException {
-		
-		if(insertService==null){
+
+		if (insertService == null) {
 			log.error("服务没有定义..................................");
 			return;
 		}
-		
-		NodeList lis = aNode.getChildNodes();
-		for (int lii = 0; lii < lis.getLength(); lii++) {
-			Node aLi = lis.item(lii);
-			if (aLi instanceof Element) {
-				String aJson = aLi.getFirstChild().getNodeValue();
+
+		for (Iterator itlii = ((Element) aNode).iterator(); itlii.hasNext();) {
+			Node aLi = (Node) itlii.next();
+
+			if (aNode instanceof Element) {
+				String aJson = aLi.getText();
 				if (aJson != null && !aJson.trim().equals("")) {
 					BOInstance bi = BOInstance.fromJSONString(aJson);
 					if (insertService.getBo()

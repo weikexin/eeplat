@@ -7,12 +7,6 @@ import java.net.Socket;
 import com.exedosoft.plat.agent.Message;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 
-/**
- * ????暥杮揑Command
- * 
- * @author Administrator
- * 
- */
 public class TextCommand extends TCPCommand {
 
 

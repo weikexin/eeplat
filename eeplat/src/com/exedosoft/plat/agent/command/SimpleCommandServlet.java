@@ -3,9 +3,11 @@ package com.exedosoft.plat.agent.command;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+import com.exedosoft.plat.DAOUtil;
 import com.exedosoft.plat.agent.CommandServlet;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 import com.exedosoft.plat.agent.message.MessageIn;
+import com.exedosoft.plat.bo.DOResource;
 /**
  * CommandServlet
  * 
@@ -20,19 +22,16 @@ public class SimpleCommandServlet implements CommandServlet {
 
 	public SimpleCommandServlet() {
 		
-		System.out.println("銥徣CommandServlet惓嵼??......");
-		Init();// 弶巒壔
-		Listen();// ?欉
+		Init();
+		Listen();
 	}
 
 	public void Init() {
 		try {
 			
 			ss = new ServerSocket(HumletGlobals.getPort(), HumletGlobals.getCmdSvrBlockMax());
-			System.out.println("銥徣CommandServlet弶巒壔姰惉......");
 
 		} catch (IOException ie) {
-			System.out.println("澷朄嵼抂岥丗"+ HumletGlobals.getPort() + "丂?欉");
 			ie.printStackTrace();
 		}
 	}
@@ -41,7 +40,6 @@ public class SimpleCommandServlet implements CommandServlet {
 		try {
 			
 			while (listening){
-				System.out.println("銥徣CommandServlet惓嵼?欉......");
 				new Thread(new MessageIn(ss.accept())).start();
 			}
 		} catch (IOException ie) {
@@ -50,7 +48,9 @@ public class SimpleCommandServlet implements CommandServlet {
 	}
 
 	public static void main(String args[]) {
-		new SimpleCommandServlet();
+	//	new SimpleCommandServlet();
+		DOResource   drs = DAOUtil.INSTANCE().getBySql(DOResource.class,"select * from do_resource where resourceName like 'jspheader_%'");
+		System.out.println("DOResource:::::::" + drs);
 	}
 
 }

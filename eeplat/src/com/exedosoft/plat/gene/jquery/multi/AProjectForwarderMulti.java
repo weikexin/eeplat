@@ -18,6 +18,7 @@ import com.exedosoft.plat.bo.BusiPackage;
 import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
+import com.exedosoft.plat.bo.DOResource;
 import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOController;
 import com.exedosoft.plat.ui.DOMenuModel;
@@ -179,7 +180,8 @@ public class AProjectForwarderMulti {
 
 			pmTop.setController(layOutHeader);
 			pmTop.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
-			pmTop.setLinkUID("4028803b346647710134665904090005");                       ///固定的缺省工程的头面板
+			DOResource   drs = DAOUtil.INSTANCE().getBySql(DOResource.class,"select * from do_resource where resourceName like 'jspheader_%'");
+			pmTop.setLinkUID(drs.getObjUid());                    
 			pmTop.setLayoutAlign("top");
 			pmTop.setCategory(aBO);
 			pmTop.setL10n(project.getL10n() + "_头面板");
@@ -239,7 +241,7 @@ public class AProjectForwarderMulti {
 			dmBP.setParentMenu(dmRoot);
 			dmBP.setController(menuController);
 			// ////////同名DOMenuModel
-			dmBP.setName(project.getName() + "_bp");
+			dmBP.setName(project.getName());
 			dmBP.setL10n(project.getL10n() + "菜单");
 			DAOUtil.INSTANCE().store(dmBP);
 			
@@ -269,6 +271,10 @@ public class AProjectForwarderMulti {
 			pmContent.setL10n(project.getL10n() + "基本内容显示");
 			pmContent.setController(mainPage);
 			pmContent.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
+			
+			drs = DAOUtil.INSTANCE().getBySql(DOResource.class,"select * from do_resource where resourceName like 'workbenchjsp_%'");
+			pmTop.setLinkUID(drs.getObjUid());                    
+
 			pmContent.setLinkUID("4028803b34664771013466590987000c");  /// workbench UId   
 			DAOUtil.INSTANCE().store(pmContent);
 

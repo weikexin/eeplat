@@ -69,58 +69,63 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		// TODO Auto-generated method stub
 
-//		System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
-//		System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
-		
-		/////////////////////////////////////Online Timer
-		Timer t = new Timer(true);
-		CheckOnlineTask  cot = new CheckOnlineTask();
-		t.schedule(cot,0, 2 * 60 * 1000);
-		////////////////////////////////Online Timer
+		// System.setErr(new LoggerPrintStream("ExceptionOutPrint", "warn"));
+		// System.setOut(new LoggerPrintStream("SystemOutPrint", "info"));
+
+		// ///////////////////////////////////Online Timer
+		// Timer t = new Timer(true);
+		// CheckOnlineTask cot = new CheckOnlineTask();
+		// t.schedule(cot,0, 2 * 60 * 1000);
+		// //////////////////////////////Online Timer
 
 		// String sql =
 		// "select dds.* from DO_DataSource dds,DO_Application da where dds.applicationUID = da.objuid and da.name = ?";
 		try {
-			
+
 			if ("serial".equals(DOGlobals.getValue("useSerial"))) {
 				CacheFactory.getCacheData().fromSerialObject();
 				// /控制器需要重新注册
 				// 应该可以从里从两个文件中加载
-//				String sql = "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
-//				List list = DAOUtil.INSTANCE()
-//						.select(DOController.class, sql);
-//
-//				Iterator localIterator = list.iterator();
-//				while (localIterator.hasNext()) {
-//					BaseObject localBaseObject = (BaseObject) localIterator.next();
-//					CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
-//							localBaseObject);
-//				}
+				// String sql =
+				// "select * from do_ui_controller  where viewJavaClass='com.exedosoft.plat.ui.jquery.form.TSuite' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOFCKEditor' or viewJavaClass='com.exedosoft.plat.ui.jquery.form.DOStaticListPopup'";
+				// List list = DAOUtil.INSTANCE()
+				// .select(DOController.class, sql);
+				//
+				// Iterator localIterator = list.iterator();
+				// while (localIterator.hasNext()) {
+				// BaseObject localBaseObject = (BaseObject)
+				// localIterator.next();
+				// CacheFactory.getCacheData().put(localBaseObject.getObjUid(),
+				// localBaseObject);
+				// }
 
 			}
 
-			DODataSource defaultDs = DODataSource.parseGlobals();
-			poolASource(defaultDs);
+			if (!"sae".equals(DOGlobals.getValue("cloud.env"))) {
 
-			System.out.println("Application's Name:: "
-					+ DOGlobals.getValue("application"));
+				DODataSource defaultDs = DODataSource.parseGlobals();
+				poolASource(defaultDs);
 
-			List<DODataSource> list = DODataSource.getDataSourcesNeedInit();
-			// DAOUtil.select(DODataSource.class, sql, DOGlobals
-			// .getValue("application"));
-			for (Iterator<DODataSource> it = list.iterator(); it.hasNext();) {
+				System.out.println("Application's Name:: "
+						+ DOGlobals.getValue("application"));
 
-				DODataSource dss = (DODataSource) it.next();
-				log.info("初始化数据库连接池::" + dss.getDriverUrl());
+				List<DODataSource> list = DODataSource.getDataSourcesNeedInit();
+				// DAOUtil.select(DODataSource.class, sql, DOGlobals
+				// .getValue("application"));
+				for (Iterator<DODataSource> it = list.iterator(); it.hasNext();) {
 
-				if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
-					log.info("...和初始化连接池相同，使用初始化连接池::" + dss.getDriverUrl());
-					DODataSource.pools.put(dss,
-							DODataSource.pools.get(defaultDs));
-					continue;
+					DODataSource dss = (DODataSource) it.next();
+					log.info("初始化数据库连接池::" + dss.getDriverUrl());
+
+					if (dss.getDriverUrl().equals(defaultDs.getDriverUrl())) {
+						log.info("...和初始化连接池相同，使用初始化连接池::" + dss.getDriverUrl());
+						DODataSource.pools.put(dss,
+								DODataSource.pools.get(defaultDs));
+						continue;
+					}
+
+					poolASource(dss);
 				}
-
-				poolASource(dss);
 			}
 
 		} catch (Exception e) {
@@ -145,6 +150,14 @@ public class ContextListener implements ServletContextListener {
 		bds.setUrl(dss.getDriverUrl());
 		bds.setUsername(dss.getUserName());
 		bds.setPassword(dss.getPassword());
+
+	  //自动重连必须考虑
+	//暂时只考虑mysql的情况
+		if(dss.getDriverClass().indexOf("mysql")!=-1){
+			bds.setTestOnBorrow(true);
+			bds.setValidationQuery("select 1");
+		}
+		
 		// 最小空闲连接
 		// bds.setMinIdle(5);
 		// 最大空闲连接
@@ -178,25 +191,25 @@ public class ContextListener implements ServletContextListener {
 
 }
 
-//class LoggerPrintStream extends PrintStream {
+// class LoggerPrintStream extends PrintStream {
 //
-//	Logger logger;
-//	String level = "info";
+// Logger logger;
+// String level = "info";
 //
-//	public LoggerPrintStream(String logName, String level) {
-//		super(new ByteArrayOutputStream(0));
-//		logger = Logger.getLogger(logName);
-//		this.level = level;
-//		if (logger == null)
-//			throw new RuntimeException("Can't logger:" + logName);
-//	}
+// public LoggerPrintStream(String logName, String level) {
+// super(new ByteArrayOutputStream(0));
+// logger = Logger.getLogger(logName);
+// this.level = level;
+// if (logger == null)
+// throw new RuntimeException("Can't logger:" + logName);
+// }
 //
-//	public void println(String s) {
-//		if ("info".equals(level)) {
-//			logger.info(s);
-//		} else {
-//			logger.warn(s);
-//		}
-//	}
-//	// /其它它代码略.......
-//}
+// public void println(String s) {
+// if ("info".equals(level)) {
+// logger.info(s);
+// } else {
+// logger.warn(s);
+// }
+// }
+// // /其它它代码略.......
+// }

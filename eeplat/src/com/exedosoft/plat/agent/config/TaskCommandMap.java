@@ -50,11 +50,7 @@ public class TaskCommandMap {
 		this.commandName = commandName;
 	}
 	
-	/**
-	 * 崻悩慂?揑CommandID,曉夞強??揑task楍昞
-	 * @param commandID
-	 * @return
-	 */
+
 
 	public synchronized static List<Task> getTaskConfigs(String commandID) {
 		

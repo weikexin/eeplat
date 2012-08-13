@@ -9,8 +9,10 @@ import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOFormTarget;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.I18n;
 
 public class CopyFormsToGrid extends DOAbstractAction {
@@ -42,7 +44,14 @@ public class CopyFormsToGrid extends DOAbstractAction {
 
 			return NO_FORWARD;
 		}
-		Transaction t = this.service.currentTransaction();
+		
+		DOService copyService = this.service;
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			copyService = DOService.getService("DO_UI_FormModel_COPY_TO_GRID_EN");
+		}
+		 
+		
+		Transaction t = copyService.currentTransaction();
 		try {
 			t.begin();
 			DOBO boForm = DOBO.getDOBOByName("do_ui_formmodel");
@@ -54,7 +63,7 @@ public class CopyFormsToGrid extends DOAbstractAction {
 				
 				biForm.putValue("objuid", null);
 				biForm.putValue("gridModelUid", gridModelUid);
-				BOInstance newBiForm = this.service.invokeUpdate(biForm);
+				BOInstance newBiForm = copyService.invokeUpdate(biForm);
 				// //保存FormModel
 				for(Iterator<DOFormTarget> itTargetGrid = aFm.getTargetGridModels().iterator();itTargetGrid.hasNext(); ){
 					DOFormTarget aFt = itTargetGrid.next();

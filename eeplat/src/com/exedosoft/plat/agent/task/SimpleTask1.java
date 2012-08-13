@@ -8,9 +8,6 @@ public class SimpleTask1 implements Task {
 
 	public Message perform(Message aMessage) throws Exception {
 		
-		System.out.println("惓嵼?峴擟?丅丅丅丅丅丅丅丅丅丅丅");
-		System.out.println("擟?柤徧::" + this.getClass().getName());
-		System.out.println("悽奅恀揑旤岲!!!!!!!!!!!!");
 		SimpleMessage sm = SimpleMessage.wrapperSimpeMessage();
 		sm.setMessageName("From Task2=============");
 		return sm;
