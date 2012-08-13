@@ -179,7 +179,7 @@ function createDmLayer(obj,aFormName,serviceName,searchColName,pageNo,pageSize,c
 			   window.location = "exedo/webv3/logoff.jsp";
 		   }else{
 			   $("#dmLayer").css('width',164);
-			   $("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;没有记录!").show();
+			   $("#dmLayer").empty().append("&nbsp;&nbsp;&nbsp;&nbsp;" + EELang.noData + "!").show();
 		   }
 	   }	                            
    });

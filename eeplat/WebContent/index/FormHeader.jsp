@@ -36,7 +36,7 @@
 	}
 	
 	List apps =  DAOUtil.INSTANCE().select(DOApplication.class,
-			"select * from DO_Application");
+			"select * from DO_Application  order by session_overDue  desc");
 
 %>
 <style> 
