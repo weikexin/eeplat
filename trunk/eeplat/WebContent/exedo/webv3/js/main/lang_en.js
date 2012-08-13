@@ -35,6 +35,8 @@ confirmInit			: "Are you sure to initialize?",
 confirmGenerate		: "Are you sure to generate configuration?",
 confirmServiceToRule: "Are you sure to generate rule from this service?",
 confirmImport		: "Are you sure to import?",
-confirmRemove		: "Are you sure to remove?"
+confirmRemove		: "Are you sure to remove?",
+noData              : "No Data"
+
 
 };

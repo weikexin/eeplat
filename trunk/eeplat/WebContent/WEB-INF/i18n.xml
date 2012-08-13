@@ -194,7 +194,7 @@
 		<label local="en">Install From Appshare</label>
 	</key>
 	<key name="普通用户">
-		<label local="en">Common User</label>
+		<label local="en">User</label>
 	</key>
 	<key name="代理">
 		<label local="en">Delegate</label>
@@ -211,7 +211,7 @@
 	</key>	
 	<key name="datamanager mysql command">
 		<label local="zh">数据库管理 除了不能操作本地文件外，兼容所有的 MYSQL 5.5命令。</label>
-		<label local="en">Data Manager In addition to not operating  local files, compatible with all the MYSQL 5.5 command.</label>
+		<label local="en">Data Manager in addition to not operating  local files, compatible with all the MYSQL 5.5 command.</label>
 	</key> 
 	<key name="初始化表">
 		<label local="en">Initialize Table</label>
@@ -1041,6 +1041,21 @@
 		<label local="en">Account recharge</label>
 	</key>
 	
+	<key name="AppShare中的应用 ">
+		<label local="en">AppShare Applications</label>
+	</key>
+	
+	<key name="缺省工程 ">
+		<label local="en">Default Application</label>
+	</key> 	
+	
+	<key name="所有角色定义  ">
+		<label local="en">Roles Config</label>
+	</key> 		
+	
+	<key name="所有多态条件  ">
+		<label local="en">Authorization Polymorphic</label>
+	</key> 		 
 	
 <!-- Badmission -->
 

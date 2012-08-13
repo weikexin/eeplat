@@ -128,8 +128,6 @@ globalURL = "/<%=DOGlobals.URL%>/";
 	
 <script language="javascript">
 
-globalURL = "/<%=DOGlobals.URL%>/";
-
             
 //窗口大小改变的时候，重新给div限制高度
 $(window).resize(function(){

@@ -23,6 +23,11 @@ BOInstance roleBI = boBO.getInstance(roleUid);
   globalURL = "/<%=DOGlobals.URL%>/";
 </script>  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<% if ("en".equals(DOGlobals.getValue("lang.local"))){ %>	
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_en.js"  ></script>
+<% }else{ %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/lang_zh.js"  ></script>
+<% }%>
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/exedo/webv3/js/main/main.js"></script>

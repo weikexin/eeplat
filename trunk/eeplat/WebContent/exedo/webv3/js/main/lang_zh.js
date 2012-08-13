@@ -35,7 +35,8 @@ confirmInit			: "你确定要初始化吗",
 confirmGenerate		: "你确定要生成关联配置吗",
 confirmServiceToRule: "你确定要把该服务发布为规则吗",
 confirmImport		: "你确定导入吗",
-confirmRemove		: "你确定要移除吗"
+confirmRemove		: "你确定要移除吗",
+noData              : "没有记录"
 
 
 };

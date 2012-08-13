@@ -61,8 +61,8 @@ a { pointer: cursor;  	text-decoration:	none;}
 	</p>
 
 	<p>
-		<label><%=I18n.instance().get("Tenant")%>  (badminton,openclub to test)</label><br />
-		<input type="tenancyId" name="tenancyId" id="tenancyId" class="input"  size="20" tabindex="20"/></label>
+		<label><%=I18n.instance().get("Tenant")%>  (badminton,openclub,Recruiting to test)</label><br />
+		<input type="tenancyId" name="tenancyId" id="tenancyId" class="input"  size="20" tabindex="20" value="Recruiting"/></label>
 	</p>
 	
 	<p class="forgetmenot">
@@ -113,11 +113,7 @@ $(function(){
   	  		submitForm();
   	  })
   	  
-  	  $(".btn:last").bind("click",function(){
-  	  		$("input:eq(0)").val("");
-  	  		$("input:eq(1)").val("");
-  	  		$("input:eq(2)").val("");
-  	  })
+
   });
   $(document).ready(function(){
   		$("#numImg").bind("click",function(){
@@ -169,9 +165,9 @@ $(function(){
 
 			   if('success'==retValue){
 				   if(data.returnPath!=null && $.trim(data.returnPath)!=''){
-					   window.location= unescape(data.returnPath);;
+					   window.location= unescape(data.returnPath);
 					 }else{
-			        	window.location= globalURL + "pane_wolfvillage.pml?isApp=true";
+						 window.location= globalURL + "pane_jyhd.pml?isApp=true";//pane_wolfvillage
 					 }
 			   }else if('delegate'==retValue){
 			        window.location= globalURL + "PM_do_org_user_delegate_index.pml?isApp=true&pml=pane_jyhd";
