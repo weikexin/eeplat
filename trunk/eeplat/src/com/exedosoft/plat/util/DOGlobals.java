@@ -45,7 +45,7 @@ public class DOGlobals {
 	/**
 	 * 下一步全部改作采用GET方法读取。
 	 */
-	public static String URL = "yiyi";
+	public static String URL = "eeplat";
 
 	/**
 	 * 业务平台工作jsp主目录

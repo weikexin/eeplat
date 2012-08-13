@@ -32,13 +32,13 @@ public class DOValueResultListPlain extends DOBaseForm {
 			if(bi.getName()!=null && !"".equals(bi.getName())){
 				return bi.getName();
 			}
-			return "&nbsp;";
 		}
+		return "&nbsp;";
 		
-		if (theValue == null || "null".equals(theValue)) {
-			return "&nbsp;";
-		}
-		return theValue;
+//		if (theValue == null || "null".equals(theValue)) {
+//			return "&nbsp;";
+//		}
+//		return theValue;
 
 	}
 }

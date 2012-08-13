@@ -10,10 +10,12 @@ import com.exedosoft.plat.Transaction;
 import com.exedosoft.plat.action.DOAbstractAction;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.bo.DOService;
 import com.exedosoft.plat.ui.DOFormModel;
 import com.exedosoft.plat.ui.DOFormTarget;
 import com.exedosoft.plat.ui.DOGridModel;
 import com.exedosoft.plat.ui.DOPaneModel;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.I18n;
 
 public class CopyPaneDeep extends DOAbstractAction {
@@ -74,7 +76,15 @@ public class CopyPaneDeep extends DOAbstractAction {
 					BOInstance biForm = boForm.getInstance(aFm.getObjUid());
 					biForm.putValue("objuid", null);
 					biForm.putValue("gridModelUid", newBiGrid.getUid());
-					BOInstance newBiForm = boForm.getDInsertService().invokeUpdate(biForm);
+					
+					DOService fmInsert = boForm.getDInsertService();
+					
+					if("en".equals(DOGlobals.getValue("lang.local"))){
+						fmInsert = DOService.getService("DO_UI_FormModel_Insert_EN");
+					}
+					
+					BOInstance newBiForm = fmInsert.invokeUpdate(biForm);
+					
 					map.put(aFm, newBiForm);
 					// //保存FormModel
 					for(Iterator<DOFormTarget> itTargetGrid = aFm.getTargetGridModels().iterator();itTargetGrid.hasNext(); ){

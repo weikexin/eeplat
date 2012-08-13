@@ -251,7 +251,7 @@ public class AProjectForwarderJquery {
 			dmBP.setParentMenu(dmRoot);
 			dmBP.setController(menuController);
 			// ////////同名DOMenuModel
-			dmBP.setName(project.getName() + "_bp");
+			dmBP.setName(project.getName());
 			dmBP.setL10n(project.getL10n() + "菜单");
 			DAOUtil.INSTANCE().store(dmBP);
 			

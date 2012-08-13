@@ -43,7 +43,7 @@ public class DOValueResultList extends DOBaseForm {
 				corrBO = fm.getLinkService().getBo();
 			}
 			if (theValue.indexOf(";") == -1) {
-				BOInstance bi = null;
+				BOInstance<?> bi = null;
 
 				/**
 				 * 可变动态下拉列表， 根据连接的FORMMODEL，一般静态staticlist 确定使用的服务

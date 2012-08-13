@@ -45,7 +45,7 @@ public class SessionParterDefault implements SessionParter {
 		OrgParter roleParter = OrgParter.getDefaultRole();
 		// /多租户下对应创建者，内置角色
 		BOInstance user = DOGlobals.getInstance().getSessoinContext().getUser();
-		if ("2".equals(user.getValue("asrole"))) {
+		if ("2".equals(user.getValue("asrole")) || "1".equals(user.getValue("asrole"))) {
 			OrgParterValue pvRole = new OrgParterValue(roleParter,
 					"40288031288a2b8501288a3d009d000d",
 					"管理员");

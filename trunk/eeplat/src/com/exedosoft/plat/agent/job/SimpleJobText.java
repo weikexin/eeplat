@@ -23,7 +23,6 @@ public class SimpleJobText implements Job {
 
 	public SimpleJobText(Socket ss) {
 		
-		System.out.println("愙庴?媮岪丆惓??堦槩JOB!");
 		s = ss;
 		b = new byte[1024];
 		try {
@@ -36,24 +35,19 @@ public class SimpleJobText implements Job {
 
 	public void run() {
 		
-		System.out.println("Job惓嵼?棟悢悩........................");
-
 		String temp;
 		try {
 			while (s.isConnected() == true) {
 				if ((len = in.read(b)) != -1) {
 					temp = new String(b, 0, len);
 					rev += temp;
-					System.out.println("JOB摼摓揑悢悩:" + rev);
 					temp = null;
 					Thread.sleep(1000);
 				}
 			}
 			in.close();
 			s.close();
-			System.out.println("夛?socket涍抐?両");
 		} catch (SocketException se) {
-			System.out.println("媞?抂涍抐?両");
 			System.exit(0);
 		} catch (IOException io) {
 			io.printStackTrace();

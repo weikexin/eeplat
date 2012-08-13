@@ -28,8 +28,6 @@ public class MessageCommandTest extends TestCase {
 		sm1.setCommndID(mc1.getCommandID());
 		sm1.setMessageType(Message.MSG_REQ);
 		Message aMsg1 = mc1.excute(sm1);
-		System.out.println("澗摓斀?徚懅丅丅丅丅丅丅丅丅丅丅");
-		System.out.println(aMsg1);
 
 		
 

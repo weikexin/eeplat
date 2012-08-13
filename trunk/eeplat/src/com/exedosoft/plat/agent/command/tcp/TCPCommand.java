@@ -10,16 +10,10 @@ import com.exedosoft.plat.agent.Command;
 import com.exedosoft.plat.agent.Message;
 import com.exedosoft.plat.agent.config.HumletGlobals;
 
-/**
- * 埲TCP/IP????揑榓Agent岎屳揑ICommand?丅
- * @author Administrator
- *
- */
-
 
 public abstract class TCPCommand implements Command, Serializable {
 	
-	private Socket con;// 媞?抂?愙socket
+	private Socket con;
 	
 	protected TCPCommand(){
 		try {

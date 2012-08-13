@@ -30,9 +30,7 @@ public class MessageCommand extends TCPCommand {
 		try {
 			ObjectOutputStream serverOutputStream = new ObjectOutputStream(
 					getSocket().getOutputStream());
-			System.out.println("Client 惓嵼?憲徚懅丅丅丅丅丅");
 			serverOutputStream.writeObject(aMsg);
-			System.out.println("Client 徚懅??姰?両両");
 			
 			if(aMsg.getMessageType() != Message.MSG_RES){
 			  aMessage = this.getInMessage();
@@ -97,8 +95,6 @@ public class MessageCommand extends TCPCommand {
 		sm.setCommndID(mc.getCommandID());
 		
 		Message aMsg = mc.excute(sm);
-		System.out.println("澗摓斀?徚懅丅丅丅丅丅丅丅丅丅丅");
-		System.out.println(aMsg);
 
 		
 		MessageCommand mc1 = new MessageCommand();
@@ -106,9 +102,6 @@ public class MessageCommand extends TCPCommand {
 		sm1.setCommndID(mc1.getCommandID());
 		sm1.setMessageType(Message.MSG_RES);
 		Message aMsg1 = mc1.excute(sm1);
-		System.out.println("澗摓斀?徚懅丅丅丅丅丅丅丅丅丅丅");
-		System.out.println(aMsg1);
-
 
 	}
 

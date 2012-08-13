@@ -37,6 +37,7 @@ import org.apache.log4j.spi.ErrorCode;
 import org.apache.log4j.spi.LocationInfo;
 import org.apache.log4j.spi.LoggingEvent;
 
+import com.exedosoft.plat.CacheFactory;
 import com.exedosoft.plat.ExedoException;
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
@@ -570,8 +571,11 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 
 	public static void main(String[] args) {
 
-		String aClass = "com.exedosoft.SearchImp";
-		System.out.println(aClass.substring(aClass.lastIndexOf('.') + 1));
+//		String aClass = "com.exedosoft.SearchImp";
+//		System.out.println(aClass.substring(aClass.lastIndexOf('.') + 1));
+		CacheFactory.getCacheData().fromSerialObject();
+		DOBO  logDev = DOBO.getDOBOByName("do_log_dev");
+		System.out.println("logDev::" + logDev.getDataBase());
 
 	}
 }
