@@ -4,7 +4,7 @@ loading				: "正在加载,请稍后......",
 
 nameRequired		: "名称不可以为空!",
 saveSuccess			: "保存成功!",
-
+browseFile 			: "browse-files.gif",
 dealDaemon			: "后台处理,请稍后......",
 notDefineGoal		: "没有定义目标面板,请检查相关配置!",
 accountRequired		: "请填写账号!",
