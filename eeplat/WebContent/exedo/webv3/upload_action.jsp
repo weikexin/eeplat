@@ -6,8 +6,15 @@
 <%@ page import="java.io.File"%>
 <%@ page import="org.apache.commons.fileupload.*"%>
 <%@ page import="java.net.URLEncoder"%>
-
+<%@ page import="com.exedosoft.plat.SessionContext"%>
 <%
+	SessionContext context = (SessionContext) session
+	.getAttribute("userInfo");
+	if (null == session.getAttribute("userInfo")
+	|| context.getUser() == null) {
+	response.sendRedirect(request.getContextPath()
+		+ "/exedo/webv3/logoff.jsp");
+	}
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
 	DiskFileUpload fu = new DiskFileUpload();

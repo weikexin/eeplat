@@ -5,6 +5,7 @@ loading				: "Loading......",
 nameRequired		: "The name is required!",
 saveSuccess			: "Save successfully!",
 
+browseFile 			: "browse-files.png",
 dealDaemon			: "Background processing, please wait......",
 notDefineGoal		: "Does not define the target pane, please check the configuration!",
 accountRequired		: "The acount is required!",

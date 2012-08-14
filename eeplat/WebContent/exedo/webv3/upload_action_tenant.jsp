@@ -6,9 +6,17 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.URL"%>
 <%@ page import="java.io.File"%>
+<%@ page import="com.exedosoft.plat.SessionContext"%>
 <%@ page import="org.apache.commons.fileupload.*"%>
 <%@ page import="java.net.URLEncoder"%>
 <%
+	SessionContext context = (SessionContext) session
+	.getAttribute("userInfo");
+	if (null == session.getAttribute("userInfo")
+	|| context.getUser() == null) {
+	response.sendRedirect(request.getContextPath()
+		+ "/exedo/webv3/logoff.jsp");
+	}
 	System.out.println("sessionid::" + session.getId());
 
 	URL url = DOGlobals.class.getResource("/globals.xml");
