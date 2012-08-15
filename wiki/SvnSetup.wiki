@@ -62,7 +62,7 @@ CheckOut完成之后，还需要配置Build Path，如下：
 
   http://eeplat.googlecode.com/files/appconfig2.png
  
-  配置完后，如下图：
+  配置完后，如下图(如果要修改web module的名称，请查看[FAQ FAQ])：
 
   http://eeplat.googlecode.com/files/appconfig3.png
 
