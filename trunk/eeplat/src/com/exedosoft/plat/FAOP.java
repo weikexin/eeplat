@@ -14,7 +14,7 @@ public class FAOP implements DOFormModelAOP {
 //		SessionBean sessionBean = null;
 //		
 //		boolean b = callYSAuth(url,sessionBean);
-		return Boolean.FALSE;
+		return Boolean.TRUE;
 	}
 	
 	

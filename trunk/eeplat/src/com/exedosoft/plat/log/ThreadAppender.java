@@ -140,7 +140,7 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 
 	private boolean locationInfo = false;
 
-	private static  boolean IS_LOG_EXITS = true;
+	private static  boolean IS_LOG_EXITS = false;
 	
 
 
@@ -148,7 +148,9 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 
 	public ThreadAppender() {
 		super();
-		IS_LOG_EXITS = checkExistDevLog();
+		if("true".equals(DOGlobals.getValue("log.db"))){
+			IS_LOG_EXITS = true;
+		}
 		System.out.println("IS_LOG_EXITS::::::::::::" + IS_LOG_EXITS);
 
 	}
@@ -310,59 +312,59 @@ public class ThreadAppender extends org.apache.log4j.AppenderSkeleton implements
 		this.closed = true;
 	}
 
-	private static boolean checkExistDevLog() {
-
-		DODataSource dss = null;
-		Connection con = null;
-		try {
-			DOBO boLog = DOBO.getDOBOByName("do_log_dev");
-			if (boLog == null) {
-				return false;
-			}
-
-			if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
-				if(DOGlobals.getInstance().getSessoinContext()
-						.getTenancyValues()==null){
-					return false;
-				}
-
-				dss = DOGlobals.getInstance().getSessoinContext()
-						.getTenancyValues().getDataDDS();
-			} else {
-
-				DOBO bo = DOBO.getDOBOByName("do_datasource");
-				if (bo == null) {
-					return false;
-				}
-				dss = bo.getDataBase();
-			}
-
-			con = dss.getConnection();
-
-			String sql = "select * from do_log_dev";
-
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			pstmt.close();
-		} catch (Exception e) {
-			return false;
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					// e.printStackTrace();
-					return false;
-				}
-			}
-		}
-
-		return true;
-
-	}
+//	private static boolean checkExistDevLog() {
+//
+//		DODataSource dss = null;
+//		Connection con = null;
+//		try {
+//			DOBO boLog = DOBO.getDOBOByName("do_log_dev");
+//			if (boLog == null) {
+//				return false;
+//			}
+//
+//			if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
+//				if(DOGlobals.getInstance().getSessoinContext()
+//						.getTenancyValues()==null){
+//					return false;
+//				}
+//
+//				dss = DOGlobals.getInstance().getSessoinContext()
+//						.getTenancyValues().getDataDDS();
+//			} else {
+//
+//				DOBO bo = DOBO.getDOBOByName("do_datasource");
+//				if (bo == null) {
+//					return false;
+//				}
+//				dss = bo.getDataBase();
+//			}
+//
+//			con = dss.getConnection();
+//
+//			String sql = "select * from do_log_dev";
+//
+//			PreparedStatement pstmt = con.prepareStatement(sql);
+//			ResultSet rs = pstmt.executeQuery();
+//			pstmt.close();
+//		} catch (Exception e) {
+//			return false;
+//			// TODO Auto-generated catch block
+//			// e.printStackTrace();
+//		} finally {
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					// e.printStackTrace();
+//					return false;
+//				}
+//			}
+//		}
+//
+//		return true;
+//
+//	}
 
 	/**
 	 * loops through the buffer of LoggingEvents, gets a sql string from

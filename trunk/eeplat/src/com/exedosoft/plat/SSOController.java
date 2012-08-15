@@ -145,8 +145,7 @@ public class SSOController extends HttpServlet {
 			}
 			log.info("use jslib:::" + DOGlobals.getValue("jslib"));
 		}
-		////多租户，根据租户的不同初始化到不同的租户业务库中
-		initLog4j();
+
 		out.println(outHtml);
 	}
 
@@ -593,39 +592,45 @@ public class SSOController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void initLog4j() {
-
-		Properties pro = new Properties();
-		try {
-			pro.load(DOGlobals.class
-					.getResourceAsStream("/log4j.properties"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-		pro.put("log4j.appender.threadLog", "com.exedosoft.plat.log.ThreadAppender");
-		pro.put("log4j.appender.threadLog.layout", "org.apache.log4j.PatternLayout");
-		pro.put("log4j.appender.threadLog.layout.ConversionPattern", "%-d{yyyy-MM-dd HH:mm:ss} [%t] - [%p] %37c(:%L) %3x %m%n");
-		
-		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOSearch", "error, threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOTools", "error, threadLog");
-		
-		
-		pro.put("log4j.logger.com.exedosoft.plat.bo.DOService", "info,threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.bo.search.SearchImp", "info,threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.bo.BOInstance", "info,threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.MVCController", "info,threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.ServiceController", "info,threadLog");
-		pro.put("log4j.logger.com.exedosoft.plat.js.*", "info,threadLog");
-		pro.put("log4j.logger.ExceptionOutPrint", "info,threadLog");
-		pro.put("log4j.logger.SystemOutPrint", "info,threadLog");
-
-		PropertyConfigurator.configure(pro);
-		log.info("Logging initialized.");
-
-	}
+	////多租户，根据租户的不同初始化到不同的租户业务库中
+	///不过写这个函数没有任何意义，通过配置文件一样可以搞定。
+//	initLog4j();
+//	private void initLog4j() {
+//		
+//		
+//		
+//
+//		Properties pro = new Properties();
+//		try {
+//			pro.load(DOGlobals.class
+//					.getResourceAsStream("/log4j.properties"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//
+//		pro.put("log4j.appender.threadLog", "com.exedosoft.plat.log.ThreadAppender");
+//		pro.put("log4j.appender.threadLog.layout", "org.apache.log4j.PatternLayout");
+//		pro.put("log4j.appender.threadLog.layout.ConversionPattern", "%-d{yyyy-MM-dd HH:mm:ss} [%t] - [%p] %37c(:%L) %3x %m%n");
+//		
+//		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOSearch", "error, threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOTools", "error, threadLog");
+//		
+//		
+//		pro.put("log4j.logger.com.exedosoft.plat.bo.DOService", "info,threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.bo.search.SearchImp", "info,threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.bo.BOInstance", "info,threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.MVCController", "info,threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.ServiceController", "info,threadLog");
+//		pro.put("log4j.logger.com.exedosoft.plat.js.*", "info,threadLog");
+//		pro.put("log4j.logger.ExceptionOutPrint", "info,threadLog");
+//		pro.put("log4j.logger.SystemOutPrint", "info,threadLog");
+//
+//		PropertyConfigurator.configure(pro);
+//		log.info("Logging initialized.");
+//
+//	}
 
 	private BOInstance getFormInstance(HttpServletRequest request) {
 

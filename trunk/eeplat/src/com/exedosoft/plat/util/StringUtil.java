@@ -553,6 +553,46 @@ public class StringUtil {
 			return "ERROR";
 		}
 	}
+	
+	public static boolean isChinese(char c) {  
+		  
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);  
+  
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS  
+  
+                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS  
+  
+                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A  
+  
+                || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION  
+  
+                || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION  
+  
+                || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {  
+  
+            return true;  
+  
+        }  
+  
+        return false;  
+  
+    }  
+  
+  
+  
+    public static boolean isChineseOfFirst(String strName) {  
+    	if(strName==null){
+    		return false;
+    	}
+        char[] ch = strName.toCharArray();
+        if(ch.length > 0){
+        	return isChinese(ch[0]); 
+        }
+        return false;
+    }  
+  
+
+  
 
 	//	
 	// public static String MD5(String plainTxt) {
@@ -1046,6 +1086,10 @@ public class StringUtil {
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println(Escape.escape("1111111  222"));
+		
+		System.out.println( isChineseOfFirst("中c") );  
+		  
+		System.out.println( isChineseOfFirst("z中国") );  
 		
 //		1111111%20%20222
 
