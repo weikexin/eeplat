@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
+import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 
 public class DODownLoadFile {
@@ -54,8 +55,8 @@ public class DODownLoadFile {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
+		
 		response.addHeader("Content-Disposition", "attachment;filename="
 				+ renameValue);
 		StringBuffer sql = new StringBuffer("select ");
@@ -108,6 +109,9 @@ public class DODownLoadFile {
 
 	public static void outStreamFromHDEscape(String filePath, String fileName,
 			HttpServletResponse response) {
+		
+		///只能从下载目录下载文件，否则出错。安全的保护。
+
 
 		log.info("Befor FilePath::::::::" + filePath);
 		log.info("Befor fileName::::::::" + fileName);
@@ -118,6 +122,10 @@ public class DODownLoadFile {
 		
 		log.info("After FilePath::::::::" + filePath);
 		log.info("After fileName::::::::" + fileName);
+		
+		if(filePath.indexOf(DOGlobals.UPLOAD_TEMP)==-1){
+			return;
+		}
 		outStreamFromHD(filePath, fileName, response);
 	}
 

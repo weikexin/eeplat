@@ -70,7 +70,7 @@ public class DOWebFxTree extends DOBaseMenu{
 			String parentItemName) {
 		
 		String itemName = item.getName();
-		itemName =  StringUtil.get_Name(itemName);
+		itemName =  StringUtil.get_Name(itemName).replaceAll("\\s", "");
 
 		buffer.append("var ").append(itemName).append(
 				" = new WebFXTreeItem('").append(item.getL10n()).append("'");
