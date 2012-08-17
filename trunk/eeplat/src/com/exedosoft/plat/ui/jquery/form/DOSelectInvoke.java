@@ -3,8 +3,6 @@ package com.exedosoft.plat.ui.jquery.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.ui.DOFormModel;
