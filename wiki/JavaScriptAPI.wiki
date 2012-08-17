@@ -167,7 +167,7 @@ this.actionForm  这个成员变量不可用。
 == callPlatBus(p) ==
 {{{
 用途：
-调用总线， 总线的调用写法见[总线操作Web Service API.doc,http://code.google.com/p/eeplat/wiki/BusinessObjectBus]
+调用总线， 总线的调用写法见[总线操作Web Service API BusinessObjectBus]
 注意事项：
      该操作为同步操作。
 例子：
