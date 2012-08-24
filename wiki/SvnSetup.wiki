@@ -71,7 +71,7 @@ CheckOut完成之后，还需要配置Build Path，如下：
   === 启动tomcat === 
      如下图：
      http://eeplat.googlecode.com/files/appconfig4.png
-  启动完成后，即可进入配置开发界面，地址为[http://127.0.0.1:8080/yiyi/exedo/webv3/]，需要根据TOMCAT安装端口的不同调整端口，登录页面如下所示：
+  启动完成后，即可进入配置开发界面，地址为[http://127.0.0.1:8080/eeplat/exedo/webv3/]，需要根据TOMCAT安装端口的不同调整端口，登录页面如下所示：
      http://eeplat.googlecode.com/files/yiy_manager_login.png 	
   ===系统登录=== 
     系统配置开发登录默认用户名/密码为：a/1，登录后进入系统，显示如下界面则表示系统安装成功：
