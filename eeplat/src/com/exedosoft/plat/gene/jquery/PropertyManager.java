@@ -90,6 +90,10 @@ public class PropertyManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void addProperty(DOBO aDOBO, String colName, int type,int size) {
+		addProperty(aDOBO,colName,colName,type,size);
+	}
 
 	/**
 	 * 为业务对象增加一个属性
@@ -98,13 +102,13 @@ public class PropertyManager {
 	 * @param colName
 	 * @param type
 	 */
-	public void addProperty(DOBO aDOBO, String colName, int type,int size) {
+	public void addProperty(DOBO aDOBO, String colName, String l10n,int type,int size) {
 
 		// 增加属性
 		DOBOProperty pro = new DOBOProperty();
 		try {
 			pro.setColName(colName);
-			pro.setL10n(colName);
+			pro.setL10n(l10n);
 			pro.setDbType(type);
 			pro.setDbSize(size);
 			pro.setDoBO(aDOBO);

@@ -9,11 +9,11 @@
 <%@ page import="com.exedosoft.plat.SessionContext"%>
 <%
 	SessionContext context = (SessionContext) session
-	.getAttribute("userInfo");
+			.getAttribute("userInfo");
 	if (null == session.getAttribute("userInfo")
-	|| context.getUser() == null) {
-	response.sendRedirect(request.getContextPath()
-		+ "/exedo/webv3/logoff.jsp");
+			|| context.getUser() == null) {
+		response.sendRedirect(request.getContextPath()
+				+ "/exedo/webv3/logoff.jsp");
 	}
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
@@ -29,48 +29,49 @@
 	file.mkdirs();
 	fu.setRepositoryPath(DOGlobals.UPLOAD_TEMP);
 	//开始读取上传信息
-	
-	
+
 	String colName = "";// requestM.getParameter("colName");
 	String blobColName = "";// requestM.getParameter("blobColName");
 	String fileName = "";// requestM.getFilesystemName("fileupload");
-	
-	try{
+
+	try {
 		/////每天创建一个目录
-		File aFile = new File(DOGlobals.UPLOAD_TEMP );
+		File aFile = new File(DOGlobals.UPLOAD_TEMP);
 
 		List fileItems = fu.parseRequest(request);
 		// 依次处理每个上传的文件
 		Iterator iter = fileItems.iterator();
-		
+
 		while (iter.hasNext()) {
-	FileItem item = (FileItem) iter.next();
-	//忽略其他不是文件域的所有表单信息
-	if (!item.isFormField()) {
-		String name = item.getName();
-		if(name.indexOf("\\")!=-1){
-	name = name.substring(name.lastIndexOf("\\")+1);
-		
+			FileItem item = (FileItem) iter.next();
+			//忽略其他不是文件域的所有表单信息
+			if (!item.isFormField()) {
+				String name = item.getName();
+				if (name.indexOf("\\") != -1) {
+					name = name.substring(name.lastIndexOf("\\") + 1);
+
+				}
+				if(name.toLowerCase().indexOf(".jsp")!=-1){
+					return;
+				}
+				fileName = name;
+				item.write(new File(DOGlobals.UPLOAD_TEMP + fileName));
+			}
+			if (item.getFieldName().equals("colName")) {
+				colName = item.getString();
+			}
+			if (item.getFieldName().equals("blobColName")) {
+				blobColName = item.getString();
+			}
+
 		}
-		fileName = name;
-		item.write(new File(DOGlobals.UPLOAD_TEMP  + fileName));
-	}
-	if(item.getFieldName().equals("colName")){
-		colName = item.getString();
-	}
-	if(item.getFieldName().equals("blobColName")){
-		blobColName = item.getString();
-	}
-	
-		}
-	}catch(Exception e){
+	} catch (Exception e) {
 		e.printStackTrace();
-		
+
 	}
 	System.out.println("Upload Action Comm FileName::" + fileName);
 	response.sendRedirect("upload_success.jsp?colName=" + colName
-			+ "&fileName=" + URLEncoder.encode(Escape.escape(fileName),"utf-8") + "&blobColName="
-			+ blobColName);
-
-
+			+ "&fileName="
+			+ URLEncoder.encode(Escape.escape(fileName), "utf-8")
+			+ "&blobColName=" + blobColName);
 %>

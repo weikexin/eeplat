@@ -171,7 +171,7 @@ public class DOTableList extends DOAbstractAction {
 			ResultSet rs = meta.getColumns(null, schema, aTable, null);
 			while (rs.next()) {
 				
-				if("false".equals(DOGlobals.getValue("gene_key_uuid"))){
+				if("false".equals(DOGlobals.getValue("gene.key.uuid"))){
 					keyCols.append(rs.getString("COLUMN_NAME")).append(",")
 					.append(rs.getString("COLUMN_NAME")).append(";");
 					

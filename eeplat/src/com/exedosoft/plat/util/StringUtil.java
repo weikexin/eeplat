@@ -586,7 +586,7 @@ public class StringUtil {
     	}
         char[] ch = strName.toCharArray();
         if(ch.length > 0){
-        	return isChinese(ch[0]); 
+        	return isChinese(ch[0]) || isChinese(ch[ch.length-1]); 
         }
         return false;
     }  

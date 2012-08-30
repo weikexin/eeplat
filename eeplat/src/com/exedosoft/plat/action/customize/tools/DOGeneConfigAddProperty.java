@@ -27,6 +27,7 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 		String colName =  this.actionForm.getValue("col_name");
 		String type = this.actionForm.getValue("dbtype");
 		String dbsize = this.actionForm.getValue("dbsize");
+		String l10n = this.actionForm.getValue("l10n");
 		
 		if(colName==null || type ==null || dbsize==null){
 			this.setEchoValue(I18n.instance().get("字段名称或者类型或者长度没有定义!"));
@@ -37,7 +38,7 @@ public class DOGeneConfigAddProperty extends DOAbstractAction {
 		DOBO thisBO = DOBO.getDOBOByID(instance.getUid());
 		
 		PropertyManager pm = new PropertyManager();
-		pm.addProperty(thisBO, colName,Integer.parseInt( type ),Integer.parseInt(dbsize));
+		pm.addProperty(thisBO, colName,l10n,Integer.parseInt( type ),Integer.parseInt(dbsize));
 
 		return DEFAULT_FORWARD;
 	}

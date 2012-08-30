@@ -242,7 +242,12 @@ public class GeneUIMain {
 		DOGridModel conditionGrid = new DOGridModel();
 		conditionGrid.setL10n(condtionGridName);
 		conditionGrid.setName(condtionGridName);
-		conditionGrid.setCaption("请输入查询条件");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			conditionGrid.setCaption("Please Input Condition");
+
+		}else{
+			conditionGrid.setCaption("请输入查询条件");
+		}
 		conditionGrid.setCategory(category);
 		conditionGrid.setController(gridCondition);
 		conditionGrid = DAOUtil.INSTANCE().store(conditionGrid);
@@ -251,7 +256,12 @@ public class GeneUIMain {
 		 * 生成面板
 		 */
 		DOPaneModel pmCondition = new DOPaneModel();
-		pmCondition.setTitle("请输入查询条件");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			conditionGrid.setCaption("Please Input Condition");
+
+		}else{
+			pmCondition.setTitle("请输入查询条件");
+		}
 		pmCondition.setName(condtionPaneName);
 		pmCondition.setL10n(condtionPaneName);
 		pmCondition.setCategory(category);
@@ -293,7 +303,12 @@ public class GeneUIMain {
 		}
 
 		DOFormModel fm = new DOFormModel();
-		fm.setL10n("查询");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("Search");
+
+		}else{
+			fm.setL10n("查询");
+		}
 		fm.setController(formPane);
 		fm.setGridModel(conditionGrid);
 		fm.setOrderNum(Integer.valueOf(i));
@@ -347,7 +362,12 @@ public class GeneUIMain {
 		DOGridModel gmResult = new DOGridModel();
 		gmResult.setL10n(resultGridName);
 		gmResult.setName(resultGridName);
-		gmResult.setCaption("查询结果");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			gmResult.setCaption("Result");
+
+		}else{
+			gmResult.setCaption("查询结果");
+		}
 		gmResult.setCategory(category);
 		gmResult.setController(gridList);
 		gmResult.setService(rService);
@@ -358,7 +378,11 @@ public class GeneUIMain {
 		 * 生成面板
 		 */
 		DOPaneModel pmResult = new DOPaneModel();
-		pmResult.setTitle("查询结果");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			pmResult.setTitle("Result");
+		}else{
+			pmResult.setTitle("查询结果");
+		}
 		pmResult.setName(resultPaneName);
 		pmResult.setL10n(resultPaneName);
 		pmResult.setCategory(category);
@@ -396,7 +420,11 @@ public class GeneUIMain {
 		DOPaneModel _opener = DOPaneModel.getPaneModelByName("_opener");
 
 		DOFormModel fm = new DOFormModel();
-		fm.setL10n("查看");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("Browse");
+		}else{
+			fm.setL10n("查看");
+		}
 
 		DOPaneModel pmBrowse = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_browse");
@@ -412,7 +440,11 @@ public class GeneUIMain {
 
 		fm = new DOFormModel();
 		fm.setController(formItemPane);
-		fm.setL10n("修改");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("Modify");
+		}else{
+			fm.setL10n("修改");
+		}
 
 		DOPaneModel pmUpdate = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_update");
@@ -452,7 +484,11 @@ public class GeneUIMain {
 //		}
 		DOService aService = DOService.getService(this.geneATable + "_delete");
 		fm.setLinkService(aService);
-		fm.setL10n("删除");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("Delete");
+		}else{
+			fm.setL10n("删除");
+		}
 		fm.setStyle("delete");
 		fm.setGridModel(gmResult);
 		fm.setLinkPaneModel(pmResult);
@@ -465,7 +501,11 @@ public class GeneUIMain {
 		// ///新增
 		fm = new DOFormModel();
 		fm.setController(formPane);
-		fm.setL10n("新增");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("New");
+		}else{
+			fm.setL10n("新增");
+		}
 
 		DOPaneModel pmInsert = DOPaneModel.getPaneModelByName("PM_"
 				+ geneATable + "_insert");
@@ -490,7 +530,11 @@ public class GeneUIMain {
 		// ///复制
 		fm = new DOFormModel();
 		fm.setController(formItemPane);
-		fm.setL10n("复制");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			fm.setL10n("Browse");
+		}else{
+			fm.setL10n("Copy");
+		}
 		fm.setStyle("copy");
 
 		DOPaneModel pmDulplicate = DOPaneModel.getPaneModelByName("PM_"
@@ -704,7 +748,11 @@ public class GeneUIMain {
 			DOGridModel gridM) throws ExedoException {
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("保存");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			formM.setL10n("Save");
+		}else{
+			formM.setL10n("保存");
+		}
 		DOService linkService = DOService.getService(aService.getBo().getName()
 				+ aName);
 		formM.setLinkService(linkService);
@@ -740,7 +788,11 @@ public class GeneUIMain {
 		// //装电话公司电话, 61758100
 
 		DOFormModel formM = new DOFormModel();
-		formM.setL10n("关闭");
+		if("en".equals(DOGlobals.getValue("lang.local"))){
+			formM.setL10n("Close");
+		}else{
+			formM.setL10n("关闭");
+		}
 		// DOService linkService =
 		// DOService.getService(aService.getBo().getName()
 		// + ".delete");

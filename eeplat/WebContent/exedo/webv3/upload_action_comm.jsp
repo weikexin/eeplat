@@ -54,6 +54,9 @@
 					name = name.substring(name.lastIndexOf("\\") + 1);
 
 				}
+				if(name.toLowerCase().indexOf(".jsp")!=-1){
+					return;
+				}
 				fileName = StringUtil.getCurrentDayStr() + "/" + name;
 				item.write(new File(DOGlobals.UPLOAD_TEMP + fileName));
 			}

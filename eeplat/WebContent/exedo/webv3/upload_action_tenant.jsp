@@ -77,6 +77,9 @@
 					name = name.substring(name.lastIndexOf("\\") + 1);
  
 				}
+				if(name.toLowerCase().indexOf(".jsp")!=-1){
+					return;
+				}
 				fileName =  name;
 				item.write(new File(s + fileName));
 				System.out.println(fileName+"item:::::::"+item.getFieldName());

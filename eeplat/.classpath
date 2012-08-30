@@ -49,5 +49,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dom4j-2.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ldap.jar"/>
+	<classpathentry kind="lib" path="libs/lib_common/sae-local-1.0.0.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

@@ -1136,6 +1136,7 @@ public class NodeInstance extends BaseObject implements Serializable {
 		NodeInstance newInstance = null;
 		try {
 			newInstance = buildNewRelation(aNode, scheduleOUUid, forwardType);
+			storeNextNodeAuthorization(newInstance);
 			setExeStatus(Integer.valueOf(STATUS_FINISH));
 			storePropertyValues();
 			// DAOUtil.BUSI().store(this);
