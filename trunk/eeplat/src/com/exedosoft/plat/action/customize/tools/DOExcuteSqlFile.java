@@ -78,7 +78,9 @@ public class DOExcuteSqlFile extends DOAbstractAction {
 			String[] tblTypes = new String[] { "TABLE" };
 			String schema = null;
 			if (dss.isOracle()) {
-				schema = dss.getUserName().trim().toUpperCase();
+				if(dss.getUserName()!=null){
+					schema = dss.getUserName().trim().toUpperCase();
+				}
 			}
 			ResultSet rs = meta.getTables(null, schema, null, tblTypes);
 			while (rs.next()) {

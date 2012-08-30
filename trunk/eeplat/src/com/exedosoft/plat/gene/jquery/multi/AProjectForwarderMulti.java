@@ -94,7 +94,7 @@ public class AProjectForwarderMulti {
 		DOBO aBO = new DOBO();
 		aBO.setType(DOBO.TYPE_BUSINESS);
 		aBO.setName(project.getName() + "_global_bo");
-		aBO.setL10n(project.getL10n() + "_全局");
+		aBO.setL10n(project.getL10n() + "_global");
 
 		DODataSource dds = DODataSource.parseGlobals();
 
@@ -150,7 +150,7 @@ public class AProjectForwarderMulti {
 			DOPaneModel pmRoot = new DOPaneModel();
 			pmRoot.setCategory(aBO);
 			pmRoot.setName("pane_" + project.getName());
-			pmRoot.setL10n(project.getL10n() + "_根面板");
+			pmRoot.setL10n("pane_" + project.getName());
 			pmRoot.setTitle(project.getDescription());
 
 			// //////////////ccLayOutPane
@@ -184,7 +184,7 @@ public class AProjectForwarderMulti {
 			pmTop.setLinkUID(drs.getObjUid());                    
 			pmTop.setLayoutAlign("top");
 			pmTop.setCategory(aBO);
-			pmTop.setL10n(project.getL10n() + "_头面板");
+			pmTop.setL10n(project.getName() + "_headerPane");
 			pmTop.setName(project.getName() + "_headerPane");
 			DAOUtil.INSTANCE().store(pmTop);
 
@@ -202,7 +202,7 @@ public class AProjectForwarderMulti {
 			 */
 			DOPaneModel pmBottom = new DOPaneModel();
 			pmBottom.setCategory(aBO);
-			pmBottom.setL10n(project.getL10n() + "_工作区域面板");
+			pmBottom.setL10n(project.getName() + "_mainpane");
 			pmBottom.setName(project.getName() + "_mainpane");
 
 			pmBottom.setController(ccSplitePane);
@@ -225,7 +225,7 @@ public class AProjectForwarderMulti {
 			dmRoot.setParentMenu(null);
 			// ////////同名DOMenuModel
 			dmRoot.setName(project.getName() + "_root");
-			dmRoot.setL10n("欢迎使用" + project.getL10n());
+			dmRoot.setL10n("Welcome " + project.getL10n());
 			DOService storeRootMenu = DOService.getService("DO_UI_MenuModel_Insert_firstlevel");
 			DAOUtil.INSTANCE().store(dmRoot,storeRootMenu);
 			
@@ -242,7 +242,7 @@ public class AProjectForwarderMulti {
 			dmBP.setController(menuController);
 			// ////////同名DOMenuModel
 			dmBP.setName(project.getName());
-			dmBP.setL10n(project.getL10n() + "菜单");
+			dmBP.setL10n(project.getL10n() );
 			DAOUtil.INSTANCE().store(dmBP);
 			
 			
@@ -268,7 +268,7 @@ public class AProjectForwarderMulti {
 			DOPaneModel pmContent = new DOPaneModel();// ///主内容显示区。
 			pmContent.setCategory(aBO);
 			pmContent.setName(project.getName() + "_MainContent");
-			pmContent.setL10n(project.getL10n() + "基本内容显示");
+			pmContent.setL10n(project.getName() + "_MainContent");
 			pmContent.setController(mainPage);
 			pmContent.setLinkType(DOPaneModel.LINKTYPE_RESOURCE);
 			
@@ -289,7 +289,7 @@ public class AProjectForwarderMulti {
 			pmLeft.setLinkType(DOPaneModel.LINKTYPE_MENU);
 			pmLeft.setLinkUID(dmRoot.getObjUid());
 			pmLeft.setCategory(aBO);
-			pmLeft.setL10n(project.getL10n() + "左边索引面板");
+			pmLeft.setL10n(project.getName() + "_leftindex_pane");
 			pmLeft.setName(project.getName() + "_leftindex_pane");
 
 			/**
@@ -304,7 +304,7 @@ public class AProjectForwarderMulti {
 			DOPaneModel pmMobile = new DOPaneModel();
 			pmMobile.setCategory(aBO);
 			pmMobile.setName( project.getName() + "_mobile_pane");
-			pmMobile.setL10n(project.getL10n() + "菜单");
+			pmMobile.setL10n(project.getL10n() + "_mobile");
 			pmMobile.setTitle(project.getDescription());
 			
 			pmMobile.setLinkType(DOPaneModel.LINKTYPE_MENU);

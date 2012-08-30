@@ -85,8 +85,8 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		// dao.setAutoClose(false);
 		try {
 
-			DOTreeModel treeModel = DAOUtil.INSTANCE().getByObjUid(DOTreeModel.class,
-					treeModelUid);
+			DOTreeModel treeModel = DAOUtil.INSTANCE().getByObjUid(
+					DOTreeModel.class, treeModelUid);
 			if (dropDownID != null) {
 				treeModel.setDropDownID(dropDownID);
 			}
@@ -367,8 +367,8 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				.retrieveParaServiceLinks().iterator(); it.hasNext();) {
 			DOParameterService dops = (DOParameterService) it.next();
 			DOParameter dop = dops.getDop();
-			if (dop.getParaBO().getObjUid().equals(
-					treeModel.getService().getBo().getObjUid())) {
+			if (dop.getParaBO().getObjUid()
+					.equals(treeModel.getService().getBo().getObjUid())) {
 				selfLinkModel.getService().addTempParaValue(dops, instanceUid);
 				return;
 			}
@@ -425,21 +425,21 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			buffer.append(instance.getName());
 			this.appendIconXML(treeModel, buffer);
 
-			///这个地方可以放开，但是放开后，如果数据量大了，效率会急剧降低
-			
-//			List listChilds = childModel.getService().invokeSelect(
-//					instance.getUid());
-//			if (listChilds != null && listChilds.size() > 0) {
+			// /这个地方可以放开，但是放开后，如果数据量大了，效率会急剧降低
+
+			// List listChilds = childModel.getService().invokeSelect(
+			// instance.getUid());
+			// if (listChilds != null && listChilds.size() > 0) {
 
 			List listChilds = childModel.getService().invokeSelect(
-			instance.getUid());
-	if (listChilds != null && listChilds.size() > 0) {
+					instance.getUid());
+			if (listChilds != null && listChilds.size() > 0) {
 
 				appendSrc(childModel.getObjUid(), treeModel, instance.getUid(),
 						buffer);
-				}
+			}
 
-//			}
+			// }
 
 			appendAction(treeModel, buffer, instance, instanceUid);
 			buffer.append("\"/>\n"); // / xml 关闭符号
@@ -492,26 +492,26 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		} else {
 			if (treeModel.getService() != null
 					&& treeModel.getService().getBo().getIcon() != null
-					&& !treeModel.getService().getBo().getIcon().trim().equals(
-							"")) {
-				buffer.append(andSymbol).append("icon=").append(
-						treeModel.getService().getBo().getIcon());
+					&& !treeModel.getService().getBo().getIcon().trim()
+							.equals("")) {
+				buffer.append(andSymbol).append("icon=")
+						.append(treeModel.getService().getBo().getIcon());
 			}
 
 		}
 
 		if (treeModel.getOpenIcon() != null
 				&& !treeModel.getOpenIcon().trim().equals("")) {
-			buffer.append(andSymbol).append("openIcon=").append(
-					treeModel.getOpenIcon());
+			buffer.append(andSymbol).append("openIcon=")
+					.append(treeModel.getOpenIcon());
 		} else {
 
 			if (treeModel.getService() != null
 					&& treeModel.getService().getBo().getOpenIcon() != null
 					&& !treeModel.getService().getBo().getOpenIcon().trim()
 							.equals("")) {
-				buffer.append(andSymbol).append("openIcon=").append(
-						treeModel.getService().getBo().getOpenIcon());
+				buffer.append(andSymbol).append("openIcon=")
+						.append(treeModel.getService().getBo().getOpenIcon());
 			}
 		}
 	}
@@ -524,8 +524,8 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 		} else {
 			if (treeModel.getService() != null
 					&& treeModel.getService().getBo().getIcon() != null
-					&& !treeModel.getService().getBo().getIcon().trim().equals(
-							"")) {
+					&& !treeModel.getService().getBo().getIcon().trim()
+							.equals("")) {
 
 				buffer.append("\" icon=\"").append(
 						treeModel.getService().getBo().getIcon());
@@ -555,8 +555,8 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 	 */
 	private void appendBaseUrl(String linkTreeModelUid, String instanceUid,
 			StringBuffer buffer) {
-		buffer.append("/").append(DOGlobals.URL).append(
-				"/loadtreesvl?treeModelUid=");
+		buffer.append("/").append(DOGlobals.URL)
+				.append("/loadtreesvl?treeModelUid=");
 		buffer.append(linkTreeModelUid);
 		buffer.append("&amp;contextInstanceUid=").append(instanceUid);
 	}
@@ -598,13 +598,14 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 				// </#if> }
 				// );
 
-				buffer.append(";loadPml({'pml':'").append(
-						treeModel.getActionPane().getName()).append(
-						"','pmlName':'").append(
-						treeModel.getActionPane().getName()).append(
-						"','title':'").append(instance.getName()).append(
-						"','target':'").append(
-						treeModel.getTargetPane().getName()).append("'} );");
+				buffer.append(";loadPml({'pml':'")
+						.append(treeModel.getActionPane().getName())
+						.append("','pmlName':'")
+						.append(treeModel.getActionPane().getName())
+						.append("','title':'").append(instance.getName())
+						.append("','target':'")
+						.append(treeModel.getTargetPane().getName())
+						.append("'} );");
 
 				// buffer.append("\"   action=\"javascript:$('#"
 				// + treeModel.getTargetPane().getName().replace(".", "_")
@@ -656,20 +657,22 @@ public class LoadTreeSvl extends javax.servlet.http.HttpServlet implements
 			targetPaneId = treeModel.getTargetPaneID();
 		}
 
-		if (treeModel.getParent() != null && !treeModel.isSelf()) {///更新上一层的主键，理论上讲应该一直更新到最上层(需要界面层处理，更新xtree2.js下一步，只有界面层才清楚的知道上层节点的对应，并且可以为树节点加属性)
-			actionUrl = new StringBuffer(actionUrl).append(
-					"&dataBus=setContext&contextKey=").append(
-					treeModel.getParent().getService().getBo().getName())
-					.append("&contextValue=").append(parentUid).toString();
+		if (treeModel.getParent() != null && !treeModel.isSelf()) {// /更新上一层的主键，理论上讲应该一直更新到最上层(需要界面层处理，更新xtree2.js下一步，只有界面层才清楚的知道上层节点的对应，并且可以为树节点加属性)
+			actionUrl = new StringBuffer(actionUrl)
+					.append("&dataBus=setContext&contextKey=")
+					.append(treeModel.getParent().getService().getBo()
+							.getName()).append("&contextValue=")
+					.append(parentUid).toString();
 		}
 
 		actionUrl = actionUrl.replaceAll("&", "&amp;");
 
-		buffer.append("\"   action=\"javascript:loadPml({'pml':'").append(
-				actionUrl).append("','pmlName':'").append(
-				treeModel.getActionPane().getName()).append("','title':'")
-				.append(instance.getName()).append("','target':'").append(
-						treeModel.getTargetPane().getName()).append("'} );");
+		buffer.append("\"   action=\"javascript:loadPml({'pml':'")
+				.append(actionUrl).append("','pmlName':'")
+				.append(treeModel.getActionPane().getName())
+				.append("','title':'").append(instance.getName())
+				.append("','target':'")
+				.append(treeModel.getTargetPane().getName()).append("'} );");
 
 		// buffer.append("\" id='").append(actionUrl).append(
 		// "'  action=\"javascript:$('#"

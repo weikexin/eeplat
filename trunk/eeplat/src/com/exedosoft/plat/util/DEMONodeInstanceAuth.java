@@ -7,6 +7,7 @@ import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.wf.wfi.NodeInstance;
 import com.exedosoft.wf.wfi.ProcessInstance;
+import com.sina.sae.storage.SaeStorage;
 
 public class DEMONodeInstanceAuth extends DOAbstractAction {
 
@@ -37,11 +38,13 @@ public class DEMONodeInstanceAuth extends DOAbstractAction {
 	
 	public static void main(String[] args){
 		
+		SaeStorage storage = new SaeStorage("kln52o01wj"
+				,"k5wmmymhl1h55h3w3lwykhjh55zjljhy5zj253lh"
+				,"eeplat");
+		storage.write("picture" , "thebook" , "bookcontent!" );
 
-		
-		DOBO aBO = DAOUtil.INSTANCE().getByName(DOBO.class, "do_authorization");
-		
-		System.out.println( "aBO:::" + aBO);
+
+
 
 		
 	}

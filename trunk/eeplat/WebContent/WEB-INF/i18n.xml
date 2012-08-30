@@ -173,7 +173,7 @@
 		<label local="en">Modify</label>
 	</key>
 	<key name="请输入查询条件">
-		<label local="en">Please Enter Search Condition</label>
+		<label local="en">Please Input Condition</label>
 	</key>
 	<key name="查询结果">
 		<label local="en">Result</label>
@@ -211,22 +211,22 @@
 	</key>	
 	<key name="datamanager mysql command">
 		<label local="zh">数据库管理 除了不能操作本地文件外，兼容所有的 MYSQL 5.5命令。</label>
-		<label local="en">Data Manager in addition to not operating  local files, compatible with all the MYSQL 5.5 command.</label>
+		<label local="en"> </label>
 	</key> 
 	<key name="初始化表">
-		<label local="en">Initialize Table</label>
+		<label local="en">Initialize Tables</label>
 	</key> 
 	<key name="inittable_note">
 		<label local="zh">数据表需要经过 初始化表，才能生成平台相关元数据。 </label>
-		<label local="en">Table via initialization,generate metadata of EEPlat. </label>
+		<label local="en">Generate metadata of EEPlat from table. </label> 
 	</key>
 	<key name="Table Create Wizard">
 		<label local="zh">表创建向导</label>
-		<label local="en">Table Create Wizard</label>
+		<label local="en">Table Creation Wizard</label>
 	</key> 
 	<key name="FromTable2BO">
 		<label local="zh">表生成及初始化简单向导 。 </label>
-		<label local="en">From Table to BusinessObject  Wizard.</label>
+		<label local="en">Table Creation and Initialization  Wizard.</label>
 	</key> 
 	<key name="Confirm ClearCache">
 		<label local="zh">清除缓存成功!</label>
@@ -526,7 +526,7 @@
 		<label local="en">1,PAGE;11,CSS;12,JS;20,JAVA_CLASS;21,JAVA_JAR;100,OTHERS</label>
 	</key> 	 
 	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询;201,查询类型存储过程;202,保存类型存储过程;-1,禁用">
-		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;201,Search Storage Process;202,Save Storage Process;-1,Forbidden</label>
+		<label local="en">1,Normal;2,Query;3,Save;5,Delete;7,Update;8,New;10,Simple Query;12,Auto Condtion Query;18,Autho Parameter Save;16,Auto Conditon Free Query;15,Script;500,Action Query;201,Query Storage Process;202,Save Storage Process;-1,Forbidden</label>
 	</key> 	 
 	<key name="1,数字;2,字符;3,大文本;4,WORD/WPS文档;5,二进制文件;6,JAVA序列化;7,URL;10,业务对象">
 		<label local="en">1,Number;2,String;3,CLOB;4,WORD/WPS;5,Binary File;6,JAVA Serial File;7,URL;10,Business Object"</label>
@@ -538,13 +538,13 @@
 		<label local="en">2,Sequence;25,Sequence by year;27,Sequence by organization;29,User Defined Sequence;10,Current DateTime;3,Login ID;31,Login Station;32,Login Dept;33,Login;5,Fixed Value;8,Parameter;100,Class Extend</label>
 	</key> 	 
 	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询;201,查询类型存储过程;202,保存类型存储过程">
-		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;201,Search Storage Process;202,Save Storage Process;</label>
+		<label local="en">1,Normal;2,Query;3,Save;5,Delete;7,Update;8,New;10,Simple Query;12,Auto Condtion Query;18,Autho Parameter Save;16,Auto Conditon Free Query;15,Script;500,Action Query;201,Query Storage Process;202,Save Storage Process;</label>
 	</key> 	 
 	<key name="1,缺省JNDI上下文;2,特殊JNDI上下文">
 		<label local="en">1,Default JNDI;2,Special JNDI</label>
 	</key> 	 
 	<key name="1,一般;2,查询;3,保存;5,删除;7,修改;8,新增;10,简单查询;12,自动条件查询;18,自动参数修改;16,自动条件自由查询;15,脚本;500,自定义动作查询">
-		<label local="en">1,Normal;2,Search;3,Save;5,Delete;7,Update;8,New;10,Simple Search;12,Auto Condtion Search;18,Autho Parameter Save;16,Auto Conditon Free Search;15,Script;500,Action Search;</label>
+		<label local="en">1,Normal;2,Query;3,Save;5,Delete;7,Update;8,New;10,Simple Query;12,Auto Condtion Query;18,Autho Parameter Save;16,Auto Conditon Free Query;15,Script;500,Action Query;</label>
 	</key> 	 
 	<key name="0,否;-1,内联;1,下部;2,上部;5,右部;8,左部;12,统计@0">
 		<label local="en">0,NO;-1,Inline;1,Botttom;2,Top;5,Right;8,Left;12,Statictic@0</label>
@@ -618,8 +618,8 @@
 	<key name="0,全部;1,PC;2,Mobile">
 		<label local="en">0,ALL;1,PC;2,Mobile</label>
 	</key> 	 
-	<key name="0,不刷新;1,CURRENT节点;2,Search_List节点;3,CURRENT及Search_List节点;5,CURRENT及GLOBAL_UID节点">
-		<label local="en">0,NO;2,Current Node;2,Search List Node;3,Search And Search List Node;4,Current and Global Node</label>
+	<key name="0,不刷新;1,CURRENT节点;2,Query_List节点;3,CURRENT及Query_List节点;5,CURRENT及GLOBAL_UID节点">
+		<label local="en">0,NO;2,Current Node;2,Query List Node;3,Query And Query List Node;4,Current and Global Node</label>
 	</key> 	 
 	<key name="0,不订阅;1,全部订阅;2,不订阅双击">
 		<label local="en">0,NO;1,ALL;2,NO DBCLICK</label>
@@ -1018,20 +1018,20 @@
 		<label local="en">Activity Condition</label>
 	</key>
     <key name="PM_wolfers_Condition">
-		<label local="en">Search Members</label>
+		<label local="en">Query Members</label>
 	</key>
     <key name="PM_wolfers_Result">
 		<label local="en">Members List</label>
 	</key>    
 	<key name="PM_d_feetspliteype_Condition">
-		<label local="en">Search Share Type</label>
+		<label local="en">Query Share Type</label>
 	</key>   
 	<key name="PM_d_feetspliteype_Result">
 		<label local="en">Share Type List</label>
 	</key>    
 	
 	<key name="PM_badmintoninout_Condition">
-		<label local="en">Search Badminton In/Out </label>
+		<label local="en">Query Badminton In/Out </label>
 	</key>	
 	<key name="PM_badmintoninout_Result">
 		<label local="en">Badminton In/Out List </label>
@@ -1049,14 +1049,41 @@
 		<label local="en">Default Application</label>
 	</key> 	
 	
-	<key name="所有角色定义  ">
+	<key name="所有角色定义">
 		<label local="en">Roles Config</label>
 	</key> 		
 	
-	<key name="所有多态条件  ">
+	<key name="所有多态条件">
 		<label local="en">Authorization Polymorphic</label>
 	</key> 		 
 	
+	<key name="待办列表">
+		<label local="en">Pending List</label>
+	</key> 			
+	<key name="已办列表">
+		<label local="en">Done List</label>
+	</key> 			
+	<key name="办结列表">
+		<label local="en">Completed  List</label>
+	</key> 			
+	<key name="发起流程">
+		<label local="en">Workflows</label>
+	</key> 			
+	<key name="可发起流程列表">
+		<label local="en">Workflows</label>
+	</key> 	
+	<key name="委托管理">
+		<label local="en">Delegate Manager</label>
+	</key> 	
+	<key name="新增一级部门">
+		<label local="en">Add New Top Dept</label>
+	</key> 	
+	<key name="新增下级部门">
+		<label local="en">Add New Child Dept</label>
+	</key> 	
+	<key name="关闭">
+		<label local="en">Close</label>
+	</key> 	
 <!-- Badmission -->
 
 	
