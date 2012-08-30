@@ -1,6 +1,13 @@
-<%@ page pageEncoding="UTF-8"%><%@ page import="com.exedosoft.plat.util.DOGlobals,com.exedosoft.plat.util.StringUtil"%><%@ page import="com.exedosoft.plat.util.Escape"%><%@ page import="com.exedosoft.plat.bo.BOInstance"%><%@ page import="com.exedosoft.plat.ui.DOFormModel"%><%@ page import="com.exedosoft.plat.bo.DOService"%><%@ page import="java.net.URLEncoder"%><% response.setContentType("application/x-download;charset=UTF-8");
+<%@ page pageEncoding="UTF-8"%><%@ page import="com.exedosoft.plat.util.DOGlobals,com.exedosoft.plat.util.StringUtil,com.exedosoft.plat.SessionContext"%><%@ page import="com.exedosoft.plat.util.Escape"%><%@ page import="com.exedosoft.plat.bo.BOInstance"%><%@ page import="com.exedosoft.plat.ui.DOFormModel"%><%@ page import="com.exedosoft.plat.bo.DOService"%><%@ page import="java.net.URLEncoder"%><% response.setContentType("application/x-download;charset=UTF-8");
 
   response.setCharacterEncoding("UTF-8");
+  SessionContext context = (SessionContext) session
+	.getAttribute("userInfo");
+	if (null == session.getAttribute("userInfo")
+		|| context.getUser() == null) {
+		response.sendRedirect(request.getContextPath()
+			+ "/exedo/webv3/logoff.jsp");
+	}
   String formModelUid =  request.getParameter("formModelUid");
   String fileName =  request.getParameter("fileName");
   DOFormModel theModel = DOFormModel.getFormModelByID(formModelUid);
