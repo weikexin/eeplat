@@ -1,6 +1,6 @@
 #sidebar index
 ===安装要求：===
-  # JDK 1.6版本或以上。
+  # JDK 1.6版本或以上（如果需要1.5版本，请替换[特殊JAR包 JDK15]）。
   # WEB容器，如TOMCAT,RESION,WEBLOGIC,WEBSPHERE等，需要相应版本支持JDK1.5或以上,WEB容器的安装路径不要含有中文或空格。
   # 建议安装FireFox。系统开发使用在FireFox上效率最高速度最快。
   
