@@ -1,2 +1,0 @@
-= JDK 1.5 需要的JAR包 =
-jsqlparser.jar 
