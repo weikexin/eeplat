@@ -3,7 +3,7 @@
  本文主要描述如何使用Eclipse的SVN插件下载安装eeplat工程，使用SVN客户端下载eeplat可能会更简单，本文也有参考价值。
 
 =安装要求=
-  # JDK 1.5或以上版本。
+  # JDK 1.6或以上版本。
   # Tomcat 5.5或以上版本,Tomcat安装路径不要有空格
   # Eclipse 3.5或以上版本。
   # 安装有SVN插件（如http://subclipse.tigris.org/update_1.6.x）
