@@ -1,6 +1,6 @@
 = JDK 1.5 需要的JAR包 =
-<a href="http://eeplat-social-api.googlecode.com/files/jsqlparser.jar" target="_blank">jsqlparser.jar</a> 
+<a href="http://eeplat.googlecode.com/files/jsqlparser.jar" target="_blank">jsqlparser.jar</a> 
 
-<a href="http://eeplat-social-api.googlecode.com/files/yhsdao15.jar" target="_blank">yhsdao15.jar</a> 
+<a href="http://eeplat.googlecode.com/files/yhsdao15.jar" target="_blank">yhsdao15.jar</a> 
 
-<a href="http://eeplat-social-api.googlecode.com/files/yhsmain15.jar" target="_blank">yhsmain15.jar</a> 
+<a href="http://eeplat.googlecode.com/files/yhsmain15.jar" target="_blank">yhsmain15.jar</a> 
