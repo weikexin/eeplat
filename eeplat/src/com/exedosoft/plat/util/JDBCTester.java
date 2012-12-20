@@ -18,23 +18,30 @@ public class JDBCTester {
 
 		StringBuffer buffer = new StringBuffer();
 
-		Connection con = DODataSource.getDefaultCon();
+		Connection con = DODataSource.getDefaultCon_Busi();
+	
 		try {
-
+			con.setAutoCommit(false);
 //			PreparedStatement pstmt = con
 //					.prepareStatement();
 			
-			PreparedStatement pstmt = con.prepareStatement("select * from do_bo where lower(name)=?",
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
+			PreparedStatement pstmt = con.prepareStatement("select * from do_log");
+			
+			
+			
+			PreparedStatement pstmt2 = con.prepareStatement("update do_log set  userName='1111'  where objuid=? ");
+		//	PreparedStatement pstmt
 
-			pstmt.setString(1, "do_log");
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				System.out.println(rs.getString("name"));
+			while (rs.next()) {
+				//rs.updateString("userName", "bb");
+				//System.out.println(rs.getString("userName"));
+				pstmt2.setString(1, rs.getString("objuid"));
+				pstmt2.executeUpdate();
 			}
 
 			pstmt.close();
+			con.commit();
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();

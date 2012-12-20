@@ -192,6 +192,9 @@ public class StringUtil {
 		if (placeHolder == null) {
 			placeHolder = "0";
 		}
+		if(placeHolder.trim().equals("")){
+			placeHolder = "''";
+		}
 
 		if (expression == null) {
 			return null;
@@ -220,7 +223,7 @@ public class StringUtil {
 				StringLengthSort ssl = it.next();
 
 				String value = bi.getValue(ssl.getString());
-				if (value == null) {
+				if (value == null  || value.trim().equals("")) {
 					value = placeHolder;
 				}
 
@@ -228,7 +231,7 @@ public class StringUtil {
 				//					
 				// value = "'" + value + "'";
 				// }
-				expression = expression.replaceAll(ssl.getString(), value);
+				expression = expression.replace(ssl.getString(), value);
 
 			}
 
@@ -473,8 +476,13 @@ public class StringUtil {
 				halfs[0] = one.substring(1, one.indexOf("),"));
 				halfs[1] = one.substring(one.indexOf("),") + 2);
 				list.add(halfs);
-			} else {
+			} else  if(one.indexOf(",") != -1 ) {
 				String[] halfs = one.split(",");
+				list.add(halfs);
+			}else{
+				String[] halfs = new String[2];
+				halfs[0] = one.replaceAll("\\s", "");
+				halfs[1] = one;
 				list.add(halfs);
 			}
 		}
@@ -523,8 +531,25 @@ public class StringUtil {
 			buffer.append("     ");
 		}
 	}
+	
+	public static String MD5(String plainTxt){
+		String str = plainTxt ;
+		int times = 1;
+		if(DOGlobals.getValue("md5")!=null){
+			try {
+				times = Integer.parseInt(DOGlobals.getValue("md5"));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+			//	e.printStackTrace();
+			}
+		}
+		for(int i = 0; i < times; i++){
+			plainTxt = MD5Base(plainTxt);
+		}
+		return plainTxt;
+	}
 
-	public static String MD5(String plainTxt) {
+	public static String MD5Base(String plainTxt) {
 
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -1089,7 +1114,9 @@ public class StringUtil {
 		
 		System.out.println( isChineseOfFirst("中c") );  
 		  
-		System.out.println( isChineseOfFirst("z中国") );  
+		System.out.println( isChineseOfFirst("z中国") ); 
+		
+		System.out.println(StringUtil.MD5("1111")); 
 		
 //		1111111%20%20222
 
