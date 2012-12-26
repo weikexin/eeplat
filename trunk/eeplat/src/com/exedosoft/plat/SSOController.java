@@ -2,12 +2,10 @@ package com.exedosoft.plat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,19 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.PropertyConfigurator;
 
 import com.exedosoft.plat.bo.BOInstance;
 import com.exedosoft.plat.bo.DOApplication;
 import com.exedosoft.plat.bo.DOBO;
 import com.exedosoft.plat.bo.DODataSource;
 import com.exedosoft.plat.bo.DOService;
-import com.exedosoft.plat.bo.org.OrgParter;
 import com.exedosoft.plat.login.LoginDelegateList;
 import com.exedosoft.plat.login.LoginMain;
 import com.exedosoft.plat.login.MultiAccount;
-import com.exedosoft.plat.login.MultiTenant;
-import com.exedosoft.plat.ui.DOPaneModel;
 import com.exedosoft.plat.util.DOGlobals;
 import com.exedosoft.plat.util.Escape;
 import com.exedosoft.plat.util.I18n;
@@ -41,9 +35,8 @@ public class SSOController extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/html; charset=utf-8";
 
 	private static Log log = LogFactory.getLog(SSOController.class);
-	
-	static Map<String,DODataSource> dsConfig = new HashMap<String,DODataSource>();
 
+	static Map<String, DODataSource> dsConfig = new HashMap<String, DODataSource>();
 
 	public SSOController() {
 		super();
@@ -65,9 +58,9 @@ public class SSOController extends HttpServlet {
 		// ///////////////////////////*************************捕获上下文
 		// this.getServletConfig(), this
 		// .getServletContext(),
-
 		DOGlobals.getInstance().refreshContext(
 				new DOServletContext(request, response));
+		
 
 		BOInstance formBI = getFormInstance(request);
 		log.info("Get the form Instance::::::::::::::");
@@ -79,15 +72,20 @@ public class SSOController extends HttpServlet {
 		String returnUrl = "";
 		if ("true".equals(DOGlobals.getValue("multi.tenancy"))) {
 			log.info("Running in MultiTenent env=================================");
-			String[] retTenant = makeMultiLoginAndTenant(request, formBI); 
+//			 * 现在用的是这个方法，这个方法既可以通过多租户中的multi_account登录
+//			 * 也可以通过相关租户表中的do_org_user登录。
+			String[] retTenant = makeMultiLoginAndTenant(request, formBI);
 			returnValue = retTenant[0];
-			if(retTenant[1]!=null){
+			if (retTenant[1] != null) {
 				returnUrl = retTenant[1];
 			}
 		} else {
 			log.info("Running in normal env=================================");
 			returnValue = makeSimpleLogin(request, formBI);
 		}
+		
+		
+		
 
 		boolean isDelegate = false;
 		try {
@@ -102,7 +100,8 @@ public class SSOController extends HttpServlet {
 		if ("jquery".equals(DOGlobals.getValue("jslib"))) {
 
 			// ////为了保留结构，没有实际意义
-			outHtml.append("{\"returnPath\":\"").append(returnUrl).append("\",\"targetPane\":\"");
+			outHtml.append("{\"returnPath\":\"").append(returnUrl)
+					.append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
@@ -124,8 +123,9 @@ public class SSOController extends HttpServlet {
 
 		} else {
 			// ////为了保留结构，没有实际意义 缺省时使用dojo的包
-			
-			outHtml.append("{\"returnPath\":\"").append(returnUrl).append("\",\"targetPane\":\"");
+
+			outHtml.append("{\"returnPath\":\"").append(returnUrl)
+					.append("\",\"targetPane\":\"");
 			// /////////value
 			String echoStr = DOGlobals.getInstance().getRuleContext()
 					.getEchoValue();
@@ -149,9 +149,14 @@ public class SSOController extends HttpServlet {
 		out.println(outHtml);
 	}
 
-	private String makeSimpleLogin(HttpServletRequest request, BOInstance formBI) {
+	public String makeSimpleLogin(HttpServletRequest request, BOInstance formBI) {
 
 		// //首先判断验证码，手机访问不判断
+//		
+//		log.info("Session Error::randCode1================================" + formBI.getValue("randcode"));
+//
+//		log.info("Session Error::randCode2================================" + request.getSession().getAttribute("rand"));
+
 		if (formBI.getValue("mobileclient") == null
 				&& !formBI.getValue("randcode").equals(
 						request.getSession().getAttribute("rand"))) {
@@ -222,26 +227,15 @@ public class SSOController extends HttpServlet {
 
 		String echoStr = "";
 
-		/**
-		 * 查找账号
-		 */
-		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
-				formBI.getValue("password"));
-		if (ma == null) {
-			return I18n.instance().get("账号/密码出错，请重试！");
-		}
-
-		BOInstance user = new BOInstance();
-		user.fromObject(ma);
 		DOService aService = DOService
 				.getService("multi_tenancy_browse_byname");
 		// ////////////根据用户查找租户
-		BOInstance tenant = aService.getInstance(user.getValue("tenancyId"));
+		BOInstance tenant = aService.getInstance(formBI.getValue("tenancyId"));
 		// ////////如果租户不存在
 		if (tenant == null || tenant.getName() == null) {
 			return I18n.instance().get("该账号没有被激活！");
 		}
-		log.info("当前登录的租户为::" + user.getValue("tenancyId"));
+		log.info("当前登录的租户为::" + formBI.getValue("tenancyId"));
 
 		// tenant data datastore url
 		String multi_datasource_uid = tenant.getValue("multi_datasource_uid");
@@ -285,33 +279,62 @@ public class SSOController extends HttpServlet {
 
 		tv.setDataDDS(dataDds);
 		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
-		DOService findUserService = DOService.getService("do_org_user_browse");
 
-		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
-		BOInstance employee = null;
-		try {
-			if (corrUsers == null || corrUsers.size() == 0) {
-				// user.putValue("objuid",
-				// ma.getObjUid());
-				DOService storeUser = DOService
-						.getService("do_org_user_insert");
-				// /建立用户间的对应关系
-				user.putValue("user_code", user.getValue("name"));
-				employee = storeUser.store(user);
+		/**
+		 * 查找账号
+		 */
+		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
+				formBI.getValue("password"));
 
-			} else {
-				employee = (BOInstance) corrUsers.get(0);
-			}
-		} catch (ExedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		user.putValue("name", employee.getValue("name"));
-
+		BOInstance user = new BOInstance();
 		// /设置公司名称
 		user.putValue("company", tenant.getValue("l10n"));
-		
-//		log.info("Login User:::" + user);
+
+		if (ma != null) {
+			user.fromObject(ma);
+			DOService findUserService = DOService
+					.getService("do_org_user_browse");
+			List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+			BOInstance employee = null;
+			try {
+				if (corrUsers == null || corrUsers.size() == 0) {
+					// user.putValue("objuid",
+					// ma.getObjUid());
+					DOService storeUser = DOService
+							.getService("do_org_user_insert");
+					// /建立用户间的对应关系
+					user.putValue("user_code", user.getValue("name"));
+					employee = storeUser.store(user);
+
+				} else {
+					employee = (BOInstance) corrUsers.get(0);
+				}
+			} catch (ExedoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			user.putValue("name", employee.getValue("name"));
+		} else {// //////////直接可以从用户表中访问，可以考虑，计费时根据这个表计费，肯定还需要一个计费表和这个表关联。另外一个思路是同意注册。
+
+			String serviceName = request.getParameter("contextServiceName");
+			BOInstance biUser = null;
+			if (serviceName != null && !serviceName.trim().equals("")) {
+				DOService findUserByUserNamePassword = DOService
+						.getService(serviceName);
+				List listUser = findUserByUserNamePassword.invokeSelect();
+				if (listUser != null && listUser.size() > 0) {
+					biUser = (BOInstance) listUser.get(0);
+				}
+
+			}
+			if (biUser == null) {
+				return I18n.instance().get("账号/密码出错，请重试！");
+			} else {
+				user = biUser;
+			}
+		}
+
+		// log.info("Login User:::" + user);
 
 		// //处理登录日志==========================
 		LoginMain.makeLogin(user, request);
@@ -326,9 +349,18 @@ public class SSOController extends HttpServlet {
 
 	}
 	
+	
+	/**
+	 * 现在用的是这个方法，这个方法既可以通过多租户中的multi_account登录
+	 * 也可以通过相关租户表中的do_org_user登录。
+	 * @param request
+	 * @param formBI
+	 * @return
+	 */
 
-	public String[] makeMultiLoginAndTenant(HttpServletRequest request, BOInstance formBI) {
-		
+	public String[] makeMultiLoginAndTenant(HttpServletRequest request,
+			BOInstance formBI) {
+
 		String[] ret = new String[2];
 
 		// //首先判断验证码，手机访问不判断
@@ -344,32 +376,19 @@ public class SSOController extends HttpServlet {
 
 		// 处理登录
 
-		String echoStr = "";		
+		String echoStr = "";
 		String returnUrl = "";
 
-
-		/**
-		 * 查找账号
-		 */
-		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
-				formBI.getValue("password"),formBI.getValue("tenancyId"));
-		if (ma == null) {
-			ret[0] = I18n.instance().get("账号/密码出错，请重试！");
-			return ret;
-		}
-
-		BOInstance user = new BOInstance();
-		user.fromObject(ma);
 		DOService aService = DOService
 				.getService("multi_tenancy_browse_byname");
 		// ////////////根据用户查找租户
-		BOInstance tenant = aService.getInstance(user.getValue("tenancyId"));
+		BOInstance tenant = aService.getInstance(formBI.getValue("tenancyId"));
 		// ////////如果租户不存在
 		if (tenant == null || tenant.getName() == null) {
 			ret[0] = I18n.instance().get("该账号没有被激活！");
 			return ret;
 		}
-		log.info("当前登录的租户为::" + user.getValue("tenancyId"));
+		log.info("当前登录的租户为::" + formBI.getValue("tenancyId"));
 
 		// tenant data datastore url
 		String multi_datasource_uid = tenant.getValue("multi_datasource_uid");
@@ -378,7 +397,7 @@ public class SSOController extends HttpServlet {
 
 		DODataSource dataDds = dsConfig.get(multi_datasource_uid);
 		DODataSource dds = dsConfig.get(model_datasource_uid);
-		
+
 		if (dataDds == null && dds == null) {
 
 			DOService findDataSource = DOService
@@ -417,50 +436,83 @@ public class SSOController extends HttpServlet {
 
 		tv.setDataDDS(dataDds);
 		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
-		DOService findUserService = DOService.getService("do_org_user_browse");
 
-		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
-		BOInstance employee = null;
-		try {
-			if (corrUsers == null || corrUsers.size() == 0) {
-				// user.putValue("objuid",
-				// ma.getObjUid());
-				DOService storeUser = DOService
-						.getService("do_org_user_insert");
-				// /建立用户间的对应关系
-				user.putValue("user_code", user.getValue("name"));
-				employee = storeUser.store(user);
+		/**
+		 * 查找账号
+		 */
+		MultiAccount ma = MultiAccount.findAccount(formBI.getValue("name"),
+				formBI.getValue("password"), formBI.getValue("tenancyId"));
+		BOInstance user = new BOInstance();
+		
 
+		if (ma == null) {
+			// //////////直接可以从用户表中访问，可以考虑，计费时根据这个表计费，肯定还需要一个计费表和这个表关联。另外一个思路是同意注册。
+
+			String serviceName = request.getParameter("contextServiceName");
+			BOInstance biUser = null;
+			if (serviceName != null && !serviceName.trim().equals("")) {
+				DOService findUserByUserNamePassword = DOService
+						.getService(serviceName);
+				List listUser = findUserByUserNamePassword.invokeSelect();
+				if (listUser != null && listUser.size() > 0) {
+					biUser = (BOInstance) listUser.get(0);
+				}
+
+			}
+			if (biUser == null) {
+				ret[0] = I18n.instance().get("账号/密码出错，请重试！");
+				return ret;
 			} else {
-				employee = (BOInstance) corrUsers.get(0);
+				user = biUser;
+				// /设置公司名称
+				user.putValue("company", tenant.getValue("l10n"));
 			}
-		} catch (ExedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		} else {
+
+			user.fromObject(ma);
+			DOService findUserService = DOService
+					.getService("do_org_user_browse");
+
+			List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+			BOInstance employee = null;
+			try {
+				if (corrUsers == null || corrUsers.size() == 0) {
+					// user.putValue("objuid",
+					// ma.getObjUid());
+					DOService storeUser = DOService
+							.getService("do_org_user_insert");
+					// /建立用户间的对应关系
+					user.putValue("user_code", user.getValue("name"));
+					employee = storeUser.store(user);
+
+				} else {
+					employee = (BOInstance) corrUsers.get(0);
+				}
+			} catch (ExedoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			user.putValue("name", employee.getValue("name"));
+			// /设置公司名称
+			user.putValue("company", tenant.getValue("l10n"));
 		}
-		user.putValue("name", employee.getValue("name"));
 
-		// /设置公司名称
-		user.putValue("company", tenant.getValue("l10n"));
-		
-		
-		///ret return path
+		// /ret return path
 		List<DOApplication> doas = DOApplication.getApplications();
-		
 
-		
 		returnUrl = doas.get(0).getOuterLinkPaneStr();
-		
+
 		log.info("returnUrl::" + returnUrl);
-		for(DOApplication doa: doas){
-			if(doa.isDefault()){
-				returnUrl = doa.getOuterLinkPaneStr();
-				break;
-			}
+		for (DOApplication doa : doas) {
+//			if (doa.isDefault()) {
+//				returnUrl = doa.getOuterLinkPaneStr();
+//				break;
+//			}
 		}
 		log.info("returnUrl2::" + returnUrl);
-		
-//		log.info("Login User:::" + user);
+
+		// log.info("Login User:::" + user);
 
 		// //处理登录日志==========================
 		LoginMain.makeLogin(user, request);
@@ -469,117 +521,118 @@ public class SSOController extends HttpServlet {
 				+ DOGlobals.getInstance().getSessoinContext()
 						.getTenancyValues().getDataDDS().getDriverUrl());
 
-		log.info("Current Config DB:::" + DODataSource.parseGlobals().getDriverUrl());
+		log.info("Current Config DB:::"
+				+ DODataSource.parseGlobals().getDriverUrl());
 
 		ret[0] = echoStr;
 		ret[1] = returnUrl;
 		return ret;
 
 	}
-	
-//	public String makeMultiLoginOfTenant(HttpServletRequest request, BOInstance formBI) {
-//
-//		// //首先判断验证码，手机访问不判断
-//		if (formBI.getValue("mobileclient") == null
-//				&& !formBI.getValue("randcode").equals(
-//						request.getSession().getAttribute("rand"))) {
-//
-//			return I18n.instance().get("验证码不正确！");
-//		}
-//
-//		DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
-//
-//		
-//		MultiTenant  mt = MultiTenant.findTenant(formBI.getValue("tenantId"));
-//	
-//		log.info("当前登录的租户为::" +mt);
-//
-//		// tenant data datastore url
-//		String multi_datasource_uid = mt.getMulti_datasource_uid();
-//		// tenant config datastore url
-//		String model_datasource_uid = mt.getModel_datasource_uid();
-//
-//		DODataSource dataDds = null;
-//		DODataSource dds = null;
-//		if (multi_datasource_uid != null && model_datasource_uid != null) {
-//
-//			DOService findDataSource = DOService
-//					.getService("multi_datasource_browse");
-//
-//			// //data datasource
-//			BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
-//			if (aBI != null) {
-//				dataDds = (DODataSource) aBI.toObject(DODataSource.class);
-//				// /现在多租户情况下默认都是mysql
-//				dataDds.setDialect(DODataSource.DIALECT_MYSQL);
-//			}
-//
-//			// /model datasource
-//			aBI = findDataSource.getInstance(model_datasource_uid);
-//			if (aBI != null) {
-//				dds = (DODataSource) aBI.toObject(DODataSource.class);
-//				// /现在多租户情况下默认都是mysql
-//				dds.setDialect(DODataSource.DIALECT_MYSQL);
-//			}
-//		}
-//
-//		if (dataDds == null || dds == null) {
-//			return I18n.instance().get("该账号没有被激活或者没有正确初始化，请与管理员联系！");
-//		}
-//
-//		// /globals 放到session中
-//
-//		// //需要更改多租户表中，租户数据库中的数据源
-//		// ////每个租户为定位到某个物理数据库中
-//		// ///租户数据库分配
-//		
-//		BOInstance tenant = new BOInstance();
-//		tenant.fromObject(mt);
-//		TenancyValues tv = new TenancyValues(dds, tenant);
-//
-//		tv.setDataDDS(dataDds);
-//		DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
-//		DOService findUserService = DOService.getService("do_org_user_browse");
-//
-//		List corrUsers = findUserService.invokeSelect(ma.getObjUid());
-//		BOInstance employee = null;
-//		try {
-//			if (corrUsers == null || corrUsers.size() == 0) {
-//				// user.putValue("objuid",
-//				// ma.getObjUid());
-//				DOService storeUser = DOService
-//						.getService("do_org_user_insert");
-//				// /建立用户间的对应关系
-//				user.putValue("user_code", user.getValue("name"));
-//				employee = storeUser.store(user);
-//
-//			} else {
-//				employee = (BOInstance) corrUsers.get(0);
-//			}
-//		} catch (ExedoException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		user.putValue("name", employee.getValue("name"));
-//
-//		// /设置公司名称
-//		user.putValue("company", tenant.getValue("l10n"));
-//		
-////		log.info("Login User:::" + user);
-//
-//		// //处理登录日志==========================
-//		LoginMain.makeLogin(user, request);
-//
-//		log.info("Current Data DB:::"
-//				+ DOGlobals.getInstance().getSessoinContext()
-//						.getTenancyValues().getDataDDS());
-//
-//		log.info("Current Config DB:::" + DODataSource.parseGlobals());
-//
-//		return echoStr;
-//
-//	}
 
+	// public String makeMultiLoginOfTenant(HttpServletRequest request,
+	// BOInstance formBI) {
+	//
+	// // //首先判断验证码，手机访问不判断
+	// if (formBI.getValue("mobileclient") == null
+	// && !formBI.getValue("randcode").equals(
+	// request.getSession().getAttribute("rand"))) {
+	//
+	// return I18n.instance().get("验证码不正确！");
+	// }
+	//
+	// DOGlobals.getInstance().getSessoinContext().setFormInstance(formBI);
+	//
+	//
+	// MultiTenant mt = MultiTenant.findTenant(formBI.getValue("tenantId"));
+	//
+	// log.info("当前登录的租户为::" +mt);
+	//
+	// // tenant data datastore url
+	// String multi_datasource_uid = mt.getMulti_datasource_uid();
+	// // tenant config datastore url
+	// String model_datasource_uid = mt.getModel_datasource_uid();
+	//
+	// DODataSource dataDds = null;
+	// DODataSource dds = null;
+	// if (multi_datasource_uid != null && model_datasource_uid != null) {
+	//
+	// DOService findDataSource = DOService
+	// .getService("multi_datasource_browse");
+	//
+	// // //data datasource
+	// BOInstance aBI = findDataSource.getInstance(multi_datasource_uid);
+	// if (aBI != null) {
+	// dataDds = (DODataSource) aBI.toObject(DODataSource.class);
+	// // /现在多租户情况下默认都是mysql
+	// dataDds.setDialect(DODataSource.DIALECT_MYSQL);
+	// }
+	//
+	// // /model datasource
+	// aBI = findDataSource.getInstance(model_datasource_uid);
+	// if (aBI != null) {
+	// dds = (DODataSource) aBI.toObject(DODataSource.class);
+	// // /现在多租户情况下默认都是mysql
+	// dds.setDialect(DODataSource.DIALECT_MYSQL);
+	// }
+	// }
+	//
+	// if (dataDds == null || dds == null) {
+	// return I18n.instance().get("该账号没有被激活或者没有正确初始化，请与管理员联系！");
+	// }
+	//
+	// // /globals 放到session中
+	//
+	// // //需要更改多租户表中，租户数据库中的数据源
+	// // ////每个租户为定位到某个物理数据库中
+	// // ///租户数据库分配
+	//
+	// BOInstance tenant = new BOInstance();
+	// tenant.fromObject(mt);
+	// TenancyValues tv = new TenancyValues(dds, tenant);
+	//
+	// tv.setDataDDS(dataDds);
+	// DOGlobals.getInstance().getSessoinContext().setTenancyValues(tv);
+	// DOService findUserService = DOService.getService("do_org_user_browse");
+	//
+	// List corrUsers = findUserService.invokeSelect(ma.getObjUid());
+	// BOInstance employee = null;
+	// try {
+	// if (corrUsers == null || corrUsers.size() == 0) {
+	// // user.putValue("objuid",
+	// // ma.getObjUid());
+	// DOService storeUser = DOService
+	// .getService("do_org_user_insert");
+	// // /建立用户间的对应关系
+	// user.putValue("user_code", user.getValue("name"));
+	// employee = storeUser.store(user);
+	//
+	// } else {
+	// employee = (BOInstance) corrUsers.get(0);
+	// }
+	// } catch (ExedoException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// user.putValue("name", employee.getValue("name"));
+	//
+	// // /设置公司名称
+	// user.putValue("company", tenant.getValue("l10n"));
+	//
+	// // log.info("Login User:::" + user);
+	//
+	// // //处理登录日志==========================
+	// LoginMain.makeLogin(user, request);
+	//
+	// log.info("Current Data DB:::"
+	// + DOGlobals.getInstance().getSessoinContext()
+	// .getTenancyValues().getDataDDS());
+	//
+	// log.info("Current Config DB:::" + DODataSource.parseGlobals());
+	//
+	// return echoStr;
+	//
+	// }
 
 	/*
 	 * (non-Java-doc)
@@ -592,45 +645,55 @@ public class SSOController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	////多租户，根据租户的不同初始化到不同的租户业务库中
-	///不过写这个函数没有任何意义，通过配置文件一样可以搞定。
-//	initLog4j();
-//	private void initLog4j() {
-//		
-//		
-//		
-//
-//		Properties pro = new Properties();
-//		try {
-//			pro.load(DOGlobals.class
-//					.getResourceAsStream("/log4j.properties"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//
-//		pro.put("log4j.appender.threadLog", "com.exedosoft.plat.log.ThreadAppender");
-//		pro.put("log4j.appender.threadLog.layout", "org.apache.log4j.PatternLayout");
-//		pro.put("log4j.appender.threadLog.layout.ConversionPattern", "%-d{yyyy-MM-dd HH:mm:ss} [%t] - [%p] %37c(:%L) %3x %m%n");
-//		
-//		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOSearch", "error, threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.dao.DAOTools", "error, threadLog");
-//		
-//		
-//		pro.put("log4j.logger.com.exedosoft.plat.bo.DOService", "info,threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.bo.search.SearchImp", "info,threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.bo.BOInstance", "info,threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.MVCController", "info,threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.ServiceController", "info,threadLog");
-//		pro.put("log4j.logger.com.exedosoft.plat.js.*", "info,threadLog");
-//		pro.put("log4j.logger.ExceptionOutPrint", "info,threadLog");
-//		pro.put("log4j.logger.SystemOutPrint", "info,threadLog");
-//
-//		PropertyConfigurator.configure(pro);
-//		log.info("Logging initialized.");
-//
-//	}
+	// //多租户，根据租户的不同初始化到不同的租户业务库中
+	// /不过写这个函数没有任何意义，通过配置文件一样可以搞定。
+	// initLog4j();
+	// private void initLog4j() {
+	//
+	//
+	//
+	//
+	// Properties pro = new Properties();
+	// try {
+	// pro.load(DOGlobals.class
+	// .getResourceAsStream("/log4j.properties"));
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	//
+	// pro.put("log4j.appender.threadLog",
+	// "com.exedosoft.plat.log.ThreadAppender");
+	// pro.put("log4j.appender.threadLog.layout",
+	// "org.apache.log4j.PatternLayout");
+	// pro.put("log4j.appender.threadLog.layout.ConversionPattern",
+	// "%-d{yyyy-MM-dd HH:mm:ss} [%t] - [%p] %37c(:%L) %3x %m%n");
+	//
+	// pro.put("log4j.logger.com.exedosoft.plat.dao.DAOSearch",
+	// "error, threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.dao.DAOTools",
+	// "error, threadLog");
+	//
+	//
+	// pro.put("log4j.logger.com.exedosoft.plat.bo.DOService",
+	// "info,threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.bo.search.SearchImp",
+	// "info,threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.bo.BOInstance",
+	// "info,threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.MVCController",
+	// "info,threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.ServiceController",
+	// "info,threadLog");
+	// pro.put("log4j.logger.com.exedosoft.plat.js.*", "info,threadLog");
+	// pro.put("log4j.logger.ExceptionOutPrint", "info,threadLog");
+	// pro.put("log4j.logger.SystemOutPrint", "info,threadLog");
+	//
+	// PropertyConfigurator.configure(pro);
+	// log.info("Logging initialized.");
+	//
+	// }
 
 	private BOInstance getFormInstance(HttpServletRequest request) {
 
@@ -663,22 +726,23 @@ public class SSOController extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-		
+
 		CacheFactory.getCacheData().fromSerialObject();
 		DOService findDataSource = DOService
 				.getService("multi_datasource_browse");
-		
+
 		// //data datasource
-		BOInstance aBI = findDataSource.getInstance("402881eb38a231d20138a23b4ab70015");
+		BOInstance aBI = findDataSource
+				.getInstance("402881eb38a231d20138a23b4ab70015");
 		DODataSource dataDds = null;
 		if (aBI != null) {
 			dataDds = (DODataSource) aBI.toObject(DODataSource.class);
 			// /现在多租户情况下默认都是mysql
 			dataDds.setDialect(DODataSource.DIALECT_MYSQL);
 		}
-		
-		
-		BOInstance aBI2 = findDataSource.getInstance("402881eb38a231d20138a23b4ab70015");
+
+		BOInstance aBI2 = findDataSource
+				.getInstance("402881eb38a231d20138a23b4ab70015");
 		DODataSource dataDds2 = null;
 		if (aBI2 != null) {
 			dataDds2 = (DODataSource) aBI2.toObject(DODataSource.class);
@@ -688,12 +752,12 @@ public class SSOController extends HttpServlet {
 
 		System.out.println("equals::::" + dataDds.equals(dataDds2));
 
-//		CacheFactory.getCacheData().fromSerialObject();
-//		DOApplication.clearAppCache();
-//
-//		List<DOApplication> apps = DOApplication.getApplications();
-//
-//		System.out.println("apps::::" + apps);
+		// CacheFactory.getCacheData().fromSerialObject();
+		// DOApplication.clearAppCache();
+		//
+		// List<DOApplication> apps = DOApplication.getApplications();
+		//
+		// System.out.println("apps::::" + apps);
 
 	}
 }
