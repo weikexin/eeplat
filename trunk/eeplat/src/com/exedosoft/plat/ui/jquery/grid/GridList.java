@@ -27,7 +27,7 @@ public class GridList extends DOViewTemplate {
 	private static Log log = LogFactory.getLog(GridList.class);
 
 	public GridList() {
-		this.templateFile = "grid/GridListPagination.ftl";
+		this.templateFile = "grid/GridList.ftl";
 	}
 
 	public Map<String, Object> putData(DOIModel doimodel) {
@@ -64,7 +64,10 @@ public class GridList extends DOViewTemplate {
 			}
 		}
 		// //如果配置了查询条件面板（这里的含义是 拥有表单的面板）
-		DOPaneModel hpm = gm.getContainerPane().getHiddenPane();
+		DOPaneModel hpm = null;
+		if(gm.getContainerPane()!=null){
+			hpm = gm.getContainerPane().getHiddenPane();
+		}
 		if (hpm != null) {
 			if (hpm.getDOGridModel() != null) {
 				formName = "a" + hpm.getDOGridModel().getObjUid();
