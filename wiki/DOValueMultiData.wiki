@@ -1,13 +1,16 @@
-#summary One-sentence summary of this page.
+英文名称
 
-= Introduction =
+com.exedosoft.plat.ui.jquery.form.DOValueMultiData
+适用场景
 
-Add your content here.
+显示当前记录的多条相关数据 
+
+说明
+
+定义时选择需要选择一个数据筛选服务，服务参数选用current
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+
+运行示例
