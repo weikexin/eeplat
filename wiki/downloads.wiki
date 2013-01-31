@@ -1,7 +1,3 @@
 源代码下载只支持SVN方式，具体参见[SvnSetup 源代码SVN安装]。
 
-这里是<a href="http://eeplat-social-api.googlecode.com/files/eeplat2013.war" target="_blank">WAR包下载</a>。
-
-
-上述为最新版本20120521Release，[20120521Release 发布说明]；
-不再提供历史版本的下载。
+这里是<a href="http://eeplat-social-api.googlecode.com/files/eeplat2013.war" target="_blank">最新WAR包下载</a>。
