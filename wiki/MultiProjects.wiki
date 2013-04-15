@@ -17,20 +17,18 @@
 
 
     ===PostgreSQL支持===
-  EEPlat多应用模式支持PostgreSQL，并且自带了PostgreSQL的JDBC Jar包。进入控制台界面，选择数据源管理，如下图：
+   EEPlat多应用模式支持PostgreSQL，并且自带了PostgreSQL的JDBC Jar包。进入控制台界面，选择数据源管理，如下图：
   <img src="http://eeplat.googlecode.com/files/m_databases.png"/>
 
-然后选择方言为PostgreSQL的数据源，如下图：
+   然后选择方言为PostgreSQL的数据源，如下图：
   <img src="http://eeplat.googlecode.com/files/m_postgre.png"/>
 
-修改为正确的URL，用户名，密码， 如下图：
+   修改为正确的URL，用户名，密码， 如下图：
   <img src="http://eeplat.googlecode.com/files/m_postgre_pwd.png"/>
 
-保存修改后要重启应用程序服务器如tomcat。
+   保存修改后要重启应用程序服务器如tomcat。
 
-其它操作可以参见wiki的其它部分。
-
-
+   其它操作可以参见wiki的其它部分。
 
 
 
