@@ -12,9 +12,9 @@
  
    填写上述要求的值，注意用户名/密码一定要记牢，用来登录控制台界面。
   
-   控制台界面地址为：{{{ http://{SITE}:{PORT}/eeplat/console.jsp（如：http://127.0.0.1/eeplat/console.jsp 。） }}} 。
+   控制台界面地址为：{{{ http://{SITE}:{PORT}/eeplat/console.jsp（如：http://127.0.0.1/eeplat/console.jsp） }}} 。
 
-   业务界面地址为：{{{  http://{SITE}:{PORT}/eeplat（如:http://127.0.0.1/eeplat/）,  登录用户名/密码为: u/1111 。}}}  
+   业务界面地址为：{{{  http://{SITE}:{PORT}/eeplat（如:http://127.0.0.1/eeplat/）,  登录用户名/密码为: u/1111}}}  。
 
 
     ===PostgreSQL支持===
