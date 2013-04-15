@@ -12,9 +12,9 @@
  
    填写上述要求的值，注意用户名/密码一定要记牢，用来登录控制台界面。
   
-   控制台界面地址为：{{{ http://{SITE}:{PORT}/eeplat/console.jsp（如：http://127.0.0.1/eeplat/console.jsp） }}} 。
+   控制台界面地址为：{{{ http://{SITE}:{PORT}/eeplat/console.jsp（如：http://127.0.0.1/eeplat/console.jsp 。） }}} 。
 
-   业务界面地址为：{{{  http://{SITE}:{PORT}/eeplat（如:http://127.0.0.1/eeplat/）。 }}}
+   业务界面地址为：{{{  http://{SITE}:{PORT}/eeplat（如:http://127.0.0.1/eeplat/）,  登录用户名/密码为: u/1111 。}}}  
 
 
     ===PostgreSQL支持===
@@ -29,4 +29,4 @@
 
    保存修改后要重启应用程序服务器如tomcat。
 
-   其它操作可以参见wiki的其它部分。
+   其它操作可以参见wiki的其它部分。  注意，初始化数据表时，先选中自己创建的工程，然后才可以选择该工程下面的业务包。
