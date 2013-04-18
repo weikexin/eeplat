@@ -4,24 +4,24 @@
 
 该文档由石头倾心整理，包括了配置的一些常见问题和配置实例，及解决办法，在此万分感谢！
 
-<a href="http://eeplat.googlecode.com/files/t_dovaluemultidata_1.png"/>pdf下载(@stone上传)</a>
+<a href="http://eeplat.googlecode.com/files/t_dovaluemultidata_1.png">pdf下载(@stone上传)</a>
 
 
 = Details =
 
-eeplat_0示例SQL
-eeplat_1工程创建
-eeplat_2项目页面优化（菜单名称、表格元素显示等）
-eeplat_3关联数据表（处理表间关联）
-eeplat_4创建组合面板
-eeplat_5规则应用（以级联删除为例）
-eeplat_6控制器扩展
-eeplat_7自定义动作扩展
-eeplat_8缺省工作流示例
-eeplat_9编码定义与编码项应用简例
-eeplat_11使用表格元素的条件类型属性控制表格元素的显示与否
-eeplat_12_1图表使用示例-控制器扩展延伸(示例中用的svn版本为：1821)
-eeplat_12_2图表使用示例-控制器扩展延伸(示例中用的svn版本为：1974)
-eeplat_13角色授权（菜单权限、操作权限、数据权限）统一勾选的实现
-eeplat_14JS应用示例
-eeplat_15用户修改密码示例
+==eeplat_0示例SQL==
+==eeplat_1工程创建==
+==eeplat_2项目页面优化（菜单名称、表格元素显示等）==
+==eeplat_3关联数据表（处理表间关联）==
+==eeplat_4创建组合面板==
+==eeplat_5规则应用（以级联删除为例）==
+==eeplat_6控制器扩展==
+==eeplat_7自定义动作扩展==
+==eeplat_8缺省工作流示例==
+==eeplat_9编码定义与编码项应用简例==
+==eeplat_11使用表格元素的条件类型属性控制表格元素的显示与否==
+==eeplat_12_1图表使用示例-控制器扩展延伸(示例中用的svn版本为：1821)==
+==eeplat_12_2图表使用示例-控制器扩展延伸(示例中用的svn版本为：1974)==
+==eeplat_13角色授权（菜单权限、操作权限、数据权限）统一勾选的实现==
+==eeplat_14JS应用示例==
+==eeplat_15用户修改密码示例==
