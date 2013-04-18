@@ -4,7 +4,7 @@
 
 该文档由石头倾心整理，包括了配置的一些常见问题和配置实例，及解决办法，在此万分感谢！
 
-<a href="http://eeplat.googlecode.com/files/t_dovaluemultidata_1.png">pdf下载(@stone上传)</a>
+<a href="http://eeplat.googlecode.com/files/eeplat-tutorial20130412.pdf">pdf下载(@stone上传)</a>
 
 
 = Details =
