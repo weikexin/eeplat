@@ -51,6 +51,7 @@
     * [Multi_dev 在线开发说明]
     * [AppShare AppShare(应用商店)]
   * 配置实战
-    * [Tutorial_By_Shitou EEPlat入门实战 by QQ群 @石头]
+    * [Tutorial_By_Shitou EEPlat入门实战 @石头]
+    * [FAQ_By_Shitou 问题及解决办法 @石头]
   * [FAQ  常见问题解答]
  
