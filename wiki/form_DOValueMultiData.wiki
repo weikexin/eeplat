@@ -12,7 +12,11 @@ com.exedosoft.plat.ui.jquery.form.DOValueMultiData
 数据来自“连接的服务”，参数选择current类型，当前的objuid或当前行的objuid
 
 配置示例如下图：
+
+
 <img  src="http://eeplat.googlecode.com/files/t_dovaluemultidata_1.png"/>
+
+
 服务配置示例：
 
 
