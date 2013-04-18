@@ -1,18 +1,11 @@
-#summary One-sentence summary of this page.
+#sidebar controller_index
 
-= Introduction =
+= 英文名称 =
 
-英文名称com.exedosoft.plat.ui.jquery.form.DOValueMultiData
+com.exedosoft.plat.ui.jquery.form.DOValueMultiData
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-适用场景
+= 适用场景 =
 
 在表格元素中显示数据的相关的多条数据。如在班级的列表中，显示其所有相关老师的姓名等其他信息。
 
@@ -23,6 +16,11 @@ Add your content here.  Format your content with:
 服务配置示例：
 
 
-说明必须配置服务，服务返回显示所属业务对象的值列
+= 说明 =
+
+必须配置服务，服务返回显示所属业务对象的值列
 更多设置参见表格元素。
-运行示例
+
+= 运行示例 =
+
+如下图所示：
