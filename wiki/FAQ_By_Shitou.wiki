@@ -1,10 +1,10 @@
-#summary One-sentence summary of this page.
+#sidebar index
 
 =说明=
 
 以下均为石头开发过程中整理，非常感谢！供大家参考(QQ群共享也有下载链接)
 
-<a href="">下载文档</a>
+<a href="http://eeplat.googlecode.com/files/eeplat-question by shitou.rar">下载文档</a>
 
 =所遇问题及解决办法=
 
