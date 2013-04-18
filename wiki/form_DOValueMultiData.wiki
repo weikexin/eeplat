@@ -19,6 +19,8 @@ com.exedosoft.plat.ui.jquery.form.DOValueMultiData
 
 服务配置示例：
 
+<img  src="http://eeplat.googlecode.com/files/t_dovaluemultidata_2.png"/>
+
 
 = 说明 =
 
@@ -28,3 +30,5 @@ com.exedosoft.plat.ui.jquery.form.DOValueMultiData
 = 运行示例 =
 
 如下图所示：
+
+<img  src="http://eeplat.googlecode.com/files/t_dovaluemultidata_3.png"/>
