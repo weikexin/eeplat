@@ -50,5 +50,7 @@
     * [Multi_Mobile 手机支持]
     * [Multi_dev 在线开发说明]
     * [AppShare AppShare(应用商店)]
+  * 配置实战
+    * [Tutorial_By_Shitou EEPlat入门实战 by QQ群 @石头]
   * [FAQ  常见问题解答]
  
