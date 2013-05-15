@@ -2,7 +2,7 @@
 
 = Introduction =
 
-下拉框包含值列和显示列，默认为服务对应的业务对象的key列和特征值列，如果需要显示其他内容或者传递其他内容，如何解决？
+下拉框包含值列和显示列，默认为服务对应的业务对象的key列和特征值列，如果需要显示其他内容或者传递其他内容，如何解决？原文：http://www.eeplat.com/eeplatforum/mvnforum/viewthread_thread,557
 
 
 = Details =
