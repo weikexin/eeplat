@@ -3,6 +3,4 @@
 这里是<a href="http://eeplat.googlecode.com/files/eeplat2013.war" target="_blank">最新WAR包下载</a>。
 
 
-这里是<a href="http://eeplat.googlecode.com/files/eeplatwithtomcat.war" target="_blank">EEPlat with Tomcat下载</a>。
-
-
+这里是<a href="http://eeplat.googlecode.com/files/eeplatwithtomcat.zip" target="_blank">EEPlat with Tomcat下载</a>。
