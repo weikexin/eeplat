@@ -14,6 +14,8 @@
 新增按钮：
 1.按钮设置
 <img src="http://eeplat.googlecode.com/files/FAQ0007.jpg "/>
+
+
 JS函数  exedo/webv3/js的my.js文件中
 function add_check(){
 	//var uid = $("#gm_do_org_user_update_ofdept_deptuid").val();        //获取服务参数
