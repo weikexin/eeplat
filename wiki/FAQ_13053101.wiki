@@ -13,6 +13,8 @@
 
 新增按钮：
 1.按钮设置
+
+
 <img src="http://eeplat.googlecode.com/files/FAQ0007.jpg "/>
 
 
