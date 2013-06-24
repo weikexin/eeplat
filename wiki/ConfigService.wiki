@@ -42,6 +42,10 @@
 			fdclasstemplateid[AND  fdclasstemplateid='?'],fdstarttime[AND  fdstarttime='?']
 
 }}}
+
+  其中：fdstarttime[AND  fdstarttime='?']
+  这种写法会自动处理为自动条件 前面的fdstarttime是界面元素的名字 后面为sql片段 根据前面去获取界面的值 如果为空 则该条件不加入
+
        # 自由保存
        # 脚本  定义一个javascript 脚本，最后一行返回sql。
        # 自定义动作查询  定义一个自定义动作，自定义动作返回一个结果集。 自定义动作查询属于基本服务。自定义动作通过setInstances设置返回的结果集，结果集是一个BOInstance的List。  _ 注意在这个自定义动作里面不能直接使用该服务的invokeSelect()方法，否则要引起死循环。 _ 
