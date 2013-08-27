@@ -181,7 +181,7 @@ initOnly表示只操作总线不做其它动作。
 在这里，contextKey是业务对象的主键, contextValue是业务对象实例的主键；如果contextKey和contextValue只写一对，就是对单个对象的的总线操作。
 
  * 用户级操作：可以在总线上写入自定义的数据结构，并且键也可以不是业务对象的主键。如：
-/wd/servicecontroller?callType=initOnly&dataBus=setContext&contextCustKey=test&contextCustValue={'value','500000'}
+/wd/servicecontroller?callType=initOnly&dataBus=setContext&contextCustKey=menumodel&contextCustValue={'value':'500000'}
 在这里，contextCustKey可以不是业务对象的主键, contextCustValue必须是json格式的字符串。
 
 ===总线读操作===
@@ -195,7 +195,7 @@ initOnly表示只操作总线不做其它动作。
 
  * 用户级操作：
 /wd/servicecontroller?dataBus=getFullContext&contextCustKey=classanole1
-/wd/servicecontroller?dataBus=getContext&contextCustKey=classanole1
+/wd/servicecontroller?dataBus=getCustContext&contextCustKey=classanole1
 这两种写法等效，都是获取用户自定义数据的完整信息(JSON格式)
 
 ==JAVA代码操作==
