@@ -35,7 +35,7 @@
 
 ==QQ群==
   
-  <a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=e7e6669b8ca6b8af83670f8a0ea1ab1d6f2037f9d1f7d0a0f288b2ce20c15da8"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" title="EEPlat PaaS应用平台"></a>
+  <a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=e7e6669b8ca6b8af83670f8a0ea1ab1d6f2037f9d1f7d0a0f288b2ce20c15da8"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png">EEPlat PaaS应用平台</a>
 
   QQ群号：105867861，欢迎加入讨论(申请加入时，请填写eeplat2012)。
 
