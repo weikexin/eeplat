@@ -19,7 +19,7 @@
   点击创建工程后将自动进入后台系统。
   选中项目点击打开工程登录，默认用户名密码u  1111  即可进入创建的新工程。
   此时再以[http://127.0.0.1:8080/eeplat/exedo/webv3/]登录，用户名密码为刚才创建工程所设置。
- # 语言设置 新版本默认显示可能为英文界面，切换语言设置，请打开D:\eeplat5withtomcat\webapps\eeplat\WEB-INF\classes\global.xml修改一下，<property name="lang.local">cn</property> 即可显示中文。
+  # 语言设置 新版本默认显示可能为英文界面，切换语言设置，请打开D:\eeplat5withtomcat\webapps\eeplat\WEB-INF\classes\global.xml修改一下，<property name="lang.local">cn</property> 即可显示中文。
 
   
  
