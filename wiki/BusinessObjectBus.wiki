@@ -87,7 +87,9 @@ SessionContext us = (SessionContext) request.getSession().getAttribute(
       根据缺省值里面的配置返回USER在构建过程中对应的值，可以得到USER里面的所有的值。可以用这种类型得到前四种类型的值，前四种类型其实是这种类型的特例,如TYPE_LOGIN_MAIN_STATION 这个类型可以用TYPE_LOGIN_KEY 代替，只要在缺省值里面配置字符串’stationuid’;并且还要更灵活，如果表达岗位不用stationuid, 我们只要在缺省值里面配置相应的字符串。
      <b>  当使用API时，可以通过SessionContext.getInstance().getUser()获取User节点</b>
 				
-==GLOBAL_UID节点==
+==GLOBAL节点==
+
+注意，下面描述的GLOBAL节点内容，只有EEPlat 2014或后续版本才支持。
 
 创建:
   服务的返回类型为刷新CURRENT总线和全局总线时。
