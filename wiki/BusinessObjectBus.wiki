@@ -96,6 +96,8 @@ _ 注意，下面描述的GLOBAL节点内容，只有EEPlat 2014或后续版本�
 　/eeplat/servicecontroller?dataBus=setGlobalContext&&contextKey=?contextValue=?
  * 代码方式
 　 SessionContext.getInstance().getGlobal().putValue(KEY,VALUE)
+
+
 获取:
  * WEBService 方式
 　/eeplat/servicecontroller?dataBus=getGlobalContext
