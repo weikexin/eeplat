@@ -2,9 +2,10 @@
     * [Setup WAR包安装]
     * [SvnSetup 源代码SVN安装]
     * [FirstProjcet 第一个工程]
-    * [Video 视频及讨论群]
+    * [Video 视频]
     * [Translating 附本地化代码]
     * [AboutSQL  附示例SQL]
+    * [Link 联系我们]
   * 开发文档
           *  [Introduce 平台简介]
           *  [TechArchive 技术架构]
