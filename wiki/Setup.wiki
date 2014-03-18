@@ -16,9 +16,9 @@
   # 系统配置开发登录默认用户名/密码为：a/1（多工程版本，“EEPlat with Tomcat下载包”为多工程版本，是自己在创建第一个工程时的用户名/密码），登录后进入系统，显示如下界面则表示系统安装成功：
      http://eeplat.googlecode.com/files/yiyi_admin_index.png 
   # 新版说明，第一步：下载 eeplat5withtomcat.zip 解压缩后，进入bin目录直接启动tomcat。第二部：如果以[http://127.0.0.1:8080/eeplat/exedo/webv3/]登录，会提示密码错误，这是老版的入口界面。新版先以[http://127.0.0.1:8080/eeplat/]创建第一个工程，这里输入的用户名密码就是以后后台的用户名密码，请记好。 
-  点击创建工程后将自动进入后台系统。
-  选中项目点击打开工程登录，默认用户名密码u  1111  即可进入创建的新工程。
-  此时再以[http://127.0.0.1:8080/eeplat/exedo/webv3/]登录，用户名密码为刚才创建工程所设置。
+    点击创建工程后将自动进入后台系统。
+    选中项目点击打开工程登录，默认用户名密码u  1111  即可进入创建的新工程。
+    此时再以[http://127.0.0.1:8080/eeplat/exedo/webv3/]登录，用户名密码为刚才创建工程所设置。
   # 语言设置 新版本默认显示可能为英文界面，切换语言设置，请打开D:\eeplat5withtomcat\webapps\eeplat\WEB-INF\classes\global.xml修改一下，<property name="lang.local">cn</property> 即可显示中文。
 
   
