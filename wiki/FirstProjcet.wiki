@@ -1,5 +1,7 @@
 #sidebar index
 
+=最新版本请参考： http://cn.eeplat.com/eeplatshare/web/site/firstprj.htm=
+
 ==第一个工程业务说明==
 
    我们的第一个工程选择做一个非常简单的项目管理分为两个模块，项目信息管理和人员信息管理，一个项目必须指定一个项目负责人，项目负责人的信息存储在人员信息表中。下面介绍中用到的数据源以MySql为例。
