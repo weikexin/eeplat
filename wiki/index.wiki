@@ -26,7 +26,7 @@
           *  [ConfigMenu     菜单]
           *  [ConfigGrid     表格]
           *  [ConfigGridItem     表格元素]
-          *  [ConfigController     控制器]
+          *  [ConfigController     界面组件]
           *  [ConfigAction     自定义动作]
           *  [ConfigResouce     资源]
           *  [ConfigDataSource     数据源]
