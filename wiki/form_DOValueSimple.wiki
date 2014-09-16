@@ -10,7 +10,7 @@ com.exedosoft.plat.ui.jquery.form.DOValueSimple
 
 ==说明==
 
-常用控制器之一。如果定义了CSS风格，则按照 CSS风格显示。
+常用界面组件之一。如果定义了CSS风格，则按照 CSS风格显示。
 
 ==运行示例==
 

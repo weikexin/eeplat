@@ -470,20 +470,20 @@ c)	由快速开发 JavaScript API调用，Javascript 端的返回值为自定义
 
 ==DOIView==
 
-  平台所有控制器都实现了DOIView。DOIView只有一个必须要实现的方法getHtmlCode(DOIModel doimodel)。 这个方法的目的是输出html片段。
+  平台所有界面组件都实现了DOIView。DOIView只有一个必须要实现的方法getHtmlCode(DOIModel doimodel)。 这个方法的目的是输出html片段。
 
 
 ==DOBaseForm==
 
-  DOBaseForm是继承DOIVew的抽象类，为实现表格元素的控制器提供了几个帮助方法。
+  DOBaseForm是继承DOIVew的抽象类，为实现表格元素的界面组件提供了几个帮助方法。
 
 ==DOBaseMenu==
 
-  DOBasMenu 是继承DOIVew的抽象类，为实现菜单的控制器提供了几个帮助方法。
+  DOBasMenu 是继承DOIVew的抽象类，为实现菜单的界面组件提供了几个帮助方法。
 
 ==DOBasePaneView==
 
-  DOBasePaneView是继承DOIVew的抽象类，为实现面板的控制器提供了几个帮助方法。
+  DOBasePaneView是继承DOIVew的抽象类，为实现面板的界面组件提供了几个帮助方法。
 
 
 ==SessionParter==

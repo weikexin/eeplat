@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.menu.JqueryMenuXP
 
 ==适用场景==
 
-该控制器用于显示XP资源管理器风格的菜单。
+该界面组件用于显示XP资源管理器风格的菜单。
 
 ==运行示例==
 

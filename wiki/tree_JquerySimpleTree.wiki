@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.tree.JquerySimpleTree
 
 ==适用场景==
 
-该控制器用于显示动态树。
+该界面组件用于显示动态树。
 
 ==说明==
 

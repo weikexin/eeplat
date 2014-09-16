@@ -21,7 +21,7 @@ com.exedosoft.plat.ui.jquery.form.TUploadify
 
 上传由exedo/webv3/js/main/platAjax.js中的 uploadify 函数完成。
 
-如有特殊要求可以参考这个控制器的实现重写。
+如有特殊要求可以参考这个界面组件的实现重写。
 
 更多设置参见[ConfigGridItem     表格元素]。
 
@@ -32,7 +32,7 @@ com.exedosoft.plat.ui.jquery.form.TUploadify
 
 ==跨域问题==
 
-Tuploadfiy控制器(用的uploadify插件)，跨域上传文件失败（非IE内核才存在这个问题），如何解决?
+Tuploadfiy界面组件(用的uploadify插件)，跨域上传文件失败（非IE内核才存在这个问题），如何解决?
 原因：
 Uploadify本质上是一个基于Flash的jQuery上传插件（跨域上传的情况牵扯到两个安全模型,一是浏览器的同源策略，一是Flash的安全沙箱策略）。所以跨域关键点在于Flash的安全沙箱策略。Flash安全策略简单讲：同一个域的属于同一个沙箱，同一个沙箱的可以互相访问.如果要访问另外一个沙箱的内容就要在另外一个沙箱定义信任,这种信任策略就定义在crossdomain.xml中。
 解决方案：

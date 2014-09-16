@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.form.DOValueResultListPlain
 
 ==适用场景==
 
-用于显示以form.DOResultList 开头的控制器录入的值。
+用于显示以form.DOResultList 开头的界面组件录入的值。
 
 ==说明==
 

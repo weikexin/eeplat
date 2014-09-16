@@ -9,7 +9,7 @@
 
 1  在菜单 那里点击执行js写好js函数，如person_manager("类型1")
 
-2  现在菜单控制器可能未全部都相应了改方法，检查控制器代码，增加类似代码：
+2  现在菜单界面组件可能未全部都相应了改方法，检查界面组件代码，增加类似代码：
 					if(aChildMenu.getDoClickJs()!=null){
 						buffer.append(" onclick=\"")
 						.append(aChildMenu.getDoClickJs())

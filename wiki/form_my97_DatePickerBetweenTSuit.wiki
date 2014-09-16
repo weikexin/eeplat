@@ -12,7 +12,7 @@ com.exedosoft.plat.ui.jquery.form.my97.DatePickerBetweenTSuit
  
 和form.my97.DatePicker相同。
 
-该控制器所在表格元素需要关联两个表格元素，每个表格元素的控制器都是form.my97.DatePicker。
+该界面组件所在表格元素需要关联两个表格元素，每个表格元素的界面组件都是form.my97.DatePicker。
 
 
 

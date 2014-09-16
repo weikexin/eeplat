@@ -8,14 +8,14 @@ com.exedosoft.plat.ui.jquery.form.DOValueHtmlXss
 
 平台默认情况县会安全显示数据库的值，避免Xss攻击，会把html中的< > & " '等符号转义。
 
-该控制器可以完整显示html代码。
+该界面组件可以完整显示html代码。
 
 ==运行示例==
 
-没有使用form.DOValueHtmlXss控制器：
+没有使用form.DOValueHtmlXss界面组件：
 
 <img  src="http://eeplat.googlecode.com/files/c_valuehtmlxss_2.png "/>
 
-使用form.DOValueHtmlXss控制器：
+使用form.DOValueHtmlXss界面组件：
 
 <img  src="http://eeplat.googlecode.com/files/c_valuehtmlxss.png "/>

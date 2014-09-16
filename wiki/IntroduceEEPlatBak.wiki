@@ -20,7 +20,7 @@
 
      [TechArchive 开发文档]
 
-     [ConfigController   控制器手册]
+     [ConfigController   界面组件手册]
 
 
    

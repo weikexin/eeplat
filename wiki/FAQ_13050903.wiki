@@ -11,7 +11,7 @@
 
 @xdd
 经过魏总的指导，我总结了一些在老平台上扩展KindEditor插件的流程。
-1.首先要找到相应的控制器,com.exedosoft.plat.ui.jquery.form.TKindEditor
+1.首先要找到相应的界面组件,com.exedosoft.plat.ui.jquery.form.TKindEditor
 拷贝到相应的包中。
 2.然后再exedo.jsp中加入相应的js的包，一共两个
 可以在kindEidot的文件目录中找到

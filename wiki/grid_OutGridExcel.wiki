@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.grid.OutGridExcel
 
 ==适用场景==
 
-该控制器用于把服务对应的数据至Excel。
+该界面组件用于把服务对应的数据至Excel。
 
 ==说明==
 

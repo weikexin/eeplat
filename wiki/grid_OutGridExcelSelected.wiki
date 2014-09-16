@@ -6,7 +6,7 @@ com.exedosoft.plat.ui.jquery.grid.OutGridExcelSelected
 
 ==适用场景==
 
-该控制器用于导出选中的数据至Excel。
+该界面组件用于导出选中的数据至Excel。
 
 ==说明==
 

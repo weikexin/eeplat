@@ -7,7 +7,7 @@ com.exedosoft.plat.ui.menu.DOWebFxTree
 
 ==适用场景==
 
-该控制器用于显示树形菜单。
+该界面组件用于显示树形菜单。
 
 ==运行示例==
 

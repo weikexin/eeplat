@@ -113,7 +113,7 @@ projectnotes=备注
  
 点击确定，完成翻译。然后刷新缓存，查看界面，如下图所示：
  
-	注意：字段翻译使用了文件上传控制器，需要设置上传文件存放路径，打开配置文件D:\Tomcat55\webapps\yiyi\WEB-INF\classes\globals.xml，找到配置项<property name="uploadfiletemp">D:\\upload\\</property> 修改路径即可，注意一定要两个\\。
+	注意：字段翻译使用了文件上传界面组件，需要设置上传文件存放路径，打开配置文件D:\Tomcat55\webapps\yiyi\WEB-INF\classes\globals.xml，找到配置项<property name="uploadfiletemp">D:\\upload\\</property> 修改路径即可，注意一定要两个\\。
 
 4	附录1  创建表SQL语句
 MySQL版本：
