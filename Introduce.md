@@ -5,7 +5,7 @@
 
 基于EEPlat的应用可以在EEPlat.Service,EEPlat.Cluster和EEPlat.Cloud之间进行移植，一套应用可以运行在不同环境中。
 
-> <img width='600' height='320' src='http://eeplat.googlecode.com/files/yiyi_products.png' />
+<img width='600' height='320' src='http://eeplat.googlecode.com/files/yiyi_products.png' />
 
 ### EEPlat产品特点 ###
   1. 可用：体现在已经经过很多项目、公司实际使用的检验。
