@@ -26,32 +26,15 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
         *  录入相关  
         *  下拉列表相关  
         *  组合  
-        *  显示相关  
-    * 树 tree  
-        *  [JquerySimpleTree](tree_JquerySimpleTree.md)  
-    * 菜单 menu  
-        *  [JqueryMenuXP](menu_JqueryMenuXP.md)  
-* 多租户 EEPlat PaaS] 
-    * [多租户基础架构](Multi_MetaDriver.md)		
+        *  显示相关
+    * 树 tree
+        *  [JquerySimpleTree](tree_JquerySimpleTree.md)
+    * 菜单 menu
+        *  [JqueryMenuXP](menu_JqueryMenuXP.md)
+* 多租户 EEPlat PaaS]
+    * [多租户基础架构](Multi_MetaDriver.md)
 * 开发实战
-    * [01判断服务的执行及多态性](FAQ_13050901.md)  
+    * [01判断服务的执行及多态性](FAQ_13050901.md)
 
 
 
-* [链接]
-    * 文字超链接
-        *  链接外部URL
-        *  链接本仓库里的URL
-    *  锚点
-    * [图片超链接]
-* [图片]
-    * 来源于网络的图片
-    * GitHub仓库中的图片
-* [列表](#dot)
-    * 圆点列表
-    * 数字列表
-    * 复选框列表
-* [块引用](#blockquotes)
-* [代码](#code)
-* [表格](#table) 
-* [表情](#emoji)
