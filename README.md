@@ -9,14 +9,14 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
 =======================================================
 
 * [入门文档]  
-		* [WAR包安装](Setup.md)  
-		* [源代码SVN安装](SvnSetup.md)  
-		* [第一个工程](FirstProjcet.md)  
+    * [WAR包安装](Setup.md)  
+    * [源代码SVN安装](SvnSetup.md)  
+    * [第一个工程](FirstProjcet.md)  
 * [开发文档]  
 		* [EEPlat平台简介](Introduce.md)  
 * [界面组件（控制器）]  
-		* 面板 pane  
-				* [LayoutLeft](pane_LayOutLeft.md)	
+    *  面板 pane  
+        *  [LayoutLeft](pane_LayOutLeft.md)	
 		* 表格 grid  
 				* [GridSupportMore](grid_GridSupportMore.md)  
 		* 表格元素 item  
