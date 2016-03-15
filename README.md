@@ -15,17 +15,17 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
 * 开发文档
     * [EEPlat平台简介](Introduce.md)
 * 界面组件（控制器）
-    *  面板 pane  
-        *  [LayoutLeft](pane_LayOutLeft.md)	
-    * 表格 grid  
-        *  [GridSupportMore](grid_GridSupportMore.md)  
-    * 表格元素 item  
-        *  常用按钮  
-            *  [TService](form_TService.md)  
-        *  日期相关  
-        *  录入相关  
-        *  下拉列表相关  
-        *  组合  
+    *  面板 pane
+        *  [LayoutLeft](pane_LayOutLeft.md)
+    * 表格 grid
+        *  [GridSupportMore](grid_GridSupportMore.md)
+    * 表格元素 item
+        *  常用按钮
+            *  [TService](form_TService.md)
+        *  日期相关
+        *  录入相关
+        *  下拉列表相关
+        *  组合
         *  显示相关
     * 树 tree
         *  [JquerySimpleTree](tree_JquerySimpleTree.md)
