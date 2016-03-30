@@ -10,6 +10,10 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
     * [WAR包安装](Setup.md)
     * [源代码SVN安装](SvnSetup.md)
     * [第一个工程](FirstProjcet.md)
+    * [视频](Video.md)
+    * [示例SQL](AboutSQL.md)
+    * [联系我们](Link.md)
+    * [常见问题](FAQ.md)
 * 开发文档
     * [EEPlat平台简介](Introduce.md)
 * 界面组件（控制器）
