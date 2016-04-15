@@ -133,6 +133,17 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
             *  [TSuite](form_TSuite.md)
         *  显示相关
             *  [DOValueSimple](form_DOValueSimple.md)
+            *  [DOValueSimplePlain](form_DOValueSimplePlain.md)
+            *  [DOValueLong](form_DOValueLong.md)
+            *  [DOValueFileMult](form_DOValueFileMult.md)
+            *  [DOValueHtmlXss](form_DOValueHtmlXss.md)
+            *  [DOValueImage](form_DOValueImage.md)
+            *  [DOValueLink](form_DOValueLink.md)
+            *  [DOValueStaticText](form_DOValueStaticText.md)
+            *  [DOValueInputFileHD](form_DOValueInputFileHD.md)
+            *  [DOValueTextArea](form_DOValueTextArea.md)
+            *  [DOValueSimpleLoginMan](form_DOValueSimpleLoginMan.md)
+            *  [DOValueMultiData](form_DOValueMultiData.md)
     * 树 tree
         *  [JquerySimpleTree](tree_JquerySimpleTree.md)  
     * 菜单 menu
@@ -140,8 +151,24 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
         *  [DOWebFxTree](menu_DOWebFxTree.md)
 * 多租户 EEPlat PaaS]
     * [多租户基础架构](Multi_MetaDriver.md)
+    * [一个简单的例子](Multi_First.md)
+    * [沙箱及限制](Multi_Code.md)
+    * [手机支持](Multi_Mobile.md)
+    * [在线开发说明](Multi_dev.md)
+    * [AppShare使用](AppShare.md)
 * 开发实战
     * [01判断服务的执行及多态性](FAQ_13050901.md)
+    * [02业务对象关联多个业务对象导致面板加载变慢](FAQ_13050902.md)
+    * [03集成新版KindEditor](FAQ_13050903.md)
+    * [04下拉列表显示综合问题分析](FAQ_13051501.md)
+    * [05下拉列表使用总结](FAQ_13051502.md)
+    * [06升级jQuery导致工作流设计器的问题](FAQ_13052901.md)
+    * [07按钮执行前的逻辑判断处理实例](FAQ_13053101.md)
+    * [08菜单指向带参数处理](/FAQ_13060601.md)
+    * [09通过JS实现表格元素的显示与否](FAQ_13061401.md)
+    * [10JS回调服务的返回参数传递](FAQ_13070201.md)
+    * [11服务器端JS示例1](FAQ_13072901.md)
+    * 
 
 
 
