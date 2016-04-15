@@ -103,6 +103,16 @@ EEPlat PaaS平台是一种面向企业应用领域，以元数据驱动为核心
             *  [my97_DatePickerBetweenTSuit](form_my97_DatePickerBetweenTSuit.md)
         *  录入相关
             *  [DOInputText](form_DOInputText.md)
+            *  [DOTextArea](form_DOTextArea.md)
+            *  [DOFCKEditor](form_DOFCKEditor.md)
+            *  [DOInputPassword](form_DOInputPassword.md)
+            *  [DOInputCheckBox](form_DOInputCheckBox.md)
+            *  [DOInputCheckBoxList](form_DOInputCheckBoxList.md)
+            *  [DOInputRadio](form_DOInputRadio.md)
+            *  [DOInputFileHD](form_DOInputFileHD.md)
+            *  [TUploadify](form_TUploadify.md)
+            *  [DOInputHidden](form_DOInputHidden.md)
+            *  [TDBEditArea](form_TDBEditArea.md)
         *  下拉列表相关
             *  [DOValueStaticList](form_DOValueStaticList.md)
         *  组合
